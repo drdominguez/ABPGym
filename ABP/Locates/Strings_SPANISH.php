@@ -143,5 +143,6 @@
                 'Gestión de tabla' => 'Gestión de tabla',
                 'Gestión de tabla_ejercicios' => 'Gestión de tabla_ejercicios',
                 'Gestión de tdu' => 'Gestión de tdu',
-                'Gestión de usuario' => 'Gestión de usuario');
+                'Gestión de usuario' => 'Gestión de usuario',
+                'Mostrar todos los usuarios' => 'Mostrar todos los usuarios');
     ?>

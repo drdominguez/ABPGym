@@ -143,5 +143,7 @@
                 'Gestión de tabla' => 'tabla Management',
                 'Gestión de tabla_ejercicios' => 'tabla_ejercicios Management',
                 'Gestión de tdu' => 'tdu Management',
-                'Gestión de usuario' => 'usuario Management');
+                'Gestión de usuario' => 'usuario Management',
+            ,
+                'Mostrar todos los usuarios' => 'Show all users');
     ?>
