@@ -3,32 +3,46 @@
     class notificacion_SHOWCURRENT{
    
         private $valores;
-        
-        function __construct($valores){
+         function __construct($valores,$usuario){
             $this->valores=$valores;
+            $this->usuario=$usuario;
             $this->render();
         }
     
         function render(){
-        
-            include '../Locates/Strings_' . $_SESSION['idioma'] . '.php';
             include '../View/Header.php';
-            include '../Functions/notificacion_DefForm.php';
-
-
+            include '../View/menuLateral.php';
+            include '../View/notificacionesMenu.php';
+            include '../View/menuSuperior.php';
     ?>
+<div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">notificacion</a>
+                    </li>
+                    <li class="breadcrumb-item active">Show Current</li>
+                </ol>
+                <!-- Example DataTables Card-->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Mostrar una notificación</div>
+                    <div class="card-body">
             <form name = 'Form' action = '../Controller/notificacion_Controller.php' method = 'post' onsubmit = 'comprobar()'>
 
-                <?php echo $strings['idNotificacion'] ?> : <input type = 'text' name = 'idNotificacion' size = '20' value ='<?php echo ($this->valores['idNotificacion']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 20)" ><br>
-        <?php echo $strings['dniAdministrador'] ?> : <input type = 'text' name = 'dniAdministrador' size = '10' value ='<?php echo ($this->valores['dniAdministrador']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 10)" ><br>
-        <?php echo $strings['Asunto'] ?> : <input type = 'text' name = 'Asunto' size = '50' value ='<?php echo ($this->valores['Asunto']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 50)" ><br>
-        <?php echo $strings['contenido'] ?> : <input type = 'text' name = 'contenido' size = '65535' value ='<?php echo ($this->valores['contenido']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 65535)" ><br>
-        <?php echo $strings['fecha'] ?> : <input readonly class = 'tcal' type = 'date' name = 'fecha' min = '' max = '' value ='<?php echo ($this->valores['fecha']); ?>' readonly  ></br>
-        
+                <b><?php echo $strings['idNotificacion'] ?> :</b> <?php echo ($this->valores['idNotificacion']); ?><br>
+        <b><?php echo $strings['Asunto'] ?> :</b> <?php echo ($this->valores['Asunto']); ?><br>
+          <b><?php echo $strings['dniAdministrador'] ?> :</b> <?php echo ($this->valores['dniAdministrador']); ?><br>
+        <b><?php echo $strings['contenido'] ?> :</b> <?php echo ($this->valores['contenido']); ?><br>
+        <b><?php echo $strings['fecha'] ?> :</b> <?php echo ($this->valores['fecha']); ?><br>  
 
             </form>
-            <a href='../Controller/notificacion_Controller.php'><?php echo $strings['Volver']; ?> 
-            </a>
+            <button type="button" onclick="window.location.href='../Controller/notificacion_Controller.php'" class="btn btn-primary"><?php echo $strings['Volver']; ?></button> 
+            
+
+        </div>
+    </div>
 
 <?php
             include '../View/Footer.php';

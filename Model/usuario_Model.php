@@ -15,7 +15,6 @@ class usuario_Model
 
         function __construct($dni,$nombre,$apellidos,$edad,$contraseña,$email,$telefono,$fechaAlta){
 
-        include_once '../Locates/Strings_'.$_SESSION['idioma'].'.php';
             $this->dni = $dni;
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;

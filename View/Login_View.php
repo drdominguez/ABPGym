@@ -43,7 +43,7 @@
                     <form name='Form' action='../Controller/Login_Controller.php' class="form-signin" accept-charset="UTF-8" method="POST">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Login</label>
-                            <input class="form-control" name="login" id="exampleInputEmail1" type="TEXT" aria-describedby="emailHelp" placeholder="Introduzca email" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="dni" id="exampleInputEmail1" type="TEXT" aria-describedby="emailHelp" placeholder="Introduzca DNI" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>

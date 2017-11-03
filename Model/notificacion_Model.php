@@ -10,9 +10,8 @@ class notificacion_Model
             var $contenido;
             var $fecha;
 
-        function __construct($idNotificacion, $id,$dniAdministrador,$Asunto,$contenido,$fecha){
+        function __construct($idNotificacion, $dniAdministrador,$Asunto,$contenido,$fecha){
 
-        include_once '../Locates/Strings_'.$_SESSION['idioma'].'.php';
             $this->idNotificacion = $idNotificacion;
             $this->dniAdministrador = $dniAdministrador;
             $this->Asunto = $Asunto;
@@ -121,17 +120,128 @@ function DELETE()
     else
         return "No existe en la base de datos";
 }
+
 //Funcion obtener datos de una tabla de la bd
-function RellenaDatos()
+function RellenaDatosAdmin()
 {
     
-    $sql = "SELECT * FROM notificacion WHERE idNotificacion = '$this->idNotificacion' AND id = '$this->id'";
+    $sql = "SELECT fecha,Asunto,idNotificacion,contenido,dniAdministrador FROM notificacion order by fecha desc";
+    if (!($resultado = $this->mysqli->query($sql))){
+        return 'No existe en la base de datos'; // 
+    }
+    else{
+        $result= array();
+        while($row = $resultado->fetch_assoc()){
+        array_push($result, $row);
+        }   
+        return $result;
+    }
+}
+
+
+//Funcion obtener datos de una tabla de la bd
+function contarNotificacionesUsuario($usuario)
+{
+    
+    $sql = "SELECT COUNT(*) FROM notificacion_deportista WHERE dniDeportista = '$usuario->dni' and visto=0;";
     if (!($resultado = $this->mysqli->query($sql))){
         return 'No existe en la base de datos'; // 
     }
     else{
         $result = $resultado->fetch_array();
         return $result;
+    }
+}
+
+function notificacionVista($usuario){
+    $sql = "UPDATE notificacion_deportista SET visto = '1' WHERE dniDeportista= '$usuario' and idNotificacion = '$this->idNotificacion';";
+    if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la modificación'; 
+        }
+        else{
+            return 'Modificado correctamente';
+        }
+}
+
+function comprobarVisto($usuario){
+    $sql = "SELECT visto FROM notificacion_deportista WHERE dniDeportista= '$usuario->dni' and idNotificacion = '$this->idNotificacion';";
+    if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la consulta'; 
+        }
+        else{
+            $result=$resultado->fetch_array();
+            return $result['visto'];
+        }
+}
+
+
+
+function selectNotificacion()
+{
+    
+    $sql = "SELECT fecha,Asunto,idNotificacion,contenido,dniAdministrador FROM notificacion WHERE idNotificacion= '$this->idNotificacion';";
+    if (!($resultado = $this->mysqli->query($sql))){
+        return 'No existe en la base de datos'; // 
+    }
+    else{
+        $result = $resultado->fetch_array();
+        return $result;
+    }
+}
+
+//Funcion obtener datos de una tabla de la bd
+function contarNotificaciones()
+{
+    
+    $sql = "SELECT COUNT(*) FROM notificacion";
+    if (!($resultado = $this->mysqli->query($sql))){
+        return 'No existe en la base de datos'; // 
+    }
+    else{
+        $result = $resultado->fetch_array();
+        return $result;
+    }
+}
+
+//Funcion obtener datos de una tabla de la bd
+
+function RellenaDatos($usuario)
+{
+    
+    $sql = "SELECT idnotificacion FROM notificacion_deportista WHERE dniDeportista = '$usuario->dni';";
+    if (!($resultado = $this->mysqli->query($sql))){
+        return 'No existe en la base de datos'; // 
+    }
+    else{
+         $result= array();
+       if ($resultado->num_rows > 0){
+       
+        while($row = $resultado->fetch_assoc()){
+        array_push($result, $row);
+        }
+        $sql= "SELECT fecha,Asunto,idNotificacion,contenido,dniAdministrador FROM notificacion WHERE ";
+            $i=0;
+            foreach ($result as $not) {
+                if($i==0){
+                $sql.= "idNotificacion=". $not['idnotificacion'];
+                }else{
+                $sql.= " or idNotificacion=". $not['idnotificacion'];
+                }
+                $i++;
+            }
+            $sql.=" ORDER BY fecha desc;";
+        if (!($resultado = $this->mysqli->query($sql))){
+        return 'No existe en la base de datos'; // 
+         }else{
+             $result2=array();
+            while($row = $resultado->fetch_assoc()){
+            array_push($result2, $row);
+            } 
+            return $result2;
+        }  
+        }else{
+            return $result; 
+        }
     }
 }
 //Funcion editar

@@ -1,36 +1,33 @@
 
+
+
 <?php
         session_start();
+           if(isset($_SESSION['lang'])){
+        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
+            include("../Locates/Strings_ENGLISH.php"); 
+        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
+            include("../Locates/Strings_SPANISH.php"); 
+    }else{
+        include("../Locates/Strings_SPANISH.php"); 
+    }
         if(!isset($_REQUEST['dni']) && !(isset($_REQUEST['contraseña']))){
             include '../View/Login_View.php';
-            $login = new Login();
+            $login = new Login($mal=false);
         }else{
 
-            /*Definimos función para conectarnos a la BD*/
-            function ConnectDB(){
-                include '../Model/config.inc';
-                $mysqli = new mysqli("localhost", USER , PASS , DB);
-                    
-                if ($mysqli->connect_errno) {
-                    include '../View/MESSAGE_View.php';
-                    new MESSAGE("Error MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error, '../index.php');
-                    return false;
-                }
-                else{
-                    return $mysqli;
-                }
-            }
-
+            include '../Model/Access_DB.php';
     /*Definimos una función que va a ser la encargada de controlar las acciones a realizar en el proceso de login*/
     function Login($login, $contraseña){
 
         $mysqli = ConnectDB();
-        $sql = "select * from usuario where dni = '".$login."'";//Obtenemos el usuario con el que se intenta acceder a la aplicación
+        $sql = "select * from usuario where dni = '". $login ."'";//Obtenemos el usuario con el que se intenta acceder a la aplicación
 
         $result = $mysqli->query($sql);
         if ($result->num_rows == 1){  // existe el usuario
             $tupla = $result->fetch_array();
-            if ($tupla['contraseña'] == $contraseña){ //  coinciden las contraseñas
+            $contraseñamd5=md5($contraseña);
+            if ($tupla['contrasena'] == $contraseñamd5 ){ //  coinciden las contraseñas
                 return true;
             }
             else{
@@ -51,8 +48,8 @@
         header('Location:../index.php');
     }
     else{//Sino le mostramos un mensaje con el error
-        include '../View/MESSAGE_View.php';
-        new MESSAGE($respuesta, '../Controller/Login_Controller.php');
+         include '../View/Login_View.php';
+            $login = new Login($respuesta);
     }
 
 }

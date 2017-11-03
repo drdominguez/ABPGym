@@ -6,36 +6,74 @@
         private $array; 
         private $volver;
 
-        function __construct($array, $datos){
+        function __construct($array, $datos, $usuario){
             $this->datos = $datos;
             $this->lista = $array;
+            $this->usuario = $usuario;
             $this->render();
         }
-                
-        function render(){  
-            include '../View/Header.php';
-?>
-            <h1>
-            <?php echo $strings['Mostrar todos']. ' notificacion'; ?>
-            </h1>
-            <a href='../Controller/notificacion_Controller.php?action=SEARCH'><img src='../View/Icons/search.png'></a></a>
         
-            <a href='../Controller/notificacion_Controller.php?action=ADD'><img src='../View/Icons/add.png'></a></br></br>
-            <br><br>
-            <table border = 1>
-                <tr>
-<?php
-                foreach($this->lista as $titulo){
+        function render(){   include '../View/Header.php';
+            include '../View/menuLateral.php';
+            include '../View/notificacionesMenu.php';
+                include '../View/menuSuperior.php';
+
 ?>
-                    <th>
-<?php
-                    echo $strings[$titulo];
+
+
+<div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">notificacion</a>
+                    </li>
+                    <li class="breadcrumb-item active">Show All</li>
+                </ol>
+                <!-- Example DataTables Card-->
+                
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i>Mostrar todas las notificaciones</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                                    <tr>
+                                          <?php
+                                     foreach($this->lista as $titulo){
 ?>
-                    </th>
+                                        <th >
 <?php
-                }
-?>          
-                </tr>
+                                        echo $strings[$titulo];
+?>
+                                        </th>
+<?php
+                                    }
+    ?>                                  <th>
+                                        </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                     <tr>
+                                            <?php
+                                     foreach($this->lista as $titulo){
+?>
+                                        <th>
+<?php
+                                        echo $strings[$titulo];
+?>
+                                        </th>
+<?php
+                                    }
+    ?>                                  <th>
+                                        </th>
+                                       
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+
 <?php
                 foreach($this->datos as $datos){
 ?>
@@ -50,37 +88,24 @@
                         </td>
 <?php
                     }
-?>
+                    ?>  
                     <td>
-                    <a href='../Controller/notificacion_Controller.php?idNotificacion=<?php echo $datos['idNotificacion']; ?>&id=<?php echo $datos['id']; ?>&action=EDIT'>
-                                    <img src='../View/Icons/edit.png'>
-                    
-                    </a>
-                            
-                    </td>
-
-                    <td>
-                    <a href='../Controller/notificacion_Controller.php?idNotificacion=<?php echo $datos['idNotificacion']; ?>&id=<?php echo $datos['id']; ?>&action=DELETE'>
-                                    <img src='../View/Icons/delete.png'>
-                    </a>
-                    
-                    </td>
-
-                    <td>
-                    <a href='../Controller/notificacion_Controller.php?idNotificacion=<?php echo $datos['idNotificacion']; ?>&id=<?php echo $datos['id']; ?>&action=SHOWCURRENT'>
+                    <a href='../Controller/notificacion_Controller.php?idNotificacion=<?php echo $datos['idNotificacion']; ?>&dni=<?php echo $usuario->dni;?>&action=SHOWCURRENT'>
                                     <img src='../View/Icons/detalle.png'>
-                    </a>
+            </a>
                     
                     </td>
-                            
+
+                
                     </tr>
 <?php
                     }   
 ?>
-            </table>
-        
-            <a href='../index.php'><img src='../View/Icons/salir.png'></a>
-                  
+            </tbody>
+                            </table>
+                              </div>
+                    </div>
+                </div>
 <?php
 
             include '../View/Footer.php';
