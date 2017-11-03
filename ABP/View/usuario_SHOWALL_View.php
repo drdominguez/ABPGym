@@ -91,10 +91,10 @@
                         </td>
 <?php
                     }
-                    if($_SESSION['login'] != strtoupper($datos['Usuario'])){
+                    if($_SESSION['login'] != strtoupper($datos['dni'])){
 ?>                  
                     <td>
-                    <a href='../Controller/usuarios_Controller.php?Usuario=<?php echo $datos['Usuario']; ?>&action=EDIT'>
+                    <a href='../Controller/usuarios_Controller.php?dni=<?php echo $datos['dni']; ?>&action=EDIT'>
                                     <img src='../View/Icons/edit.png'>
                     
                     </a>
@@ -102,7 +102,7 @@
                     </td>
 
                     <td>
-                    <a href='../Controller/usuarios_Controller.php?Usuario=<?php echo $datos['Usuario']; ?>&action=DELETE'>
+                    <a href='../Controller/usuarios_Controller.php?dni=<?php echo $datos['dni']; ?>&action=DELETE'>
                                     <img src='../View/Icons/delete.png'>
                     </a>
                     
@@ -119,7 +119,7 @@
                     }  
                     ?>  
                     <td>
-                    <a href='../Controller/usuarios_Controller.php?Usuario=<?php echo $datos['Usuario']; ?>&action=SHOWCURRENT'>
+                    <a href='../Controller/usuarios_Controller.php?dni=<?php echo $datos['dni']; ?>&action=SHOWCURRENT'>
                                     <img src='../View/Icons/detalle.png'>
                     </a>
                     

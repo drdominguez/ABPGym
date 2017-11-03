@@ -55,7 +55,7 @@ class usuario_Model
                         nombre,
                         apellidos,
                         edad,
-                        contraseÒa,
+                        contrasena,
                         email,
                         telefono,
                         fechaAlta) 
@@ -100,7 +100,7 @@ function SEARCH()
                         nombre,
                         apellidos,
                         edad,
-                        contraseÒa,
+                        contrasena,
                         email,
                         telefono,
                         fechaAlta
@@ -111,7 +111,7 @@ function SEARCH()
                          (nombre LIKE '%$this->nombre%')&&
                          (apellidos LIKE '%$this->apellidos%')&&
                          (edad LIKE '%$this->edad%')&&
-                         (contraseÒa LIKE '%$this->contraseÒa%')&&
+                         (contrasena LIKE '%$this->contraseÒa%')&&
                          (email LIKE '%$this->email%')&&
                          (telefono LIKE '%$this->telefono%')&&
                          (fechaAlta LIKE '%$this->fechaAlta%'))";
@@ -139,10 +139,10 @@ function DELETE()
         return "No existe en la base de datos";
 }
 //Funcion obtener datos de una tabla de la bd
-function RellenaDatos()
+function RellenaDatos2()
 {
     
-    $sql = "SELECT * FROM usuario WHERE dni = '$this->dni'";
+    $sql = "SELECT * FROM usuario WHERE dni = '$this->dni';";
     if (!($resultado = $this->mysqli->query($sql))){
         return 'No existe en la base de datos'; // 
     }
@@ -151,6 +151,21 @@ function RellenaDatos()
         return $result;
     }
 }
+
+
+function RellenaDatos()
+{
+    
+    $sql = "SELECT * FROM usuario;";
+    if (!($resultado = $this->mysqli->query($sql))){
+        return 'No existe en la base de datos'; // 
+    }
+    else{
+        $result = $resultado->fetch_array();
+        return $result;
+    }
+}
+
 //Funcion editar
 function EDIT()
 {
@@ -163,7 +178,7 @@ function EDIT()
     
     if ($result->num_rows == 1)
     {
-        $sql = "UPDATE usuario SET dni = '$this->dni',nombre = '$this->nombre',apellidos = '$this->apellidos',edad = '$this->edad',contraseÒa = '$this->contraseÒa',email = '$this->email',telefono = '$this->telefono',fechaAlta = '$this->fechaAlta' WHERE dni= '$this->dni'";
+        $sql = "UPDATE usuario SET dni = '$this->dni',nombre = '$this->nombre',apellidos = '$this->apellidos',edad = '$this->edad',contrasena = '$this->contraseÒa',email = '$this->email',telefono = '$this->telefono',fechaAlta = '$this->fechaAlta' WHERE dni= '$this->dni'";
         
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la modificaci√≥n'; 

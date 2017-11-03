@@ -110,7 +110,7 @@
                 'usuario' => 'usuario',
                 'apellidos' => 'apellidos',
                 'edad' => 'edad',
-                'contraseña' => 'contraseña',
+                'contrasena' => 'contraseña',
                 'email' => 'email',
                 'telefono' => 'telefono',
                 'fechaAlta' => 'fechaAlta',

@@ -10,8 +10,15 @@
     if (!IsAuthenticated()){
         header('Location:../index.php');
     }
-    include '../Locates/Strings_'.$_SESSION['idioma'].'.php';
-
+   //Carga el idioma guardado en la variable de sesión o el Español por defecto
+    if(isset($_SESSION['lang'])){
+        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
+            include("../Locates/Strings_ENGLISH.php"); 
+        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
+            include("../Locates/Strings_SPANISH.php"); 
+    }else{
+        include("../Locates/Strings_SPANISH.php"); 
+    }
     /*Generamos los includes de las diferentes vistas*/
     include '../View/usuario_ADD_View.php';
     include '../View/usuario_DELETE_View.php';
@@ -35,7 +42,7 @@
                 $edad = $_REQUEST['edad'];
 
          
-                $contraseña = $_REQUEST['contraseña'];
+                $contraseña = $_REQUEST['contrasena'];
 
          
                 $email = $_REQUEST['email'];
@@ -73,7 +80,7 @@ if (!isset($_REQUEST['action'])){
         case 'DELETE': //Borrado de actividades
            if (!$_POST){
                     $usuario = new usuario_Model($_REQUEST['dni'],'','','','','','','');
-                    $valores = $usuario->RellenaDatos();
+                    $valores = $usuario->RellenaDatos2();
                     new usuario_DELETE($valores);
                 }
                 else{
@@ -84,13 +91,13 @@ if (!isset($_REQUEST['action'])){
                 break;
         case 'SHOWCURRENT': //Mostrar informaciÃ³n detallada
                 $usuario = new usuario_Model($_REQUEST['dni'],'','','','','','','');
-                $valores = $usuario->RellenaDatos();
+                $valores = $usuario->RellenaDatos2();
                 new usuario_SHOWCURRENT($valores);
                 break;
         case 'EDIT': //ModificaciÃ³n de actividades
 if (!$_POST){
                     $usuario = new usuario_Model($_REQUEST['dni'],'','','','','','','');
-                    $valores = $usuario->RellenaDatos();
+                    $valores = $usuario->RellenaDatos2();
                     new usuario_EDIT($valores);
                 }
                 else{
@@ -109,7 +116,7 @@ if (!$_POST){
                 else{
                     $usuario = get_data_form();
                     $datos = $usuario->SEARCH();
-                     $lista = array('dni','nombre','apellidos','edad','contraseña','email','telefono','fechaAlta');
+                     $lista = array('dni','nombre','apellidos','edad','contrasena','email','telefono','fechaAlta');
                     new usuario_SHOWALL($lista, $datos, '../index.php');
                 }
                 break;
@@ -121,7 +128,8 @@ if (!$_POST){
                     $usuario = get_data_form();
                 }
                 $datos = $usuario->SEARCH();
-                $lista = array('dni','nombre','apellidos','edad','contraseña','email','telefono','fechaAlta');
+
+                $lista = array('dni','nombre','apellidos','edad','contrasena','email','telefono','fechaAlta');
                 new usuario_SHOWALL($lista, $datos,'../Controller/usuario_Controller.php' );
 
             }
