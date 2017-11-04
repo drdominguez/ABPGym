@@ -8,7 +8,7 @@ class tabla_Model
             var $tipo;
             var $comentario;
 
-        function __construct(,$idTabla,$tipo,$comentario){
+        function __construct($idTabla,$tipo,$comentario){
 
         include_once '../Locates/Strings_'.$_SESSION['idioma'].'.php';
             $this->idTabla = $idTabla;

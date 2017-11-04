@@ -92,7 +92,7 @@
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="../Controller/usuario_Controller.php?dni=<?php echo $_SESSION['login']; ?>&action=SHOWCURRENT">
                             <i class="fa fa-fw fa-link"></i>
                             <span class="nav-link-text"><?php echo $strings['Cuenta']; ?></span>
                         </a>

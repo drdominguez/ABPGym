@@ -58,7 +58,7 @@ if (!isset($_REQUEST['action'])){
                 break;      
         case 'DELETE': //Borrado de actividades
            if (!$_POST){
-                    $tabla = new tabla_Model(,'','','');
+                    $tabla = new tabla_Model('','','');
                     $valores = $tabla->RellenaDatos();
                     new tabla_DELETE($valores);
                 }
@@ -69,13 +69,13 @@ if (!isset($_REQUEST['action'])){
                 }
                 break;
         case 'SHOWCURRENT': //Mostrar información detallada
-                $tabla = new tabla_Model(,'','','');
+                $tabla = new tabla_Model('','','');
                 $valores = $tabla->RellenaDatos();
                 new tabla_SHOWCURRENT($valores);
                 break;
         case 'EDIT': //Modificación de actividades
 if (!$_POST){
-                    $tabla = new tabla_Model(,'','','');
+                    $tabla = new tabla_Model('','','');
                     $valores = $tabla->RellenaDatos();
                     new tabla_EDIT($valores);
                 }

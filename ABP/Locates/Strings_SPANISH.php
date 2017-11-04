@@ -166,5 +166,8 @@
                 'Mostrar un usuario' => 'Mostrar un usuario',
                 'Ver usuario actual' => 'Ver usuario actual',
                 'Usuarios' => 'Usuarios',
-                'Ver todos los usuarios' => 'Ver todos los usuarios');
+                'Ver todos los usuarios' => 'Ver todos los usuarios',
+                'Tablas' => 'Tablas',
+                'Ver todas las tablas' => 'Ver todas las tablas',
+                'Mostrar todas las tablas' => 'Mostrar todas las tablas');
     ?>
