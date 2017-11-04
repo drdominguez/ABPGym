@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html"; charset=utf-8"/> 
 
 <?php 
     session_start(); //solicito trabajar con la session
@@ -10,7 +11,7 @@
     if (!IsAuthenticated()){
         header('Location:../index.php');
     }
-   //Carga el idioma guardado en la variable de sesi�n o el Espa�ol por defecto
+   //Carga el idioma guardado en la variable de sesión o el Español por defecto
     if(isset($_SESSION['lang'])){
         if(strcmp($_SESSION['lang'],'ENGLISH')==0)
             include("../Locates/Strings_ENGLISH.php"); 
@@ -28,7 +29,7 @@
 
     function get_data_form(){
 
-    //Recoge la información del formulario
+    //Recoge la informaciÃ³n del formulario
 
                 $dni = $_REQUEST['dni'];
 
@@ -42,7 +43,7 @@
                 $edad = $_REQUEST['edad'];
 
          
-                $contrase�a = $_REQUEST['contrasena'];
+                $contraseña = $_REQUEST['contrasena'];
 
          
                 $email = $_REQUEST['email'];
@@ -55,7 +56,7 @@
 
          $accion = $_REQUEST['action'];
 
-    $usuario = new usuario_Model($dni,$nombre,$apellidos,$edad,$contrase�a,$email,$telefono,$fechaAlta);
+    $usuario = new usuario_Model($dni,$nombre,$apellidos,$edad,$contraseña,$email,$telefono,$fechaAlta);
 
     return $usuario;
 }
@@ -64,9 +65,9 @@ if (!isset($_REQUEST['action'])){
     $_REQUEST['action'] = '';
 }
     
-    /*A continuación creamos el switch con el cual podremos gestionar las peticiones de ADD, DELETE, EDIT...*/
+    /*A continuaciÃ³n creamos el switch con el cual podremos gestionar las peticiones de ADD, DELETE, EDIT...*/
     switch ($_REQUEST['action']) {
-        /*Caso añadir a la BD*/
+        /*Caso aÃ±adir a la BD*/
         case 'ADD': 
                 if (!$_POST){
                     new usuario_ADD();
@@ -91,12 +92,12 @@ if (!isset($_REQUEST['action'])){
                     new MESSAGE($respuesta, '../Controller/usuario_Controller.php');
                 }
                 break;
-        case 'SHOWCURRENT': //Mostrar información detallada
+        case 'SHOWCURRENT': //Mostrar informaciÃ³n detallada
                 $usuario = new usuario_Model($_REQUEST['dni'],'','','','','','','');
                 $valores = $usuario->RellenaDatos2();
                 new usuario_SHOWCURRENT($valores);
                 break;
-        case 'EDIT': //Modificación de actividades
+        case 'EDIT': //ModificaciÃ³n de actividades
 if (!$_POST){
                     $usuario = new usuario_Model($_REQUEST['dni'],'','','','','','','');
                     $valores = $usuario->RellenaDatos2();

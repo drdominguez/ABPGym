@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html"; charset=utf-8"/> 
 
 <?php
 
@@ -21,7 +22,7 @@
 
                 include '../View/Header.php';
                 include '../View/menuLateral.php';
-  include '../View/notificacionesMenu.php';
+                include '../View/notificacionesMenu.php';
                 include '../View/menuSuperior.php';
                 include '../View/Footer.php';
             }
