@@ -1,6 +1,6 @@
-
+<meta http-equiv="Content-Type" content="text/html"; charset=utf-8"/> 
 <?php
-     class usuario_ADD { 
+ class usuario_ADD {
         function __construct(){ 
             $this->render();
         }
@@ -24,14 +24,14 @@
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Añadir Usuario</div>
+                        <i class="fa fa-table"></i> AÃ±adir Usuario</div>
                     <div class="card-body">      
             <form name = 'Form' action='../Controller/usuario_Controller.php' method='post' onsubmit='return comprobar_usuario()'>
         <?php echo $strings['dni'] ?> : <input type = 'text' name = 'dni' size = '10' value = '' required  onblur="esVacio(this)  && comprobarText(this, 10)" ><br>
         <?php echo $strings['nombre'] ?> : <input type = 'text' name = 'nombre' size = '30' value = '' required  onblur="esVacio(this)  && comprobarText(this, 30)" ><br>
         <?php echo $strings['apellidos'] ?> : <input type = 'text' name = 'apellidos' size = '30' value = '' required  onblur="esVacio(this)  && comprobarText(this, 30)" ><br>
         <?php echo $strings['edad'] ?> : <input type = 'number' name = 'edad' min = '' max = '' value = '' required  onblur="esVacio(this)  && comprobarText(this, 4)" ><br>
-        <?php echo $strings['contraseña'] ?> : <input type = 'text' name = 'contraseña' size = '30' value = '' required  onblur="esVacio(this)  && comprobarText(this, 30)" ><br>
+        <?php echo $strings['contraseÃ±a'] ?> : <input type = 'text' name = 'contraseÃ±a' size = '30' value = '' required  onblur="esVacio(this)  && comprobarText(this, 30)" ><br>
         <?php echo $strings['email'] ?> : <input type = 'text' name = 'email' size = '100' value = '' required  onblur="esVacio(this)  && comprobarText(this, 100)" ><br>
         <?php echo $strings['telefono'] ?> : <input type = 'text' name = 'telefono' size = '20' value = '' required  onblur="esVacio(this)  && comprobarText(this, 20)" ><br>
         <?php echo $strings['fechaAlta'] ?> : <input readonly class = 'tcal' type = 'date' name = 'fechaAlta' min = '' max = '' value = '' ></br>

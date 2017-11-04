@@ -2,7 +2,7 @@
 
 
 <?php
-        
+        session_start();
            if(isset($_SESSION['lang'])){
         if(strcmp($_SESSION['lang'],'ENGLISH')==0)
             include("../Locates/Strings_ENGLISH.php"); 
@@ -43,7 +43,7 @@
     $respuesta = Login($_REQUEST['dni'], $_REQUEST['contraseña']);
 
     if ($respuesta == 'true'){ //si el login y el contraseña son correctos, iniciamos sesión y asignamos el login a la variable $_SESSION
-        
+        session_start();
         $_SESSION['login'] = $_REQUEST['dni'];
         header('Location:../index.php');
     }
