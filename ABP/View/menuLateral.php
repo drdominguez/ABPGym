@@ -1,7 +1,18 @@
   <!-- Navigation-->
-
+<?php
+  
+  include_once '../Functions/Authentication.php';
+  if(isset($_SESSION['lang'])){
+        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
+            include("../Locates/Strings_ENGLISH.php"); 
+        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
+            include("../Locates/Strings_SPANISH.php"); 
+    }else{
+        include("../Locates/Strings_SPANISH.php"); 
+    }
+?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <a class="navbar-brand" href="Index_Controller.php">GymApp</a>
+            <a class="navbar-brand" href="Index_Controller.php"><?php echo $strings['GymApp']; ?></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -10,14 +21,14 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-wrench"></i>
-                            <span class="nav-link-text">Gestión Usuarios</span>
+                            <span class="nav-link-text"><?php echo $strings['Gestión de usuario']; ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseDeportistas">
                             <li>
-                                <a href="../Controller/usuario_Controller.php?action=ADD">Añadir Usuarios</a>
+                                <a href="../Controller/usuario_Controller.php?action=ADD"><?php echo $strings['Anadir Usuario']; ?></a>
                             </li>
                             <li>
-                                <a href="../Controller/usuario_Controller.php">Ver Usuarios</a>
+                                <a href="../Controller/usuario_Controller.php"><?php echo $strings['Ver Usuarios']; ?></a>
                             </li>
                             
                         </ul>
@@ -25,63 +36,63 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEntrenadores" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-wrench"></i>
-                            <span class="nav-link-text">Gestión Entrenadores</span>
+                            <span class="nav-link-text"><?php echo $strings['Gestión de entrenadores']; ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
                             <li>
-                                <a href="navbar.html">Añadir Entrenador</a>
+                                <a href="../Controller/entrenador_Controller.php?action=ADD"><?php echo $strings['Anadir entrenador']; ?></a>
                             </li>
                             <li>
-                                <a href="cards.html">Eliminar Entrenador</a>
+                                <a href="../Controller/entrenador_Controller.php"><?php echo $strings['Ver entrenadores']; ?></a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tablas">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTablas" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-wrench"></i>
-                            <span class="nav-link-text">Gestión Tablas</span>
+                            <span class="nav-link-text"><?php echo $strings['Gestión de tablas']; ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseTablas">
                             <li>
-                                <a href="navbar.html">Añadir Tabla</a>
+                                <a href="../Controller/tabla_Controller.php?action=ADD"><?php echo $strings['Anadir tabla']; ?></a>
                             </li>
                             <li>
-                                <a href="cards.html">Eliminar Tabla</a>
+                                <a href="../Controller/tabla_Controller.php"><?php echo $strings['Ver tablas']; ?></a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ejercicios">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEjercicios" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-wrench"></i>
-                            <span class="nav-link-text">Gestión Ejercicios</span>
+                            <span class="nav-link-text"><?php echo $strings['Gestión de ejercicios']; ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEjercicios">
                             <li>
-                                <a href="navbar.html">Añadir Ejercicio</a>
+                                <a href="../Controller/ejercicio_Controller.php?action=ADD"><?php echo $strings['Anadir ejercicio']; ?></a>
                             </li>
                             <li>
-                                <a href="cards.html">Eliminar Ejercicio</a>
+                                <a href="../Controller/ejercicio_Controller.php"><?php echo $strings['Ver ejercicios']; ?></a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Notificaciones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseNotificaciones" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-wrench"></i>
-                            <span class="nav-link-text">Gestión Notificaciones</span>
+                            <span class="nav-link-text"><?php echo $strings['Gestión de notificaciones']; ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseNotificaciones">
                             <li>
-                                <a href="../Controller/notificacion_Controller.php?action=ADD">Enviar Notificación</a>
+                                <a href="../Controller/notificacion_Controller.php?action=ADD"><?php echo $strings['Enviar notificacion']; ?></a>
                             </li>
                             <li>
-                                <a href="../Controller/notificacion_Controller.php">Ver Notificaciones</a>
+                                <a href="../Controller/notificacion_Controller.php"><?php echo $strings['Ver notificaciones']; ?></a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                         <a class="nav-link" href="">
                             <i class="fa fa-fw fa-link"></i>
-                            <span class="nav-link-text">Cuenta</span>
+                            <span class="nav-link-text"><?php echo $strings['Cuenta']; ?></span>
                         </a>
                     </li>
                 </ul>

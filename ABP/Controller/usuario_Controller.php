@@ -86,6 +86,8 @@ if (!isset($_REQUEST['action'])){
                 else{
                     $usuario = get_data_form();
                     $respuesta = $usuario->DELETE();
+                    echo $respuesta;
+                    exit;
                     new MESSAGE($respuesta, '../Controller/usuario_Controller.php');
                 }
                 break;
@@ -109,17 +111,6 @@ if (!$_POST){
                 }
                 
                 break;
-        case 'SEARCH': //Consulta de actividades
-            if (!$_POST){
-                    new usuario_SEARCH();
-                }
-                else{
-                    $usuario = get_data_form();
-                    $datos = $usuario->SEARCH();
-                     $lista = array('dni','nombre','apellidos','edad','contrasena','email','telefono','fechaAlta');
-                    new usuario_SHOWALL($lista, $datos, '../index.php');
-                }
-                break;
         default:
            if (!$_POST){
                     $usuario = new usuario_Model('','','','','','','','');
@@ -128,8 +119,7 @@ if (!$_POST){
                     $usuario = get_data_form();
                 }
                 $datos = $usuario->SEARCH();
-
-                $lista = array('dni','nombre','apellidos','edad','contrasena','email','telefono','fechaAlta');
+                $lista = array('dni','nombre','apellidos','email');
                 new usuario_SHOWALL($lista, $datos,'../Controller/usuario_Controller.php' );
 
             }

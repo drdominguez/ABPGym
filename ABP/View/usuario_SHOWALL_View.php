@@ -24,9 +24,9 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">Usuarios</a>
+                        <a href="../Controller/usuario_Controller.php"><?php echo $strings['Usuarios'] ?></a>
                     </li>
-                    <li class="breadcrumb-item active">Show All</li>
+                    <li class="breadcrumb-item active"><?php echo $strings['Ver todos los usuarios'] ?></li>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
@@ -94,7 +94,7 @@
                     if($_SESSION['login'] != strtoupper($datos['dni'])){
 ?>                  
                     <td>
-                    <a href='../Controller/usuarios_Controller.php?dni=<?php echo $datos['dni']; ?>&action=EDIT'>
+                    <a href='../Controller/usuario_Controller.php?dni=<?php echo $datos['dni']; ?>&action=EDIT'>
                                     <img src='../View/Icons/edit.png'>
                     
                     </a>
@@ -102,7 +102,7 @@
                     </td>
 
                     <td>
-                    <a href='../Controller/usuarios_Controller.php?dni=<?php echo $datos['dni']; ?>&action=DELETE'>
+                    <a href='../Controller/usuario_Controller.php?dni=<?php echo $datos['dni']; ?>&action=DELETE'>
                                     <img src='../View/Icons/delete.png'>
                     </a>
                     
@@ -119,7 +119,7 @@
                     }  
                     ?>  
                     <td>
-                    <a href='../Controller/usuarios_Controller.php?dni=<?php echo $datos['dni']; ?>&action=SHOWCURRENT'>
+                    <a href='../Controller/usuario_Controller.php?dni=<?php echo $datos['dni']; ?>&action=SHOWCURRENT'>
                                     <img src='../View/Icons/detalle.png'>
                     </a>
                     

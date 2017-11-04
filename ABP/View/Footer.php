@@ -1,4 +1,17 @@
-              <footer class="sticky-footer">
+             <?php
+  
+  include_once '../Functions/Authentication.php';
+  if(isset($_SESSION['lang'])){
+        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
+            include("../Locates/Strings_ENGLISH.php"); 
+        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
+            include("../Locates/Strings_SPANISH.php"); 
+    }else{
+        include("../Locates/Strings_SPANISH.php"); 
+    }
+?>
+
+ <footer class="sticky-footer">
                 <div class="container">
                     <div class="text-center">
                         <small>Copyright © ABP_G42 2017</small>
@@ -14,15 +27,15 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">¿Seguro que desea salir?</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><?php echo $strings['Seguro que desea salir']; ?></h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Seleccione "Salir" si desea cerrar sesión.</div>
+                        <div class="modal-body"><?php echo $strings['Seleccione "Salir" si desea cerrar sesion.']; ?></div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="../Functions/Desconectar.php">Salir</a>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal"><?php echo $strings['Cancelar']; ?></button>
+                            <a class="btn btn-primary" href="../Functions/Desconectar.php"><?php echo $strings['Salir']; ?></a>
                         </div>
                     </div>
                 </div>

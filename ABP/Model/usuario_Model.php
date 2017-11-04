@@ -128,12 +128,18 @@ function DELETE()
 {
     
     $sql = "SELECT * FROM usuario WHERE dni= '$this->dni'";
+
     $result = $this->mysqli->query($sql);
     if ($result->num_rows == 1)
     {
         $sql = "DELETE FROM usuario WHERE dni= '$this->dni'";
-        $this->mysqli->query($sql);
-        return "Borrado correctamente";
+
+        if(!($this->mysqli->query($sql))){
+            return "Error borrado";
+        }else{
+            return "Borrado correctamente";
+        }
+        
     }
     else
         return "No existe en la base de datos";
@@ -152,19 +158,6 @@ function RellenaDatos2()
     }
 }
 
-
-function RellenaDatos()
-{
-    
-    $sql = "SELECT * FROM usuario;";
-    if (!($resultado = $this->mysqli->query($sql))){
-        return 'No existe en la base de datos'; // 
-    }
-    else{
-        $result = $resultado->fetch_array();
-        return $result;
-    }
-}
 
 //Funcion editar
 function EDIT()

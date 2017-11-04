@@ -43,7 +43,7 @@ class MESSAGE{
                     <div class="card-header">
                         <i class="fa fa-table"></i> <?php echo $strings[$this->string];?> </div>
                     <div class="card-body">
-            <button type="button" onclick="window.location.href='../Controller/'<?php echo $volver; ?>'_Controller.php'" class="btn btn-primary"><?php echo $strings['Volver']; ?></button> 
+            <button type="button" onclick="window.location.href='<?php echo $this->volver; ?>'" class="btn btn-primary"><?php echo $strings['Volver']; ?></button> 
             
 
         </div>

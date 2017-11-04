@@ -1,4 +1,15 @@
-
+<?php
+  
+  include_once '../Functions/Authentication.php';
+  if(isset($_SESSION['lang'])){
+        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
+            include("../Locates/Strings_ENGLISH.php"); 
+        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
+            include("../Locates/Strings_SPANISH.php"); 
+    }else{
+        include("../Locates/Strings_SPANISH.php"); 
+    }
+?>
                    
                     <li class="nav-item">
                         <form class="form-inline my-2 my-lg-0 mr-lg-2">
