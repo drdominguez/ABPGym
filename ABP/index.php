@@ -1,5 +1,5 @@
 <?php
-        session_start();
+		session_start();
         include './Functions/Authentication.php';
         if (!IsAuthenticated()){
             header('Location:./Controller/Login_Controller.php');
