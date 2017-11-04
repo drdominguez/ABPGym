@@ -87,8 +87,6 @@ if (!isset($_REQUEST['action'])){
                 else{
                     $usuario = get_data_form();
                     $respuesta = $usuario->DELETE();
-                    echo $respuesta;
-                    exit;
                     new MESSAGE($respuesta, '../Controller/usuario_Controller.php');
                 }
                 break;

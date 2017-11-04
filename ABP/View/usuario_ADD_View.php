@@ -31,23 +31,19 @@
         <?php echo $strings['nombre'] ?> : <input type = 'text' name = 'nombre' size = '30' value = '' required  onblur="esVacio(this)  && comprobarText(this, 30)" ><br>
         <?php echo $strings['apellidos'] ?> : <input type = 'text' name = 'apellidos' size = '30' value = '' required  onblur="esVacio(this)  && comprobarText(this, 30)" ><br>
         <?php echo $strings['edad'] ?> : <input type = 'number' name = 'edad' min = '' max = '' value = '' required  onblur="esVacio(this)  && comprobarText(this, 4)" ><br>
-        <?php echo $strings['contraseña'] ?> : <input type = 'text' name = 'contraseña' size = '30' value = '' required  onblur="esVacio(this)  && comprobarText(this, 30)" ><br>
+        <?php echo $strings['contrasena'] ?> : <input type = 'text' name = 'contrasena' size = '30' value = '' required  onblur="esVacio(this)  && comprobarText(this, 30)" ><br>
         <?php echo $strings['email'] ?> : <input type = 'text' name = 'email' size = '100' value = '' required  onblur="esVacio(this)  && comprobarText(this, 100)" ><br>
         <?php echo $strings['telefono'] ?> : <input type = 'text' name = 'telefono' size = '20' value = '' required  onblur="esVacio(this)  && comprobarText(this, 20)" ><br>
         <?php echo $strings['fechaAlta'] ?> : <input readonly class = 'tcal' type = 'date' name = 'fechaAlta' min = '' max = '' value = '' ></br>
         
 
-                <input type='submit' name='action' value='ADD'>
-            </form>
-       
-        </div>
+         </form>
+                <button type="button" onclick="window.location.href='../Controller/usuario_Controller.php?action=default'" class="btn btn-default"><?php echo $strings['Volver']; ?></button> 
+            <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary"><?php echo $strings['Insertar']; ?></button> 
+       </div>
     </div>
-            
-                
 <?php
             include '../View/Footer.php';
-        
-        } //fin metodo render
-
-    }
-?>
+        } // fin del metodo render
+    } // fin de la clase
+    ?>
