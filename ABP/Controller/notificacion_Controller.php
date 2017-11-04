@@ -125,7 +125,7 @@ if (!$_POST){
                     $notificacion = get_data_form();
                 }
                 $datos = $notificacion->SEARCH();
-                $lista = array('idNotificacion','dniAdministrador','Asunto','contenido','fecha');
+                $lista = array('fecha','idNotificacion','dniAdministrador','Asunto','contenido');
                 new notificacion_SHOWALL($lista, $datos,'../Controller/notificacion_Controller.php' );
 
             }

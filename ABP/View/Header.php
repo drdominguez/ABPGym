@@ -7,9 +7,11 @@
         if(strcmp($_SESSION['lang'],'ENGLISH')==0)
             include("../Locates/Strings_ENGLISH.php"); 
         else if(strcmp($_SESSION['lang'],'SPANISH')==0)
-            include("../Locates/Strings_SPANISH.php"); 
+            include("../Locates/Strings_SPANISH.php");
+        else if(strcmp($_SESSION['lang'], 'GALICIAN')==0)
+        include("../Locates/Strings_GALICIAN.php"); 
     }else{
-        include("../Locates/Strings_SPANISH.php"); 
+        include("../Locates/Strings_GALICIAN.php"); 
     }
 ?>
     <html>
@@ -20,6 +22,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
+        <script type="text/javascript" src="../View/js/tcal.js"></script> 
+            <link rel="stylesheet" type="text/css" href="../View/css/tcal.css" media="screen" />
+
         <title> <?php echo $strings['GymApp']; ?></title>
         <!-- Bootstrap core CSS-->
         <link href="../View/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

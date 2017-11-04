@@ -11,7 +11,6 @@
     
       function render(){
         
-            include '../Locates/Strings_' . $_SESSION['idioma'] . '.php';
             include '../View/Header.php';
             include '../View/menuLateral.php';
    include '../View/notificacionesMenu.php';
