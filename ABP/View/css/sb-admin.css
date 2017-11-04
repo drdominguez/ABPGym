@@ -340,40 +340,41 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav .nav-link-collapse:after {
-    color: #868e96;
+    color: #F96D00;
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
-    color: #868e96;
+    color: #EEEEEE;
+    z
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link:hover {
-    color: #adb5bd;
+    color: #F96D00;
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a,
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a {
-    color: #868e96;
+    color: #EEEEEE;
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a:focus,
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level > li > a:hover,
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a:focus,
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level > li > a:hover {
-    color: #adb5bd;
+    color: #0092CA;
 }
 
 #mainNav.navbar-dark .navbar-collapse .navbar-nav > .nav-item.dropdown > .nav-link:after {
-    color: #adb5bd;
+    color: #F96D00;
 }
 
 @media (min-width: 992px) {
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
-        background: #343a40;
+        background: #222831;
     }
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
         color: white !important;
-        background-color: #495057;
+        background-color: #393E46;
     }
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a:focus,
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a:hover {
@@ -381,7 +382,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
     }
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-second-level,
     #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item .sidenav-third-level {
-        background: #343a40;
+        background: #3E3E3E;
     }
 }
 
