@@ -48,7 +48,7 @@
                                 $visto=$notificacion->comprobarVisto($usuario);
                               ?>
                               <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../Controller/notificacion_Controller.php?usuario=<?php echo $usuario->usuario;?>&id=<?php echo $not['id']; ?>&action=SHOWCURRENT">
+                            <a class="dropdown-item" href="../Controller/notificacion_Controller.php?dni=<?php echo $usuario->dni;?>&idNotificacion=<?php echo $not['idNotificacion']; ?>&action=SHOWCURRENT">
                               <?php 
                               if($visto==0){?>
                             <span class="text-success">
