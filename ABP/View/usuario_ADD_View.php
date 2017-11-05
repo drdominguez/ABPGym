@@ -26,7 +26,7 @@
                     <div class="card-header">
                         <i class="fa fa-table"></i> Añadir Usuario</div>
                     <div class="card-body">      
-            <form name = 'Form' action='../Controller/usuario_Controller.php' method='post' onsubmit='return comprobar_usuario()'>
+            <form name = 'Form' id="form1" action='../Controller/usuario_Controller.php' method='post' onsubmit='return comprobar_usuario()'>
                <div class="form-group">
                 <div class="form-row">
                 <div class="col-md-6">
@@ -83,14 +83,6 @@
               </div>
               </div>
       </div>
-      <div class="form-group">
-          <div class="form-row">
-              <div class="col-md-6">
-                <label for="fechaAlta"> <?php echo $strings['fechaAlta'] ?> : </label><br>
-              <input readonly class = 'tcal' type = 'text' name = 'fechaAlta' min = '' max = '' value = '' >
-            </div>
-        </div>
-    </div>
      <br>
 
          </form>

@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html"; charset=utf-8"/> 
+<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
 
 <?php 
     session_start(); //solicito trabajar con la session
@@ -55,7 +55,8 @@
                 $telefono = $_REQUEST['telefono'];
 
          
-                $fechaAlta = $_REQUEST['fechaAlta'];
+                $fechaAlta = date("Y-m-d");
+
 
          $accion = $_REQUEST['action'];
 

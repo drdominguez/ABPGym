@@ -7,7 +7,7 @@
 //-------------------------------
 define("DB","GYMESEI2");
 define("USER","root");
-define("PASS","abp");
+define("PASS","iu");
 define("DIR","ABP");
 //-------------------------------
 ?>

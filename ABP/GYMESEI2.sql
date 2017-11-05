@@ -505,7 +505,7 @@ ALTER TABLE `muscular`
 -- Indices de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
- ADD PRIMARY KEY (`idNotificacion`), ADD UNIQUE KEY `idNotificacion` (`idNotificacion`), ADD UNIQUE KEY `dniAdministrador` (`dniAdministrador`);
+ ADD PRIMARY KEY (`idNotificacion`), ADD UNIQUE KEY `idNotificacion` (`idNotificacion`), ADD KEY `dniAdministrador` (`dniAdministrador`);
 
 --
 -- Indices de la tabla `notificacion_deportista`

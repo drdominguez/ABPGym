@@ -36,7 +36,7 @@ class notificacion_Model
     {
         
      
-        $sql = "SELECT * FROM notificacion WHERE idNotificacion= '$this->idNotificacion' AND id= '$this->id'";
+        $sql = "SELECT * FROM notificacion WHERE idNotificacion= '$this->idNotificacion'";
 
         if (!$result = $this->mysqli->query($sql)){
             return 'No se ha podido conectar con la base de datos'; // error en la consulta (no se ha podido conectar con la bd
@@ -45,18 +45,15 @@ class notificacion_Model
             if ($result->num_rows == 0){
                 
                 $sql = "INSERT INTO notificacion (
-                        idNotificacion,
                         dniAdministrador,
                         Asunto,
                         contenido,
                         fecha) 
                         VALUES (
-                        '$this->idNotificacion',
                         '$this->dniAdministrador',
                         '$this->Asunto',
                         '$this->contenido',
                         '$this->fecha')";
-                
                 if (!$this->mysqli->query($sql)) {
                     return 'Error en la inserción';
                 }
@@ -267,6 +264,19 @@ function EDIT()
     }
     else
         return 'No existe en la base de datos';
+}
+
+//Funcion obtener datos de una tabla de la bd
+function RellenaDatos2()
+{
+    
+    $sql = "SELECT * FROM usuario;";
+    if (!($resultado = $this->mysqli->query($sql))){
+        return 'No existe en la base de datos'; // 
+    }
+    else{
+        return $resultado;
+    }
 }
 
 
