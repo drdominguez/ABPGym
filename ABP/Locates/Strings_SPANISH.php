@@ -3,7 +3,7 @@
 <?php 
     $strings = 
     array(
-                'Borrado correctamente' => 'Borrado incorrectamente',
+                'Borrado correctamente' => 'Borrado correctamente',
                 'Modificado correctamente' => 'Modificado correctamente',
                 'Inserción realizada con Éxito' => 'Inserción realizada con Ã©xito',
                 'Error en la modificaciÃ³n' => 'Error en la modificaciÃ³n',
