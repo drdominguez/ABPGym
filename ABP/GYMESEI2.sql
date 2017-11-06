@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-06-2017 a las 00:23:46
+-- Tiempo de generación: 06-11-2017 a las 01:14:08
 -- Versión del servidor: 5.5.44-0+deb8u1
 -- Versión de PHP: 5.6.13-0+deb8u1
 
@@ -21,9 +21,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-DROP DATABASE IF EXISTS `GYMESEI2`;
-CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `GYMESEI2`;
+
 --
 -- Estructura de tabla para la tabla `actividad`
 --
@@ -64,13 +62,6 @@ CREATE TABLE IF NOT EXISTS `actividad_horario` (
 CREATE TABLE IF NOT EXISTS `administrador` (
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `administrador`
---
-
-INSERT INTO `administrador` (`dniAdministrador`) VALUES
-('44497121X');
 
 -- --------------------------------------------------------
 
@@ -215,13 +206,6 @@ CREATE TABLE IF NOT EXISTS `notificacion` (
   `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `notificacion`
---
-
-INSERT INTO `notificacion` (`idNotificacion`, `dniAdministrador`, `Asunto`, `contenido`, `fecha`) VALUES
-(1, '44497121X', 'prueba1', 'lkjahfkjsdbfkjadsbfkhasdbfhkadsbfhjksadb', '2017-11-07');
-
 -- --------------------------------------------------------
 
 --
@@ -231,7 +215,7 @@ INSERT INTO `notificacion` (`idNotificacion`, `dniAdministrador`, `Asunto`, `con
 CREATE TABLE IF NOT EXISTS `notificacion_deportista` (
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
-  `idnotificacion` bigint(20) NOT NULL,
+  `idNotificacion` bigint(20) NOT NULL,
   `visto` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -306,13 +290,6 @@ CREATE TABLE IF NOT EXISTS `sesionentrenamiento_tabla` (
 CREATE TABLE IF NOT EXISTS `superusuario` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `superusuario`
---
-
-INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
-('44497121X');
 
 -- --------------------------------------------------------
 
@@ -404,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
-('44497121X', 'Adrián', 'Souto Fariñas', 21, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '656498500', '2017-11-14'),
+('44497121X', 'AdriÃ¡n', 'Souto FariÃ±as', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
 ('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
 
 --
@@ -511,7 +488,7 @@ ALTER TABLE `notificacion`
 -- Indices de la tabla `notificacion_deportista`
 --
 ALTER TABLE `notificacion_deportista`
- ADD PRIMARY KEY (`dniAdministrador`,`dniDeportista`), ADD UNIQUE KEY `dniAdministrador` (`dniAdministrador`), ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
+ ADD PRIMARY KEY (`idNotificacion`,`dniDeportista`), ADD KEY `idNotificacion` (`idNotificacion`), ADD KEY `dniDeportista` (`dniDeportista`);
 
 --
 -- Indices de la tabla `pago`
@@ -612,7 +589,7 @@ ADD CONSTRAINT `fk_ActividadAc` FOREIGN KEY (`idActividad`) REFERENCES `activida
 -- Filtros para la tabla `administrador`
 --
 ALTER TABLE `administrador`
-ADD CONSTRAINT `fk_AdministradoSuperUsuario` FOREIGN KEY (`dniAdministrador`) REFERENCES `superusuario` (`dniSuperUsuario`);
+ADD CONSTRAINT `fk_AdministradoSuperUsuario` FOREIGN KEY (`dniAdministrador`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `cardio`
@@ -630,7 +607,7 @@ ADD CONSTRAINT `fk_DeportistaUsuario` FOREIGN KEY (`dni`) REFERENCES `usuario` (
 -- Filtros para la tabla `entrenador`
 --
 ALTER TABLE `entrenador`
-ADD CONSTRAINT `fk_EntrenadorSuperUsuario` FOREIGN KEY (`dniEntrenador`) REFERENCES `superusuario` (`dniSuperUsuario`);
+ADD CONSTRAINT `fk_EntrenadorSuperUsuario` FOREIGN KEY (`dniEntrenador`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `entrenador_deportista`
@@ -673,13 +650,13 @@ ADD CONSTRAINT `fk_MuscularEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ej
 -- Filtros para la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-ADD CONSTRAINT `fk_NotificacionAdministrador` FOREIGN KEY (`dniAdministrador`) REFERENCES `administrador` (`dniAdministrador`);
+ADD CONSTRAINT `fk_NotificacionAdministrador` FOREIGN KEY (`dniAdministrador`) REFERENCES `administrador` (`dniAdministrador`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `notificacion_deportista`
 --
 ALTER TABLE `notificacion_deportista`
-ADD CONSTRAINT `fk_NotificacionDeportista` FOREIGN KEY (`dniAdministrador`) REFERENCES `administrador` (`dniAdministrador`);
+ADD CONSTRAINT `fk_NotificacionDeportista` FOREIGN KEY (`idNotificacion`) REFERENCES `notificacion` (`idNotificacion`);
 
 --
 -- Filtros para la tabla `pago`
@@ -724,13 +701,13 @@ ADD CONSTRAINT `fk_SuperUsuario` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `usu
 --
 ALTER TABLE `superusuario_ejercicio`
 ADD CONSTRAINT `fk_SuperusuarioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`),
-ADD CONSTRAINT `fk_dniSuperUsuarioS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`);
+ADD CONSTRAINT `fk_dniSuperUsuarioS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `superusuario_individual`
 --
 ALTER TABLE `superusuario_individual`
-ADD CONSTRAINT `fk_SuperUsuarioIndividual` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`),
+ADD CONSTRAINT `fk_SuperUsuarioIndividual` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE,
 ADD CONSTRAINT `fk_SuperUsuarioIndividualL` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
 
 --
@@ -739,7 +716,7 @@ ADD CONSTRAINT `fk_SuperUsuarioIndividualL` FOREIGN KEY (`idActividad`) REFERENC
 ALTER TABLE `superusuario_tabla_deportista`
 ADD CONSTRAINT `FK_SuperUsuarioTab` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`),
 ADD CONSTRAINT `fk_SuperUsuarioTablaDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
-ADD CONSTRAINT `fk_SuperUsuarioTalaS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`);
+ADD CONSTRAINT `fk_SuperUsuarioTalaS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `tabla_ejercicios`

@@ -10,11 +10,11 @@
 
        function render(){
 
-            include '../Locates/Strings_' .$_SESSION['idioma'] . '.php';
+            include '../Locates/Strings_' .$_SESSION['lang'] . '.php';
             include '../View/Header.php';
             include '../View/menuLateral.php';
-  include '../View/notificacionesMenu.php';
-                include '../View/menuSuperior.php';
+            include '../View/notificacionesMenu.php';
+            include '../View/menuSuperior.php';
                         
 ?>
            

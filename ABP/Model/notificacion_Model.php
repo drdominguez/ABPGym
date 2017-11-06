@@ -205,7 +205,7 @@ function contarNotificaciones()
 function RellenaDatos($usuario)
 {
     
-    $sql = "SELECT idnotificacion FROM notificacion_deportista WHERE dniDeportista = '$usuario->dni';";
+    $sql = "SELECT idNotificacion FROM notificacion_deportista WHERE dniDeportista = '$usuario->dni';";
     if (!($resultado = $this->mysqli->query($sql))){
         return 'No existe en la base de datos'; // 
     }
