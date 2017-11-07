@@ -93,6 +93,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Deportistas">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-wrench"></i>
+                            <span class="nav-link-text"><?php echo $strings['Gestión de deportistas']; ?></span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseDeportistas">
+                            <li>
+                                <a href="../Controller/deportistas_Controller.php?action=ADD"><?php echo $strings['Enviar notificacion']; ?></a>
+                            </li>
+                            <li>
+                                <a href="../Controller/notificacion_Controller.php"><?php echo $strings['Ver notificaciones']; ?></a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                         <a class="nav-link" href="../Controller/usuario_Controller.php?dni=<?php echo $_SESSION['login']; ?>&action=SHOWCURRENT">
                             <i class="fa fa-fw fa-link"></i>

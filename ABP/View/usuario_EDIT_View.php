@@ -34,7 +34,7 @@
                     <div class="card-header">
                         <i class="fa fa-table"></i> Modificar Usuario</div>
                     <div class="card-body">    
-                <form name = 'Form' action = '../Controller/usuario_Controller.php' method = 'post' onsubmit = 'comprobar_usuario()'>
+                <form name = 'Form' id="form1" action = '../Controller/usuario_Controller.php' method = 'post' onsubmit = 'comprobar_usuario()'>
 
                     <div class="form-group">
                         <div class="form-row">
@@ -49,6 +49,14 @@
                                 <div class="col-md-6">
                                 <label for="nombre"><?php echo $strings['nombre'] ?> : </label>
                                 <input class="form-control" type = 'text' name = 'nombre' size = '30' value ='<?php echo ($this->valores['nombre']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 30)" >
+                                </div>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                                <div class="form-row">
+                                <div class="col-md-6">
+                                <label for="apellidos"><?php echo $strings['apellidos'] ?> : </label>
+                                <input class="form-control" type = 'text' name = 'apellidos' size = '30' value ='<?php echo ($this->valores['apellidos']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 30)" >
                                 </div>
                             </div>
                         </div>

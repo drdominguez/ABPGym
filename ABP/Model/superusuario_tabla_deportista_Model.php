@@ -10,7 +10,6 @@ class superusuario_tabla_deportista_Model
 
         function __construct($dniSuperUsuario, $dniDeportista, $idTabla){
 
-        include_once '../Locates/Strings_'.$_SESSION['idioma'].'.php';
             $this->dniSuperUsuario = $dniSuperUsuario;
             $this->dniDeportista = $dniDeportista;
             $this->idTabla = $idTabla;    

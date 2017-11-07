@@ -495,12 +495,12 @@ footer.sticky-footer {
 
 
 /*
-	Stylesheet for Tigra Calendar v5.0
-	Product is Public Domain (Free for any kind of applicaiton, customization and derivative works are allowed) 
-	URL: http://www.softcomplex.com/products/tigra_calendar/
+    Stylesheet for Tigra Calendar v5.0
+    Product is Public Domain (Free for any kind of applicaiton, customization and derivative works are allowed) 
+    URL: http://www.softcomplex.com/products/tigra_calendar/
 
-	- all image paths are relative to path of stylesheet
-	- the styles below can be moved into the document or in existing stylesheet
+    - all image paths are relative to path of stylesheet
+    - the styles below can be moved into the document or in existing stylesheet
 
 */
 
@@ -570,19 +570,19 @@ footer.sticky-footer {
 }
 
 #tcalPrevYear {
-    background-image: url(http://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1khttp://drive.google.com/uc?export=view&id=0BxOP45eI6-ZETkFfb0FfWjF6Wm8'img/prev_year.gif');
+    background-image: url(../Icons/prev_year.gif);
 }
 
 #tcalPrevMonth {
-    background-image: url(http://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1khttp://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEaE41SlhhYkVJd2c'img/prev_mon.gif');
+    background-image: url(../Icons/prev_mon.gif);
 }
 
 #tcalNextMonth {
-    background-image: url(http://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1khttp://drive.google.com/uc?export=view&id=0BxOP45eI6-ZESDJUMWx1QlpBNHc'img/next_mon.gif');
+    background-image: url(../Icons/next_mon.gif);
 }
 
 #tcalNextYear {
-    background-image: url(http://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1khttp://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1k'img/next_year.gif');
+    background-image: url(../Icons/next_year.gif);
 }
 
 

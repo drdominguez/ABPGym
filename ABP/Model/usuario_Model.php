@@ -19,7 +19,7 @@ class usuario_Model
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;
             $this->edad = $edad;
-            $this->contraseña = $contraseña;
+            $this->contraseña = md5($contraseña);
             $this->email = $email;
             $this->telefono = $telefono;//Comprobamos si es un atributo de tipo fecha o no 
                 if($fechaAlta == ''){
