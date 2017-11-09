@@ -32,14 +32,6 @@
                         <i class="fa fa-table"></i> Añadir Notificacion</div>
                     <div class="card-body">            
             <form name = 'Form' action='../Controller/notificacion_Controller.php' method='post' onsubmit='return comprobar_notificacion()'>
-                <div class="form-group">
-                    <div class="form-row">
-                    <div class="col-md-6">
-                        <label for="idNotificacion"><?php echo $strings['idNotificacion'] ?> : </label>
-                        <input class="form-control" type = 'text' name = 'idNotificacion' size = '20' value = '' required  onblur="esVacio(this)  && comprobarText(this, 20)" >
-                         </div>
-            </div>
-        </div>
         <div class="form-group">
                 <div class="form-row">
                 <div class="col-md-6">
