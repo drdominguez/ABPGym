@@ -19,7 +19,7 @@ class usuario_Model
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;
             $this->edad = $edad;
-            $this->contraseÒa = $contraseÒa;
+            $this->contraseÒa = md5($contraseÒa);
             $this->email = $email;
             $this->telefono = $telefono;//Comprobamos si es un atributo de tipo fecha o no 
                 if($fechaAlta == ''){
@@ -73,7 +73,7 @@ class usuario_Model
                     return 'Error en la inserci√≥n';
                 }
                 else{
-                    return 'Inserci√≥n realizada con √©xito'; //operacion de insertado correcta
+                    return 'InserciÛn realizada con …xito'; //operacion de insertado correcta
                 }
                 
             }
@@ -100,7 +100,6 @@ function SEARCH()
                         nombre,
                         apellidos,
                         edad,
-                        contrasena,
                         email,
                         telefono,
                         fechaAlta
@@ -111,7 +110,6 @@ function SEARCH()
                          (nombre LIKE '%$this->nombre%')&&
                          (apellidos LIKE '%$this->apellidos%')&&
                          (edad LIKE '%$this->edad%')&&
-                         (contrasena LIKE '%$this->contraseÒa%')&&
                          (email LIKE '%$this->email%')&&
                          (telefono LIKE '%$this->telefono%')&&
                          (fechaAlta LIKE '%$this->fechaAlta%'))";
@@ -171,7 +169,7 @@ function EDIT()
     
     if ($result->num_rows == 1)
     {
-        $sql = "UPDATE usuario SET dni = '$this->dni',nombre = '$this->nombre',apellidos = '$this->apellidos',edad = '$this->edad',contrasena = '$this->contraseÒa',email = '$this->email',telefono = '$this->telefono',fechaAlta = '$this->fechaAlta' WHERE dni= '$this->dni'";
+        $sql = "UPDATE usuario SET dni = '$this->dni',nombre = '$this->nombre',apellidos = '$this->apellidos',edad = '$this->edad',email = '$this->email',telefono = '$this->telefono',fechaAlta = '$this->fechaAlta' WHERE dni= '$this->dni'";
         
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la modificaci√≥n'; 

@@ -58,7 +58,7 @@ class notificacion_Model
                     return 'Error en la inserción';
                 }
                 else{
-                    return 'Inserción realizada con éxito'; //operacion de insertado correcta
+                    return 'Inserción realizada con Éxito'; //operacion de insertado correcta
                 }
                 
             }

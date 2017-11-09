@@ -571,20 +571,21 @@ footer.sticky-footer {
 }
 
 #tcalPrevYear {
-    background-image: url(http://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1khttp://drive.google.com/uc?export=view&id=0BxOP45eI6-ZETkFfb0FfWjF6Wm8'img/prev_year.gif');
+    background-image: url(../Icons/prev_year.gif);
 }
 
 #tcalPrevMonth {
-    background-image: url(http://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1khttp://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEaE41SlhhYkVJd2c'img/prev_mon.gif');
+    background-image: url(../Icons/prev_mon.gif);
 }
 
 #tcalNextMonth {
-    background-image: url(http://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1khttp://drive.google.com/uc?export=view&id=0BxOP45eI6-ZESDJUMWx1QlpBNHc'img/next_mon.gif');
+    background-image: url(../Icons/next_mon.gif);
 }
 
 #tcalNextYear {
-    background-image: url(http://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1khttp://drive.google.com/uc?export=view&id=0BxOP45eI6-ZEMXBZbloxcVBYc1k'img/next_year.gif');
+    background-image: url(../Icons/next_year.gif);
 }
+
 
 
 /* table containing week days header and calendar grid */

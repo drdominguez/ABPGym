@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html"; charset=utf-8"/> 
+<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
 
 <?php
   
@@ -34,7 +34,7 @@
         <?php if(substr($_SERVER['REQUEST_URI'], -27)=='notificacion_Controller.php'){?>
             <link href="../View/vendor/datatables/dataTables.bootstrap4-2.css" rel="stylesheet">
         <?php }else{ ?>
-            <link href="../View/vendor/datatables/dataTables.bootstrap4-2.css" rel="stylesheet">
+            <link href="../View/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
         <?php }
         ?>
         <!-- Custom styles for this template-->

@@ -37,7 +37,8 @@
         <b><?php echo $strings['nombre'] ?> :</b> <?php echo ($this->valores['nombre']); ?><br>
         <b><?php echo $strings['apellidos'] ?> :</b> <?php echo ($this->valores['apellidos']); ?><br>
         <b><?php echo $strings['edad'] ?> :</b> <?php echo ($this->valores['edad']); ?><br>  
-        <b><?php echo $strings['contrasena'] ?> :</b> <?php echo ($this->valores['contrasena']); ?><br> 
+        <!--
+        <b><?php echo $strings['contrasena'] ?> :</b> <?php echo ($this->valores['contrasena']); ?><br> -->
         <b><?php echo $strings['email'] ?> :</b> <?php echo ($this->valores['email']); ?><br> 
         <b><?php echo $strings['telefono'] ?> :</b> <?php echo ($this->valores['telefono']); ?><br> 
         <b><?php echo $strings['fechaAlta'] ?> :</b> <?php echo ($this->valores['fechaAlta']); ?><br> 

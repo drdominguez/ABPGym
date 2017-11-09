@@ -45,8 +45,12 @@
          
                 $edad = $_REQUEST['edad'];
 
-         
-                $contraseña = $_REQUEST['contrasena'];
+                if(isset($_REQUEST['contrasena'])){
+                    $contraseña = $_REQUEST['contrasena'];
+                }else{
+                    $contrasena = null;
+                }
+                
 
          
                 $email = $_REQUEST['email'];
@@ -54,8 +58,12 @@
          
                 $telefono = $_REQUEST['telefono'];
 
-         
-                $fechaAlta = date("Y-m-d");
+         if(isset($_REQUEST['fechaAlta'])){
+                   $fechaAlta = $_REQUEST['fechaAlta'];
+                }else{
+                    $fechaAlta = date("Y-m-d");
+                }
+                
 
 
          $accion = $_REQUEST['action'];
