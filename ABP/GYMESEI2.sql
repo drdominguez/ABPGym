@@ -292,6 +292,9 @@ CREATE TABLE IF NOT EXISTS `superusuario` (
 
 -- --------------------------------------------------------
 
+INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES ('44497121X');
+
+
 --
 -- Estructura de tabla para la tabla `superusuario_ejercicio`
 --
@@ -380,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
-('44497121X', 'AdriÃ¡n', 'Souto FariÃ±as', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
+('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
 ('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
 
 --
