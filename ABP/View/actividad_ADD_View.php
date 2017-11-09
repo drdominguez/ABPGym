@@ -23,7 +23,7 @@
 <?php
             include '../View/Footer.php';
         
-        } //fin metodo render
+        } //fin metodo render-*/-*/-*/
 
     }
 ?>
