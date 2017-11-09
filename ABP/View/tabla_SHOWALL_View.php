@@ -89,7 +89,12 @@
                         echo $datos[$this->lista[$i]];
 ?>
                         </td>           
-                    <td>
+                  
+
+   <?php
+                    }   
+?>             
+  <td>
                     <a href='../Controller/tabla_Controller.php?idTabla=<?php echo $datos['idTabla']; ?>&action=EDIT'>
                                     <img src='../View/Icons/edit.png'>
                     
@@ -110,10 +115,6 @@
                     </a>
                     
                     </td>
-
-   <?php
-                    }   
-?>             
                     </tr>
 <?php
                     }   

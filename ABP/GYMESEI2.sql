@@ -332,9 +332,9 @@ CREATE TABLE IF NOT EXISTS `superusuario_tabla_deportista` (
 
 CREATE TABLE IF NOT EXISTS `tabla` (
   `idTabla` bigint(20) NOT NULL,
-  `tipo` bit(1) NOT NULL,
+  `tipo` enum('estandar','personalizada') NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -576,6 +576,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `notificacion`
 MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `notificacion`
+--
+ALTER TABLE `tabla`
+MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --

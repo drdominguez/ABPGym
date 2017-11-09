@@ -33,7 +33,10 @@
                 <div class="form-row">
                 <div class="col-md-6">
                     <label for="tipo"><?php echo $strings['tipo'] ?> : </label>
-                    <input class="form-control" type = 'text' name = 'tipo' size = '10' value = '' required  onblur="esVacio(this)  && comprobarText(this, 10)" >
+                    <select name= "tipo" class="form-control">
+                      <option value="estandar">Estándar</option>
+                      <option value="personalizada">Personalizada</option>
+                    </select>
                 </div>
             </div>
         </div>

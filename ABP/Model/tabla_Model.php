@@ -25,7 +25,7 @@ class tabla_Model
     {
         
      
-        $sql = "SELECT * FROM tabla WHERE ";
+        $sql = "SELECT * FROM tabla WHERE idTabla = '$this->idTabla'";
 
         if (!$result = $this->mysqli->query($sql)){
             return 'No se ha podido conectar con la base de datos'; // error en la consulta (no se ha podido conectar con la bd
@@ -34,11 +34,9 @@ class tabla_Model
             if ($result->num_rows == 0){
                 
                 $sql = "INSERT INTO tabla (
-                        idTabla,
                         tipo,
                         comentario) 
                         VALUES (
-                        '$this->idTabla',
                         '$this->tipo',
                         '$this->comentario')";
                 
@@ -46,7 +44,7 @@ class tabla_Model
                     return 'Error en la inserción';
                 }
                 else{
-                    return 'Inserción realizada con éxito'; //operacion de insertado correcta
+                    return 'Inserción realizada con Éxito'; //operacion de insertado correcta
                 }
                 
             }
@@ -126,7 +124,7 @@ function EDIT()
     
     if ($result->num_rows == 1)
     {
-        $sql = "UPDATE tabla SET idTabla = '$this->idTabla',tipo = '$this->tipo',comentario = '$this->comentario' WHERE ";
+        $sql = "UPDATE tabla SET tipo = '$this->tipo',comentario = '$this->comentario' WHERE ";
         
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la modificación'; 

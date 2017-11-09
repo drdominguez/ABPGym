@@ -33,8 +33,12 @@
     function get_data_form(){
 
     //Recoge la información del formulario
-
-                $idTabla = $_REQUEST['idTabla'];
+                if(isset($_REQUEST['idTabla'])){
+                     $idTabla = $_REQUEST['idTabla'];
+                }else{
+                    $idTabla= null;
+                }
+               
 
          
                 $tipo = $_REQUEST['tipo'];
