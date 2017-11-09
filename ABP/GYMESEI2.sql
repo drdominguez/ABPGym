@@ -21,7 +21,9 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+DROP DATABASE IF EXISTS `GYMESEI2`;
+CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `GYMESEI2`;
 --
 -- Estructura de tabla para la tabla `actividad`
 --
