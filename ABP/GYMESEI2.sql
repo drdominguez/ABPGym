@@ -197,14 +197,13 @@ CREATE TABLE IF NOT EXISTS `muscular` (
 --
 -- Estructura de tabla para la tabla `notificacion`
 --
-
 CREATE TABLE IF NOT EXISTS `notificacion` (
-  `idNotificacion` bigint(20) NOT NULL,
+`idNotificacion` bigint(20) NOT NULL,
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Asunto` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `contenido` text COLLATE utf8_spanish_ci,
   `fecha` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -569,10 +568,18 @@ ALTER TABLE `usuario`
  ADD PRIMARY KEY (`dni`), ADD UNIQUE KEY `dni` (`dni`);
 
 --
--- Restricciones para tablas volcadas
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `notificacion`
+--
+ALTER TABLE `notificacion`
+MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- Restricciones para tablas volcadas
+--
+
 -- Filtros para la tabla `actividad_deportista`
 --
 ALTER TABLE `actividad_deportista`

@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html"; charset=utf-8"/> 
+<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
 
 <?php 
     $strings = 
@@ -169,5 +169,6 @@
                 'Ver todos los usuarios' => 'Ver todos los usuarios',
                 'Tablas' => 'Tablas',
                 'Ver todas las tablas' => 'Ver todas las tablas',
-                'Mostrar todas las tablas' => 'Mostrar todas las tablas');
+                'Mostrar todas las tablas' => 'Mostrar todas las tablas',
+                'Notificaciones' => 'Notificaciones');
     ?>

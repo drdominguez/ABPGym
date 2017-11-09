@@ -167,5 +167,6 @@
                 'Ver todos los usuarios' => 'Show all users',
                 'Tablas' => 'Tables',
                 'Ver todas las tablas' => 'Show all tables',
-                'Mostrar todas las tablas' => 'Show all tables');
+                'Mostrar todas las tablas' => 'Show all tables',
+                'Notificaciones' => 'Notifications');
     ?>

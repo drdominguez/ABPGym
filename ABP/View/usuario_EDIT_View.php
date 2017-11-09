@@ -68,14 +68,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                                 <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="nombre"><?php echo $strings['contrasena'] ?> : </label>
                                      <input class="form-control" type = 'text' name = 'contraseña' size = '30' value ='<?php echo ($this->valores['contrasena']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 30)" >
                                       </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                                 <div class="form-row">
                                 <div class="col-md-6">

@@ -42,8 +42,9 @@
         <input type="hidden" name="apellidos" value="<?php echo ($this->valores['apellidos']); ?>" ><br>
         <b><?php echo $strings['edad'] ?> :</b> <?php echo ($this->valores['edad']); ?>
         <input type="hidden" name="edad" value="<?php echo ($this->valores['edad']); ?>" ><br>
+        <!--
         <b><?php echo $strings['contrasena'] ?> :</b> <?php echo ($this->valores['contrasena']); ?>
-        <input type="hidden" name="contrasena" value="<?php echo ($this->valores['contrasena']); ?>" ><br>
+        <input type="hidden" name="contrasena" value="<?php echo ($this->valores['contrasena']); ?>" ><br>-->
         <b><?php echo $strings['email'] ?> :</b> <?php echo ($this->valores['email']); ?>
         <input type="hidden" name="email" value="<?php echo ($this->valores['email']); ?>" ><br>
         <b><?php echo $strings['telefono'] ?> :</b> <?php echo ($this->valores['telefono']); ?>

@@ -1,5 +1,5 @@
   <!-- Navigation-->
-<meta http-equiv="Content-Type" content="text/html"; charset=utf-8"/> 
+<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
 
 <?php
   
@@ -23,11 +23,11 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsuarios" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-wrench"></i>
                             <span class="nav-link-text"><?php echo $strings['Gestión de usuario']; ?></span>
                         </a>
-                        <ul class="sidenav-second-level collapse" id="collapseDeportistas">
+                        <ul class="sidenav-second-level collapse" id="collapseUsuarios">
                             <li>
                                 <a href="../Controller/usuario_Controller.php?action=ADD"><?php echo $strings['Anadir Usuario']; ?></a>
                             </li>
@@ -96,7 +96,7 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Deportistas">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-wrench"></i>
-                            <span class="nav-link-text"><?php echo $strings['Gestión de deportistas']; ?></span>
+                            <span class="nav-link-text"><?php echo $strings['Gestión de deportista']; ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseDeportistas">
                             <li>

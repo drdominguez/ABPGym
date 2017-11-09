@@ -3,10 +3,7 @@
   <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-fw fa-bell"></i>
-                            <span class="nav-link-text">Notificaciones</span>
-                            <span class="d-lg-none">Alertas
-              <span class="badge badge-pill badge-warning"></span>
-                            </span>
+                            <span class="nav-link-text"><?php echo $strings['Notificaciones']; ?></span>
 <?php                   
                         include_once '../Model/notificacion_Model.php';
                         include_once '../Model/usuario_Model.php';
@@ -16,7 +13,6 @@
 
                           $numNotificaciones=$notificacion->contarNotificaciones();
                         }else{
-                          
                           $notificacion = new notificacion_Model('','','','','');
                           
                           $numNotificaciones=$notificacion->contarNotificacionesUsuario($usuario);
@@ -29,7 +25,6 @@
             </span>
 <?php
             }
-            ////////////////////////////BUSCAR MANERA DE CONTROLAR QUE NOTIFICACIONES FUERON LEIDAS Y CUALES NO////////////////////////////
 ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="alertsDropdown">
