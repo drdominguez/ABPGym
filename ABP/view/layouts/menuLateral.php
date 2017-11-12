@@ -29,7 +29,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseUsuarios">
                             <li>
-                                <a href="../Controller/usuario_Controller.php?action=ADD">Anadir Usuario</a>
+                                <a href="../Controller/usuario_Controller.php?action=ADD">Añadir Usuario</a>
                             </li>
                             <li>
                                 <a href="../Controller/usuario_Controller.php">Ver Usuarios</a>
@@ -44,7 +44,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
                             <li>
-                                <a href="../Controller/entrenador_Controller.php?action=ADD">Anadir entrenador</a>
+                                <a href="../Controller/entrenador_Controller.php?action=ADD">Añadir entrenador</a>
                             </li>
                             <li>
                                 <a href="../Controller/entrenador_Controller.php">Ver entrenadores</a>
@@ -58,7 +58,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseTablas">
                             <li>
-                                <a href="../Controller/tabla_Controller.php?action=ADD">Anadir tabla</a>
+                                <a href="../Controller/tabla_Controller.php?action=ADD">Añadir tabla</a>
                             </li>
                             <li>
                                 <a href="../Controller/tabla_Controller.php">Ver tablas</a>
@@ -72,7 +72,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEjercicios">
                             <li>
-                                <a href="../Controller/ejercicio_Controller.php?action=ADD">Anadir ejercicio</a>
+                                <a href="../Controller/ejercicio_Controller.php?action=ADD">Añadir ejercicio</a>
                             </li>
                             <li>
                                 <a href="../Controller/ejercicio_Controller.php">Ver ejercicios</a>
