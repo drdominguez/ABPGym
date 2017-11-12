@@ -1,28 +1,9 @@
 <?php
-
-    class Login{
-
-
-        function __construct($mal){ 
-            $this->mal=$mal;
-            $this->render();
-        }
-
-        function render(){
-          include_once '../Functions/Authentication.php';
-  if(isset($_SESSION['lang'])){
-        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
-            include("../Locates/Strings_ENGLISH.php"); 
-        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
-            include("../Locates/Strings_SPANISH.php");
-        else if(strcmp($_SESSION['lang'], 'GALICIAN')==0)
-        include("../Locates/Strings_GALICIAN.php"); 
-    }else{
-        include("../Locates/Strings_GALICIAN.php"); 
-    }
+//file: view/layouts/default.php
+$view = ViewManager::getInstance();
 ?>
-    <html>
-
+<!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,19 +12,24 @@
         <meta name="author" content="">
         <title>GymApp</title>
         <!-- Bootstrap core CSS-->
-        <link href="../View/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom fonts for this template-->
-        <link href="../View/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Custom styles for this template-->
-        <link href="../View/css/sb-admin.css" rel="stylesheet">
+        <link href="../css/sb-admin.css" rel="stylesheet">
+        <!-- Bootstrap core JavaScript-->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
     </head>
-
     <body class="bg-dark">
         <div class="container">
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">GymApp</div>
                 <div class="card-body">
-                    <form name='Form' action='../Controller/Login_Controller.php' class="form-signin" accept-charset="UTF-8" method="POST">
+                    <div id="flash"><?= $view->popFlash() ?></div>
+                    <form name='Form' action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Login</label>
                             <input class="form-control" name="dni" id="exampleInputEmail1" type="TEXT" aria-describedby="emailHelp" placeholder="Introduzca DNI" onblur="esVacio(this)  && comprobarText(this,15)">
@@ -57,26 +43,6 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     </body>
-
-    </html>
-<?php if($this->mal!=false){
-    ?>
-<div class="card card-login mx-auto mt-5">
-    
-    <div class='alert alert-danger'><?php echo $this->mal;?></div>
-    
-</div>
-    <?php
-}
-        } //fin metodo render
-
-    } //fin Login
-
-    ?>
+</html>
 

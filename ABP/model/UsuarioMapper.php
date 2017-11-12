@@ -1,47 +1,29 @@
 <?php
+require_once(__DIR__."/../core/Access_DB.php");
 
+class UsuarioMapper {
 
-class usuario_Model
-{
-        //Definimos las variables
-            var $dni;
-            var $nombre;
-            var $apellidos;
-            var $edad;
-            var $contrase�a;
-            var $email;
-            var $telefono;
-            var $fechaAlta;
+    private $db;
+    /**
+    *el contructor obtiene la conexion con la base de datos del core
+    **/
+    public function __construct() {
+        $this->db = PDOConnection::getInstance();
+    }
 
-        function __construct($dni,$nombre,$apellidos,$edad,$contrase�a,$email,$telefono,$fechaAlta){
-
-            $this->dni = $dni;
-            $this->nombre = $nombre;
-            $this->apellidos = $apellidos;
-            $this->edad = $edad;
-            $this->contrase�a = md5($contrase�a);
-            $this->email = $email;
-            $this->telefono = $telefono;//Comprobamos si es un atributo de tipo fecha o no 
-                if($fechaAlta == ''){
-                           $this->fechaAlta = $fechaAlta;
-                }else{
-
-                       $this->fechaAlta = date_format(date_create($fechaAlta), 'Y-m-d');
-                            
-                        
-                }    
-    include_once 'Access_DB.php';
-    $this->mysqli = ConnectDB();
-
-
+    /*Comprueba si existe un susario con ese dni y contraseña*/
+    function login($dni,$password){
+        $stmt = $this->db->prepare("SELECT count(dni) FROM usuario where dni=? and contrasena=?");
+        $stmt->execute(array($dni,md5($password)));//la contraseña se encripta y compara con la guardada
+        if ($stmt->fetchColumn() > 0) {
+            return true;
+        }
+        return false;
 }
-
 
     //Anadir
     function ADD()
     {
-        
-     
         $sql = "SELECT * FROM usuario WHERE dni= '$this->dni'";
 
         if (!$result = $this->mysqli->query($sql)){
@@ -64,16 +46,16 @@ class usuario_Model
                         '$this->nombre',
                         '$this->apellidos',
                         '$this->edad',
-                        '$this->contrase�a',
+                        '$this->contraseña',
                         '$this->email',
                         '$this->telefono',
                         '$this->fechaAlta')";
                 
                 if (!$this->mysqli->query($sql)) {
-                    return 'Error en la inserción';
+                    return 'Error en la inserciÃ³n';
                 }
                 else{
-                    return 'Inserci�n realizada con �xito'; //operacion de insertado correcta
+                    return 'Inserción realizada con Éxito'; //operacion de insertado correcta
                 }
                 
             }
@@ -83,18 +65,17 @@ class usuario_Model
     }
 }
 
-//funcion de destrucción del objeto: se ejecuta automaticamente
+//funcion de destrucciÃ³n del objeto: se ejecuta automaticamente
 //al finalizar el script
 function __destruct()
 {
 
 }
 
-   //funcion Consultar: hace una búsqueda en la tabla con
+   //funcion Consultar: hace una bÃºsqueda en la tabla con
 //los datos proporcionados. Si van vacios devuelve todos
 function SEARCH()
 {
-    
     $sql = "select 
                         dni,
                         nombre,
@@ -124,28 +105,23 @@ function SEARCH()
 //Funcion borrar un elemento de la BD
 function DELETE()
 {
-    
     $sql = "SELECT * FROM usuario WHERE dni= '$this->dni'";
 
     $result = $this->mysqli->query($sql);
-    if ($result->num_rows == 1)
-    {
+    if ($result->num_rows == 1){
         $sql = "DELETE FROM usuario WHERE dni= '$this->dni'";
-
         if(!($this->mysqli->query($sql))){
             return "Error borrado";
         }else{
             return "Borrado correctamente";
         }
-        
-    }
-    else
+    }else
         return "No existe en la base de datos";
 }
+
 //Funcion obtener datos de una tabla de la bd
 function RellenaDatos2()
 {
-    
     $sql = "SELECT * FROM usuario WHERE dni = '$this->dni';";
     if (!($resultado = $this->mysqli->query($sql))){
         return 'No existe en la base de datos'; // 
@@ -156,34 +132,22 @@ function RellenaDatos2()
     }
 }
 
-
 //Funcion editar
 function EDIT()
 {
-
-
     $sql = "SELECT * FROM usuario WHERE dni= '$this->dni'";
-    
-
     $result = $this->mysqli->query($sql);
-    
-    if ($result->num_rows == 1)
-    {
+    if ($result->num_rows == 1){
         $sql = "UPDATE usuario SET dni = '$this->dni',nombre = '$this->nombre',apellidos = '$this->apellidos',edad = '$this->edad',email = '$this->email',telefono = '$this->telefono',fechaAlta = '$this->fechaAlta' WHERE dni= '$this->dni'";
-        
         if (!($resultado = $this->mysqli->query($sql))){
-            return 'Error en la modificación'; 
+            return 'Error en la modificaciÃ³n'; 
         }
         else{
             return 'Modificado correctamente';
         }
-    }
-    else
+    }else
         return 'No existe en la base de datos';
 }
 
-
-
-}//fin de clase
-
-?> 
+}
+?>

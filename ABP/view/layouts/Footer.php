@@ -1,5 +1,5 @@
-             <?php
-  
+<?php
+/*  
 include_once '../Functions/Authentication.php';
   if(isset($_SESSION['lang'])){
         if(strcmp($_SESSION['lang'],'ENGLISH')==0)
@@ -10,7 +10,7 @@ include_once '../Functions/Authentication.php';
         include("../Locates/Strings_GALICIAN.php"); 
     }else{
         include("../Locates/Strings_GALICIAN.php"); 
-    }
+    }*/
 ?>
 
  <footer class="sticky-footer">
@@ -29,39 +29,40 @@ include_once '../Functions/Authentication.php';
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><?php echo $strings['Seguro que desea salir']; ?></h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Seguro que desea salir
+                            </h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body"><?php echo $strings['Seleccione "Salir" si desea cerrar sesion.']; ?></div>
+                        <div class="modal-body">'Seleccione "Salir" si desea cerrar sesion.'</div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal"><?php echo $strings['Cancelar']; ?></button>
-                            <a class="btn btn-primary" href="../Functions/Desconectar.php"><?php echo $strings['Salir']; ?></a>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-primary" href="index.php?controller=Login&amp;action=logout">Salir</a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Bootstrap core JavaScript-->
-            <script src="../View/vendor/jquery/jquery.min.js"></script>
-            <script src="../View/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="../vendor/jquery/jquery.min.js"></script>
+            <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
             <!-- Core plugin JavaScript-->
-            <script src="../View/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
             <!-- Page level plugin JavaScript-->
-            <script src="../View/vendor/chart.js/Chart.min.js"></script>
+            <script src="../vendor/chart.js/Chart.min.js"></script>
             <?php if(substr($_SERVER['REQUEST_URI'], -27)=='notificacion_Controller.php'){?>
-            <script src="../View/vendor/datatables/jquery.dataTables2.js"></script>
+            <script src="../vendor/datatables/jquery.dataTables2.js"></script>
         <?php }else{ ?>
-            <script src="../View/vendor/datatables/jquery.dataTables.js"></script>
+            <script src="../vendor/datatables/jquery.dataTables.js"></script>
         <?php }
         ?>
             
-            <script src="../View/vendor/datatables/dataTables.bootstrap4.js"></script>
+            <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
             <!-- Custom scripts for all pages-->
-            <script src="../View/js/sb-admin.min.js"></script>
+            <script src="../js/sb-admin.min.js"></script>
             <!-- Custom scripts for this page-->
-            <script src="../View/js/sb-admin-datatables.min.js"></script>
-            <script src="../View/js/sb-admin-charts.min.js"></script>
+            <script src="../js/sb-admin-datatables.min.js"></script>
+            <script src="../js/sb-admin-charts.min.js"></script>
         </div>
     </body>
 

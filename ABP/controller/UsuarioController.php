@@ -1,34 +1,26 @@
 <meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
 
 <?php 
-    session_start(); //solicito trabajar con la session
 
     include '../Model/usuario_Model.php';
 
     include '../View/MESSAGE_View.php';
     include '../Functions/Authentication.php';
-
-    if (!IsAuthenticated()){
-        header('Location:../index.php');
-    }
-   //Carga el idioma guardado en la variable de sesión o el Español por defecto
-
-  if(isset($_SESSION['lang'])){
-        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
-            include("../Locates/Strings_ENGLISH.php"); 
-        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
-            include("../Locates/Strings_SPANISH.php");
-        else if(strcmp($_SESSION['lang'], 'GALICIAN')==0)
-        include("../Locates/Strings_GALICIAN.php"); 
-    }else{
-        include("../Locates/Strings_GALICIAN.php"); 
-    }
     /*Generamos los includes de las diferentes vistas*/
     include '../View/usuario_ADD_View.php';
     include '../View/usuario_DELETE_View.php';
     include '../View/usuario_EDIT_View.php';
     include '../View/usuario_SHOWCURRENT_View.php';
     include '../View/usuario_SHOWALL_View.php';
+    
+class UsuarioController extends BaseController{
+
+    private $UsuarioMapper;
+
+    public function __construct() {
+        parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
+        $this->UsuarioMapper = new UsuarioMapper();
+    }
 
     function get_data_form(){
 
@@ -136,5 +128,5 @@ if (!$_POST){
             }
 
     
-
+}
 ?>
