@@ -11,7 +11,6 @@ class UsuarioMapper {
     {
         $this->db = PDOConnection::getInstance();
     }
-
     /*Comprueba si existe un susario con ese dni y contraseña*/
     function login($dni,$password)
     {
@@ -28,7 +27,6 @@ class UsuarioMapper {
     {
 
     }
-
     //Añadir
     function ADD()
     {
@@ -36,8 +34,7 @@ class UsuarioMapper {
         $stmt = execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
             $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha());
     }
-
-   //funcion Consultar: hace una búsqueda en la tabla con
+    //funcion Consultar: hace una búsqueda en la tabla con
     //los datos proporcionados. Si van vacios devuelve todos
     function SEARCH()
     {
@@ -66,7 +63,6 @@ class UsuarioMapper {
         return $resultado;
         }
     }
-
     //Funcion borrar un elemento de la BD
     function DELETE()
     {
@@ -85,12 +81,12 @@ class UsuarioMapper {
             return $result;
         }
     }
-
-//Funcion editar
-function EDIT()
+    //Funcion editar
+    function EDIT()
     {
-    $stmt = $this->db->prepare("UPDATE from usuario WHERE dni=?");
-    $stmt->execute(array($usuario->getDni()));
+    $stmt = $this->db->prepare("UPDATE from usuario WHERE dni=? and nombre=? and appellidos=? and edad=? and email=? and telefono=? and fechaAlta=?");
+    $stmt->execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
+            $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
     }
 
 }
