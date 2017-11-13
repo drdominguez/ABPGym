@@ -22,8 +22,7 @@
     }else{
         include("../Locates/Strings_GALICIAN.php"); 
     }
-
-                include '../View/Header.php';
+ include '../View/Header.php';
                 include '../View/menuLateral.php';
                 include '../View/notificacionesMenu.php';
                 include '../View/menuSuperior.php';
