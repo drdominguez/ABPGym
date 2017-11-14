@@ -22,11 +22,11 @@
     }else{
         include("../Locates/Strings_GALICIAN.php"); 
     }
- include '../View/Header.php';
-                include '../View/menuLateral.php';
-                include '../View/notificacionesMenu.php';
-                include '../View/menuSuperior.php';
-                include '../View/Footer.php';
+ include '../layaouts/Header.php';
+                include '../layaouts/menuLateral.php';
+                include '../layaouts/notificacionesMenu.php';
+                include '../layaouts/menuSuperior.php';
+                include '../layaouts/Footer.php';
             }
 
         }
