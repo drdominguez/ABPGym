@@ -14,10 +14,10 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseUsuarios">
                             <li>
-                                <a href="../controller/UsuarioController.php?action=ADD">Añadir Usuario</a>
+                                <a href="../Controller/usuario_Controller.php?action=ADD">Añadir Usuario</a>
                             </li>
                             <li>
-                                <a href="../controller/UsuarioController.php">Ver Usuarios</a>
+                                <a href="../Controller/usuario_Controller.php">Ver Usuarios</a>
                             </li>
                             
                         </ul>
@@ -29,10 +29,10 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
                             <li>
-                                <a href="../controller/EntrenadorController.php?action=ADD">Añadir entrenador</a>
+                                <a href="../Controller/entrenador_Controller.php?action=ADD">Añadir entrenador</a>
                             </li>
                             <li>
-                                <a href="../controller/EntrenadorController.php">Ver entrenadores</a>
+                                <a href="../Controller/entrenador_Controller.php">Ver entrenadores</a>
                             </li>
                         </ul>
                     </li>
@@ -43,10 +43,10 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseTablas">
                             <li>
-                                <a href="../controller/TablaController.php?action=ADD">Añadir tabla</a>
+                                <a href="../Controller/tabla_Controller.php?action=ADD">Añadir tabla</a>
                             </li>
                             <li>
-                                <a href="../controller/TablaController.php">Ver tablas</a>
+                                <a href="../Controller/tabla_Controller.php">Ver tablas</a>
                             </li>
                         </ul>
                     </li>
@@ -57,58 +57,58 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEjercicios">
                             <li>
-                                <a href="../controller/EjercicioController.php?action=ADD">Añadir</a>
+                                <a href="../Controller/ejercicio_Controller.php?action=ADD">Añadir</a>
                                  <ul class="sidenav-second-level collapse" id="collapseEjercicios">
 	                            	<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Estiramiento</a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Cardio</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Cardio</a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Muscular</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Muscular</a>
                            			</li>
 	                            </ul>
                             </li>
                             <li>
-                                <a href="../controller/EjercicioController.php?action=ADD">Eliminar</a>
+                                <a href="../Controller/ejercicio_Controller.php?action=ADD">Eliminar</a>
                                  <ul class="sidenav-second-level collapse" id="collapseEjercicios">
 	                            	<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Estiramiento</a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Cardio</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Cardio</a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Muscular</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Muscular</a>
                            			</li>
 	                            </ul>
                             </li>
                             <li>
-                                <a href="../controller/ejercicio_Controller.php">Editar</a>
+                                <a href="../Controller/ejercicio_Controller.php">Editar</a>
                                  <ul class="sidenav-second-level collapse" id="collapseEjercicios">
 	                            	<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Estiramiento</a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Cardio</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Cardio</a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Muscular</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Muscular</a>
                            			</li>
 	                            </ul>
                             </li>
                             <li>
-                                <a href="../controller/EjercicioController.php">Ver ejercicios</a>
+                                <a href="../Controller/ejercicio_Controller.php">Ver ejercicios</a>
                                  <ul class="sidenav-second-level collapse" id="collapseEjercicios">
 	                            	<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Estiramiento</a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Cardio</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Cardio</a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Muscular</a>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Muscular</a>
                            			</li>
 	                            </ul>
                             </li>
@@ -121,10 +121,10 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseNotificaciones">
                             <li>
-                                <a href="../controller/NotificacionController.php?action=ADD">Enviar notificacion</a>
+                                <a href="../Controller/notificacion_Controller.php?action=ADD">Enviar notificacion</a>
                             </li>
                             <li>
-                                <a href="../controller/NotificacionController.php">Ver notificaciones</a>
+                                <a href="../Controller/notificacion_Controller.php">Ver notificaciones</a>
                             </li>
                         </ul>
                     </li>
@@ -135,15 +135,15 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseDeportistas">
                             <li>
-                                <a href="../controller/DeportistasController.php?action=ADD">Enviar notificacion</a>
+                                <a href="../Controller/deportistas_Controller.php?action=ADD">Enviar notificacion</a>
                             </li>
                             <li>
-                                <a href="../controller/NotificacionController.php">Ver notificaciones</a>
+                                <a href="../Controller/notificacion_Controller.php">Ver notificaciones</a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                        <a class="nav-link" href="../controller/UsuarioController.php?dni=<?php echo $_SESSION['login']; ?>&action=SHOWCURRENT">
+                        <a class="nav-link" href="../Controller/usuario_Controller.php?dni=<?php echo $_SESSION['login']; ?>&action=SHOWCURRENT">
                             <i class="fa fa-fw fa-link"></i>
                             <span class="nav-link-text">Cuenta</span>
                         </a>

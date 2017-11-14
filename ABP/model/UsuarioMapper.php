@@ -3,9 +3,9 @@ require_once(__DIR__."/../core/Access_DB.php");
 class UsuarioMapper {
     private $db;
     /**
-     *el contructor obtiene la conexion con la base de datos del core
-     **/
-    public function __construct()
+    *el contructor obtiene la conexion con la base de datos del core
+    **/
+    public function __construct() 
     {
         $this->db = PDOConnection::getInstance();
     }
@@ -35,7 +35,7 @@ class UsuarioMapper {
     //los datos proporcionados. Si van vacios devuelve todos
     function SEARCH()
     {
-        $sql = "select 
+    $sql = "select 
                         dni,
                         nombre,
                         apellidos,
@@ -54,10 +54,10 @@ class UsuarioMapper {
                          (telefono LIKE '%$this->telefono%')&&
                          (fechaAlta LIKE '%$this->fechaAlta%'))";
         if (!($resultado = $this->mysqli->query($sql))){
-            return 'Error en la consulta sobre la base de datos';
+        return 'Error en la consulta sobre la base de datos';
         }
         else{
-            return $resultado;
+        return $resultado;
         }
     }
     //Funcion borrar un elemento de la BD
@@ -69,10 +69,10 @@ class UsuarioMapper {
     //Funcion obtener datos de una tabla de la bd
     function RellenaDatos2()
     {
-        $sql = "SELECT * FROM usuario WHERE dni = '$this->dni';";
+    $sql = "SELECT * FROM usuario WHERE dni = '$this->dni';";
         if (!($resultado = $this->mysqli->query($sql)))
         {
-            return 'No existe en la base de datos'; //
+            return 'No existe en la base de datos'; // 
         }else{
             $result = $resultado->fetch_array();
             return $result;
@@ -81,8 +81,8 @@ class UsuarioMapper {
     //Funcion editar
     function EDIT()
     {
-        $stmt = $this->db->prepare("UPDATE from usuario WHERE dni=? and nombre=? and appellidos=? and edad=? and email=? and telefono=? and fechaAlta=?");
-        $stmt->execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
+    $stmt = $this->db->prepare("UPDATE from usuario WHERE dni=? and nombre=? and appellidos=? and edad=? and email=? and telefono=? and fechaAlta=?");
+    $stmt->execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
             $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
     }
 }

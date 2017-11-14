@@ -5,8 +5,8 @@
                             <i class="fa fa-fw fa-bell"></i>
                             <span class="nav-link-text"><?php echo $strings['Notificaciones']; ?></span>
 <?php                   
-                        include_once '../Model/notificacion_Model.php';
-                        include_once '../Model/usuario_Model.php';
+                        include_once '../model/notificacion_Model.php';
+                        include_once '../model/usuario_Model.php';
                         $usuario= new usuario_Model($_SESSION['login'],'','','','','','','');
                         if(strtoupper($_SESSION['login'])=='44497121X'){
                           $notificacion = new notificacion_Model('','','','','');

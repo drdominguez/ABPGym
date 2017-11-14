@@ -13,14 +13,14 @@
         }
                 
         function render(){  
-            include '../View/Header.php';
+            include '../view/Header.php';
 ?>
             <h1>
             <?php echo $strings['Mostrar todos']. ' inscrito'; ?>
             </h1>
-            <a href='../Controller/inscrito_Controller.php?action=SEARCH'><img src='../View/Icons/search.png'></a></a>
+            <a href='../controller/inscrito_Controller.php?action=SEARCH'><img src='/Icons/search.png'></a></a>
         
-            <a href='../Controller/inscrito_Controller.php?action=ADD'><img src='../View/Icons/add.png'></a></br></br>
+            <a href='../controller/inscrito_Controller.php?action=ADD'><img src='/Icons/add.png'></a></br></br>
             <br><br>
             <table border = 1>
                 <tr>
@@ -52,7 +52,7 @@
                     }
 ?>
                     <td>
-                    <a href='../Controller/inscrito_Controller.php?idGrupo=<?php echo $datos['idGrupo']; ?>&dniDeportista=<?php echo $datos['dniDeportista']; ?>&action=EDIT'>
+                    <a href='../controller/inscrito_Controller.php?idGrupo=<?php echo $datos['>
                                     <img src='../View/Icons/edit.png'>
                     
                     </a>
@@ -60,14 +60,14 @@
                     </td>
 
                     <td>
-                    <a href='../Controller/inscrito_Controller.php?idGrupo=<?php echo $datos['idGrupo']; ?>&dniDeportista=<?php echo $datos['dniDeportista']; ?>&action=DELETE'>
+                    <a href='../controller/inscrito_Controller.php?idGrupo=<?php echo $datos['>
                                     <img src='../View/Icons/delete.png'>
                     </a>
                     
                     </td>
 
                     <td>
-                    <a href='../Controller/inscrito_Controller.php?idGrupo=<?php echo $datos['idGrupo']; ?>&dniDeportista=<?php echo $datos['dniDeportista']; ?>&action=SHOWCURRENT'>
+                    <a href='../controller/inscrito_Controller.php?idGrupo=<?php echo $datos['>
                                     <img src='../View/Icons/detalle.png'>
                     </a>
                     

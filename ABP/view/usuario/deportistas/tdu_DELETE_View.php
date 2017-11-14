@@ -10,8 +10,8 @@
 
         function render(){
 
-            include '../Locates/Strings_' .$_SESSION['idioma'] . '.php';
-            include '../View/Header.php';
+            include '../locates/Strings_' .$_SESSION['idioma'] . '.php';
+            include '../view/Header.php';
                         
 ?>
       
@@ -25,7 +25,7 @@
             </form>
             <a href='../Controller/tdu_Controller.php'><?php echo $strings['Volver']; ?> </a>
 <?php
-         include '../View/Footer.php';
+         include '../view/Footer.php';
         } // fin del metodo render
     } // fin de la clase
 ?>

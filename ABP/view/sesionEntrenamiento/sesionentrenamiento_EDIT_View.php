@@ -11,8 +11,8 @@
 
         function render(){
             
-            include '../Locates/Strings_SPANISH.php';
-            include '../View/Header.php';
+            include '../locates/Strings_SPANISH.php';
+            include '../view/Header.php';
             include '../Functions/sesionentrenamiento_DefForm.php';
        
 ?>
@@ -35,7 +35,7 @@
                 </a>
 
 <?php
-            include '../View/Footer.php';
+            include '../view/Footer.php';
         } // fin del metodo render
     } // fin de la clase
     ?>

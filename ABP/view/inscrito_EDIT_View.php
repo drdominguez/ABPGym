@@ -11,8 +11,8 @@
 
         function render(){
             
-            include '../Locates/Strings_SPANISH.php';
-            include '../View/Header.php';
+            include '../locates/Strings_SPANISH.php';
+            include '../view/Header.php';
             include '../Functions/inscrito_DefForm.php';
        
 ?>
@@ -28,11 +28,11 @@
 
                     <input type='submit' name='action' value='EDIT'>
                 </form>
-                <a href='../Controller/inscrito_Controller.php'><?php echo $strings['Volver']; ?>
+                <a href='../controller/inscrito_Controller.php'><?php echo $strings['Volver']; ?>
                 </a>
 
 <?php
-            include '../View/Footer.php';
+            include '../view/Footer.php';
         } // fin del metodo render
     } // fin de la clase
     ?>

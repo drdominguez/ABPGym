@@ -11,8 +11,8 @@
     
         function render(){
         
-            include '../Locates/Strings_' . $_SESSION['idioma'] . '.php';
-            include '../View/Header.php';
+            include '../locates/Strings_' . $_SESSION['idioma'] . '.php';
+            include '../view/Header.php';
             include '../Functions/pef_DefForm.php';
 
 
@@ -29,7 +29,7 @@
             </a>
 
 <?php
-            include '../View/Footer.php';
+            include '../view/Footer.php';
         } // fin del metodo render
     } // fin de la clase
 ?>

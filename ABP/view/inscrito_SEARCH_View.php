@@ -9,9 +9,9 @@
 
         function render(){
 
-            include '../Locates/Strings_SPANISH.php';
+            include '../locates/Strings_SPANISH.php';
             include '../Functions/inscrito_DefForm.php';
-            include '../View/Header.php';
+            include '../view/Header.php';
 ?>
             <h1>
             <?php echo $strings['Buscar'] . 'inscrito' ?>
@@ -25,10 +25,10 @@
                 <input type='submit' name='action' value='SEARCH'><br>
             </form>
     
-            <a href='../Controller/inscrito_Controller.php'>Volver</a>
+            <a href='../controller/inscrito_Controller.php'>Volver</a>
     
 <?php
-             include '../View/Footer.php';
+             include '../view/Footer.php';
         } //fin metodo render
 
     }

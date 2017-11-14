@@ -9,9 +9,9 @@
 
         function render(){
 
-            include '../Locates/Strings_SPANISH.php';
+            include '../locates/Strings_SPANISH.php';
             include '../Functions/deportista_DefForm.php';
-            include '../View/Header.php';
+            include '../view/Header.php';
 ?>
             <h1>
             <?php echo $strings['Buscar'] . 'deportista' ?>
@@ -27,7 +27,7 @@
             <a href='../Controller/deportista_Controller.php'>Volver</a>
     
 <?php
-             include '../View/Footer.php';
+             include '../view/Footer.php';
         } //fin metodo render
 
     }
