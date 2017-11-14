@@ -9,16 +9,97 @@ require_once(__DIR__."/../model/EjercicioCardioMapper.php");
 
 class EjercicioController extends BaseController{
 
-	private $UsuarioMapper;
+	private $ejercicioMapper;
+	private $estiramientoMapper;
+	private $cardioMapper;
+	private $muscularMapper;
 
 	public function __construct() {
 		parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
-		$this->UsuarioMapper = new UsuarioMapper();
+		$this->ejercicioMapper = new EjercicioMapper();
 	}
 	
-    public function loadView() {/*Carga la vista de login para entrar en la web*/
-        require_once("view/usuario/login.php");
+	/*EstiramientoADD
+	*Si se llama con un get carga la vista
+	*si se llama con un post añade el estiramiento
+	*/
+    public function EstiramientoADD() {
+    	$this->estiramientoMapper = new EjercicioEstiramientoMapper();
+
     }
+
+    /*EstiramientoRemove
+	*Si se llama con un get carga la vista
+	*si se llama con un post añade el estiramiento
+	*/
+    public function EstiramientoRemove() {
+        $this->estiramientoMapper = new EjercicioEstiramientoMapper();
+
+    }
+
+    /*EstiramientoListar
+	*Muestra una lista con todos los estiramientos
+	*/
+    public function EstiramientoListar() {
+       $this->estiramientoMapper = new EjercicioEstiramientoMapper();
+
+    }
+
+
+    /*cardioADD
+	*Si se llama con un get carga la vista
+	*si se llama con un post añade el cardio
+	*/
+    public function cardioADD() {
+        $this->cardioMapper = new EjercicioCardioMapper();
+
+    }
+
+    /*cardioRemove
+	*Si se llama con un get carga la vista
+	*si se llama con un post añade el cardio
+	*/
+    public function cardioRemove() {
+        $this->cardioMapper = new EjercicioCardioMapper();
+    }
+
+    /*cardioListar
+	*Muestra una lista con todos los cardio
+	*/
+    public function cardioListar() {
+       $this->cardioMapper = new EjercicioCardioMapper();
+
+    }
+
+     /*muscularADD
+	*Si se llama con un get carga la vista
+	*si se llama con un post añade el muscular
+	*/
+    public function muscularADD() {
+        $this->muscularMapper = new EjercicioMuscularMapper();
+
+    }
+
+    /*muscularRemove
+	*Si se llama con un get carga la vista
+	*si se llama con un post añade el muscular
+	*/
+    public function muscularRemove() {
+    	$this->muscularMapper = new EjercicioMuscularMapper();
+
+    }
+
+    /*muscularListar
+	*Muestra una lista con todos los muscular
+	*/
+    public function muscularListar() {
+    	$this->muscularMapper = new EjercicioMuscularMapper();
+
+    }
+
+
+
+
 
     /*Inicia sesión
     *Si el usuario existe incia sesion y carga la plantilla por defecto
