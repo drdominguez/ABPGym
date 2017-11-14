@@ -66,7 +66,7 @@ if (!isset($_REQUEST['action'])){
                 else{
                     $usuario = get_data_form();
                     $respuesta = $usuario->ADD();
-                    new MESSAGE($respuesta, '../Controller/usuario_Controller.php');
+                    new MESSAGE($respuesta, '../controller/usuario_Controller.php');
                 }
                 break;      
         case 'DELETE': //Borrado de actividades
@@ -78,7 +78,7 @@ if (!isset($_REQUEST['action'])){
                 else{
                     $usuario = get_data_form();
                     $respuesta = $usuario->DELETE();
-                    new MESSAGE($respuesta, '../Controller/usuario_Controller.php');
+                    new MESSAGE($respuesta, '../controller/usuario_Controller.php');
                 }
                 break;
         case 'SHOWCURRENT': //Mostrar informaciÃ³n detallada
@@ -97,7 +97,7 @@ if (!$_POST){
                     $usuario = get_data_form();
 
                     $respuesta = $usuario->EDIT();
-                    new MESSAGE($respuesta, '../Controller/usuario_Controller.php');
+                    new MESSAGE($respuesta, '../controller/usuario_Controller.php');
                 }
                 
                 break;
@@ -110,7 +110,7 @@ if (!$_POST){
                 }
                 $datos = $usuario->SEARCH();
                 $lista = array('dni','nombre','apellidos','email');
-                new usuario_SHOWALL($lista, $datos,'../Controller/usuario_Controller.php' );
+                new usuario_SHOWALL($lista, $datos,'../controller/usuario_Controller.php' );
 
             }
 

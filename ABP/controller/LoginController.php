@@ -1,8 +1,8 @@
 <?php
 
 require_once(__DIR__."/../core/ViewManager.php");
-require_once(__DIR__."/../controller/BaseController.php");
-require_once(__DIR__."/../model/UsuarioMapper.php");
+require_once(__DIR__ . "/../controller/BaseController.php");
+require_once(__DIR__ . "/../model/UsuarioMapper.php");
 
 class LoginController extends BaseController{
 

@@ -53,11 +53,11 @@ function run() {
 * Load the required controller file and create the controller instance
 *
 * @param string $controllerName The controller name found in the URL
-* @return Object A Controller instance
+* @return Object A controller instance
 */
 function loadController($controllerName) {
 	$controllerClassName = getControllerClassName($controllerName);
-	require_once(__DIR__."/controller/".$controllerClassName.".php");
+	require_once(__DIR__ . "/controller/" .$controllerClassName.".php");
 	return new $controllerClassName();
 }
 /**
@@ -69,7 +69,7 @@ function loadController($controllerName) {
 * @return string The controller class name
 */
 function getControllerClassName($controllerName) {
-	return strToUpper(substr($controllerName, 0, 1)).substr($controllerName, 1)."Controller";
+	return strToUpper(substr($controllerName, 0, 1)).substr($controllerName, 1)."controller";
 }
 //run!
 run();
