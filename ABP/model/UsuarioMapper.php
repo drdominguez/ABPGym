@@ -28,11 +28,11 @@ class UsuarioMapper {
 
     }
     //Añadir
-    function ADD()
+    function ADD($usuario)
     {
         $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");
         $stmt = execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
-            $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha());
+            $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
     }
     //funcion Consultar: hace una búsqueda en la tabla con
     //los datos proporcionados. Si van vacios devuelve todos
@@ -64,7 +64,7 @@ class UsuarioMapper {
         }
     }
     //Funcion borrar un elemento de la BD
-    function DELETE()
+    function DELETE($dni)
     {
         $stmt = $this->db->prepare("DELETE from usuario WHERE dni=?");
         $stmt->execute(array($usuario->getDni()));
