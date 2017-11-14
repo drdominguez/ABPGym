@@ -1,5 +1,3 @@
- 
-
   <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-fw fa-bell"></i>
@@ -43,7 +41,7 @@
                                 $visto=$notificacion->comprobarVisto($usuario);
                               ?>
                               <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../Controller/notificacion_Controller.php?dni=<?php echo $usuario->dni;?>&idNotificacion=<?php echo $not['idNotificacion']; ?>&action=SHOWCURRENT">
+                            <a class="dropdown-item" href="../controller/NotificacionController.php?dni=<?php echo $usuario->dni;?>&idNotificacion=<?php echo $not['idNotificacion']; ?>&action=SHOWCURRENT">
                               <?php 
                               if($visto==0){?>
                             <span class="text-success">
@@ -63,7 +61,7 @@
            ?>
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item small" href="../Controller/notificacion_Controller.php">Ver todas las notificaciones:</a>
+                            <a class="dropdown-item small" href="../controller/NotificacionController.php">Ver todas las notificaciones:</a>
                         </div>
                     </li>
                 

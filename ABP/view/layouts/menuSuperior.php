@@ -19,9 +19,9 @@
                     <a href="../Controller/CambioIdioma.php?lang=SPANISH">
                     <img  src="../View/Icons/castellano.png"></a>
                     <a href="../Controller/CambioIdioma.php?lang=GALICIAN">
-                    <img  src="../View/Icons/gallego.png"></a>
+                    <img  src="./view/Icons/gallego.png"></a>
                     <a href="../Controller/CambioIdioma.php?lang=ENGLISH">
-                    <img  src="../View/Icons/ingles.png" width="27" height="28"></a>
+                    <img  src="./view/Icons/ingles.png" width="27" height="28"></a>
                     
                 </ul>
             </div>

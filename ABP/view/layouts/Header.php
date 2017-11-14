@@ -4,13 +4,13 @@
 /*  include_once '../../Functions/Authentication.php';
   if(isset($_SESSION['lang'])){
         if(strcmp($_SESSION['lang'],'ENGLISH')==0)
-            include("../../locates/Strings_ENGLISH.php");
+            include("../../Locates/Strings_ENGLISH.php"); 
         else if(strcmp($_SESSION['lang'],'SPANISH')==0)
-            include("../../locates/Strings_SPANISH.php");
+            include("../../Locates/Strings_SPANISH.php");
         else if(strcmp($_SESSION['lang'], 'GALICIAN')==0)
-        include("../../locates/Strings_GALICIAN.php");
+        include("../../Locates/Strings_GALICIAN.php"); 
     }else{
-        include("../../locates/Strings_GALICIAN.php");
+        include("../../Locates/Strings_GALICIAN.php"); 
     }*/
 ?>
     <html>
@@ -21,23 +21,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <script type="text/javascript" src="../js/tcal.js"></script> 
-            <link rel="stylesheet" type="text/css" href="../css/tcal.css" media="screen" />
-
+        <script type="text/javascript" src="./view/js/tcal.js"></script> 
         <title> <?php echo $strings['GymApp']; ?></title>
         <!-- Bootstrap core CSS-->
-        <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom fonts for this template-->
-        <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="./view/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Page level plugin CSS-->
         <?php if(substr($_SERVER['REQUEST_URI'], -27)=='notificacion_Controller.php'){?>
-            <link href="../vendor/datatables/dataTables.bootstrap4-2.css" rel="stylesheet">
+            <link href="./view/vendor/datatables/dataTables.bootstrap4-2.css" rel="stylesheet">
         <?php }else{ ?>
-            <link href="../vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+            <link href="./view/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
         <?php }
         ?>
         <!-- Custom styles for this template-->
-        <link href="../css/sb-admin.css" rel="stylesheet">
+        <link href="./view/css/sb-admin.css" rel="stylesheet">
     </head>
 
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
