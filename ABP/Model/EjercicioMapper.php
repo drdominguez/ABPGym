@@ -1,5 +1,8 @@
 <?php 
+
 require_once(__DIR__."/../core/Access_DB.php");
+require_once(__DIR__."/Ejercicio.php");
+
 Class EjercicioMapper{
 	protected $db;
 	protected $idEjercicio;
@@ -40,7 +43,7 @@ Class EjercicioMapper{
 		$stmt->execute(array($_SESSION["currentuser"]));
 		if ($stmt->fetchColumn() > 0) {
            	 return true;
-		}else{//comprobar si ha creado el entrenador ese ejercicio
+		}else{//comprobar si ha creado el usuario actual ese ejercicio si no no tiene permisos sobre el
 			$stmt = $this->db->prepare("SELECT * FROM superusuario_ejercicio WHERE dniSuperUsuario=? AND idEjercicio=?");
 			$stmt->execute(array($_SESSION["currentuser"], $idEjercicio));
 			if ($stmt->fetchColumn() > 0) {
