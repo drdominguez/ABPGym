@@ -1,6 +1,5 @@
 <?php
 
-
 class entrenador_Model
 {
         //Definimos las variables

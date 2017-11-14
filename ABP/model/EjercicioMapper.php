@@ -4,7 +4,8 @@ require_once(__DIR__."/../core/Access_DB.php");
 
 Class EjercicioMapper{
 
-	private $db;
+	protected $db;
+	protected $idEjercicio;
 
 	public function __construct(){
 		$this->db=PDOConnection::getInstance();
@@ -16,7 +17,8 @@ Class EjercicioMapper{
 			$stmt=execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen()));
 			$stmt = $this->db->prepare("INSERT INTO superusuario_ejercicio VALUES (?,?)");
 			//db2_last_insert_id($this->db) devuelve el ultimo id insertado
-			$stmt = execute(array($_SESSION["currentuser"],db2_last_insert_id($this->db)));
+			$this->idEjercicio=db2_last_insert_id($this->db)
+			$stmt = execute(array($_SESSION["currentuser"],$this->idEjercicio));
 			return true;
 		}
 		return false;
