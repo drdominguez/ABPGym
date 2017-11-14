@@ -11,7 +11,6 @@ class Usuario
             private $email;
             private $telefono;
             private $fechaAlta;
-
         function __construct($dni=NULL,$nombre=NULL,$apellidos=NULL,$edad=NULL,$password=NULL,$email=NULL,$telefono=NULL,$fechaAlta=NULL){
             $this->dni = $dni;
             $this->nombre = $nombre;
@@ -22,7 +21,6 @@ class Usuario
             $this->telefono = $telefono;//Comprobamos si es un atributo de tipo fecha o no 
             $this->fechaAlta=$fechaAlta;   
         }
-
     public function getDni() {
         return $this->dni;
     }
@@ -42,19 +40,15 @@ class Usuario
     public function getPassword() {
         return $this->password;
     }
-
     public function getEmail(){
         return $this->email;
     }
-
     public function getTelefono(){
         return $this->telefono;
     }
-
     public function getFecha(){
         return $this->fechaAlta;
     }
-
     public function setDni($dni) {
         $this->dni = $dni;
     }
@@ -74,19 +68,15 @@ class Usuario
     public function setPassword($password) {
         $this->password = $password;
     }
-
     public function setEmail($email){
         $this->email = $email;
     }
-
     public function setTelefono($telefono){
         $this->telefono=$telefono;
     }
-
     public function setFechaAlta($fechaAlta){
         $this->fechaAlta = $fechaAlta;
     }
-
     /**
     * Comprueba que el usuario sea valido
     *
@@ -94,11 +84,9 @@ class Usuario
     *
     * @return void
     */
-
     public function checkIsValidForRegister() {
         $errors = array();
         /*-------------------debe validarse que el dni sea correcto-------------------------------------------------*/
     }
 }
-
 ?> 

@@ -1,8 +1,6 @@
 <?php
 require_once(__DIR__."/../core/Access_DB.php");
-
 class UsuarioMapper {
-
     private $db;
     /**
     *el contructor obtiene la conexion con la base de datos del core
@@ -25,10 +23,9 @@ class UsuarioMapper {
     //al finalizar el script
     function __destruct()
     {
-
     }
     //Añadir
-    function ADD()
+    function ADD($usuario)
     {
         $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");
         $stmt = execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
@@ -64,7 +61,7 @@ class UsuarioMapper {
         }
     }
     //Funcion borrar un elemento de la BD
-    function DELETE()
+    function DELETE($dni)
     {
         $stmt = $this->db->prepare("DELETE from usuario WHERE dni=?");
         $stmt->execute(array($usuario->getDni()));
@@ -88,6 +85,5 @@ class UsuarioMapper {
     $stmt->execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
             $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
     }
-
 }
 ?>

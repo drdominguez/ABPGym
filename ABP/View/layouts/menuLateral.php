@@ -1,20 +1,5 @@
   <!-- Navigation-->
 <meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
-
-<?php
-  
- /* include_once '../Functions/Authentication.php';
-  if(isset($_SESSION['lang'])){
-        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
-            include("../Locates/Strings_ENGLISH.php"); 
-        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
-            include("../Locates/Strings_SPANISH.php");
-        else if(strcmp($_SESSION['lang'], 'GALICIAN')==0)
-        include("../Locates/Strings_GALICIAN.php"); 
-    }else{
-        include("../Locates/Strings_GALICIAN.php"); 
-    }*/
-?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <a class="navbar-brand" href="Index_Controller.php">GymApp</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,10 +57,60 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEjercicios">
                             <li>
-                                <a href="../Controller/ejercicio_Controller.php?action=ADD">Añadir ejercicio</a>
+                                <a href="../Controller/ejercicio_Controller.php?action=ADD">Añadir</a>
+                                 <ul class="sidenav-second-level collapse" id="collapseEjercicios">
+	                            	<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Estiramiento</a>
+                           			</li>
+                           			<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Cardio</a>
+                           			</li>
+                           			<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Muscular</a>
+                           			</li>
+	                            </ul>
+                            </li>
+                            <li>
+                                <a href="../Controller/ejercicio_Controller.php?action=ADD">Eliminar</a>
+                                 <ul class="sidenav-second-level collapse" id="collapseEjercicios">
+	                            	<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Estiramiento</a>
+                           			</li>
+                           			<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Cardio</a>
+                           			</li>
+                           			<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Muscular</a>
+                           			</li>
+	                            </ul>
+                            </li>
+                            <li>
+                                <a href="../Controller/ejercicio_Controller.php">Editar</a>
+                                 <ul class="sidenav-second-level collapse" id="collapseEjercicios">
+	                            	<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Estiramiento</a>
+                           			</li>
+                           			<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Cardio</a>
+                           			</li>
+                           			<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Muscular</a>
+                           			</li>
+	                            </ul>
                             </li>
                             <li>
                                 <a href="../Controller/ejercicio_Controller.php">Ver ejercicios</a>
+                                 <ul class="sidenav-second-level collapse" id="collapseEjercicios">
+	                            	<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Estiramiento</a>
+                           			</li>
+                           			<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Cardio</a>
+                           			</li>
+                           			<li>
+	                            		<a href="../Controller/ejercicio_Controller.php?action=ADD">Muscular</a>
+                           			</li>
+	                            </ul>
                             </li>
                         </ul>
                     </li>

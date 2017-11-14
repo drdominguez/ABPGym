@@ -1,17 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
-
-<?php 
-
-    include '../Model/usuario_Model.php';
-
-    include '../View/MESSAGE_View.php';
-    include '../Functions/Authentication.php';
-    /*Generamos los includes de las diferentes vistas*/
-    include '../View/usuario_ADD_View.php';
-    include '../View/usuario_DELETE_View.php';
-    include '../View/usuario_EDIT_View.php';
-    include '../View/usuario_SHOWCURRENT_View.php';
-    include '../View/usuario_SHOWALL_View.php';
+<?php
     
 class UsuarioController extends BaseController{
 

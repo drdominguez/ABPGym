@@ -58,6 +58,7 @@ function DELETE()
     $stmt = $this->db->prepare("DELETE from actividad WHERE idActividad=?");
     $stmt->execute(array($usuario->getIdActividad()));
 }
+
 //Funcion obtener datos de una tabla de la bd
 function RellenaDatos()
 {
@@ -71,6 +72,7 @@ function RellenaDatos()
         return $result;
     }
 }
+
 //Funcion editar
 function EDIT()
 {
