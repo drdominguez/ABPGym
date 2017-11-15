@@ -2,7 +2,7 @@
 <?php 
     session_start(); //solicito trabajar con la session
 
-    include '../model/notificacion_Model.php';
+    include '../model/NotificacionMapper.php';
     include '../model/usuario_Model.php';
 
     include '../view/MESSAGE_View.php';
