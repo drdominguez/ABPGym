@@ -2,6 +2,9 @@
 
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Notificacion.php");
+require_once(__DIR__."/NotificacionDeportista.php");
+
+
 
 Class NotificacionMapper{
     protected $db;
@@ -10,33 +13,21 @@ Class NotificacionMapper{
         $this->db=PDOConnection::getInstance();
     }
     public function add($notificacion){
-        $stmt = $this->db->prepare("INSERT INTO ejercicio(nombre,descripcion,video,imagen ) VALUES (?,?,?,?)");
-        if(esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
-            $stmt=execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen()));
-            $stmt = $this->db->prepare("INSERT INTO superusuario_ejercicio VALUES (?,?)");
-            //db2_last_insert_id($this->db) devuelve el ultimo id insertado
-            $this->idEjercicio=db2_last_insert_id($this->db)
-			$stmt = execute(array($_SESSION["currentuser"],$this->idEjercicio));
-			return true;
-		}
-        return false;
-    }
-    public function edit($notificacion){
-        $stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=?, imagen=? WHERE idEjercicio=?");
-        if(permisoEjercicio($ejercicio->getId())){
-            $stmt=execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen(),$ejercicio->getId()));
+        $stmt = $this->db->prepare("INSERT INTO notificacion(dniAdministrador,Asunto,contenido,fecha ) VALUES (?,?,?,?)");
+        $stmt =execute(array($_SESSION['currentuser'],$notificacion->getAsunto(),$notificacion->getContenido(),$notificacion->getFecha()));
+        $this->idNotificacion=db2_last_insert_id($this->db);
+        $stmt = $this->db->prepare("SELECT dni FROM deportista");
+        $stmt = execute();
+        if ($stmt->fetchColumn() > 0) {
+            //tengo que obtener todos los dnis y realizar el siguiente insert into con cada uno
+            $stmt = $this->db->prepare("INSERT INTO notificacion_deportista(dniAdministrador,dniDeportista,idNotificacion,visto) VALUES (?,?,?,?)");
+            $stmt = execute(array($_SESSION["currentuser"],$dni,$this->idNotificacion,$this->visto));
             return true;
+        }else{
+            return false;
         }
-        return false;
     }
-    public function remove($idNotificacion){
-        $stmt = $this->db->prepare("DELETE FROM ejercicio WHERE idEjercicio = ?");
-        if(permisosEjercicio($idEjercicio)){
-            $stmt= execute(array($idEjercicio));
-            return true;
-        }
-        return false;
-    }
+
     protected function permisosEjercicio($idEjercicio){
         /*Comprobar si el susuario es un administrador*/
         $stmt = $this->db->prepare("SELECT dni FROM administrador WHERE dniAdministrador=?");

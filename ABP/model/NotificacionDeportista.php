@@ -1,7 +1,7 @@
 <?php
 
 
-class notificacionDeportista_Model
+class NotificacionDeportista
 {
     //Definimos las variables
     private $dniAdministrador;
