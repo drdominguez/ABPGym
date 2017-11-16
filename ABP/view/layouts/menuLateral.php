@@ -55,10 +55,10 @@
                             <i class="fa fa-fw fa-wrench"></i>
                             <span class="nav-link-text">Gestión de ejercicios</span>
                         </a>
-                        <ul class="sidenav-second-level collapse" id="collapseEjercicios">
+                        <ul class="sidenav-second-level collapse" id="collapseEjercicios" aria-expander="true">
                             <li>
-                                <a href="../controller/EjercicioController.php?action=ADD">Añadir</a>
-                                 <ul class="sidenav-second-level collapse" id="collapseEjercicios">
+                                <a class="nav-link-collapse" data-toggle="collapse" href="#collapseAñadir">"Añadir"</a>
+                                 <ul class="sidenav-third-level collapse show" id="collapseAñadir">
 	                            	<li>
 	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
                            			</li>
