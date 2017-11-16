@@ -22,6 +22,78 @@
                             
                         </ul>
                     </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Actividades">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseActividades" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text">Gestión de Actividades</span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseActividades">
+                            <li class="nav-item" data-placement="right" title="AñadirActividad">
+                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseAñadirActividad">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseAñadirActividad">Añadir 
+                                    </span>
+                                </a>
+                                 <ul class="sidenav-third-level collapse" id="collapseAñadirActividad">
+                                    <li>
+                                        <a href="../controller/ActividadController.php?action=add">
+                                            <i class="fa fa-fw fa-link"></i> Individual
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/ActividadController.php?action=add">
+                                            <i class="fa fa-fw fa-link"></i> Grupo
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item" data-placement="right" title="Eliminar">
+                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseEliminarActividad">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseEliminarActividad">Eliminar 
+                                    </span>
+                                </a>
+                                 <ul class="sidenav-third-level collapse" id="collapseEliminarActividad">
+                                    <li>
+                                        <a href="../controller/EActividadController.php?action=delete">
+                                            <i class="fa fa-fw fa-link"></i> Individual
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/ActividadController.php?action=delete">
+                                            <i class="fa fa-fw fa-link"></i> Grupo
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item" data-placement="right" title="EditarActividad">
+                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseEditarActividad">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseEditarActividad">Editar
+                                    </span>
+                                </a>
+                                 <ul class="sidenav-third-level collapse" id="collapseEditarActividad">
+                                    <li>
+                                        <a href="../controller/ActividadController.php?action=edit">
+                                            <i class="fa fa-fw fa-link"></i> Individual
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/ActividadController.php?action=edit∫">
+                                            <i class="fa fa-fw fa-link"></i> Grupo
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../controller/ActividadController.php?action=show">
+                                <i class="fa fa-fw fa-link"></i>
+                                    <span>Ver Actividades 
+                                    </span>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEntrenadores" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
