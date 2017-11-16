@@ -29,7 +29,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseActividades">
                             <li class="nav-item" data-placement="right" title="AñadirActividad">
-                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseAñadirActividad">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAñadirActividad">
                                 <i class="fa fa-fw fa-wrench"></i>
                                     <span data-toggle="collapse" href="#collapseAñadirActividad">Añadir 
                                     </span>
@@ -48,7 +48,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item" data-placement="right" title="Eliminar">
-                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseEliminarActividad">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEliminarActividad">
                                 <i class="fa fa-fw fa-wrench"></i>
                                     <span data-toggle="collapse" href="#collapseEliminarActividad">Eliminar 
                                     </span>
@@ -68,7 +68,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item" data-placement="right" title="EditarActividad">
-                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseEditarActividad">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEditarActividad">
                                 <i class="fa fa-fw fa-wrench"></i>
                                     <span data-toggle="collapse" href="#collapseEditarActividad">Editar
                                     </span>
@@ -129,7 +129,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEjercicios">
                             <li class="nav-item" data-placement="right" title="Añadir">
-                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseAñadir">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAñadir">
                                 <i class="fa fa-fw fa-wrench"></i>
                                     <span data-toggle="collapse" href="#collapseAñadir">Añadir 
                                     </span>
@@ -154,7 +154,7 @@
 	                            </ul>
                             </li>
                             <li class="nav-item" data-placement="right" title="Eliminar">
-                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseEliminar">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEliminar">
                                 <i class="fa fa-fw fa-wrench"></i>
                                     <span data-toggle="collapse" href="#collapseEliminar">Eliminar 
                                     </span>
@@ -179,7 +179,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item" data-placement="right" title="Editar">
-                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseEditar">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEditar">
                                 <i class="fa fa-fw fa-wrench"></i>
                                     <span data-toggle="collapse" href="#collapseEditar">Editar
                                     </span>
@@ -204,7 +204,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item" data-placement="right" title="VerEjercicios">
-                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseVerEjercicios">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseVerEjercicios">
                                 <i class="fa fa-fw fa-wrench"></i>
                                     <span data-toggle="collapse" href="#collapseAñadir">Ver Ejercicios 
                                     </span>
