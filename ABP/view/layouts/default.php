@@ -7,7 +7,7 @@ $currentuser = $view->getVariable("currentusername");
 ?><!DOCTYPE html>
 <html>
 	<head>
-		<title><?= $view->getVariable("title", "no title") ?></title>
+		 <title>GYMABP</title>
 		<meta charset="utf-8">
 			<script src="index.php?controller=language&amp;action=i18njs"></script>
 			<?= $view->getFragment("css") ?>

@@ -1,3 +1,6 @@
+<?php
+    $view=ViewManager::getInstance();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,23 +9,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>GymApp</title>
+        <title>Añadir Ejercicio</title>
         <!-- Bootstrap core CSS-->
-        <link href="./view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom fonts for this template-->
-        <link href="./view/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Custom styles for this template-->
-        <link href="./view/css/sb-admin.css" rel="stylesheet">
+        <link href="../../css/sb-admin.css" rel="stylesheet">
         <!-- Bootstrap core JavaScript-->
-        <script src="./view/vendor/jquery/jquery.min.js"></script>
-        <script src="./view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
-        <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
     </head>
     <body class="bg-dark">
         <div class="container">
             <div class="card card-login mx-auto mt-5">
-                <div class="card-header">GymApp</div>
+                <div class="card-header">Añadir Estiramiento</div>
                 <div class="card-body">
                     <div id="flash"><?= $view->popFlash() ?></div>
                     <form name='Form' action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
