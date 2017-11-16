@@ -8,9 +8,9 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="../Controller/usuario_Controller.php">Usuarios</a>
+                        <a>Gestión</a>
                     </li>
-                    <li class="breadcrumb-item active">ADD</li>
+                    <li class="breadcrumb-item active">Ejercicios</li>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
@@ -18,7 +18,7 @@
                         <i class="fa fa-table"></i> Añadir Estiramiento</div>
                     <div class="card-body">      
                     <div id="flash"><?= $view->popFlash() ?></div>
-                    <form name='Form' id="form1" action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
+                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=EstiramientoADD" class="form-signin" accept-charset="UTF-8" method="POST">
                     	<div class="form-group">
                             <div class="form-row">
                               <div class="col-md-6">
