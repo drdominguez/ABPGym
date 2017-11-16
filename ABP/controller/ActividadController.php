@@ -19,23 +19,23 @@ class EjercicioController extends BaseController{
     
     /*EstiramientoADD
     *Si se llama con un get carga la vista
-    *si se llama con un post añade el estiramiento
+    *si se llama con un post añade la actividad
     */
     public function indivualADD() {
-        $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-        if(isset($_POST["tiempo"]) && isset($_POST["unidad"])){//si existen los post añado el ejercicio
-            $estiramiento = new EjercicioEstiramiento();
-            $estiramiento->setTiempo($_POST["tiempo"]);
-            $estiramiento->setUnidad($_POST["unidad"]);
-            if($this->estiramientoMapper->add($estiramiento)){
-               $this->view->setFlash("Ejercicio Añadido Corectamente");
+        $this->individualMapper = new ActividadIndividualMapper();
+        if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad
+            $individual = new ActividadIndividual();
+            $individual->setTiempo($_POST["precio"]);
+            $individual->setUnidad($_POST["nombre"]);
+            if($this->individualMapper->add($individual)){
+               $this->view->setFlash("Actividad Añadido Corectamente");
 
             }else{
-                $errors["username"] = "El ejercicio no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
+                $errors["actividaderror"] = "La actividad no se ha añadido corectamente";
+                $this->view->setFlash($errors["actividaderror"]);
             }
         }
-        $this->view->render("ejercicios/estiramiento","estiramientoADD");
+        $this->view->render("actividades/individual","individualADD");
     }
 
     /*EstiramientoRemove

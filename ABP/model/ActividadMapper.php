@@ -13,9 +13,9 @@ class ActividadMapper{
     
     //Anadir
     function add($actividad){ 
-        $stmt = $this->db->prepare("INSERT INTO actividad values (?,?)");
+        $stmt = $this->db->prepare("INSERT INTO actividad values (?,?,?)");
         if(esAdministrador()){
-            $stmt = execute(array($actividad->getIdActividad(), $actividad->getPrecio()));
+            $stmt = execute(array($actividad->getIdActividad(), $actividad->getPrecio(),$actividad->getNombre()));
             return true;
         }
         return false;
@@ -35,7 +35,7 @@ class ActividadMapper{
     function edit($actividad){
         $stmt = $this->db->prepare("UPDATE actividad SET precio=? WHERE idActividad=? ");
         if(esAdministrador()){
-            $stmt->execute(array($actividad->getPrecio(),$actividad->getIdActividad()));
+            $stmt->execute(array($actividad->getPrecio(),$actividad->getIdActividad(),$actividad->getNombre()));
             return true;
         }
         return false;
