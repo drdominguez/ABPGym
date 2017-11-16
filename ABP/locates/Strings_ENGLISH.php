@@ -168,5 +168,6 @@
                 'Tablas' => 'Tables',
                 'Ver todas las tablas' => 'Show all tables',
                 'Mostrar todas las tablas' => 'Show all tables',
+                'El nombre de usuario/contraseña no existen en el sistema' =>'User/password not exist in the system',
                 'Notificaciones' => 'Notifications');
     ?>

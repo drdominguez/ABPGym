@@ -31,7 +31,7 @@ class LoginController extends BaseController{
             $this->view->redirect("main", "index");
             }else{
                 /*se pone un mensaje de error y se reresca la vista*/
-                $errors["username"] = "Username and/or password not exists in system";
+                $errors["username"] = "El nombre de usuario/contraseña no existen en el sistema";
                 $this->view->setFlash($errors["username"]);
             }
         }
