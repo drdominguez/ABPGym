@@ -25,6 +25,8 @@ class NotificacionController extends BaseController{
             $notificacion = new Notificacion();
             $notificacion->setAsunto($_POST["Asunto"]);
             $notificacion->setContenido($_POST["contenido"]);
+            $notificacion->setDniAdministrador($_POST["dniAdministrador"]);
+            $notificacion->setFecha(date("Y-m-d H:i:s"));
             if($this->notificacionMapper->add($notificacion)){
                $this->view->setFlash("Notificación Añadida Correctamente");
 

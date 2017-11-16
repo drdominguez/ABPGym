@@ -1,7 +1,7 @@
 <?php
 
 
-class notificacion_Model
+class Notificacion
 {
     //Definimos las variables
     private $idNotificacion;
@@ -16,15 +16,8 @@ class notificacion_Model
         $this->dniAdministrador = $dniAdministrador;
         $this->Asunto = $Asunto;
         $this->contenido = $contenido;
-        //Comprobamos si es un atributo de tipo fecha o no
-        if($fecha == ''){
-            $this->fecha = $fecha;
-        }else{
+        $this->fecha = $fecha;
 
-            $this->fecha = date_format(date_create($fecha), 'Y-m-d');
-
-
-        }
     }
 
     public function getIdNotificacion(){
@@ -55,8 +48,8 @@ class notificacion_Model
         $this->dniAdministrador = $dniAdministrador;
     }
 
-    public function setAsunto($asunto){
-        $this->asunto = $asunto;
+    public function setAsunto($Asunto){
+        $this->Asunto = $Asunto;
     }
 
     public function setContenido($contenido){

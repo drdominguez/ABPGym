@@ -15,7 +15,7 @@ Class NotificacionMapper{
     
     public function add($notificacion){
         $stmt = $this->db->prepare("INSERT INTO notificacion(dniAdministrador,Asunto,contenido,fecha ) VALUES (?,?,?,?)");
-        $stmt =execute(array($_SESSION['currentuser'],$notificacion->getAsunto(),$notificacion->getContenido(),$notificacion->getFecha()));
+        $stmt = execute(array($notificacion->getDniAdministrador(),$notificacion->getAsunto(),$notificacion->getContenido(),$notificacion->getFecha()));
         $this->idNotificacion=db2_last_insert_id($this->db);
         $stmt = $this->db->prepare("SELECT dni FROM deportista");
         $stmt = execute();

@@ -208,7 +208,7 @@ CREATE TABLE `notificacion` (
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Asunto` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `contenido` text COLLATE utf8_spanish_ci,
-  `fecha` date NOT NULL
+  `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -637,6 +637,12 @@ ALTER TABLE `notificacion`
 --
 ALTER TABLE `tabla`
   MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+  --
+-- AUTO_INCREMENT for table `actividad`
+--
+ALTER TABLE `actividad`
+  MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
