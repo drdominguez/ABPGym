@@ -13,14 +13,14 @@ class Actividad
     public function getIdActividad() {
         return $this->idActividad;
     }
-    public function getNombre() {
-        return $this->nombre;
+    public function getPrecio() {
+        return $this->precio;
     }
     public function setIdActividad($idActividad) {
         $this->idActividad = $idActividad;
     }
-    public function setNombre($nombre) {
-        $this->nombre = $nombre;
+    public function setPrecio($precio) {
+        $this->precio = $precio;
     }
 }//fin de clase
 ?> 

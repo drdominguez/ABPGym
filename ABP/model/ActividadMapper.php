@@ -12,30 +12,30 @@ class ActividadMapper{
     }
     
     //Anadir
-    function ADD($actividad){ 
+    function add($actividad){ 
         $stmt = $this->db->prepare("INSERT INTO actividad values (?,?)");
         if(esAdministrador()){
-            $stmt = execute(array($actividad->getIdActividad(), $actividad->getNombre()));
+            $stmt = execute(array($actividad->getIdActividad(), $actividad->getPrecio()));
             return true;
         }
         return false;
     }
 
     //Funcion borrar un elemento de la BD
-    function DELETE(){
+    function delete($idActividad){
         $stmt = $this->db->prepare("DELETE from actividad WHERE idActividad=?");
          if(esAdministrador()){
-            $stmt->execute(array($usuario->getIdActividad()));
+            $stmt->execute(array($actividad->getIdActividad()));
             return true;
         }
         return false;
     }
 
     //Funcion editar
-    function EDIT(){
-        $stmt = $this->db->prepare("UPDATE actividad SET nombre WHERE idActividad=? ");
+    function edit($actividad){
+        $stmt = $this->db->prepare("UPDATE actividad SET precio=? WHERE idActividad=? ");
         if(esAdministrador()){
-            $stmt->execute(array($usuario->getNombre()));
+            $stmt->execute(array($actividad->getPrecio(),$actividad->getIdActividad()));
             return true;
         }
         return false;
