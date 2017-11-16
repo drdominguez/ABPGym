@@ -44,25 +44,25 @@ include_once '../Functions/Authentication.php';
                 </div>
             </div>
             <!-- Bootstrap core JavaScript-->
-            <script src="../../view/vendor/jquery/jquery.min.js"></script>
-            <script src="../../view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="./view/vendor/jquery/jquery.min.js"></script>
+            <script src="./view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
             <!-- Core plugin JavaScript-->
-            <script src="../../view/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
             <!-- Page level plugin JavaScript-->
-            <script src="../../view/vendor/chart.js/Chart.min.js"></script>
+            <script src="./view/vendor/chart.js/Chart.min.js"></script>
             <?php if(substr($_SERVER['REQUEST_URI'], -27)=='notificacion_Controller.php'){?>
-            <script src="../../view/vendor/datatables/jquery.dataTables2.js"></script>
+            <script src="./view/vendor/datatables/jquery.dataTables2.js"></script>
         <?php }else{ ?>
-            <script src="../../view/vendor/datatables/jquery.dataTables.js"></script>
+            <script src="./view/vendor/datatables/jquery.dataTables.js"></script>
         <?php }
         ?>
             
-            <script src="../../view/vendor/datatables/dataTables.bootstrap4.js"></script>
+            <script src="./view/vendor/datatables/dataTables.bootstrap4.js"></script>
             <!-- Custom scripts for all pages-->
-            <script src="../../view/js/sb-admin.min.js"></script>
+            <script src="./view/js/sb-admin.min.js"></script>
             <!-- Custom scripts for this page-->
-            <script src="../../view/js/sb-admin-datatables.min.js"></script>
-            <script src="../../view/js/sb-admin-charts.min.js"></script>
+            <script src="./view/js/sb-admin-datatables.min.js"></script>
+            <script src="./view/js/sb-admin-charts.min.js"></script>
         </div>
     </body>
 
