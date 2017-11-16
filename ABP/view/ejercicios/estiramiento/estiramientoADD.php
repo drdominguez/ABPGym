@@ -29,13 +29,29 @@
                 <div class="card-body">
                     <div id="flash"><?= $view->popFlash() ?></div>
                     <form name='Form' action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
+                    	<div class="form-group">
+                            <label for="exampleInputNombre">Nombre</label>
+                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onblur="esVacio(this)  && comprobarText(this,15)">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputTiempo">Descripción</label>
+                            <input class="form-control" name="descripcion" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Descripción" onblur="esVacio(this)  && comprobarText(this,15)">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputTiempo">Video</label>
+                            <input class="form-control" name="video" id="exampleInputVideo" type="TEXT" aria-describedby="emailHelp" placeholder="Video" onblur="esVacio(this)  && comprobarText(this,15)">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputTiempo">Imagen</label>
+                            <input class="form-control" name="imagen" id="exampleInputImagen" type="TEXT" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputTiempo">Tiempo</label>
-                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Duración" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Tiempo" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputUnidad">Unidad</label>
-                            <input class="form-control" id="exampleInputUnidad" name="unidad" type="password" placeholder="Unidad duración" onblur="esVacio(this)  && comprobarText(this,32)">
+                            <input class="form-control" id="exampleInputUnidad" name="unidad" type="TEXT" placeholder="Unidad duración" onblur="esVacio(this)  && comprobarText(this,32)">
                         </div>
                         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Añadir</button>
                     </form>
