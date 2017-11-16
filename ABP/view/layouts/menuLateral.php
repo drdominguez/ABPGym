@@ -259,7 +259,7 @@
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                        <a class="nav-link" href="../controller/UsuarioController.php?dni=<?php echo $_SESSION['login']; ?>&action=SHOWCURRENT">
+                        <a class="nav-link" href="../controller/UsuarioController.php?dni=<?php echo $_SESSION['currentuser']; ?>&action=SHOWCURRENT">
                             <i class="fa fa-fw fa-link"></i>
                             <span class="nav-link-text">Cuenta</span>
                         </a>

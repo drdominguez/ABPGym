@@ -38,26 +38,26 @@ Class NotificacionMapper{
 
     public function listar(){
 
-        if(esAdministrador()){
+        if($this->esAdministrador()){
             $stmt = $this->db->query("SELECT * from notificacion");
         }else{
              $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion");
              $stmt->execute(array($_SESSION['currentuser']));
-    }
-
+        }
             $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
-             $notificaciones = array();
+            $notificaciones = array();
 
             foreach ($notificaciones_db as $notificacion) {
                 array_push($notificaciones, new Notificacion($notificacion['idNotificacion'],$notificacion['dniAdministrador'],$notificacion['Asunto'],$notificacion['contenido'],$notificacion['fecha']));
-                return $notificaciones;
-        }
+            
+            }
+        return $notificaciones;
         
         }
 
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
-        $stmt= execute(array($_SESSION["currentuser"]));
+        $stmt->execute(array($_SESSION["currentuser"]));
         if ($stmt->fetchColumn()>0){
             return true;
         }
