@@ -36,7 +36,7 @@
                                 </a>
                                  <ul class="sidenav-third-level collapse" id="collapseAñadirActividad">
                                     <li>
-                                        <a href="../controller/ActividadController.php?action=add">
+                                        <a href="./index.php?controller=Actividad&amp;action=individualADD">
                                             <i class="fa fa-fw fa-link"></i> Individual
                                         </a>
                                     </li>

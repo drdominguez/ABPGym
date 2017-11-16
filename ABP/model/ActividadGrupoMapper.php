@@ -8,6 +8,7 @@ require_once(__DIR__."/ActividadGrupo.php");
 Class ActividadGrupolMapper extends ActividadMapper{
 	protected $db;
 	protected $idActividad;
+	
 	public function __construct(){
 		parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
 	}
@@ -32,5 +33,6 @@ Class ActividadGrupolMapper extends ActividadMapper{
     }
 	public function deleteGrupo($idActividad){
 		parent::delete($actividad);//Borro haciendo en cascada aunque es mejor un borrado lógico
+	}
 }
 ?>

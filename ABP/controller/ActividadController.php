@@ -6,7 +6,7 @@ require_once(__DIR__ . "/../model/ActividadMapper.php");
 require_once(__DIR__ . "/../model/ActividadIndividualMapper.php");
 require_once(__DIR__ . "/../model/ActividadGrupoMapper.php");
 
-class EjercicioController extends BaseController{
+class ActividadController extends BaseController{
 
     private $actividadMapper;
     private $individualMapper;
@@ -21,7 +21,7 @@ class EjercicioController extends BaseController{
     *Si se llama con un get carga la vista
     *si se llama con un post añade la actividad
     */
-    public function indivualADD() {
+    public function individualADD() {
         $this->individualMapper = new ActividadIndividualMapper();
         if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad
             $individual = new ActividadIndividual();
@@ -35,7 +35,7 @@ class EjercicioController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
-        $this->view->render("actividades/individual","individualADD");
+        $this->view->render("actividad/individual","individualADD");
     }
 
     /*EstiramientoRemove

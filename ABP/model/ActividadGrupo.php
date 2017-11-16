@@ -8,7 +8,7 @@ class ActividadGrupo
         private $plazas;
 
         function __construct($idActividad=NULL,$precio=NULL,$nombre=NULL,$instalaciones=NULL,$plazas=NULL){
-            parent::__construct($idActividad, $precio,$nombre);/
+            parent::__construct($idActividad, $precio,$nombre);
             $this->idActividad = $idActividad;  
             $this->instalaciones = $instalaciones; 
             $this->plazas = $plazas; 

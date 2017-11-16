@@ -3,7 +3,7 @@
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/ActividadMapper.php");
 require_once(__DIR__."/Actividad.php");
-require_once(__DIR__."/ActividadIndividual.php");
+
 
 Class ActividadIndividualMapper extends ActividadMapper{
 	protected $db;
@@ -26,5 +26,6 @@ Class ActividadIndividualMapper extends ActividadMapper{
     }
 	public function deleteIndividual($idActividad){
 		parent::delete($actividad);//Borro haciendo en cascada aunque es mejor un borrado lógico
+	}
 }
 ?>

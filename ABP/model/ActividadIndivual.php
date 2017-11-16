@@ -1,5 +1,9 @@
 <?php
+
 require_once(__DIR__."/Actividad.php");
+require_once(__DIR__."/ActividadMapper.php");
+require_once(__DIR__."ActividadIndivual.php");
+
 class ActividadIndividual extends Actividad
 {
         //Definimos las variables
