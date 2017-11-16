@@ -1,23 +1,25 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.12deb2
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 06-11-2017 a las 01:14:08
--- Versión del servidor: 5.5.44-0+deb8u1
--- Versión de PHP: 5.6.13-0+deb8u1
+-- Host: localhost
+-- Generation Time: Nov 16, 2017 at 03:24 PM
+-- Server version: 5.7.20
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `GYMESEI2`
+-- Database: `GYMESEI2`
 --
 
 -- --------------------------------------------------------
@@ -25,21 +27,22 @@ DROP DATABASE IF EXISTS `GYMESEI2`;
 CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `GYMESEI2`;
 --
--- Estructura de tabla para la tabla `actividad`
+-- Table structure for table `actividad`
 --
 
-CREATE TABLE IF NOT EXISTS `actividad` (
+CREATE TABLE `actividad` (
   `idActividad` bigint(20) NOT NULL,
-  `precio` double DEFAULT NULL
+  `precio` double DEFAULT NULL,
+  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `actividad_deportista`
+-- Table structure for table `actividad_deportista`
 --
 
-CREATE TABLE IF NOT EXISTS `actividad_deportista` (
+CREATE TABLE `actividad_deportista` (
   `idActividad` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -47,10 +50,10 @@ CREATE TABLE IF NOT EXISTS `actividad_deportista` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `actividad_horario`
+-- Table structure for table `actividad_horario`
 --
 
-CREATE TABLE IF NOT EXISTS `actividad_horario` (
+CREATE TABLE `actividad_horario` (
   `idActividad` bigint(20) NOT NULL,
   `idHorario` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -58,20 +61,20 @@ CREATE TABLE IF NOT EXISTS `actividad_horario` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `administrador`
+-- Table structure for table `administrador`
 --
 
-CREATE TABLE IF NOT EXISTS `administrador` (
+CREATE TABLE `administrador` (
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cardio`
+-- Table structure for table `cardio`
 --
 
-CREATE TABLE IF NOT EXISTS `cardio` (
+CREATE TABLE `cardio` (
   `idEjercicio` bigint(20) NOT NULL,
   `tiempo` smallint(6) DEFAULT NULL,
   `unidad` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -81,20 +84,20 @@ CREATE TABLE IF NOT EXISTS `cardio` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `deportista`
+-- Table structure for table `deportista`
 --
 
-CREATE TABLE IF NOT EXISTS `deportista` (
+CREATE TABLE `deportista` (
   `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ejercicio`
+-- Table structure for table `ejercicio`
 --
 
-CREATE TABLE IF NOT EXISTS `ejercicio` (
+CREATE TABLE `ejercicio` (
   `idEjercicio` bigint(20) NOT NULL,
   `nombre` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
@@ -105,20 +108,20 @@ CREATE TABLE IF NOT EXISTS `ejercicio` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `entrenador`
+-- Table structure for table `entrenador`
 --
 
-CREATE TABLE IF NOT EXISTS `entrenador` (
+CREATE TABLE `entrenador` (
   `dniEntrenador` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `entrenador_deportista`
+-- Table structure for table `entrenador_deportista`
 --
 
-CREATE TABLE IF NOT EXISTS `entrenador_deportista` (
+CREATE TABLE `entrenador_deportista` (
   `dniEntrenador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -126,10 +129,10 @@ CREATE TABLE IF NOT EXISTS `entrenador_deportista` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estiramiento`
+-- Table structure for table `estiramiento`
 --
 
-CREATE TABLE IF NOT EXISTS `estiramiento` (
+CREATE TABLE `estiramiento` (
   `idEjercicio` bigint(20) NOT NULL,
   `tiempo` smallint(6) DEFAULT NULL,
   `unidad` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
@@ -139,10 +142,10 @@ CREATE TABLE IF NOT EXISTS `estiramiento` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `grupo`
+-- Table structure for table `grupo`
 --
 
-CREATE TABLE IF NOT EXISTS `grupo` (
+CREATE TABLE `grupo` (
   `idActividad` bigint(20) NOT NULL,
   `instalaciones` text COLLATE utf8_spanish_ci,
   `plazas` tinyint(4) DEFAULT NULL
@@ -151,10 +154,10 @@ CREATE TABLE IF NOT EXISTS `grupo` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `horario`
+-- Table structure for table `horario`
 --
 
-CREATE TABLE IF NOT EXISTS `horario` (
+CREATE TABLE `horario` (
   `idHorario` bigint(20) NOT NULL,
   `localizacion` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
   `dia` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
@@ -164,20 +167,20 @@ CREATE TABLE IF NOT EXISTS `horario` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `individual`
+-- Table structure for table `individual`
 --
 
-CREATE TABLE IF NOT EXISTS `individual` (
+CREATE TABLE `individual` (
   `idActividad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `inscrito`
+-- Table structure for table `inscrito`
 --
 
-CREATE TABLE IF NOT EXISTS `inscrito` (
+CREATE TABLE `inscrito` (
   `idGrupo` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -185,10 +188,10 @@ CREATE TABLE IF NOT EXISTS `inscrito` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `muscular`
+-- Table structure for table `muscular`
 --
 
-CREATE TABLE IF NOT EXISTS `muscular` (
+CREATE TABLE `muscular` (
   `idEjercicio` bigint(20) NOT NULL,
   `carga` smallint(6) NOT NULL,
   `repeticiones` smallint(6) DEFAULT NULL
@@ -197,23 +200,24 @@ CREATE TABLE IF NOT EXISTS `muscular` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `notificacion`
+-- Table structure for table `notificacion`
 --
-CREATE TABLE IF NOT EXISTS `notificacion` (
-`idNotificacion` bigint(20) NOT NULL,
+
+CREATE TABLE `notificacion` (
+  `idNotificacion` bigint(20) NOT NULL,
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Asunto` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `contenido` text COLLATE utf8_spanish_ci,
   `fecha` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `notificacion_deportista`
+-- Table structure for table `notificacion_deportista`
 --
 
-CREATE TABLE IF NOT EXISTS `notificacion_deportista` (
+CREATE TABLE `notificacion_deportista` (
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idNotificacion` bigint(20) NOT NULL,
@@ -223,10 +227,10 @@ CREATE TABLE IF NOT EXISTS `notificacion_deportista` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pago`
+-- Table structure for table `pago`
 --
 
-CREATE TABLE IF NOT EXISTS `pago` (
+CREATE TABLE `pago` (
   `idPago` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idActividad` bigint(20) NOT NULL,
@@ -237,10 +241,10 @@ CREATE TABLE IF NOT EXISTS `pago` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pef`
+-- Table structure for table `pef`
 --
 
-CREATE TABLE IF NOT EXISTS `pef` (
+CREATE TABLE `pef` (
   `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `tarjeta` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `comentarioRivision` text COLLATE utf8_spanish_ci
@@ -249,10 +253,10 @@ CREATE TABLE IF NOT EXISTS `pef` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sesionentrenamiento`
+-- Table structure for table `sesionentrenamiento`
 --
 
-CREATE TABLE IF NOT EXISTS `sesionentrenamiento` (
+CREATE TABLE `sesionentrenamiento` (
   `idSesionEntrenamiento` bigint(20) NOT NULL,
   `idActividad` bigint(20) NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci,
@@ -263,10 +267,10 @@ CREATE TABLE IF NOT EXISTS `sesionentrenamiento` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sesionentrenamiento_individual`
+-- Table structure for table `sesionentrenamiento_individual`
 --
 
-CREATE TABLE IF NOT EXISTS `sesionentrenamiento_individual` (
+CREATE TABLE `sesionentrenamiento_individual` (
   `idActividad` bigint(20) NOT NULL,
   `idSesionEntrenamiento` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -274,10 +278,10 @@ CREATE TABLE IF NOT EXISTS `sesionentrenamiento_individual` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `sesionentrenamiento_tabla`
+-- Table structure for table `sesionentrenamiento_tabla`
 --
 
-CREATE TABLE IF NOT EXISTS `sesionentrenamiento_tabla` (
+CREATE TABLE `sesionentrenamiento_tabla` (
   `idSesionEntrenamiento` bigint(20) NOT NULL,
   `idTabla` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -285,23 +289,27 @@ CREATE TABLE IF NOT EXISTS `sesionentrenamiento_tabla` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `superusuario`
+-- Table structure for table `superusuario`
 --
 
-CREATE TABLE IF NOT EXISTS `superusuario` (
+CREATE TABLE `superusuario` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Dumping data for table `superusuario`
+--
+
+INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
+('44497121X');
+
 -- --------------------------------------------------------
 
-INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES ('44497121X');
-
-
 --
--- Estructura de tabla para la tabla `superusuario_ejercicio`
+-- Table structure for table `superusuario_ejercicio`
 --
 
-CREATE TABLE IF NOT EXISTS `superusuario_ejercicio` (
+CREATE TABLE `superusuario_ejercicio` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -309,10 +317,10 @@ CREATE TABLE IF NOT EXISTS `superusuario_ejercicio` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `superusuario_individual`
+-- Table structure for table `superusuario_individual`
 --
 
-CREATE TABLE IF NOT EXISTS `superusuario_individual` (
+CREATE TABLE `superusuario_individual` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idActividad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -320,10 +328,10 @@ CREATE TABLE IF NOT EXISTS `superusuario_individual` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `superusuario_tabla_deportista`
+-- Table structure for table `superusuario_tabla_deportista`
 --
 
-CREATE TABLE IF NOT EXISTS `superusuario_tabla_deportista` (
+CREATE TABLE `superusuario_tabla_deportista` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` bigint(20) NOT NULL
@@ -332,22 +340,23 @@ CREATE TABLE IF NOT EXISTS `superusuario_tabla_deportista` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tabla`
+-- Table structure for table `tabla`
 --
 
-CREATE TABLE IF NOT EXISTS `tabla` (
+CREATE TABLE `tabla` (
   `idTabla` bigint(20) NOT NULL,
-  `tipo` enum('estandar','personalizada') NOT NULL,
-  `comentario` text COLLATE utf8_spanish_ci
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `tipo` enum('estandar','personalizada') COLLATE utf8_spanish_ci NOT NULL,
+  `comentario` text COLLATE utf8_spanish_ci,
+  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tabla_ejercicios`
+-- Table structure for table `tabla_ejercicios`
 --
 
-CREATE TABLE IF NOT EXISTS `tabla_ejercicios` (
+CREATE TABLE `tabla_ejercicios` (
   `idTabla` bigint(20) NOT NULL,
   `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -355,10 +364,10 @@ CREATE TABLE IF NOT EXISTS `tabla_ejercicios` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tdu`
+-- Table structure for table `tdu`
 --
 
-CREATE TABLE IF NOT EXISTS `tdu` (
+CREATE TABLE `tdu` (
   `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `tarjeta` varchar(60) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -366,10 +375,10 @@ CREATE TABLE IF NOT EXISTS `tdu` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE `usuario` (
   `dni` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `apellidos` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -381,7 +390,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `usuario`
+-- Dumping data for table `usuario`
 --
 
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
@@ -389,365 +398,409 @@ INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `emai
 ('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `actividad`
+-- Indexes for table `actividad`
 --
 ALTER TABLE `actividad`
- ADD PRIMARY KEY (`idActividad`), ADD UNIQUE KEY `idActividad` (`idActividad`);
+  ADD PRIMARY KEY (`idActividad`),
+  ADD UNIQUE KEY `idActividad` (`idActividad`);
 
 --
--- Indices de la tabla `actividad_deportista`
+-- Indexes for table `actividad_deportista`
 --
 ALTER TABLE `actividad_deportista`
- ADD PRIMARY KEY (`idActividad`,`dniDeportista`), ADD UNIQUE KEY `idActividad` (`idActividad`), ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
+  ADD PRIMARY KEY (`idActividad`,`dniDeportista`),
+  ADD UNIQUE KEY `idActividad` (`idActividad`),
+  ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
 
 --
--- Indices de la tabla `actividad_horario`
+-- Indexes for table `actividad_horario`
 --
 ALTER TABLE `actividad_horario`
- ADD PRIMARY KEY (`idActividad`,`idHorario`), ADD UNIQUE KEY `idActividad` (`idActividad`), ADD UNIQUE KEY `idHorario` (`idHorario`);
+  ADD PRIMARY KEY (`idActividad`,`idHorario`),
+  ADD UNIQUE KEY `idActividad` (`idActividad`),
+  ADD UNIQUE KEY `idHorario` (`idHorario`);
 
 --
--- Indices de la tabla `administrador`
+-- Indexes for table `administrador`
 --
 ALTER TABLE `administrador`
- ADD PRIMARY KEY (`dniAdministrador`), ADD UNIQUE KEY `dniAdministrador` (`dniAdministrador`);
+  ADD PRIMARY KEY (`dniAdministrador`),
+  ADD UNIQUE KEY `dniAdministrador` (`dniAdministrador`);
 
 --
--- Indices de la tabla `cardio`
+-- Indexes for table `cardio`
 --
 ALTER TABLE `cardio`
- ADD PRIMARY KEY (`idEjercicio`);
+  ADD PRIMARY KEY (`idEjercicio`);
 
 --
--- Indices de la tabla `deportista`
+-- Indexes for table `deportista`
 --
 ALTER TABLE `deportista`
- ADD PRIMARY KEY (`dni`), ADD UNIQUE KEY `dni` (`dni`);
+  ADD PRIMARY KEY (`dni`),
+  ADD UNIQUE KEY `dni` (`dni`);
 
 --
--- Indices de la tabla `ejercicio`
+-- Indexes for table `ejercicio`
 --
 ALTER TABLE `ejercicio`
- ADD PRIMARY KEY (`idEjercicio`), ADD UNIQUE KEY `idEjercicio` (`idEjercicio`);
+  ADD PRIMARY KEY (`idEjercicio`),
+  ADD UNIQUE KEY `idEjercicio` (`idEjercicio`);
 
 --
--- Indices de la tabla `entrenador`
+-- Indexes for table `entrenador`
 --
 ALTER TABLE `entrenador`
- ADD PRIMARY KEY (`dniEntrenador`), ADD UNIQUE KEY `dniEntrenador` (`dniEntrenador`);
+  ADD PRIMARY KEY (`dniEntrenador`),
+  ADD UNIQUE KEY `dniEntrenador` (`dniEntrenador`);
 
 --
--- Indices de la tabla `entrenador_deportista`
+-- Indexes for table `entrenador_deportista`
 --
 ALTER TABLE `entrenador_deportista`
- ADD PRIMARY KEY (`dniEntrenador`,`dniDeportista`), ADD UNIQUE KEY `dniEntrenador` (`dniEntrenador`), ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
+  ADD PRIMARY KEY (`dniEntrenador`,`dniDeportista`),
+  ADD UNIQUE KEY `dniEntrenador` (`dniEntrenador`),
+  ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
 
 --
--- Indices de la tabla `estiramiento`
+-- Indexes for table `estiramiento`
 --
 ALTER TABLE `estiramiento`
- ADD PRIMARY KEY (`idEjercicio`);
+  ADD PRIMARY KEY (`idEjercicio`);
 
 --
--- Indices de la tabla `grupo`
+-- Indexes for table `grupo`
 --
 ALTER TABLE `grupo`
- ADD PRIMARY KEY (`idActividad`), ADD UNIQUE KEY `idActividad` (`idActividad`);
+  ADD PRIMARY KEY (`idActividad`),
+  ADD UNIQUE KEY `idActividad` (`idActividad`);
 
 --
--- Indices de la tabla `horario`
+-- Indexes for table `horario`
 --
 ALTER TABLE `horario`
- ADD PRIMARY KEY (`idHorario`), ADD UNIQUE KEY `idHorario` (`idHorario`);
+  ADD PRIMARY KEY (`idHorario`),
+  ADD UNIQUE KEY `idHorario` (`idHorario`);
 
 --
--- Indices de la tabla `individual`
+-- Indexes for table `individual`
 --
 ALTER TABLE `individual`
- ADD PRIMARY KEY (`idActividad`);
+  ADD PRIMARY KEY (`idActividad`);
 
 --
--- Indices de la tabla `inscrito`
+-- Indexes for table `inscrito`
 --
 ALTER TABLE `inscrito`
- ADD PRIMARY KEY (`idGrupo`,`dniDeportista`), ADD UNIQUE KEY `idGrupo` (`idGrupo`), ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
+  ADD PRIMARY KEY (`idGrupo`,`dniDeportista`),
+  ADD UNIQUE KEY `idGrupo` (`idGrupo`),
+  ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
 
 --
--- Indices de la tabla `muscular`
+-- Indexes for table `muscular`
 --
 ALTER TABLE `muscular`
- ADD PRIMARY KEY (`idEjercicio`), ADD UNIQUE KEY `idEjercicio` (`idEjercicio`);
+  ADD PRIMARY KEY (`idEjercicio`),
+  ADD UNIQUE KEY `idEjercicio` (`idEjercicio`);
 
 --
--- Indices de la tabla `notificacion`
+-- Indexes for table `notificacion`
 --
 ALTER TABLE `notificacion`
- ADD PRIMARY KEY (`idNotificacion`), ADD UNIQUE KEY `idNotificacion` (`idNotificacion`), ADD KEY `dniAdministrador` (`dniAdministrador`);
+  ADD PRIMARY KEY (`idNotificacion`),
+  ADD UNIQUE KEY `idNotificacion` (`idNotificacion`),
+  ADD KEY `dniAdministrador` (`dniAdministrador`);
 
 --
--- Indices de la tabla `notificacion_deportista`
+-- Indexes for table `notificacion_deportista`
 --
 ALTER TABLE `notificacion_deportista`
- ADD PRIMARY KEY (`idNotificacion`,`dniDeportista`), ADD KEY `idNotificacion` (`idNotificacion`), ADD KEY `dniDeportista` (`dniDeportista`);
+  ADD PRIMARY KEY (`idNotificacion`,`dniDeportista`),
+  ADD KEY `idNotificacion` (`idNotificacion`),
+  ADD KEY `dniDeportista` (`dniDeportista`);
 
 --
--- Indices de la tabla `pago`
+-- Indexes for table `pago`
 --
 ALTER TABLE `pago`
- ADD PRIMARY KEY (`idPago`), ADD UNIQUE KEY `idPago` (`idPago`), ADD UNIQUE KEY `dniDeportista` (`dniDeportista`), ADD UNIQUE KEY `idActividad` (`idActividad`);
+  ADD PRIMARY KEY (`idPago`),
+  ADD UNIQUE KEY `idPago` (`idPago`),
+  ADD UNIQUE KEY `dniDeportista` (`dniDeportista`),
+  ADD UNIQUE KEY `idActividad` (`idActividad`);
 
 --
--- Indices de la tabla `pef`
+-- Indexes for table `pef`
 --
 ALTER TABLE `pef`
- ADD PRIMARY KEY (`dni`), ADD UNIQUE KEY `dni` (`dni`);
+  ADD PRIMARY KEY (`dni`),
+  ADD UNIQUE KEY `dni` (`dni`);
 
 --
--- Indices de la tabla `sesionentrenamiento`
+-- Indexes for table `sesionentrenamiento`
 --
 ALTER TABLE `sesionentrenamiento`
- ADD PRIMARY KEY (`idSesionEntrenamiento`), ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`), ADD UNIQUE KEY `idActividad` (`idActividad`);
+  ADD PRIMARY KEY (`idSesionEntrenamiento`),
+  ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`),
+  ADD UNIQUE KEY `idActividad` (`idActividad`);
 
 --
--- Indices de la tabla `sesionentrenamiento_individual`
+-- Indexes for table `sesionentrenamiento_individual`
 --
 ALTER TABLE `sesionentrenamiento_individual`
- ADD PRIMARY KEY (`idActividad`,`idSesionEntrenamiento`), ADD UNIQUE KEY `idActividad` (`idActividad`), ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`);
+  ADD PRIMARY KEY (`idActividad`,`idSesionEntrenamiento`),
+  ADD UNIQUE KEY `idActividad` (`idActividad`),
+  ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`);
 
 --
--- Indices de la tabla `sesionentrenamiento_tabla`
+-- Indexes for table `sesionentrenamiento_tabla`
 --
 ALTER TABLE `sesionentrenamiento_tabla`
- ADD PRIMARY KEY (`idSesionEntrenamiento`,`idTabla`), ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`), ADD UNIQUE KEY `idTabla` (`idTabla`);
+  ADD PRIMARY KEY (`idSesionEntrenamiento`,`idTabla`),
+  ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`),
+  ADD UNIQUE KEY `idTabla` (`idTabla`);
 
 --
--- Indices de la tabla `superusuario`
+-- Indexes for table `superusuario`
 --
 ALTER TABLE `superusuario`
- ADD PRIMARY KEY (`dniSuperUsuario`), ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`);
+  ADD PRIMARY KEY (`dniSuperUsuario`),
+  ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`);
 
 --
--- Indices de la tabla `superusuario_ejercicio`
+-- Indexes for table `superusuario_ejercicio`
 --
 ALTER TABLE `superusuario_ejercicio`
- ADD PRIMARY KEY (`dniSuperUsuario`,`idEjercicio`), ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`), ADD UNIQUE KEY `idEjercicio` (`idEjercicio`);
+  ADD PRIMARY KEY (`dniSuperUsuario`,`idEjercicio`),
+  ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`),
+  ADD UNIQUE KEY `idEjercicio` (`idEjercicio`);
 
 --
--- Indices de la tabla `superusuario_individual`
+-- Indexes for table `superusuario_individual`
 --
 ALTER TABLE `superusuario_individual`
- ADD PRIMARY KEY (`dniSuperUsuario`,`idActividad`), ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`), ADD UNIQUE KEY `idActividad` (`idActividad`);
+  ADD PRIMARY KEY (`dniSuperUsuario`,`idActividad`),
+  ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`),
+  ADD UNIQUE KEY `idActividad` (`idActividad`);
 
 --
--- Indices de la tabla `superusuario_tabla_deportista`
+-- Indexes for table `superusuario_tabla_deportista`
 --
 ALTER TABLE `superusuario_tabla_deportista`
- ADD PRIMARY KEY (`dniSuperUsuario`,`dniDeportista`,`idTabla`), ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`), ADD UNIQUE KEY `dniDeportista` (`dniDeportista`), ADD UNIQUE KEY `idTabla` (`idTabla`);
+  ADD PRIMARY KEY (`dniSuperUsuario`,`dniDeportista`,`idTabla`),
+  ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`),
+  ADD UNIQUE KEY `dniDeportista` (`dniDeportista`),
+  ADD UNIQUE KEY `idTabla` (`idTabla`);
 
 --
--- Indices de la tabla `tabla`
+-- Indexes for table `tabla`
 --
 ALTER TABLE `tabla`
- ADD UNIQUE KEY `idTabla` (`idTabla`);
+  ADD UNIQUE KEY `idTabla` (`idTabla`);
 
 --
--- Indices de la tabla `tabla_ejercicios`
+-- Indexes for table `tabla_ejercicios`
 --
 ALTER TABLE `tabla_ejercicios`
- ADD PRIMARY KEY (`idTabla`,`idEjercicio`), ADD KEY `fk_Tabla_Ejercicios` (`idEjercicio`);
+  ADD PRIMARY KEY (`idTabla`,`idEjercicio`),
+  ADD KEY `fk_Tabla_Ejercicios` (`idEjercicio`);
 
 --
--- Indices de la tabla `tdu`
+-- Indexes for table `tdu`
 --
 ALTER TABLE `tdu`
- ADD PRIMARY KEY (`dni`), ADD UNIQUE KEY `dni` (`dni`);
+  ADD PRIMARY KEY (`dni`),
+  ADD UNIQUE KEY `dni` (`dni`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
- ADD PRIMARY KEY (`dni`), ADD UNIQUE KEY `dni` (`dni`);
+  ADD PRIMARY KEY (`dni`),
+  ADD UNIQUE KEY `dni` (`dni`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `notificacion`
+-- AUTO_INCREMENT for table `notificacion`
 --
 ALTER TABLE `notificacion`
-MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `notificacion`
+-- AUTO_INCREMENT for table `tabla`
 --
 ALTER TABLE `tabla`
-MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
--- Filtros para la tabla `actividad_deportista`
+--
+-- Constraints for table `actividad_deportista`
 --
 ALTER TABLE `actividad_deportista`
-ADD CONSTRAINT `fk_ActividadDeportista` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
+  ADD CONSTRAINT `fk_ActividadDeportista` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
 
 --
--- Filtros para la tabla `actividad_horario`
+-- Constraints for table `actividad_horario`
 --
 ALTER TABLE `actividad_horario`
-ADD CONSTRAINT `fk_ActHorario` FOREIGN KEY (`idHorario`) REFERENCES `horario` (`idHorario`),
-ADD CONSTRAINT `fk_ActividadAc` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
+  ADD CONSTRAINT `fk_ActHorario` FOREIGN KEY (`idHorario`) REFERENCES `horario` (`idHorario`),
+  ADD CONSTRAINT `fk_ActividadAc` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
 
 --
--- Filtros para la tabla `administrador`
+-- Constraints for table `administrador`
 --
 ALTER TABLE `administrador`
-ADD CONSTRAINT `fk_AdministradoSuperUsuario` FOREIGN KEY (`dniAdministrador`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_AdministradoSuperUsuario` FOREIGN KEY (`dniAdministrador`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `cardio`
+-- Constraints for table `cardio`
 --
 ALTER TABLE `cardio`
-ADD CONSTRAINT `fk_CardioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
+  ADD CONSTRAINT `fk_CardioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
 
 --
--- Filtros para la tabla `deportista`
+-- Constraints for table `deportista`
 --
 ALTER TABLE `deportista`
-ADD CONSTRAINT `fk_DeportistaUsuario` FOREIGN KEY (`dni`) REFERENCES `usuario` (`dni`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_DeportistaUsuario` FOREIGN KEY (`dni`) REFERENCES `usuario` (`dni`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `entrenador`
+-- Constraints for table `entrenador`
 --
 ALTER TABLE `entrenador`
-ADD CONSTRAINT `fk_EntrenadorSuperUsuario` FOREIGN KEY (`dniEntrenador`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_EntrenadorSuperUsuario` FOREIGN KEY (`dniEntrenador`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `entrenador_deportista`
+-- Constraints for table `entrenador_deportista`
 --
 ALTER TABLE `entrenador_deportista`
-ADD CONSTRAINT `fk_EntrenadorDerportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
-ADD CONSTRAINT `fk_Entrenador_Entrenador` FOREIGN KEY (`dniEntrenador`) REFERENCES `entrenador` (`dniEntrenador`);
+  ADD CONSTRAINT `fk_EntrenadorDerportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_Entrenador_Entrenador` FOREIGN KEY (`dniEntrenador`) REFERENCES `entrenador` (`dniEntrenador`);
 
 --
--- Filtros para la tabla `estiramiento`
+-- Constraints for table `estiramiento`
 --
 ALTER TABLE `estiramiento`
-ADD CONSTRAINT `fk_EstiramientoEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
+  ADD CONSTRAINT `fk_EstiramientoEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
 
 --
--- Filtros para la tabla `grupo`
+-- Constraints for table `grupo`
 --
 ALTER TABLE `grupo`
-ADD CONSTRAINT `fk_Grupo_Actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
+  ADD CONSTRAINT `fk_Grupo_Actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
 
 --
--- Filtros para la tabla `individual`
+-- Constraints for table `individual`
 --
 ALTER TABLE `individual`
-ADD CONSTRAINT `fk_Individual_Actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
+  ADD CONSTRAINT `fk_Individual_Actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
 
 --
--- Filtros para la tabla `inscrito`
+-- Constraints for table `inscrito`
 --
 ALTER TABLE `inscrito`
-ADD CONSTRAINT `fk_InscritoGrupo` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idActividad`);
+  ADD CONSTRAINT `fk_InscritoGrupo` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idActividad`);
 
 --
--- Filtros para la tabla `muscular`
+-- Constraints for table `muscular`
 --
 ALTER TABLE `muscular`
-ADD CONSTRAINT `fk_MuscularEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
+  ADD CONSTRAINT `fk_MuscularEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
 
 --
--- Filtros para la tabla `notificacion`
+-- Constraints for table `notificacion`
 --
 ALTER TABLE `notificacion`
-ADD CONSTRAINT `fk_NotificacionAdministrador` FOREIGN KEY (`dniAdministrador`) REFERENCES `administrador` (`dniAdministrador`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_NotificacionAdministrador` FOREIGN KEY (`dniAdministrador`) REFERENCES `administrador` (`dniAdministrador`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `notificacion_deportista`
+-- Constraints for table `notificacion_deportista`
 --
 ALTER TABLE `notificacion_deportista`
-ADD CONSTRAINT `fk_NotificacionDeportista` FOREIGN KEY (`idNotificacion`) REFERENCES `notificacion` (`idNotificacion`);
+  ADD CONSTRAINT `fk_NotificacionDeportista` FOREIGN KEY (`idNotificacion`) REFERENCES `notificacion` (`idNotificacion`);
 
 --
--- Filtros para la tabla `pago`
+-- Constraints for table `pago`
 --
 ALTER TABLE `pago`
-ADD CONSTRAINT `fk_PagoDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_PagoDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `pef`
+-- Constraints for table `pef`
 --
 ALTER TABLE `pef`
-ADD CONSTRAINT `fk_PefDeportista` FOREIGN KEY (`dni`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_PefDeportista` FOREIGN KEY (`dni`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `sesionentrenamiento`
+-- Constraints for table `sesionentrenamiento`
 --
 ALTER TABLE `sesionentrenamiento`
-ADD CONSTRAINT `fk_SesionEntrenamientoIndividual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
+  ADD CONSTRAINT `fk_SesionEntrenamientoIndividual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
 
 --
--- Filtros para la tabla `sesionentrenamiento_individual`
+-- Constraints for table `sesionentrenamiento_individual`
 --
 ALTER TABLE `sesionentrenamiento_individual`
-ADD CONSTRAINT `fk_EntrenamientoSIndividual` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`),
-ADD CONSTRAINT `fk_SesionEntrenamiento_Individual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
+  ADD CONSTRAINT `fk_EntrenamientoSIndividual` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`),
+  ADD CONSTRAINT `fk_SesionEntrenamiento_Individual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
 
 --
--- Filtros para la tabla `sesionentrenamiento_tabla`
+-- Constraints for table `sesionentrenamiento_tabla`
 --
 ALTER TABLE `sesionentrenamiento_tabla`
-ADD CONSTRAINT `fk_SesionEntrenamientoS` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`),
-ADD CONSTRAINT `fk_SesionEntrenamientoTabla` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`);
+  ADD CONSTRAINT `fk_SesionEntrenamientoS` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`),
+  ADD CONSTRAINT `fk_SesionEntrenamientoTabla` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`);
 
 --
--- Filtros para la tabla `superusuario`
+-- Constraints for table `superusuario`
 --
 ALTER TABLE `superusuario`
-ADD CONSTRAINT `fk_SuperUsuario` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `usuario` (`dni`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_SuperUsuario` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `usuario` (`dni`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `superusuario_ejercicio`
+-- Constraints for table `superusuario_ejercicio`
 --
 ALTER TABLE `superusuario_ejercicio`
-ADD CONSTRAINT `fk_SuperusuarioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`),
-ADD CONSTRAINT `fk_dniSuperUsuarioS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_SuperusuarioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`),
+  ADD CONSTRAINT `fk_dniSuperUsuarioS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `superusuario_individual`
+-- Constraints for table `superusuario_individual`
 --
 ALTER TABLE `superusuario_individual`
-ADD CONSTRAINT `fk_SuperUsuarioIndividual` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE,
-ADD CONSTRAINT `fk_SuperUsuarioIndividualL` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
+  ADD CONSTRAINT `fk_SuperUsuarioIndividual` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_SuperUsuarioIndividualL` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
 
 --
--- Filtros para la tabla `superusuario_tabla_deportista`
+-- Constraints for table `superusuario_tabla_deportista`
 --
 ALTER TABLE `superusuario_tabla_deportista`
-ADD CONSTRAINT `FK_SuperUsuarioTab` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`),
-ADD CONSTRAINT `fk_SuperUsuarioTablaDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
-ADD CONSTRAINT `fk_SuperUsuarioTalaS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_SuperUsuarioTab` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`),
+  ADD CONSTRAINT `fk_SuperUsuarioTablaDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_SuperUsuarioTalaS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `tabla_ejercicios`
+-- Constraints for table `tabla_ejercicios`
 --
 ALTER TABLE `tabla_ejercicios`
-ADD CONSTRAINT `fk_TablaT_Ejercicios` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`),
-ADD CONSTRAINT `fk_Tabla_Ejercicios` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
+  ADD CONSTRAINT `fk_TablaT_Ejercicios` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`),
+  ADD CONSTRAINT `fk_Tabla_Ejercicios` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
 
 --
--- Filtros para la tabla `tdu`
+-- Constraints for table `tdu`
 --
 ALTER TABLE `tdu`
-ADD CONSTRAINT `fk_TduDeportista` FOREIGN KEY (`dni`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_TduDeportista` FOREIGN KEY (`dni`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
