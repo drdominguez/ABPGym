@@ -15,7 +15,7 @@
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Añadir Usuario</div>
+                        <i class="fa fa-table"></i> Añadir Estiramiento</div>
                     <div class="card-body">      
                     <div id="flash"><?= $view->popFlash() ?></div>
                     <form name='Form' id="form1" action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
@@ -55,9 +55,10 @@
                         </div>
                              </div>
                         </div>
+
                     </form>
 
-                    <button type="button" onclick="window.location.href='../Controller/usuario_Controller.php?action=default'" class="btn btn-default">Volver</button> 
+                    <button type="button" onclick="window.location.href='../controller/EjercicioController.php?action=default'" class="btn btn-default">Volver</button> 
                      <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button> 
                 </div>
             </div>
