@@ -64,10 +64,10 @@ class ActividadController extends BaseController{
         $this->grupoMapper = new ActividadGrupoMapper();
         if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["instalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
             $grupo = new ActividadGrupo();
-            $grupo->setTiempo($_POST["precio"]);
-            $grupo->setUnidad($_POST["nombre"]);
-            $grupo->setTiempo($_POST["instalaciones"]);
-            $grupo->setUnidad($_POST["plazas"]);
+            $grupo->setPrecio($_POST["precio"]);
+            $grupo->setNombre($_POST["nombre"]);
+            $grupo->setInstalaciones($_POST["instalaciones"]);
+            $grupo->setPlazas($_POST["plazas"]);
             if($this->grupoMapper->add($grupo)){
                $this->view->setFlash("Actividad Grupo Añadida Corectamente");
 

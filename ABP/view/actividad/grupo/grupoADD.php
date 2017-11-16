@@ -18,7 +18,7 @@
                     <i class="fa fa-table"></i> Añadir Actividad Grupo</div>
                     <div class="card-body"> 
                         <div id="flash"><?= $view->popFlash() ?></div>
-                            <form name='Form' id="form1" action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
+                            <form name='Form' id="form1" action="index.php?controller=Actividad&amp;action=grupoADD" class="form-signin" accept-charset="UTF-8" method="POST">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-6">
@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputTiempo">Precio</label>
-                                        <input class="form-control" name="descripcion" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Precio" onblur="esVacio(this)  && comprobarText(this,15)">
+                                        <input class="form-control" name="precio" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Precio" onblur="esVacio(this)  && comprobarText(this,15)">
                                     </div>
                                 </div>
                             </div>
@@ -35,11 +35,11 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <label for="exampleInputNombre">Instalaciones</label>
-                                        <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Instalaciones" onblur="esVacio(this)  && comprobarText(this,15)">
+                                        <input class="form-control" name="instalaciones" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Instalaciones" onblur="esVacio(this)  && comprobarText(this,15)">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputTiempo">Plazas</label>
-                                        <input class="form-control" name="descripcion" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Plazas" onblur="esVacio(this)  && comprobarText(this,15)">
+                                        <input class="form-control" name="plazas" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Plazas" onblur="esVacio(this)  && comprobarText(this,15)">
                                     </div>
                                 </div>
                             </div>

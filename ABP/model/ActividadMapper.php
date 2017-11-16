@@ -13,12 +13,11 @@ class ActividadMapper{
     
     //Anadir
     function add($actividad){ 
-        $stmt = $this->db->prepare("INSERT INTO actividad values (?,?,?)");
-        if(esAdministrador()){
-            $stmt = execute(array($actividad->getIdActividad(), $actividad->getPrecio(),$actividad->getNombre()));
-            return true;
-        }
-        return false;
+        $stmt = $this->db->prepare("INSERT INTO actividad(precio,nombre) values (?,?)");
+        var_dump($stmt);
+        exit;
+            $stmt = execute(array($actividad->getPrecio(),$actividad->getNombre()));
+           
     }
 
     //Funcion borrar un elemento de la BD
@@ -56,7 +55,9 @@ class ActividadMapper{
         return false;
     }
     protected function esAdministrador(){
-        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
+        $stmt= $this->db->prepare("SELECT dniAdministrador 
+        FROM administrador WHERE dniAdministrador=?");
+        
         $stmt= execute(array($_SESSION["currentuser"]));
         if ($stmt->fetchColumn()>0){
             return true;
