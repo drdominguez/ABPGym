@@ -237,10 +237,10 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseNotificaciones">
                             <li>
-                                <a href="../controller/NotificacionController.php?action=ADD">Enviar notificacion</a>
+                                <a href="./index.php?controller=Notificacion&amp;action=NotificacionADD">Enviar notificacion</a>
                             </li>
                             <li>
-                                <a href="../controller/NotificacionController.php">Ver notificaciones</a>
+                                <a href="./index.php?controller=Notificacion&amp;action=NotificacionListar">Ver notificaciones</a>
                             </li>
                         </ul>
                     </li>
