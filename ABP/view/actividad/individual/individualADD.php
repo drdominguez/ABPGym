@@ -36,6 +36,15 @@
                         <div class="form-group">
                             <label for="exampleInputTiempo">Precio</label>
                             <input class="form-control" name="descripcion" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Descripción" onblur="esVacio(this)  && comprobarText(this,15)">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputNombre">Instalaciones</label>
+                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onblur="esVacio(this)  && comprobarText(this,15)">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputNombre">Plazas</label>
+                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onblur="esVacio(this)  && comprobarText(this,15)">
+                        </div>
                         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Añadir</button>
                     </form>
                 </div>

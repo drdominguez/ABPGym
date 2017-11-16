@@ -5,7 +5,7 @@ require_once(__DIR__."/ActividadMapper.php");
 require_once(__DIR__."/Actividad.php");
 require_once(__DIR__."/ActividadGrupo.php");
 
-Class ActividadGrupolMapper extends ActividadMapper{
+Class ActividadGrupoMapper extends ActividadMapper{
 	protected $db;
 	protected $idActividad;
 	

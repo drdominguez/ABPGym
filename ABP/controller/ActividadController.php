@@ -28,10 +28,10 @@ class ActividadController extends BaseController{
             $individual->setTiempo($_POST["precio"]);
             $individual->setUnidad($_POST["nombre"]);
             if($this->individualMapper->add($individual)){
-               $this->view->setFlash("Actividad Añadido Corectamente");
+               $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
             }else{
-                $errors["actividaderror"] = "La actividad no se ha añadido corectamente";
+                $errors["actividaderror"] = "La actividad individual no se ha añadido corectamente";
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
@@ -61,7 +61,22 @@ class ActividadController extends BaseController{
     *si se llama con un post añade el cardio
     */
     public function grupoADD() {
-        $this->cardioMapper = new EjercicioCardioMapper();
+        $this->grupoMapper = new ActividadGrupoMapper();
+        if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["instalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+            $grupo = new ActividadGrupo();
+            $grupo->setTiempo($_POST["precio"]);
+            $grupo->setUnidad($_POST["nombre"]);
+            $grupo->setTiempo($_POST["instalaciones"]);
+            $grupo->setUnidad($_POST["plazas"]);
+            if($this->grupoMapper->add($grupo)){
+               $this->view->setFlash("Actividad Grupo Añadida Corectamente");
+
+            }else{
+                $errors["actividaderror"] = "La actividad  de grupo no se ha añadido corectamente";
+                $this->view->setFlash($errors["actividaderror"]);
+            }
+        }
+        $this->view->render("actividad/grupo","grupoADD");
 
     }
 

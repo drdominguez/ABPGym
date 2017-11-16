@@ -41,7 +41,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="../controller/ActividadController.php?action=add">
+                                        <a href="./index.php?controller=Actividad&amp;action=grupoADD">
                                             <i class="fa fa-fw fa-link"></i> Grupo
                                         </a>
                                     </li>
