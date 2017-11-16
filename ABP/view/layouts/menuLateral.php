@@ -9,7 +9,7 @@
                 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsuarios" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-wrench"></i>
+                            <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text">Gestión de usuario</span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseUsuarios">
@@ -24,7 +24,7 @@
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEntrenadores" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-wrench"></i>
+                            <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text">Gestión de entrenadores</span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
@@ -38,7 +38,7 @@
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tablas">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTablas" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-wrench"></i>
+                            <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text">Gestión de tablas</span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseTablas">
@@ -52,71 +52,115 @@
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ejercicios">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEjercicios" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-wrench"></i>
+                            <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text">Gestión de ejercicios</span>
                         </a>
-                        <ul class="sidenav-second-level collapse" id="collapseEjercicios" aria-expander="true">
-                            <li>
-                                <a class="nav-link-collapse" data-toggle="collapse" href="#collapseAñadir">"Añadir"</a>
-                                 <ul class="sidenav-third-level collapse show" id="collapseAñadir">
+                        <ul class="sidenav-second-level collapse" id="collapseEjercicios">
+                            <li class="nav-item" data-placement="right" title="Añadir">
+                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseAñadir">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseAñadir">Añadir 
+                                    </span>
+                                </a>
+                                 <ul class="sidenav-third-level collapse" id="collapseAñadir">
 	                            	<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Estiramiento
+                                        </a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Cardio</a>
+	                            		<a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Cardio
+                                        </a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Muscular</a>
+	                            		<a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Muscular
+                                        </a>         
+                                        
                            			</li>
 	                            </ul>
                             </li>
-                            <li>
-                                <a href="../controller/EjercicioController.php?action=ADD">Eliminar</a>
-                                 <ul class="sidenav-second-level collapse" id="collapseEjercicios">
-	                            	<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
-                           			</li>
-                           			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Cardio</a>
-                           			</li>
-                           			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Muscular</a>
-                           			</li>
-	                            </ul>
+                            <li class="nav-item" data-placement="right" title="Eliminar">
+                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseEliminar">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseEliminar">Eliminar 
+                                    </span>
+                                </a>
+                                 <ul class="sidenav-third-level collapse" id="collapseEliminar">
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Estiramiento
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Cardio
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Muscular
+                                        </a>         
+                                        
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="../controller/ejercicio_Controller.php">Editar</a>
-                                 <ul class="sidenav-second-level collapse" id="collapseEjercicios">
-	                            	<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
-                           			</li>
-                           			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Cardio</a>
-                           			</li>
-                           			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Muscular</a>
-                           			</li>
-	                            </ul>
+                            <li class="nav-item" data-placement="right" title="Editar">
+                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseEditar">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseEditar">Editar
+                                    </span>
+                                </a>
+                                 <ul class="sidenav-third-level collapse" id="collapseEditar">
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Estiramiento
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Cardio
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Muscular
+                                        </a>         
+                                        
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="../controller/EjercicioController.php">Ver ejercicios</a>
-                                 <ul class="sidenav-second-level collapse" id="collapseEjercicios">
-	                            	<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Estiramiento</a>
-                           			</li>
-                           			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Cardio</a>
-                           			</li>
-                           			<li>
-	                            		<a href="../controller/EjercicioController.php?action=ADD">Muscular</a>
-                           			</li>
-	                            </ul>
+                            <li class="nav-item" data-placement="right" title="VerEjercicios">
+                                <a class="nav-link-collapse collapse" data-toggle="collapse" href="#collapseVerEjercicios">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseAñadir">Ver Ejercicios 
+                                    </span>
+                                </a>
+                                 <ul class="sidenav-third-level collapse" id="collapseVerEjercicios">
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Estiramiento
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Cardio
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                            <i class="fa fa-fw fa-link"></i> Muscular
+                                        </a>         
+                                        
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Notificaciones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseNotificaciones" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-wrench"></i>
+                            <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text">Gestión de notificaciones</span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseNotificaciones">
@@ -130,7 +174,7 @@
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Deportistas">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-wrench"></i>
+                            <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text">Gestión de deportista</span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseDeportistas">

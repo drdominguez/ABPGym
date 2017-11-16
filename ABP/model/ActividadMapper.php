@@ -1,86 +1,67 @@
 <?php
 require_once(__DIR__."/../core/Access_DB.php");
+require_once(__DIR__."/Actividad.php");
 
-class ActividadMapper
-{
-    private $db;
+class ActividadMapper{
+    protected $db;
     /**
     *el contructor obtiene la conexion con la base de datos del core
     **/
-    public function __construct() 
-    {
+    public function __construct() {
         $this->db = PDOConnection::getInstance();
     }
-    //funcion de destrucción del objeto: se ejecuta automaticamente
-    //al finalizar el script
-    function __destruct()
-    {
-
-    }
+    
     //Anadir
-    function ADD()
-    { 
-        $stmt = $this->db->prepare("INSERT INTO actividad values (?,?)";
-        $stmt = execute(array($actividad->getIdActividad(), $actividad->getNombre()
+    function ADD($actividad){ 
+        $stmt = $this->db->prepare("INSERT INTO actividad values (?,?)");
+        if(esAdministrador()){
+            $stmt = execute(array($actividad->getIdActividad(), $actividad->getNombre()));
+            return true;
+        }
+        return false;
     }
 
-//funcion de destrucción del objeto: se ejecuta automaticamente
-//al finalizar el script
-function __destruct()
-{
-
-}
-
-//funcion Consultar: hace una búsqueda en la tabla con
-//los datos proporcionados. Si van vacios devuelve todos
-function SEARCH()
-{
-    
-    $sql = "select 
-                        idActividad,
-                        precio
-                from actividad 
-                where 
-                    ((
-                        idActividad LIKE '%$this->idActividad%')&&
-                         (precio LIKE '%$this->precio%'))";
-    if (!($resultado = $this->mysqli->query($sql))){
-        return 'Error en la consulta sobre la base de datos';
+    //Funcion borrar un elemento de la BD
+    function DELETE(){
+        $stmt = $this->db->prepare("DELETE from actividad WHERE idActividad=?");
+         if(esAdministrador()){
+            $stmt->execute(array($usuario->getIdActividad()));
+            return true;
+        }
+        return false;
     }
-    else{
-        return $resultado;
+
+    //Funcion editar
+    function EDIT(){
+        $stmt = $this->db->prepare("UPDATE actividad SET nombre WHERE idActividad=? ");
+        if(esAdministrador()){
+            $stmt->execute(array($usuario->getNombre()));
+            return true;
+        }
+        return false;
     }
-}
-
-//Funcion borrar un elemento de la BD
-function DELETE()
-{
-    $stmt = $this->db->prepare("DELETE from actividad WHERE idActividad=?");
-    $stmt->execute(array($usuario->getIdActividad()));
-}
-
-//Funcion obtener datos de una tabla de la bd
-function RellenaDatos()
-{
-    
-    $sql = "SELECT * FROM actividad WHERE idActividad = '$this->idActividad'";
-    if (!($resultado = $this->mysqli->query($sql))){
-        return 'No existe en la base de datos'; // 
+    protected function permisosActividad($idActividad){
+        /*Comprobar si el susuario es un administrador*/
+        $stmt = $this->db->prepare("SELECT dni FROM administrador WHERE dniAdministrador=?");
+        $stmt->execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn() > 0) {
+             return true;
+        }else{//comprobar si ha creado el usuario actual esa actividad si no no tiene permisos sobre el
+            $stmt = $this->db->prepare("SELECT * FROM superusuario_individual WHERE dniSuperUsuario=? AND idActividad=?");
+            $stmt->execute(array($_SESSION["currentuser"], $idActividad));
+            if ($stmt->fetchColumn() > 0) {
+             return true;
+            }
+        }
+        return false;
     }
-    else{
-        $result = $resultado->fetch_array();
-        return $result;
+    protected function esAdministrador(){
+        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
+        $stmt= execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0){
+            return true;
+        }
+        return false;
     }
-}
-
-//Funcion editar
-function EDIT()
-{
-
-    $stmt = $this->db->prepare("UPDATE from usuario WHERE idActividad=? and nombre=?");
-    $stmt->execute(array($usuario->getIdActividad(), $usuario->getNombre()));
-  
-}
 }//fin de clase
-
 ?> 
