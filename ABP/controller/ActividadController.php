@@ -1,4 +1,3 @@
-
 <?php 
     session_start(); //solicito trabajar con la session
 
