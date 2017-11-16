@@ -1,104 +1,60 @@
+<?php
 
-<?php 
-    session_start(); //solicito trabajar con la session
+require_once(__DIR__."/../core/ViewManager.php");
+require_once(__DIR__ . "/../controller/BaseController.php");
+require_once(__DIR__ . "/../model/NotificacionMapper.php");
+require_once(__DIR__ . "/../model/Notificacion.php");
+require_once(__DIR__ . "/../model/NotificacionDeportista.php");
 
-    include '../model/NotificacionMapper.php';
-    include '../model/usuario_Model.php';
+class NotificacionController extends BaseController{
 
-    include '../view/MESSAGE_View.php';
-    include '../Functions/Authentication.php';
+    private $notificacionMapper;
 
-    if (!IsAuthenticated()){
-        header('Location:../index.php');
+    public function __construct() {
+        parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
+        $this->notificacionMapper = new NotificacionMapper();
     }
-  //Carga el idioma guardado en la variable de sesión o el Español por defecto
-    if(isset($_SESSION['lang'])){
-        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
-            include("../locates/Strings_ENGLISH.php");
-        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
-            include("../locates/Strings_SPANISH.php");
-    }else{
-        include("../locates/Strings_SPANISH.php");
-    }
-
-    /*Generamos los includes de las diferentes vistas*/
-    include '../view/notificacion_ADD_View.php';
-    include '../view/notificacion_SHOWCURRENT_View.php';
-    include '../view/notificacion_SHOWALL_View.php';
-
-    function get_data_form(){
-
-    //Recoge la información del formulario
-            if(isset($_REQUEST['idNotificacion'])){
-                $idNotificacion = $_REQUEST['idNotificacion'];
-                 }else{
-                    $idNotificacion = null;
-                }
-
-         
-                $dniAdministrador = $_REQUEST['dniAdministrador'];
-
-         
-                $Asunto = $_REQUEST['Asunto'];
-
-         
-                $contenido = $_REQUEST['contenido'];
-
-         
-                $fecha =  date("Y-m-d");
-
-                //$usuarios=$_POST['enviar'];
-
-         $accion = $_REQUEST['action'];
-
-    $notificacion = new notificacion_Model($idNotificacion,$dniAdministrador,$Asunto,$contenido,$fecha);
-
-    return $notificacion;
-}
-
-if (!isset($_REQUEST['action'])){
-    $_REQUEST['action'] = '';
-}
     
-    /*A continuación creamos el switch con el cual podremos gestionar las peticiones de ADD, DELETE, EDIT...*/
-    switch ($_REQUEST['action']) {
-        /*Caso añadir a la BD*/
-        case 'ADD': 
-                if (!$_POST){
-                    $usuario = new usuario_Model('','','','','','','','');
-                    $notificacion = new notificacion_Model('','','','','');
-                    $datos = $notificacion->RellenaDatos2();
-                    $lista = array('dni','nombre','apellidos','email');
-                    new notificacion_ADD($lista, $datos);
-                }
-                else{
-                    $notificacion = get_data_form();
-                    $respuesta = $notificacion->ADD();
-                    new MESSAGE($respuesta, '../controller/notificacion_Controller.php');
-                }
-                break;      
-        case 'SHOWCURRENT': //Mostrar información detallada
-                $notificacion = new notificacion_Model($_REQUEST['idNotificacion'], '','','','');
-                $valores = $notificacion->selectNotificacion();
-                $usuario=$_REQUEST['dni'];
-                new notificacion_SHOWCURRENT($valores,$usuario);
-                if(strcmp(strtoupper($_SESSION['login']), strtoupper($usuario))==0){
-                $notificacion->notificacionVista($usuario);
-                }
-                break;
-        default:
-           if (!$_POST){
-                    $notificacion = new notificacion_Model('','','','','');
-                }
-                else{
-                    $notificacion = get_data_form();
-                }
-                $datos = $notificacion->SEARCH();
-                $lista = array('fecha','idNotificacion','dniAdministrador','Asunto','contenido');
-                new notificacion_SHOWALL($lista, $datos,'../controller/notificacion_Controller.php' );
+    /*Notificacion ADD
+    *Si se llama con un get carga la vista
+    *si se llama con un post añade la notificacion
+    */
+    public function NotificacionADD() {
+        $this->notificacionMapper = new NotificacionMapper();
+        if(isset($_POST["Asunto"]) && isset($_POST["contenido"])){//si existen los post añado la notificacion
+            $notificacion = new Notificacion();
+            $notificacion->setAsunto($_POST["Asunto"]);
+            $notificacion->setContenido($_POST["contenido"]);
+            if($this->notificacionMapper->add($notificacion)){
+               $this->view->setFlash("Notificación Añadida Correctamente");
 
+            }else{
+                $errors["username"] = "La notificación no se ha añadido corectamente";
+                $this->view->setFlash($errors["username"]);
             }
+        }
+        $this->view->render("notificacion","notificacionADD");
+    }
 
-    
+    /*NotificacionListar
+    *Muestra una lista con todos las Notificaciones
+    */
+    public function NotificacionListar() {
+       $this->notificacionMapper = new NotificacionMapper();
 
+    }
+
+
+    /*cardioADD
+    *Si se llama con un get carga la vista
+    *si se llama con un post añade el cardio
+    */
+    public function NotificacionConsultar() {
+        $this->notificacionMapper = new NotificacionMapper();
+
+    }
+
+
+
+}
 ?>
