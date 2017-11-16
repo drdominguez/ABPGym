@@ -20,7 +20,6 @@ class NotificacionController extends BaseController{
     *si se llama con un post añade la notificacion
     */
     public function NotificacionADD() {
-        $this->notificacionMapper = new NotificacionMapper();
         if(isset($_POST["Asunto"]) && isset($_POST["contenido"])){//si existen los post añado la notificacion
             $notificacion = new Notificacion();
             $notificacion->setAsunto($_POST["Asunto"]);
@@ -42,8 +41,9 @@ class NotificacionController extends BaseController{
     *Muestra una lista con todos las Notificaciones
     */
     public function NotificacionListar() {
-       $this->notificacionMapper = new NotificacionMapper();
-
+       $notificaciones = $this->notificacionMapper->listar();
+       $this->view->setVariable("notificaciones",$notificaciones);
+       $this->view->render("notificacion","notificacionSHOWALL");
     }
 
 
