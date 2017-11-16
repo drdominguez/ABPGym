@@ -3,7 +3,7 @@
                             <i class="fa fa-fw fa-sign-out"></i>Desconectar</a>
                     </li>
                     <a href="../Controller/CambioIdioma.php?lang=SPANISH">
-                    <img  src="../View/Icons/castellano.png"></a>
+                    <img  src="./view/Icons/castellano.png"></a>
                     <a href="../Controller/CambioIdioma.php?lang=GALICIAN">
                     <img  src="./view/Icons/gallego.png"></a>
                     <a href="../Controller/CambioIdioma.php?lang=ENGLISH">

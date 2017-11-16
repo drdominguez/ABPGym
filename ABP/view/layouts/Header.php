@@ -22,7 +22,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <script type="text/javascript" src="./view/js/tcal.js"></script> 
-        <title> <?php echo $strings['GymApp']; ?></title>
+        <title>GymApp</title>
         <!-- Bootstrap core CSS-->
         <link href="./view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom fonts for this template-->

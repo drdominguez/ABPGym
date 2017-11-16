@@ -1,8 +1,8 @@
   <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-fw fa-bell"></i>
-                            <span class="nav-link-text"><?php echo $strings['Notificaciones']; ?></span>
-<?php                   
+                            <span class="nav-link-text">Notificaciones</span>
+<?php         /*           
                         include_once '../model/NotificacionMapper.php';
                         include_once '../model/usuario_Model.php';
                         $usuario= new usuario_Model($_SESSION['login'],'','','','','','','');
@@ -16,18 +16,19 @@
                           $numNotificaciones=$notificacion->contarNotificacionesUsuario($usuario);
                         }
 
-                        if($numNotificaciones['COUNT(*)']>0){
+                        if($numNotificaciones['COUNT(*)']>0){*/
 ?>
                             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
-<?php
+<?php /*
             }
+            */
 ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">Notificaciones nuevas: <?php echo $numNotificaciones['COUNT(*)']; ?></h6>
-           <?php             if(strtoupper($_SESSION['login'])=='44497121X'){
+                            <h6 class="dropdown-header">Notificaciones nuevas:</h6>
+           <?php        /*     if(strtoupper($_SESSION['login'])=='44497121X'){
                             $notificaciones=$notificacion->rellenaDatosAdmin();
 
                           }else{
@@ -61,7 +62,7 @@
            ?>
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item small" href="../controller/NotificacionController.php">Ver todas las notificaciones:</a>
+                            <a class="dropdown-item small" href="../controller/NotificacionController.php">Ver todas las notificaciones:</a> <?php */ ?>
                         </div>
                     </li>
                 
