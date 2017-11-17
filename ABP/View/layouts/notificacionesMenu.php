@@ -2,44 +2,29 @@
                         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-fw fa-bell"></i>
                             <span class="nav-link-text">Notificaciones</span>
-<?php         /*           
-                        include_once '../model/NotificacionMapper.php';
-                        include_once '../model/usuario_Model.php';
-                        $usuario= new usuario_Model($_SESSION['login'],'','','','','','','');
-                        if(strtoupper($_SESSION['login'])=='44497121X'){
-                          $notificacion = new notificacion_Model('','','','','');
-
-                          $numNotificaciones=$notificacion->contarNotificaciones();
-                        }else{
-                          $notificacion = new notificacion_Model('','','','','');
-                          
-                          $numNotificaciones=$notificacion->contarNotificacionesUsuario($usuario);
-                        }
-
-                        if($numNotificaciones['COUNT(*)']>0){*/
+<?php                  
+                        require_once './model/NotificacionMapper.php';
+                        require_once './model/Notificacion.php';
+                          $notificacionMapper = new NotificacionMapper();
+                          $numNotificaciones=$notificacionMapper->contarNotificaciones();
+                        if($numNotificaciones[0]>0){
 ?>
                             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>
             </span>
-<?php /*
+<?php 
             }
-            */
+            
 ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="alertsDropdown">
                             <h6 class="dropdown-header">Notificaciones nuevas:</h6>
-           <?php        /*     if(strtoupper($_SESSION['login'])=='44497121X'){
-                            $notificaciones=$notificacion->rellenaDatosAdmin();
-
-                          }else{
-                            $notificaciones=$notificacion->rellenaDatos($usuario);
-                            
-                          }
+           <?php /*
+                            $notificaciones=$notificacionMapper->listar();
                             $i=0;
                             foreach($notificaciones as $not){
                               if($i<3){
-                                $notificacion = new notificacion_Model($not['idNotificacion'],'','','','');
-                                $visto=$notificacion->comprobarVisto($usuario);
+                                $visto=$notificacionMapper->comprobarVisto($not);
                               ?>
                               <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../controller/NotificacionController.php?dni=<?php echo $usuario->dni;?>&idNotificacion=<?php echo $not['idNotificacion']; ?>&action=SHOWCURRENT">
@@ -55,14 +40,14 @@
                                <span class="small float-right text-muted"><?php echo $not['fecha'];?></span>
                                <div class="dropdown-message small"><?php echo $not['contenido'];?></div>
                                 </a>
-                              <?php
+                              <?php /*
                               $i++;
                             }
-                            }
+                            }*/
            ?>
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item small" href="../controller/NotificacionController.php">Ver todas las notificaciones:</a> <?php */ ?>
+                            <a class="dropdown-item small" href="./index.php?controller=Notificacion&amp;action=NotificacionListar">Ver todas las notificaciones:</a>
                         </div>
                     </li>
                 

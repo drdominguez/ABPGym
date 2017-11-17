@@ -56,6 +56,26 @@ Class NotificacionMapper{
         }
 
 
+        public function contarNotificaciones(){
+
+        if($this->esAdministrador()){
+            $stmt = $this->db->query("SELECT COUNT(*) from notificacion");
+        }else{
+             $stmt = $this->db->prepare("SELECT COUNT(N.idNotificacion) from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion");
+             $stmt->execute(array($_SESSION['currentuser']));
+        }
+            $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $notificaciones = array();
+        
+            foreach ($notificaciones_db as $notificacion) {
+                array_push($notificaciones, $notificacion['COUNT(*)']);
+            
+            }
+        return $notificaciones;
+        
+        }
+
+
 
 
     public function findById($idNotificacion){

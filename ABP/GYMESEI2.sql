@@ -732,7 +732,7 @@ ALTER TABLE `notificacion`
 -- Constraints for table `notificacion_deportista`
 --
 ALTER TABLE `notificacion_deportista`
-  ADD CONSTRAINT `fk_NotificacionDeportista` FOREIGN KEY (`idNotificacion`) REFERENCES `notificacion` (`idNotificacion`);
+  ADD CONSTRAINT `fk_NotificacionDeportista` FOREIGN KEY (`idNotificacion`) REFERENCES `notificacion` (`idNotificacion`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `pago`

@@ -47,9 +47,9 @@ class NotificacionController extends BaseController{
     }
 
 
-    /*cardioADD
+    /*Notificacion SHOW CURRENT
     *Si se llama con un get carga la vista
-    *si se llama con un post añade el cardio
+    *si se llama con un post muestra notificacion
     */
     public function NotificacionView() {
 
