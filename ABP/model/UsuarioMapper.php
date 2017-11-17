@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__."/../core/Access_DB.php");
 class UsuarioMapper {
-    private $db;
+    protected $db;
     /**
     *el contructor obtiene la conexion con la base de datos del core
     **/
@@ -28,7 +28,7 @@ class UsuarioMapper {
     function ADD($usuario)
     {
         $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");
-        $stmt = execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
+        $stmt = execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
             $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
     }
     //funcion Consultar: hace una búsqueda en la tabla con

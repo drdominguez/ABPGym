@@ -1,7 +1,7 @@
 <?php
 
 
-class pago_Model
+class Pago
 {
     //Definimos las variables
     private $idPago;
