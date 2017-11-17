@@ -16,31 +16,31 @@ $view->setVariable("title", "Notificaciones");
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">notificacion</a>
+                        <a href="#"><?= i18n("Gestión de notificaciones") ?></a>
                     </li>
-                    <li class="breadcrumb-item active">Show All</li>
+                    <li class="breadcrumb-item active"><?= i18n("Ver notificaciones") ?></li>
                 </ol>
                 <!-- Example DataTables Card-->
                 
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i>Mostrar todas las notificaciones</div>
+                        <i class="fa fa-table"></i><?= i18n("Mostrar todas las notificaciones") ?></div>
                     <div class="card-body">
                         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                 <thead>
                                     <tr>
-                                        <th>Asunto</th>
-                                        <th>Contenido</th>
-                                        <th>Fecha</th>
+                                        <th><?= i18n("Asunto") ?></th>
+                                        <th><?= i18n("contenido") ?></th>
+                                        <th><?= i18n("fecha") ?></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                      <tr>
-                                        <th>Asunto</th>
-                                        <th>Contenido</th>
-                                        <th>Fecha</th>
+                                        <th><?= i18n("Asunto") ?></th>
+                                        <th><?= i18n("contenido") ?></th>
+                                        <th><?= i18n("fecha") ?></th>
                                         <th></th>
                                     </tr>
                                 </tfoot>

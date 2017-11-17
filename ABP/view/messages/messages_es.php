@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
 
 <?php 
-    $strings = 
+    $i18n_messages = 
     array(
                 'Borrado correctamente' => 'Borrado correctamente',
                 'Modificado correctamente' => 'Modificado correctamente',
@@ -171,5 +171,9 @@
                 'Ver todas las tablas' => 'Ver todas las tablas',
                 'Mostrar todas las tablas' => 'Mostrar todas las tablas',
                 'El nombre de usuario/contraseña no existen en el sistema' =>'El nombre de usuario/contraseña no existen en el sistema',
-                'Notificaciones' => 'Notificaciones');
+                'Notificaciones' => 'Notificaciones',
+                'Añadir' => 'Añadir',
+                'Enviar' => 'Enviar',
+                'Mostrar notificacion' => 'Mostrar notificacion',
+                'Mostrar todas las notificaciones' => 'Mostrar todas las notificaciones');
     ?>

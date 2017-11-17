@@ -1,5 +1,5 @@
 <?php 
-    $strings = 
+    $i18n_messages = 
     array(
                 'Borrado correctamente' => 'Successfully Deleted',
                 'Modificado correctamente' => 'Successfully Modified',
@@ -169,5 +169,9 @@
                 'Ver todas las tablas' => 'Show all tables',
                 'Mostrar todas las tablas' => 'Show all tables',
                 'El nombre de usuario/contraseña no existen en el sistema' =>'User/password not exist in the system',
-                'Notificaciones' => 'Notifications');
+                'Notificaciones' => 'Notifications',
+                'Añadir' => 'Add',
+                'Enviar' => 'Send',
+                'Mostrar notificacion' => 'Show Notification',
+                'Mostrar todas las notificaciones' => 'Show All Notifications');
     ?>

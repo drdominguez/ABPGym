@@ -1,7 +1,7 @@
   <!-- Navigation-->
 <meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <a class="navbar-brand" href="Index_Controller.php">GymApp</a>
+            <a class="navbar-brand" href="Index_Controller.php"><?= i18n("GymApp") ?></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -10,7 +10,7 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsuarios" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de usuario</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de usuario") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseUsuarios">
                             <li>
@@ -25,7 +25,7 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Actividades">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseActividades" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de Actividades</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de actividad") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseActividades">
                             <li class="nav-item" data-placement="right" title="AñadirActividad">
@@ -111,14 +111,14 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tablas">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTablas" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de tablas</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de tablas") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseTablas">
                             <li>
-                                <a href="../controller/TablaController.php?action=ADD">Añadir tabla</a>
+                                <a href="../controller/TablaController.php?action=ADD"><?= i18n("Añadir tabla") ?></a>
                             </li>
                             <li>
-                                <a href="../controller/TablaController.php">Ver tablas</a>
+                                <a href="../controller/TablaController.php"><?= i18n("Ver tablas") ?></a>
                             </li>
                         </ul>
                     </li>
@@ -233,14 +233,14 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Notificaciones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseNotificaciones" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de notificaciones</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de notificaciones") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseNotificaciones">
                             <li>
-                                <a href="./index.php?controller=Notificacion&amp;action=NotificacionADD">Enviar notificacion</a>
+                                <a href="./index.php?controller=Notificacion&amp;action=NotificacionADD"><?= i18n("Enviar notificacion") ?></a>
                             </li>
                             <li>
-                                <a href="./index.php?controller=Notificacion&amp;action=NotificacionListar">Ver notificaciones</a>
+                                <a href="./index.php?controller=Notificacion&amp;action=NotificacionListar"><?= i18n("Ver notificaciones") ?></a>
                             </li>
                         </ul>
                     </li>
@@ -261,7 +261,7 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
                         <a class="nav-link" href="../controller/UsuarioController.php?dni=<?php echo $_SESSION['currentuser']; ?>&action=SHOWCURRENT">
                             <i class="fa fa-fw fa-link"></i>
-                            <span class="nav-link-text">Cuenta</span>
+                            <span class="nav-link-text"><?= i18n("Cuenta") ?></span>
                         </a>
                     </li>
                 </ul>
