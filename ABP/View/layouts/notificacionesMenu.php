@@ -6,7 +6,7 @@
                         require_once './model/NotificacionMapper.php';
                         require_once './model/Notificacion.php';
                           $notificacionMapper = new NotificacionMapper();
-                          $numNotificaciones=$notificacionMapper->contarNotificaciones();
+                          $numNotificaciones=$notificacionMapper->contarNotificacionesSinVer();
                         if($numNotificaciones[0]>0){
 ?>
                             <span class="indicator text-warning d-none d-lg-block">
@@ -18,32 +18,26 @@
 ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">Notificaciones nuevas:</h6>
-           <?php /*
-                            $notificaciones=$notificacionMapper->listar();
+                            <h6 class="dropdown-header">Notificaciones nuevas: <?php echo $numNotificaciones[0];?></h6>
+           <?php 
+                            $notificaciones=$notificacionMapper->listarSinVer();
                             $i=0;
                             foreach($notificaciones as $not){
                               if($i<3){
-                                $visto=$notificacionMapper->comprobarVisto($not);
                               ?>
                               <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../controller/NotificacionController.php?dni=<?php echo $usuario->dni;?>&idNotificacion=<?php echo $not['idNotificacion']; ?>&action=SHOWCURRENT">
-                              <?php 
-                              if($visto==0){?>
+                            <a class="dropdown-item" href="./index.php?controller=Notificacion&amp;action=NotificacionView&amp;idNotificacion=<?php echo $not->getIdNotificacion();?>">
                             <span class="text-success">
-                          <?php }else{ ?>
-                          <span class="text">
-                       <?php } ?>
                             <strong>
-                              <i class="fa fa-long"></i><?php echo $not['Asunto'];?></strong>
+                              <i class="fa fa-long"></i><?php echo $not->getAsunto();?></strong>
                               </span>
-                               <span class="small float-right text-muted"><?php echo $not['fecha'];?></span>
-                               <div class="dropdown-message small"><?php echo $not['contenido'];?></div>
+                               <!--<span class="small float-right text-muted"><?php echo $not->getFecha();?></span>-->
+                               <div class="dropdown-message small"><?php echo $not->getFecha();?></div>
                                 </a>
-                              <?php /*
+                              <?php 
                               $i++;
                             }
-                            }*/
+                            }
            ?>
 
                             <div class="dropdown-divider"></div>

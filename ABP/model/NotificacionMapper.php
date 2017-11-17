@@ -60,20 +60,37 @@ Class NotificacionMapper{
         
         }
 
-
-        public function contarNotificaciones(){
+        public function listarSinVer(){
 
         if($this->esAdministrador()){
-            $stmt = $this->db->query("SELECT COUNT(*) from notificacion");
+            $stmt = $this->db->query("SELECT * from notificacion");
         }else{
-             $stmt = $this->db->prepare("SELECT COUNT(N.idNotificacion) from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion");
+             $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion AND D.visto=0");
              $stmt->execute(array($_SESSION['currentuser']));
         }
             $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $notificaciones = array();
 
             foreach ($notificaciones_db as $notificacion) {
-                array_push($notificaciones, $notificacion['COUNT(*)']);
+                array_push($notificaciones, new Notificacion($notificacion['idNotificacion'],$notificacion['dniAdministrador'],$notificacion['Asunto'],$notificacion['contenido'],$notificacion['fecha']));
+            
+            }
+        return $notificaciones;
+        
+        }
+
+        public function contarNotificacionesSinVer(){
+
+        if($this->esAdministrador()){
+            $stmt = $this->db->query("SELECT COUNT(*) from notificacion");
+        }else{
+             $stmt = $this->db->prepare("SELECT COUNT(N.idNotificacion) from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion AND D.visto=0");
+             $stmt->execute(array($_SESSION['currentuser']));
+        }
+            $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $notificaciones = array();
+            foreach ($notificaciones_db as $notificacion) {
+                array_push($notificaciones, $notificacion['COUNT(N.idNotificacion)']);
             
             }
         return $notificaciones;
@@ -100,6 +117,15 @@ Class NotificacionMapper{
         }
 
         }
+
+
+    public function visto($idNotificacion,$dniDeportista){
+        if(!$this->esAdministrador()){
+        $stmt=$this->db-> prepare("UPDATE notificacion_deportista SET visto=? WHERE idNotificacion=? AND dniDeportista=?");
+        $stmt->execute(array(1,$idNotificacion,$dniDeportista));
+            return true;
+        }
+    }
 
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");

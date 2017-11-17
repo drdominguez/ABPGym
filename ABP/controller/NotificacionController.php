@@ -68,10 +68,10 @@ class NotificacionController extends BaseController{
 
         // put the notification object to the view
         $this->view->setVariable("notificacion", $notificacion);
+        $this->notificacionMapper->visto($notificacion->getIdNotificacion(),$_SESSION['currentuser']);
 
         // render the view (/view/posts/view.php)
         $this->view->render("notificacion", "notificacionSHOWCURRENT");
-
     }
 
 
