@@ -16,7 +16,8 @@ Class NotificacionMapper{
     
     public function add($notificacion){
         $stmt = $this->db->prepare("INSERT INTO notificacion(dniAdministrador,Asunto,contenido,fecha) VALUES (?,?,?,?)");
-        $stmt->execute(array($notificacion->getDniAdministrador(),$notificacion->getAsunto(),$notificacion->getContenido(),$notificacion->getFecha()));
+        if($this->esAdministrador()){
+        $stmt->execute(array($_SESSION['currentuser'],$notificacion->getAsunto(),$notificacion->getContenido(),$notificacion->getFecha()));
         $this->idNotificacion= $this->db->lastInsertId();
         $stmt = $this->db->query("SELECT dni FROM deportista");
         $deportistas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,9 +28,13 @@ Class NotificacionMapper{
         if ($deportistas) {
             foreach($deportistas as $deportista){
                 $stmt = $this->db->prepare("INSERT INTO notificacion_deportista(dniAdministrador,dniDeportista,idNotificacion,visto) VALUES (?,?,?,?)");
-            $stmt->execute(array($notificacion->getDniAdministrador(),$deportista->getDni(),$this->idNotificacion,0));
+            $stmt->execute(array($_SESSION['currentuser'],$deportista->getDni(),$this->idNotificacion,0));
             }
             return true;
+        }else{
+            return false;
+        }
+
         }else{
             return false;
         }
@@ -66,7 +71,7 @@ Class NotificacionMapper{
         }
             $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $notificaciones = array();
-        
+
             foreach ($notificaciones_db as $notificacion) {
                 array_push($notificaciones, $notificacion['COUNT(*)']);
             
