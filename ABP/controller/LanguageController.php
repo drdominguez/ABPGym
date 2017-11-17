@@ -57,4 +57,3 @@ class LanguageController {
 // al final del documento
 }
 ?>
-
