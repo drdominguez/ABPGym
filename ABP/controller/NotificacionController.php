@@ -51,8 +51,27 @@ class NotificacionController extends BaseController{
     *Si se llama con un get carga la vista
     *si se llama con un post añade el cardio
     */
-    public function NotificacionConsultar() {
-        $this->notificacionMapper = new NotificacionMapper();
+    public function NotificacionView() {
+
+        if (!isset($_GET["idNotificacion"])) {
+            throw new Exception("El id es obligatorio");
+        }
+
+        $idNotificacion = $_GET["idNotificacion"];
+
+        // find the notification object in the database
+        $notificacion = $this->notificacionMapper->findById($idNotificacion);
+
+
+        if ($notificacion == NULL) {
+            throw new Exception("No existe notificacion con este id: ".$idNotificacion);
+        }
+
+        // put the notification object to the view
+        $this->view->setVariable("notificacion", $notificacion);
+
+        // render the view (/view/posts/view.php)
+        $this->view->render("notificacion", "notificacionSHOWCURRENT");
 
     }
 

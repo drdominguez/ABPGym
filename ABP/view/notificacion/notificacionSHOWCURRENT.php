@@ -1,20 +1,15 @@
-
 <?php
-    class notificacion_SHOWCURRENT{
-   
-        private $valores;
-         function __construct($valores,$usuario){
-            $this->valores=$valores;
-            $this->usuario=$usuario;
-            $this->render();
-        }
-    
-        function render(){
-            include '../view/Header.php';
-            include '../view/menuLateral.php';
-            include '../view/notificacionesMenu.php';
-            include '../view/menuSuperior.php';
-    ?>
+//file: view/posts/view.php
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+
+$notificacion = $view->getVariable("notificacion");
+$currentuser = $view->getVariable("currentusername");
+$errors = $view->getVariable("errors");
+
+$view->setVariable("title", "Ver Notificacion");
+
+?>
 <div class="content-wrapper">
             <div class="container-fluid">
                 <!-- Breadcrumbs-->
@@ -29,23 +24,16 @@
                     <div class="card-header">
                         <i class="fa fa-table"></i> Mostrar una notificación</div>
                     <div class="card-body">
-            <form name = 'Form' action = '../Controller/notificacion_Controller.php' method = 'post' onsubmit = 'comprobar()'>
-
-                <b><?php echo $strings['idNotificacion'] ?> :</b> <?php echo ($this->valores['idNotificacion']); ?><br>
-        <b><?php echo $strings['Asunto'] ?> :</b> <?php echo ($this->valores['Asunto']); ?><br>
-          <b><?php echo $strings['dniAdministrador'] ?> :</b> <?php echo ($this->valores['dniAdministrador']); ?><br>
-        <b><?php echo $strings['contenido'] ?> :</b> <?php echo ($this->valores['contenido']); ?><br>
-        <b><?php echo $strings['fecha'] ?> :</b> <?php echo ($this->valores['fecha']); ?><br>  
-
-            </form>
-            <button type="button" onclick="window.location.href='../Controller/notificacion_Controller.php'" class="btn btn-primary"><?php echo $strings['Volver']; ?></button> 
+        <b>ID Notificacion:</b> <?php echo $notificacion->getIdNotificacion(); ?><br>
+        <b>DNI Administrador:</b> <?php echo $notificacion->getDniAdministrador(); ?><br>
+        <b>Asunto:</b> <?php echo $notificacion->getAsunto(); ?><br>
+        <b>Contenido:</b> <?php echo $notificacion->getContenido(); ?><br>
+        <b>Fecha: </b> <?php echo $notificacion->getFecha(); ?><br>  
+            <button type="button" onclick="window.location.href='./index.php?controller=Notificacion&amp;action=NotificacionListar'" class="btn btn-primary">Volver</button> 
             
 
+</div>
+            </div>
         </div>
     </div>
-
-<?php
-            include '../view/Footer.php';
-        } // fin del metodo render
-    } // fin de la clase
-?>
+</html>

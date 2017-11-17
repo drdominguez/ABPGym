@@ -62,7 +62,7 @@ $view->setVariable("title", "Notificaciones");
 <?php
                     ?>  
                     <td>
-                    <a href=''>
+                    <a href='./index.php?controller=Notificacion&amp;action=NotificacionView&amp;idNotificacion=<?php echo $notificacion->getIdNotificacion();?>'>
                                     <img src='./view/Icons/detalle.png'>
                      </a>
                     </td>

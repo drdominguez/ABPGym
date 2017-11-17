@@ -55,6 +55,27 @@ Class NotificacionMapper{
         
         }
 
+
+
+
+    public function findById($idNotificacion){
+            $stmt = $this->db->prepare("SELECT * FROM notificacion WHERE idNotificacion=?");
+            $stmt->execute(array($idNotificacion));
+            $notificacion = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if($notificacion != null) {
+            return new Notificacion(
+            $notificacion["idNotificacion"],
+            $notificacion["dniAdministrador"],
+            $notificacion["Asunto"],
+            $notificacion["contenido"],
+            $notificacion["fecha"]);
+        } else {
+            return NULL;
+        }
+
+        }
+
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
         $stmt->execute(array($_SESSION["currentuser"]));
