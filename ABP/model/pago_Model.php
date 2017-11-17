@@ -32,7 +32,7 @@ class pago_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

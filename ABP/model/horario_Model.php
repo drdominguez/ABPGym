@@ -23,7 +23,7 @@ class horario_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

@@ -21,7 +21,7 @@ class grupo_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

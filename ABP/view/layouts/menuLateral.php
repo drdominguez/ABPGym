@@ -25,7 +25,7 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Actividades">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseActividades" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text"><?= i18n("Gestión de actividad") ?></span>
+                            <span class="nav-link-text"><?= i18n("Gestión de Actividad") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseActividades">
                             <li class="nav-item" data-placement="right" title="AñadirActividad">

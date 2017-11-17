@@ -17,7 +17,7 @@ class individual_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

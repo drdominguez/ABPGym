@@ -11,7 +11,7 @@ class ActividadMapper{
         $this->db = PDOConnection::getInstance();
     }
     
-    //Anadir
+    //Añadir
     function add($actividad){ 
         $stmt = $this->db->prepare("INSERT INTO actividad(precio,nombre) values (?,?)");
         if(esAdministrador()){

@@ -32,7 +32,7 @@ class sesionentrenamiento_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

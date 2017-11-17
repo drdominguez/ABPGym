@@ -16,7 +16,7 @@ class entrenador_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

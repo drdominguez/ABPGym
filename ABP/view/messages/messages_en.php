@@ -3,15 +3,15 @@
     array(
                 'Borrado correctamente' => 'Successfully Deleted',
                 'Modificado correctamente' => 'Successfully Modified',
-                'Inserci贸n realizada con 茅xito' => 'Successfully Insertion',
-                'Error en la modificaci贸n' => 'Modification Error',
+                'Inserci髇 realizada con 蓌ito' => 'Successfully Insertion',
+                'Error en la modificaci髇' => 'Modification Error',
                 'Error en la inserci贸n' => 'Insertion Error',
                 'Introduzca un valor' => 'Enter a value',
                 'No existe en la base de datos' => 'Does not exists in database',
                 'El usuario ya existe' => 'User already exists',
                 'login' => 'login',
                 'password' => 'password',
-                'La contrase帽a para este usuario es err贸nea' => 'The password for this user is wrong',
+                'La contrase馻 para este usuario es err髇ea' => 'The password for this user is wrong',
                 'El usuario no existe' => 'The user does not exist',
                 'Usuario no autenticado' => 'User not authenticated',
                 'Usuario' => 'User',
@@ -27,7 +27,7 @@
                 'Consultar Usuario' => 'Query User',
                 'Buscar Usuario' => 'Search Usuario',
                 'idioma' => 'Language',
-                'ESPA脩OL' => 'Spanish',
+                'ESPA袿L' => 'Spanish',
                 'INGLES' => 'English',
                 'GALLEGO' => 'Gallaecian',
                 'Insertar' => 'Insert',
@@ -114,7 +114,7 @@
                 'email' => 'email',
                 'telefono' => 'telefono',
                 'fechaAlta' => 'fechaAlta',
-                'Gesti髇 de actividad' => 'Activity Management',
+                'Gesti髇 de Actividad' => 'Activity Management',
                 'Gesti髇 de administrador' => 'administrador Management',
                 'Gesti髇 de cardio' => 'cardio Management',
                 'Gesti髇 de deportista' => 'deportista Management',
@@ -174,6 +174,6 @@
                 'A馻dir' => 'Add',
                 'Enviar' => 'Send',
                 'Mostrar notificacion' => 'Show Notification',
-                'Mostrar todas las actividades' => 'Show All Activities')
+                'Mostrar todas las actividades' => 'Show All Activities',
                 'Mostrar todas las notificaciones' => 'Show All Notifications');
-    ?>
+?>

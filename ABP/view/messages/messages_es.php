@@ -1,3 +1,3 @@
 <?php 
-    $i18n_messages = array()
+    $i18n_messages = array();
 ?>

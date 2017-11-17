@@ -20,7 +20,7 @@ class tabla_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

@@ -17,7 +17,7 @@ class superusuario_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         
