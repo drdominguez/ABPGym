@@ -8,7 +8,6 @@ function setLanguage($language) {
 }
 
 //Asigna el lenguaje seleccionado.
-session_start();
 setLanguage($_REQUEST["lang"]);
 
 //Vuelve a la página anterior.
