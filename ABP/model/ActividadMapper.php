@@ -14,10 +14,11 @@ class ActividadMapper{
     //Anadir
     function add($actividad){ 
         $stmt = $this->db->prepare("INSERT INTO actividad(precio,nombre) values (?,?)");
-        var_dump($stmt);
-        exit;
+        if(esAdministrador()){
             $stmt = execute(array($actividad->getPrecio(),$actividad->getNombre()));
-           
+            return true;
+        }
+        return false;
     }
 
     //Funcion borrar un elemento de la BD
@@ -39,6 +40,24 @@ class ActividadMapper{
         }
         return false;
     }
+    public function listar(){
+
+        if($this->esAdministrador()){
+            $stmt = $this->db->query("SELECT * from actividad");
+        }else{
+             $stmt = $this->db->prepare("SELECT A.idActividad, A.nombre, A.precio, G.instalaciones, G.plazas from actividad A, grupo G, individual I WHERE A.idActividad=? AND A.idActividad=G.idActividad=I.Actividad");
+             $stmt->execute(array($_SESSION['currentuser']));
+        }
+            $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $actividades = array();
+
+            foreach ($notificaciones_db as $notificacion) {
+                array_push($notificaciones, new Notificacion($notificacion['idNotificacion'],$notificacion['dniAdministrador'],$notificacion['Asunto'],$notificacion['contenido'],$notificacion['fecha']));
+            
+            }
+        return $notificaciones;
+        
+        }
     protected function permisosActividad($idActividad){
         /*Comprobar si el susuario es un administrador*/
         $stmt = $this->db->prepare("SELECT dni FROM administrador WHERE dniAdministrador=?");

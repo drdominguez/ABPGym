@@ -87,10 +87,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="../controller/ActividadController.php?action=show">
-                                <i class="fa fa-fw fa-link"></i>
-                                    <span>Ver Actividades 
-                                    </span>
+                                <a href="./index.php?controller=actividad&amp;action=actividadListar"><i class="fa fa-fw fa-link"></i><?= i18n("Ver actividades") ?></a>
                             </li>
                         </ul>
                     </li>

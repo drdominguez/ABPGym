@@ -1,91 +1,78 @@
 
-<?php
-    class grupo_SHOWALL { 
+<?php 
 
-        private $datos;
-        private $array; 
-        private $volver;
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
 
-        function __construct($array, $datos){
-            $this->datos = $datos;
-            $this->lista = $array;
-            $this->render();
-        }
+$actividad = $view->getVariable("actividad");
+$currentuser = $view->getVariable("currentusername");
+
+$view->setVariable("title", "Actividades");
+
+?>
+
+<div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#"><?= i18n("Gestión de actividades") ?></a>
+                    </li>
+                    <li class="breadcrumb-item active"><?= i18n("Ver notificaciones") ?></li>
+                </ol>
+                <!-- Example DataTables Card-->
                 
-        function render(){  
-            include '../view/Header.php';
-?>
-            <h1>
-            <?php echo $strings['Mostrar todos']. ' grupo'; ?>
-            </h1>
-            <a href='../Controller/grupo_Controller.php?action=SEARCH'><img src='../View/Icons/search.png'></a></a>
-        
-            <a href='../Controller/grupo_Controller.php?action=ADD'><img src='../View/Icons/add.png'></a></br></br>
-            <br><br>
-            <table border = 1>
-                <tr>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i><?= i18n("Mostrar todas las actividades") ?></div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                <thead>
+                                    <tr>
+                                        <th><?= i18n("Precio") ?></th>
+                                        <th><?= i18n("Nombre") ?></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                     <tr>
+                                        <th><?= i18n("Precio") ?></th>
+                                        <th><?= i18n("Nombre") ?></th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+
 <?php
-                foreach($this->lista as $titulo){
-?>
-                    <th>
-<?php
-                    echo $strings[$titulo];
-?>
-                    </th>
-<?php
-                }
-?>          
-                </tr>
-<?php
-                foreach($this->datos as $datos){
+                foreach($actividades as $actividad){
 ?>
                     <tr>
-<?php
-                    for($i=0;$i<count($this->lista);$i++){
-?>
                         <td>
-<?php
-                        echo $datos[$this->lista[$i]];
-?>
+                            <?php echo $actividad->getPrecio(); ?>
+                        </td>
+                        <td>
+                            <?php echo $actividad->getNombre(); ?>
                         </td>
 <?php
-                    }
-?>
+                    ?>  
                     <td>
-                    <a href='../Controller/grupo_Controller.php?idActividad=<?php echo $datos['idActividad']; ?>&action=EDIT'>
-                                    <img src='../View/Icons/edit.png'>
-                    
-                    </a>
-                            
+                    <a href='./index.php?controller=Actividad&amp;action=ActividadView&amp;idActividad=<?php echo $notificacion->getIdActividad();?>'>
+                                    <img src='./view/Icons/detalle.png'>
+                     </a>
                     </td>
 
-                    <td>
-                    <a href='../Controller/grupo_Controller.php?idActividad=<?php echo $datos['idActividad']; ?>&action=DELETE'>
-                                    <img src='../View/Icons/delete.png'>
-                    </a>
-                    
-                    </td>
-
-                    <td>
-                    <a href='../Controller/grupo_Controller.php?idActividad=<?php echo $datos['idActividad']; ?>&action=SHOWCURRENT'>
-                                    <img src='../View/Icons/detalle.png'>
-                    </a>
-                    
-                    </td>
-                            
                     </tr>
 <?php
                     }   
 ?>
-            </table>
-        
-            <a href='../index.php'><img src='../View/Icons/salir.png'></a>
-                  
+            </tbody>
+                            </table>
+                              </div>
+                    </div>
+                </div>
 <?php
-
-            include '../view/Footer.php';
-        
-        } //render method
-
-    } //main class
+      
+     //render method
+ //main class
 ?>

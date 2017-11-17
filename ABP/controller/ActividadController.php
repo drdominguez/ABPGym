@@ -21,6 +21,12 @@ class ActividadController extends BaseController{
     *Si se llama con un get carga la vista
     *si se llama con un post añade la actividad
     */
+    public function actividadListar() {
+       $actividades = $this->notificacionMapper->listar();
+       $this->view->setVariable("actividades",$actividad);
+       $this->view->render("actividad","actividadSHOWALL");
+
+    }
     public function individualADD() {
         $this->individualMapper = new ActividadIndividualMapper();
         if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad
