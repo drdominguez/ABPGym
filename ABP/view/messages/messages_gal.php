@@ -166,7 +166,10 @@
                 'Mostrar todas las tablas' => 'Mostrar todas las tablas',
                 'Notificaciones' => 'Notificacións',
                 'Añadir' => 'Engadir',
+                'Eliminar' => 'Eliminar',
+                'Editar' => 'Editar',
                 'Enviar' => 'Enviar',
                 'Mostrar notificacion' => 'Amosar notificacion',
+                'Ver Actividades' => 'Mostrar Actividades',
                 'Mostrar todas las notificaciones' => 'Mostrar todas as notificacións');
     ?>
