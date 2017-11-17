@@ -50,7 +50,7 @@ include_once '../Functions/Authentication.php';
             <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
             <!-- Page level plugin JavaScript-->
             <script src="./view/vendor/chart.js/Chart.min.js"></script>
-            <?php if(substr($_SERVER['REQUEST_URI'], -27)=='notificacion_Controller.php'){?>
+        <?php if($_GET['action']=='NotificacionListar'){?>
             <script src="./view/vendor/datatables/jquery.dataTables2.js"></script>
         <?php }else{ ?>
             <script src="./view/vendor/datatables/jquery.dataTables.js"></script>

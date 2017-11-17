@@ -8,17 +8,14 @@
             <div class="container-fluid">
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href=""><?= i18n("Gestión de notificaciones") ?></a>
-                    </li>
-                    <li class="breadcrumb-item active"><?= i18n("Añadir") ?></li>
+                    <div id="flash"><?= $view->popFlash() ?></div>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Enviar notificacion") ?></div>
                     <div class="card-body">      
-                      <div id="flash"><?= $view->popFlash() ?></div>      
+                            
             <form name = 'Form' action='./index.php?controller=Notificacion&amp;action=NotificacionADD' method='post' onsubmit='return comprobar_notificacion()'>
         <div class="form-group">
                 <div class="form-row">

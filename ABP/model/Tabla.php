@@ -13,7 +13,7 @@ class Tabla
         $this->nombre = $nombre;  
 }
 	
-	public function getId(){
+	public function getIdTabla(){
 		return $this->idTabla;
 	}
 	public function getNombre(){

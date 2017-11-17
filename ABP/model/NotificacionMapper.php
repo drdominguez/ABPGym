@@ -3,7 +3,6 @@
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Deportista.php");
 require_once(__DIR__."/Notificacion.php");
-require_once(__DIR__."/NotificacionDeportista.php");
 
 
 
@@ -84,14 +83,14 @@ Class NotificacionMapper{
         if($this->esAdministrador()){
             $stmt = $this->db->query("SELECT COUNT(*) from notificacion");
         }else{
-             $stmt = $this->db->prepare("SELECT COUNT(N.idNotificacion) from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion AND D.visto=0");
+             $stmt = $this->db->prepare("SELECT COUNT(*) from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion AND D.visto=0");
              $stmt->execute(array($_SESSION['currentuser']));
         }
             $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $notificaciones = array();
+
             foreach ($notificaciones_db as $notificacion) {
-                array_push($notificaciones, $notificacion['COUNT(N.idNotificacion)']);
-            
+                array_push($notificaciones, $notificacion['COUNT(*)']);
             }
         return $notificaciones;
         

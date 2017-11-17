@@ -13,12 +13,9 @@ $view->setVariable("title", "Notificaciones");
 
 <div class="content-wrapper">
             <div class="container-fluid">
-                <!-- Breadcrumbs-->
+                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="#"><?= i18n("Gestión de notificaciones") ?></a>
-                    </li>
-                    <li class="breadcrumb-item active"><?= i18n("Ver notificaciones") ?></li>
+                    <div id="flash"><?= $view->popFlash() ?></div>
                 </ol>
                 <!-- Example DataTables Card-->
                 
@@ -30,17 +27,17 @@ $view->setVariable("title", "Notificaciones");
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                 <thead>
                                     <tr>
+                                        <th><?= i18n("fecha") ?></th>
                                         <th><?= i18n("Asunto") ?></th>
                                         <th><?= i18n("contenido") ?></th>
-                                        <th><?= i18n("fecha") ?></th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                      <tr>
+                                        <th><?= i18n("fecha") ?></th>
                                         <th><?= i18n("Asunto") ?></th>
                                         <th><?= i18n("contenido") ?></th>
-                                        <th><?= i18n("fecha") ?></th>
                                         <th></th>
                                     </tr>
                                 </tfoot>
@@ -51,13 +48,16 @@ $view->setVariable("title", "Notificaciones");
 ?>
                     <tr>
                         <td>
-                            <?php echo $notificacion->getAsunto(); ?>
-                        </td>
-                        <td>
-                            <?php echo $notificacion->getContenido(); ?>
-                        </td>
-                        <td>
                             <?php echo $notificacion->getFecha(); ?>
+                            
+                        </td>
+                        <td>
+                            <?php echo $notificacion->getAsunto(); ?>
+                           
+                        </td>
+                        <td> 
+                            <?php echo $notificacion->getContenido(); ?>
+                            
                         </td>
 <?php
                     ?>  

@@ -111,11 +111,27 @@
                             <span class="nav-link-text"><?= i18n("Gestión de tablas") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseTablas">
-                            <li>
-                                <a href="../controller/TablaController.php?action=ADD"><?= i18n("Añadir tabla") ?></a>
+                            <li class="nav-item" data-placement="right" title="Añadir">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAñadirTabla">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseAñadirTabla">Añadir Tabla
+                                    </span>
+                                </a>
+                                <ul class="sidenav-third-level collapse" id="collapseAñadirTabla">
+                                    <li>
+                                        <a href="./index.php?controller=Tabla&amp;action=TablaEstandarADD">
+                                            <i class="fa fa-fw fa-link"></i> Estándar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="./index.php?controller=Tabla&amp;action=TablaPersonalizadaADD">
+                                            <i class="fa fa-fw fa-link"></i> Personalizada
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="../controller/TablaController.php"><?= i18n("Ver tablas") ?></a>
+                                <a href="./index.php?controller=Tabla&amp;action=TablaListar"><?= i18n("Ver tablas") ?></a>
                             </li>
                         </ul>
                     </li>
@@ -255,12 +271,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                        <a class="nav-link" href="../controller/UsuarioController.php?dni=<?php echo $_SESSION['currentuser']; ?>&action=SHOWCURRENT">
-                            <i class="fa fa-fw fa-link"></i>
-                            <span class="nav-link-text"><?= i18n("Cuenta") ?></span>
-                        </a>
-                    </li>
+                    
                 </ul>
                 <ul class="navbar-nav sidenav-toggler">
                     <li class="nav-item">

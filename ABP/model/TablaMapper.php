@@ -1,144 +1,77 @@
 <?php
 
-
-class tabla_Model
-{
-        //Definimos las variables
-            var $idTabla;
-            var $tipo;
-            var $comentario;
-
-        function __construct($idTabla,$tipo,$comentario){
-
-            $this->idTabla = $idTabla;
-            $this->tipo = $tipo;
-            $this->comentario = $comentario;    
-    include_once 'Access_DB.php';
-    $this->mysqli = ConnectDB();
+require_once(__DIR__."/../core/Access_DB.php");
+require_once(__DIR__."/Tabla.php");
 
 
-}
+
+Class TablaMapper{
+    protected $db;
+    protected $idTabla;
+    public function __construct(){
+        $this->db=PDOConnection::getInstance();
+    }
+    
+    public function add($tabla){
+    
+    }
 
 
-    //Añadir
-    function ADD()
-    {
-        
-     
-        $sql = "SELECT * FROM tabla WHERE idTabla = '$this->idTabla'";
+    public function listar(){
 
-        if (!$result = $this->mysqli->query($sql)){
-            return 'No se ha podido conectar con la base de datos'; // error en la consulta (no se ha podido conectar con la bd
+        if($this->esAdministrador()){
+            $stmt = $this->db->query("SELECT * from tabla");
+        }else{
+             $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion");
+             $stmt->execute(array($_SESSION['currentuser']));
         }
-        else {
-            if ($result->num_rows == 0){
-                
-                $sql = "INSERT INTO tabla (
-                        tipo,
-                        comentario) 
-                        VALUES (
-                        '$this->tipo',
-                        '$this->comentario')";
-                
-                if (!$this->mysqli->query($sql)) {
-                    return 'Error en la inserción';
-                }
-                else{
-                    return 'Inserción realizada con Éxito'; //operacion de insertado correcta
-                }
-                
+            $tablas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tablas = array();
+
+            foreach ($tablas_db as $tabla) {
+                array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
+            
             }
-            else
-                return 'Ya existe en la base de datos'; // ya existe
+        return $tablas;
         
-    }
-}
-
-//funcion de destrucción del objeto: se ejecuta automaticamente
-//al finalizar el script
-function __destruct()
-{
-
-}
-
-   //funcion Consultar: hace una búsqueda en la tabla con
-//los datos proporcionados. Si van vacios devuelve todos
-function SEARCH()
-{
-    
-    $sql = "select 
-                        idTabla,
-                        tipo,
-                        comentario
-                from tabla 
-                where 
-                    ((
-                        idTabla LIKE '%$this->idTabla%')&&
-                         (tipo LIKE '%$this->tipo%')&&
-                         (comentario LIKE '%$this->comentario%'))";
-    if (!($resultado = $this->mysqli->query($sql))){
-        return 'Error en la consulta sobre la base de datos';
-    }
-    else{
-        return $resultado;
-    }
-}
-
-//Funcion borrar un elemento de la BD
-function DELETE()
-{
-    
-    $sql = "SELECT * FROM tabla WHERE ";
-    $result = $this->mysqli->query($sql);
-    if ($result->num_rows == 1)
-    {
-        $sql = "DELETE FROM tabla WHERE ";
-        $this->mysqli->query($sql);
-        return "Borrado correctamente";
-    }
-    else
-        return "No existe en la base de datos";
-}
-//Funcion obtener datos de una tabla de la bd
-function RellenaDatos()
-{
-    
-    $sql = "SELECT * FROM tabla WHERE ";
-    if (!($resultado = $this->mysqli->query($sql))){
-        return 'No existe en la base de datos'; // 
-    }
-    else{
-        $result = $resultado->fetch_array();
-        return $result;
-    }
-}
-//Funcion editar
-function EDIT()
-{
-
-
-    $sql = "SELECT * FROM tabla WHERE ";
-    
-
-    $result = $this->mysqli->query($sql);
-    
-    if ($result->num_rows == 1)
-    {
-        $sql = "UPDATE tabla SET tipo = '$this->tipo',comentario = '$this->comentario' WHERE ";
-        
-        if (!($resultado = $this->mysqli->query($sql))){
-            return 'Error en la modificación'; 
         }
-        else{
-            return 'Modificado correctamente';
+
+
+
+    public function findById($idNotificacion){
+            $stmt = $this->db->prepare("SELECT * FROM notificacion WHERE idNotificacion=?");
+            $stmt->execute(array($idNotificacion));
+            $notificacion = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if($notificacion != null) {
+            return new Notificacion(
+            $notificacion["idNotificacion"],
+            $notificacion["dniAdministrador"],
+            $notificacion["Asunto"],
+            $notificacion["contenido"],
+            $notificacion["fecha"]);
+        } else {
+            return NULL;
+        }
+
+        }
+
+
+    public function visto($idNotificacion,$dniDeportista){
+        if(!$this->esAdministrador()){
+        $stmt=$this->db-> prepare("UPDATE notificacion_deportista SET visto=? WHERE idNotificacion=? AND dniDeportista=?");
+        $stmt->execute(array(1,$idNotificacion,$dniDeportista));
+            return true;
         }
     }
-    else
-        return 'No existe en la base de datos';
+
+    protected function esAdministrador(){
+        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
+        $stmt->execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0){
+            return true;
+        }
+        return false;
+    }
 }
-
-
-
-}//fin de clase
-
-?> 
+?>

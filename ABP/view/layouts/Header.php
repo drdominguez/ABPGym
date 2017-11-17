@@ -28,7 +28,7 @@
         <!-- Custom fonts for this template-->
         <link href="./view/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Page level plugin CSS-->
-        <?php if(substr($_SERVER['REQUEST_URI'], -27)=='notificacion_Controller.php'){?>
+        <?php if($_GET['action']=='NotificacionListar'){?>
             <link href="./view/vendor/datatables/dataTables.bootstrap4-2.css" rel="stylesheet">
         <?php }else{ ?>
             <link href="./view/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">

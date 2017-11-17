@@ -4,7 +4,7 @@ require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/NotificacionMapper.php");
 require_once(__DIR__ . "/../model/Notificacion.php");
-require_once(__DIR__ . "/../model/NotificacionDeportista.php");
+
 
 class NotificacionController extends BaseController{
 

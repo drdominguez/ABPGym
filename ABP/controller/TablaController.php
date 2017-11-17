@@ -1,131 +1,78 @@
+<?php
 
-<?php 
-    session_start(); //solicito trabajar con la session
+require_once(__DIR__."/../core/ViewManager.php");
+require_once(__DIR__ . "/../controller/BaseController.php");
+require_once(__DIR__ . "/../model/TablaMapper.php");
+require_once(__DIR__ . "/../model/Tabla.php");
 
-    include '../model/tabla_Model.php';
+class TablaController extends BaseController{
 
-    include '../view/MESSAGE_View.php';
-    include '../Functions/Authentication.php';
+    private $tablaMapper;
 
-    if (!IsAuthenticated()){
-        header('Location:../index.php');
+    public function __construct() {
+        parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
+        $this->tablaMapper = new TablaMapper();
     }
-
-  if(isset($_SESSION['lang'])){
-        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
-            include("../locates/Strings_ENGLISH.php");
-        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
-            include("../locates/Strings_SPANISH.php");
-        else if(strcmp($_SESSION['lang'], 'GALICIAN')==0)
-        include("../locates/Strings_GALICIAN.php");
-    }else{
-        include("../locates/Strings_GALICIAN.php");
-    }
-
-    /*Generamos los includes de las diferentes vistas*/
-    include '../view/tabla_ADD_View.php';
-    include '../view/tabla_DELETE_View.php';
-    include '../view/tabla_EDIT_View.php';
-    include '../view/tabla_SEARCH_View.php';
-    include '../view/tabla_SHOWCURRENT_View.php';
-    include '../view/tabla_SHOWALL_View.php';
-
-    function get_data_form(){
-
-    //Recoge la información del formulario
-                if(isset($_REQUEST['idTabla'])){
-                     $idTabla = $_REQUEST['idTabla'];
-                }else{
-                    $idTabla= null;
-                }
-               
-
-         
-                $tipo = $_REQUEST['tipo'];
-
-         
-                $comentario = $_REQUEST['comentario'];
-
-         $accion = $_REQUEST['action'];
-
-    $tabla = new tabla_Model($idTabla,$tipo,$comentario);
-
-    return $tabla;
-}
-
-if (!isset($_REQUEST['action'])){
-    $_REQUEST['action'] = '';
-}
     
-    /*A continuación creamos el switch con el cual podremos gestionar las peticiones de ADD, DELETE, EDIT...*/
-    switch ($_REQUEST['action']) {
-        /*Caso añadir a la BD*/
-        case 'ADD': 
-                if (!$_POST){
-                    new tabla_ADD();
-                }
-                else{
-                    $tabla = get_data_form();
-                    $respuesta = $tabla->ADD();
-                    new MESSAGE($respuesta, '../controller/tabla_Controller.php');
-                }
-                break;      
-        case 'DELETE': //Borrado de actividades
-           if (!$_POST){
-                    $tabla = new tabla_Model('','','');
-                    $valores = $tabla->RellenaDatos();
-                    new tabla_DELETE($valores);
-                }
-                else{
-                    $tabla = get_data_form();
-                    $respuesta = $tabla->DELETE();
-                    new MESSAGE($respuesta, '../controller/tabla_Controller.php');
-                }
-                break;
-        case 'SHOWCURRENT': //Mostrar información detallada
-                $tabla = new tabla_Model('','','');
-                $valores = $tabla->RellenaDatos();
-                new tabla_SHOWCURRENT($valores);
-                break;
-        case 'EDIT': //Modificación de actividades
-if (!$_POST){
-                    $tabla = new tabla_Model('','','');
-                    $valores = $tabla->RellenaDatos();
-                    new tabla_EDIT($valores);
-                }
-                else{
-                    
-                    $tabla = get_data_form();
-
-                    $respuesta = $tabla->EDIT();
-                    new MESSAGE($respuesta, '../controller/tabla_Controller.php');
-                }
-                
-                break;
-        case 'SEARCH': //Consulta de actividades
-            if (!$_POST){
-                    new tabla_SEARCH();
-                }
-                else{
-                    $tabla = get_data_form();
-                    $datos = $tabla->SEARCH();
-                     $lista = array('idTabla','tipo','comentario');
-                    new tabla_SHOWALL($lista, $datos, '../index.php');
-                }
-                break;
-        default:
-           if (!$_POST){
-                    $tabla = new tabla_Model('','','');
-                }
-                else{
-                    $tabla = get_data_form();
-                }
-                $datos = $tabla->SEARCH();
-                $lista = array('idTabla','tipo','comentario');
-                new tabla_SHOWALL($lista, $datos,'../controller/tabla_Controller.php' );
-
+    /*Notificacion ADD
+    *Si se llama con un get carga la vista
+    *si se llama con un post añade la notificacion
+    */
+    public function TablaADD() {
+        if(isset($_POST["Asunto"]) && isset($_POST["contenido"])){//si existen los post añado la notificacion
+            $tabla = new Tabla();
+            $tabla->setAsunto($_POST["Asunto"]);
+            $tabla->setContenido($_POST["contenido"]);
+            $tabla->setFecha(date("Y-m-d H:i:s"));
+            if($this->tablaMapper->add($tabla)){
+               $this->view->setFlash("Tabla Añadida Correctamente");
+            }else{
+                $errors["username"] = "La tabla no se ha añadido corectamente";
+                $this->view->setFlash($errors["username"]);
             }
+        }
+        $this->view->render("tabla","tablaADD");
+    }
 
-    
+    /*NotificacionListar
+    *Muestra una lista con todos las Notificaciones
+    */
+    public function TablaListar() {
+       $tablas = $this->tablaMapper->listar();
+       $this->view->setVariable("tablas",$tablas);
+       $this->view->render("tabla","tablaSHOWALL");
+    }
 
+
+    /*Notificacion SHOW CURRENT
+    *Si se llama con un get carga la vista
+    *si se llama con un post muestra notificacion
+    */
+    public function TablaView() {
+
+        if (!isset($_GET["idTabla"])) {
+            throw new Exception("El id es obligatorio");
+        }
+
+        $idTabla = $_GET["idTabla"];
+
+        // find the notification object in the database
+        $tabla = $this->tablaMapper->findById($idTabla);
+
+
+        if ($tabla == NULL) {
+            throw new Exception("No existe tabla con este id: ".$idTabla);
+        }
+
+        // put the notification object to the view
+        $this->view->setVariable("tabla", $tabla);
+        $this->tablaMapper->visto($tabla->getIdTabla(),$_SESSION['currentuser']);
+
+        // render the view (/view/posts/view.php)
+        $this->view->render("tabla", "tablaSHOWCURRENT");
+    }
+
+
+
+}
 ?>

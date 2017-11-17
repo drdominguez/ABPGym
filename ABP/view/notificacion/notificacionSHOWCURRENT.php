@@ -12,12 +12,9 @@ $view->setVariable("title", "Ver Notificacion");
 ?>
 <div class="content-wrapper">
             <div class="container-fluid">
-                <!-- Breadcrumbs-->
+                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="#"><?= i18n("Gestión de notificaciones") ?></a>
-                    </li>
-                    <li class="breadcrumb-item active"><?= i18n("Mostrar notificacion") ?></li>
+                    <div id="flash"><?= $view->popFlash() ?></div>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
