@@ -12,7 +12,3 @@
 		<img  src="./view/Icons/gallego.png">
 	</a>
 </ul>
-
-                </ul>
-            </div>
-        </nav>

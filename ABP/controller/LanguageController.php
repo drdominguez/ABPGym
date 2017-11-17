@@ -54,4 +54,7 @@ class LanguageController {
 			echo "i18nMessages['$key'] = '$value';\n";
 		}
 }
+// al final del documento
 }
+?>
+

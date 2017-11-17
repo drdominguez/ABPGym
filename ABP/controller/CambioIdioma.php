@@ -1,5 +1,4 @@
 <?php
-
 const IDIOMA="lang";
 
 //Guarda el lenguaje en una variable de sesión .
