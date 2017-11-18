@@ -14,7 +14,7 @@ Class ActividadGrupoMapper extends ActividadMapper{
 	}
 	public function addGrupo($actividad){
 		parent::add($actividad);//llama al add de la clase padre
-		$this->idActividad = db2_last_insert_id($this->db);
+		$this->idActividad = $this->db->lastInsertId();
  		if(parent::esAdministrador()){
 			$stmt = $this->db->prepare("INSERT INTO grupo(idActividad,instalaciones,plazas) VALUES (?,?,?)");
 			$stmt -> execute(array($this->idActividad));
