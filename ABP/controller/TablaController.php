@@ -14,7 +14,7 @@ class TablaController extends BaseController{
         $this->tablaMapper = new TablaMapper();
     }
     
-    /*Notificacion ADD
+    /*Tabla ADD
     *Si se llama con un get carga la vista
     *si se llama con un post añade la notificacion
     */
@@ -34,7 +34,7 @@ class TablaController extends BaseController{
         $this->view->render("tabla","tablaADD");
     }
 
-    /*NotificacionListar
+    /*TablaListar
     *Muestra una lista con todos las Notificaciones
     */
     public function TablaListar() {
@@ -43,8 +43,46 @@ class TablaController extends BaseController{
        $this->view->render("tabla","tablaSHOWALL");
     }
 
+    /*TablaDelete
+    *Muestra una lista con todos las Notificaciones
+    */
+    public function TablaDelete() {
 
-    /*Notificacion SHOW CURRENT
+    if(!isset($_POST['borrar'])){
+      if (!isset($_GET["idTabla"])) {
+            throw new Exception("El id es obligatorio");
+        }
+
+        $idTabla = $_GET["idTabla"];
+
+        // find the notification object in the database
+        $tabla = $this->tablaMapper->findById($idTabla);
+
+
+        if ($tabla == NULL) {
+            throw new Exception("No existe tabla con este id: ".$idTabla);
+        }
+
+        // put the notification object to the view
+        $this->view->setVariable("tabla", $tabla);
+
+        // render the view (/view/posts/view.php)
+        $this->view->render("tabla", "tablaDELETE");
+    }else{
+
+         $idTabla = $_POST["idTabla"];
+
+         if($tabla = $this->tablaMapper->delete($idTabla)){
+               $this->view->setFlash("Tabla Eliminada Correctamente");
+            }else{
+                $errors["username"] = "La tabla no se ha eliminado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+        $this->view->redirect("Tabla", "tablaListar");
+    }
+    }
+
+    /*Tabla SHOW CURRENT
     *Si se llama con un get carga la vista
     *si se llama con un post muestra notificacion
     */
@@ -66,7 +104,6 @@ class TablaController extends BaseController{
 
         // put the notification object to the view
         $this->view->setVariable("tabla", $tabla);
-        $this->tablaMapper->visto($tabla->getIdTabla(),$_SESSION['currentuser']);
 
         // render the view (/view/posts/view.php)
         $this->view->render("tabla", "tablaSHOWCURRENT");

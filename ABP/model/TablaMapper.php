@@ -38,32 +38,28 @@ Class TablaMapper{
 
 
 
-    public function findById($idNotificacion){
-            $stmt = $this->db->prepare("SELECT * FROM notificacion WHERE idNotificacion=?");
-            $stmt->execute(array($idNotificacion));
-            $notificacion = $stmt->fetch(PDO::FETCH_ASSOC);
+    public function findById($idTabla){
+            $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla=?");
+            $stmt->execute(array($idTabla));
+            $tabla = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($notificacion != null) {
-            return new Notificacion(
-            $notificacion["idNotificacion"],
-            $notificacion["dniAdministrador"],
-            $notificacion["Asunto"],
-            $notificacion["contenido"],
-            $notificacion["fecha"]);
+            if($tabla != null) {
+            return new Tabla(
+            $tabla["idTabla"],
+            $tabla["tipo"],
+            $tabla["comentario"],
+            $tabla["nombre"]);
         } else {
             return NULL;
         }
 
         }
 
-
-    public function visto($idNotificacion,$dniDeportista){
-        if(!$this->esAdministrador()){
-        $stmt=$this->db-> prepare("UPDATE notificacion_deportista SET visto=? WHERE idNotificacion=? AND dniDeportista=?");
-        $stmt->execute(array(1,$idNotificacion,$dniDeportista));
+    public function delete($idTabla) {
+            $stmt = $this->db->prepare("DELETE from tabla WHERE idTabla=?");
+            $stmt->execute(array($idTabla));
             return true;
         }
-    }
 
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
