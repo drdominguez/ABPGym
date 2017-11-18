@@ -29,7 +29,7 @@
             <form name = 'Form' id="form1" action='../Controller/usuario_Controller.php' method='post' onsubmit='return comprobar_usuario()'>
                <div class="form-group">
                 <div class="form-row">
-                <div class="col-md-6">
+                  <div class="col-md-6">
                     <label for="dni"><?php echo $strings['dni'] ?> : </label>
                     <input class="form-control" type = 'text' name = 'dni' size = '10' value = '' required  onblur="esVacio(this)  && comprobarText(this, 10)" >
                 </div>
@@ -86,7 +86,7 @@
      <br>
 
          </form>
-                <button type="button" onclick="window.location.href='../Controller/usuario_Controller.php?action=default'" class="btn btn-default"><?php echo $strings['Volver']; ?></button> 
+                <button type="button" onclick="window.location.href='../Controller/usuario_Controller.php?action=default'" class="btn btn-default">Volver</button> 
             <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary"><?php echo $strings['Insertar']; ?></button> 
        </div>
     </div>

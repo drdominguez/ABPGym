@@ -21,7 +21,7 @@ class pef_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

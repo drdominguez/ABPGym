@@ -6,7 +6,7 @@ require_once(__DIR__ . "/../model/ActividadMapper.php");
 require_once(__DIR__ . "/../model/ActividadIndividualMapper.php");
 require_once(__DIR__ . "/../model/ActividadGrupoMapper.php");
 
-class EjercicioController extends BaseController{
+class ActividadController extends BaseController{
 
     private $actividadMapper;
     private $individualMapper;
@@ -21,21 +21,27 @@ class EjercicioController extends BaseController{
     *Si se llama con un get carga la vista
     *si se llama con un post añade la actividad
     */
-    public function indivualADD() {
+    public function actividadListar() {
+       $actividades = $this->notificacionMapper->listar();
+       $this->view->setVariable("actividades",$actividad);
+       $this->view->render("actividad","actividadSHOWALL");
+
+    }
+    public function individualADD() {
         $this->individualMapper = new ActividadIndividualMapper();
         if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad
             $individual = new ActividadIndividual();
             $individual->setTiempo($_POST["precio"]);
             $individual->setUnidad($_POST["nombre"]);
             if($this->individualMapper->add($individual)){
-               $this->view->setFlash("Actividad Añadido Corectamente");
+               $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
             }else{
-                $errors["actividaderror"] = "La actividad no se ha añadido corectamente";
+                $errors["actividaderror"] = "La actividad individual no se ha añadido corectamente";
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
-        $this->view->render("actividades/individual","individualADD");
+        $this->view->render("actividad/individual","individualADD");
     }
 
     /*EstiramientoRemove
@@ -61,7 +67,22 @@ class EjercicioController extends BaseController{
     *si se llama con un post añade el cardio
     */
     public function grupoADD() {
-        $this->cardioMapper = new EjercicioCardioMapper();
+        $this->grupoMapper = new ActividadGrupoMapper();
+        if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["instalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+            $grupo = new ActividadGrupo();
+            $grupo->setPrecio($_POST["precio"]);
+            $grupo->setNombre($_POST["nombre"]);
+            $grupo->setInstalaciones($_POST["instalaciones"]);
+            $grupo->setPlazas($_POST["plazas"]);
+            if($this->grupoMapper->add($grupo)){
+               $this->view->setFlash("Actividad Grupo Añadida Corectamente");
+
+            }else{
+                $errors["actividaderror"] = "La actividad  de grupo no se ha añadido corectamente";
+                $this->view->setFlash($errors["actividaderror"]);
+            }
+        }
+        $this->view->render("actividad/grupo","grupoADD");
 
     }
 

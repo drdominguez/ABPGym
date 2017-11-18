@@ -27,8 +27,8 @@ class Actividad
     public function setPrecio($precio) {
         $this->precio = $precio;
     }
-    public function setPrecio($nombre) {
-        $this->precio = $nombre;
+    public function setNombre($nombre) {
+        $this->nombre = $nombre;
     }
 }//fin de clase
 ?> 

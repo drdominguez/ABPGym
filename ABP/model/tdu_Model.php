@@ -19,7 +19,7 @@ class tdu_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

@@ -1,7 +1,10 @@
 <?php
 
 require_once(__DIR__."/../core/Access_DB.php");
+require_once(__DIR__."/Deportista.php");
 require_once(__DIR__."/Notificacion.php");
+
+
 
 Class NotificacionMapper{
     protected $db;
@@ -9,52 +12,123 @@ Class NotificacionMapper{
     public function __construct(){
         $this->db=PDOConnection::getInstance();
     }
+    
     public function add($notificacion){
-        $stmt = $this->db->prepare("INSERT INTO ejercicio(nombre,descripcion,video,imagen ) VALUES (?,?,?,?)");
-        if(esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
-            $stmt=execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen()));
-            $stmt = $this->db->prepare("INSERT INTO superusuario_ejercicio VALUES (?,?)");
-            //db2_last_insert_id($this->db) devuelve el ultimo id insertado
-            $this->idEjercicio=db2_last_insert_id($this->db)
-			$stmt = execute(array($_SESSION["currentuser"],$this->idEjercicio));
-			return true;
-		}
-        return false;
-    }
-    public function edit($notificacion){
-        $stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=?, imagen=? WHERE idEjercicio=?");
-        if(permisoEjercicio($ejercicio->getId())){
-            $stmt=execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen(),$ejercicio->getId()));
-            return true;
+        $stmt = $this->db->prepare("INSERT INTO notificacion(dniAdministrador,Asunto,contenido,fecha) VALUES (?,?,?,?)");
+        if($this->esAdministrador()){
+        $stmt->execute(array($_SESSION['currentuser'],$notificacion->getAsunto(),$notificacion->getContenido(),$notificacion->getFecha()));
+        $this->idNotificacion= $this->db->lastInsertId();
+        $stmt = $this->db->query("SELECT dni FROM deportista");
+        $deportistas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $deportistas = array();
+        foreach ($deportistas_db as $deportista) {
+            array_push($deportistas, new Deportista($deportista["dni"]));
         }
-        return false;
-    }
-    public function remove($idNotificacion){
-        $stmt = $this->db->prepare("DELETE FROM ejercicio WHERE idEjercicio = ?");
-        if(permisosEjercicio($idEjercicio)){
-            $stmt= execute(array($idEjercicio));
-            return true;
-        }
-        return false;
-    }
-    protected function permisosEjercicio($idEjercicio){
-        /*Comprobar si el susuario es un administrador*/
-        $stmt = $this->db->prepare("SELECT dni FROM administrador WHERE dniAdministrador=?");
-        $stmt->execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn() > 0) {
-            return true;
-        }else{//comprobar si ha creado el usuario actual ese ejercicio si no no tiene permisos sobre el
-            $stmt = $this->db->prepare("SELECT * FROM superusuario_ejercicio WHERE dniSuperUsuario=? AND idEjercicio=?");
-            $stmt->execute(array($_SESSION["currentuser"], $idEjercicio));
-            if ($stmt->fetchColumn() > 0) {
-                return true;
+        if ($deportistas) {
+            foreach($deportistas as $deportista){
+                $stmt = $this->db->prepare("INSERT INTO notificacion_deportista(dniAdministrador,dniDeportista,idNotificacion,visto) VALUES (?,?,?,?)");
+            $stmt->execute(array($_SESSION['currentuser'],$deportista->getDni(),$this->idNotificacion,0));
             }
+            return true;
+        }else{
+            return false;
         }
-        return false;
+
+        }else{
+            return false;
+        }
     }
-    protected function esSuperusuario(){
-        $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
-        $stmt= execute(array($_SESSION["currentuser"]));
+
+
+    public function listar(){
+
+        if($this->esAdministrador()){
+            $stmt = $this->db->query("SELECT * from notificacion");
+        }else{
+             $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion");
+             $stmt->execute(array($_SESSION['currentuser']));
+        }
+            $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $notificaciones = array();
+
+            foreach ($notificaciones_db as $notificacion) {
+                array_push($notificaciones, new Notificacion($notificacion['idNotificacion'],$notificacion['dniAdministrador'],$notificacion['Asunto'],$notificacion['contenido'],$notificacion['fecha']));
+            
+            }
+        return $notificaciones;
+        
+        }
+
+        public function listarSinVer(){
+
+        if($this->esAdministrador()){
+            $stmt = $this->db->query("SELECT * from notificacion");
+        }else{
+             $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion AND D.visto=0");
+             $stmt->execute(array($_SESSION['currentuser']));
+        }
+            $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $notificaciones = array();
+
+            foreach ($notificaciones_db as $notificacion) {
+                array_push($notificaciones, new Notificacion($notificacion['idNotificacion'],$notificacion['dniAdministrador'],$notificacion['Asunto'],$notificacion['contenido'],$notificacion['fecha']));
+            
+            }
+        return $notificaciones;
+        
+        }
+
+        public function contarNotificacionesSinVer(){
+
+        if($this->esAdministrador()){
+            $stmt = $this->db->query("SELECT COUNT(*) from notificacion");
+        }else{
+             $stmt = $this->db->prepare("SELECT COUNT(*) from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion AND D.visto=0");
+             $stmt->execute(array($_SESSION['currentuser']));
+        }
+            $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $notificaciones = array();
+
+            foreach ($notificaciones_db as $notificacion) {
+                array_push($notificaciones, $notificacion['COUNT(*)']);
+            }
+        return $notificaciones;
+        
+        }
+
+
+
+
+    public function findById($idNotificacion){
+            $stmt = $this->db->prepare("SELECT * FROM notificacion WHERE idNotificacion=?");
+            $stmt->execute(array($idNotificacion));
+            $notificacion = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if($notificacion != null) {
+            return new Notificacion(
+            $notificacion["idNotificacion"],
+            $notificacion["dniAdministrador"],
+            $notificacion["Asunto"],
+            $notificacion["contenido"],
+            $notificacion["fecha"]);
+        } else {
+            return NULL;
+        }
+
+        }
+
+
+    public function visto($idNotificacion,$dniDeportista){
+        if(!$this->esAdministrador()){
+        $stmt=$this->db-> prepare("UPDATE notificacion_deportista SET visto=? WHERE idNotificacion=? AND dniDeportista=?");
+        $stmt->execute(array(1,$idNotificacion,$dniDeportista));
+            return true;
+        }
+    }
+
+    protected function esAdministrador(){
+        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
+        $stmt->execute(array($_SESSION["currentuser"]));
         if ($stmt->fetchColumn()>0){
             return true;
         }

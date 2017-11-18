@@ -18,11 +18,15 @@ $currentuser = $view->getVariable("currentusername");
 			<header>
 			<?php
 				include(__DIR__."/Header.php");
+
 			?>
 			</header>
 			<aside>
 				<?php
 				include(__DIR__."/menuLateral.php");
+				include(__DIR__."/notificacionesMenu.php");
+				include(__DIR__."/menuSuperior.php");
+				include(__DIR__."/language_select_element.php");
 				?>
 			</aside>
 			<main>

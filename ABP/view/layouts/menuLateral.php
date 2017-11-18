@@ -1,7 +1,7 @@
   <!-- Navigation-->
 <meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/> 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <a class="navbar-brand" href="Index_Controller.php">GymApp</a>
+            <a class="navbar-brand" href="Index_Controller.php"><?= i18n("GymApp") ?></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -10,7 +10,7 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsuarios" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de usuario</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de usuario") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseUsuarios">
                             <li>
@@ -25,24 +25,24 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Actividades">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseActividades" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de Actividades</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de Actividad") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseActividades">
                             <li class="nav-item" data-placement="right" title="AñadirActividad">
                                 <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAñadirActividad">
                                 <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseAñadirActividad">Añadir 
+                                    <span data-toggle="collapse" href="#collapseAñadirActividad"><?= i18n("Añadir") ?> 
                                     </span>
                                 </a>
                                  <ul class="sidenav-third-level collapse" id="collapseAñadirActividad">
                                     <li>
-                                        <a href="../controller/ActividadController.php?action=add">
-                                            <i class="fa fa-fw fa-link"></i> Individual
+                                        <a href="./index.php?controller=Actividad&amp;action=individualADD">
+                                            <i class="fa fa-fw fa-link"></i><?= i18n("Individual") ?> 
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="../controller/ActividadController.php?action=add">
-                                            <i class="fa fa-fw fa-link"></i> Grupo
+                                        <a href="./index.php?controller=Actividad&amp;action=grupoADD">
+                                            <i class="fa fa-fw fa-link"></i><?= i18n("Grupo") ?>  
                                         </a>
                                     </li>
                                 </ul>
@@ -50,18 +50,18 @@
                             <li class="nav-item" data-placement="right" title="Eliminar">
                                 <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEliminarActividad">
                                 <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseEliminarActividad">Eliminar 
+                                    <span data-toggle="collapse" href="#collapseEliminarActividad"><?= i18n("Eliminar") ?> 
                                     </span>
                                 </a>
                                  <ul class="sidenav-third-level collapse" id="collapseEliminarActividad">
                                     <li>
                                         <a href="../controller/EActividadController.php?action=delete">
-                                            <i class="fa fa-fw fa-link"></i> Individual
+                                            <i class="fa fa-fw fa-link"></i><?= i18n("Individual") ?> 
                                         </a>
                                     </li>
                                     <li>
                                         <a href="../controller/ActividadController.php?action=delete">
-                                            <i class="fa fa-fw fa-link"></i> Grupo
+                                            <i class="fa fa-fw fa-link"></i><?= i18n("Grupo") ?>  
                                         </a>
                                     </li>
 
@@ -70,27 +70,24 @@
                             <li class="nav-item" data-placement="right" title="EditarActividad">
                                 <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEditarActividad">
                                 <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseEditarActividad">Editar
+                                    <span data-toggle="collapse" href="#collapseEditarActividad"><?= i18n("Editar") ?> 
                                     </span>
                                 </a>
                                  <ul class="sidenav-third-level collapse" id="collapseEditarActividad">
                                     <li>
                                         <a href="../controller/ActividadController.php?action=edit">
-                                            <i class="fa fa-fw fa-link"></i> Individual
+                                            <i class="fa fa-fw fa-link"></i><?= i18n("Individual") ?> 
                                         </a>
                                     </li>
                                     <li>
                                         <a href="../controller/ActividadController.php?action=edit∫">
-                                            <i class="fa fa-fw fa-link"></i> Grupo
+                                            <i class="fa fa-fw fa-link"></i><?= i18n("Grupo") ?>  
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="../controller/ActividadController.php?action=show">
-                                <i class="fa fa-fw fa-link"></i>
-                                    <span>Ver Actividades 
-                                    </span>
+                                <a href="./index.php?controller=actividad&amp;action=actividadListar"><i class="fa fa-fw fa-link"></i><?= i18n("Ver Actividades") ?></a>
                             </li>
                         </ul>
                     </li>
@@ -111,14 +108,30 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tablas">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTablas" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de tablas</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de tablas") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseTablas">
-                            <li>
-                                <a href="../controller/TablaController.php?action=ADD">Añadir tabla</a>
+                            <li class="nav-item" data-placement="right" title="Añadir">
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAñadirTabla">
+                                <i class="fa fa-fw fa-wrench"></i>
+                                    <span data-toggle="collapse" href="#collapseAñadirTabla">Añadir Tabla
+                                    </span>
+                                </a>
+                                <ul class="sidenav-third-level collapse" id="collapseAñadirTabla">
+                                    <li>
+                                        <a href="./index.php?controller=Tabla&amp;action=TablaEstandarADD">
+                                            <i class="fa fa-fw fa-link"></i> Estándar
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="./index.php?controller=Tabla&amp;action=TablaPersonalizadaADD">
+                                            <i class="fa fa-fw fa-link"></i> Personalizada
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="../controller/TablaController.php">Ver tablas</a>
+                                <a href="./index.php?controller=Tabla&amp;action=TablaListar"><?= i18n("Ver tablas") ?></a>
                             </li>
                         </ul>
                     </li>
@@ -233,14 +246,14 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Notificaciones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseNotificaciones" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de notificaciones</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de notificaciones") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseNotificaciones">
                             <li>
-                                <a href="../controller/NotificacionController.php?action=ADD">Enviar notificacion</a>
+                                <a href="./index.php?controller=Notificacion&amp;action=NotificacionADD"><?= i18n("Enviar notificacion") ?></a>
                             </li>
                             <li>
-                                <a href="../controller/NotificacionController.php">Ver notificaciones</a>
+                                <a href="./index.php?controller=Notificacion&amp;action=NotificacionListar"><?= i18n("Ver notificaciones") ?></a>
                             </li>
                         </ul>
                     </li>
@@ -258,12 +271,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-                        <a class="nav-link" href="../controller/UsuarioController.php?dni=<?php echo $_SESSION['login']; ?>&action=SHOWCURRENT">
-                            <i class="fa fa-fw fa-link"></i>
-                            <span class="nav-link-text">Cuenta</span>
-                        </a>
-                    </li>
+                    
                 </ul>
                 <ul class="navbar-nav sidenav-toggler">
                     <li class="nav-item">

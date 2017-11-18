@@ -19,7 +19,7 @@ class inscrito_Model
 }
 
 
-    //Anadir
+    //Añadir
     function ADD()
     {
         

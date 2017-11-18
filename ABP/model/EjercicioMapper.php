@@ -6,9 +6,11 @@ require_once(__DIR__."/Ejercicio.php");
 Class EjercicioMapper{
 	protected $db;
 	protected $idEjercicio;
+
 	public function __construct(){
 		$this->db=PDOConnection::getInstance();
 	}
+	
 	public function add($ejercicio){
 		$stmt = $this->db->prepare("INSERT INTO ejercicio(nombre,descripcion,video,imagen ) VALUES (?,?,?,?)");
 		if(esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
