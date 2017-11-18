@@ -98,7 +98,7 @@ CREATE TABLE `deportista` (
 --
 
 CREATE TABLE `ejercicio` (
-  `idEjercicio` bigint(20) NOT NULL,
+  `idEjercicio` bigint(20) NOT NULL ,
   `nombre` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
   `video` binary(1) DEFAULT NULL,
@@ -134,9 +134,8 @@ CREATE TABLE `entrenador_deportista` (
 
 CREATE TABLE `estiramiento` (
   `idEjercicio` bigint(20) NOT NULL,
-  `tiempo` smallint(6) DEFAULT NULL,
-  `unidad` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `distancia` smallint(6) DEFAULT NULL
+  `tiempo` smallint(6) NOT NULL,
+  `unidad` char(1) COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -158,7 +157,7 @@ CREATE TABLE `grupo` (
 --
 
 CREATE TABLE `horario` (
-  `idHorario` bigint(20) NOT NULL,
+  `idHorario` bigint(20) NOT NULL ,
   `localizacion` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
   `dia` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `hora` varchar(25) COLLATE utf8_spanish_ci NOT NULL
@@ -204,7 +203,7 @@ CREATE TABLE `muscular` (
 --
 
 CREATE TABLE `notificacion` (
-  `idNotificacion` bigint(20) NOT NULL,
+  `idNotificacion` bigint(20) NOT NULL ,
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `Asunto` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `contenido` text COLLATE utf8_spanish_ci,
@@ -231,7 +230,7 @@ CREATE TABLE `notificacion_deportista` (
 --
 
 CREATE TABLE `pago` (
-  `idPago` bigint(20) NOT NULL,
+  `idPago` bigint(20) NOT NULL ,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idActividad` bigint(20) NOT NULL,
   `importe` double DEFAULT NULL,
@@ -344,7 +343,7 @@ CREATE TABLE `superusuario_tabla_deportista` (
 --
 
 CREATE TABLE `tabla` (
-  `idTabla` bigint(20) NOT NULL,
+  `idTabla` bigint(20) NOT NULL ,
   `tipo` enum('estandar','personalizada') COLLATE utf8_spanish_ci NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci,
   `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL
@@ -396,7 +395,6 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
 ('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
 ('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
-
 --
 -- Indexes for dumped tables
 --
@@ -643,6 +641,12 @@ ALTER TABLE `tabla`
 --
 ALTER TABLE `actividad`
   MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+  --
+-- AUTO_INCREMENT for table `notificacion`
+--
+ALTER TABLE `ejercicio`
+  MODIFY `idEjercicio` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
