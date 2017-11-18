@@ -64,7 +64,7 @@ class UsuarioMapper {
     function DELETE($dni)
     {
         $stmt = $this->db->prepare("DELETE from usuario WHERE dni=?");
-        $stmt->execute(array($usuario->getDni()));
+        $stmt->execute(array($dni()));
     }
     //Funcion obtener datos de una tabla de la bd
     function RellenaDatos2()
@@ -79,10 +79,10 @@ class UsuarioMapper {
         }
     }
     //Funcion editar
-    function EDIT()
+    function EDIT($usuario)
     {
     $stmt = $this->db->prepare("UPDATE from usuario WHERE dni=? and nombre=? and appellidos=? and edad=? and email=? and telefono=? and fechaAlta=?");
-    $stmt->execute(array($usuario->getDni(), $usuario->getNombre(), $usuarios->getApellidos(),$usuario->getEdad(),
+    $stmt->execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
             $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
     }
 }
