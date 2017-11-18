@@ -295,13 +295,6 @@ CREATE TABLE `superusuario` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Dumping data for table `superusuario`
---
-
-INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
-('44497121X');
-
 -- --------------------------------------------------------
 
 --
@@ -388,13 +381,7 @@ CREATE TABLE `usuario` (
   `fechaAlta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Dumping data for table `usuario`
---
 
-INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
-('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
-('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
 --
 -- Indexes for dumped tables
 --
@@ -628,19 +615,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `notificacion`
 --
 ALTER TABLE `notificacion`
-  MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tabla`
 --
 ALTER TABLE `tabla`
-  MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT;
 
   --
 -- AUTO_INCREMENT for table `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT;
 
   --
 -- AUTO_INCREMENT for table `notificacion`
@@ -760,15 +747,15 @@ ALTER TABLE `sesionentrenamiento`
 -- Constraints for table `sesionentrenamiento_individual`
 --
 ALTER TABLE `sesionentrenamiento_individual`
-  ADD CONSTRAINT `fk_EntrenamientoSIndividual` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`),
-  ADD CONSTRAINT `fk_SesionEntrenamiento_Individual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
+  ADD CONSTRAINT `fk_EntrenamientoSIndividual` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_SesionEntrenamiento_Individual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `sesionentrenamiento_tabla`
 --
 ALTER TABLE `sesionentrenamiento_tabla`
-  ADD CONSTRAINT `fk_SesionEntrenamientoS` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`),
-  ADD CONSTRAINT `fk_SesionEntrenamientoTabla` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`);
+  ADD CONSTRAINT `fk_SesionEntrenamientoS` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_SesionEntrenamientoTabla` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `superusuario`
@@ -780,7 +767,7 @@ ALTER TABLE `superusuario`
 -- Constraints for table `superusuario_ejercicio`
 --
 ALTER TABLE `superusuario_ejercicio`
-  ADD CONSTRAINT `fk_SuperusuarioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`),
+  ADD CONSTRAINT `fk_SuperusuarioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_dniSuperUsuarioS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
 --
@@ -788,7 +775,7 @@ ALTER TABLE `superusuario_ejercicio`
 --
 ALTER TABLE `superusuario_individual`
   ADD CONSTRAINT `fk_SuperUsuarioIndividual` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_SuperUsuarioIndividualL` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
+  ADD CONSTRAINT `fk_SuperUsuarioIndividualL` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `superusuario_tabla_deportista`
@@ -810,6 +797,24 @@ ALTER TABLE `tabla_ejercicios`
 --
 ALTER TABLE `tdu`
   ADD CONSTRAINT `fk_TduDeportista` FOREIGN KEY (`dni`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
+  
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
+('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
+('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08'),
+('53192250N', 'Alexandre', 'Viana Sixto', 28, '5edef9793eacc635c6c30b064a81ccca', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08');
+
+--
+-- Dumping data for table `superusuario`
+--
+
+INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
+('44497121X'),
+('53192250N');
+  
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
