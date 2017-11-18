@@ -17,7 +17,7 @@ Class ActividadGrupoMapper extends ActividadMapper{
 		$this->idActividad = db2_last_insert_id($this->db);
  		if(parent::esAdministrador()){
 			$stmt = $this->db->prepare("INSERT INTO grupo(idActividad,instalaciones,plazas) VALUES (?,?,?)");
-			$stmt=execute(array($this->idActividad));
+			$stmt -> execute(array($this->idActividad));
 			return true;
 		}
 		return false;
@@ -26,7 +26,7 @@ Class ActividadGrupoMapper extends ActividadMapper{
         	return parent::edit($actividad);
         	if(parent::esAdministrador()){
         		$stmt = $this->db->prepare("UPDATE grupo SET instalaciones,plazas WHERE idActividad=? ");
-        		$stmt->execute(array($actividad->getInstalaciones(),$actividad->getPlazas(),$actividad->getIdActividad()));
+        		$stmt -> execute(array($actividad->getInstalaciones(),$actividad->getPlazas(),$actividad->getIdActividad()));
         		return true;
         	}
         	return false;

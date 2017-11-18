@@ -12,9 +12,9 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 	
 	public function addEstiramiento($ejercicio){
 		parent::add($ejercicio);//llama al add de la clase padre
-		$stmt = $this->db->prepare("INSERT INTO estiramiento(idEjercicio,tiempo,unidad,distancia ) VALUES (?,?,?,?)");
+		$stmt = $this->db->prepare("INSERT INTO estiramiento(idEjercicio,tiempo,unidad) VALUES (?,?,?)");
 		if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-			$stmt=execute(array($this->idEjercicio,$ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getDistancia()));//
+			$stmt->execute(array($this->idEjercicio,$ejercicio->getTiempo(),$ejercicio->getUnidad()));//
 			return true;
 		}
 		return false;
@@ -23,7 +23,7 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 		parent::edit($ejecicio);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
 		$stmt=$this->db-> prepare("UPDATE estiramiento SET tiempo=?, unidad=?, distancia=? WHERE idEjercicio=?");
 		if(parent::permisoEjercicio($ejercicio->getId())){
-			$stmt=execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getDistancia(),$ejercicio->getId()));
+			$stmt->execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getDistancia(),$ejercicio->getId()));
 			return true;
 		}
 		return false;
@@ -31,7 +31,7 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 	public function removeEstiramiento($idEjercicio){
 		$stmt = $this->db->prepare("DELETE FROM estiramiento WHERE idEjercicio = ?");
 		if(parent::permisosEjercicio($idEjercicio)){
-			$stmt= execute(array($idEjercicio));
+			$stmt-> execute(array($idEjercicio));
 			parent::remove($idEjercicio);
 			return true;
 		}

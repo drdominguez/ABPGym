@@ -26,11 +26,9 @@ class EjercicioController extends BaseController{
     public function EstiramientoADD() {
         //nombre descripcion video imagen tiempo unidad
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-        if(isset($_POST["tiempo"]) && isset($_POST["unidad"])){//si existen los post añado el ejercicio
-            $estiramiento = new EjercicioEstiramiento();
-            $estiramiento->setTiempo($_POST["tiempo"]);
-            $estiramiento->setUnidad($_POST["unidad"]);
-            if($this->estiramientoMapper->add($estiramiento)){
+        if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tiempo"]) && isset($_POST["unidad"])){//si existen los post añado el ejercicio
+            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"]);
+            if($this->estiramientoMapper->addEstiramiento($estiramiento)){
                $this->view->setFlash("Ejercicio Añadido Corectamente");
 
             }else{

@@ -12,13 +12,12 @@ Class EjercicioMapper{
 	}
 	
 	public function add($ejercicio){
-		$stmt = $this->db->prepare("INSERT INTO ejercicio(nombre,descripcion,video,imagen ) VALUES (?,?,?,?)");
-		if(esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
-			$stmt=execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen()));
-			//db2_last_insert_id($this->db) devuelve el ultimo id insertado
-			$this->idEjercicio=db2_last_insert_id($this->db);
+		if(self::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
+			$stmt = $this->db->prepare("INSERT INTO ejercicio(nombre,descripcion,video,imagen) VALUES (?,?,?,?)");
+			$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen()));
+			$this->idEjercicio = $this->db->lastInsertId();//devuelve el ultimo id insertado
 			$stmt = $this->db->prepare("INSERT INTO superusuario_ejercicio VALUES (?,?)");
-			$stmt = execute(array($_SESSION["currentuser"],$this->idEjercicio));
+			$stmt -> execute(array($_SESSION["currentuser"],$this->idEjercicio));
 			return true;
 		}
 		return false;
@@ -26,7 +25,7 @@ Class EjercicioMapper{
 	public function edit($ejercicio){
 		$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=?, imagen=? WHERE idEjercicio=?");
 		if(permisoEjercicio($ejercicio->getId())){
-			$stmt=execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen(),$ejercicio->getId()));
+			$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen(),$ejercicio->getId()));
 			return true;
 		}
 		return false;
@@ -34,7 +33,7 @@ Class EjercicioMapper{
 	public function remove($idEjercicio){
 		$stmt = $this->db->prepare("DELETE FROM ejercicio WHERE idEjercicio = ?");
 		if(permisosEjercicio($idEjercicio)){
-			$stmt= execute(array($idEjercicio));
+			$stmt-> execute(array($idEjercicio));
 			return true;
 		}
 		return false;
@@ -54,9 +53,10 @@ Class EjercicioMapper{
 		}
 		return false;
 	}
+
 	protected function esSuperusuario(){
 		$stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
-		$stmt= execute(array($_SESSION["currentuser"]));
+		$stmt-> execute(array($_SESSION["currentuser"]));
 		if ($stmt->fetchColumn()>0){
 			return true;
 		}

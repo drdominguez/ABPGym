@@ -135,7 +135,7 @@ CREATE TABLE `entrenador_deportista` (
 CREATE TABLE `estiramiento` (
   `idEjercicio` bigint(20) NOT NULL,
   `tiempo` smallint(6) NOT NULL,
-  `unidad` char(1) COLLATE utf8_spanish_ci
+  `unidad` varchar(8) COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------

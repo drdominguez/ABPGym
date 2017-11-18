@@ -16,7 +16,7 @@ Class ActividadIndividualMapper extends ActividadMapper{
 		$this->idActividad = db2_last_insert_id($this->db);
  		if(parent::esAdministrador()){
 			$stmt = $this->db->prepare("INSERT INTO individual(idActividad) VALUES (?)");
-			$stmt=execute(array($this->idActividad));
+			$stmt -> execute(array($this->idActividad));
 			return true;
 		}
 		return false;

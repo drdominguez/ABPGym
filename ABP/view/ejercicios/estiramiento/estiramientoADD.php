@@ -23,11 +23,11 @@
                             <div class="form-row">
                               <div class="col-md-6">
                             <label for="exampleInputNombre">Nombre</label>
-                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" required onblur="esVacio(this)  && comprobarText(this,15)">
                             </div>
                             <div class="col-md-6">
                             <label for="exampleInputTiempo">Descripción</label>
-                            <input class="form-control" name="descripcion" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Descripción" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="descripcion" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Descripción" required onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                              </div>
                          </div>
@@ -35,11 +35,11 @@
                              <div class="form-row">
                                  <div class="col-md-6">
                             <label for="exampleInputTiempo">Video</label>
-                            <input class="form-control" name="video" id="exampleInputVideo" type="TEXT" aria-describedby="emailHelp" placeholder="Video" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" placeholder="Video" onblur="esVacio(this)  && comprobarText(this,15)">
                                  </div>
                                  <div class="col-md-6">
                             <label for="exampleInputTiempo">Imagen</label>
-                            <input class="form-control" name="imagen" id="exampleInputImagen" type="TEXT" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                              </div>
                         </div>
@@ -47,11 +47,14 @@
                              <div class="form-row">
                                 <div class="col-md-6">
                             <label for="exampleInputTiempo">Tiempo</label>
-                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Tiempo" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Tiempo" required onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                                 <div class="col-md-6">
                             <label for="exampleInputUnidad">Unidad</label>
-                            <input class="form-control" id="exampleInputUnidad" name="unidad" type="TEXT" placeholder="Unidad duración" onblur="esVacio(this)  && comprobarText(this,32)">
+                             <select class="form-control" name="unidad" id="exampleSelectUnidad">
+                                  <option value="Segundos">Segundos</option>
+                                  <option value="Minutos">Minutos</option>
+                            </select> 
                         </div>
                              </div>
                         </div>
