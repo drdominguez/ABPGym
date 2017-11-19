@@ -137,7 +137,6 @@ body.fixed-nav {
 #mainNav .navbar-collapse .navbar-nav>.nav-item.dropdown>.nav-link .indicator {
     position: absolute;
     top: 5px;
-    left: 21px;
     font-size: 10px
 }
 
