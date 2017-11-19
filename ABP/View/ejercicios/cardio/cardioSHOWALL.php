@@ -44,6 +44,7 @@ $view->setVariable("title", "Estiramientos");
                                         </tr>
                                 </tfoot>
                                 <tbody>
+                                    <?php if(!empty($listaCardio)){ ?>
                                     <?php foreach($listaCardio as $cardio){ ?>
                                         <tr>
                                             <td><?php echo $cardio["idEjercicio"]; ?></td>
@@ -55,7 +56,7 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $cardio["unidad"]; ?></td><td>
                                             <td><?php echo $cardio["distancia"]; ?></td><td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php }} ?>
                                 </tbody>
                             </table>
                         </div>

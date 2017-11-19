@@ -1,6 +1,6 @@
 <?php
 $view = ViewManager::getInstance();
-$listaMusculares = $view->getVariable("estiramientos");
+$listaMusculares = $view->getVariable("musculares");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Estiramientos");
 ?>
@@ -42,6 +42,7 @@ $view->setVariable("title", "Estiramientos");
                                     </tr>
                                 </tfoot>
                                 <tbody>
+                                    <?php if(!empty($listaMusculares)){ ?>
                                     <?php foreach($listaMusculares as $muscular){ ?>
                                         <tr>
                                             <td><?php echo $muscular["idEjercicio"]; ?></td>
@@ -52,7 +53,7 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $muscular["carga"]; ?></td>
                                             <td><?php echo $muscular["repeticiones"]; ?></td><td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php }} ?>
                                 </tbody>
                             </table>
                         </div>

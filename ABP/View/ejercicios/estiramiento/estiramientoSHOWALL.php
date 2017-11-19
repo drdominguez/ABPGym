@@ -42,6 +42,7 @@ $view->setVariable("title", "Estiramientos");
                                         </tr>
                                 </tfoot>
                                 <tbody>
+                                    <?php if(!empty($listaEstiramientos)){ ?>
                                     <?php foreach($listaEstiramientos as $estiramiento){ ?>
                                         <tr>
                                             <td><?php echo $estiramiento["idEjercicio"]; ?></td>
@@ -52,7 +53,7 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $estiramiento["tiempo"]; ?></td>
                                             <td><?php echo $estiramiento["unidad"]; ?></td><td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php }} ?>
                                 </tbody>
                             </table>
                         </div>
