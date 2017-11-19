@@ -1,6 +1,6 @@
 <?php
 $view = ViewManager::getInstance();
-$listaEstiramientos = $view->getVariable("estiramientos");
+$listaCardio = $view->getVariable("cardios");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Estiramientos");
 ?>
@@ -26,6 +26,7 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Imagen") ?></th>
                                          <th><?= i18n("Tiempo") ?></th>
                                         <th><?= i18n("Unidad") ?></th>
+                                        <th><?= i18n("Distancia") ?></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -38,19 +39,21 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Imagen") ?></th>
                                         <th><?= i18n("Tiempo") ?></th>
                                         <th><?= i18n("Unidad") ?></th>
+                                        <th><?= i18n("Distancia") ?></th>
                                         <th></th>
                                         </tr>
                                 </tfoot>
                                 <tbody>
-                                    <?php foreach($listaEstiramientos as $estiramiento){ ?>
+                                    <?php foreach($listaCardio as $cardio){ ?>
                                         <tr>
-                                            <td><?php echo $estiramiento["idEjercicio"]; ?></td>
-                                            <td><?php echo $estiramiento["nombre"]; ?></td>
-                                            <td><?php echo $estiramiento["descripcion"]; ?></td>
-                                            <td><?php echo $estiramiento["video"]; ?></td>
-                                            <td><?php echo $estiramiento["imagen"]; ?></td>
-                                            <td><?php echo $estiramiento["tiempo"]; ?></td>
-                                            <td><?php echo $estiramiento["unidad"]; ?></td><td>
+                                            <td><?php echo $cardio["idEjercicio"]; ?></td>
+                                            <td><?php echo $cardio["nombre"]; ?></td>
+                                            <td><?php echo $cardio["descripcion"]; ?></td>
+                                            <td><?php echo $cardio["video"]; ?></td>
+                                            <td><?php echo $cardio["imagen"]; ?></td>
+                                            <td><?php echo $cardio["tiempo"]; ?></td>
+                                            <td><?php echo $cardio["unidad"]; ?></td><td>
+                                            <td><?php echo $cardio["distancia"]; ?></td><td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

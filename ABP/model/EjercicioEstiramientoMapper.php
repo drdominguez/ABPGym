@@ -45,8 +45,6 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 		if(parent::esAdmin()){//todos los estiramientos del sistema
 			$stmt = $this->db->prepare("SELECT ejercicio.*, estiramiento.tiempo, estiramiento.unidad FROM ejercicio, estiramiento WHERE ejercicio.idEjercicio = estiramiento.idEjercicio");
 			$stmt -> execute();
-			var_dump($stmt);
-			var_dump("HOLAHOLAHOLA");
 			$lista = $stmt->fetchAll();
 		}
 		if(parent::esEntrenador()){//los ejercicios de estiramiento de un entrenador concreto

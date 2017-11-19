@@ -77,7 +77,7 @@ CREATE TABLE `administrador` (
 CREATE TABLE `cardio` (
   `idEjercicio` bigint(20) NOT NULL,
   `tiempo` smallint(6) DEFAULT NULL,
-  `unidad` char(1) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `unidad` varchar(8) COLLATE utf8_spanish_ci DEFAULT NULL,
   `distancia` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -815,11 +815,11 @@ INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `emai
 --
 -- Dumping data for table `superusuario`
 --
-
 INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
 ('44497121X'),
 ('53192250N');
-  
+INSERT INTO `administrador`(`dniAdministrador`) VALUES('44497121X'),
+('53192250N');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

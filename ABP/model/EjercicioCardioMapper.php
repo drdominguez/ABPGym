@@ -36,5 +36,19 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 		}
 		return false;
 	}
+
+	public function listarCardio(){
+		if(parent::esAdmin()){//todos los estiramientos del sistema
+			$stmt = $this->db->prepare("SELECT ejercicio.*, cardio.tiempo, cardio.unidad, cardio.distancia FROM ejercicio, cardio WHERE ejercicio.idEjercicio = cardio.idEjercicio");
+			$stmt -> execute();
+			$lista = $stmt->fetchAll();
+		}
+		if(parent::esEntrenador()){//los ejercicios de cardio de un entrenador concreto
+			$stmt1 = $this->db->prepare("SELECT ejercicio.*, cardio.tiempo, cardio.unidad, cardio.distancia FROM ejercicio, cardio, superusuario_ejercicio se WHERE se.dniSuperUsuario=? AND se.idEjercicio=cardio.idEjercicio AND ejercicio.idEjercicio=cardio.idEjercicio");
+			$stmt -> execute(array($_SESSION["currentuser"]));
+			$lista = $stmt->fetchAll();
+		}
+		return $lista;
+	}
 }
 ?>

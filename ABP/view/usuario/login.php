@@ -28,7 +28,9 @@ $view = ViewManager::getInstance();
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">GymApp</div>
                 <div class="card-body">
-                    <div id="flash"><?= $view->popFlash() ?></div>
+                    <ol class="breadcrumb">
+                    <div id="flash"><?= $view->popFlash()?></div>
+                </ol>
                     <form name='Form' action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Login</label>

@@ -36,5 +36,19 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 		}
 		return false;
 	}
+
+	public function listarMuscular(){
+		if(parent::esAdmin()){//todos los estiramientos del sistema
+			$stmt = $this->db->prepare("SELECT ejercicio.*, muscular.carga, muscular.repeticiones FROM ejercicio, muscular WHERE ejercicio.idEjercicio = muscular.idEjercicio");
+			$stmt -> execute();
+			$lista = $stmt->fetchAll();
+		}
+		if(parent::esEntrenador()){//los ejercicios de muscular de un entrenador concreto
+			$stmt1 = $this->db->prepare("SELECT ejercicio.*, muscular.carga, muscular.repeticiones FROM ejercicio, muscular, superusuario_ejercicio se WHERE se.dniSuperUsuario=? AND se.idEjercicio=muscular.idEjercicio AND ejercicio.idEjercicio=muscular.idEjercicio");
+			$stmt -> execute(array($_SESSION["currentuser"]));
+			$lista = $stmt->fetchAll();
+		}
+		return $lista;
+	}
 }
 ?>

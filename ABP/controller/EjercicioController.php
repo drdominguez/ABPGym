@@ -95,7 +95,14 @@ class EjercicioController extends BaseController{
 	*/
     public function cardioListar() {
        $this->cardioMapper = new EjercicioCardioMapper();
-
+       $listaCardio = $this->cardioMapper->listarCardio();
+       if(!isset($listaCardio) OR empty($listaCardio)){
+            $errors["username"] = "No hay cardios disponibles";
+            $this->view->setFlash($errors["username"]);
+        }else{
+            $this->view->setVariable("cardios", $listaCardio);
+        }
+        $this->view->render("ejercicios/cardio", "cardioSHOWALL");
     }
 
      /*muscularADD
@@ -108,7 +115,6 @@ class EjercicioController extends BaseController{
             $muscular = new EjercicioMuscular('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"], $_POST["carga"], $_POST["repeticiones"]);
             if($this->muscularMapper->addMuscular($muscular)){
                $this->view->setFlash("Ejercicio Añadido Corectamente");
-
             }else{
                 $errors["username"] = "El ejercicio no se ha añadido corectamente";
                 $this->view->setFlash($errors["username"]);
@@ -130,8 +136,15 @@ class EjercicioController extends BaseController{
 	*Muestra una lista con todos los muscular
 	*/
     public function muscularListar() {
-    	$this->muscularMapper = new EjercicioMuscularMapper();
-
+        $this->muscularMapper = new EjercicioMuscularMapper();
+    	$listaMuscular = $this->muscularMapper->listarMuscular();
+       if(!isset($listaMuscular) OR empty($listaMuscular)){
+            $errors["username"] = "No hay musculares disponibles";
+            $this->view->setFlash($errors["username"]);
+        }else{
+            $this->view->setVariable("musculares", $listaMuscular);
+        }
+        $this->view->render("ejercicios/muscular", "muscularSHOWALL");
     }
 
 }
