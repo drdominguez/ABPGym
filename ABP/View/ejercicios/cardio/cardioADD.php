@@ -62,7 +62,7 @@
                              <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Distancia</label>
-                                    <input class="form-control" name="distancia" id="exampleInputDistancia" type="TEXT" aria-describedby="emailHelp" placeholder="Distancia" required onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="distancia" id="exampleInputDistancia" type="TEXT" aria-describedby="emailHelp" placeholder="Distancia" onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
                              </div>
                         </div>
