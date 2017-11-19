@@ -4,12 +4,20 @@ require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/UsuarioMapper.php");
 
-class LoginController extends BaseController{
+class LoginController{
 
 	private $UsuarioMapper;
-
+    private $view;
 	public function __construct() {
-		parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
+        $this->view = ViewManager::getInstance();
+        // get the current user and put it to the view
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        if(isset($_SESSION["currentuser"])) {
+            $this->currentUser = new Usuario();
+            //add current user to the view, since some views require it
+        }
 		$this->UsuarioMapper = new UsuarioMapper();
 	}
 	

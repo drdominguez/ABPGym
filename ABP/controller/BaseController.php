@@ -40,6 +40,8 @@ class BaseController {
 			$this->currentUser = new Usuario();
 			//add current user to the view, since some views require it
 			
+		}else{//si no hay current user hay que iniciar sesion
+			$this->view->redirect("Login", "logout");
 		}
 	}
 }
