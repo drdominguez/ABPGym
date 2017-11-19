@@ -38,18 +38,11 @@ Class EjercicioMapper{
 		}
 		return false;
 	}
-	protected function permisosEjercicio($idEjercicio){
-		/*Comprobar si el susuario es un administrador*/
+	protected function esAdmin(){
 		$stmt = $this->db->prepare("SELECT dni FROM administrador WHERE dniAdministrador=?");
 		$stmt->execute(array($_SESSION["currentuser"]));
 		if ($stmt->fetchColumn() > 0) {
            	 return true;
-		}else{//comprobar si ha creado el usuario actual ese ejercicio si no no tiene permisos sobre el
-			$stmt = $this->db->prepare("SELECT * FROM superusuario_ejercicio WHERE dniSuperUsuario=? AND idEjercicio=?");
-			$stmt->execute(array($_SESSION["currentuser"], $idEjercicio));
-			if ($stmt->fetchColumn() > 0) {
-           	 return true;
-        	}
 		}
 		return false;
 	}
@@ -62,5 +55,6 @@ Class EjercicioMapper{
 		}
 		return false;
 	}
+
 }
 ?>

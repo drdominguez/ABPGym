@@ -42,7 +42,7 @@ class EjercicioController extends BaseController{
 	*Si se llama con un get carga la vista
 	*si se llama con un post añade el estiramiento
 	*/
-    public function EstiramientoRemove() {
+    public function estiramientoRemove() {
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
 
     }
@@ -50,7 +50,7 @@ class EjercicioController extends BaseController{
     /*EstiramientoListar
 	*Muestra una lista con todos los estiramientos
 	*/
-    public function EstiramientoListar() {
+    public function estiramientoListar() {
        $this->estiramientoMapper = new EjercicioEstiramientoMapper();
 
     }
