@@ -147,24 +147,6 @@
                                     <span data-toggle="collapse" href="#collapseAñadir">Añadir 
                                     </span>
                                 </a>
-                                 <ul class="sidenav-third-level collapse" id="collapseAñadir">
-	                            	<li>
-                                        <a href="./index.php?controller=Ejercicio&amp;action=EstiramientoADD">
-                                            <i class="fa fa-fw fa-link"></i> Estiramiento
-                                        </a>
-                           			</li>
-                           			<li>
-	                            		<a href="./index.php?controller=Ejercicio&amp;action=cardioADD">
-                                            <i class="fa fa-fw fa-link"></i> Cardio
-                                        </a>
-                           			</li>
-                           			<li>
-	                            		<a href="./index.php?controller=Ejercicio&amp;action=muscularADD">
-                                            <i class="fa fa-fw fa-link"></i> Muscular
-                                        </a>         
-                                        
-                           			</li>
-	                            </ul>
                             </li>
                             <li class="nav-item" data-placement="right" title="Eliminar">
                                 <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEliminar">
@@ -172,24 +154,6 @@
                                     <span data-toggle="collapse" href="#collapseEliminar">Eliminar 
                                     </span>
                                 </a>
-                                 <ul class="sidenav-third-level collapse" id="collapseEliminar">
-                                    <li>
-                                        <a href="../controller/EjercicioController.php?action=ADD">
-                                            <i class="fa fa-fw fa-link"></i> Estiramiento
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/EjercicioController.php?action=ADD">
-                                            <i class="fa fa-fw fa-link"></i> Cardio
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/EjercicioController.php?action=ADD">
-                                            <i class="fa fa-fw fa-link"></i> Muscular
-                                        </a>         
-                                        
-                                    </li>
-                                </ul>
                             </li>
                             <li class="nav-item" data-placement="right" title="Editar">
                                 <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEditar">
@@ -197,24 +161,6 @@
                                     <span data-toggle="collapse" href="#collapseEditar">Editar
                                     </span>
                                 </a>
-                                 <ul class="sidenav-third-level collapse" id="collapseEditar">
-                                    <li>
-                                        <a href="../controller/EjercicioController.php?action=ADD">
-                                            <i class="fa fa-fw fa-link"></i> Estiramiento
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/EjercicioController.php?action=ADD">
-                                            <i class="fa fa-fw fa-link"></i> Cardio
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/EjercicioController.php?action=ADD">
-                                            <i class="fa fa-fw fa-link"></i> Muscular
-                                        </a>         
-                                        
-                                    </li>
-                                </ul>
                             </li>
                             <li class="nav-item" data-placement="right" title="VerEjercicios">
                                 <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseVerEjercicios">
@@ -222,24 +168,6 @@
                                     <span data-toggle="collapse" href="#collapseAñadir">Ver Ejercicios 
                                     </span>
                                 </a>
-                                 <ul class="sidenav-third-level collapse" id="collapseVerEjercicios">
-                                    <li>
-                                        <a href="./index.php?controller=Ejercicio&amp;action=estiramientoListar">
-                                            <i class="fa fa-fw fa-link"></i> Estiramiento
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./index.php?controller=Ejercicio&amp;action=cardioListar">
-                                            <i class="fa fa-fw fa-link"></i> Cardio
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./index.php?controller=Ejercicio&amp;action=muscularListar">
-                                            <i class="fa fa-fw fa-link"></i> Muscular
-                                        </a>         
-                                        
-                                    </li>
-                                </ul>
                             </li>
                         </ul>
                     </li>
