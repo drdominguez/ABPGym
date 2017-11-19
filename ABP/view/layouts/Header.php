@@ -40,7 +40,6 @@
     </head>
 
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-        <img src="./view/Icons/background.png">
 
 
       
