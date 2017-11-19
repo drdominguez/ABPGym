@@ -171,5 +171,10 @@
                 'Enviar' => 'Enviar',
                 'Mostrar notificacion' => 'Amosar notificacion',
                 'Ver Actividades' => 'Mostrar Actividades',
-                'Mostrar todas las notificaciones' => 'Mostrar todas as notificacións');
+                'Mostrar todas las notificaciones' => 'Mostrar todas as notificacións',
+                'Tabla sin datos' => 'Táboa sen datos',
+                'Último' => 'Último',
+                'Anterior' => 'Anterior',
+                'Siguiente' => 'Seguinte',
+                'Mostrando _START_ a _END_ de _TOTAL_ elementos' => 'Amosando _START_ a _END_ de _TOTAL_ elementos');
     ?>

@@ -10853,7 +10853,7 @@
                      *      } );
                      *    } );
                      */
-                    "sLast": "Último",
+                    "sLast": i18nMessages['Último'],
 
 
                     /**
@@ -10876,7 +10876,7 @@
                      *      } );
                      *    } );
                      */
-                    "sNext": "Siguiente",
+                    "sNext": i18nMessages['Siguiente'],
 
 
                     /**
@@ -10899,7 +10899,7 @@
                      *      } );
                      *    } );
                      */
-                    "sPrevious": "Anterior"
+                    "sPrevious": i18nMessages['Anterior'],
                 },
 
                 /**
@@ -10922,7 +10922,7 @@
                  *      } );
                  *    } );
                  */
-                "sEmptyTable": "Tabla sin datos",
+                "sEmptyTable": i18nMessages['Tabla sin datos'],
 
 
                 /**
@@ -10954,7 +10954,7 @@
                  *      } );
                  *    } );
                  */
-                "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                "sInfo": i18nMessages['Mostrando _START_ a _END_ de _TOTAL_ elementos'],
 
 
                 /**

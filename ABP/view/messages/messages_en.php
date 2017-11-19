@@ -177,5 +177,10 @@
                 'Enviar' => 'Send',
                 'Mostrar notificacion' => 'Show Notification',
                 'Ver Actividades' => 'Show Activities',
-                'Mostrar todas las notificaciones' => 'Show All Notifications');
+                'Mostrar todas las notificaciones' => 'Show All Notifications',
+                'Tabla sin datos' => 'Table without data',
+                'Último' => 'Last',
+                'Anterior' => 'Previous',
+                'Siguiente' => 'Next',
+                'Mostrando _START_ a _END_ de _TOTAL_ elementos' => 'Showing _START_ to _END_ of _TOTAL_ elements');
 ?>
