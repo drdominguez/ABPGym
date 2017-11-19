@@ -1,18 +1,15 @@
 
-<?php 
-require_once(__DIR__."/../../core/ViewManager.php");
+<?php
 $view = ViewManager::getInstance();
-
 $listaEstiramientos = $view->getVariable("estiramientos");
 $currentuser = $view->getVariable("currentusername");
-
 $view->setVariable("title", "Estiramientos");
 ?>
 <div class="content-wrapper">
             <div class="container-fluid">
                  <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
-                    <div id="flash"><?= $view->popFlash() ?></div>
+                    <div id="flash"><?= $view->popFlash()?></div>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
@@ -46,17 +43,15 @@ $view->setVariable("title", "Estiramientos");
                                         </tr>
                                 </tfoot>
                                 <tbody>
-                                    <?php foreach($notificaciones as $notificacion){ ?>
+                                    <?php foreach($listaEstiramientos as $estiramiento){ ?>
                                         <tr>
-                                            <td><?php echo $notificacion->getFecha(); ?> </td>
-                                            <td><?php echo $notificacion->getAsunto(); ?></td>
-                                            <td><?php echo $notificacion->getContenido(); ?></td>
-                                            <td>
-                                                <a href='./index.php?controller=Notificacion&amp;action=NotificacionView&amp;idNotificacion=<?php echo $notificacion->getIdNotificacion();?>'>
-                                                <img src='./view/Icons/detalle.png'>
-                                                </a>
-                                            </td>
-
+                                            <td><?php  $estiramiento["idEjercicio"]; ?></td>
+                                            <td><?php  $estiramiento["nombre"]; ?></td>
+                                            <td><?php  $estiramiento["descripción"]; ?></td>
+                                            <td><?php  $estiramiento["video"]; ?></td>
+                                            <td><?php  $estiramiento["imagen"]; ?></td>
+                                            <td><?php  $estiramiento["tiempo"]; ?></td>
+                                            <td><?php  $estiramiento["unidad"]; ?></td><td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

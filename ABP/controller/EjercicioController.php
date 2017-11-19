@@ -51,8 +51,15 @@ class EjercicioController extends BaseController{
 	*Muestra una lista con todos los estiramientos
 	*/
     public function estiramientoListar() {
-       $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-
+        $this->estiramientoMapper = new EjercicioEstiramientoMapper();
+        $listaEstiramiento = $this->estiramientoMapper->listarEstiramiento();
+        if(!isset($listaEstiramiento) OR empty($listaEstiramiento)){
+             $errors["username"] = "No hay estiramientos disponibles";
+                $this->view->setFlash($errors["username"]);
+        }else{
+            $this->view->setVariable("estiramientos", $listaEstiramiento);
+        }
+        $this->view->render("ejercicios/estiramiento", "estiramientoSHOWALL");
     }
 
 

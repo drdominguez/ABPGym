@@ -224,7 +224,7 @@
                                 </a>
                                  <ul class="sidenav-third-level collapse" id="collapseVerEjercicios">
                                     <li>
-                                        <a href="../controller/EjercicioController.php?action=ADD">
+                                        <a href="./index.php?controller=Ejercicio&amp;action=estiramientoListar">
                                             <i class="fa fa-fw fa-link"></i> Estiramiento
                                         </a>
                                     </li>

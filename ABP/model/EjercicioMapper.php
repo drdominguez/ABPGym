@@ -39,7 +39,7 @@ Class EjercicioMapper{
 		return false;
 	}
 	protected function esAdmin(){
-		$stmt = $this->db->prepare("SELECT dni FROM administrador WHERE dniAdministrador=?");
+		$stmt = $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
 		$stmt->execute(array($_SESSION["currentuser"]));
 		if ($stmt->fetchColumn() > 0) {
            	 return true;
@@ -52,6 +52,15 @@ Class EjercicioMapper{
 		$stmt-> execute(array($_SESSION["currentuser"]));
 		if ($stmt->fetchColumn()>0){
 			return true;
+		}
+		return false;
+	}
+
+	protected function esEntrenador(){
+		$stmt = $this->db->prepare("SELECT dniEntrenador FROM entrenador WHERE dniEntrenador=?");
+		$stmt->execute(array($_SESSION["currentuser"]));
+		if ($stmt->fetchColumn() > 0) {
+           	 return true;
 		}
 		return false;
 	}
