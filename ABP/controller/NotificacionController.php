@@ -5,9 +5,7 @@ require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/NotificacionMapper.php");
 require_once(__DIR__ . "/../model/Notificacion.php");
 
-
 class NotificacionController extends BaseController{
-
     private $notificacionMapper;
 
     public function __construct() {
@@ -44,37 +42,27 @@ class NotificacionController extends BaseController{
        $this->view->setVariable("notificaciones",$notificaciones);
        $this->view->render("notificacion","notificacionSHOWALL");
     }
-
-
+    
     /*Notificacion SHOW CURRENT
     *Si se llama con un get carga la vista
     *si se llama con un post muestra notificacion
     */
     public function NotificacionView() {
-
         if (!isset($_GET["idNotificacion"])) {
             throw new Exception("El id es obligatorio");
         }
-
         $idNotificacion = $_GET["idNotificacion"];
-
         // find the notification object in the database
         $notificacion = $this->notificacionMapper->findById($idNotificacion);
-
-
         if ($notificacion == NULL) {
             throw new Exception("No existe notificacion con este id: ".$idNotificacion);
         }
-
         // put the notification object to the view
         $this->view->setVariable("notificacion", $notificacion);
         $this->notificacionMapper->visto($notificacion->getIdNotificacion(),$_SESSION['currentuser']);
-
         // render the view (/view/posts/view.php)
         $this->view->render("notificacion", "notificacionSHOWCURRENT");
     }
-
-
 
 }
 ?>
