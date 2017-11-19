@@ -8,7 +8,7 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="../Controller/usuario_Controller.php">Añadir Actividad</a>
+                        <a href="../Controller/actividadController.php">Añadir Actividad</a>
                     </li>
                     <li class="breadcrumb-item active">ADD</li>
                 </ol>
@@ -18,7 +18,7 @@
                         <i class="fa fa-table"></i> Añadir Actividad Individual</div>
                     <div class="card-body"> 
                     <div id="flash"><?= $view->popFlash() ?></div>
-                    <form name='Form' id="form1" action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
+                    <form name='Form' id="form1" action="index.php?controller=Actividad&amp;action=individualADD" class="form-signin" accept-charset="UTF-8" method="POST">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
@@ -33,7 +33,7 @@
                         </div>
                     </form>
                     <button type="button" onclick="window.location.href='../Controller/ActividadController.php?action=default'" class="btn btn-default">Volver</button>
-                    <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button>
+                            <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button>
                     </div>
                 </div>
             </div>

@@ -22,9 +22,13 @@ class ActividadController extends BaseController{
     *si se llama con un post añade la actividad
     */
     public function actividadListar() {
-       $actividades = $this->notificacionMapper->listar();
-       $this->view->setVariable("actividades",$actividad);
-       $this->view->render("actividad","actividadSHOWALL");
+        $this->actividadMapper = new ActividadMapper;
+        $listaActividades = $this->actividadMapper->listar();
+        if(isset($listaActividades)OR empty($listaActividades)){
+            $errors["username"] = "No hay actividades disponibles";
+        }else{
+            $this->view->setVariable("actividades",$listaActividades);
+        }$this->view->render("actividad","actividadSHOWALL");
 
     }
     public function individualADD() {

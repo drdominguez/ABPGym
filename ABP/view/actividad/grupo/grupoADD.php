@@ -8,7 +8,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="../Controller/usuario_Controller.php">Añadir Actividad</a>
+                    <a href="../Controller/actividadController.php">Añadir Actividad</a>
                 </li>
                 <li class="breadcrumb-item active">ADD</li>
             </ol>

@@ -45,17 +45,17 @@ class ActividadMapper{
         if($this->esAdministrador()){
             $stmt = $this->db->query("SELECT * from actividad");
         }else{
-             $stmt = $this->db->prepare("SELECT A.idActividad, A.nombre, A.precio, G.instalaciones, G.plazas from actividad A, grupo G, individual I WHERE A.idActividad=? AND A.idActividad=G.idActividad=I.Actividad");
+             $stmt = $this->db->prepare("SELECT A.idActividad, A.nombre, A.precio, G.instalaciones, G.plazas from actividad A, grupo G, individual I WHERE A.idActividad=? AND ((A.idActividad=G.idActividad) OR (A.idActividad = I.Actividad))");
              $stmt -> execute(array($_SESSION['currentuser']));
         }
             $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $actividades = array();
 
-            foreach ($notificaciones_db as $notificacion) {
-                array_push($notificaciones, new Notificacion($notificacion['idNotificacion'],$notificacion['dniAdministrador'],$notificacion['Asunto'],$notificacion['contenido'],$notificacion['fecha']));
+            foreach ($actividades_db as $actividades) {
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['instalaciones'],$actividad['plazas']));
             
             }
-        return $notificaciones;
+        return $actividades;
         
         }
     protected function permisosActividad($idActividad){

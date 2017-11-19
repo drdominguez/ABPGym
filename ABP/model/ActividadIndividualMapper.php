@@ -3,6 +3,7 @@
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/ActividadMapper.php");
 require_once(__DIR__."/Actividad.php");
+require_once(__DIR__."/ActividadIndividual.php");
 
 
 Class ActividadIndividualMapper extends ActividadMapper{
@@ -13,7 +14,7 @@ Class ActividadIndividualMapper extends ActividadMapper{
 	}
 	public function addIndividual($actividad){
 		parent::add($actividad);//llama al add de la clase padre
-		$this->idActividad = db2_last_insert_id($this->db);
+		$this->idActividad = $this->db->lastInsertId();
  		if(parent::esAdministrador()){
 			$stmt = $this->db->prepare("INSERT INTO individual(idActividad) VALUES (?)");
 			$stmt -> execute(array($this->idActividad));
