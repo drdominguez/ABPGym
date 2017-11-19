@@ -30,8 +30,11 @@ class NotificacionController extends BaseController{
                 $errors["username"] = "La notificación no se ha añadido corectamente";
                 $this->view->setFlash($errors["username"]);
             }
+             $this->view->redirect("Notificacion", "NotificacionListar");
+        }else{
+            $this->view->render("notificacion","notificacionADD");
         }
-        $this->view->render("notificacion","notificacionADD");
+        
     }
 
     /*NotificacionListar

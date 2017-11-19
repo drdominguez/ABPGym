@@ -3,6 +3,7 @@
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/TablaMapper.php");
+require_once(__DIR__ . "/../model/EjercicioMapper.php");
 require_once(__DIR__ . "/../model/Tabla.php");
 
 class TablaController extends BaseController{
@@ -19,19 +20,26 @@ class TablaController extends BaseController{
     *si se llama con un post añade la notificacion
     */
     public function TablaADD() {
-        if(isset($_POST["tipo"]) && isset($_POST["nombre"])){//si existen los post añado la notificacion
+
+        if(isset($_POST["tipo"]) && isset($_POST["nombre"]) && isset($_POST["ejercicios"])){//si existen los post añado la notificacion
+            $ejercicios = $_POST["ejercicios"];
             $tabla = new Tabla();
             $tabla->setTipo($_POST["tipo"]);
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
-            if($this->tablaMapper->add($tabla)){
+
+            if($this->tablaMapper->add($tabla,$ejercicios)){
                $this->view->setFlash("Tabla Añadida Correctamente");
             }else{
                 $errors["username"] = "La tabla no se ha añadido corectamente";
                 $this->view->setFlash($errors["username"]);
             }
-        }
-        $this->view->render("tabla","tablaADD");
+            $this->view->redirect("Tabla", "tablaListar");
+        }else{
+            $ejercicios = $this->tablaMapper->listarEjercicios();
+            $this->view->setVariable("ejercicios",$ejercicios);
+            $this->view->render("tabla","tablaADD");
+    }
     }
 
 

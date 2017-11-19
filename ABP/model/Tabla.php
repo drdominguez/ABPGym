@@ -25,7 +25,7 @@ class Tabla
 	public function getComentario(){
 		return $this->comentario;
 	}
-	public function seNombre($nombre){
+	public function setNombre($nombre){
 		$this->nombre=$nombre;
 	}
 	public function setTipo($tipo){

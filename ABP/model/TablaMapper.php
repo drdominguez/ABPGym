@@ -5,6 +5,8 @@ require_once(__DIR__."/Tabla.php");
 
 
 
+
+
 Class TablaMapper{
     protected $db;
     protected $idTabla;
@@ -12,9 +14,20 @@ Class TablaMapper{
         $this->db=PDOConnection::getInstance();
     }
     
-    public function add($tabla){
-    
+    public function add($tabla,$ejercicios){
+         $stmt = $this->db->prepare("INSERT INTO tabla(tipo,comentario,nombre) VALUES (?,?,?)");
+        if($this->esSuperusuario()){
+            $stmt->execute(array($tabla->getTipo(),$tabla->getComentario(),$tabla->getNombre()));
+            $this->idTabla= $this->db->lastInsertId();
+            foreach ($ejercicios as $ejercicio) {
+                $stmt = $this->db->prepare("INSERT INTO tabla_ejercicios(idTabla,idEjercicio) VALUES (?,?)");
+                $stmt->execute(array($this->idTabla,$ejercicio));
+            }
+            return true;
+        }else{
+            return false;
     }
+}
 
 
     public function listar(){
@@ -37,6 +50,21 @@ Class TablaMapper{
         }
 
 
+public function listarEjercicios(){
+
+        if($this->esAdministrador()){
+            $stmt = $this->db->query("SELECT * from ejercicio");
+            $tablas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tablas = array();
+
+            foreach ($tablas_db as $tabla) {
+                array_push($tablas, new Ejercicio($tabla['idEjercicio'],$tabla['nombre'],$tabla['descripcion'],$tabla['video'],$tabla['imagen']));
+            
+            }
+        return $tablas;
+        
+        }
+    }
 
     public function findById($idTabla){
             $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla=?");
@@ -64,6 +92,15 @@ Class TablaMapper{
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
         $stmt->execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0){
+            return true;
+        }
+        return false;
+    }
+
+        protected function esSuperusuario(){
+        $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
+        $stmt-> execute(array($_SESSION["currentuser"]));
         if ($stmt->fetchColumn()>0){
             return true;
         }
