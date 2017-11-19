@@ -15,7 +15,7 @@
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Añadir Estiramiento</div>
+                        <i class="fa fa-table"></i> Añadir Cardio</div>
                     <div class="card-body">      
                     <div id="flash"><?= $view->popFlash() ?></div>
                     <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=cardioADD" class="form-signin" accept-charset="UTF-8" method="POST">

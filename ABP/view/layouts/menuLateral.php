@@ -154,12 +154,12 @@
                                         </a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=cardioADD">
+	                            		<a href="./index.php?controller=Ejercicio&amp;action=cardioADD">
                                             <i class="fa fa-fw fa-link"></i> Cardio
                                         </a>
                            			</li>
                            			<li>
-	                            		<a href="../controller/EjercicioController.php?action=muscularADD">
+	                            		<a href="./index.php?controller=Ejercicio&amp;action=muscularADD">
                                             <i class="fa fa-fw fa-link"></i> Muscular
                                         </a>         
                                         

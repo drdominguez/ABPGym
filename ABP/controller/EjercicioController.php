@@ -62,7 +62,7 @@ class EjercicioController extends BaseController{
 	*/
     public function cardioADD() {
         $this->cardioMapper = new EjercicioCardioMapper();
-        if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tiempo"]) && isset($_POST["unidad"] && isset($_POST["distancia"]))){//si existen los post añado el ejercicio
+        if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tiempo"]) && isset($_POST["unidad"]) && isset($_POST["distancia"])){//si existen los post añado el ejercicio
             $cardio = new EjercicioCardioMapper('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"],$_POST["distancia"]);
             if($this->estiramientoMapper->addCardio($cardio)){
                $this->view->setFlash("Ejercicio Añadido Corectamente");
