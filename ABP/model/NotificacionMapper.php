@@ -29,12 +29,11 @@ Class NotificacionMapper{
                 $stmt = $this->db->prepare("INSERT INTO notificacion_deportista(dniAdministrador,dniDeportista,idNotificacion,visto) VALUES (?,?,?,?)");
             $stmt->execute(array($_SESSION['currentuser'],$deportista->getDni(),$this->idNotificacion,0));
             }
-            return true;
-        }else{
-            return false;
         }
-
+        return true;
         }else{
+                        echo "3";
+            exit;
             return false;
         }
     }

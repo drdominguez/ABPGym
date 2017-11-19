@@ -19,11 +19,11 @@ class TablaController extends BaseController{
     *si se llama con un post añade la notificacion
     */
     public function TablaADD() {
-        if(isset($_POST["Asunto"]) && isset($_POST["contenido"])){//si existen los post añado la notificacion
+        if(isset($_POST["tipo"]) && isset($_POST["nombre"])){//si existen los post añado la notificacion
             $tabla = new Tabla();
-            $tabla->setAsunto($_POST["Asunto"]);
-            $tabla->setContenido($_POST["contenido"]);
-            $tabla->setFecha(date("Y-m-d H:i:s"));
+            $tabla->setTipo($_POST["tipo"]);
+            $tabla->setNombre($_POST["nombre"]);
+            $tabla->setComentario($_POST['comentario']);
             if($this->tablaMapper->add($tabla)){
                $this->view->setFlash("Tabla Añadida Correctamente");
             }else{
@@ -33,6 +33,7 @@ class TablaController extends BaseController{
         }
         $this->view->render("tabla","tablaADD");
     }
+
 
     /*TablaListar
     *Muestra una lista con todos las Notificaciones
