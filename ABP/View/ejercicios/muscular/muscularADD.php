@@ -18,7 +18,7 @@
                         <i class="fa fa-table"></i> Añadir Muscular</div>
                     <div class="card-body">      
                     <div id="flash"><?= $view->popFlash() ?></div>
-                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=EstiramientoADD" class="form-signin" accept-charset="UTF-8" method="POST">
+                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=muscularADD" class="form-signin" accept-charset="UTF-8" method="POST">
                     	<div class="form-group">
                             <div class="form-row">
                               <div class="col-md-6">
@@ -46,22 +46,20 @@
                         <div class="form-group">
                              <div class="form-row">
                                 <div class="col-md-6">
-                            <label for="exampleInputCarga">Carga</label>
-                            <input class="form-control" name="carga" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Carga" required onblur="esVacio(this)  && comprobarText(this,15)">
-                        </div>
+                                    <label for="exampleInputCarga">Carga</label>
+                                    <input class="form-control" name="carga" id="exampleInputCarga" type="TEXT" aria-describedby="emailHelp" placeholder="Carga" required onblur="esVacio(this)  && comprobarText(this,15)">
+                                </div>
                                 <div class="col-md-6">
-                             <label for="exampleInputCarga">Repeticiones</label>
-                            <input class="form-control" name="repeticiones" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Repeticiones" required onblur="esVacio(this)  && comprobarText(this,15)">
-                        </div>
+                                     <label for="exampleInputCarga">Repeticiones</label>
+                                    <input class="form-control" name="repeticiones" id="exampleInputRepeticiones" type="TEXT" aria-describedby="emailHelp" placeholder="Repeticiones" required onblur="esVacio(this)  && comprobarText(this,15)">
+                                </div>
                              </div>
                         </div>
-
                     </form>
-
-                    <button type="button" onclick="window.location.href='../controller/EjercicioController.php?action=default'" class="btn btn-default">Volver</button> 
-                     <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button> 
+                        <button type="button" onclick="window.location.href='../controller/EjercicioController.php?action=default'" class="btn btn-default">Volver</button> 
+                         <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button> 
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 </html>

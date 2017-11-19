@@ -14,15 +14,19 @@ class EjercicioMuscular extends Ejercicio{
         $this->carga = $carga;
         $this->repeticiones = $repeticiones;
     }
+
     public function getCarga(){
         return $this->carga;
     }
+
     public function getRepeticiones(){
         return $this->repeticiones;
     }
+
     public function setCarga($carga){
         $this->carga=$carga;
     }
+    
     public function setRepeticiones($repeticiones){
         $this->repeticiones=$repeticiones;
     }
