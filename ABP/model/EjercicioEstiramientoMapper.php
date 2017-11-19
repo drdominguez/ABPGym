@@ -21,9 +21,9 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 	}
 	public function editEstiramiento($ejercicio){
 		parent::edit($ejecicio);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
-		$stmt=$this->db-> prepare("UPDATE estiramiento SET tiempo=?, unidad=?, distancia=? WHERE idEjercicio=?");
+		$stmt=$this->db-> prepare("UPDATE estiramiento SET tiempo=?, unidad=? WHERE idEjercicio=?");
 		if(parent::permisoEjercicio($ejercicio->getId())){
-			$stmt->execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getDistancia(),$ejercicio->getId()));
+			$stmt->execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getId()));
 			return true;
 		}
 		return false;

@@ -16,7 +16,7 @@ Class EjercicioMapper{
 			$stmt = $this->db->prepare("INSERT INTO ejercicio(nombre,descripcion,video,imagen) VALUES (?,?,?,?)");
 			$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen()));
 			$this->idEjercicio = $this->db->lastInsertId();//devuelve el ultimo id insertado
-			$stmt = $this->db->prepare("INSERT INTO superusuario_ejercicio VALUES (?,?)");
+			$stmt = $this->db->prepare("INSERT INTO superusuario_ejercicio(dniSuperUsuario,idEjercicio) VALUES (?,?)");
 			$stmt -> execute(array($_SESSION["currentuser"],$this->idEjercicio));
 			return true;
 		}

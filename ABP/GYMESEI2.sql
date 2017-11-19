@@ -302,6 +302,7 @@ CREATE TABLE `superusuario` (
 --
 
 CREATE TABLE `superusuario_ejercicio` (
+  `id` bigint(20) NOT NULL,
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -559,9 +560,8 @@ ALTER TABLE `superusuario`
 -- Indexes for table `superusuario_ejercicio`
 --
 ALTER TABLE `superusuario_ejercicio`
-  ADD PRIMARY KEY (`dniSuperUsuario`,`idEjercicio`),
-  ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`),
-  ADD UNIQUE KEY `idEjercicio` (`idEjercicio`);
+  ADD PRIMARY KEY	(`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `superusuario_individual`
@@ -628,7 +628,12 @@ ALTER TABLE `tabla`
 --
 ALTER TABLE `actividad`
   MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT;
-
+  --
+--
+--
+ALTER TABLE `superusuario_ejercicio`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  
   --
 -- AUTO_INCREMENT for table `notificacion`
 --

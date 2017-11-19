@@ -24,7 +24,6 @@ class EjercicioController extends BaseController{
 	*si se llama con un post añade el estiramiento
 	*/
     public function EstiramientoADD() {
-        //nombre descripcion video imagen tiempo unidad
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
         if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tiempo"]) && isset($_POST["unidad"])){//si existen los post añado el ejercicio
             $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"]);
@@ -63,7 +62,17 @@ class EjercicioController extends BaseController{
 	*/
     public function cardioADD() {
         $this->cardioMapper = new EjercicioCardioMapper();
+        if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tiempo"]) && isset($_POST["unidad"] && isset($_POST["distancia"]))){//si existen los post añado el ejercicio
+            $cardio = new EjercicioCardioMapper('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"],$_POST["distancia"]);
+            if($this->estiramientoMapper->addCardio($cardio)){
+               $this->view->setFlash("Ejercicio Añadido Corectamente");
 
+            }else{
+                $errors["username"] = "El ejercicio no se ha añadido corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+        }
+        $this->view->render("ejercicios/cardio","cardioADD");
     }
 
     /*cardioRemove
