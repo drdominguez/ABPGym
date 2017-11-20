@@ -15,10 +15,7 @@
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Añadir Muscular</div>
-                    <div class="card-body">      
-                    <div id="flash"><?= $view->popFlash() ?></div>
-                    
+                    <div class="card-body"> 
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-4">

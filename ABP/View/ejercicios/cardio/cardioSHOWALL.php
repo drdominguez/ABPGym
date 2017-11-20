@@ -53,8 +53,9 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $cardio["video"]; ?></td>
                                             <td><?php echo $cardio["imagen"]; ?></td>
                                             <td><?php echo $cardio["tiempo"]; ?></td>
-                                            <td><?php echo $cardio["unidad"]; ?></td><td>
-                                            <td><?php echo $cardio["distancia"]; ?></td><td>
+                                            <td><?php echo $cardio["unidad"]; ?></td>
+                                            <td><?php echo $cardio["distancia"]; ?></td>
+                                            <td></td>
                                         </tr>
                                     <?php }} ?>
                                 </tbody>
