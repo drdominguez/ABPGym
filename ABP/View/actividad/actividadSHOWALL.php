@@ -6,7 +6,6 @@ $view = ViewManager::getInstance();
 $actividades = $view->getVariable("actividades");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Actividades");
-
 ?>
 
 <div class="content-wrapper">

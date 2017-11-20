@@ -25,6 +25,8 @@ class ActividadController extends BaseController{
         $this->view->setVariable("actividades",$actividades);
         $this->view->render("actividad","actividadSHOWALL");
     }
+
+    
     public function individualADD() {
         $this->individualMapper = new ActividadIndividualMapper();
         if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad

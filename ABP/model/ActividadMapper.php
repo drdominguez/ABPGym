@@ -42,22 +42,19 @@ class ActividadMapper{
     }
     public function listar(){
 
-        if($this->esAdministrador()){
             $stmt = $this->db->query("SELECT * from actividad");
-        }else{
-             $stmt = $this->db->prepare("SELECT A.idActividad, A.nombre, A.precio, G.instalaciones, G.plazas from actividad A, grupo G, individual I WHERE A.idActividad=? AND ((A.idActividad=G.idActividad) OR (A.idActividad = I.idActividad))");
-             $stmt -> execute(array($_SESSION['currentuser']));
-        }
             $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $actividades = array();
 
-            foreach ($actividades_db as $actividades) {
-                array_push($actividades, new Actividad($actividades['idActividad'],$actividades['nombre'],$actividades['precio'],$actividades['instalaciones'],$actividades['plazas']));
+            foreach ($actividades_db as $actividad) {
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio']));
             
             }
         return $actividades;
         
         }
+
+
     protected function permisosActividad($idActividad){
         /*Comprobar si el susuario es un administrador*/
         $stmt = $this->db->prepare("SELECT dni FROM administrador WHERE dniAdministrador=?");
