@@ -1,12 +1,10 @@
 <?php 
 
 require_once(__DIR__."/../../core/ViewManager.php");
+
 $view = ViewManager::getInstance();
-
 $actividades = $view->getVariable("actividades");
-$listaActividades = $view->getVariable("listaActividades");
 $currentuser = $view->getVariable("currentusername");
-
 $view->setVariable("title", "Actividades");
 
 ?>
@@ -26,39 +24,29 @@ $view->setVariable("title", "Actividades");
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                         <tr>
-                            <th><?= i18n("precio") ?></th>
-                            <th><?= i18n("nombre") ?></th>
+                            <th><?= i18n("Precio") ?></th>
+                            <th><?= i18n("Nombre") ?></th>
                             <th></th>
                         </tr>
                         </thead>
-                               
-                        <tbody>
+            <tbody>
 
 <?php
-            if(!empty($listaActividades)){
                 foreach($actividades as $actividad){
 ?>
                     <tr>
-                        <td>
-                            <?php echo $actividad->getPrecio(); ?>
-                            
-                        </td>
-                        <td>
-                            <?php echo $actividad->getNombre(); ?>
-                           
-                        </td>
+                        <td><?php echo $actividad->getPrecio(); ?></td>       
+                        <td><?php echo $actividad->getNombre(); ?></td>
                     <td>
-                    <a href='./index.php?controller=Actividad&amp;action=ActividadView&amp;idActividad=<?php echo $actividad->getIdActividadn();?>'>
-                                    <img src='./view/Icons/detalle.png'>
-                     </a>
+                   <a href='./index.php?controller=Actividad&amp;action=ActividadView&amp;idActividdad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/detalle.png'>
+                    </a>
                     </td>
 
                     </tr>
 <?php
                 }   
-            }
 ?>
-                        </tbody>
+            </tbody>
                         </table>
                         </div>
                     </div>

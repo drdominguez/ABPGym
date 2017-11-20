@@ -45,7 +45,7 @@ class ActividadMapper{
         if($this->esAdministrador()){
             $stmt = $this->db->query("SELECT * from actividad");
         }else{
-             $stmt = $this->db->prepare("SELECT A.idActividad, A.nombre, A.precio, G.instalaciones, G.plazas from actividad A, grupo G, individual I WHERE A.idActividad=? AND ((A.idActividad=G.idActividad) OR (A.idActividad = I.Actividad))");
+             $stmt = $this->db->prepare("SELECT A.idActividad, A.nombre, A.precio, G.instalaciones, G.plazas from actividad A, grupo G, individual I WHERE A.idActividad=? AND ((A.idActividad=G.idActividad) OR (A.idActividad = I.idActividad))");
              $stmt -> execute(array($_SESSION['currentuser']));
         }
             $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);

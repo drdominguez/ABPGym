@@ -2,6 +2,9 @@
 
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
+require_once(__DIR__ . "/../model/Actividad.php");
+require_once(__DIR__ . "/../model/ActividadIndividual.php");
+require_once(__DIR__ . "/../model/ActividadGrupo.php");
 require_once(__DIR__ . "/../model/ActividadMapper.php");
 require_once(__DIR__ . "/../model/ActividadIndividualMapper.php");
 require_once(__DIR__ . "/../model/ActividadGrupoMapper.php");
@@ -17,19 +20,10 @@ class ActividadController extends BaseController{
         $this->actividadMapper = new ActividadMapper();
     }
     
-    /*EstiramientoADD
-    *Si se llama con un get carga la vista
-    *si se llama con un post añade la actividad
-    */
     public function actividadListar() {
-        $this->actividadMapper = new ActividadMapper;
-        $listaActividades = $this->actividadMapper->listar();
-        if(isset($listaActividades)OR empty($listaActividades)){
-            $errors["username"] = "No hay actividades disponibles";
-        }else{
-            $this->view->setVariable("actividades",$listaActividades);
-        }$this->view->render("actividad","actividadSHOWALL");
-
+        $actividades = $this->actividadMapper->listar();
+        $this->view->setVariable("actividades",$actividades);
+        $this->view->render("actividad","actividadSHOWALL");
     }
     public function individualADD() {
         $this->individualMapper = new ActividadIndividualMapper();
