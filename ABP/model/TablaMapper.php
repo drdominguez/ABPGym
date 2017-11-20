@@ -38,14 +38,7 @@ Class TablaMapper
 
     public function listar()
     {
-        if($this->esAdministrador())
-        {
-            $stmt = $this->db->query("SELECT * from tabla");
-        }else
-        {
-            $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion");
-            $stmt->execute(array($_SESSION['currentuser']));
-        }
+        $stmt = $this->db->query("SELECT * from tabla");
         $tablas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $tablas = array();
         foreach ($tablas_db as $tabla) 
