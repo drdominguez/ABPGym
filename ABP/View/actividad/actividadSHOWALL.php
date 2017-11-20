@@ -10,19 +10,20 @@ $view->setVariable("title", "Actividades");
 
 <div class="content-wrapper">
     <div class="container-fluid">
-         <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-        <div id="flash"><?= $view->popFlash() ?></div>
-    </ol>
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <div id="flash"><?= $view->popFlash() ?></div>
+        </ol>
     <!-- Example DataTables Card-->
             <div class="card mb-3">
-                <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar todas las actividades") ?></div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+            <div class="card-header">
+                <i class="fa fa-table"></i><?= i18n("Mostrar todas las Actividades") ?>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
-                        <tr>
+                            <tr>
                             <th><?= i18n("Nombre") ?></th>
                             <th><?= i18n("Precio") ?></th> 
                             <th></th>
@@ -59,3 +60,6 @@ $view->setVariable("title", "Actividades");
             </div>
     </div>
 </div>
+<?php
+                  
+?>

@@ -24,9 +24,6 @@ class I18n {
 	const CURRENT_LANGUAGE_SESSION_VAR="__currentlang__";
 
 	public function __construct(){
-		if (session_status() == PHP_SESSION_NONE) {
-			session_start();
-		}
 
 		if (isset($_SESSION[self::CURRENT_LANGUAGE_SESSION_VAR])) {
 			$this->setLanguage(
