@@ -10,7 +10,8 @@ class Notificacion
     private $contenido;
     private $fecha;
 
-    function __construct($idNotificacion = NULL, $dniAdministrador = NULL,$Asunto = NULL,$contenido = NULL,$fecha = NULL){
+    function __construct($idNotificacion = NULL, $dniAdministrador = NULL,$Asunto = NULL,$contenido = NULL,$fecha = NULL)
+    {
 
         $this->idNotificacion = $idNotificacion;
         $this->dniAdministrador = $dniAdministrador;
@@ -20,43 +21,55 @@ class Notificacion
 
     }
 
-    public function getIdNotificacion(){
+
+
+    public function getIdNotificacion()
+    {
         return $this->idNotificacion;
     }
 
-    public function getDniAdministrador(){
+    public function getDniAdministrador()
+    {
         return $this->dniAdministrador;
     }
 
-    public function getAsunto(){
+    public function getAsunto()
+    {
         return $this->Asunto;
     }
 
-    public function getContenido(){
+    public function getContenido()
+    {
         return $this->contenido;
     }
 
-    public function getFecha(){
+    public function getFecha()
+    {
         return $this->fecha;
     }
 
-    public function setIdNotificacion($idNotificacion){
+    public function setIdNotificacion($idNotificacion)
+    {
         $this->idNotificacion = $idNotificacion;
     }
 
-    public function setDniAdministrador($dniAdministrador){
+    public function setDniAdministrador($dniAdministrador)
+    {
         $this->dniAdministrador = $dniAdministrador;
     }
 
-    public function setAsunto($Asunto){
+    public function setAsunto($Asunto)
+    {
         $this->Asunto = $Asunto;
     }
 
-    public function setContenido($contenido){
+    public function setContenido($contenido)
+    {
         $this->contenido = $contenido;
     }
 
-    public function setFecha($fecha){
+    public function setFecha($fecha)
+    {
         $this->fecha = $fecha;
     }
 }//fin de clase

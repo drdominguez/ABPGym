@@ -6,32 +6,41 @@ class Tabla
     private $comentario;
     private $nombre;
 
-    function __construct($idTabla=NULL,$tipo=NULL,$comentario=NULL,$nombre=NULL){
+    function __construct($idTabla=NULL,$tipo=NULL,$comentario=NULL,$nombre=NULL)
+    {
     	$this->idTabla = $idTabla;
         $this->tipo = $tipo;
         $this->comentario = $comentario;
         $this->nombre = $nombre;  
-}
+	}
 	
-	public function getIdTabla(){
+
+	public function getIdTabla()
+	{
 		return $this->idTabla;
 	}
-	public function getNombre(){
+	public function getNombre()
+	{
 		return $this->nombre;
 	}
-	public function getTipo(){
+	public function getTipo()
+	{
 		return $this->tipo;
 	}
-	public function getComentario(){
+	public function getComentario()
+	{
 		return $this->comentario;
 	}
-	public function setNombre($nombre){
+	public function setNombre($nombre)
+	{
 		$this->nombre=$nombre;
 	}
-	public function setTipo($tipo){
+	public function setTipo($tipo)
+	{
 		$this->tipo=$tipo;
 	}
-	public function setComentario($comentario){
+	public function setComentario($comentario)
+	{
 		$this->comentario=$comentario;
 	}
 }//fin de clase

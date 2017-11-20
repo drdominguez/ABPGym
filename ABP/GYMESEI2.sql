@@ -786,7 +786,7 @@ ALTER TABLE `superusuario_individual`
 -- Constraints for table `superusuario_tabla_deportista`
 --
 ALTER TABLE `superusuario_tabla_deportista`
-  ADD CONSTRAINT `FK_SuperUsuarioTab` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`),
+  ADD CONSTRAINT `FK_SuperUsuarioTab` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_SuperUsuarioTablaDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_SuperUsuarioTalaS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
 
@@ -794,8 +794,8 @@ ALTER TABLE `superusuario_tabla_deportista`
 -- Constraints for table `tabla_ejercicios`
 --
 ALTER TABLE `tabla_ejercicios`
-  ADD CONSTRAINT `fk_TablaT_Ejercicios` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`),
-  ADD CONSTRAINT `fk_Tabla_Ejercicios` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
+  ADD CONSTRAINT `fk_TablaT_Ejercicios` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_Tabla_Ejercicios` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tdu`
