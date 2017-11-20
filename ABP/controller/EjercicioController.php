@@ -18,6 +18,18 @@ class EjercicioController extends BaseController{
 		parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
 		$this->ejercicioMapper = new EjercicioMapper();
 	}
+
+    public function loadAddView(){
+        $this->view->render("ejercicios","add");
+    }
+
+    public function loadDeleteView(){
+        
+    }
+
+    public function loadEditView(){
+        
+    }
 	
 	/*EstiramientoADD
 	*Si se llama con un get carga la vista

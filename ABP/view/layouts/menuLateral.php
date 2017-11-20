@@ -119,39 +119,23 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ejercicios">
+                   <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ejercicios">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEjercicios" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de ejercicios</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de Ejercicios") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEjercicios">
-                            <li class="nav-item" data-placement="right" title="Añadir">
-                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAñadir">
-                                <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseAñadir">Añadir 
-                                    </span>
-                                </a>
+                            <li>
+                                <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Añadir") ?></a>
                             </li>
-                            <li class="nav-item" data-placement="right" title="Eliminar">
-                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEliminar">
-                                <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseEliminar">Eliminar 
-                                    </span>
-                                </a>
+                            <li>
+                                <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Eliminar") ?></a>
                             </li>
-                            <li class="nav-item" data-placement="right" title="Editar">
-                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEditar">
-                                <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseEditar">Editar
-                                    </span>
-                                </a>
+                             <li>
+                                <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Editar") ?></a>
                             </li>
-                            <li class="nav-item" data-placement="right" title="VerEjercicios">
-                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseVerEjercicios">
-                                <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseAñadir">Ver Ejercicios 
-                                    </span>
-                                </a>
+                             <li>
+                                <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Listar") ?></a>
                             </li>
                         </ul>
                     </li>
