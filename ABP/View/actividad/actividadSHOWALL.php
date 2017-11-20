@@ -28,6 +28,13 @@ $view->setVariable("title", "Actividades");
                             <th></th>
                         </tr>
                         </thead>
+                            <tfoot>
+                            <tr>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Precio") ?></th>
+                                <th></th>
+                            </tr>
+                            </tfoot>
             <tbody>
 
 <?php
