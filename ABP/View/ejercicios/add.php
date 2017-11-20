@@ -21,18 +21,18 @@
                     
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="exampleInputTiempo">Estiramiento</label>
+                                <div class="col-md-4">
+                                    <label for="exampleInputEstiramiento"><h3>Estiramiento</h3></label><br>
                                         <a href="index.php?controller=Ejercicio&amp;action=estiramientoADD"><img src="./view/pictures/estiramiento.png" target="blank">
                                         </a>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="exampleInputTiempo">Muscular</label>
+                                <div class="col-md-4">
+                                    <labe for="exampleInputMuscular"><h3>Muscular</h3></label><br>
                                         <a href="index.php?controller=Ejercicio&amp;action=muscularADD"><img src="./view/pictures/muscular.jpg" target="blank">
                                         </a>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="exampleInputTiempo">Cardio</label>
+                                <div class="col-md-4">
+                                    <label class="target" for="exampleInputCardio"><h3>Cardio</h3></label><br>
                                         <a href="index.php?controller=Ejercicio&amp;action=CardioADD"><img src="./view/pictures/cardio.png" target="blank">
                                         </a>
                                 </div>
