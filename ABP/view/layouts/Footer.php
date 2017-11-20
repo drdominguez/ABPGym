@@ -49,20 +49,23 @@ include_once '../Functions/Authentication.php';
             <!-- Core plugin JavaScript-->
             <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
             <!-- Page level plugin JavaScript-->
-            <script src="./view/vendor/chart.js/Chart.min.js"></script>
+            <!--<script src="./view/vendor/chart.js/Chart.min.js"></script>-->
         <?php if($_GET['action']=='NotificacionListar'){?>
             <script src="./view/vendor/datatables/jquery.dataTables2.js"></script>
-        <?php }else{ ?>
+        <?php }else{
+                if($_GET['action'] == 'TablaADD'){ ?>
+            <script src="./view/vendor/datatables/jquery.dataTables3.js"></script>
+             <?php }else{ ?>
             <script src="./view/vendor/datatables/jquery.dataTables.js"></script>
         <?php }
+            }
         ?>
-            
             <script src="./view/vendor/datatables/dataTables.bootstrap4.js"></script>
             <!-- Custom scripts for all pages-->
             <script src="./view/js/sb-admin.min.js"></script>
             <!-- Custom scripts for this page-->
             <script src="./view/js/sb-admin-datatables.min.js"></script>
-            <script src="./view/js/sb-admin-charts.min.js"></script>
+            <!--<script src="./view/js/sb-admin-charts.min.js"></script>-->
         </div>
     </body>
 

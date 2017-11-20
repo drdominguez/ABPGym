@@ -62,8 +62,3 @@
         </div>
     </div>
 </div>
-<?php
-      
-     //render method
- //main class
-?>
