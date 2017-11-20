@@ -47,7 +47,7 @@ class ActividadMapper{
             $actividades = array();
 
             foreach ($actividades_db as $actividad) {
-                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio']));
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['precio'],$actividad['nombre']));
             
             }
         return $actividades;
