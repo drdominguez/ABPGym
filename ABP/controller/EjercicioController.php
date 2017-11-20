@@ -23,12 +23,16 @@ class EjercicioController extends BaseController{
         $this->view->render("ejercicios","add");
     }
 
-    public function loadDeleteView(){
-        
+    public function loadRemoveView(){
+        $this->view->render("ejercicios","remove");
     }
 
     public function loadEditView(){
-        
+        $this->view->render("ejercicios","edit");
+    }
+
+    public function loadListView(){
+        $this->view->render("ejercicios","list");
     }
 	
 	/*EstiramientoADD
