@@ -23,28 +23,28 @@ $view->setVariable("title", "Actividades");
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                         <tr>
-                            <th><?= i18n("Precio") ?></th>
                             <th><?= i18n("Nombre") ?></th>
+                            <th><?= i18n("Precio") ?></th> 
                             <th></th>
                         </tr>
                         </thead>
-                          <tfoot>
-                        <tr>
-                            <th><?= i18n("Precio") ?></th>
-                            <th><?= i18n("Nombre") ?></th>
-                            <th></th>
-                        </tr>
-                        </tfoot>
+                            <tfoot>
+                            <tr>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Precio") ?></th>
+                                <th></th>
+                            </tr>
+                            </tfoot>
             <tbody>
 
 <?php
                 foreach($actividades as $actividad){
 ?>
                     <tr>
-                        <td><?php echo $actividad->getPrecio(); ?></td>       
                         <td><?php echo $actividad->getNombre(); ?></td>
+                        <td><?php echo $actividad->getPrecio(); ?></td>       
                     <td>
-                   <a href='./index.php?controller=Actividad&amp;action=ActividadView&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/detalle.png'>
+                    <a href='./index.php?controller=Actividad&amp;action=ActividadView&amp;idActividdad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/detalle.png'>
                     </a>
                     </td>
 
@@ -57,3 +57,5 @@ $view->setVariable("title", "Actividades");
                         </div>
                     </div>
             </div>
+    </div>
+</div>

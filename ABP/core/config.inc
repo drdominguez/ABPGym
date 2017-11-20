@@ -8,7 +8,7 @@
 define("DB","GYMESEI2");
 define("USER","rootAbp");
 define("PASS","abp");
-define("HOST","127.0.0.1");
+define("HOST","localhost");
 define("DIR","ABP");//unuser
 //-------------------------------
 ?>
