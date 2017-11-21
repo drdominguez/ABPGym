@@ -81,6 +81,17 @@ class ActividadMapper{
         }
         return NULL;
     }
+    public function esGrupo(){
+        $stmt= $this->db->prepare("SELECT A.idActividad FROM Actividad A, grupo G WHERE A.idActividad=? AND G.idActividad = A.idActividad");
+        
+        $stmt -> execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0){
+            return true;
+        }
+        return false;
+    }
+
+    
 
     protected function permisosActividad($idActividad){
         /*Comprobar si el susuario es un administrador*/
