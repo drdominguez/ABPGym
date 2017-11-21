@@ -1,91 +1,64 @@
+<?php
+    require_once(__DIR__."/../../core/ViewManager.php");
 
-<?php
-    class pago_SHOWALL { 
+    $view = ViewManager::getInstance();
+    $pagos = $view->getVariable("pagos");
+    $currentuser = $view->getVariable("currentusername");
+    $view->setVariable("title", "Pagos");
+?>
 
-        private $datos;
-        private $array; 
-        private $volver;
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <div id="flash"><?= $view->popFlash() ?></div>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i><?= i18n("Mostrar todos los pagos") ?>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                        <thead>
+                        <tr>
+                            <th><?= i18n("DNI") ?></th>
+                            <th><?= i18n("Importe") ?></th>
+                            <th><?= i18n("Fecha") ?></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th><?= i18n("DNI") ?></th>
+                            <th><?= i18n("Importe") ?></th>
+                            <th><?= i18n("Fecha") ?></th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
 
-        function __construct($array, $datos){
-            $this->datos = $datos;
-            $this->lista = $array;
-            $this->render();
-        }
-                
-        function render(){  
-            include '../view/Header.php';
-?>
-            <h1>
-            <?php echo $strings['Mostrar todos']. ' pago'; ?>
-            </h1>
-            <a href='../Controller/pago_Controller.php?action=SEARCH'><img src='../View/Icons/search.png'></a></a>
-        
-            <a href='../Controller/pago_Controller.php?action=ADD'><img src='../View/Icons/add.png'></a></br></br>
-            <br><br>
-            <table border = 1>
-                <tr>
-<?php
-                foreach($this->lista as $titulo){
-?>
-                    <th>
-<?php
-                    echo $strings[$titulo];
-?>
-                    </th>
-<?php
-                }
-?>          
-                </tr>
-<?php
-                foreach($this->datos as $datos){
-?>
-                    <tr>
-<?php
-                    for($i=0;$i<count($this->lista);$i++){
-?>
-                        <td>
-<?php
-                        echo $datos[$this->lista[$i]];
-?>
-                        </td>
-<?php
-                    }
-?>
-                    <td>
-                    <a href='../Controller/pago_Controller.php?idPago=<?php echo $datos['idPago']; ?>&action=EDIT'>
-                                    <img src='../View/Icons/edit.png'>
-                    
-                    </a>
-                            
-                    </td>
-
-                    <td>
-                    <a href='../Controller/pago_Controller.php?idPago=<?php echo $datos['idPago']; ?>&action=DELETE'>
-                                    <img src='../View/Icons/delete.png'>
-                    </a>
-                    
-                    </td>
-
-                    <td>
-                    <a href='../Controller/pago_Controller.php?idPago=<?php echo $datos['idPago']; ?>&action=SHOWCURRENT'>
-                                    <img src='../View/Icons/detalle.png'>
-                    </a>
-                    
-                    </td>
-                            
-                    </tr>
-<?php
-                    }   
-?>
-            </table>
-        
-            <a href='../index.php'><img src='../View/Icons/salir.png'></a>
-                  
-<?php
-
-            include '../view/Footer.php';
-        
-        } //render method
-
-    } //main class
-?>
+                        <?php
+                        foreach($pagos as $pago)
+                        {
+                            ?>
+                            <tr>
+                                <td><?php echo $pago->getDniDeportista(); ?></td>
+                                <td><?php echo $pago->getImporte(); ?></td>
+                                <td><?php echo $pago->getFecha(); ?></td>
+                                <td>
+                                    <a href='./index.php?controller=Pago&amp;action=PagoView&amp;idPago=<?php echo $pago->getIdPago();?>'><img src='./view/Icons/detalle.png'>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

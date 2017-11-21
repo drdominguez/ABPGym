@@ -178,10 +178,13 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapsePagos">
                             <li>
-                                <a href="./index.php?controller=pago_&amp;action=ADD"><?= i18n("Añadir Pago") ?></a>
+                                <a href="./index.php?controller=Pago&amp;action=PagoADD"><?= i18n("Añadir Pago") ?></a>
                             </li>
                             <li>
-                                <a href="./index.php?controller=pago_&amp;action=NotificacionListar"><?= i18n("Ver Pagos") ?></a>
+                                <a href="./index.php?controller=Pago&amp;action=EDIT"><?= i18n("Modificar Pago") ?></a>
+                            </li>
+                            <li>
+                                <a href="./index.php?controller=Pago&amp;action=PagoListar"><?= i18n("Ver Pagos") ?></a>
                             </li>
 
                         </ul>

@@ -76,10 +76,12 @@ Class PagoMapper{
         return false;
     }
 
-    protected function esAdministrador(){
+    protected function esAdministrador()
+    {
         $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
-        $stmt= execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn()>0){
+        $stmt->execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0)
+        {
             return true;
         }
         return false;
