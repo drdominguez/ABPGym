@@ -115,6 +115,9 @@
                                 <a href="./index.php?controller=Tabla&amp;action=TablaADD"><?= i18n("Añadir Tabla") ?></a>
                             </li>
                             <li>
+                                <a href="./index.php?controller=Tabla&amp;action=TablaAsignar"><?= i18n("Asignar Tabla") ?></a>
+                            </li>
+                            <li>
                                 <a href="./index.php?controller=Tabla&amp;action=TablaListar"><?= i18n("Ver Tablas") ?></a>
                             </li>
                         </ul>

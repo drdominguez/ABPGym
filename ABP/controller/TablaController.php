@@ -50,7 +50,46 @@ class TablaController extends BaseController
     }
 
 
+ /*Tabla EDIT
+    *Si se llama con un get carga la vista
+    *si se llama con un post añade la notificacion
+    */
+    public function TablaEDIT() 
+    {   
+        if(isset($_POST["tipo"]) && isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
+        {//si existen los post añado la notificacion
+            $ejercicios = $_POST["ejercicios"];
+            $tablaE = new Tabla();
+            $tablaE->setTipo($_POST["tipo"]);
+            $tablaE->setNombre($_POST["nombre"]);
+            $tablaE->setComentario($_POST['comentario']);
+            $idTabla = $_POST['idTabla'];
+            if($this->tablaMapper->edit($tablaE,$ejercicios,$idTabla))
+            {
+               $this->view->setFlash("Tabla Editada Correctamente");
+            }else
+            {
+                $errors["username"] = "La tabla no se ha editado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("Tabla", "tablaListar");
+        }else
+        {
+            $idTabla = $_GET["idTabla"];
+            $ejercicios = $this->tablaMapper->listarEjercicios();
+            $ejerciciosSelected = $this->tablaMapper->listarEjerciciosSelected($idTabla);
+            $tabla = $this->tablaMapper->findTablaById($idTabla);
+            if ($tabla == NULL) 
+            {
+                throw new Exception("No existe tabla con este id: ".$idTabla);
+            }
 
+                $this->view->setVariable("ejercicios",$ejercicios);
+                 $this->view->setVariable("tabla", $tabla);
+                $this->view->setVariable("ejerciciosSelected",$ejerciciosSelected);
+                $this->view->render("tabla","tablaEDIT");
+            }
+    }
 
     /*TablaListar
     *Muestra una lista con todos las Notificaciones
@@ -119,7 +158,9 @@ class TablaController extends BaseController
         {
             throw new Exception("El id es obligatorio");
         }
+        
         $idTabla = $_GET["idTabla"];
+
         // find the notification object in the database
         $tabla = $this->tablaMapper->findTablaById($idTabla);
         $ejercicios = $this->tablaMapper->findEjerciciosById($idTabla);
@@ -135,6 +176,17 @@ class TablaController extends BaseController
         $this->view->render("tabla", "tablaSHOWCURRENT");
     }
 
+
+    /*Tabla Asignar
+    *Si se llama con un get carga la vista
+    *si se llama con un post muestra notificacion
+    */
+    public function TablaAsignar() 
+    {
+        $tablas = $this->tablaMapper->listar();
+       $this->view->setVariable("tablas",$tablas);
+       $this->view->render("tabla","tablaASIGNAR");
+    }
 
 
 }
