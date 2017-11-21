@@ -1,4 +1,6 @@
 <?php
+require_once(__DIR__."/../../core/ViewManager.php");
+
     $view=ViewManager::getInstance();
     $actividad = $view->getVariable("actividad");
     $currentuser = $view->getVariable("currentusername");
@@ -33,16 +35,14 @@
                                     <label for="exampleInputPrecio">Precio</label>
                                     <input class="form-control" name="precio" id="exampleInputPrecio" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPrecio(); ?>"  required onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
-<?php if($actividad->getInstalaciones()!=null){?>
                                 <div class="col-md-6">
                                     <label for="exampleInputInstalaciones">Instalaciones</label>
-                                    <input class="form-control" name="instalaciones" id="exampleInputInstalacioneso" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getInstalacionies(); ?>"  required onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="instalaciones" id="exampleInputInstalacioneso" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getInstalaciones(); ?>"  required onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputPlazas">Plazas</label>
                                     <input class="form-control" name="plazas" id="exampleInputPlazas" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPlazas(); ?>"  required onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
-<?php } ?>
                             </div>
                         </div>
                     </div>

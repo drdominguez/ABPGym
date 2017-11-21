@@ -44,11 +44,10 @@ class ActividadController extends BaseController{
         if(isset($_POST["nombre"]) && isset($_POST["precio"]))
         {//si existen los post añado la notificacion
             $actividad = $_POST["actividad"];
-            $actividad = new Actividad();
-            $actividad->setNombre($_POST["nombre"]);
-            $actividad->setPrecio($_POST["precio"]);
-            $actividad->setInstalaciones($_POST['instalaciones']);
-            $actividad->setPlazas($_POST['plazas']);
+            if($this->actividadMapper->esGrupo()){
+                $actividad = new ActividadGrupo('',$_POST["nombre"],$_POST["precio"],$_POST['instalaciones'],$_POST['plazas']);
+            }
+            $actividad = new Actividad('',$_POST["nombre"],$_POST["precio"]);
             $idActividad = $_POST['idActividad'];
             if($this->actividadMapper->edit($actividad,$idActividad))
             {
@@ -68,7 +67,7 @@ class ActividadController extends BaseController{
                 throw new Exception("No existe actividad con este id: ".$idActividad);
             }
 
-                 $this->view->setVariable("actividad", $actividad);
+                $this->view->setVariable("actividad", $actividad);
                 $this->view->render("actividad","actividadEDIT");
             }
     }
