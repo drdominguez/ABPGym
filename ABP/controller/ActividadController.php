@@ -31,8 +31,8 @@ class ActividadController extends BaseController{
         $this->individualMapper = new ActividadIndividualMapper();
         if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad
             $individual = new ActividadIndividual();
-            $individual->setTiempo($_POST["precio"]);
-            $individual->setUnidad($_POST["nombre"]);
+            $individual->setPrecio($_POST["precio"]);
+            $individual->setNombre($_POST["nombre"]);
             if($this->individualMapper->add($individual)){
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 

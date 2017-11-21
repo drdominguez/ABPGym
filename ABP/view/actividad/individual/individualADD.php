@@ -24,15 +24,15 @@
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre">Nombre</label>
                                     <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onblur="esVacio(this)  && comprobarText(this,15)">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="exampleInputTiempo">Precio</label>
-                                    <input class="form-control" name="descripcion" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Precio" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputTiempo">Precio</label>
+                                        <input class="form-control" name="precio" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Precio" onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
                             </div>
-                        </div>
+                        </div>  
                     </form>
-                    <button type="button" onclick="window.location.href='../Controller/ActividadController.php?action=default'" class="btn btn-default">Volver</button>
+                     <button type="button" onclick="window.location.href='../Controller/ActividadController.php?action=default'" class="btn btn-default">Volver</button>
                             <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button>
                     </div>
                 </div>
