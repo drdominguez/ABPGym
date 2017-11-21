@@ -24,9 +24,9 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Descripción") ?></th>
                                          <th><?= i18n("Tiempo") ?></th>
                                         <th><?= i18n("Unidad") ?></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th><?= i18n("Ver") ?></th>
+                                        <th><?= i18n("Eitar") ?></th>
+                                        <th><?= i18n("Eliminar") ?></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -36,9 +36,9 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Descripción") ?></th>
                                         <th><?= i18n("Tiempo") ?></th>
                                         <th><?= i18n("Unidad") ?></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
+                                        <th><?= i18n("Ver") ?></th>
+                                        <th><?= i18n("Eitar") ?></th>
+                                        <th><?= i18n("Eliminar") ?></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -50,9 +50,18 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $estiramiento["descripcion"]; ?></td>
                                             <td><?php echo $estiramiento["tiempo"]; ?></td>
                                             <td><?php echo $estiramiento["unidad"]; ?></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>
+                                                <a href=''><img src='./view/Icons/detalle.png'>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href=''><img src='./view/Icons/edit.png'>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href=''><img src='./view/Icons/delete.png'>
+                                                </a>
+                                            </td>
                                         </tr>
                                     <?php }} ?>
                                 </tbody>

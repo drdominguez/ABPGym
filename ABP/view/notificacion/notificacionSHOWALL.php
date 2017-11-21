@@ -39,10 +39,7 @@
                         </tfoot>
                         <tbody>
 
-<?php
-                        foreach($notificaciones as $notificacion)
-                        {
-?>
+                        <?php foreach($notificaciones as $notificacion){ ?>
                             <tr>
                                 <td><?php echo $notificacion->getFecha(); ?></td>
                                 <td><?php echo $notificacion->getAsunto(); ?></td>
@@ -52,9 +49,7 @@
                                     </a>
                                 </td>
                             </tr>
-<?php
-                        }   
-?>
+                        <?php } ?>
                         </tbody>
                     </table>
                 </div>
