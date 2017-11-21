@@ -19,6 +19,59 @@ class ActividadController extends BaseController{
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
         $this->actividadMapper = new ActividadMapper();
     }
+
+    public function actividadView() 
+    {
+        if (!isset($_GET["idActividad"])) 
+        {
+            throw new Exception("El id es obligatorio");
+        }
+        $idActividad = $_GET["idActividad"];
+        // find the notification object in the database
+        $actividad = $this->actividadMapper->findById($idActividad);
+        if ($actividad == NULL) 
+        {
+            throw new Exception("No existe actividad con este id: ".$idActividad);
+        }
+        // put the notification object to the view
+        $this->view->setVariable("actividad", $actividad);
+        // render the view (/view/posts/view.php)
+        $this->view->render("actividad", "actividadSHOWCURRENT");
+    }
+
+    public function actividadEDIT() 
+    {   
+        if(isset($_POST["nombre"]) && isset($_POST["precio"]))
+        {//si existen los post añado la notificacion
+            $actividad = $_POST["actividad"];
+            $actividad = new Actividad();
+            $actividad->setNombre($_POST["nombre"]);
+            $actividad->setPrecio($_POST["precio"]);
+            $actividad->setInstalaciones($_POST['instalaciones']);
+            $actividad->setPlazas($_POST['plazas']);
+            $idActividad = $_POST['idActividad'];
+            if($this->actividadMapper->edit($actividad,$idActividad))
+            {
+               $this->view->setFlash("Actividad Editada Correctamente");
+            }else
+            {
+                $errors["username"] = "La actividad no se ha editado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("actividad", "actividadListar");
+        }else
+        {
+            $idActividad = $_GET["idActividad"];
+            $actividad = $this->actividadMapper->findById($idActividad);
+            if ($actividad == NULL) 
+            {
+                throw new Exception("No existe actividad con este id: ".$idActividad);
+            }
+
+                 $this->view->setVariable("actividad", $actividad);
+                $this->view->render("actividad","actividadEDIT");
+            }
+    }
     
     public function actividadListar() {
         $actividades = $this->actividadMapper->listar();
@@ -29,11 +82,12 @@ class ActividadController extends BaseController{
     
     public function individualADD() {
         $this->individualMapper = new ActividadIndividualMapper();
+
         if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad
             $individual = new ActividadIndividual();
             $individual->setPrecio($_POST["precio"]);
             $individual->setNombre($_POST["nombre"]);
-            if($this->individualMapper->add($individual)){
+            if($this->individualMapper->addIndividual($individual)){
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
             }else{
@@ -44,22 +98,6 @@ class ActividadController extends BaseController{
         $this->view->render("actividad/individual","individualADD");
     }
 
-    /*EstiramientoRemove
-    *Si se llama con un get carga la vista
-    *si se llama con un post añade el estiramiento
-    */
-    public function indivualRemove() {
-        $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-
-    }
-
-    /*EstiramientoListar
-    *Muestra una lista con todos los estiramientos
-    */
-    public function indivualListar() {
-       $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-
-    }
 
 
     /*cardioADD
@@ -74,7 +112,7 @@ class ActividadController extends BaseController{
             $grupo->setNombre($_POST["nombre"]);
             $grupo->setInstalaciones($_POST["instalaciones"]);
             $grupo->setPlazas($_POST["plazas"]);
-            if($this->grupoMapper->add($grupo)){
+            if($this->grupoMapper->addGrupo($grupo)){
                $this->view->setFlash("Actividad Grupo Añadida Corectamente");
 
             }else{
@@ -86,20 +124,5 @@ class ActividadController extends BaseController{
 
     }
 
-    /*cardioRemove
-    *Si se llama con un get carga la vista
-    *si se llama con un post añade el cardio
-    */
-    public function grupoRemove() {
-        $this->cardioMapper = new EjercicioCardioMapper();
     }
-
-    /*cardioListar
-    *Muestra una lista con todos los cardio
-    */
-    public function grupoListar() {
-       $this->cardioMapper = new EjercicioCardioMapper();
-
-    }
-}
 ?>

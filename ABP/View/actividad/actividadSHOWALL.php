@@ -27,6 +27,8 @@ $view->setVariable("title", "Actividades");
                             <th><?= i18n("Nombre") ?></th>
                             <th><?= i18n("Precio") ?></th> 
                             <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </thead>
                             <tfoot>
@@ -44,10 +46,18 @@ $view->setVariable("title", "Actividades");
                     <tr>
                         <td><?php echo $actividad->getNombre(); ?></td>
                         <td><?php echo $actividad->getPrecio(); ?></td>       
-                    <td>
-                    <a href='./index.php?controller=Actividad&amp;action=ActividadView&amp;idActividdad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/detalle.png'>
-                    </a>
-                    </td>
+                        <td>
+                            <a href='./index.php?controller=Actividad&amp;action=actividadEDIT&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/edit.png'>
+                            </a>
+                        </td>
+                        <td>
+                            <a href='./index.php?controller=Actividad&amp;action=actividadDelete&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/delete.png'>
+                            </a>
+                        </td>
+                        <td>
+                        <a href='./index.php?controller=Actividad&amp;action=actividadView&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/detalle.png'>
+                        </a>
+                        </td>
 
                     </tr>
 <?php

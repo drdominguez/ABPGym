@@ -6,20 +6,20 @@ class Actividad
         private $precio;
         private $nombre;
 
-        function __construct($idActividad=NULL,$precio=NULL,$nombre=NULL){
+        function __construct($idActividad=NULL,$nombre=NULL,$precio=NULL){
             $this->idActividad = $idActividad;
-            $this->precio = $precio;
             $this->nombre = $nombre;
+            $this->precio = $precio;
         }
         
     public function getIdActividad() {
         return $this->idActividad;
     }
-    public function getPrecio() {
-        return $this->precio;
-    }
     public function getNombre() {
         return $this->nombre;
+    }
+    public function getPrecio() {
+        return $this->precio;
     }
     public function setIdActividad($idActividad) {
         $this->idActividad = $idActividad;

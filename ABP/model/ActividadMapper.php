@@ -13,9 +13,9 @@ class ActividadMapper{
     
     //Añadir
     function add($actividad){ 
-        $stmt = $this->db->prepare("INSERT INTO actividad(precio,nombre) values (?,?)");
+        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio) values (?,?)");
         if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getPrecio(),$actividad->getNombre()));
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio()));
             return true;
         }
         return false;
@@ -35,7 +35,7 @@ class ActividadMapper{
     function edit($actividad){
         $stmt = $this->db->prepare("UPDATE actividad SET precio=? WHERE idActividad=? ");
         if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getPrecio(),$actividad->getIdActividad(),$actividad->getNombre()));
+            $stmt -> execute(array($actividad->getIdActividad(),$actividad->getNombre(),$actividad->getPrecio()));
             return true;
         }
         return false;
@@ -47,13 +47,40 @@ class ActividadMapper{
             $actividades = array();
 
             foreach ($actividades_db as $actividad) {
-                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['precio'],$actividad['nombre']));
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio']));
             
             }
         return $actividades;
         
         }
+    public function findById($idActividad)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM actividad WHERE idActividad =?");
+        $stmt->execute(array($idActividad));
+        $actividad = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($actividad != null) 
+        {
 
+            $stmt2 = $this->db->prepare("SELECT * FROM  grupo WHERE idActividad =?");
+            $stmt2->execute(array($idActividad));
+
+            if($stmt2!=null)
+            {
+                $actividad2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad2["instalaciones"],$actividad2["plazas"]);
+                }else 
+                {
+
+                $stmt3 = $this->db->prepare("SELECT * FROM  individual WHERE idActividad =?");
+                $stmt3->execute(array($idActividad));
+                if($stmt3!=null){
+                    $actividad3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"]);
+                }
+            }
+        }
+        return NULL;
+    }
 
     protected function permisosActividad($idActividad){
         /*Comprobar si el susuario es un administrador*/

@@ -6,8 +6,8 @@ class ActividadIndividual extends Actividad
         //Definimos las variables
         private $idActividad;
 
-        function __construct($idActividad=NULL,$precio=NULL,$nombre=NULL){
-            parent::__construct($idActividad, $precio,$nombre);
+        function __construct($idActividad=NULLL,$nombre=NULL,$precio=NUL){
+            parent::__construct($idActividad,$precio,$nombre);
             $this->idActividad = $idActividad;  
         }
 }//fin de clase
