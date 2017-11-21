@@ -27,7 +27,7 @@ $view = ViewManager::getInstance();
         <div class="container">
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">GymApp</div>
-                <img src="./view/Icons/logo.png">
+                <img src="./view/Icons/logo.jpg">
                 <div class="card-body">
                     <ol class="breadcrumb">
                     <div id="flash"><?= $view->popFlash()?></div>
