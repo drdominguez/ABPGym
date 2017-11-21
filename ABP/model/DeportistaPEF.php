@@ -5,7 +5,7 @@ require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/DeportistaMapper.php");
 require_once(__DIR__."/Deportista.php");
 
-class DeportistaTDU extends Deportista
+class DeportistaPEF extends Deportista
 {
     //Definimos las variables
     private $dni;
@@ -16,6 +16,7 @@ class DeportistaTDU extends Deportista
                          $email=NULL, $telefono=NULL, $fechaAlta=NULL, $tarjeta=NULL, $comentarioRevision=NULL)
     {
         parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta);//llamada al contructor padre
+        $this->dni = $dni;
         $this->tarjeta = $tarjeta;
         $this->comentarioRevision = $comentarioRevision;
 

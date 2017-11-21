@@ -15,6 +15,7 @@ class DeportistaTDU extends Deportista
                          $email=NULL, $telefono=NULL, $fechaAlta=NULL, $tarjeta=NULL)
     {
         parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta);//llamada al contructor padre
+        $this->dni = $dni;
         $this->tarjeta = $tarjeta;
 
     }
