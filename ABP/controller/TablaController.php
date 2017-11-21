@@ -183,11 +183,25 @@ class TablaController extends BaseController
     */
     public function TablaAsignar() 
     {
-        $tablas = $this->tablaMapper->listar();
-       $this->view->setVariable("tablas",$tablas);
-       $this->view->render("tabla","tablaASIGNAR");
+         if(isset($_POST["usuario"]) && isset($_POST["idTabla"]))
+        {
+            $usuario = $_POST['usuario'];
+            $tabla = $_POST['idTabla'];
+             if($this->tablaMapper->asignar($usuario,$tabla))
+            {
+               $this->view->setFlash("Tabla Asignada Correctamente");
+            }else
+            {
+                $errors["username"] = "La tabla no se ha asignado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("Tabla", "tablaListar");
+            
+        }else{
+        $usuarios = $this->tablaMapper->listarUsuarios();
+        $this->view->setVariable("usuarios",$usuarios);
+        $this->view->render("tabla","tablaASIGNAR");
+        }
     }
-
-
 }
 ?>

@@ -56,6 +56,19 @@ Class TablaMapper
         }
 
 
+    public function asignar($usuario,$idTabla){
+        if($this->esSuperusuario())
+        {
+        $stmt = $this->db->prepare("DELETE FROM superusuario_tabla_deportista WHERE dniDeportista=?");
+        $stmt->execute(array($usuario));    
+        $stmt = $this->db->prepare("INSERT INTO superusuario_tabla_deportista (dniSuperUsuario,dniDeportista,idTabla) VALUES (?,?,?)");
+        $stmt->execute(array($_SESSION['currentuser'],$usuario,$idTabla));
+        return true;
+    }else{
+        return false;
+    }
+    }
+
     public function listar()
     {
         $stmt = $this->db->query("SELECT * from tabla");
@@ -66,6 +79,19 @@ Class TablaMapper
             array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
         }
         return $tablas;
+    }
+
+
+    public function listarUsuarios()
+    {
+        $stmt = $this->db->query("SELECT * from usuario");
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
+        {
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
+        }
+        return $usuarios;
     }
 
 

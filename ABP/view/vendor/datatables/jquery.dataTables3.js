@@ -9009,7 +9009,7 @@
              *  @type boolean
              *  @default true
              */
-            "bSmart": true
+            "bSmart": false
         };
 
 
@@ -9857,7 +9857,7 @@
              *      } );
              *    } );
              */
-            "bFilter": true,
+            "bFilter": false,
 
 
             /**

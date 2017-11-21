@@ -26,9 +26,10 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <th><?= i18n("nombre") ?></th>
                                 <th><?= i18n("tipo") ?></th>
                                 <th><?= i18n("comentario") ?></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th><?= i18n("Editar") ?></th>
+                                <th><?= i18n("Borrar") ?></th>
+                                <th><?= i18n("Ver") ?></th>
+                                <th><?= i18n("Asignar") ?></th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -36,9 +37,10 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <th><?= i18n("nombre") ?></th>
                                 <th><?= i18n("tipo") ?></th>
                                 <th><?= i18n("comentario") ?></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                                <th><?= i18n("Editar") ?></th>
+                                <th><?= i18n("Borrar") ?></th>
+                                <th><?= i18n("Ver") ?></th>
+                                <th><?= i18n("Asignar") ?></th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -60,6 +62,10 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     </td>
                                     <td>
                                         <a href='./index.php?controller=Tabla&amp;action=TablaView&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/detalle.png'>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href='./index.php?controller=Tabla&amp;action=TablaAsignar&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/add.png'>
                                         </a>
                                     </td>
                             </tr>
