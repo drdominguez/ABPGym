@@ -170,6 +170,22 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pagos">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePagos" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text"><?= i18n("Gestión de Pagos") ?></span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapsePagos">
+                            <li>
+                                <a href="./index.php?controller=pago_&amp;action=ADD"><?= i18n("Añadir Pago") ?></a>
+                            </li>
+                            <li>
+                                <a href="./index.php?controller=pago_&amp;action=NotificacionListar"><?= i18n("Ver Pagos") ?></a>
+                            </li>
+
+                        </ul>
+                    </li>
                     
                 </ul>
                 <ul class="navbar-nav sidenav-toggler">
