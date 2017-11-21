@@ -27,7 +27,7 @@
                               </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Descripción</label>
-                                    <input class="form-control" name="descripcion" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Descripción" required onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <textarea class="form-control" name="descripcion" rows="2"></textarea>
                                 </div>
                             </div>
                          </div>

@@ -34,6 +34,26 @@ Class TablaMapper
         }
     }
 
+    public function edit($tabla,$ejercicios,$idTabla)
+        {
+            $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla =?");
+            $stmt->execute(array($idTabla));
+            $tablaDB = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($tablaDB == null){
+                return false;
+            }else{
+                $stmt = $this->db->prepare("UPDATE tabla set nombre=?,comentario=? where idTabla=?");
+                $stmt->execute(array($tabla->getNombre(),$tabla->getComentario(),$idTabla));
+                $stmt = $this->db->prepare("DELETE from tabla_ejercicios WHERE idTabla=?");
+                $stmt->execute(array($idTabla));
+                foreach ($ejercicios as $ejercicio)
+                {
+                $stmt = $this->db->prepare("INSERT INTO tabla_ejercicios(idTabla,idEjercicio) VALUES (?,?)");
+                $stmt->execute(array($idTabla,$ejercicio));
+                }
+                return true;
+            }
+        }
 
 
     public function listar()
@@ -66,6 +86,20 @@ Class TablaMapper
     }
 
 
+    public function listarEjerciciosSelected($idTabla)
+    {
+            $stmt = $this->db->prepare("SELECT idEjercicio from tabla_ejercicios WHERE idTabla=?");
+            $stmt->execute(array($idTabla));
+            $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $ejercicios = array();
+            foreach ($ejercicios_db as $ejercicio) 
+            {
+                array_push($ejercicios, $ejercicio['idEjercicio']);
+            }
+            return $ejercicios;
+    }
+
+
 
     public function findTablaById($idTabla)
     {
@@ -88,9 +122,10 @@ Class TablaMapper
         $stmt = $this->db->prepare("SELECT idEjercicio FROM tabla_ejercicios WHERE idTabla=?");
         $stmt->execute(array($idTabla));
         $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $tabla_ejercicios= array();
         if($ejercicios_db != null) 
         {
-            $tabla_ejercicios= array();
+            
             foreach($ejercicios_db as $ejercicio_db)
             {
                 $stmt = $this->db->prepare("SELECT * FROM ejercicio WHERE idEjercicio=?");
@@ -99,12 +134,11 @@ Class TablaMapper
                 $ejercicio = new Ejercicio($ejercicio_db["idEjercicio"],$ejercicio_db["nombre"],$ejercicio_db["descripcion"],$ejercicio_db["video"],$ejercicio_db["imagen"]);
                 array_push($tabla_ejercicios, $ejercicio);
             }
-                return $tabla_ejercicios;
-        }else
-        {
-            return NULL;
+                
         }
-    }
+        return $tabla_ejercicios;
+        }
+    
 
 
 

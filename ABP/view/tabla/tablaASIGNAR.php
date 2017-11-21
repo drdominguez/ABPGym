@@ -16,7 +16,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar todas las tablas") ?>
+                <i class="fa fa-table"></i><?= i18n("Asignar Tabla") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -27,8 +27,6 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <th><?= i18n("tipo") ?></th>
                                 <th><?= i18n("comentario") ?></th>
                                 <th></th>
-                                <th></th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -36,8 +34,6 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <th><?= i18n("nombre") ?></th>
                                 <th><?= i18n("tipo") ?></th>
                                 <th><?= i18n("comentario") ?></th>
-                                <th></th>
-                                <th></th>
                                 <th></th>
                             </tr>
                         </tfoot>
@@ -50,14 +46,6 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <td><?php echo $tabla->getNombre(); ?></td>
                                     <td><?php echo $tabla->getTipo(); ?></td>
                                     <td><?php echo $tabla->getComentario(); ?></td>
-                                    <td>
-                                        <a href='./index.php?controller=Tabla&amp;action=TablaEDIT&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/edit.png'>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href='./index.php?controller=Tabla&amp;action=TablaDelete&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/delete.png'>
-                                        </a>
-                                    </td>
                                     <td>
                                         <a href='./index.php?controller=Tabla&amp;action=TablaView&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/detalle.png'>
                                         </a>

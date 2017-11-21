@@ -23,7 +23,15 @@ $currentuser = $view->getVariable("currentusername");
 			</header>
 			<aside>
 				<?php
-				include(__DIR__."/menuLateral.php");
+				require_once("./core/permisos.php");
+				$permisos = new Permisos();
+				if($permisos->esAdministrador()){
+					include(__DIR__."/menuLateral-ADMIN.php");
+				}elseif ($permisos->esEntrenador()) {
+					include(__DIR__."/menuLateral-ENTRENADOR.php");
+				}elseif ($permisos->esDeportista()) {
+					include(__DIR__."/menuLateral-DEPORTISTA.php");
+				}				
 				include(__DIR__."/notificacionesMenu.php");
 				include(__DIR__."/menuSuperior.php");
 				include(__DIR__."/language_select_element.php");

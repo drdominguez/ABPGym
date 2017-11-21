@@ -22,10 +22,10 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                        <th><?= i18n("Video") ?></th>
-                                        <th><?= i18n("Imagen") ?></th>
                                          <th><?= i18n("Carga") ?></th>
                                         <th><?= i18n("Repeticiones") ?></th>
+                                        <th></th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -34,10 +34,10 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                        <th><?= i18n("Video") ?></th>
-                                        <th><?= i18n("Imagen") ?></th>
                                         <th><?= i18n("Carga") ?></th>
                                         <th><?= i18n("Repeticiones") ?></th>
+                                        <th></th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </tfoot>
@@ -48,10 +48,11 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $muscular["idEjercicio"]; ?></td>
                                             <td><?php echo $muscular["nombre"]; ?></td>
                                             <td><?php echo $muscular["descripcion"]; ?></td>
-                                            <td><?php echo $muscular["video"]; ?></td>
-                                            <td><?php echo $muscular["imagen"]; ?></td>
                                             <td><?php echo $muscular["carga"]; ?></td>
-                                            <td><?php echo $muscular["repeticiones"]; ?></td><td>
+                                            <td><?php echo $muscular["repeticiones"]; ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     <?php }} ?>
                                 </tbody>

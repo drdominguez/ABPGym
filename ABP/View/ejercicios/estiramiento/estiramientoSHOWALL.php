@@ -22,10 +22,10 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                        <th><?= i18n("Video") ?></th>
-                                        <th><?= i18n("Imagen") ?></th>
                                          <th><?= i18n("Tiempo") ?></th>
                                         <th><?= i18n("Unidad") ?></th>
+                                        <th></th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -34,12 +34,12 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                        <th><?= i18n("Video") ?></th>
-                                        <th><?= i18n("Imagen") ?></th>
                                         <th><?= i18n("Tiempo") ?></th>
                                         <th><?= i18n("Unidad") ?></th>
                                         <th></th>
-                                        </tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
                                 </tfoot>
                                 <tbody>
                                     <?php if(!empty($listaEstiramientos)){ ?>
@@ -48,10 +48,11 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $estiramiento["idEjercicio"]; ?></td>
                                             <td><?php echo $estiramiento["nombre"]; ?></td>
                                             <td><?php echo $estiramiento["descripcion"]; ?></td>
-                                            <td><?php echo $estiramiento["video"]; ?></td>
-                                            <td><?php echo $estiramiento["imagen"]; ?></td>
                                             <td><?php echo $estiramiento["tiempo"]; ?></td>
-                                            <td><?php echo $estiramiento["unidad"]; ?></td><td>
+                                            <td><?php echo $estiramiento["unidad"]; ?></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     <?php }} ?>
                                 </tbody>
