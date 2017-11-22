@@ -19,7 +19,7 @@
         ' no tiene 8 números seguidos de una letra: FORMATO INCORRECTO!!!'=>' no tiene 8 números seguidos de una letra: FORMATO INCORRECTO!!!',
         'La letra del DNI no es correcta'=>'La letra del DNI no es correcta',
         ' no tiene un formato válido de telefeno.'=>' no tiene un formato válido de telefeno.',
-        ' debe estar compuesto únicamente por digitos.'=>' debe estar compuesto únicamente por digitos.'
+        ' debe estar compuesto únicamente por digitos.'=>' debe estar compuesto únicamente por digitos.',
 
 
 
