@@ -70,27 +70,16 @@ function delete($dniEntrenador)
 
 public function add($entrenador)
     {
-        $stmt = $this->db->prepare("INSERT INTO entrenador(dniEntrenador) VALUES (?)");
-        if($this->esAdministrador())
+    $stmt = $this->db->prepare("INSERT INTO entrenador(dniEntrenador) VALUES (?)");
+    if($this->esAdministrador())
+    {
+        $stmt->execute(array($entrenador->getDniEntrenador()));
+        return true;
+    }else
         {
-            if($this->esEntrenador2($entrenador->getDniEntrenador())){
-            $stmt->execute(array($entrenador->getDniEntrenador()));
-
-                 return true;
-            }else
-            {
-                return false;
-            }
             return false;
-            }
-    }
-public function esEntrenador2($dni){
-        $stmt = $this->db->prepare("SELECT dniEntrenador FROM entrenador WHERE dniEntrenador=?");
-        $stmt->execute(array($dni));
-        if ($stmt->fetchColumn() > 0) {
-             return true;
-        }
-        return false;
+       }
+
     }
 }
 ?>
