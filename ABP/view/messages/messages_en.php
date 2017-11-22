@@ -1,6 +1,27 @@
 <?php 
     $i18n_messages = 
     array(
+        //STRINGS validaciones.js
+        'Asunto' => 'Subject',
+        'contenido' => 'Content',
+        'nombre' => 'name',
+        'El atributo '=>'The attribute ',
+        ' no puede ser vacío' => ' cannot be empty',
+        'Longitud incorrecta. El atributo ' => 'Incorrect length. The attribute ',
+        ' debe tener una longitud máxima de '=>' must have a max length of ',
+        ' y tiene '=>' and has ',
+        'El atributo no sigue el formato correcto. Pruebe example@example.com' => 'The attribute does not follow the correct format. Try  example@example.com',
+        ' contiene caracteres no alfabéticos'=>' contains non alfanumeric characters',
+        ' no esta comprendido en ['=>' is not between [',
+        ' no puede tener mas de ' => ' cannot have more than ',
+        'decimales'=>'decimals',
+        ' no tiene 8 números seguidos de una letra: FORMATO INCORRECTO!!!'=>' does not have 8 numbers followed by a letter: INCORRECT FORMAT!!!',
+        'La letra del DNI no es correcta'=>'The DNI letter is not correct',
+        ' no tiene un formato válido de telefeno.'=>' does not have a valid telephone format.',
+        ' debe estar compuesto únicamente por digitos.'=>' must be only digits.',
+
+
+
                 'Borrado correctamente' => 'Successfully Deleted',
                 'Modificado correctamente' => 'Successfully Modified',
                 'Inserción realizada con Éxito' => 'Successfully Insertion',

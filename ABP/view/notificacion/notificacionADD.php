@@ -16,17 +16,17 @@
                 <i class="fa fa-table"></i><?= i18n("Enviar notificacion") ?>
             </div>
             <div class="card-body">                  
-                <form name = 'Form' action='./index.php?controller=Notificacion&amp;action=NotificacionADD' method='post' onsubmit='return comprobar_notificacion()'>
+                <form name = 'Form' action='./index.php?controller=Notificacion&amp;action=NotificacionADD' method='post' onsubmit='return validarNotificacionADD()'>
                     <div class="form-group">
                         <div class="form-row">
                         <label for="Asunto"><?= i18n("Asunto") ?>: </label>
-                        <input class="form-control" type = 'text' name = 'Asunto' size = '50' value = '' required  onblur="esVacio(this)  && comprobarText(this, 50)" >
+                        <input class="form-control" type = 'text' name = 'Asunto' size = '50' value = ''  onchange="comprobarVacio(this)  && comprobarTexto(this, 50)" >
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-row">
                         <label for="contenido"><?= i18n("contenido") ?> : </label>
-                        <textarea class="form-control" name = 'contenido' rows="6"  value = '' required  onblur="esVacio(this)  && comprobarText(this, 65535)" ></textarea>
+                        <textarea class="form-control" name = 'contenido' rows="6"  value = ''  onchange="comprobarVacio(this)" ></textarea>
                         </div>
                     </div>
                     <br>

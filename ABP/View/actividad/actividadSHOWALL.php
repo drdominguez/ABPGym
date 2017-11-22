@@ -26,16 +26,18 @@ $view->setVariable("title", "Actividades");
                             <tr>
                             <th><?= i18n("Nombre") ?></th>
                             <th><?= i18n("Precio") ?></th> 
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                                <th><?= i18n("Editar") ?></th>
+                                <th><?= i18n("Borrar") ?></th>
+                                <th><?= i18n("Ver") ?></th>
                         </tr>
                         </thead>
                             <tfoot>
                             <tr>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Precio") ?></th>
-                                <th></th>
+                                <th><?= i18n("Editar") ?></th>
+                                <th><?= i18n("Borrar") ?></th>
+                                <th><?= i18n("Ver") ?></th>
                             </tr>
                             </tfoot>
             <tbody>

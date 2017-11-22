@@ -6783,10 +6783,10 @@
         // @todo - Is there need for an augment function?
         // _Api.augment = function ( inst, name )
         // {
-        // 	// Find src object in the structure from the name
-        // 	var parts = name.split('.');
+        //  // Find src object in the structure from the name
+        //  var parts = name.split('.');
 
-        // 	_Api.extend( inst, obj );
+        //  _Api.extend( inst, obj );
         // };
 
 
@@ -9678,8 +9678,7 @@
              *      } );
              *    } );
              */
-            "aLengthMenu": [10, 25, 50, 100
-],
+            "aLengthMenu": [10, 25, 50, 100],
 
 
             /**
@@ -10778,7 +10777,7 @@
                      *      } );
                      *    } );
                      */
-                    "sSortAscending": ": activar para ordenar columna ascendentemente",
+                    "sSortAscending": i18nMessages[': activar para ordenar columna ascendentemente'],
 
                     /**
                      * ARIA label that is added to the table headers when the column may be
@@ -10801,7 +10800,7 @@
                      *      } );
                      *    } );
                      */
-                    "sSortDescending": ": activar para ordenar columna descendentemente"
+                    "sSortDescending": i18nMessages[': activar para ordenar columna descendentemente']
                 },
 
                 /**
@@ -10831,7 +10830,7 @@
                      *      } );
                      *    } );
                      */
-                    "sFirst": "Primero",
+                    "sFirst": i18nMessages['Primero'],
 
 
                     /**
@@ -10854,7 +10853,7 @@
                      *      } );
                      *    } );
                      */
-                    "sLast": "Último",
+                    "sLast": i18nMessages['Último'],
 
 
                     /**
@@ -10877,7 +10876,7 @@
                      *      } );
                      *    } );
                      */
-                    "sNext": "Siguiente",
+                    "sNext": i18nMessages['Siguiente'],
 
 
                     /**
@@ -10900,7 +10899,7 @@
                      *      } );
                      *    } );
                      */
-                    "sPrevious": "Anterior"
+                    "sPrevious": i18nMessages['Anterior'],
                 },
 
                 /**
@@ -10923,7 +10922,7 @@
                  *      } );
                  *    } );
                  */
-                "sEmptyTable": "Tabla sin datos",
+                "sEmptyTable": i18nMessages['Tabla sin datos'],
 
 
                 /**
@@ -10955,7 +10954,7 @@
                  *      } );
                  *    } );
                  */
-                "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                "sInfo": i18nMessages['Mostrando _START_ a _END_ de _TOTAL_ elementos'],
 
 
                 /**
@@ -10976,7 +10975,7 @@
                  *      } );
                  *    } );
                  */
-                "sInfoEmpty": "Mostrando 0 a 0 de 0 elementos",
+                "sInfoEmpty": i18nMessages['Mostrando 0 a 0 de 0 elementos'],
 
 
                 /**
@@ -10998,7 +10997,7 @@
                  *      } );
                  *    } );
                  */
-                "sInfoFiltered": "(filtrados de _MAX_ elementos totales)",
+                "sInfoFiltered": i18nMessages['(filtrados de _MAX_ elementos totales)'],
 
 
                 /**
@@ -11116,8 +11115,7 @@
                  *      } );
                  *    } );
                  */
-                "sLengthMenu": "Mostrar _MENU_ elementos",
-
+                "sLengthMenu": i18nMessages['Mostrar _MENU_ elementos"'],
 
                 /**
                  * When using Ajax sourced data and during the first draw when DataTables is
@@ -11140,7 +11138,7 @@
                  *      } );
                  *    } );
                  */
-                "sLoadingRecords": "Cargando...",
+                "sLoadingRecords": i18nMessages['Cargando..."'],
 
 
                 /**
@@ -11161,7 +11159,7 @@
                  *      } );
                  *    } );
                  */
-                "sProcessing": "Procesando...",
+                "sProcessing": i18nMessages['Procesando..."'],
 
 
                 /**
@@ -11196,7 +11194,7 @@
                  *      } );
                  *    } );
                  */
-                "sSearch": "Buscar:",
+                "sSearch": i18nMessages['Buscar:"'],
 
 
                 /**
@@ -11254,7 +11252,7 @@
                  *      } );
                  *    } );
                  */
-                "sZeroRecords": "No se encontró nada"
+                "sZeroRecords": i18nMessages['No se encontró nada']
             },
 
 

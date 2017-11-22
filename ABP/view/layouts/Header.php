@@ -22,6 +22,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <script src="./index.php?controller=language&action=i18njs"></script>
+        <script type="text/javascript" src="./view/js/validaciones.js"></script> 
         <script type="text/javascript" src="./view/js/tcal.js"></script> 
         <title>GymApp</title>
         <!-- Bootstrap core CSS-->

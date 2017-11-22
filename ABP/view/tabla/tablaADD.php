@@ -16,7 +16,7 @@
                 <li class="breadcrumb-item active"><?= i18n("Añadir") ?></li>
             </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' action='./index.php?controller=Tabla&amp;action=TablaADD' method='post' onsubmit='return comprobar_notificacion()'>
+            <form name = 'Form' action='./index.php?controller=Tabla&amp;action=TablaADD' method='post' onsubmit='return validarTablaADD()'>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Anadir tabla") ?>
@@ -27,7 +27,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre">Nombre</label>
-                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" required onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onchange="comprobarVacio(this);comprobarTexto(this,30);">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTipo">Tipo</label>

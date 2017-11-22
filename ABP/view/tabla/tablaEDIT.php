@@ -18,7 +18,7 @@
                 <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
             </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' action='./index.php?controller=Tabla&amp;action=TablaEDIT' method='post' onsubmit='return comprobar_notificacion()'>
+            <form name = 'Form' action='./index.php?controller=Tabla&amp;action=TablaEDIT' method='post' onsubmit='return validarTablaEDIT()'>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Editar tabla") ?>
@@ -29,7 +29,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre">Nombre</label>
-                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $tabla->getNombre(); ?>"  required onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $tabla->getNombre(); ?>" onchange="comprobarVacio(this)  && comprobarTexto(this,15)">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTipo">Tipo</label>

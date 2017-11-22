@@ -18,6 +18,12 @@
                             <i class="fa fa-fw fa-link"></i>
                             <span class="nav-link-text"> <?= i18n("Tablas");?></span>
                         </a>
+                    </li> 
+                      <li class="nav-item" data-toggle="tooltip">
+                        <a class="nav-link" href="./index.php?controller=Pago&amp;action=PagoListar">
+                            <i class="fa fa-fw fa-link"></i>
+                            <span class="nav-link-text"> <?= i18n("Pagos");?></span>
+                        </a>
                     </li>                    
                 </ul>
                 <ul class="navbar-nav sidenav-toggler">

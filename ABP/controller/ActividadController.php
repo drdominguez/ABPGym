@@ -42,14 +42,11 @@ class ActividadController extends BaseController{
 
     public function actividadEDIT() 
     {   
-        if(isset($_POST["nombre"]) && isset($_POST["precio"])&& isset($_POST["instalaciones"])&& isset($_POST["plazas"])&& isset($_POST["idActividad"]))
+        if(isset($_POST["nombre"]) && isset($_POST["precio"]))
         {//si existen los post añado la notificacion
-            if($this->actividadMapper->esGrupo()){            
-                $actividad = new ActividadGrupo();
-                $actividad->setNombre($_POST["nombre"]);    
-                $actividad->setPrecio($_POST["precio"]);
-                $actividad->setInstalaciones($_POST['instalaciones']);
-                $actividad->setPlazas($_POST['plazas']);
+            $idActividad=$_POST['idActividad'];
+            if($this->actividadMapper->esGrupo($idActividad)){            
+                $actividad = new ActividadGrupo(null,$_POST["nombre"],$_POST["precio"],$_POST['instalaciones'],$_POST['plazas']);
                 if($this->actividadMapper->editGrupo($actividad,$idActividad))
             {
                $this->view->setFlash("Actividad Editada Correctamente");
