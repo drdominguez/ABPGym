@@ -17,18 +17,13 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 	public function getEstiramientoById($cardioId){
 		$ejercicio=parent::getEjercicioById($cardioId);
 		//creamos el estiramiento añadiendole todos los atributos de Ejercicio
-		$ejercicioEstiramiento= new EjercicioEstiramiento();
-		$ejercicioEstiramiento->setIdEjercicio($ejercicio->getIdEjercicio());
-		$ejercicioEstiramiento->setNombre($ejercicio->getNombre());
-		$ejercicioEstiramiento->setDescripcion($ejercicio->getDescripcion());
-		$ejercicioEstiramiento->setVideo($ejercicio->getVideo());
-		$ejercicioEstiramiento->setImagen($ejercicio->getImagen());
+		$ejercicioEstiramiento = new EjercicioEstiramiento($ejercicio->getIdEjercicio(),$ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getVideo(),$ejercicio->getImagen(),"","");
 		$stmt = $this->db->prepare("SELECT * FROM estiramiento WHERE idEjercicio=?");//obtenemos el estiramiento
 		$stmt->execute(array($cardioId));
 		$estiramiento = $stmt->fetch(PDO::FETCH_ASSOC);
 		$ejercicioEstiramiento->setTiempo($estiramiento["tiempo"]);
 		$ejercicioEstiramiento->setUnidad($estiramiento["unidad"]);
-		return $ejercicioCardio;
+		return $ejercicioEstiramiento;
 	}
 	
 	/*

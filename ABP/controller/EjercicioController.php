@@ -42,6 +42,7 @@ class EjercicioController extends BaseController{
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
         $ejercicioEstiramiento=$this->estiramientoMapper->getEstiramientoById($_GET["idEjercicio"]);
         $this->view->setVariable("estiramiento", $ejercicioEstiramiento);
+        var_dump($ejercicioEstiramiento->getDescripcion());
         $this->view->render("ejercicios/estiramiento","estiramientoSHOWCURRENT");
     }
 
