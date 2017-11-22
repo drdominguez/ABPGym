@@ -45,10 +45,9 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 		return false;
 	}
 	public function removeCardio($idEjercicio){
-		$stmt = $this->db->prepare("DELETE FROM cardio WHERE idEjercicio = ?");
-		if(parent::permisosEjercicio($idEjercicio)){
+		if(parent::remove($idEjercicio)){
+			$stmt = $this->db->prepare("DELETE FROM cardio WHERE idEjercicio = ?");
 			$stmt -> execute(array($idEjercicio));
-			parent::remove($idEjercicio);
 			return true;
 		}
 		return false;

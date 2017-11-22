@@ -667,7 +667,7 @@ ALTER TABLE `administrador`
 -- Constraints for table `cardio`
 --
 ALTER TABLE `cardio`
-  ADD CONSTRAINT `fk_CardioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
+  ADD CONSTRAINT `fk_CardioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `deportista`
@@ -692,7 +692,7 @@ ALTER TABLE `entrenador_deportista`
 -- Constraints for table `estiramiento`
 --
 ALTER TABLE `estiramiento`
-  ADD CONSTRAINT `fk_EstiramientoEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
+  ADD CONSTRAINT `fk_EstiramientoEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `grupo`
@@ -716,7 +716,7 @@ ALTER TABLE `inscrito`
 -- Constraints for table `muscular`
 --
 ALTER TABLE `muscular`
-  ADD CONSTRAINT `fk_MuscularEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`);
+  ADD CONSTRAINT `fk_MuscularEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `notificacion`

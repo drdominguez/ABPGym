@@ -217,18 +217,26 @@ function validarTablaADD(Formu) {
 
 function validarTablaEDIT(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 15))
+<<<<<<< HEAD
 }
 
 function validarNotificacionADD(Formu) {
     return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
+=======
+>>>>>>> d7db457790fa1efc0c305b24bbcc13c9e35e4f40
 }
 
 function validarLogin(Formu) {
     return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.contraseña))
 }
 
+<<<<<<< HEAD
 function validarIndividualADD(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000))
+=======
+function validarNotificacionADD(Formu) {
+    return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
+>>>>>>> d7db457790fa1efc0c305b24bbcc13c9e35e4f40
 }
 
 
