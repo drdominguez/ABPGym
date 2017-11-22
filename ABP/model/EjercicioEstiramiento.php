@@ -16,6 +16,10 @@ class EjercicioEstiramiento extends Ejercicio
         $this->unidad = $unidad;
 	}
 
+	public function getIdEjercicio(){
+		return $this->idEjercicio;
+	}
+
 	public function getTiempo(){
 		return $this->tiempo;
 	}

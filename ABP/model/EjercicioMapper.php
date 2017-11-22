@@ -39,9 +39,10 @@ Class EjercicioMapper{
 	}
 
 	public function edit($ejercicio){
-		$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=?, imagen=? WHERE idEjercicio=?");
-		if(permisoEjercicio($ejercicio->getId())){
-			$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen(),$ejercicio->getId()));
+		if(self::esSuperusuario()){
+			var_dump($ejercicio->getDescripcion());
+			$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=?, imagen=? WHERE idEjercicio=?");
+			$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen(),$ejercicio->getIdEjercicio()));
 			return true;
 		}
 		return false;

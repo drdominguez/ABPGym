@@ -55,7 +55,7 @@ $view->setVariable("title", "Estiramientos");
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href=''><img src='./view/Icons/edit.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=estiramientoEdit&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><img src='./view/Icons/edit.png'>
                                                 </a>
                                             </td>
                                             <td>

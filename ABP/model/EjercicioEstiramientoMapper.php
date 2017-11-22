@@ -39,11 +39,14 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 		return false;
 	}
 
+	/*
+	*Edita un estiramiento en la bbdd
+	*para ello lo actualiza en la clase Ejercicio y y luego en la clase estiramiento
+	*/
 	public function editEstiramiento($ejercicio){
-		parent::edit($ejecicio);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
-		$stmt=$this->db-> prepare("UPDATE estiramiento SET tiempo=?, unidad=? WHERE idEjercicio=?");
-		if(parent::permisoEjercicio($ejercicio->getId())){
-			$stmt->execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getId()));
+		if(parent::edit($ejercicio)){
+			$stmt=$this->db-> prepare("UPDATE estiramiento SET tiempo=?, unidad=? WHERE idEjercicio=?");
+			$stmt->execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getIdEjercicio()));
 			return true;
 		}
 		return false;

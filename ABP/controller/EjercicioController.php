@@ -64,13 +64,32 @@ class EjercicioController extends BaseController{
         $this->view->render("ejercicios/estiramiento","estiramientoADD");
     }
 
+    /*
+    *Edita un estiramiento
+    *a partir de un id obtenido por la vista crea un etiramiento usando getEstiramientoById
+    *luego lo edita en la bbdd.
+    */
+    public function estiramientoEdit(){
+        $this->estiramientoMapper = new EjercicioEstiramientoMapper();
+        if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
+            $estiramiento = new EjercicioEstiramiento($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"]);
+            $this->estiramientoMapper->editEstiramiento($estiramiento);
+            $this->view->setFlash("Ejercicio Editado Corectamente");
+            self::estiramientoListar();//volvemos a listar los ejercicios
+        }else{//si no muesta la vista
+            $estiramiento=$this->estiramientoMapper->getEstiramientoById($_GET["idEjercicio"]);
+            $this->view->setVariable("estiramiento",$estiramiento);
+            $this->view->render("ejercicios/estiramiento","estiramientoEDIT");
+        }
+
+    }
+
     /*EstiramientoRemove
 	*Si se llama con un get carga la vista
 	*si se llama con un post añade el estiramiento
 	*/
     public function estiramientoRemove() {
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-        var_dump("pepeppepepe");
         if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
             $this->estiramientoMapper->removeEstiramiento($_POST["idEjercicio"]);
             $this->view->setFlash("Ejercicio Eliminado Corectamente");
