@@ -17,10 +17,10 @@ Class TablaMapper
 
     public function add($tabla,$ejercicios)
     {
-        $stmt = $this->db->prepare("INSERT INTO tabla(tipo,comentario,nombre) VALUES (?,?,?)");
+        $stmt = $this->db->prepare("INSERT INTO tabla(tipo,comentario,nombre,dniSuperUsuario) VALUES (?,?,?,?)");
         if($this->esSuperusuario())
         {
-            $stmt->execute(array($tabla->getTipo(),$tabla->getComentario(),$tabla->getNombre()));
+            $stmt->execute(array($tabla->getTipo(),$tabla->getComentario(),$tabla->getNombre(),$_SESSION['currentuser']));
             $this->idTabla= $this->db->lastInsertId();
             foreach ($ejercicios as $ejercicio)
             {
@@ -37,22 +37,33 @@ Class TablaMapper
     public function edit($tabla,$ejercicios,$idTabla)
         {
             $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla =?");
+             if($this->esSuperusuario())
+        {
             $stmt->execute(array($idTabla));
             $tablaDB = $stmt->fetch(PDO::FETCH_ASSOC);
             if($tablaDB == null){
                 return false;
             }else{
-                $stmt = $this->db->prepare("UPDATE tabla set nombre=?,comentario=? where idTabla=?");
-                $stmt->execute(array($tabla->getNombre(),$tabla->getComentario(),$idTabla));
-                $stmt = $this->db->prepare("DELETE from tabla_ejercicios WHERE idTabla=?");
-                $stmt->execute(array($idTabla));
-                foreach ($ejercicios as $ejercicio)
-                {
-                $stmt = $this->db->prepare("INSERT INTO tabla_ejercicios(idTabla,idEjercicio) VALUES (?,?)");
-                $stmt->execute(array($idTabla,$ejercicio));
+                if($tablaDB['dniSuperUsuario']==$_SESSION['currentuser'] || $this->esAdministrador()){
+
+                    $stmt = $this->db->prepare("UPDATE tabla set nombre=?,comentario=? where idTabla=?");
+                    $stmt->execute(array($tabla->getNombre(),$tabla->getComentario(),$idTabla));
+                    $stmt = $this->db->prepare("DELETE from tabla_ejercicios WHERE idTabla=?");
+                    $stmt->execute(array($idTabla));
+                    foreach ($ejercicios as $ejercicio)
+                    {
+                    $stmt = $this->db->prepare("INSERT INTO tabla_ejercicios(idTabla,idEjercicio) VALUES (?,?)");
+                    $stmt->execute(array($idTabla,$ejercicio));
+                    }
+                    return true;
+
+                }else{
+                    return false;
                 }
-                return true;
+                
             }
+        }
+        return false;
         }
 
 
@@ -76,20 +87,33 @@ Class TablaMapper
 
     public function listar()
     {
-        $stmt = $this->db->query("SELECT * from tabla");
-        $tablas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $tablas = array();
-        foreach ($tablas_db as $tabla) 
-        {
-            array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
+        if($this->esSuperusuario()){
+            if($this->esAdministrador()){
+                $stmt = $this->db->query("SELECT * from tabla");
+            }else{
+                $stmt = $this->db->prepare("SELECT * from tabla WHERE dniSuperUsuario=?");
+                $stmt->execute(array($_SESSION['currentuser']));
+            }
+        }else{
+                $stmt = $this->db->prepare("SELECT * from tabla t, superusuario_tabla_deportista st WHERE t.idTabla=st.idTabla AND dniDeportista=?");
+                $stmt->execute(array($_SESSION['currentuser']));
+
         }
-        return $tablas;
+
+            $tablas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tablas = array();
+            foreach ($tablas_db as $tabla) 
+            {
+                array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
+            }
+            return $tablas;
+        
     }
 
 
-    public function listarUsuarios()
+    public function listarDeportistas()
     {
-        $stmt = $this->db->query("SELECT * from usuario");
+        $stmt = $this->db->query("SELECT * from deportista d, usuario u WHERE d.dni=u.dni");
         $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $usuarios = array();
         foreach ($usuarios_db as $usuario) 
@@ -103,7 +127,7 @@ Class TablaMapper
 
     public function listarEjercicios()
     {
-        if($this->esAdministrador())
+        if($this->esSuperusuario())
         {
             $stmt = $this->db->query("SELECT * from ejercicio");
             $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -5,6 +5,7 @@ require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/TablaMapper.php");
 require_once(__DIR__ . "/../model/EjercicioMapper.php");
 require_once(__DIR__ . "/../model/Tabla.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 class TablaController extends BaseController
 {
@@ -13,6 +14,7 @@ class TablaController extends BaseController
     public function __construct() {
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
         $this->tablaMapper = new TablaMapper();
+        $this->permisos= new Permisos();
     }
 
 
@@ -25,6 +27,8 @@ class TablaController extends BaseController
     */
     public function TablaADD() 
     {
+
+        if($this->permisos->esSuperusuario()){
         if(isset($_POST["tipo"]) && isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
         {//si existen los post añado la notificacion
             $ejercicios = $_POST["ejercicios"];
@@ -47,6 +51,10 @@ class TablaController extends BaseController
             $this->view->setVariable("ejercicios",$ejercicios);
             $this->view->render("tabla","tablaADD");
         }
+
+    }else{
+        $this->view->redirect("main", "index");
+    }
     }
 
 
@@ -56,6 +64,7 @@ class TablaController extends BaseController
     */
     public function TablaEDIT() 
     {   
+        if($this->permisos->esSuperusuario()){
         if(isset($_POST["tipo"]) && isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
         {//si existen los post añado la notificacion
             $ejercicios = $_POST["ejercicios"];
@@ -89,8 +98,10 @@ class TablaController extends BaseController
                 $this->view->setVariable("ejerciciosSelected",$ejerciciosSelected);
                 $this->view->render("tabla","tablaEDIT");
             }
+      }else{
+        $this->view->redirect("main", "index");
     }
-
+    }
     /*TablaListar
     *Muestra una lista con todos las Notificaciones
     */
@@ -110,7 +121,7 @@ class TablaController extends BaseController
     */
     public function TablaDelete() 
     {
-
+    if($this->permisos->esSuperusuario()){
         if(!isset($_POST['borrar']))
         {
             if (!isset($_GET["idTabla"])) 
@@ -143,6 +154,9 @@ class TablaController extends BaseController
             }
             $this->view->redirect("Tabla", "tablaListar");
         }
+        }else{
+        $this->view->redirect("main", "index");
+    }
     }
 
 
@@ -183,6 +197,7 @@ class TablaController extends BaseController
     */
     public function TablaAsignar() 
     {
+        if($this->permisos->esSuperusuario()){
          if(isset($_POST["usuario"]) && isset($_POST["idTabla"]))
         {
             $usuario = $_POST['usuario'];
@@ -198,10 +213,13 @@ class TablaController extends BaseController
             $this->view->redirect("Tabla", "tablaListar");
             
         }else{
-        $usuarios = $this->tablaMapper->listarUsuarios();
+        $usuarios = $this->tablaMapper->listarDeportistas();
         $this->view->setVariable("usuarios",$usuarios);
         $this->view->render("tabla","tablaASIGNAR");
         }
+         }else{
+        $this->view->redirect("main", "index");
+    }
     }
 }
 ?>

@@ -4,15 +4,18 @@ require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/NotificacionMapper.php");
 require_once(__DIR__ . "/../model/Notificacion.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 class NotificacionController extends BaseController
 {
     private $notificacionMapper;
+    private $permisos;
 
     public function __construct() 
     {
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
         $this->notificacionMapper = new NotificacionMapper();
+        $this->permisos= new Permisos();
     }
     
 
@@ -23,26 +26,32 @@ class NotificacionController extends BaseController
     */
     public function NotificacionADD() 
     {
-        if(isset($_POST["Asunto"]) && isset($_POST["contenido"]))
-        {//si existen los post añado la notificacion
-            $notificacion = new Notificacion();
-            $notificacion->setAsunto($_POST["Asunto"]);
-            $notificacion->setContenido($_POST["contenido"]);
-            $notificacion->setFecha(date("Y-m-d H:i:s"));
-            if($this->notificacionMapper->add($notificacion))
-            {
-               $this->view->setFlash("Notificación Añadida Correctamente");
+        if($this->permisos->esAdministrador()){
+            if(isset($_POST["Asunto"]) && isset($_POST["contenido"]))
+            {//si existen los post añado la notificacion
+                $notificacion = new Notificacion();
+                $notificacion->setAsunto($_POST["Asunto"]);
+                $notificacion->setContenido($_POST["contenido"]);
+                $notificacion->setFecha(date("Y-m-d H:i:s"));
+                if($this->notificacionMapper->add($notificacion))
+                {
+                   $this->view->setFlash("Notificación Añadida Correctamente");
 
+                }else
+                {
+                    $errors["username"] = "La notificación no se ha añadido corectamente";
+                    $this->view->setFlash($errors["username"]);
+                }
+                $this->view->redirect("Notificacion", "NotificacionListar");
             }else
             {
-                $errors["username"] = "La notificación no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
+                $this->view->render("notificacion","notificacionADD");
             }
-            $this->view->redirect("Notificacion", "NotificacionListar");
-        }else
-        {
-            $this->view->render("notificacion","notificacionADD");
+            
+        }else{
+                $this->view->redirect("main", "index");
         }
+    
         
     }
 

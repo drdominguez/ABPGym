@@ -66,7 +66,7 @@ class Usuario
     }
     
     public function setPassword($password) {
-        $this->password = $password;
+        $this->password = md5($password);
     }
     public function setEmail($email){
         $this->email = $email;

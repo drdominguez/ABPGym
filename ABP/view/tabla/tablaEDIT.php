@@ -97,7 +97,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <?php if(in_array($ejercicio->getId(), $ejerciciosSelected)){ ?>
+                                            <?php if(in_array($ejercicio->getIdEjercicio(), $ejerciciosSelected)){ ?>
                                                 <input type="checkbox" checked name="ejercicios[]" value="<?php echo $ejercicio->getIdEjercicio();?>">Añadir<br>
                                             <?php }else{ ?>
                                                 <input type="checkbox" name="ejercicios[]" value="<?php echo $ejercicio->getIdEjercicio();?>">Añadir<br>

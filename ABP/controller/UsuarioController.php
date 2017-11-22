@@ -4,6 +4,7 @@ require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/UsuarioMapper.php");
 require_once(__DIR__ . "/../model/Usuario.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 class UsuarioController extends BaseController
 {
@@ -13,6 +14,7 @@ class UsuarioController extends BaseController
     {
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
         $this->usuarioMapper = new UsuarioMapper();
+        $this->permisos= new Permisos();
     }
     
 
@@ -23,6 +25,8 @@ class UsuarioController extends BaseController
     */
     public function UsuarioADD() 
     {
+         if($this->permisos->esAdministrador())
+         {
         if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"]))
         {//si existen los post añado la notificacion
             $usuario = new Usuario();
@@ -48,6 +52,9 @@ class UsuarioController extends BaseController
         {
             $this->view->render("usuario","usuarioADD");
         }
+         }else{
+        $this->view->redirect("main", "index");
+    }
         
     }
 
@@ -59,9 +66,14 @@ class UsuarioController extends BaseController
     */
     public function UsuariosListar() 
     {
+    if($this->permisos->esAdministrador())
+         {
        $usuarios = $this->usuarioMapper->listar();
        $this->view->setVariable("usuarios",$usuarios);
        $this->view->render("usuario","usuarioSHOWALL");
+        }else{
+        $this->view->redirect("main", "index");
+    }
     }
     
 
@@ -72,6 +84,8 @@ class UsuarioController extends BaseController
     */
     public function UsuarioEDIT() 
     {
+        if($this->permisos->esAdministrador())
+         {
        if(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]))
         {//si existen los post añado la notificacion
             $usuario = new Usuario();
@@ -103,6 +117,9 @@ class UsuarioController extends BaseController
                 $this->view->setVariable("usuario",$usuario);
                 $this->view->render("usuario","usuarioEDIT");
             }
+             }else{
+        $this->view->redirect("main", "index");
+    }
     }
     
 
@@ -112,6 +129,8 @@ class UsuarioController extends BaseController
     */
     public function UsuarioDELETE() 
     {
+         if($this->permisos->esAdministrador())
+         {
         if(!isset($_POST['borrar']))
         {
             if (!isset($_GET["dni"])) 
@@ -142,6 +161,9 @@ class UsuarioController extends BaseController
             }
             $this->view->redirect("Usuario", "UsuariosListar");
         }
+         }else{
+        $this->view->redirect("main", "index");
+    }
     }
     
 

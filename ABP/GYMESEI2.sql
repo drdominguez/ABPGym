@@ -340,7 +340,8 @@ CREATE TABLE `tabla` (
   `idTabla` bigint(20) NOT NULL ,
   `tipo` enum('estandar','personalizada') COLLATE utf8_spanish_ci NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci,
-  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -793,6 +794,14 @@ ALTER TABLE `superusuario_tabla_deportista`
   ADD CONSTRAINT `FK_SuperUsuarioTab` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_SuperUsuarioTablaDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_SuperUsuarioTalaS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+
+
+--
+-- Constraints for table `tabla`
+--
+ALTER TABLE `tabla`
+  ADD CONSTRAINT `fk_TablaSuperUsuario` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+
 
 --
 -- Constraints for table `tabla_ejercicios`
