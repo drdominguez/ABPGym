@@ -217,37 +217,34 @@ function validarTablaADD(Formu) {
 
 function validarTablaEDIT(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 15))
-<<<<<<< HEAD
+
 }
 
 function validarNotificacionADD(Formu) {
     return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
-=======
->>>>>>> d7db457790fa1efc0c305b24bbcc13c9e35e4f40
 }
 
 function validarLogin(Formu) {
     return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.contraseña))
 }
 
-<<<<<<< HEAD
+
 function validarIndividualADD(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000))
-=======
-function validarNotificacionADD(Formu) {
-    return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
->>>>>>> d7db457790fa1efc0c305b24bbcc13c9e35e4f40
-}
 
-
-
-
-/*Funcion para encriptar la contraseña*/
-function encriptar() {
-    if ((document.getElementById('password').value == null) || (document.getElementById('password').value.length == 0) || /^\s*$/.test(document.getElementById('password').value)) { /*si no hay contraseña no hace nada*/
-        return false;
-    } else { /*si no encripta*/
-        document.getElementById('password').value = hex_md5(document.getElementById('password').value);
-        return true;
+    function validarNotificacionADD(Formu) {
+        return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
     }
-}
+
+
+
+
+    /*Funcion para encriptar la contraseña*/
+    function encriptar() {
+        if ((document.getElementById('password').value == null) || (document.getElementById('password').value.length == 0) || /^\s*$/.test(document.getElementById('password').value)) { /*si no hay contraseña no hace nada*/
+            return false;
+        } else { /*si no encripta*/
+            document.getElementById('password').value = hex_md5(document.getElementById('password').value);
+            return true;
+        }
+    }
