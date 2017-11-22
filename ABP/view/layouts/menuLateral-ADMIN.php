@@ -60,7 +60,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
                             <li>
-                                <a href="./index.php?controller=entrenador&amp;action=entrenadorADD"><i class="fa fa-fw fa-link"></i><?= i18n("Añadir Entrenadores") ?></a>
+                                <a href="./index.php?controller=Entrenador&amp;action=entrenadorADD"><i class="fa fa-fw fa-link"></i><?= i18n("Añadir Entrenadores") ?></a>
                             </li>
                             <li>
                                 <a href="./index.php?controller=entrenador&amp;action=entrenadorListar"><i class="fa fa-fw fa-link"></i><?= i18n("Ver Entrenadores") ?></a>

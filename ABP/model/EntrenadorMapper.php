@@ -5,11 +5,30 @@ require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/SuperUsuario.php");
 require_once(__DIR__."/SuperUsuarioMapper.php");
 
-class EntrenadorMapper extends SuperUsuarioMapper
+class EntrenadorMapper extends UsuarioMapper
 {
        public function __construct(){
         parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
     }
+
+public function listar()
+    {
+        $stmt = $this->db->query("SELECT * from entrenador");
+        $entrenadores_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $entrenadores = array();
+        foreach ($entrenadores_db as $entrenador) 
+        {
+            array_push($entrenadores, new Usuario($entrenador['dniEntrenador'],$entrenador['nombre'],$entrenador['apellidos'],$entrenador['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
+        }
+        return $entrenadores;
+    }
+
+
+
+
+
+
+
 
     public function addDeportista($deportista){
         parent::add($deportista);//llama al add de la clase padre

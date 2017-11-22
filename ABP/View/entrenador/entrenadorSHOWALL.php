@@ -43,25 +43,24 @@ $view->setVariable("title", "Entrenadores");
             <tbody>
 
 <?php
-                foreach($entrenadores as $entrenador){
+                foreach($usuarios as $usuario){
 ?>
-
                     <tr>
-                        <td><?php echo $entrenadores->getNombre(); ?></td>
-                        <td><?php echo $entrenadores->getApellidos(); ?></td> 
-                        <td><?php echo $entrenadores->getEdad(); ?></td>
-                        <td><?php echo $entrenadores->getEmail(); ?></td> 
-                        <td><?php echo $entrenadores->getTelefono(); ?></td> 
+                        <td><?php echo $usuarios->getNombre(); ?></td>
+                        <td><?php echo $usuarios->getApellidos(); ?></td> 
+                        <td><?php echo $usuarios->getEdad(); ?></td>
+                        <td><?php echo $usuarios->getEmail(); ?></td> 
+                        <td><?php echo $usuarios->getTelefono(); ?></td> 
                         <td>
-                        <a href='./index.php?controller=Entrenador&amp;action=entrenadorEDIT&amp;idEntrenador=<?php echo $aentrenador->getIdActividad();?>'><img src='./view/Icons/edit.png'>
+                        <a href='./index.php?controller=Entrenador&amp;action=entrenadorEDIT&amp;idEntrenador=<?php echo $entrenador->getIdEntrenador();?>'><img src='./view/Icons/edit.png'>
                             </a>
                         </td>
                         <td>
-                         <a href='./index.php?controller=Actividad&amp;action=actividadDELETE&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/delete.png'>
+                         <a href='./index.php?controller=Entrenador&amp;action=etrenadorenDELETE&amp;idEntrenador=<?php echo $entrenador->getIdEntrenador();?>'><img src='./view/Icons/delete.png'>
                             </a>
                         </td>
                         <td>
-                        <a href='./index.php?controller=Actividad&amp;action=actividadView&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/detalle.png'>
+                        <a href='./index.php?controller=Entrenador&amp;action=entrenadorView&amp;idEntrenador=<?php echo $entrenador->getIdEntrenador();?>'><img src='./view/Icons/detalle.png'>
                         </a>
                         </td>
 
