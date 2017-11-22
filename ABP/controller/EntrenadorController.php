@@ -38,6 +38,39 @@ class EntrenadorController extends BaseController
         }
         
     }
+    public function entrenadorDELETE() 
+    {
+        if(!isset($_POST['borrar']))
+        {
+            if (!isset($_GET["dniEntrenador"])) 
+            {
+                throw new Exception("El dni es obligatorio");
+            }
+            $dniEntrenador = $_GET["dniEntrenador"];
+            // find the notification object in the database
+            $entrenador = $this->entrenadorMapper->findById($dniEntrenador);
+            if ($entrenador == NULL) 
+            {
+                throw new Exception("No existe entrenador con este dni: ".$dniEntrenador);
+            }
+            // put the notification object to the view
+            $this->view->setVariable("entrenador", $entrenador);
+            // render the view (/view/posts/view.php)
+            $this->view->render("entrenador", "entrenadorDELETE");
+        }else
+        {
+            $dniEntrenador = $_POST["dniEntrenaador"];
+            if($entrenador = $this->entrenadorMapper->delete($dniEntrenador))
+            {
+               $this->view->setFlash("Entrenador Eliminado Correctamente");
+            }else
+            {
+                $errors["username"] = "El entrenador no se ha eliminado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("entrenador", "entrenadorListar");
+        }
+    }
 
     public function entrenadorListar() 
     {

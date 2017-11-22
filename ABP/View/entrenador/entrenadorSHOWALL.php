@@ -56,7 +56,7 @@ $view->setVariable("title", "Entrenadores");
                         <td><?php echo $usuario->getEmail(); ?></td> 
                         <td><?php echo $usuario->getTelefono(); ?></td> 
                         <td>
-                         <a href='./index.php?controller=Entrenador&amp;action=etrenadorenDELETE&amp;dniEntrenador=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
+                         <a href='./index.php?controller=Entrenador&amp;action=entrenadorDELETE&amp;dniEntrenador=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
                         </a>
                         </td>
                         <td>

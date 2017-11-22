@@ -27,7 +27,6 @@
                                 <th><?= i18n("dni") ?></th>
                                 <th><?= i18n("nombre") ?></th>
                                 <th><?= i18n("apellidos") ?></th>
-                                <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>
                                 <th><?= i18n("Asignar") ?></th>
                             </tr>
@@ -37,7 +36,6 @@
                                 <th><?= i18n("dni") ?></th>
                                 <th><?= i18n("nombre") ?></th>
                                 <th><?= i18n("apellidos") ?></th>
-                                <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>
                                 <th><?= i18n("Asignar") ?></th>
                             </tr>
@@ -50,11 +48,7 @@
                                 <td><?php echo $usuario->getNombre(); ?></td>
                                 <td><?php echo $usuario->getApellidos(); ?></td>
                                   <td>
-                                    <a href='./index.php?controller=Entrenador&amp;action=EntrenadorDELETE&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
-                                    </a>
-                                </td>
-                                  <td>
-                                    <a href='./index.php?controller=Entrenador&amp;action=EntrenadorView&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                    <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Entrenador&amp;action=EntrenadorView&amp;dniEntrenador=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>
                                     </a>
                                 </td>
                                  <td>

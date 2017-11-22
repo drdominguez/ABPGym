@@ -28,83 +28,67 @@ public function listar()
     }
 public function listarUsuarios()
     {
-        $stmt = $this->db->query("SELECT * from usuario");
-        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->db->query("SELECT * from usuario U, entrenador E WHERE U.dni = E.dniEntrenador");
+
+        $entrenadores_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt2 = $this->db->query("SELECT * from usuario");
+        $usuarios_db = $stmt2->fetchAll(PDO::FETCH_ASSOC);
         $usuarios = array();
+        $entrenadores = array();
+        foreach ($entrenadores_db as $entrenador) {
+            array_push($entrenadores,new Usuario($entrenador['dni'],$entrenador['nombre'],$entrenador['apellidos'],$entrenador['edad'],NULL,$entrenador['email'],$entrenador['telefono'],$entrenador['fechaAlta']));
+        }
         foreach ($usuarios_db as $usuario) 
         {
-            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
-        }
+            $unusuario = new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],NULL,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']);
+            if(!in_array($unusuario,$entrenadores)){
+                array_push($usuarios,$unusuario);
+            }
+            
+            
+         }
+
         return $usuarios;
     }
+function delete($dniEntrenador)
+    { 
+        if($this->esAdministrador())
+        {
+        $stmt = $this->db->prepare("SELECT * FROM entrenador WHERE dniEntrenador=?");
+        $stmt-> execute(array($dniEntrenador));
+        $usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($usuario_db != null)
+         {
+        $stmt = $this->db->prepare("DELETE from entrenador WHERE dniEntrenador=?");
+        $stmt->execute(array($dniEntrenador));
+        return true;
+    }
+    return false;
+    }
+    return false;
+    }
+
 public function add($entrenador)
     {
         $stmt = $this->db->prepare("INSERT INTO entrenador(dniEntrenador) VALUES (?)");
         if($this->esAdministrador())
         {
+            if($this->esEntrenador2($entrenador->getDniEntrenador())){
             $stmt->execute(array($entrenador->getDniEntrenador()));
-            return true;
-        }else
-        {
-            return false;
-        }
-    }
 
-
-
-
-
-
-
-
-    public function addDeportista($deportista){
-        parent::add($deportista);//llama al add de la clase padre
-        $stmt = $this->db->prepare("INSERT INTO deportista(dni) VALUES (?)");
-        if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-            $stmt=execute(array($this->dni,$deportista->getDni()));//
-            return true;
-        }
-        return false;
-    }
-    public function editDeportista($deportista){
-        parent::edit($deportista);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
-        $stmt=$this->db-> prepare("UPDATE deportista SET dni=? WHERE dni=?");
-        if(parent::permisoDeportista($deportista->getDni())){
-            $stmt=execute(array($deportista->getDni()));
-            return true;
-        }
-        return false;
-    }
-    public function removeDeportista($dni){
-        $stmt = $this->db->prepare("DELETE FROM deportista WHERE dni = ?");
-        if(parent::permisosEjercicio($dni)){
-            $stmt= execute(array($dni));
-            parent::remove($dni);
-            return true;
-        }
-        return false;
-    }
-
-    protected function permisosDeportista($dni){
-        /*Comprobar si el susuario es un administrador*/
-        $stmt = $this->db->prepare("SELECT dni FROM administrador WHERE dniAdministrador=?");
-        $stmt->execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn() > 0) {
-            return true;
-        }else{//comprobar si ha creado el usuario actual ese ejercicio si no no tiene permisos sobre el
-            $stmt = $this->db->prepare("SELECT * FROM superusuario_deportista WHERE dniSuperUsuario=? AND $dni=?");
-            $stmt->execute(array($_SESSION["currentuser"], $dni));
-            if ($stmt->fetchColumn() > 0) {
-                return true;
+                 return true;
+            }else
+            {
+                return false;
             }
-        }
-        return false;
+            return false;
+            }
     }
-    protected function esSuperusuario(){
-        $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
-        $stmt= execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn()>0){
-            return true;
+public function esEntrenador2($dni){
+        $stmt = $this->db->prepare("SELECT dniEntrenador FROM entrenador WHERE dniEntrenador=?");
+        $stmt->execute(array($dni));
+        if ($stmt->fetchColumn() > 0) {
+             return true;
         }
         return false;
     }
