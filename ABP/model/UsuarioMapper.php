@@ -1,14 +1,19 @@
 <?php
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Usuario.php");
+require_once(__DIR__ . "/../core/permisos.php");
+
+
 class UsuarioMapper {
     protected $db;
+     private $permisos;
     /**
     *el contructor obtiene la conexion con la base de datos del core
     **/
     public function __construct() 
     {
         $this->db = PDOConnection::getInstance();
+         $this->permisos= new Permisos();
     }
     /*Comprueba si existe un susario con ese dni y contraseña*/
     function login($dni,$password)
@@ -28,7 +33,7 @@ class UsuarioMapper {
     //Añadir
     function ADD($usuario)
     {
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
         $stmt = $this->db->prepare("SELECT * FROM usuario WHERE dni=?");
         $stmt-> execute(array($usuario->getDni()));
@@ -47,7 +52,7 @@ class UsuarioMapper {
     //Funcion borrar un elemento de la BD
     function DELETE($dni)
     { 
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
         $stmt = $this->db->prepare("SELECT * FROM usuario WHERE dni=?");
         $stmt-> execute(array($dni));
@@ -110,18 +115,6 @@ class UsuarioMapper {
             }
     }
 
-
-
-    protected function esAdministrador()
-    {
-        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
-        $stmt->execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn()>0)
-        {
-            return true;
-        }
-        return false;
-    }
 
 
 }
