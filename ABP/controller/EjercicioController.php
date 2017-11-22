@@ -42,7 +42,6 @@ class EjercicioController extends BaseController{
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
         $ejercicioEstiramiento=$this->estiramientoMapper->getEstiramientoById($_GET["idEjercicio"]);
         $this->view->setVariable("estiramiento", $ejercicioEstiramiento);
-        var_dump($ejercicioEstiramiento->getDescripcion());
         $this->view->render("ejercicios/estiramiento","estiramientoSHOWCURRENT");
     }
 
@@ -89,6 +88,13 @@ class EjercicioController extends BaseController{
         $this->view->render("ejercicios/estiramiento", "estiramientoSHOWALL");
     }
 
+
+     public function cardioVer(){
+        $this->cardioMapper = new EjercicioCardioMapper();
+        $ejercicioCardio=$this->cardioMapper->getCardioById($_GET["idEjercicio"]);
+        $this->view->setVariable("cardio", $ejercicioCardio);
+        $this->view->render("ejercicios/cardio","cardioSHOWCURRENT");
+    }
 
     /*cardioADD
 	*Si se llama con un get carga la vista

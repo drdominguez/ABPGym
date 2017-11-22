@@ -1,5 +1,6 @@
 <?php
     $view=ViewManager::getInstance();
+    $cardio=$view->getVariable("cardio");
 ?>
 <!DOCTYPE html>
 <html>       
@@ -23,11 +24,12 @@
                             <div class="form-row">
                               <div class="col-md-6">
                                 <label for="exampleInputNombre">Nombre</label>
-                                <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                                <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $cardio->getNombre() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                               </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Descripción</label>
-                                    <textarea class="form-control" name="descripcion" readonly="readonly" rows="2"></textarea>
+                                    <textarea class="form-control" name="descripcion" readonly="readonly" rows="2"><?php echo $cardio->getDescripcion() ?>
+                                    </textarea>
                                 </div>
                             </div>
                          </div>
@@ -35,11 +37,11 @@
                              <div class="form-row">
                                  <div class="col-md-6">
                                     <label for="exampleInputTiempo">Video</label>
-                                    <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" placeholder="Video" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" value="<?php echo $cardio->getVideo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                                  </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Imagen</label>
-                                    <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" value="<?php echo $cardio->getImagen() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
                              </div>
                         </div>
@@ -47,11 +49,11 @@
                              <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Tiempo</label>
-                                    <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Tiempo" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" value="<?php echo $cardio->getTiempo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputUnidad">Unidad</label>
-                                    <input class="form-control" name="unidad" id="exampleInputUnidad" type="TEXT" aria-describedby="emailHelp" placeholder="Unidad" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="unidad" id="exampleInputUnidad" type="TEXT" aria-describedby="emailHelp" value="<?php echo $cardio->getUnidad() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                                  </div>
                              </div>
                         </div>
@@ -59,12 +61,12 @@
                              <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Distancia</label>
-                                    <input class="form-control" name="distancia" id="exampleInputDistancia" type="TEXT" aria-describedby="emailHelp" placeholder="Distancia" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="distancia" id="exampleInputDistancia" type="TEXT" aria-describedby="emailHelp" value="<?php echo $cardio->getDistancia() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
                              </div>
                         </div>
                     </form>
-                    <button type="button" onclick="window.location.href='../controller/EjercicioController.php?action=default'" class="btn btn-default">Volver</button>
+                    <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=CardioListar'" class="btn btn-default"><?= i18n("Volver") ?></button>
                 </div>
             </div>
         </div>

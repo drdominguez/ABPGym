@@ -9,6 +9,23 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 	public function __construct(){
 		parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
 	}
+
+	/*
+	*Obtiene un cardio a partir de un id
+	*/
+	public function getCardioById($cardioId){
+		$ejercicio=parent::getEjercicioById($cardioId);
+		//creamos el cardio añadiendole todos los atributos de Ejercicio
+		$ejercicioCardio = new EjercicioCardio($ejercicio->getIdEjercicio(),$ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getVideo(),$ejercicio->getImagen(),"","","");
+		$stmt = $this->db->prepare("SELECT * FROM cardio WHERE idEjercicio=?");//obtenemos el estiramiento
+		$stmt->execute(array($cardioId));
+		$cardio = $stmt->fetch(PDO::FETCH_ASSOC);
+		$ejercicioCardio->setTiempo($cardio["tiempo"]);
+		$ejercicioCardio->setUnidad($cardio["unidad"]);
+		$ejercicioCardio->setDistancia($cardio["distancia"]);
+		return $ejercicioCardio;
+	}
+
 	public function addCardio($ejercicio){
 		parent::add($ejercicio);//llama al add de la clase padre
 		$stmt = $this->db->prepare("INSERT INTO cardio(idEjercicio,tiempo,unidad,distancia ) VALUES (?,?,?,?)");

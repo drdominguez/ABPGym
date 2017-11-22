@@ -13,7 +13,7 @@ $view->setVariable("title", "Estiramientos");
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Listado de estiramientos") ?></div>
+                        <i class="fa fa-table"></i><?= i18n("Listado de Cardios") ?></div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
@@ -24,7 +24,7 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Descripción") ?></th>
                                          <th><?= i18n("Tiempo") ?></th>
                                         <th><?= i18n("Unidad") ?></th>
-                                        <th><?= i18n("Distancia") ?></th>
+                                        <th><?= i18n("Distancia(metros)") ?></th>
                                         <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
@@ -37,7 +37,7 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Descripción") ?></th>
                                         <th><?= i18n("Tiempo") ?></th>
                                         <th><?= i18n("Unidad") ?></th>
-                                        <th><?= i18n("Distancia") ?></th>
+                                        <th><?= i18n("Distancia(metros)") ?></th>
                                         <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
@@ -54,8 +54,8 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $cardio["unidad"]; ?></td>
                                             <td><?php echo $cardio["distancia"]; ?></td>
                                             <td>
-                                                <a href=''><img src='./view/Icons/detalle.png'>
-                                                </a></td>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=cardioVer&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><img src='./view/Icons/detalle.png'>
+                                                </a>
                                             <td>
                                                 <a href=''><img src='./view/Icons/edit.png'>
                                                 </a>

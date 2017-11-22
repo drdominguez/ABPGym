@@ -14,12 +14,12 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 	*Obtiene un ejercicio de tipo cardio
 	*como la tabla padre de cardio Ejercicio tiene mas atributos a mostrar primero lo obtenemos
 	*/
-	public function getEstiramientoById($cardioId){
-		$ejercicio=parent::getEjercicioById($cardioId);
+	public function getEstiramientoById($estiramientoId){
+		$ejercicio=parent::getEjercicioById($estiramientoId);
 		//creamos el estiramiento añadiendole todos los atributos de Ejercicio
 		$ejercicioEstiramiento = new EjercicioEstiramiento($ejercicio->getIdEjercicio(),$ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getVideo(),$ejercicio->getImagen(),"","");
 		$stmt = $this->db->prepare("SELECT * FROM estiramiento WHERE idEjercicio=?");//obtenemos el estiramiento
-		$stmt->execute(array($cardioId));
+		$stmt->execute(array($estiramientoId));
 		$estiramiento = $stmt->fetch(PDO::FETCH_ASSOC);
 		$ejercicioEstiramiento->setTiempo($estiramiento["tiempo"]);
 		$ejercicioEstiramiento->setUnidad($estiramiento["unidad"]);
