@@ -59,7 +59,9 @@ Class TablaMapper
     public function asignar($usuario,$idTabla){
         if($this->esSuperusuario())
         {
-        $stmt = $this->db->prepare("DELETE FROM superusuario_tabla_deportista WHERE dniDeportista=?");
+
+            if($this->esDeportista2($usuario)){
+                        $stmt = $this->db->prepare("DELETE FROM superusuario_tabla_deportista WHERE dniDeportista=?");
         $stmt->execute(array($usuario));    
         $stmt = $this->db->prepare("INSERT INTO superusuario_tabla_deportista (dniSuperUsuario,dniDeportista,idTabla) VALUES (?,?,?)");
         $stmt->execute(array($_SESSION['currentuser'],$usuario,$idTabla));
@@ -67,6 +69,9 @@ Class TablaMapper
     }else{
         return false;
     }
+}else{
+    return false;
+}
     }
 
     public function listar()
@@ -190,6 +195,14 @@ Class TablaMapper
     }
 
 
+    public function esDeportista2($dni){
+        $stmt = $this->db->prepare("SELECT dni FROM deportista WHERE dni=?");
+        $stmt->execute(array($dni));
+        if ($stmt->fetchColumn() > 0) {
+             return true;
+        }
+        return false;
+    }
 
     protected function esSuperusuario()
     {

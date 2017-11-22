@@ -14,7 +14,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
             <div id="flash"><?= $view->popFlash() ?></div>
         </ol>
         <!-- Example DataTables Card-->
-    <form name = 'Form' action='./index.php?controller=Tabla&amp;action=TablaAsignar' method='post'>
+    <form name='Form' action='./index.php?controller=Tabla&amp;action=TablaAsignar' method='post'>
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-table"></i><?= i18n("Asignar Tabla") ?>
