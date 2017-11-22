@@ -63,19 +63,20 @@ Class PagoMapper{
 
     }
 
-    public function edit($pago){
-        $stmt=$this->db-> prepare("UPDATE pago SET dniDeportista=?, idActividad=?, importe=?, fecha=? WHERE idPago=?");
-        if(esSuperusuario()){
-            $stmt=execute(array($pago->getDniDeportista(),$pago->getIdActividad(),$pago->getImporte(),$pago->getFecha(),$pago->getIdPago()));
-            return true;
-        }
-        return false;
-    }
-    public function delete($idPago){
-        $stmt = $this->db->prepare("DELETE FROM pago WHERE idPago = ?");
-        if(esSuperusuario()){
-            $stmt= execute(array($idPago));
-            return true;
+    public function delete($idPago)
+    {
+        if($this->esAdministrador())
+        {
+            $stmt = $this->db->prepare("SELECT * FROM pago WHERE idPago=?");
+            $stmt-> execute(array($idPago));
+            $pago_db = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($pago_db != null)
+            {
+                $stmt = $this->db->prepare("DELETE from usuario WHERE idPago=?");
+                $stmt->execute(array($idPago));
+                return true;
+            }
+            return false;
         }
         return false;
     }

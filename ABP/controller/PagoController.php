@@ -54,5 +54,58 @@ class PagoController extends BaseController
         $this->view->render("pago","pagoSHOWALL");
     }
 
+    public function PagoDELETE()
+    {
+        if(!isset($_POST['borrar']))
+        {
+            if (!isset($_GET["idPago"]))
+            {
+                throw new Exception("El idPago es obligatorio");
+            }
+            $idPago = $_GET["idPago"];
+            // find the notification object in the database
+            $pago = $this->PagoMapper->findById($idPago);
+            if ($pago == NULL)
+            {
+                throw new Exception("No existe ese pago");
+            }
+            // put the notification object to the view
+            $this->view->setVariable("pago", $pago);
+            // render the view (/view/posts/view.php)
+            $this->view->render("pago", "pagoDELETE");
+        }else
+        {
+            $idPago = $_POST["idPago"];
+            if($pago = $this->pagoMapper->delete($idPago))
+            {
+                $this->view->setFlash("Pago Eliminado Correctamente");
+            }else
+            {
+                $errors["username"] = "El pago no se ha eliminado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("Pago", "PagoListar");
+        }
+    }
+
+    public function PagoView()
+    {
+        if (!isset($_GET["idPago"]))
+        {
+            throw new Exception("El IDPago es obligatorio");
+        }
+        $idPago = $_GET["idPago"];
+        // find the notification object in the database
+        $pago = $this->pagoMapper->findById($idPago);
+        if ($pago == NULL)
+        {
+            throw new Exception("No existe pago con ese id: ".$idPago);
+        }
+        // put the notification object to the view
+        $this->view->setVariable("pago", $pago);
+        // render the view (/view/posts/view.php)
+        $this->view->render("pago", "pagoSHOWCURRENT");
+    }
+
 }
 ?>

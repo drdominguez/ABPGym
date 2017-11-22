@@ -1,34 +1,37 @@
-
 <?php
-    class pago_DELETE{ 
-        private $valores;
-    
-        function __construct($valores){
-            $this->valores=$valores;
-            $this->render();
-        }
+require_once(__DIR__."/../../core/ViewManager.php");
 
-        function render(){
-
-            include '../locates/Strings_' .$_SESSION['idioma'] . '.php';
-            include '../view/Header.php';
-                        
+$view = ViewManager::getInstance();
+$usuario = $view->getVariable("pago");
+$currentuser = $view->getVariable("currentusername");
+$errors = $view->getVariable("errors");
+$view->setVariable("title", "Borrar Pago");
 ?>
-      
-            <form name = 'Form' action = '../Controller/pago_Controller.php' method = 'post' onsubmit = 'comprobar()'>   
 
-        <?php echo $strings['idPago'] ?> : <input type = 'text' name = 'idPago' size = '20' value ='<?php echo ($this->valores['idPago']); ?>'  readonly  onblur="esVacio(this)  && comprobarText(this, 20)" ><br>
-        <?php echo $strings['dniDeportista'] ?> : <input type = 'text' name = 'dniDeportista' size = '10' value ='<?php echo ($this->valores['dniDeportista']); ?>'  readonly  onblur="esVacio(this)  && comprobarText(this, 10)" ><br>
-        <?php echo $strings['idActividad'] ?> : <input type = 'text' name = 'idActividad' size = '20' value ='<?php echo ($this->valores['idActividad']); ?>'  readonly  onblur="esVacio(this)  && comprobarText(this, 20)" ><br>
-        <?php echo $strings['importe'] ?> : <input type = 'text' name = 'importe' size = '22' value ='<?php echo ($this->valores['importe']); ?>'  readonly  onblur="esVacio(this)  && comprobarText(this, 22)" ><br>
-        <?php echo $strings['fecha'] ?> : <input readonly class = 'tcal' type = 'date' name = 'fecha' min = '' max = '' value ='<?php echo ($this->valores['fecha']); ?>'  readonly  ></br>
-         
-
-                  <input type='submit' name='action' value='DELETE'>
-            </form>
-            <a href='../Controller/pago_Controller.php'><?php echo $strings['Volver']; ?> </a>
-<?php
-         include '../view/Footer.php';
-        } // fin del metodo render
-    } // fin de la clase
-?>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <div id="flash"><?= $view->popFlash() ?></div>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i><?= i18n("Borrar pago") ?>
+            </div>
+            <div class="card-body">
+                <form name = 'Form' id="form1" action = './index.php?controller=Pago&amp;action=PagoDELETE' method = 'post' onsubmit = 'comprobar()'>
+                    <b><?= i18n("IDPago") ?>:</b> <?php echo $pago->getIdPago(); ?><br>
+                    <b><?= i18n("DNI") ?>:</b> <?php echo $pago->getDniDeportista(); ?><br>
+                    <b><?= i18n("Actividad") ?>:</b> <?php echo $pago->getActividad(); ?><br>
+                    <b><?= i18n("Importe") ?>:</b> <?php echo $pago->getImporte(); ?><br>
+                    <b><?= i18n("Fecha") ?>: </b> <?php echo $pago->getFecha(); ?><br>
+                    <input type="hidden" name="idPago" value="<?php echo $pago->getIdPago(); ?>">
+                    <input type="hidden" name="borrar" value="ok">
+                    <button type="button" onclick="window.location.href='./index.php?controller=Pago&amp;action=PagoDELETE'" class="btn btn-default">Volver</button>
+                    <button  type='submit' name='action' value='PagoDELETE' class="btn btn-primary"><?= i18n("Borrar") ?></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

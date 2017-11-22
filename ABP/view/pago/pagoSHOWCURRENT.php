@@ -1,37 +1,32 @@
-
 <?php
-    class pago_SHOWCURRENT{
-   
-        private $valores;
-        
-        function __construct($valores){
-            $this->valores=$valores;
-            $this->render();
-        }
-    
-        function render(){
-        
-            include '../locates/Strings_' . $_SESSION['idioma'] . '.php';
-            include '../view/Header.php';
-            include '../Functions/pago_DefForm.php';
+require_once(__DIR__."/../../core/ViewManager.php");
 
-
-    ?>
-            <form name = 'Form' action = '../Controller/pago_Controller.php' method = 'post' onsubmit = 'comprobar()'>
-
-                <?php echo $strings['idPago'] ?> : <input type = 'text' name = 'idPago' size = '20' value ='<?php echo ($this->valores['idPago']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 20)" ><br>
-        <?php echo $strings['dniDeportista'] ?> : <input type = 'text' name = 'dniDeportista' size = '10' value ='<?php echo ($this->valores['dniDeportista']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 10)" ><br>
-        <?php echo $strings['idActividad'] ?> : <input type = 'text' name = 'idActividad' size = '20' value ='<?php echo ($this->valores['idActividad']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 20)" ><br>
-        <?php echo $strings['importe'] ?> : <input type = 'text' name = 'importe' size = '22' value ='<?php echo ($this->valores['importe']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 22)" ><br>
-        <?php echo $strings['fecha'] ?> : <input readonly class = 'tcal' type = 'date' name = 'fecha' min = '' max = '' value ='<?php echo ($this->valores['fecha']); ?>' readonly  ></br>
-        
-
-            </form>
-            <a href='../Controller/pago_Controller.php'><?php echo $strings['Volver']; ?> 
-            </a>
-
-<?php
-            include '../view/Footer.php';
-        } // fin del metodo render
-    } // fin de la clase
+$view = ViewManager::getInstance();
+$pago = $view->getVariable("pago");
+$currentuser = $view->getVariable("currentusername");
+$errors = $view->getVariable("errors");
+$view->setVariable("title", "Ver Pago");
 ?>
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <div id="flash"><?= $view->popFlash() ?></div>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i><?= i18n("Mostrar pago") ?>
+            </div>
+            <div class="card-body">
+                <b><?= i18n("IDPago") ?>:</b> <?php echo $pago->getIdPago(); ?><br>
+                <b><?= i18n("DNI") ?>:</b> <?php echo $pago->getDniDeportista(); ?><br>
+                <b><?= i18n("IDActividad") ?>:</b> <?php echo $pago->getActividad(); ?><br>
+                <b><?= i18n("Importe") ?>:</b> <?php echo $pago->getImporte(); ?><br>
+                <b><?= i18n("Fecha") ?>: </b> <?php echo $pago->getFecha(); ?><br>
+                <button type="button" onclick="window.location.href='./index.php?controller=Pago&amp;action=PagoListar'" class="btn btn-primary">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>

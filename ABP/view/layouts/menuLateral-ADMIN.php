@@ -147,9 +147,6 @@
                                 <a href="./index.php?controller=Pago&amp;action=PagoADD"><?= i18n("Añadir Pago") ?></a>
                             </li>
                             <li>
-                                <a href="./index.php?controller=Pago&amp;action=EDIT"><?= i18n("Modificar Pago") ?></a>
-                            </li>
-                            <li>
                                 <a href="./index.php?controller=Pago&amp;action=PagoListar"><?= i18n("Ver Pagos") ?></a>
                             </li>
 
