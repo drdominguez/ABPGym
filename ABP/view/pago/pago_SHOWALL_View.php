@@ -26,7 +26,6 @@
                             <th><?= i18n("DNI") ?></th>
                             <th><?= i18n("Importe") ?></th>
                             <th><?= i18n("Fecha") ?></th>
-                            <th></th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -34,7 +33,6 @@
                             <th><?= i18n("DNI") ?></th>
                             <th><?= i18n("Importe") ?></th>
                             <th><?= i18n("Fecha") ?></th>
-                            <th></th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -47,10 +45,6 @@
                                 <td><?php echo $pago->getDniDeportista(); ?></td>
                                 <td><?php echo $pago->getImporte(); ?></td>
                                 <td><?php echo $pago->getFecha(); ?></td>
-                                <td>
-                                    <a href='./index.php?controller=Pago&amp;action=PagoView&amp;idPago=<?php echo $pago->getIdPago();?>'><img src='./view/Icons/detalle.png'>
-                                    </a>
-                                </td>
                             </tr>
                             <?php
                         }

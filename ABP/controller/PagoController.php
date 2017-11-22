@@ -21,53 +21,33 @@ class PagoController extends BaseController
     *Si se llama con un get carga la vista
     *si se llama con un post añade la notificacion
     */
-    public function PagoADD()
-    {
-        if(isset($_POST[" "]) && isset($_POST["contenido"]))
-        {//si existen los post añado la notificacion
-            $notificacion = new Notificacion();
-            $notificacion->setAsunto($_POST["Asunto"]);
-            $notificacion->setContenido($_POST["contenido"]);
-            $notificacion->setFecha(date("Y-m-d H:i:s"));
-            if($this->notificacionMapper->add($notificacion))
-            {
-                $this->view->setFlash("Pago Añadido Correctamente");
+    public function PagoADD() {
+        $this->PagoMapper = new PagoMapper();
+        if(isset($_POST["DNI"]) && isset($_POST["Nombre"]) )
+        {//si existen los post añado el ejercicio
+            $pago = new Pago();
+            $pago->setDniDeportista($_POST["DNI"]);
+            $pago->setIdActividad($_POST["Nombre"]);
+            $pago->setFecha(date("Y-m-d H:i:s"));
+            if($this->PagoMapper->add($pago)){
+                $this->view->setFlash("Pago Añadido Corectamente");
 
-            }else
-            {
+            }else{
                 $errors["username"] = "El pago no se ha añadido corectamente";
                 $this->view->setFlash($errors["username"]);
             }
-            $this->view->redirect("Notificacion", "NotificacionListar");
-        }else
-        {
-            $this->view->render("notificacion","notificacionADD");
-        }
+            $this->view->redirect("Pago", "PagoListar");
 
+        }
+        $this->view->render("Pago","pago_ADD_View");
     }
 
-
-
-
-    /*NotificacionListar
-    *Muestra una lista con todos las Notificaciones
-    */
     public function PagoListar()
     {
         $pagos = $this->pagoMapper->listar();
         $this->view->setVariable("pagos",$pagos);
         $this->view->render("Pago","pago_SHOWALL_View");
     }
-
-
-
-
-
-    /*Notificacion SHOW CURRENT
-    *Si se llama con un get carga la vista
-    *si se llama con un post muestra notificacion
-    */
-
 
 }
 ?>

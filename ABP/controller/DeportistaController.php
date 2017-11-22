@@ -47,7 +47,7 @@ if (!isset($_REQUEST['action'])){
                 else{
                     $deportista = get_data_form();
                     $respuesta = $deportista->ADD();
-                    new MESSAGE($respuesta, '../controller/deportista_Controller.php');
+                    new MESSAGE($respuesta, '../controller/DeportistaController.php');
                 }
                 break;      
         case 'DELETE': //Borrado de actividades
@@ -59,7 +59,7 @@ if (!isset($_REQUEST['action'])){
                 else{
                     $deportista = get_data_form();
                     $respuesta = $deportista->DELETE();
-                    new MESSAGE($respuesta, '../controller/deportista_Controller.php');
+                    new MESSAGE($respuesta, '../controller/DeportistaController.php');
                 }
                 break;
         case 'SHOWCURRENT': //Mostrar información detallada
@@ -78,7 +78,7 @@ if (!$_POST){
                     $deportista = get_data_form();
 
                     $respuesta = $deportista->EDIT();
-                    new MESSAGE($respuesta, '../controller/deportista_Controller.php');
+                    new MESSAGE($respuesta, '../controller/DeportistaController.php');
                 }
                 
                 break;
@@ -102,7 +102,7 @@ if (!$_POST){
                 }
                 $datos = $deportista->SEARCH();
                 $lista = array('dni');
-                new deportista_SHOWALL($lista, $datos,'../controller/deportista_Controller.php' );
+                new deportista_SHOWALL($lista, $datos,'../controller/DeportistaController.php' );
 
             }
 

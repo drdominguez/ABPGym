@@ -13,11 +13,24 @@ Class PagoMapper{
     }
 
     public function add($pago){
+        $nombre = $pago->getActividad();
+        $query = $this->db->prepare("SELECT idActividad from actividad where nombre = $nombre");
+        $query->execute();
+        foreach ($query as $row){
+            $nombre = $row["idActividad"];
+        }
+        $query = $this->db->prepare("SELECT precio from actividad where idActividad = $nombre");
+        $query->execute();
+        foreach ($query as $row){
+            $importe = $row["precio"];
+        }
+        $pago->setImporte($importe);
         $stmt = $this->db->prepare("INSERT INTO pago(dniDeportista,idActividad,importe,fecha ) VALUES (?,?,?,?)");
         if(esAdministrador())
         {
-            $stmt=execute(array($pago->getDniDeportista(),$pago->getidActividad(),$pago->getImporte(),$pago->getFecha()));
-            $this->idPago=db2_last_insert_id($this->db);
+
+            $stmt=execute(array($pago->getDniDeportista(),$pago->getActividad(),$pago->getImporte(),$pago->getFecha()));
+            $this->idPago = $this->db->lastInsertId();
             $stmt = execute(array($_SESSION["currentuser"],$this->idPago));
             return true;
         }else{
@@ -88,3 +101,11 @@ Class PagoMapper{
     }
 }
 ?>
+
+
+
+
+
+
+
+

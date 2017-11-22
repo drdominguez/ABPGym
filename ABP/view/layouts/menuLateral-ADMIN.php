@@ -159,12 +159,46 @@
                             <span class="nav-link-text">Gestión de deportista</span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseDeportistas">
-                            <li>
-                                <a href="../controller/DeportistasController.php?action=ADD">Enviar notificacion</a>
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Deportistas">
+                                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
+                                    <i class="fa fa-fw fa-table"></i>
+                                    <span class="nav-link-text">Gestión de deportista</span>
+                                </a>
+                                <ul class="sidenav-second-level collapse" id="collapseDeportistas">
+                                    <li>
+                                        <a href="../controller/DeportistasController.php?action=DeportistaADD">Añadir deportista</a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/NotificacionController.php?action=DeportistaEDIT">Editar deportista</a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/DeportistasController.php?action=DeportistaREMOVE">Eliminar deportista</a>
+                                    </li>
+                                    <li>
+                                        <a href="../controller/NotificacionController.php?action=listar">Ver deportistas</a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="../controller/NotificacionController.php">Ver notificaciones</a>
+
+                            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pagos">
+                                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePagos" data-parent="#exampleAccordion">
+                                    <i class="fa fa-fw fa-table"></i>
+                                    <span class="nav-link-text"><?= i18n("Gestión de Pagos") ?></span>
+                                </a>
+                                <ul class="sidenav-second-level collapse" id="collapsePagos">
+                                    <li>
+                                        <a href="./index.php?controller=Pago&amp;action=PagoADD"><?= i18n("Añadir Pago") ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="./index.php?controller=Pago&amp;action=EDIT"><?= i18n("Modificar Pago") ?></a>
+                                    </li>
+                                    <li>
+                                        <a href="./index.php?controller=Pago&amp;action=PagoListar"><?= i18n("Ver Pagos") ?></a>
+                                    </li>
+
+                                </ul>
                             </li>
+
                         </ul>
                     </li>
 
