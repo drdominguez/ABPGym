@@ -1,12 +1,13 @@
 <?php
-
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/UsuarioMapper.php");
 require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/SuperUsuario.php");
+require_once(__DIR__."/SuperUsuarioMapper.php");
 
-Class SuperUsuarioMapper extends UsuarioMapper{
-    public function __construct(){
+class EntrenadorMapper extends SuperUsuarioMapper
+{
+       public function __construct(){
         parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
     }
 

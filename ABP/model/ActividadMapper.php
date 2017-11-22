@@ -26,7 +26,7 @@ class ActividadMapper{
     function delete($idActividad){
         $stmt = $this->db->prepare("DELETE from actividad WHERE idActividad=?");
          if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getIdActividad()));
+            $stmt -> execute(array($idActividad));
             return true;
         }
         return false;
@@ -35,7 +35,6 @@ class ActividadMapper{
        
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=? WHERE idActividad=? ");
-            $stmt1 = $this->db->prepare("UPDATE grupo SET instalaciones=?,plazas=? WHERE idActividad=?");
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$idActividad));
             $stmt1 -> execute(array($actividad->getInstalaciones(),$actividad->getPlazas(),$idActividad));
             return true;

@@ -22,10 +22,10 @@ Class ActividadGrupoMapper extends ActividadMapper{
 		}
 		return false;
 	}
-	function editGrupo($actividad){
-        	return parent::edit($actividad);
+	function editGrupo($actividad,$idActividad){
+        	return parent::edit($actividad,$idActividad);
         	if(parent::esAdministrador()){
-        		$stmt = $this->db->prepare("UPDATE grupo SET instalaciones,plazas WHERE idActividad=? ");
+            	$stmt = $this->db->prepare("UPDATE grupo SET instalaciones=?,plazas=? WHERE idActividad=?");
         		$stmt -> execute(array($actividad->getInstalaciones(),$actividad->getPlazas(),$actividad->getIdActividad()));
         		return true;
         	}

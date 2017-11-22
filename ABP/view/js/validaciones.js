@@ -9,6 +9,7 @@ var atributo = new Array();
 atributo['contenido'] = i18nMessages['contenido'];
 atributo['Asunto'] = i18nMessages['Asunto'];
 atributo['nombre'] = i18nMessages['nombre'];
+atributo['precio'] = i18nMessages['precio'];
 /*Comprueba que el campo no contenga null ni cero*/
 function comprobarVacio(campo) {
     /*Si el campo esta vacio, no se ha escrito ningún caracter o solo se han escrito espacios en blanco salta alerta*/
@@ -211,23 +212,23 @@ function comprobarSolonum(campo) {
 }
 
 function validarTablaADD(Formu) {
-    return (comprobarVacio(Formu.nombre) && comprobarTexto(Formu.nombre, 15))
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 15))
 }
 
 function validarTablaEDIT(Formu) {
-    return (comprobarVacio(Formu.nombre) && comprobarTexto(Formu.nombre, 15))
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 15))
 }
 
 function validarNotificacionADD(Formu) {
-    return (comprobarVacio(Formu.Asunto) && comprobarTexto(Formu.Asunto, 15) && comprobarVacio(Formu.contenido))
+    return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
 }
 
 function validarLogin(Formu) {
-    return (comprobarVacio(Formu.dni) && comprobarDni(Formu.dni) && comprobarVacio(Formu.contraseña))
+    return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.contraseña))
 }
 
 function validarIndividualADD(Formu) {
-    return (comprobarVacio(Formu.nombre) && comprobarTexto(Formu.nombre, 30) && comprobarVacio(Formu.precio) && comprobarReal(Formu.precio, 2, 0, 1000000))
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000))
 }
 
 

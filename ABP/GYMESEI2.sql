@@ -648,14 +648,14 @@ ALTER TABLE `ejercicio`
 -- Constraints for table `actividad_deportista`
 --
 ALTER TABLE `actividad_deportista`
-  ADD CONSTRAINT `fk_ActividadDeportista` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
+  ADD CONSTRAINT `fk_ActividadDeportista` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `actividad_horario`
 --
 ALTER TABLE `actividad_horario`
   ADD CONSTRAINT `fk_ActHorario` FOREIGN KEY (`idHorario`) REFERENCES `horario` (`idHorario`),
-  ADD CONSTRAINT `fk_ActividadAc` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
+  ADD CONSTRAINT `fk_ActividadAc` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`)ON DELETE CASCADE;
 
 --
 -- Constraints for table `administrador`
@@ -698,19 +698,19 @@ ALTER TABLE `estiramiento`
 -- Constraints for table `grupo`
 --
 ALTER TABLE `grupo`
-  ADD CONSTRAINT `fk_Grupo_Actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
+  ADD CONSTRAINT `fk_Grupo_Actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`)ON DELETE CASCADE;
 
 --
 -- Constraints for table `individual`
 --
 ALTER TABLE `individual`
-  ADD CONSTRAINT `fk_Individual_Actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`);
+  ADD CONSTRAINT `fk_Individual_Actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`)ON DELETE CASCADE;
 
 --
 -- Constraints for table `inscrito`
 --
 ALTER TABLE `inscrito`
-  ADD CONSTRAINT `fk_InscritoGrupo` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idActividad`);
+  ADD CONSTRAINT `fk_InscritoGrupo` FOREIGN KEY (`idGrupo`) REFERENCES `grupo` (`idActividad`)ON DELETE CASCADE;
 
 --
 -- Constraints for table `muscular`
@@ -746,7 +746,7 @@ ALTER TABLE `pef`
 -- Constraints for table `sesionentrenamiento`
 --
 ALTER TABLE `sesionentrenamiento`
-  ADD CONSTRAINT `fk_SesionEntrenamientoIndividual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`);
+  ADD CONSTRAINT `fk_SesionEntrenamientoIndividual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `sesionentrenamiento_individual`
@@ -810,6 +810,7 @@ ALTER TABLE `tdu`
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
 ('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
 ('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08'),
+('44490816F', 'DANIE', 'RD', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08'),
 ('53192250N', 'Alexandre', 'Viana Sixto', 28, '5edef9793eacc635c6c30b064a81ccca', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08');
 
 --
@@ -817,8 +818,9 @@ INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `emai
 --
 INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
 ('44497121X'),
+('44490816F'),
 ('53192250N');
-INSERT INTO `administrador`(`dniAdministrador`) VALUES('44497121X'),
+INSERT INTO `administrador`(`dniAdministrador`) VALUES('44497121X'),('44490816F'),
 ('53192250N');
 COMMIT;
 

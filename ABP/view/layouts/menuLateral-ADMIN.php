@@ -47,45 +47,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item" data-placement="right" title="Eliminar">
-                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEliminarActividad">
-                                <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseEliminarActividad"><?= i18n("Eliminar") ?> 
-                                    </span>
-                                </a>
-                                 <ul class="sidenav-third-level collapse" id="collapseEliminarActividad">
-                                    <li>
-                                        <a href="../controller/EActividadController.php?action=delete">
-                                            <i class="fa fa-fw fa-link"></i><?= i18n("Individual") ?> 
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/ActividadController.php?action=delete">
-                                            <i class="fa fa-fw fa-link"></i><?= i18n("Grupo") ?>  
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="nav-item" data-placement="right" title="EditarActividad">
-                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEditarActividad">
-                                <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseEditarActividad"><?= i18n("Editar") ?> 
-                                    </span>
-                                </a>
-                                 <ul class="sidenav-third-level collapse" id="collapseEditarActividad">
-                                    <li>
-                                        <a href="../controller/ActividadController.php?action=edit">
-                                            <i class="fa fa-fw fa-link"></i><?= i18n("Individual") ?> 
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/ActividadController.php?action=edit∫">
-                                            <i class="fa fa-fw fa-link"></i><?= i18n("Grupo") ?>  
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                            
                             <li>
                                 <a href="./index.php?controller=actividad&amp;action=actividadListar"><i class="fa fa-fw fa-link"></i><?= i18n("Ver Actividades") ?></a>
                             </li>

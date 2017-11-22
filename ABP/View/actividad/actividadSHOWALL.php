@@ -48,13 +48,13 @@ $view->setVariable("title", "Actividades");
 
                     <tr>
                         <td><?php echo $actividad->getNombre(); ?></td>
-                        <td><?php echo $actividad->getPrecio(); ?></td>       
+                        <td><?php echo $actividad->getPrecio(); ?></td> 
                         <td>
                         <a href='./index.php?controller=Actividad&amp;action=actividadEDIT&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/edit.png'>
                             </a>
                         </td>
                         <td>
-                        <a href='./index.php?controller=Actividad&amp;action=actividadDelete&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/delete.png'>
+                         <a href='./index.php?controller=Actividad&amp;action=actividadDELETE&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/delete.png'>
                             </a>
                         </td>
                         <td>

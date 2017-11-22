@@ -31,35 +31,7 @@ class UsuarioMapper {
         $stmt = execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
             $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
     }
-    //funcion Consultar: hace una búsqueda en la tabla con
-    //los datos proporcionados. Si van vacios devuelve todos
-    function SEARCH()
-    {
-    $sql = "select 
-                        dni,
-                        nombre,
-                        apellidos,
-                        edad,
-                        email,
-                        telefono,
-                        fechaAlta
-                from usuario 
-                where 
-                    ((
-                        dni LIKE '%$this->dni%')&&
-                         (nombre LIKE '%$this->nombre%')&&
-                         (apellidos LIKE '%$this->apellidos%')&&
-                         (edad LIKE '%$this->edad%')&&
-                         (email LIKE '%$this->email%')&&
-                         (telefono LIKE '%$this->telefono%')&&
-                         (fechaAlta LIKE '%$this->fechaAlta%'))";
-        if (!($resultado = $this->mysqli->query($sql))){
-        return 'Error en la consulta sobre la base de datos';
-        }
-        else{
-        return $resultado;
-        }
-    }
+
     //Funcion borrar un elemento de la BD
     function DELETE($dni)
     {
