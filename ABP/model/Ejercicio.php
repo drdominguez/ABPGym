@@ -14,7 +14,7 @@ class Ejercicio
         $this->imagen = $imagen;   
 }
 	
-	public function getId(){
+	public function getIdEjercicio(){
 		return $this->idEjercicio;
 	}
 	public function getNombre(){
@@ -28,6 +28,9 @@ class Ejercicio
 	}
 	public function getImagen(){
 		return $this->imagen;
+	}
+	public function setIdEjercicio($id){
+		$this->idEjercicio=$id;
 	}
 	public function seNombre($nombre){
 		$this->nombre=$nombre;

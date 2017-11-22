@@ -61,7 +61,7 @@
 
                     </form>
 
-                    <button type="button" onclick="window.location.href='../controller/EjercicioController.php?action=default'" class="btn btn-default">Volver</button> 
+                  <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=loadAddView'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                      <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button> 
                 </div>
             </div>

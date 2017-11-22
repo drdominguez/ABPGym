@@ -1,5 +1,6 @@
 <?php
     $view=ViewManager::getInstance();
+    $estiramiento=$view->getVariable("cardio");
 ?>
 <!DOCTYPE html>
 <html>       
@@ -23,11 +24,11 @@
                             <div class="form-row">
                               <div class="col-md-6">
                             <label for="exampleInputNombre">Nombre</label>
-                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" value="<?php $estiramiento->getNombre() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                             </div>
                             <div class="col-md-6">
                             <label for="exampleInputTiempo">Descripción</label>
-                           <textarea class="form-control" name="descripcion" rows="2" readonly="readonly"></textarea>
+                           <textarea class="form-control" name="descripcion" rows="2" value="<?php $estiramiento->getDescripcion() ?>" readonly="readonly"></textarea>
                         </div>
                              </div>
                          </div>
@@ -47,18 +48,18 @@
                              <div class="form-row">
                                 <div class="col-md-6">
                             <label for="exampleInputTiempo">Tiempo</label>
-                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Tiempo" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Tiempo" value="<?php $estiramiento->getTiempo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                                 <div class="col-md-6">
                             <label for="exampleInputUnidad">Unidad</label>
-                             <input class="form-control" name="unidad" id="exampleInputUnidad" type="TEXT" aria-describedby="emailHelp" placeholder="unidad" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                             <input class="form-control" name="unidad" id="exampleInputUnidad" type="TEXT" aria-describedby="emailHelp" placeholder="unidad" value="<?php $estiramiento->getUnidad() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                              </div>
                         </div>
 
                     </form>
-
-                    <button type="button" onclick="window.location.href='../controller/EjercicioController.php?action=default'" class="btn btn-default">Volver</button> 
+                    <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=estiramientoListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
+                    <button type="button"  class="btn btn-default">Volver</button> 
                 </div>
             </div>
         </div>

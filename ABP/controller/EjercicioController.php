@@ -35,10 +35,20 @@ class EjercicioController extends BaseController{
         $this->view->render("ejercicios","list");
     }
 	
-	/*EstiramientoADD
-	*Si se llama con un get carga la vista
-	*si se llama con un post añade el estiramiento
-	*/
+	/*
+    /Muestra un estiraminto en la vista de forma detallada.
+    */
+    public function estiramientoVer(){
+        $this->estiramientoMapper = new EjercicioEstiramientoMapper();
+        $ejercicioEstiramiento=$this->estiramientoMapper->getEstiramientoById($_GET["idEjercicio"]);
+        $this->view->setVariable("estiramiento", $ejercicioEstiramiento);
+        $this->view->render("ejercicios/estiramiento","estiramientoSHOWCURRENT");
+    }
+
+    /*EstiramientoADD
+    *Si se llama con un get carga la vista
+    *si se llama con un post añade el estiramiento
+    */
     public function EstiramientoADD() {
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
         if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tiempo"]) && isset($_POST["unidad"])){//si existen los post añado el ejercicio

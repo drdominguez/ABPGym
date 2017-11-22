@@ -10,7 +10,7 @@
                     <li class="breadcrumb-item">
                         <a>Gestión</a>
                     </li>
-                    <li class="breadcrumb-item active">Ejercicios</li>
+                    <li class="breadcrumb-item active">Listar Ejercicios</li>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">

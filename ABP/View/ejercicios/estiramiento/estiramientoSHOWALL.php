@@ -51,7 +51,7 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $estiramiento["tiempo"]; ?></td>
                                             <td><?php echo $estiramiento["unidad"]; ?></td>
                                             <td>
-                                                <a href=''><img src='./view/Icons/detalle.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=estiramientoVer&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><img src='./view/Icons/detalle.png'>
                                                 </a>
                                             </td>
                                             <td>

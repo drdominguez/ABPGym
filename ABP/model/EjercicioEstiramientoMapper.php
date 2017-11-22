@@ -9,7 +9,31 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 	public function __construct(){
 		parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
 	}
+
+	/*
+	*Obtiene un ejercicio de tipo cardio
+	*como la tabla padre de cardio Ejercicio tiene mas atributos a mostrar primero lo obtenemos
+	*/
+	public function getEstiramientoById($cardioId){
+		$ejercicio=parent::getEjercicioById($cardioId);
+		//creamos el estiramiento añadiendole todos los atributos de Ejercicio
+		$ejercicioEstiramiento= new EjercicioEstiramiento();
+		$ejercicioEstiramiento->setIdEjercicio($ejercicio->getIdEjercicio());
+		$ejercicioEstiramiento->setNombre($ejercicio->getNombre());
+		$ejercicioEstiramiento->setDescripcion($ejercicio->getDescripcion());
+		$ejercicioEstiramiento->setVideo($ejercicio->getVideo());
+		$ejercicioEstiramiento->setImagen($ejercicio->getImagen());
+		$stmt = $this->db->prepare("SELECT * FROM estiramiento WHERE idEjercicio=?");//obtenemos el estiramiento
+		$stmt->execute(array($cardioId));
+		$estiramiento = $stmt->fetch(PDO::FETCH_ASSOC);
+		$ejercicioEstiramiento->setTiempo($estiramiento["tiempo"]);
+		$ejercicioEstiramiento->setUnidad($estiramiento["unidad"]);
+		return $ejercicioCardio;
+	}
 	
+	/*
+	*Añade un ejercicio de tipo estiramiento si el usuario actural es superusuario
+	*/
 	public function addEstiramiento($ejercicio){
 		parent::add($ejercicio);//llama al add de la clase padre
 		$stmt = $this->db->prepare("INSERT INTO estiramiento(idEjercicio,tiempo,unidad) VALUES (?,?,?)");

@@ -10,7 +10,22 @@ Class EjercicioMapper{
 	public function __construct(){
 		$this->db=PDOConnection::getInstance();
 	}
+
+	/*
+	*Obtiene un ejercicio de tipo cardio buscado por id
+	*Todos los ususarios pueden obtener un ejercicio por id por eso no se comprueban permisos
+	*Esta pensado para obtener el ejercicio a partir de su lista de una tabla se supone que el ejercicio existe
+	*/
+	public function getEjercicioById($idEjercicio){
+		$stmt = $this->db->prepare("SELECT * FROM ejercicio WHERE idEjercicio=?");
+		$stmt->execute(array($idEjercicio));
+		$ejercicio = $stmt->fetch(PDO::FETCH_ASSOC);
+		return new Ejercicio($ejercicio["idEjercicio"],$ejercicio["nombre"],$ejercicio["descripcion"],$ejercicio["video"],$ejercicio["imagen"]);
+	}
 	
+	/*
+	*Añade un ejercicio si eres un superusuario
+	*/
 	public function add($ejercicio){
 		if(self::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
 			$stmt = $this->db->prepare("INSERT INTO ejercicio(nombre,descripcion,video,imagen) VALUES (?,?,?,?)");
@@ -22,6 +37,7 @@ Class EjercicioMapper{
 		}
 		return false;
 	}
+
 	public function edit($ejercicio){
 		$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=?, imagen=? WHERE idEjercicio=?");
 		if(permisoEjercicio($ejercicio->getId())){
@@ -30,6 +46,7 @@ Class EjercicioMapper{
 		}
 		return false;
 	}
+
 	public function remove($idEjercicio){
 		$stmt = $this->db->prepare("DELETE FROM ejercicio WHERE idEjercicio = ?");
 		if(permisosEjercicio($idEjercicio)){
@@ -38,6 +55,10 @@ Class EjercicioMapper{
 		}
 		return false;
 	}
+
+	/*
+	*comprueba si el usuario actual es administrador
+	*/
 	protected function esAdmin(){
 		$stmt = $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
 		$stmt->execute(array($_SESSION["currentuser"]));
@@ -47,6 +68,9 @@ Class EjercicioMapper{
 		return false;
 	}
 
+	/*
+	*Comprueba si el usuario actural es un entrenador o administrador
+	*/
 	protected function esSuperusuario(){
 		$stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
 		$stmt-> execute(array($_SESSION["currentuser"]));
@@ -56,6 +80,9 @@ Class EjercicioMapper{
 		return false;
 	}
 
+	/*
+	*Comprueba si el usuario actual es un entrenador
+	*/
 	protected function esEntrenador(){
 		$stmt = $this->db->prepare("SELECT dniEntrenador FROM entrenador WHERE dniEntrenador=?");
 		$stmt->execute(array($_SESSION["currentuser"]));
