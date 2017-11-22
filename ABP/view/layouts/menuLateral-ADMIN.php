@@ -91,7 +91,7 @@
                                 <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Añadir") ?></a>
                             </li>
                              <li>
-                                <a href="./index.php?controller=Ejercicio&amp;action=loadListView"><?= i18n("Listar") ?></a>
+                                <a href="./index.php?controller=Ejercicio&amp;action=loadListView"><?= i18n("Ver Ejercicios") ?></a>
                             </li>
                         </ul>
                     </li>
