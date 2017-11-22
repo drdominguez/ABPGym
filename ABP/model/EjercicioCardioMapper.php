@@ -26,6 +26,10 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 		return $ejercicioCardio;
 	}
 
+	/*
+	*Añade un ejercicio cardio a la bbdd
+	*Siempre y cuando se sea super Usuario
+	*/
 	public function addCardio($ejercicio){
 		parent::add($ejercicio);//llama al add de la clase padre
 		$stmt = $this->db->prepare("INSERT INTO cardio(idEjercicio,tiempo,unidad,distancia ) VALUES (?,?,?,?)");
@@ -35,15 +39,24 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 		}
 		return false;
 	}
+
+	/*
+	*edita un ejercicio de tipo cardio
+	*para ello lo edita en la tabla de Ejercicio y luego en la de cardio
+	*/
 	public function editCardio($ejercicio){
-		parent::edit($ejecicio);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
-		$stmt=$this->db-> prepare("UPDATE cardio SET tiempo=?, unidad=?, distancia=? WHERE idEjercicio=?");
-		if(parent::permisoEjercicio($ejercicio->getId())){
-			$stmt -> execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getDistancia(),$ejercicio->getId()));
+		if(parent::edit($ejercicio)){
+			$stmt=$this->db-> prepare("UPDATE cardio SET tiempo=?, unidad=?, distancia=? WHERE idEjercicio=?");
+			$stmt -> execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getDistancia(),$ejercicio->getIdEjercicio()));
 			return true;
 		}
 		return false;
 	}
+
+	/*
+	*Elimina une cardio
+	*como existe un delete cascade con eliminarlo en la tabla padre se borra de las demas
+	*/
 	public function removeCardio($idEjercicio){
 		if(parent::remove($idEjercicio)){
 			return true;
@@ -51,6 +64,11 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 		return false;
 	}
 
+	/*
+	*Lista todos los ejercicios de tipo cardio siempre y cuando se tengan permisos sobre el
+	*El administrador podra listar todos los del sistema
+	*El entrenador solo los que haya creado el
+	*/
 	public function listarCardio(){
 		if(parent::esAdmin()){//todos los estiramientos del sistema
 			$stmt = $this->db->prepare("SELECT ejercicio.*, cardio.tiempo, cardio.unidad, cardio.distancia FROM ejercicio, cardio WHERE ejercicio.idEjercicio = cardio.idEjercicio");

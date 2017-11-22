@@ -81,7 +81,6 @@ class EjercicioController extends BaseController{
             $this->view->setVariable("estiramiento",$estiramiento);
             $this->view->render("ejercicios/estiramiento","estiramientoEDIT");
         }
-
     }
 
     /*EstiramientoRemove
@@ -143,6 +142,25 @@ class EjercicioController extends BaseController{
             }
         }
         $this->view->render("ejercicios/cardio","cardioADD");
+    }
+
+    /*
+    *Edita un cardio
+    *a partir de un id obtenido por la vista crea un etiramiento usando getEstiramientoById
+    *luego lo edita en la bbdd.
+    */
+    public function cardioEdit(){
+        $this->cardioMapper = new EjercicioCardioMapper();
+        if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
+            $cardio = new EjercicioCardio($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"],$_POST["distancia"]);
+            $this->cardioMapper->editCardio($cardio);
+            $this->view->setFlash("Ejercicio Editado Corectamente");
+            self::cardioListar();//volvemos a listar los ejercicios
+        }else{//si no muesta la vista
+            $cardio=$this->cardioMapper->getCardioById($_GET["idEjercicio"]);
+            $this->view->setVariable("cardio",$cardio);
+            $this->view->render("ejercicios/cardio","cardioEDIT");
+        }
     }
 
     /*cardioRemove
