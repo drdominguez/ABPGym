@@ -3,6 +3,7 @@
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/SesionEntrenamientoMapper.php");
+require_once(__DIR__ . "/../model/TablaMapper.php");
 
 class SesionEntrenamientoController extends BaseController{
 
@@ -14,7 +15,14 @@ class SesionEntrenamientoController extends BaseController{
     }
 
     public function RealizarSesion(){
-        var_dump("-------------------9999999999----------");
+        self::TablaListar();
+    }
+
+    public function TablaListar(){
+        $tablaMapper = new TablaMapper();
+        $tablas = $tablaMapper->listar();
+        $this->view->setVariable("tablas",$tablas);
+        $this->view->render("sesionEntrenamiento","tablaSHOWALL");
     }
 
     /*
