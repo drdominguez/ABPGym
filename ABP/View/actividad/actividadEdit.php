@@ -35,6 +35,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <label for="exampleInputPrecio">Precio</label>
                                     <input class="form-control" name="precio" id="exampleInputPrecio" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPrecio(); ?>"  required onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
+<?php if($actividad->getInstalaciones()!=null){?>
                                 <div class="col-md-6">
                                     <label for="exampleInputInstalaciones">Instalaciones</label>
                                     <input class="form-control" name="instalaciones" id="exampleInputInstalacioneso" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getInstalaciones(); ?>"  required onblur="esVacio(this)  && comprobarText(this,15)">
@@ -43,10 +44,12 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <label for="exampleInputPlazas">Plazas</label>
                                     <input class="form-control" name="plazas" id="exampleInputPlazas" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPlazas(); ?>"  required onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
+                                <?php }?>
                             </div>
                         </div>
                     </div>
-                </div>      
+                </div>   
+
                 <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
                 <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                 <button  type='submit' name='action' value='actividadEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>

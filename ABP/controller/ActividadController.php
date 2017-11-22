@@ -39,17 +39,20 @@ class ActividadController extends BaseController{
         $this->view->render("actividad", "actividadSHOWCURRENT");
     }
 
+
     public function actividadEDIT() 
     {   
-        if(isset($_POST["nombre"]) && isset($_POST["precio"]))
+        var_dump($_POST["actividades"]);
+        exit;
+        if(isset($_POST["nombre"]) && isset($_POST["precio"])&& isset($_POST["instalaciones"])&& isset($_POST["plazas"])&& isset($_POST["idActividad"]))
         {//si existen los post añado la notificacion
-            $actividad = $_POST["actividad"];
-            if($this->actividadMapper->esGrupo()){
-                $actividad = new ActividadGrupo('',$_POST["nombre"],$_POST["precio"],$_POST['instalaciones'],$_POST['plazas']);
-            }
-            $actividad = new Actividad('',$_POST["nombre"],$_POST["precio"]);
-            $idActividad = $_POST['idActividad'];
-            if($this->actividadMapper->edit($actividad,$idActividad))
+            if($this->actividadMapper->esGrupo()){            
+                $actividad = new ActividadGrupo();
+                $actividad->setNombre($_POST["nombre"]);    
+                $actividad->setPrecio($_POST["precio"]);
+                $actividad->setInstalaciones($_POST['instalaciones']);
+                $actividad->setPlazas($_POST['plazas']);
+                if($this->actividadMapper->editGrupo($actividad,$idActividad))
             {
                $this->view->setFlash("Actividad Editada Correctamente");
             }else
@@ -58,6 +61,23 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["username"]);
             }
             $this->view->redirect("actividad", "actividadListar");
+
+            }else{
+                $actividad = new Actividad();
+                $actividad->setNombre($_POST["nombre"]);
+                $actividad->setPrecio($_POST["precio"]); 
+                if($this->actividadMapper->edit($actividad,$idActividad))
+            {
+               $this->view->setFlash("Actividad Editada Correctamente");
+            }else
+            {
+                $errors["username"] = "La actividad no se ha editado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("actividad", "actividadListar");
+
+            }
+            
         }else
         {
             $idActividad = $_GET["idActividad"];
