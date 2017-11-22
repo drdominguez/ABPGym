@@ -231,20 +231,21 @@ function validarLogin(Formu) {
 
 function validarIndividualADD(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000))
+}
 
-    function validarNotificacionADD(Formu) {
-        return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
+function validarNotificacionADD(Formu) {
+    return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
+}
+
+
+
+
+/*Funcion para encriptar la contraseña*/
+function encriptar() {
+    if ((document.getElementById('password').value == null) || (document.getElementById('password').value.length == 0) || /^\s*$/.test(document.getElementById('password').value)) { /*si no hay contraseña no hace nada*/
+        return false;
+    } else { /*si no encripta*/
+        document.getElementById('password').value = hex_md5(document.getElementById('password').value);
+        return true;
     }
-
-
-
-
-    /*Funcion para encriptar la contraseña*/
-    function encriptar() {
-        if ((document.getElementById('password').value == null) || (document.getElementById('password').value.length == 0) || /^\s*$/.test(document.getElementById('password').value)) { /*si no hay contraseña no hace nada*/
-            return false;
-        } else { /*si no encripta*/
-            document.getElementById('password').value = hex_md5(document.getElementById('password').value);
-            return true;
-        }
-    }
+}
