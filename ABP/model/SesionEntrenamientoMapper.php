@@ -1,14 +1,14 @@
 <?php
 
 require_once(__DIR__."/../core/Access_DB.php");
+require_once(__DIR__."/SesionEntrenamientoMapper.php");
 require_once(__DIR__."/SesionEntrenamiento.php");
 
-Class SesionEntrenamientoMapper {
+Class SesionEntrenamientoMapper{
 	public function __construct(){
-		parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
+		$this->db=PDOConnection::getInstance();//obtiene la instancia de la conexion con base de datos
 	}
 
-	
 
 	/*
 	*comprueba si el usuario actual es administrador

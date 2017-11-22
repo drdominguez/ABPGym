@@ -1,11 +1,11 @@
 <?php
-class Sesion
+class SesionEntrenamiento
 {
     private $idSesion;
     private $comentario;
     private $duracion;
     private $fecha;
-    
+
     function __construct($idSesion=NULL,$comentario=NULL,$duracion=NULL,$fecha=NULL){
     	$this->idSesion = $idSesion;
         $this->comenario = $comentario;
