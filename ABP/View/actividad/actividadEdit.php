@@ -10,21 +10,17 @@ require_once(__DIR__."/../../core/ViewManager.php");
 <html>    
     <div class="content-wrapper">
         <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href=""><?= i18n("Gestión de Actividades") ?></a>
-                </li>
-                <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
-            </ol>
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <div id="flash"><?= $view->popFlash() ?></div>
+        </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' action='./index.php?controller=Actividad&amp;action=actividadEDIT' method='post' onsubmit='return comprobar_notificacion()'>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Editar actividad") ?>
-                    </div>
-                    <div class="card-body">      
-                        <div id="flash"><?= $view->popFlash() ?></div>      
+                        <i class="fa fa-table"></i><?= i18n(" Editar Actividad") ?>
+                    <div class="card-body"> 
+            <form name = 'Form' action='./index.php?controller=Actividad&amp;action=actividadEDIT' method='post' onsubmit='return comprobar_notificacion()'>
+                    <div class="card-body">     
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">

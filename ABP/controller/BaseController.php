@@ -30,6 +30,7 @@ class BaseController {
 	public function __construct() {
 
 		$this->view = ViewManager::getInstance();
+		$this->view->setFlash("");
 
 		// get the current user and put it to the view
 		if (session_status() == PHP_SESSION_NONE) {

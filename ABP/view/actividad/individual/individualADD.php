@@ -7,17 +7,13 @@
             <div class="container-fluid">
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="../Controller/actividadController.php">Añadir Actividad</a>
-                    </li>
-                    <li class="breadcrumb-item active">ADD</li>
+                        <div id="flash"><?= $view->popFlash() ?></div>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Añadir Actividad Individual</div>
+                        <i class="fa fa-table"></i><?= i18n(" Añadir Actividad Individual") ?>
                     <div class="card-body"> 
-                    <div id="flash"><?= $view->popFlash() ?></div>
                     <form name='Form' id="form1" action="index.php?controller=Actividad&amp;action=individualADD" class="form-signin" accept-charset="UTF-8" method="POST" onsubmit="return validarIndividualADD()">
                         <div class="form-group">
                             <div class="form-row">
