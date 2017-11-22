@@ -16,7 +16,7 @@
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Ver Cardio</div>
+                        <i class="fa fa-table"></i>Detalles Cardio</div>
                     <div class="card-body">      
                     <div id="flash"><?= $view->popFlash() ?></div>
                     <form name='Form' id="form1" class="form-signin" accept-charset="UTF-8">

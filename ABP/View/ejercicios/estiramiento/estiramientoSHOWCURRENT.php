@@ -24,7 +24,7 @@
                             <div class="form-row">
                               <div class="col-md-6">
                             <label for="exampleInputNombre">Nombre</label>
-                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" value="<?php echo $estiramiento->getNombre() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $estiramiento->getNombre() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                             </div>
                             <div class="col-md-6">
                             <label for="exampleInputTiempo">Descripción</label>
@@ -36,11 +36,11 @@
                              <div class="form-row">
                                  <div class="col-md-6">
                             <label for="exampleInputTiempo">Video</label>
-                            <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" placeholder="Video" valude="<?php echo $estiramiento->getVideo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" valude="<?php echo $estiramiento->getVideo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                                  </div>
                                  <div class="col-md-6">
                             <label for="exampleInputTiempo">Imagen</label>
-                            <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" value= "<?php echo $estiramiento->getImagen() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" value= "<?php echo $estiramiento->getImagen() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                              </div>
                         </div>
@@ -48,11 +48,11 @@
                              <div class="form-row">
                                 <div class="col-md-6">
                             <label for="exampleInputTiempo">Tiempo</label>
-                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" placeholder="Tiempo" value="<?php echo $estiramiento->getTiempo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" value="<?php echo $estiramiento->getTiempo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                                 <div class="col-md-6">
                             <label for="exampleInputUnidad">Unidad</label>
-                             <input class="form-control" name="unidad" id="exampleInputUnidad" type="TEXT" aria-describedby="emailHelp" placeholder="unidad" value="<?php echo $estiramiento->getUnidad() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                             <input class="form-control" name="unidad" id="exampleInputUnidad" type="TEXT" aria-describedby="emailHelp" value="<?php echo $estiramiento->getUnidad() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                              </div>
                         </div>

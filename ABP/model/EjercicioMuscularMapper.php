@@ -9,6 +9,25 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 	public function __construct(){
 		parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
 	}
+
+	/*
+	*Obtiene un ejercicioMuscular
+	*/
+	public function getMuscularById($muscularId){
+		$ejercicio=parent::getEjercicioById($muscularId);
+		//creamos el muscular añadiendole todos los atributos de Ejercicio
+		$ejercicioMuscular = new EjercicioMuscular($ejercicio->getIdEjercicio(),$ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getVideo(),$ejercicio->getImagen(),"","");
+		$stmt = $this->db->prepare("SELECT * FROM muscular WHERE idEjercicio=?");//obtenemos el estiramiento
+		$stmt->execute(array($muscularId));
+		$muscular = $stmt->fetch(PDO::FETCH_ASSOC);
+		$ejercicioMuscular->setCarga($muscular["carga"]);
+		$ejercicioMuscular->setRepeticiones($muscular["repeticiones"]);
+		return $ejercicioMuscular;
+	}
+
+	/*
+	*Añade un ejercicio muscular
+	*/
 	public function addMuscular($ejercicio){
 		parent::add($ejercicio);//llama al add de la clase padre
 		$stmt = $this->db->prepare("INSERT INTO muscular(idEjercicio, carga, repeticiones) VALUES (?,?,?)");
@@ -18,6 +37,10 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 		}
 		return false;
 	}
+
+	/*
+	*Edita un ejercicio muscular en la base de datos
+	*/
 	public function editMuscular($ejercicio){
 		parent::edit($ejecicio);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
 		$stmt=$this->db-> prepare("UPDATE muscular SET carga=?, repeticiones=? WHERE idEjercicio=?");
@@ -27,6 +50,10 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 		}
 		return false;
 	}
+
+	/*
+	*Borra de la base se datos un ejercicio muscular
+	*/
 	public function removeMuscular($idEjercicio){
 		$stmt = $this->db->prepare("DELETE FROM muscular WHERE idEjercicio = ?");
 		if(parent::permisosEjercicio($idEjercicio)){
@@ -37,6 +64,10 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 		return false;
 	}
 
+	/*
+	*Lista todos los ejercicios musculares
+	*devuelve una lista con ejercicios musculares
+	*/
 	public function listarMuscular(){
 		if(parent::esAdmin()){//todos los estiramientos del sistema
 			$stmt = $this->db->prepare("SELECT ejercicio.*, muscular.carga, muscular.repeticiones FROM ejercicio, muscular WHERE ejercicio.idEjercicio = muscular.idEjercicio");

@@ -88,7 +88,9 @@ class EjercicioController extends BaseController{
         $this->view->render("ejercicios/estiramiento", "estiramientoSHOWALL");
     }
 
-
+    /*
+    *Muestra en detalle un ejercicio cardio
+    */
      public function cardioVer(){
         $this->cardioMapper = new EjercicioCardioMapper();
         $ejercicioCardio=$this->cardioMapper->getCardioById($_GET["idEjercicio"]);
@@ -136,6 +138,16 @@ class EjercicioController extends BaseController{
             $this->view->setVariable("cardios", $listaCardio);
         }
         $this->view->render("ejercicios/cardio", "cardioSHOWALL");
+    }
+
+    /*
+    *Muestra en detalle un ejercicio cardio
+    */
+    public function muscularVer(){
+        $this->muscularMapper = new EjercicioMuscularMapper();
+        $ejercicioMuscular=$this->muscularMapper->getMuscularById($_GET["idEjercicio"]);
+        $this->view->setVariable("muscular", $ejercicioMuscular);
+        $this->view->render("ejercicios/muscular","MuscularSHOWCURRENT");
     }
 
      /*muscularADD
