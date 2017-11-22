@@ -119,10 +119,18 @@ class EjercicioController extends BaseController{
 
     /*cardioRemove
 	*Si se llama con un get carga la vista
-	*si se llama con un post añade el cardio
+	*si se llama con un post elimina el cardio
 	*/
     public function cardioRemove() {
         $this->cardioMapper = new EjercicioCardioMapper();
+        if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
+            $this->cardioMapper->removeCardio($_POST["idEjercicio"]);
+            $this->view->render("ejercicios/cardio","cardioSHOWALL");
+        }else{//si no muesta la vista
+            $cardio=$this->cardioMapper->getCardioById($_GET["idEjercicio"]);
+            $this->view->setVariable("cardio",$cardio);
+            $this->view->render("ejercicios/cardio","cardioDELETE");
+        }
     }
 
     /*cardioListar

@@ -48,8 +48,8 @@ Class EjercicioMapper{
 	}
 
 	public function remove($idEjercicio){
-		$stmt = $this->db->prepare("DELETE FROM ejercicio WHERE idEjercicio = ?");
-		if(permisosEjercicio($idEjercicio)){
+		if(self::esSuperusuario()){
+			$stmt = $this->db->prepare("DELETE FROM ejercicio WHERE idEjercicio = ?");
 			$stmt-> execute(array($idEjercicio));
 			return true;
 		}
