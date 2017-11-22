@@ -16,11 +16,38 @@ public function listar()
         $stmt = $this->db->query("SELECT * from entrenador");
         $entrenadores_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $entrenadores = array();
+
         foreach ($entrenadores_db as $entrenador) 
         {
-            array_push($entrenadores, new Usuario($entrenador['dniEntrenador'],$entrenador['nombre'],$entrenador['apellidos'],$entrenador['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
+            $stmt1 = $this->db->prepare("SELECT * from usuario WHERE dni=?");
+            $stmt1->execute(array($entrenador['dniEntrenador']));
+            $usuario_db = $stmt1->fetch(PDO::FETCH_ASSOC);
+            array_push($entrenadores, new Usuario($usuario_db['dni'],$usuario_db['nombre'],$usuario_db['apellidos'],$usuario_db['edad'],null,$usuario_db['email'],$usuario_db['telefono'],$usuario_db['fechaAlta']));
         }
         return $entrenadores;
+    }
+public function listarUsuarios()
+    {
+        $stmt = $this->db->query("SELECT * from usuario");
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
+        {
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
+        }
+        return $usuarios;
+    }
+public function add($entrenador)
+    {
+        $stmt = $this->db->prepare("INSERT INTO entrenador(dniEntrenador) VALUES (?)");
+        if($this->esAdministrador())
+        {
+            $stmt->execute(array($entrenador->getDniEntrenador()));
+            return true;
+        }else
+        {
+            return false;
+        }
     }
 
 

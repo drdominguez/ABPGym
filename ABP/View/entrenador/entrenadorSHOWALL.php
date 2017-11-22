@@ -3,7 +3,7 @@
 require_once(__DIR__."/../../core/ViewManager.php");
 
 $view = ViewManager::getInstance();
-$entrenadores = $view->getVariable("entrenadores");
+$usuarios = $view->getVariable("entrenadores");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Entrenadores");
 ?>
@@ -24,20 +24,24 @@ $view->setVariable("title", "Entrenadores");
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                             <tr>
-                            <th><?= i18n("nombre") ?></th>
-                            <th><?= i18n("apellidos") ?></th> 
-                            <th><?= i18n("edad") ?></th>
-                            <th><?= i18n("email") ?></th>
-                            <th><?= i18n("telefono") ?></th>
+                            <th><?= i18n("Nombre") ?></th>
+                            <th><?= i18n("Apellidos") ?></th> 
+                            <th><?= i18n("Edad") ?></th>
+                            <th><?= i18n("Email") ?></th>
+                            <th><?= i18n("Telefono") ?></th>
+                            <th><?= i18n("Eliminar") ?></th>
+                            <th><?= i18n("Ver") ?></th>
                         </tr>
                         </thead>
                             <tfoot>
                                 <tr>
-                                <th><?= i18n("nombre") ?></th>
-                                <th><?= i18n("apellidos") ?></th> 
-                                <th><?= i18n("edad") ?></th>
-                                <th><?= i18n("email") ?></th>
-                                <th><?= i18n("telefono") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Apellidos") ?></th> 
+                                <th><?= i18n("Edad") ?></th>
+                                <th><?= i18n("Email") ?></th>
+                                <th><?= i18n("Telefono") ?></th>
+                                <th><?= i18n("Eliminar") ?></th>
+                                <th><?= i18n("Ver") ?></th>
                             </tr>
                             </tfoot>
             <tbody>
@@ -46,21 +50,17 @@ $view->setVariable("title", "Entrenadores");
                 foreach($usuarios as $usuario){
 ?>
                     <tr>
-                        <td><?php echo $usuarios->getNombre(); ?></td>
-                        <td><?php echo $usuarios->getApellidos(); ?></td> 
-                        <td><?php echo $usuarios->getEdad(); ?></td>
-                        <td><?php echo $usuarios->getEmail(); ?></td> 
-                        <td><?php echo $usuarios->getTelefono(); ?></td> 
+                        <td><?php echo $usuario->getNombre(); ?></td>
+                        <td><?php echo $usuario->getApellidos(); ?></td> 
+                        <td><?php echo $usuario->getEdad(); ?></td>
+                        <td><?php echo $usuario->getEmail(); ?></td> 
+                        <td><?php echo $usuario->getTelefono(); ?></td> 
                         <td>
-                        <a href='./index.php?controller=Entrenador&amp;action=entrenadorEDIT&amp;idEntrenador=<?php echo $entrenador->getIdEntrenador();?>'><img src='./view/Icons/edit.png'>
-                            </a>
+                         <a href='./index.php?controller=Entrenador&amp;action=etrenadorenDELETE&amp;dniEntrenador=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
+                        </a>
                         </td>
                         <td>
-                         <a href='./index.php?controller=Entrenador&amp;action=etrenadorenDELETE&amp;idEntrenador=<?php echo $entrenador->getIdEntrenador();?>'><img src='./view/Icons/delete.png'>
-                            </a>
-                        </td>
-                        <td>
-                        <a href='./index.php?controller=Entrenador&amp;action=entrenadorView&amp;idEntrenador=<?php echo $entrenador->getIdEntrenador();?>'><img src='./view/Icons/detalle.png'>
+                        <a href='./index.php?controller=Entrenador&amp;action=entrenadorView&amp;dniEntrenador=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>
                         </a>
                         </td>
 

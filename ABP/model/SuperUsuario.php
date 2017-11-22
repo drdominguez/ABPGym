@@ -3,7 +3,7 @@
 require_once(__DIR__."/UsuarioMapper.php");
 require_once(__DIR__."/Usuario.php");
 
-class SuperUsuarioMapper extends Usuario
+class SuperUsuario extends Usuario
 {
     //Definimos las variables
     private $dniSuperUsuario;

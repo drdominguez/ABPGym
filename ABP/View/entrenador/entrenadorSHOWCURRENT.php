@@ -24,10 +24,9 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 <b><?= i18n("nombre") ?>:</b> <?php echo $usuario->getNombre(); ?><br>
                 <b><?= i18n("apellidos") ?>:</b> <?php echo $usuario->getApellidos(); ?><br>
                 <b><?= i18n("edad") ?>:</b> <?php echo $usuario->getEdad(); ?><br>
-                <b><?= i18n("contraseña") ?>: </b> <?php echo $usuario->getContraseña(); ?><br>  
                 <b><?= i18n("email") ?>:</b> <?php echo $usuario->getEmail(); ?><br>
                 <b><?= i18n("telefono") ?>: </b> <?php echo $usuario->getTelefono(); ?><br> 
-                <b><?= i18n("fechaAlta") ?>: </b> <?php echo $usuario->getFechaAlta(); ?><br>  
+                <b><?= i18n("fechaAlta") ?>: </b> <?php echo $usuario->getFecha(); ?><br>  
                 <button type="button" onclick="window.location.href='./index.php?controller=Entrenador&amp;action=entrenadorListar'" class="btn btn-primary">Volver</button> 
             </div>
         </div>

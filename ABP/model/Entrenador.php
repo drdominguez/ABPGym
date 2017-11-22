@@ -9,7 +9,13 @@ class Entrenador extends Usuario
 
         function __construct($dniEntrenador=NULLL,$nombre=NULL,$apellidos=NUL,$edad=NUL,$contraseña=NUL,$email=NUL,$telefono=NUL,$fechaAlta=NUL){
             parent::__construct($dniEntrenador,$nombre,$apellidos,$edad,$contraseña,$email,$telefono,$fechaAlta);
-            $this->dniEntrenador = $dni;  
+            $this->dniEntrenador = $dniEntrenador;  
         }
+        public function getDniEntrenador(){
+		return $this->dniEntrenador;
+	}
+	public function setDniEntrenador($dniEntrenador){
+		$this->dniEntrenador=$dniEntrenador;
+	}
 }//fin de clase
 ?> 

@@ -17,14 +17,11 @@ class EntrenadorController extends BaseController
     
     public function entrenadorADD() 
     {
-        if(isset($_POST["tipo"]) && isset($_POST["nombre"]) && isset($_POST["usuarios"]))
-        {//si existen los post añado la notificacion
-            $usuarios = $_POST["usuarios"];
+        if(isset($_POST["dniEntrenador"]))
+        {
             $entrenador = new Entrenador();
-            $entrenador->setTipo($_POST["n"]);
-            $entrenador->setNombre($_POST["nombre"]);
-            $entrenador->setComentario($_POST['comentario']);
-            if($this->entrenadorMapper->add($entrenador,$usuarios))
+            $entrenador->setDniEntrenador($_POST["dniEntrenador"]);
+            if($this->entrenadorMapper->add($entrenador))
             {
                $this->view->setFlash("Entrenador añadido correctamente");
             }else
@@ -35,7 +32,7 @@ class EntrenadorController extends BaseController
             $this->view->redirect("Entrenador", "entrenadorListar");
         }else
         {
-            $usuarios = $this->tablaMapper->listarUsuarios();
+            $usuarios = $this->entrenadorMapper->listarUsuarios();
             $this->view->setVariable("usuarios",$usuarios);
             $this->view->render("entrenador","entrenadorADD");
         }
@@ -44,7 +41,7 @@ class EntrenadorController extends BaseController
 
     public function entrenadorListar() 
     {
-    exit;
+   
        $entrenadores = $this->entrenadorMapper->listar();
        $this->view->setVariable("entrenadores",$entrenadores);
        $this->view->render("entrenador","entrenadorSHOWALL");
@@ -53,11 +50,11 @@ class EntrenadorController extends BaseController
 
     public function entrenadorView() 
     {
-        if (!isset($_GET["idEntrenador"])) 
+        if (!isset($_GET["dniEntrenador"])) 
         {
             throw new Exception("El id es obligatorio");
         }
-        $idEntrenador = $_GET["idEntrenador"];
+        $idEntrenador = $_GET["dniEntrenador"];
         // find the notification object in the database
         $entrenador = $this->entrenadorMapper->findById($idEntrenador);
         if ($entrenador== NULL) 
@@ -65,8 +62,7 @@ class EntrenadorController extends BaseController
             throw new Exception("No existe entrenador con este id: ".$idEntrenador);
         }
         // put the notification object to the view
-        $this->view->setVariable("entrenador", $entrenador);
-        $this->entrenadorMapper->visto($entrenador->getIdEntrenador(),$_SESSION['currentuser']);
+        $this->view->setVariable("usuario", $entrenador);
         $this->view->render("entrenador", "entrenadorSHOWCURRENT");
     }
 
