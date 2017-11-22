@@ -1,112 +1,68 @@
-
 <?php
-    class usuario_EDIT{
-        
-        private $valores;
-
-        function __construct($valores){
-            $this->valores = $valores;
-            $this->render();
-        }
-
-        function render(){
-             
-            include '../locates/Strings_SPANISH.php';
-            include '../view/Header.php';
-            include '../view/menuLateral.php';
-            include '../view/notificacionesMenu.php';
-            include '../view/menuSuperior.php';
-       
+    $view=ViewManager::getInstance();
+    $usuario = $view->getVariable("usuario");
+    $currentuser = $view->getVariable("currentusername");
 ?>
-        
-            
-<div class="content-wrapper">
-            <div class="container-fluid">
-                <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="#">Usuarios</a>
-                    </li>
-                    <li class="breadcrumb-item active">EDIT</li>
-                </ol>
-                <!-- Example DataTables Card-->
+
+<!DOCTYPE html>
+<html>    
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href=""><?= i18n("Gestión de tablas") ?></a>
+                </li>
+                <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
+            </ol>
+            <!-- Example DataTables Card-->
+            <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i> Modificar Usuario</div>
-                    <div class="card-body">    
-                <form name = 'Form' id="form1" action = '../Controller/usuario_Controller.php' method = 'post' onsubmit = 'comprobar_usuario()'>
-
+                        <i class="fa fa-table"></i><?= i18n("Editar usuario") ?>
+                    </div>
+                    <div class="card-body">      
+                        <div id="flash"><?= $view->popFlash() ?></div>      
+                       <div class="form-group">
+                        <div class="form-row">
+                          <div class="col-md-6">
+                        <label for="dni"><?= i18n("DNI") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'dni' size = '9' readonly value = '<?php echo $usuario->getDni(); ?>'  onchange="comprobarVacio(this)  && comprobarDni(this)" >
+                        </div>
+                        <div class="col-md-6">
+                        <label for="nombre"><?= i18n("Nombre") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'nombre' size = '30' value = '<?php echo $usuario->getNombre(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                        </div>
+                      </div>
+                    </div>
                     <div class="form-group">
                         <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="nombre"><?php echo $strings['dni'] ?> : </label>
-                                <input class="form-control" type = 'text' name = 'dni' size = '10' value ='<?php echo ($this->valores['dni']); ?>' required  readonly  onblur="esVacio(this)  && comprobarText(this, 10)" >
-                                </div>
-                            </div>
+                          <div class="col-md-6">
+                        <label for="apellidos"><?= i18n("Apellidos") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'apellidos' size = '30' value = '<?php echo $usuario->getApellidos(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
                         </div>
-                        <div class="form-group">
-                                <div class="form-row">
-                                <div class="col-md-6">
-                                <label for="nombre"><?php echo $strings['nombre'] ?> : </label>
-                                <input class="form-control" type = 'text' name = 'nombre' size = '30' value ='<?php echo ($this->valores['nombre']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 30)" >
-                                </div>
-                            </div>
+                        <div class="col-md-6">
+                        <label for="edad"><?= i18n("Edad") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'edad' size = '4' value = '<?php echo $usuario->getEdad(); ?>'  onchange="comprobarVacio(this)  && comprobarSolonum(this) && comprobarEntero(this,0,200)" >
                         </div>
-                          <div class="form-group">
-                                <div class="form-row">
-                                <div class="col-md-6">
-                                <label for="apellidos"><?php echo $strings['apellidos'] ?> : </label>
-                                <input class="form-control" type = 'text' name = 'apellidos' size = '30' value ='<?php echo ($this->valores['apellidos']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 30)" >
-                                </div>
-                            </div>
+                      </div>
+                    </div>
+                     <div class="form-group">
+                        <div class="form-row">
+                        <div class="col-md-6">
+                        <label for="email"><?= i18n("Email") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'email' size = '100' value = '<?php echo $usuario->getEmail(); ?>'  onchange="comprobarVacio(this)  &&  comprobarEmail(this) && comprobarTexto(this,100)" >
                         </div>
-                        <div class="form-group">
-                                <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="nombre"><?php echo $strings['edad'] ?> : </label>
-                                    <input class="form-control" type = 'text' name = 'edad' min = '' max = '' value ='<?php echo ($this->valores['edad']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 4)" >
-                                </div>
-                            </div>
+                         <div class="col-md-6">
+                        <label for="telefono"><?= i18n("Teléfono") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'telefono' size = '20' value = '<?php echo $usuario->getTelefono(); ?>'  onchange="comprobarVacio(this)  && comprobarTelf(this)" >
                         </div>
-                        <!--<div class="form-group">
-                                <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="nombre"><?php echo $strings['contrasena'] ?> : </label>
-                                     <input class="form-control" type = 'text' name = 'contrase�a' size = '30' value ='<?php echo ($this->valores['contrasena']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 30)" >
-                                      </div>
-                            </div>
-                        </div>-->
-                        <div class="form-group">
-                                <div class="form-row">
-                                <div class="col-md-6">
-                        <label for="nombre"><?php echo $strings['email'] ?> : </label>
-                        <input class="form-control" type = 'text' name = 'email' size = '100' value ='<?php echo ($this->valores['email']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 100)" >
-                           </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                <div class="form-row">
-                                <div class="col-md-6">
-                        <label for="nombre"><?php echo $strings['telefono'] ?> : </label>
-                        <input class="form-control" type = 'text' name = 'telefono' size = '20' value ='<?php echo ($this->valores['telefono']); ?>' required  onblur="esVacio(this)  && comprobarText(this, 20)" >
-                        </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                <div class="form-row">
-                                <div class="col-md-6">
-                                    <label for="nombre"><?php echo $strings['fechaAlta'] ?> : </label>
-                                    <input readonly class = 'tcal' type = 'text' name = 'fechaAlta' min = '' max = '' value ='<?php echo ($this->valores['fechaAlta']); ?>' >
-                                    </div>
-                            </div>
-                        </div>
-                </form>
-                <button type="button" onclick="window.location.href='../Controller/usuario_Controller.php?action=default'" class="btn btn-default"><?php echo $strings['Volver']; ?></button> 
-            <button type='submit' name='action' form="form1" value='EDIT' class="btn btn-primary"><?php echo $strings['Modificar']; ?></button> 
-       </div>
+                      </div>
+                    </div>
+                <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuariosListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
+                <button  type='submit' name='action' value='UsuarioEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
+
+            </form>
+        </div>
     </div>
-<?php
-            include '../view/Footer.php';
-        } // fin del metodo render
-    } // fin de la clase
-    ?>
+</html>

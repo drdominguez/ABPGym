@@ -1,5 +1,5 @@
                     <li class="nav-item" data-toggle="tooltip">
-                        <a class="nav-link" href="../controller/UsuarioController.php?dni=<?php echo $_SESSION['currentuser']; ?>&action=SHOWCURRENT">
+                        <a class="nav-link" href="./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $_SESSION['currentuser'];?>">
                             <i class="fa fa-fw fa-link"></i>
                             <span class="nav-link-text"> <?= i18n("Usuario");?>: <?php echo $_SESSION['currentuser']; ?></span>
                         </a>

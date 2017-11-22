@@ -72,9 +72,37 @@ class UsuarioController extends BaseController
     */
     public function UsuarioEDIT() 
     {
-       $notificaciones = $this->notificacionMapper->listar();
-       $this->view->setVariable("notificaciones",$notificaciones);
-       $this->view->render("notificacion","notificacionSHOWALL");
+       if(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]))
+        {//si existen los post añado la notificacion
+            $usuario = new Usuario();
+            $usuario->setDni($_POST["dni"]);
+            $usuario->setNombre($_POST["nombre"]);
+            $usuario->setApellidos($_POST["apellidos"]);
+            $usuario->setEdad($_POST["edad"]);
+            $usuario->setEmail($_POST["email"]);
+            $usuario->setTelefono($_POST["telefono"]);
+            $usuario->setFecha(date("Y-m-d"));
+            if($this->usuarioMapper->EDIT($usuario))
+            {
+               $this->view->setFlash("Usuario Editado Correctamente");
+            }else
+            {
+                $errors["username"] = "El usuario no se ha editado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("Usuario", "UsuariosListar");
+        }else
+        {
+            $dni = $_GET["dni"];
+            $usuario = $this->usuarioMapper->findById($dni);
+            if ($usuario == NULL) 
+            {
+                throw new Exception("No existe usuario con este dni: ".$dni);
+            }
+
+                $this->view->setVariable("usuario",$usuario);
+                $this->view->render("usuario","usuarioEDIT");
+            }
     }
     
 

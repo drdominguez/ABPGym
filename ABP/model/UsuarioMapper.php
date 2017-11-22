@@ -97,9 +97,17 @@ class UsuarioMapper {
     //Funcion editar
     function EDIT($usuario)
     {
-    $stmt = $this->db->prepare("UPDATE from usuario WHERE dni=? and nombre=? and appellidos=? and edad=? and email=? and telefono=? and fechaAlta=?");
-    $stmt->execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
-            $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
+         $stmt = $this->db->prepare("SELECT * FROM usuario WHERE dni =?");
+            $stmt->execute(array($usuario->getDni()));
+            $usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($usuario_db == null){
+                return false;
+            }else{
+                $stmt = $this->db->prepare("UPDATE usuario SET nombre=?,apellidos=?,edad=?,email=?,telefono=?,fechaAlta=? WHERE dni=?");
+                $stmt->execute(array($usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
+                        $usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha(),$usuario->getDni()));
+                return true;
+            }
     }
 
 
