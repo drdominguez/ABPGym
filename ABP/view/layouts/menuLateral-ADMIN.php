@@ -53,17 +53,18 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenadores">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEntrenadores" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de entrenadores</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de Entrenadores") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
                             <li>
-                                <a href="../controller/EntrenadorController.php?action=ADD">Añadir entrenador</a>
+                                <a href="./index.php?controller=entrenador&amp;action=entrenadorADD"><i class="fa fa-fw fa-link"></i><?= i18n("Añadir Entrenadores") ?></a>
                             </li>
                             <li>
-                                <a href="../controller/EntrenadorController.php">Ver entrenadores</a>
+                                <a href="./index.php?controller=entrenador&amp;action=entrenadorListar"><i class="fa fa-fw fa-link"></i><?= i18n("Ver Entrenadores") ?></a>
+                            </li>
                             </li>
                         </ul>
                     </li>
