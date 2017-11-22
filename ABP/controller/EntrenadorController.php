@@ -59,7 +59,7 @@ class EntrenadorController extends BaseController
             $this->view->render("entrenador", "entrenadorDELETE");
         }else
         {
-            $dniEntrenador = $_POST["dniEntrenaador"];
+            $dniEntrenador = $_POST["dniEntrenador"];
             if($entrenador = $this->entrenadorMapper->delete($dniEntrenador))
             {
                $this->view->setFlash("Entrenador Eliminado Correctamente");

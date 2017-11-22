@@ -54,25 +54,30 @@ function delete($dniEntrenador)
     { 
         if($this->esAdministrador())
         {
-        $stmt = $this->db->prepare("SELECT * FROM entrenador WHERE dniEntrenador=?");
-        $stmt-> execute(array($dniEntrenador));
-        $usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($usuario_db != null)
-         {
-        $stmt = $this->db->prepare("DELETE from entrenador WHERE dniEntrenador=?");
-        $stmt->execute(array($dniEntrenador));
-        return true;
-    }
-    return false;
-    }
+
+            $stmt = $this->db->prepare("SELECT * FROM entrenador WHERE dniEntrenador=?");
+            $stmt-> execute(array($dniEntrenador));
+            $usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($usuario_db != null)
+            {
+                $stmt = $this->db->prepare("DELETE from entrenador WHERE dniEntrenador=?");
+                $stmt2 = $this->db->prepare("DELETE from superusuario WHERE dniSuperUsuario=?");
+                $stmt2->execute(array($dniEntrenador));
+                $stmt->execute(array($dniEntrenador));
+            return true;
+            }
+        return false;
+        }
     return false;
     }
 
 public function add($entrenador)
     {
     $stmt = $this->db->prepare("INSERT INTO entrenador(dniEntrenador) VALUES (?)");
+    $stmt1 = $this->db->prepare("INSERT INTO superusuario(dniSuperUsuario) VALUES (?)");
     if($this->esAdministrador())
-    {
+    {   
+        $stmt1->execute(array($entrenador->getDniEntrenador()));
         $stmt->execute(array($entrenador->getDniEntrenador()));
         return true;
     }else

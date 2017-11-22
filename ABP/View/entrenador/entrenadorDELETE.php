@@ -30,7 +30,7 @@
                     <b><?= i18n("Fecha de Alta") ?>: </b> <?php echo $usuario->getFecha(); ?><br>    
                     <input type="hidden" name="dniEntrenador" value="<?php echo $usuario->getDni(); ?>">
                     <input type="hidden" name="borrar" value="ok">
-                    <button type="button" onclick="window.location.href='./index.php?controller=Entrenador&amp;action=entrenadorDELETE'" class="btn btn-default">Volver</button> 
+                    <button type="button" onclick="window.location.href='./index.php?controller=Entrenador&amp;action=entrenadorListar'" class="btn btn-default">Volver</button> 
                     <button  type='submit' name='action' value='entrenadorDELETE' class="btn btn-primary"><?= i18n("Borrar") ?></button>
                 </form>
             </div>
