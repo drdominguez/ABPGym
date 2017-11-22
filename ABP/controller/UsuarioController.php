@@ -23,25 +23,30 @@ class UsuarioController extends BaseController
     */
     public function UsuarioADD() 
     {
-        if(isset($_POST["Asunto"]) && isset($_POST["contenido"]))
+        if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"]))
         {//si existen los post añado la notificacion
-            $notificacion = new Notificacion();
-            $notificacion->setAsunto($_POST["Asunto"]);
-            $notificacion->setContenido($_POST["contenido"]);
-            $notificacion->setFecha(date("Y-m-d H:i:s"));
-            if($this->notificacionMapper->add($notificacion))
+            $usuario = new Usuario();
+            $usuario->setDni($_POST["dni"]);
+            $usuario->setNombre($_POST["nombre"]);
+            $usuario->setApellidos($_POST["apellidos"]);
+            $usuario->setEdad($_POST["edad"]);
+            $usuario->setPassword($_POST["contrasena"]);
+            $usuario->setEmail($_POST["email"]);
+            $usuario->setTelefono($_POST["telefono"]);
+            $usuario->setFecha(date("Y-m-d"));
+            if($this->usuarioMapper->ADD($usuario))
             {
-               $this->view->setFlash("Notificación Añadida Correctamente");
+               $this->view->setFlash("Usuario Añadido Correctamente");
 
             }else
             {
-                $errors["username"] = "La notificación no se ha añadido corectamente";
+                $errors["username"] = "El usuario no se ha añadido corectamente";
                 $this->view->setFlash($errors["username"]);
             }
-            $this->view->redirect("Notificacion", "NotificacionListar");
+            $this->view->redirect("Usuario", "UsuariosListar");
         }else
         {
-            $this->view->render("notificacion","notificacionADD");
+            $this->view->render("usuario","usuarioADD");
         }
         
     }

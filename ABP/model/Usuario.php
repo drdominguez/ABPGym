@@ -16,7 +16,7 @@ class Usuario
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;
             $this->edad = $edad;
-            $this->password = $password;
+            $this->password = md5($password);
             $this->email = $email;
             $this->telefono = $telefono;//Comprobamos si es un atributo de tipo fecha o no 
             $this->fechaAlta=$fechaAlta;   
@@ -74,7 +74,7 @@ class Usuario
     public function setTelefono($telefono){
         $this->telefono=$telefono;
     }
-    public function setFechaAlta($fechaAlta){
+    public function setFecha($fechaAlta){
         $this->fechaAlta = $fechaAlta;
     }
     /**

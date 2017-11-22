@@ -28,9 +28,20 @@ class UsuarioMapper {
     //Añadir
     function ADD($usuario)
     {
-        $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");
-        $stmt = execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
-            $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
+        if($this->esAdministrador())
+        {
+        $stmt = $this->db->prepare("SELECT * FROM usuario WHERE dni=?");
+        $stmt-> execute(array($usuario->getDni()));
+        $usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($usuario_db == null)
+         {
+            $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");
+            $stmt-> execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),$usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
+            return true;
+        }
+        return false;
+    }
+        return false;
     }
 
     //Funcion borrar un elemento de la BD
@@ -78,5 +89,20 @@ class UsuarioMapper {
     $stmt->execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
             $usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
     }
+
+
+
+    protected function esAdministrador()
+    {
+        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
+        $stmt->execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
 }
 ?>
