@@ -49,11 +49,13 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 		return false;
 	}
 
+	/*
+	*Elimina un estiramiento
+	*Con que lo borre el padre es suficiente, en la bbdd existe deleteCascade
+	*en este caso simplifica mucho el trabajo
+	*/
 	public function removeEstiramiento($idEjercicio){
-		$stmt = $this->db->prepare("DELETE FROM estiramiento WHERE idEjercicio = ?");
-		if(parent::permisosEjercicio($idEjercicio)){
-			$stmt-> execute(array($idEjercicio));
-			parent::remove($idEjercicio);
+		if(parent::remove($idEjercicio)){
 			return true;
 		}
 		return false;

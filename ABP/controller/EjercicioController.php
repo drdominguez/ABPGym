@@ -70,7 +70,16 @@ class EjercicioController extends BaseController{
 	*/
     public function estiramientoRemove() {
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-
+        var_dump("pepeppepepe");
+        if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
+            $this->estiramientoMapper->removeEstiramiento($_POST["idEjercicio"]);
+            $this->view->setFlash("Ejercicio Eliminado Corectamente");
+            self::estiramientoListar();//volvemos a listar los ejercicios
+        }else{//si no muesta la vista
+            $estiramiento=$this->estiramientoMapper->getEstiramientoById($_GET["idEjercicio"]);
+            $this->view->setVariable("estiramiento",$estiramiento);
+            $this->view->render("ejercicios/estiramiento","estiramientoDELETE");
+        }
     }
 
     /*EstiramientoListar
@@ -125,9 +134,11 @@ class EjercicioController extends BaseController{
         $this->cardioMapper = new EjercicioCardioMapper();
         if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
             $this->cardioMapper->removeCardio($_POST["idEjercicio"]);
-            $this->view->render("ejercicios/cardio","cardioSHOWALL");
+            $this->view->setFlash("Ejercicio Eliminado Corectamente");
+             self::cardioListar();//volvemos a listar los cardios
         }else{//si no muesta la vista
             $cardio=$this->cardioMapper->getCardioById($_GET["idEjercicio"]);
+            var_dump($cardio);
             $this->view->setVariable("cardio",$cardio);
             $this->view->render("ejercicios/cardio","cardioDELETE");
         }

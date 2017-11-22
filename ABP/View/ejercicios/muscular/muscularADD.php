@@ -46,7 +46,7 @@
                         <div class="form-group">
                              <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputCarga">Carga</label>
+                                    <label for="exampleInputCarga">Carga(Kg)</label>
                                     <input class="form-control" name="carga" id="exampleInputCarga" type="TEXT" aria-describedby="emailHelp" placeholder="Carga" required onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
                                 <div class="col-md-6">
