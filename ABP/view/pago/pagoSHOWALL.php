@@ -24,6 +24,7 @@
                         <thead>
                         <tr>
                             <th><?= i18n("DNI") ?></th>
+                            <th><?= i18n("Actividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
                             <th><?= i18n("Fecha") ?></th>
                         </tr>
@@ -31,6 +32,7 @@
                         <tfoot>
                         <tr>
                             <th><?= i18n("DNI") ?></th>
+                            <th><?= i18n("Actividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
                             <th><?= i18n("Fecha") ?></th>
                         </tr>
@@ -43,6 +45,7 @@
                             ?>
                             <tr>
                                 <td><?php echo $pago->getDniDeportista(); ?></td>
+                                 <td><?php echo $pago->getActividad(); ?></td>
                                 <td><?php echo $pago->getImporte(); ?></td>
                                 <td><?php echo $pago->getFecha(); ?></td>
                             </tr>

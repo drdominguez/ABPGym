@@ -205,7 +205,7 @@ CREATE TABLE `muscular` (
 CREATE TABLE `notificacion` (
   `idNotificacion` bigint(20) NOT NULL ,
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
-  `Asunto` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Asunto` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `contenido` text COLLATE utf8_spanish_ci,
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -233,8 +233,8 @@ CREATE TABLE `pago` (
   `idPago` bigint(20) NOT NULL ,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idActividad` bigint(20) NOT NULL,
-  `importe` double DEFAULT NULL,
-  `fecha` date DEFAULT NULL
+  `importe` double NOT NULL,
+  `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -514,9 +514,7 @@ ALTER TABLE `notificacion_deportista`
 --
 ALTER TABLE `pago`
   ADD PRIMARY KEY (`idPago`),
-  ADD UNIQUE KEY `idPago` (`idPago`),
-  ADD UNIQUE KEY `dniDeportista` (`dniDeportista`),
-  ADD UNIQUE KEY `idActividad` (`idActividad`);
+  ADD UNIQUE KEY `idPago` (`idPago`);
 
 --
 -- Indexes for table `pef`
@@ -622,6 +620,12 @@ ALTER TABLE `notificacion`
 --
 ALTER TABLE `tabla`
   MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT;
+
+  --
+-- AUTO_INCREMENT for table `tabla`
+--
+ALTER TABLE `pago`
+  MODIFY `idPago` bigint(20) NOT NULL AUTO_INCREMENT;
 
   --
 -- AUTO_INCREMENT for table `actividad`

@@ -2,6 +2,7 @@
 
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Pago.php");
+require_once(__DIR__."/Actividad.php");
 
 Class PagoMapper{
 
@@ -13,29 +14,19 @@ Class PagoMapper{
     }
 
     public function add($pago){
-        $nombre = $pago->getActividad();
-        $query = $this->db->prepare("SELECT idActividad from actividad where nombre = $nombre");
-        $query->execute();
-        foreach ($query as $row){
-            $nombre = $row["idActividad"];
-        }
-        $query = $this->db->prepare("SELECT precio from actividad where idActividad = $nombre");
-        $query->execute();
-        foreach ($query as $row){
-            $importe = $row["precio"];
-        }
-        $pago->setImporte($importe);
-        $stmt = $this->db->prepare("INSERT INTO pago(dniDeportista,idActividad,importe,fecha ) VALUES (?,?,?,?)");
-        if(esAdministrador())
+          if($this->esAdministrador())
         {
-
-            $stmt=execute(array($pago->getDniDeportista(),$pago->getActividad(),$pago->getImporte(),$pago->getFecha()));
-            $this->idPago = $this->db->lastInsertId();
-            $stmt = execute(array($_SESSION["currentuser"],$this->idPago));
+            if($this->esDeportista2($pago->getDniDeportista()))
+            {
+            $stmt = $this->db->prepare("INSERT INTO pago(dniDeportista,idActividad,importe,fecha) VALUES (?,?,?,?)");
+            $stmt->execute(array($pago->getDniDeportista(),$pago->getActividad(),$pago->getImporte(),$pago->getFecha()));
             return true;
         }else{
             return false;
         }
+    }else{
+        return false;
+    }
     }
 
     public function listar()
@@ -93,15 +84,24 @@ Class PagoMapper{
     {
         if($this->esAdministrador())
         {
-            $stmt = $this->db->query("SELECT * from actividad_deportista");
+            $stmt = $this->db->query("SELECT * FROM actividad");
             $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $actividades = array();
             foreach ($actividades_db as $actividad)
             {
-                array_push($actividades, new Actividad($actividad['idACtividad'],$actividad['dniDeportista']));
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio']));
             }
             return $actividades;
         }
+    }
+
+    public function esDeportista2($dni){
+        $stmt = $this->db->prepare("SELECT dni FROM deportista WHERE dni=?");
+        $stmt->execute(array($dni));
+        if ($stmt->fetchColumn() > 0) {
+             return true;
+        }
+        return false;
     }
 
     protected function esAdministrador()
