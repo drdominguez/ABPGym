@@ -1,5 +1,6 @@
 <?php 
 require_once(__DIR__."/../../core/ViewManager.php");
+require_once(__DIR__."/../../core/ViewManager.php");
 
     $view = ViewManager::getInstance();
     $tablas = $view->getVariable("tablas");
@@ -26,6 +27,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <th><?= i18n("nombre") ?></th>
                                 <th><?= i18n("tipo") ?></th>
                                 <th><?= i18n("comentario") ?></th>
+                                <?php ?>
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>

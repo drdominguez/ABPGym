@@ -11115,7 +11115,7 @@
                  *      } );
                  *    } );
                  */
-                "sLengthMenu": i18nMessages['Mostrar _MENU_ elementos"'],
+                "sLengthMenu": i18nMessages['Mostrar _MENU_ elementos'],
 
                 /**
                  * When using Ajax sourced data and during the first draw when DataTables is
@@ -11138,7 +11138,7 @@
                  *      } );
                  *    } );
                  */
-                "sLoadingRecords": i18nMessages['Cargando..."'],
+                "sLoadingRecords": i18nMessages['Cargando...'],
 
 
                 /**
@@ -11159,7 +11159,7 @@
                  *      } );
                  *    } );
                  */
-                "sProcessing": i18nMessages['Procesando..."'],
+                "sProcessing": i18nMessages['Procesando...'],
 
 
                 /**
@@ -11194,7 +11194,7 @@
                  *      } );
                  *    } );
                  */
-                "sSearch": i18nMessages['Buscar:"'],
+                "sSearch": i18nMessages['Buscar:'],
 
 
                 /**
@@ -11252,7 +11252,8 @@
                  *      } );
                  *    } );
                  */
-                "sZeroRecords": i18nMessages['No se encontró nada']
+                "sZeroRecords": i18nMessages['No se encontró nada'
+]
             },
 
 
