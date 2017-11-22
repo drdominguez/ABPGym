@@ -3,20 +3,23 @@
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Pago.php");
 require_once(__DIR__."/Actividad.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 Class PagoMapper{
 
     protected $db;
     protected $idPago;
+    private $permisos;
 
     public function __construct(){
         $this->db=PDOConnection::getInstance();
+               $this->permisos= new Permisos();
     }
 
     public function add($pago){
-          if($this->esAdministrador())
+          if($this->permisos->esAdministrador())
         {
-            if($this->esDeportista2($pago->getDniDeportista()))
+            if($this->permisos->esDeportista2($pago->getDniDeportista()))
             {
             $stmt = $this->db->prepare("INSERT INTO pago(dniDeportista,idActividad,importe,fecha) VALUES (?,?,?,?)");
             $stmt->execute(array($pago->getDniDeportista(),$pago->getActividad(),$pago->getImporte(),$pago->getFecha()));
@@ -31,7 +34,7 @@ Class PagoMapper{
 
     public function listar()
     {
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
             $stmt = $this->db->query("SELECT * from pago");
         }else
@@ -65,7 +68,7 @@ Class PagoMapper{
 
     public function delete($idPago)
     {
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
             $stmt = $this->db->prepare("SELECT * FROM pago WHERE idPago=?");
             $stmt-> execute(array($idPago));
@@ -83,7 +86,7 @@ Class PagoMapper{
 
     public function listarActividades()
     {
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
             $stmt = $this->db->query("SELECT * FROM actividad");
             $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -96,25 +99,6 @@ Class PagoMapper{
         }
     }
 
-    public function esDeportista2($dni){
-        $stmt = $this->db->prepare("SELECT dni FROM deportista WHERE dni=?");
-        $stmt->execute(array($dni));
-        if ($stmt->fetchColumn() > 0) {
-             return true;
-        }
-        return false;
-    }
-
-    protected function esAdministrador()
-    {
-        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
-        $stmt->execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn()>0)
-        {
-            return true;
-        }
-        return false;
-    }
 }
 ?>
 
