@@ -91,12 +91,6 @@
                             <li>
                                 <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Añadir") ?></a>
                             </li>
-                            <li>
-                                <a href="./index.php?controller=Ejercicio&amp;action=loadRemoveView"><?= i18n("Eliminar") ?></a>
-                            </li>
-                             <li>
-                                <a href="./index.php?controller=Ejercicio&amp;action=loadEditView"><?= i18n("Editar") ?></a>
-                            </li>
                              <li>
                                 <a href="./index.php?controller=Ejercicio&amp;action=loadListView"><?= i18n("Listar") ?></a>
                             </li>
@@ -126,13 +120,7 @@
                                         <a href="../controller/DeportistasController.php?action=DeportistaADD">Añadir deportista</a>
                                     </li>
                                     <li>
-                                        <a href="../controller/NotificacionController.php?action=DeportistaEDIT">Editar deportista</a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/DeportistasController.php?action=DeportistaREMOVE">Eliminar deportista</a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/NotificacionController.php?action=listar">Ver deportistas</a>
+                                        <a href="../controller/DeportistaController.php?action=listar">Ver deportistas</a>
                                     </li>
                                 </ul>
                     </li>

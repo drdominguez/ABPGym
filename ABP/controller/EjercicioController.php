@@ -223,6 +223,25 @@ class EjercicioController extends BaseController{
         $this->view->render("ejercicios/muscular","muscularADD");
     }
 
+    /*
+    *Edita un muscular
+    *a partir de un id obtenido por la vista crea un etiramiento usando getEstiramientoById
+    *luego lo edita en la bbdd.
+    */
+    public function muscularEdit(){
+        $this->muscularMapper = new EjercicioMuscularMapper();
+        if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
+            $muscular = new EjercicioMuscular($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["carga"],$_POST["repeticiones"]);
+            $this->muscularMapper->editMuscular($muscular);
+            $this->view->setFlash("Ejercicio Editado Corectamente");
+            self::muscularListar();//volvemos a listar los ejercicios
+        }else{//si no muesta la vista
+            $muscular=$this->muscularMapper->getMuscularById($_GET["idEjercicio"]);
+            $this->view->setVariable("muscular",$muscular);
+            $this->view->render("ejercicios/muscular","muscularEDIT");
+        }
+    }
+
     /*muscularRemove
 	*Si se llama con un get carga la vista
 	*si se llama con un post añade el muscular
