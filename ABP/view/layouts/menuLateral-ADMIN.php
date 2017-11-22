@@ -126,13 +126,7 @@
                                         <a href="../controller/DeportistasController.php?action=DeportistaADD">Añadir deportista</a>
                                     </li>
                                     <li>
-                                        <a href="../controller/NotificacionController.php?action=DeportistaEDIT">Editar deportista</a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/DeportistasController.php?action=DeportistaREMOVE">Eliminar deportista</a>
-                                    </li>
-                                    <li>
-                                        <a href="../controller/NotificacionController.php?action=listar">Ver deportistas</a>
+                                        <a href="../controller/DeportistaController.php?action=listar">Ver deportistas</a>
                                     </li>
                                 </ul>
                     </li>
