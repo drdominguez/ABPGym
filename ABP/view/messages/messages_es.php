@@ -18,5 +18,25 @@
     	' no tiene 8 números seguidos de una letra: FORMATO INCORRECTO!!!'=>' no tiene 8 números seguidos de una letra: FORMATO INCORRECTO!!!',
     	'La letra del DNI no es correcta'=>'La letra del DNI no es correcta',
     	' no tiene un formato válido de telefeno.'=>' no tiene un formato válido de telefeno.',
-    	' debe estar compuesto únicamente por digitos.'=>' debe estar compuesto únicamente por digitos.');
+    	' debe estar compuesto únicamente por digitos.'=>' debe estar compuesto únicamente por digitos.',
+
+        //STRINGS jquery.dataTables.js
+
+        ': activar para ordenar columna ascendentemente'=>': activar para ordenar columna ascendentemente',
+        ': activar para ordenar columna descendentemente'=>': activar para ordenar columna descendentemente',
+        'Primero' => 'Primero',
+        'Último'=>'Último',
+        'Siguiente'=>'Siguiente',
+        'Anterior'=>'Anterior',
+        'Tabla sin datos'=>'Tabla sin datos',
+        'Mostrando _START_ a _END_ de _TOTAL_ elementos'=>'Mostrando _START_ a _END_ de _TOTAL_ elementos',
+        'Mostrando 0 a 0 de 0 elementos'=>'Mostrando 0 a 0 de 0 elementos',
+        '(filtrados de _MAX_ elementos totales)'=>'(filtrados de _MAX_ elementos totales)',
+        'Mostrar _MENU_ elementos'=>'Mostrar _MENU_ elementos',
+        'Cargando...'=>'Cargando...',
+        'Procesando...'=>'Procesando...',
+        'Buscar:'=>'Buscar:',
+        'No se encontró nada'=>'No se encontró nada'
+
+    );
 ?>

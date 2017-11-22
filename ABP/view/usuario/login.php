@@ -32,14 +32,14 @@ $view = ViewManager::getInstance();
                     <ol class="breadcrumb">
                     <div id="flash"><?= $view->popFlash()?></div>
                 </ol>
-                    <form name='Form' action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST">
+                    <form name='Form' action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST" onsubmit="return validarLogin()">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Login</label>
-                            <input class="form-control" name="dni" id="exampleInputEmail1" type="TEXT" aria-describedby="emailHelp" placeholder="Introduzca DNI" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <input class="form-control" name="dni" id="exampleInputEmail1" type="TEXT" aria-describedby="emailHelp" placeholder="Introduzca DNI" onchange="comprobarVacio(this)  && comprobarTexto(this,10)">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input class="form-control" id="exampleInputPassword1" name="contraseña" type="password" placeholder="Password" onblur="esVacio(this)  && comprobarText(this,32)">
+                            <input class="form-control" id="exampleInputPassword1" name="contraseña" type="password" placeholder="Password" onblur="comprobarVacio(this)">
                         </div>
                         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">ENTRAR</button>
                     </form>
