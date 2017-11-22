@@ -28,7 +28,7 @@
                         </a>
                                 <ul class="sidenav-second-level collapse" id="collapseDeportistas">
                                     <li>
-                                        <a href="./index.php?controller=Deportista&amp;action=listarDeportistaADD">Añadir deportista</a>
+                                        <a href="./index.php?controller=Deportista&amp;action=DeportistaADD">Añadir deportista</a>
                                     </li>
                                     <li>
                                         <a href="./index.php?controller=Deportista&amp;action=listar">Ver deportistas</a>
