@@ -42,8 +42,6 @@ class ActividadController extends BaseController{
 
     public function actividadEDIT() 
     {   
-        var_dump($_POST["actividades"]);
-        exit;
         if(isset($_POST["nombre"]) && isset($_POST["precio"])&& isset($_POST["instalaciones"])&& isset($_POST["plazas"])&& isset($_POST["idActividad"]))
         {//si existen los post añado la notificacion
             if($this->actividadMapper->esGrupo()){            
