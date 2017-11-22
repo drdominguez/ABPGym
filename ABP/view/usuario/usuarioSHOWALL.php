@@ -53,7 +53,7 @@
                                     </a>
                                 </td>
                                   <td>
-                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioDELETEw&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
+                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioDELETE&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
                                     </a>
                                 </td>
                                   <td>

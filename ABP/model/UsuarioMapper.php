@@ -46,9 +46,21 @@ class UsuarioMapper {
 
     //Funcion borrar un elemento de la BD
     function DELETE($dni)
-    {
+    { 
+        if($this->esAdministrador())
+        {
+        $stmt = $this->db->prepare("SELECT * FROM usuario WHERE dni=?");
+        $stmt-> execute(array($dni));
+        $usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($usuario_db != null)
+         {
         $stmt = $this->db->prepare("DELETE from usuario WHERE dni=?");
-        $stmt->execute(array($dni()));
+        $stmt->execute(array($dni));
+        return true;
+    }
+    return false;
+    }
+    return false;
     }
 
 

@@ -82,11 +82,38 @@ class UsuarioController extends BaseController
     /*NotificacionListar
     *Muestra una lista con todos las Notificaciones
     */
-    public function UsuariosDELETE() 
+    public function UsuarioDELETE() 
     {
-       $notificaciones = $this->notificacionMapper->listar();
-       $this->view->setVariable("notificaciones",$notificaciones);
-       $this->view->render("notificacion","notificacionSHOWALL");
+        if(!isset($_POST['borrar']))
+        {
+            if (!isset($_GET["dni"])) 
+            {
+                throw new Exception("El dni es obligatorio");
+            }
+            $dni = $_GET["dni"];
+            // find the notification object in the database
+            $usuario = $this->usuarioMapper->findById($dni);
+            if ($usuario == NULL) 
+            {
+                throw new Exception("No existe usuario con este dni: ".$dni);
+            }
+            // put the notification object to the view
+            $this->view->setVariable("usuario", $usuario);
+            // render the view (/view/posts/view.php)
+            $this->view->render("usuario", "usuarioDELETE");
+        }else
+        {
+            $dni = $_POST["dni"];
+            if($usuario = $this->usuarioMapper->delete($dni))
+            {
+               $this->view->setFlash("Usuario Eliminado Correctamente");
+            }else
+            {
+                $errors["username"] = "El usuario no se ha eliminado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("Usuario", "UsuariosListar");
+        }
     }
     
 
