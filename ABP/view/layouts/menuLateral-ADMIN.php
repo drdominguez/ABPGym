@@ -109,6 +109,25 @@
                             </li>
                         </ul>
                     </li>
+
+
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sesiones">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSesiones" data-parent="#exampleAccordion">
+                           <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text"><?= i18n("Gestión de Sesiones") ?></span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseSesiones">
+                            <li>
+                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=realizarSesion"><?= i18n("Realizar Sesión") ?></a>
+                            </li>
+                            <li>
+                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Consultar Sesiones") ?></a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Notificaciones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseNotificaciones" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
