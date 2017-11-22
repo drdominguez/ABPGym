@@ -138,7 +138,6 @@ class EjercicioController extends BaseController{
              self::cardioListar();//volvemos a listar los cardios
         }else{//si no muesta la vista
             $cardio=$this->cardioMapper->getCardioById($_GET["idEjercicio"]);
-            var_dump($cardio);
             $this->view->setVariable("cardio",$cardio);
             $this->view->render("ejercicios/cardio","cardioDELETE");
         }
@@ -192,8 +191,16 @@ class EjercicioController extends BaseController{
 	*si se llama con un post añade el muscular
 	*/
     public function muscularRemove() {
-    	$this->muscularMapper = new EjercicioMuscularMapper();
-
+    	$this->mucularMapper = new EjercicioMuscularMapper();
+        if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
+            $this->mucularMapper->removeMuscular($_POST["idEjercicio"]);
+            $this->view->setFlash("Ejercicio Eliminado Corectamente");
+             self::muscularListar();//volvemos a listar los cardios
+        }else{//si no muesta la vista
+            $muscular=$this->mucularMapper->getMuscularById($_GET["idEjercicio"]);
+            $this->view->setVariable("muscular",$muscular);
+            $this->view->render("ejercicios/muscular","muscularDELETE");
+        }
     }
 
     /*muscularListar

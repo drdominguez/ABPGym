@@ -55,10 +55,7 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 	*Borra de la base se datos un ejercicio muscular
 	*/
 	public function removeMuscular($idEjercicio){
-		$stmt = $this->db->prepare("DELETE FROM muscular WHERE idEjercicio = ?");
-		if(parent::permisosEjercicio($idEjercicio)){
-			$stmt -> execute(array($idEjercicio));
-			parent::remove($idEjercicio);
+		if(parent::remove($idEjercicio)){
 			return true;
 		}
 		return false;
