@@ -3,21 +3,27 @@
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Deportista.php");
 require_once(__DIR__."/Notificacion.php");
+require_once(__DIR__ . "/../core/permisos.php");
+
 
 Class NotificacionMapper
 {
     protected $db;
     protected $idNotificacion;
+    private $permisos;
 
     public function __construct()
     {
         $this->db=PDOConnection::getInstance();
+                 $this->permisos= new Permisos();
+
     }
     
     public function add($notificacion)
     {
+
         $stmt = $this->db->prepare("INSERT INTO notificacion(dniAdministrador,Asunto,contenido,fecha) VALUES (?,?,?,?)");
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
             $stmt->execute(array($_SESSION['currentuser'],$notificacion->getAsunto(),$notificacion->getContenido(),$notificacion->getFecha()));
             $this->idNotificacion= $this->db->lastInsertId();
@@ -48,7 +54,7 @@ Class NotificacionMapper
 
     public function listar()
     {
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
             $stmt = $this->db->query("SELECT * from notificacion");
         }else
@@ -70,7 +76,7 @@ Class NotificacionMapper
 
     public function listarSinVer()
     {
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
             $stmt = $this->db->query("SELECT * from notificacion");
         }else
@@ -91,7 +97,7 @@ Class NotificacionMapper
 
     public function contarNotificacionesSinVer()
     {
-        if($this->esAdministrador())
+        if($this->permisos->esAdministrador())
         {
             $stmt = $this->db->query("SELECT COUNT(*) from notificacion");
         }else
@@ -129,7 +135,7 @@ Class NotificacionMapper
 
     public function visto($idNotificacion,$dniDeportista)
     {
-        if(!$this->esAdministrador())
+        if(!$this->permisos->esAdministrador())
         {
             $stmt=$this->db-> prepare("UPDATE notificacion_deportista SET visto=? WHERE idNotificacion=? AND dniDeportista=?");
             $stmt->execute(array(1,$idNotificacion,$dniDeportista));

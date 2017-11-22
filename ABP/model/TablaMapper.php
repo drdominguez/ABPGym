@@ -2,15 +2,19 @@
 
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Tabla.php");
+require_once(__DIR__ . "/../core/permisos.php");
+
 
 Class TablaMapper
 {
     protected $db;
     protected $idTabla;
+       private $permisos;
 
     public function __construct()
     {
         $this->db=PDOConnection::getInstance();
+          $this->permisos= new Permisos();
     }
     
 
@@ -18,7 +22,7 @@ Class TablaMapper
     public function add($tabla,$ejercicios)
     {
         $stmt = $this->db->prepare("INSERT INTO tabla(tipo,comentario,nombre,dniSuperUsuario) VALUES (?,?,?,?)");
-        if($this->esSuperusuario())
+        if($this->permisos->esSuperusuario())
         {
             $stmt->execute(array($tabla->getTipo(),$tabla->getComentario(),$tabla->getNombre(),$_SESSION['currentuser']));
             $this->idTabla= $this->db->lastInsertId();
@@ -37,14 +41,14 @@ Class TablaMapper
     public function edit($tabla,$ejercicios,$idTabla)
         {
             $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla =?");
-             if($this->esSuperusuario())
+             if($this->permisos->esSuperusuario())
         {
             $stmt->execute(array($idTabla));
             $tablaDB = $stmt->fetch(PDO::FETCH_ASSOC);
             if($tablaDB == null){
                 return false;
             }else{
-                if($tablaDB['dniSuperUsuario']==$_SESSION['currentuser'] || $this->esAdministrador()){
+                if($tablaDB['dniSuperUsuario']==$_SESSION['currentuser'] || $this->permisos->esAdministrador()){
 
                     $stmt = $this->db->prepare("UPDATE tabla set nombre=?,comentario=? where idTabla=?");
                     $stmt->execute(array($tabla->getNombre(),$tabla->getComentario(),$idTabla));
@@ -68,10 +72,10 @@ Class TablaMapper
 
 
     public function asignar($usuario,$idTabla){
-        if($this->esSuperusuario())
+        if($this->permisos->esSuperusuario())
         {
 
-            if($this->esDeportista2($usuario)){
+            if($this->permisos->esDeportista2($usuario)){
                         $stmt = $this->db->prepare("DELETE FROM superusuario_tabla_deportista WHERE dniDeportista=?");
         $stmt->execute(array($usuario));    
         $stmt = $this->db->prepare("INSERT INTO superusuario_tabla_deportista (dniSuperUsuario,dniDeportista,idTabla) VALUES (?,?,?)");
@@ -87,8 +91,8 @@ Class TablaMapper
 
     public function listar()
     {
-        if($this->esSuperusuario()){
-            if($this->esAdministrador()){
+        if($this->permisos->esSuperusuario()){
+            if($this->permisos->esAdministrador()){
                 $stmt = $this->db->query("SELECT * from tabla");
             }else{
                 $stmt = $this->db->prepare("SELECT * from tabla WHERE dniSuperUsuario=?");
@@ -127,7 +131,7 @@ Class TablaMapper
 
     public function listarEjercicios()
     {
-        if($this->esSuperusuario())
+        if($this->permisos->esSuperusuario())
         {
             $stmt = $this->db->query("SELECT * from ejercicio");
             $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -199,44 +203,20 @@ Class TablaMapper
 
     public function delete($idTabla) 
     {
-        $stmt = $this->db->prepare("DELETE from tabla WHERE idTabla=?");
-        $stmt->execute(array($idTabla));
-        return true;
-    }
-
-
-
-
-    protected function esAdministrador()
-    {
-        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
-        $stmt->execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn()>0)
-        {
+        if($this->permisos->esSuperusuario()){
+            $stmt = $this->db->prepare("SELECT * FROM tabla WHERE dniSuperUsuario=? AND idTabla=?");
+             $stmt->execute(array($_SESSION['currentuser'],$idTabla));
+             $ejercicio_db = $stmt->fetch(PDO::FETCH_ASSOC);
+             if(ejercicio_db==null){
+                return false;
+             }
+            $stmt = $this->db->prepare("DELETE from tabla WHERE idTabla=?");
+            $stmt->execute(array($idTabla));
             return true;
         }
-        return false;
+
     }
 
 
-    public function esDeportista2($dni){
-        $stmt = $this->db->prepare("SELECT dni FROM deportista WHERE dni=?");
-        $stmt->execute(array($dni));
-        if ($stmt->fetchColumn() > 0) {
-             return true;
-        }
-        return false;
-    }
-
-    protected function esSuperusuario()
-    {
-        $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
-        $stmt-> execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn()>0)
-        {
-            return true;
-        }
-        return false;
-    }
 }
 ?>

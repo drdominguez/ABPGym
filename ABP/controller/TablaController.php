@@ -10,6 +10,7 @@ require_once(__DIR__ . "/../core/permisos.php");
 class TablaController extends BaseController
 {
     private $tablaMapper;
+       private $permisos;
     
     public function __construct() {
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/

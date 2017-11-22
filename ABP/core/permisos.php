@@ -57,6 +57,16 @@ Class Permisos {
         }
         return false;
     }
+
+        public function esDeportista2($dni){
+        $stmt = $this->db->prepare("SELECT dni FROM deportista WHERE dni=?");
+        $stmt->execute(array($dni));
+        if ($stmt->fetchColumn() > 0) {
+             return true;
+        }
+        return false;
+    }
+
 }
 
     ?>
