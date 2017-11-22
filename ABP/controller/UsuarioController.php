@@ -93,22 +93,21 @@ class UsuarioController extends BaseController
     */
     public function UsuarioView() 
     {
-        if (!isset($_GET["idNotificacion"])) 
+        if (!isset($_GET["dni"])) 
         {
-            throw new Exception("El id es obligatorio");
+            throw new Exception("El dni es obligatorio");
         }
-        $idNotificacion = $_GET["idNotificacion"];
+        $dni = $_GET["dni"];
         // find the notification object in the database
-        $notificacion = $this->notificacionMapper->findById($idNotificacion);
-        if ($notificacion == NULL) 
+        $usuario = $this->usuarioMapper->findById($dni);
+        if ($usuario == NULL) 
         {
-            throw new Exception("No existe notificacion con este id: ".$idNotificacion);
+            throw new Exception("No existe usuario con este dni: ".$dni);
         }
         // put the notification object to the view
-        $this->view->setVariable("notificacion", $notificacion);
-        $this->notificacionMapper->visto($notificacion->getIdNotificacion(),$_SESSION['currentuser']);
+        $this->view->setVariable("usuario", $usuario);
         // render the view (/view/posts/view.php)
-        $this->view->render("notificacion", "notificacionSHOWCURRENT");
+        $this->view->render("usuario", "usuarioSHOWCURRENT");
     }
 
 }

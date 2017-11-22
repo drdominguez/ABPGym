@@ -49,10 +49,28 @@ class UsuarioMapper {
         $usuarios = array();
         foreach ($usuarios_db as $usuario) 
         {
-            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
         }
         return $usuarios;
     }
+
+
+
+      public function findById($dni)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM usuario WHERE dni=?");
+        $stmt->execute(array($dni));
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($usuario != null)
+         {
+            return new Usuario($usuario["dni"],$usuario["nombre"],$usuario["apellidos"],$usuario["edad"],null,$usuario["email"],$usuario["telefono"],$usuario["fechaAlta"]);
+        }else 
+        {
+            return NULL;
+        }
+    }
+
+
     //Funcion editar
     function EDIT($usuario)
     {
