@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Actividad.php");
+require_once(__DIR__."/ActividadGrupo.php");
 
 class ActividadMapper{
     protected $db;
@@ -30,14 +31,27 @@ class ActividadMapper{
         }
         return false;
     }
+    function editGrupo($actividad){
+       
+        if(self::esAdministrador()){
+            $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=? WHERE idActividad=? ");
+            $stmt1 = $this->db->prepare("UPDATE grupo SET instalaciones=?,plazas=? WHERE idActividad=?");
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdActividad()));
+            $stmt1 -> execute(array($actividad->getInstalaciones(),$actividad->getPlazas(),$actividad->getIdActividad()));
+            return true;
+        }
+        return false;
+    }
 
     //Funcion editar
     function edit($actividad){
-        $stmt = $this->db->prepare("UPDATE actividad SET precio=? WHERE idActividad=? ");
+        
+        $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=? WHERE idActividad=? ");
         if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getIdActividad(),$actividad->getNombre(),$actividad->getPrecio()));
-            return true;
-        }
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdActividad()));
+            return true;            
+        } 
+                    
         return false;
     }
     public function listar(){
@@ -84,7 +98,7 @@ class ActividadMapper{
     public function esGrupo(){
         $stmt= $this->db->prepare("SELECT A.idActividad FROM Actividad A, grupo G WHERE A.idActividad=? AND G.idActividad = A.idActividad");
         
-        $stmt -> execute(array($_SESSION["currentuser"]));
+        $stmt -> execute(array($idActividad));
         if ($stmt->fetchColumn()>0){
             return true;
         }
