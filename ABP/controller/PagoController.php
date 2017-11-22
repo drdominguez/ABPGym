@@ -38,8 +38,12 @@ class PagoController extends BaseController
             }
             $this->view->redirect("Pago", "PagoListar");
 
+        }else
+        {
+            $actividades = $this->PagoMapper->listarActividades();
+            $this->view->setVariable("actividades",$actividades);
+            $this->view->render("Pago","pago_ADD_View");
         }
-        $this->view->render("Pago","pago_ADD_View");
     }
 
     public function PagoListar()

@@ -25,7 +25,7 @@ $currentuser = $view->getVariable("currentusername");
                         <div class="form-row">
                             <div class="col-md-6">
                                 <label for="exampleInputNombre">DNI</label>
-                                <input class="form-control" name="dni" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="dni" onblur="esVacio(this)  && comprobarText(this,15)">
+                                <input class="form-control" name="dni" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="DNI" onblur="esVacio(this)  && comprobarText(this,15)">
                             </div>
                             <div class="col-md-6">
                                 <label for="exampleInputTiempo">Nombre</label>

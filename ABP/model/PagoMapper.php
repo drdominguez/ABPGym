@@ -89,6 +89,21 @@ Class PagoMapper{
         return false;
     }
 
+    public function listarActividades()
+    {
+        if($this->esAdministrador())
+        {
+            $stmt = $this->db->query("SELECT * from actividad_deportista");
+            $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $actividades = array();
+            foreach ($actividades_db as $actividad)
+            {
+                array_push($actividades, new Actividad($actividad['idACtividad'],$actividad['dniDeportista']));
+            }
+            return $actividades;
+        }
+    }
+
     protected function esAdministrador()
     {
         $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
