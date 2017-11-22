@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__."/../core/Access_DB.php");
+require_once(__DIR__."/Usuario.php");
 class UsuarioMapper {
     protected $db;
     /**
@@ -38,17 +39,19 @@ class UsuarioMapper {
         $stmt = $this->db->prepare("DELETE from usuario WHERE dni=?");
         $stmt->execute(array($dni()));
     }
-    //Funcion obtener datos de una tabla de la bd
-    function RellenaDatos2()
+
+
+
+       public function listar()
     {
-    $sql = "SELECT * FROM usuario WHERE dni = '$this->dni';";
-        if (!($resultado = $this->mysqli->query($sql)))
+        $stmt = $this->db->query("SELECT * from usuario");
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
         {
-            return 'No existe en la base de datos'; // 
-        }else{
-            $result = $resultado->fetch_array();
-            return $result;
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
         }
+        return $usuarios;
     }
     //Funcion editar
     function EDIT($usuario)

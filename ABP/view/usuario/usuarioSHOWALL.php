@@ -1,146 +1,71 @@
-<meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/>
-
 <?php
-    class usuario_SHOWALL { 
+    require_once(__DIR__."/../../core/ViewManager.php");
 
-        private $datos;
-        private $array; 
-        private $volver;
-
-        function __construct($array, $datos){
-            $this->datos = $datos;
-            $this->lista = $array;
-            $this->render();
-        }
-                
-        function render(){  
-           include '../view/Header.php';
-            include '../view/menuLateral.php';
-             include '../view/notificacionesMenu.php';
-                include '../view/menuSuperior.php';
-           
+    $view = ViewManager::getInstance();
+    $usuarios = $view->getVariable("usuarios");
+    $currentuser = $view->getVariable("currentusername");
+    $view->setVariable("title", "Usuarios");
 ?>
+
 <div class="content-wrapper">
-            <div class="container-fluid">
-                <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="../Controller/usuario_Controller.php"><?php echo $strings['Usuarios'] ?></a>
-                    </li>
-                    <li class="breadcrumb-item active"><?php echo $strings['Ver todos los usuarios'] ?></li>
-                </ol>
-                <!-- Example DataTables Card-->
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fa fa-table"></i> <?php echo $strings['Mostrar todos los usuarios']; ?></div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                                    <tr>
-                                        <?php
-                 foreach($this->lista as $titulo){
-?>
-                                        <th>
-<?php
-                                        echo $strings[$titulo];
-?>
-                                        </th>
-<?php
-                                    }
-    ?>                                  <th>
-                                        </th>
-                                        <th>
-                                        </th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                     <tr>
-                                        <?php
-                                     foreach($this->lista as $titulo){
-?>
-                                        <th>
-<?php
-                                        echo $strings[$titulo];
-?>
-                                        </th>
-<?php
-                                    }
-?>                                  <th>
-                                        </th>
-                                        <th>
-                                        </th>
-                                        <th>
-                                        </th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <div id="flash"><?= $view->popFlash() ?></div>
+        </ol>
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i><?= i18n("Mostrar todos los usuarios") ?>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                        <thead>
+                            <tr>
+                                <th><?= i18n("dni") ?></th>
+                                <th><?= i18n("nombre") ?></th>
+                                <th><?= i18n("apellidos") ?></th>
+                                <th><?= i18n("Editar") ?></th>
+                                <th><?= i18n("Borrar") ?></th>
+                                <th><?= i18n("Ver") ?></th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th><?= i18n("dni") ?></th>
+                                <th><?= i18n("nombre") ?></th>
+                                <th><?= i18n("apellidos") ?></th>
+                                <th><?= i18n("Editar") ?></th>
+                                <th><?= i18n("Borrar") ?></th>
+                                <th><?= i18n("Ver") ?></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
 
-<?php
-                foreach($this->datos as $datos){
-?>
-                    <tr>
-<?php
-                    for($i=0;$i<count($this->lista);$i++){
-?>
-                        <td>
-<?php
-                        echo $datos[$this->lista[$i]];
-?>
-                        </td>
-<?php
-                    }
-                    if($_SESSION['login'] != strtoupper($datos['dni'])){
-?>                  
-                    <td>
-                    <a href='../Controller/usuario_Controller.php?dni=<?php echo $datos['dni']; ?>&action=EDIT'>
-                                    <img src='../View/Icons/edit.png'>
-                    
-                    </a>
-                            
-                    </td>
-
-                    <td>
-                    <a href='../Controller/usuario_Controller.php?dni=<?php echo $datos['dni']; ?>&action=DELETE'>
-                                    <img src='../View/Icons/delete.png'>
-                    </a>
-                    
-                    </td>
-        <?php }else{ ?>
-
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                      
-<?php
-
-                    }  
-                    ?>  
-                    <td>
-                    <a href='../Controller/usuario_Controller.php?dni=<?php echo $datos['dni']; ?>&action=SHOWCURRENT'>
-                                    <img src='../View/Icons/detalle.png'>
-                    </a>
-                    
-                    </td>
-
-                
-                    </tr>
-<?php
-                    }   
-?>
-            </tbody>
-                            </table>
-                              </div>
-                    </div>
+                        <?php foreach($usuarios as $usuario){ ?>
+                            <tr>
+                                <td><?php echo $usuario->getDni(); ?></td>
+                                <td><?php echo $usuario->getNombre(); ?></td>
+                                <td><?php echo $usuario->getApellidos(); ?></td>
+                                <td>
+                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/edit.png'>
+                                    </a>
+                                </td>
+                                  <td>
+                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioDELETEw&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
+                                    </a>
+                                </td>
+                                  <td>
+                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
-<?php
-
-            include '../view/Footer.php';
-        
-        } //render method
-
-    } //main class
-?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,10 +14,10 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseUsuarios">
                             <li>
-                                <a href="../controller/UsuarioController.php?action=ADD">Añadir Usuario</a>
+                                <a href="./index.php?controller=Usuario&action=usuarioADD">Añadir Usuario</a>
                             </li>
                             <li>
-                                <a href="../controller/UsuarioController.php">Ver Usuarios</a>
+                                <a href="./index.php?controller=Usuario&amp;action=UsuariosListar">Ver Usuarios</a>
                             </li>
                             
                         </ul>
