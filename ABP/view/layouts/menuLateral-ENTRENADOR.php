@@ -10,7 +10,7 @@
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUsuarios" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text"><?= i18n("Gestión de usuario") ?></span>
+                            <span class="nav-link-text"><?= i18n("Gestión de Usuarios") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseUsuarios">
                             <li>
@@ -19,7 +19,34 @@
                             <li>
                                 <a href="../controller/UsuarioController.php">Ver Usuarios</a>
                             </li>
-                            
+                        </ul>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Deportistas">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text"><?= i18n("Gestión de Deportistas") ?></span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseDeportistas">
+                            <li>
+                                <a href="../controller/DeportistasController.php?action=ADD">Enviar notificacion</a>
+                            </li>
+                            <li>
+                                <a href="../controller/NotificacionController.php">Ver notificaciones</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEntrenadores" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text"><?= i18n("Gestión de Entrenadores") ?></span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
+                            <li>
+                                <a href="../controller/EntrenadorController.php?action=ADD">Añadir entrenador</a>
+                            </li>
+                            <li>
+                                <a href="../controller/EntrenadorController.php">Ver entrenadores</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Actividades">
@@ -91,17 +118,17 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEntrenadores" data-parent="#exampleAccordion">
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ejercicios">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEjercicios" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de entrenadores</span>
+                            <span class="nav-link-text"><?= i18n("Gestión de Ejercicios") ?></span>
                         </a>
-                        <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
+                        <ul class="sidenav-second-level collapse" id="collapseEjercicios">
                             <li>
-                                <a href="../controller/EntrenadorController.php?action=ADD">Añadir entrenador</a>
+                                <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Añadir") ?></a>
                             </li>
-                            <li>
-                                <a href="../controller/EntrenadorController.php">Ver entrenadores</a>
+                             <li>
+                                <a href="./index.php?controller=Ejercicio&amp;action=loadListView"><?= i18n("Listar") ?></a>
                             </li>
                         </ul>
                     </li>
@@ -119,36 +146,6 @@
                             </li>
                         </ul>
                     </li>
-                   <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ejercicios">
-                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEjercicios" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text"><?= i18n("Gestión de Ejercicios") ?></span>
-                        </a>
-                        <ul class="sidenav-second-level collapse" id="collapseEjercicios">
-                            <li>
-                                <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Añadir") ?></a>
-                            </li>
-                             <li>
-                                <a href="./index.php?controller=Ejercicio&amp;action=loadListView"><?= i18n("Listar") ?></a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Deportistas">
-                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text">Gestión de deportista</span>
-                        </a>
-                        <ul class="sidenav-second-level collapse" id="collapseDeportistas">
-                            <li>
-                                <a href="../controller/DeportistasController.php?action=ADD">Enviar notificacion</a>
-                            </li>
-                            <li>
-                                <a href="../controller/NotificacionController.php">Ver notificaciones</a>
-                            </li>
-                        </ul>
-                    </li>
-                    
                 </ul>
                 <ul class="navbar-nav sidenav-toggler">
                     <li class="nav-item">
