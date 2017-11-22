@@ -39,7 +39,7 @@ Class PagoMapper{
             $stmt = $this->db->query("SELECT * from pago");
         }else
         {
-            $stmt = $this->db->prepare("SELECT P.idPago, P.dniDeportista,P.idActividad,P.importe,P.fecha from pago P, WHERE P.dniDeportista =?");
+            $stmt = $this->db->prepare("SELECT * from pago WHERE dniDeportista =?");
             $stmt->execute(array($_SESSION['currentuser']));
         }
         $pagos_db = $stmt->fetchAll(PDO::FETCH_ASSOC);

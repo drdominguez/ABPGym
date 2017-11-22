@@ -7,7 +7,7 @@ class Entrenador extends Usuario
         //Definimos las variables
         private $dniEntrenador;
 
-        function __construct($dniEntrenador=NULLL,$nombre=NULL,$apellidos=NUL,$edad=NUL,$contraseña=NUL,$email=NUL,$telefono=NUL,$fechaAlta=NUL){
+        function __construct($dniEntrenador=NULL,$nombre=NULL,$apellidos=NULL,$edad=NULL,$contraseña=NULL,$email=NULL,$telefono=NULL,$fechaAlta=NULL){
             parent::__construct($dniEntrenador,$nombre,$apellidos,$edad,$contraseña,$email,$telefono,$fechaAlta);
             $this->dniEntrenador = $dniEntrenador;  
         }

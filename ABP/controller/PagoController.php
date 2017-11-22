@@ -58,8 +58,10 @@ class PagoController extends BaseController
     public function PagoListar()
     {
         if($this->permisos->esAdministrador() || $this->permisos->esDeportista() ){
+        $tipoUsuario = $this->permisos->comprobarTipo();
         $pagos = $this->pagoMapper->listar();
         $this->view->setVariable("pagos",$pagos);
+         $this->view->setVariable("tipoUsuario",$tipoUsuario);
         $this->view->render("pago","pagoSHOWALL");
         }else{
                 $this->view->redirect("main", "index");

@@ -3,6 +3,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 
 $view = ViewManager::getInstance();
 $pagos = $view->getVariable("pagos");
+$tipoUsuario = $view->getVariable("tipoUsuario");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Pagos");
 ?>
@@ -26,7 +27,9 @@ $view->setVariable("title", "Pagos");
                             <th><?= i18n("DNI") ?></th>
                             <th><?= i18n("IDActividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
+                            <?php if($tipoUsuario != 'deportista'){?>
                             <th><?= i18n("Borrar") ?></th>
+                            <?php } ?>
                             <th><?= i18n("Ver") ?></th>
                         </tr>
                         </thead>
@@ -35,7 +38,9 @@ $view->setVariable("title", "Pagos");
                             <th><?= i18n("DNI") ?></th>
                             <th><?= i18n("IDActividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
+                             <?php if($tipoUsuario != 'deportista'){?>
                             <th><?= i18n("Borrar") ?></th>
+                              <?php } ?>
                             <th><?= i18n("Ver") ?></th>
                         </tr>
                         </tfoot>
@@ -46,10 +51,13 @@ $view->setVariable("title", "Pagos");
                                 <td><?php echo $pago->getDniDeportista(); ?></td>
                                 <td><?php echo $pago->getActividad(); ?></td>
                                 <td><?php echo $pago->getImporte(); ?></td>
+                                <?php if($tipoUsuario != 'deportista'){?>
                                 <td>
                                     <a href='./index.php?controller=Pago&amp;action=PagoDELETE&amp;idPago=<?php echo $pago->getIdPago();?>'><img src='./view/Icons/delete.png'>
                                     </a>
+                                    
                                 </td>
+                                <?php } ?>
                                 <td>
                                     <a href='./index.php?controller=Pago&amp;action=PagoView&amp;idPago=<?php echo $pago->getIdPago();?>'><img src='./view/Icons/detalle.png'>
                                     </a>

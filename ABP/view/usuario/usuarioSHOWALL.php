@@ -43,18 +43,22 @@
                         </tfoot>
                         <tbody>
 
-                        <?php foreach($usuarios as $usuario){ ?>
+                        <?php foreach($usuarios as $usuario){ 
+                                ?>
+
                             <tr>
                                 <td><?php echo $usuario->getDni(); ?></td>
                                 <td><?php echo $usuario->getNombre(); ?></td>
                                 <td><?php echo $usuario->getApellidos(); ?></td>
                                 <td>
-                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/edit.png'>
+                                      <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/edit.png'>
                                     </a>
                                 </td>
                                   <td>
+                                    <?php if($usuario->getDni() != $_SESSION['currentuser']){?>
                                     <a href='./index.php?controller=Usuario&amp;action=UsuarioDELETE&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
                                     </a>
+                                    <?php } ?>
                                 </td>
                                   <td>
                                     <a href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>

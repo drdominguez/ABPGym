@@ -13,6 +13,22 @@ Class Permisos {
         $this->db=PDOConnection::getInstance();
     }
     
+    public function comprobarTipo(){
+            if($this->esAdministrador()){
+                return "administrador";
+            }else{
+                if($this->esEntrenador()){
+                    return "entrenador";
+                }else{
+                    return "deportista";
+                }
+
+            }
+
+
+    }
+
+
 
     public function esAdministrador()
     {
