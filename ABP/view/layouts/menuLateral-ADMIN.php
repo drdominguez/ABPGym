@@ -91,12 +91,6 @@
                             <li>
                                 <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Añadir") ?></a>
                             </li>
-                            <li>
-                                <a href="./index.php?controller=Ejercicio&amp;action=loadRemoveView"><?= i18n("Eliminar") ?></a>
-                            </li>
-                             <li>
-                                <a href="./index.php?controller=Ejercicio&amp;action=loadEditView"><?= i18n("Editar") ?></a>
-                            </li>
                              <li>
                                 <a href="./index.php?controller=Ejercicio&amp;action=loadListView"><?= i18n("Listar") ?></a>
                             </li>

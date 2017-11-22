@@ -42,10 +42,9 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 	*Edita un ejercicio muscular en la base de datos
 	*/
 	public function editMuscular($ejercicio){
-		parent::edit($ejecicio);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
-		$stmt=$this->db-> prepare("UPDATE muscular SET carga=?, repeticiones=? WHERE idEjercicio=?");
-		if(parent::permisoEjercicio($ejercicio->getId())){
-			$stmt -> execute(array($ejercicio->getCarga(),$ejercicio->geRepeticiones()));
+		if(parent::edit($ejercicio)){
+			$stmt=$this->db-> prepare("UPDATE muscular SET carga=?, repeticiones=? WHERE idEjercicio=?");
+			$stmt -> execute(array($ejercicio->getCarga(),$ejercicio->getRepeticiones(),$ejercicio->getIdEjercicio()));
 			return true;
 		}
 		return false;
