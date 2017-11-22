@@ -2,7 +2,7 @@
 require_once(__DIR__."/../../core/ViewManager.php");
 
 $view = ViewManager::getInstance();
-$usuario = $view->getVariable("pago");
+$pago = $view->getVariable("pago");
 $currentuser = $view->getVariable("currentusername");
 $errors = $view->getVariable("errors");
 $view->setVariable("title", "Borrar Pago");

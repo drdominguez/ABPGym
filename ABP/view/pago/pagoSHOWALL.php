@@ -26,7 +26,6 @@ $view->setVariable("title", "Pagos");
                             <th><?= i18n("DNI") ?></th>
                             <th><?= i18n("IDActividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
-                            <th><?= i18n("Editar") ?></th>
                             <th><?= i18n("Borrar") ?></th>
                             <th><?= i18n("Ver") ?></th>
                         </tr>
@@ -36,7 +35,6 @@ $view->setVariable("title", "Pagos");
                             <th><?= i18n("DNI") ?></th>
                             <th><?= i18n("IDActividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
-                            <th><?= i18n("Editar") ?></th>
                             <th><?= i18n("Borrar") ?></th>
                             <th><?= i18n("Ver") ?></th>
                         </tr>
@@ -47,13 +45,13 @@ $view->setVariable("title", "Pagos");
                             <tr>
                                 <td><?php echo $pago->getDniDeportista(); ?></td>
                                 <td><?php echo $pago->getActividad(); ?></td>
-                                <td><?php echo $pago->getImporte(); ?></td
+                                <td><?php echo $pago->getImporte(); ?></td>
                                 <td>
-                                    <a href='./index.php?controller=Pago&amp;action=PagoDELETE&amp;dni=<?php echo $pago->getDniDeportista();?>'><img src='./view/Icons/delete.png'>
+                                    <a href='./index.php?controller=Pago&amp;action=PagoDELETE&amp;idPago=<?php echo $pago->getIdPago();?>'><img src='./view/Icons/delete.png'>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href='./index.php?controller=Pago&amp;action=PagoView&amp;dni=<?php echo $pago->getDniDeportista();?>'><img src='./view/Icons/detalle.png'>
+                                    <a href='./index.php?controller=Pago&amp;action=PagoView&amp;idPago=<?php echo $pago->getIdPago();?>'><img src='./view/Icons/detalle.png'>
                                     </a>
                                 </td>
                             </tr>

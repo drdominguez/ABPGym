@@ -59,7 +59,6 @@ class UsuarioController extends BaseController
     */
     public function UsuariosListar() 
     {
-        exit;
        $usuarios = $this->usuarioMapper->listar();
        $this->view->setVariable("usuarios",$usuarios);
        $this->view->render("usuario","usuarioSHOWALL");

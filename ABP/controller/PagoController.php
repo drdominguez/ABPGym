@@ -64,7 +64,7 @@ class PagoController extends BaseController
             }
             $idPago = $_GET["idPago"];
             // find the notification object in the database
-            $pago = $this->PagoMapper->findById($idPago);
+            $pago = $this->pagoMapper->findById($idPago);
             if ($pago == NULL)
             {
                 throw new Exception("No existe ese pago");

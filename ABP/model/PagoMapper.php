@@ -72,7 +72,7 @@ Class PagoMapper{
             $pago_db = $stmt->fetch(PDO::FETCH_ASSOC);
             if($pago_db != null)
             {
-                $stmt = $this->db->prepare("DELETE from usuario WHERE idPago=?");
+                $stmt = $this->db->prepare("DELETE from pago WHERE idPago=?");
                 $stmt->execute(array($idPago));
                 return true;
             }
