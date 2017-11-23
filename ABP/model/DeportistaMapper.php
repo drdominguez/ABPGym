@@ -14,7 +14,7 @@ Class DeportistaMapper extends UsuarioMapper{
         parent::add($usuario);//llama al add de la clase padre
         $stmt = $this->db->prepare("INSERT INTO deportista(dni) VALUES (?)");
         if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-            $stmt=execute(array($this->dni));//
+            $stmt->execute(array($usuario->dni));//
             return true;
         }
         return false;
@@ -23,7 +23,7 @@ Class DeportistaMapper extends UsuarioMapper{
         parent::edit($deportista);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
         $stmt=$this->db-> prepare("UPDATE deportista SET dni=? WHERE dni=?");
         if(parent::permisoDeportista($deportista->getDni())){
-            $stmt=execute(array($deportista->getDni()));
+            $stmt->execute(array($deportista->getDni()));
             return true;
         }
         return false;
@@ -71,9 +71,9 @@ Class DeportistaMapper extends UsuarioMapper{
         }
     }
 
-    protected function esSuperusuario(){
+    public function esSuperusuario(){
         $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
-        $stmt= execute(array($_SESSION["currentuser"]));
+        $stmt-> execute(array($_SESSION["currentuser"]));
         if ($stmt->fetchColumn()>0){
             return true;
         }

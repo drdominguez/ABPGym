@@ -51,7 +51,7 @@ $view->setVariable("title", "DeportistasPEF");
                                 <td><?php echo $deportista["nombre"]; ?></td>
                                 <td><?php echo $deportista["apellidos"]; ?></td>
                                 <td><?php echo $deportista["tarjeta"]; ?></td>
-                                <td><?php echo $deportista["comentarioRivision"]; ?></td>
+                                <td><?php echo $deportista["comentarioRevision"]; ?></td>
                                 <td>
                                     <a href='./index.php?controller=Deportista&amp;action=PefEDIT&amp;dni=<?php echo $deportista["dni"];?>'><img src='./view/Icons/edit.png'>
                                     </a>

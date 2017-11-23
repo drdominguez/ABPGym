@@ -47,15 +47,16 @@ class DeportistaController extends BaseController
             $deportista = new DeportistaTDU();
             $deportista->setDni($_POST["dni"]);
             $deportista->setTarjeta($_POST["tarjeta"]);
-            if($this->usuarioMapper->ADD($usuario))
+            if($this->deportistaTDUMapper->addTDU($deportista))
             {
-               $this->view->setFlash("Usuario Añadido Correctamente");
+               $this->view->setFlash("TDU Añadido Correctamente");
 
             }else
             {
-                $errors["username"] = "El usuario no se ha añadido corectamente";
+                $errors["username"] = "El TDU no se ha añadido corectamente";
                 $this->view->setFlash($errors["username"]);
             }
+             $this->view->redirect("Deportista", "listarTDU");
 
         }else{
 
@@ -66,10 +67,33 @@ class DeportistaController extends BaseController
         }
         
     }
-    public function pefADD() {
-        $usuarios = $this->usuarioMapper->listar();
-        $this->view->setVariable("usuarios",$usuarios);
-        $this->view->render("usuario/deportistas","pefADD");
+      public function pefADD() {
+
+        if(isset($_POST['dni']) && isset($_POST['tarjeta']) && isset($_POST['comentario'])){
+            $deportista = new DeportistaPEF();
+            $deportista->setDni($_POST["dni"]);
+            $deportista->setTarjeta($_POST["tarjeta"]);
+            $deportista->setComentario($_POST["comentario"]);
+
+            if($this->deportistaPEFMapper->addPEF($deportista))
+            {
+               $this->view->setFlash("PEF Añadido Correctamente");
+
+            }else
+            {
+                $errors["username"] = "El PEF no se ha añadido corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+             $this->view->redirect("Deportista", "listarPEF");
+
+        }else{
+
+            $usuarios = $this->usuarioMapper->listar();
+            $this->view->setVariable("usuarios",$usuarios);
+            $this->view->render("usuario/deportistas","pefADD");
+
+        }
+        
     }
 
     public function addTDU() {

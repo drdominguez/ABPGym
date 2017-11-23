@@ -8,9 +8,9 @@ require_once(__DIR__."/Deportista.php");
 class DeportistaPEF extends Deportista
 {
     //Definimos las variables
-    private $dni;
-    private $tarjeta;
-    private $comentarioRevision;
+    public $dni;
+    public $tarjeta;
+    public $comentarioRevision;
 
     function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,
                          $email=NULL, $telefono=NULL, $fechaAlta=NULL, $tarjeta=NULL, $comentarioRevision=NULL)

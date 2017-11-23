@@ -115,6 +115,17 @@ class UsuarioMapper {
             }
     }
 
+    public function esSuperusuario()
+    {
+        $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
+        $stmt-> execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0)
+        {
+            return true;
+        }
+        return false;
+    }
+
 
 
 }

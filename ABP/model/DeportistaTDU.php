@@ -8,10 +8,10 @@ require_once(__DIR__."/Deportista.php");
 class DeportistaTDU extends Deportista
 {
     //Definimos las variables
-    private $dni;
-    private $tarjeta;
+    public $dni;
+    public $tarjeta;
 
-    function __construct($dni=NULL, $nombre=NULL, $apellidos=NUKL, $edad=NULL, $contraseña=NULL,
+    function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,
                          $email=NULL, $telefono=NULL, $fechaAlta=NULL, $tarjeta=NULL)
     {
         parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta);//llamada al contructor padre
