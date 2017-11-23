@@ -4,7 +4,7 @@ require_once(__DIR__."/../../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $usuarios = $view->getVariable("usuarios");
 $currentuser = $view->getVariable("currentusername");
-$view->setVariable("title", "Usuarios");
+$view->setVariable("title", "Deportistas");
 ?>
 
 <div class="content-wrapper">
@@ -13,6 +13,27 @@ $view->setVariable("title", "Usuarios");
         <ol class="breadcrumb">
             <div id="flash"><?= $view->popFlash() ?></div>
         </ol>
+
+           <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Añadir PEF</div>
+            <div class="card-body">
+                <div id="flash"><?= $view->popFlash() ?></div>
+                <form name='Form' id="form1" action="index.php?controller=Deportista&amp;action=pefADD" class="form-signin" accept-charset="UTF-8" method="POST">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputNombre"><?= i18n("Tarjeta") ?></label>
+                                <input class="form-control" name="tarjeta" id="exampleInputNombre" type="text" aria-describedby="emailHelp" placeholder="" onchange="comprobarVacio(this) && comprobarText(this) && comprobarSolonum(this)">
+                            </div>
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <label for="exampleInputTiempo"><?= i18n("Comentario") ?></label>
+                                <textarea class="form-control" name="comentario" rows="10"></textarea>
+                            </div>
+                        </div>
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
@@ -26,7 +47,7 @@ $view->setVariable("title", "Usuarios");
                             <th><?= i18n("dni") ?></th>
                             <th><?= i18n("nombre") ?></th>
                             <th><?= i18n("apellidos") ?></th>
-                            <th><?= i18n("Añadir deportista PEF") ?></th>
+                            <th><?= i18n("Añadir deportista") ?></th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -34,7 +55,7 @@ $view->setVariable("title", "Usuarios");
                             <th><?= i18n("dni") ?></th>
                             <th><?= i18n("nombre") ?></th>
                             <th><?= i18n("apellidos") ?></th>
-                            <th><?= i18n("Añadir deportista PEF") ?></th>
+                            <th><?= i18n("Añadir deportista") ?></th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -45,8 +66,7 @@ $view->setVariable("title", "Usuarios");
                                 <td><?php echo $usuario->getNombre(); ?></td>
                                 <td><?php echo $usuario->getApellidos(); ?></td>
                                 <td>
-                                    <a href='./index.php?controller=Deportista&amp;action=add&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/add.png'>
-                                    </a>
+                                <input type="radio" name="dni" value="<?php echo $usuario->getDni(); ?>">
                                 </td>
                             </tr>
                         <?php } ?>
@@ -55,5 +75,9 @@ $view->setVariable("title", "Usuarios");
                 </div>
             </div>
         </div>
+         <button type="button" onclick="window.location.href='./index.php?controller=Deportista&amp;action=listarPEF'" class="btn btn-default"><?= i18n("Volver") ?></button> 
+                <button  type='submit' name='action' value='pefADD' class="btn btn-primary"><?= i18n("Añadir") ?></button>
+
+            </form>
     </div>
 </div>

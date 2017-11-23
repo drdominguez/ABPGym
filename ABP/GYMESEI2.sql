@@ -246,7 +246,7 @@ CREATE TABLE `pago` (
 CREATE TABLE `pef` (
   `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `tarjeta` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
-  `comentarioRivision` text COLLATE utf8_spanish_ci
+  `comentarioRevision` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------

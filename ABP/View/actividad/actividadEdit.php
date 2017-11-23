@@ -25,20 +25,20 @@ require_once(__DIR__."/../../core/ViewManager.php");
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre">Nombre</label>
-                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getNombre(); ?>" required onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getNombre(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputPrecio">Precio</label>
-                                    <input class="form-control" name="precio" id="exampleInputPrecio" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPrecio(); ?>"  required onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
+                                    <input class="form-control" name="precio" id="exampleInputPrecio" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPrecio(); ?>"   onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
                                 </div>
 <?php if($actividad->getInstalaciones()!=null){?>
                                 <div class="col-md-6">
                                     <label for="exampleInputInstalaciones">Instalaciones</label>
-                                    <input class="form-control" name="instalaciones" id="exampleInputInstalacioneso" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getInstalaciones(); ?>"  required onchange="comprobarVacio(this)  && comprobarTexto(this,1000000000000)">
+                                    <input class="form-control" name="instalaciones" id="exampleInputInstalacioneso" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getInstalaciones(); ?>"   onchange="comprobarVacio(this)  && comprobarTexto(this,1000000000000)">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputPlazas">Plazas</label>
-                                    <input class="form-control" name="plazas" id="exampleInputPlazas" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPlazas(); ?>"  required onchange="comprobarVacio(this)  && comprobarEntero($this, 0, 255)">
+                                    <input class="form-control" name="plazas" id="exampleInputPlazas" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPlazas(); ?>"   onchange="comprobarVacio(this)  && comprobarEntero($this, 0, 255)">
                                 </div>
                                 <?php }?>
                             </div>

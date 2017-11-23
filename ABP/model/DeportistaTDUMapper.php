@@ -14,9 +14,9 @@ Class DeportistaTDUMapper extends DeportistaMapper {
 
     public function addTDU($tdu){
         parent::add($tdu);//llama al add de la clase padre
-        $stmt = $this->db->prepare("INSERT INTO pef(dni,tarjeta) VALUES (?,?)");
+        $stmt = $this->db->prepare("INSERT INTO tdu(dni,tarjeta) VALUES (?,?)");
         if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-            $stmt=execute(array($this->dni,$tdu->getDni(),$tdu->getTarjeta()));//
+            $stmt->execute(array($tdu->getDni(),$tdu->getTarjeta()));//
             return true;
         }
         return false;
@@ -46,6 +46,8 @@ Class DeportistaTDUMapper extends DeportistaMapper {
             {
                 $stmt = $this->db->prepare("DELETE from tdu WHERE dni=?");
                 $stmt->execute(array($dni));
+                $stmt = $this->db->prepare("DELETE from deportista WHERE dni=?");
+                $stmt->execute(array($dni));
                 return true;
             }
             return false;
@@ -74,5 +76,18 @@ Class DeportistaTDUMapper extends DeportistaMapper {
             return NULL;
         }
     }
+
+
+    public function esAdministrador()
+    {
+        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
+        $stmt->execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0)
+        {
+            return true;
+        }
+        return false;
+    }
+
 }
 ?>
