@@ -19,7 +19,7 @@ class ActividadController extends BaseController{
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
         $this->actividadMapper = new ActividadMapper();
         $this->actividadGrupoMapper = new ActividadGrupoMapper();
-            $this->individualMapper = new ActividadIndividualMapper();
+        $this->individualMapper = new ActividadIndividualMapper();
     }
 
     public function actividadView() 

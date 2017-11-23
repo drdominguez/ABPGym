@@ -198,7 +198,7 @@ class ViewManager {
 	* @return void
 	*/
 	public function setFlash($flashMessage) {
-		$this->setVariable("__flashmessage__", $flashMessage, true);
+		$this->setVariable("__flashmessage__", $flashMessage, false);
 	}
 
 	/**
