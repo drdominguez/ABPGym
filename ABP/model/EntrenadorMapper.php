@@ -26,6 +26,7 @@ public function listar()
         }
         return $entrenadores;
     }
+
 public function listarUsuarios()
     {
         $stmt = $this->db->query("SELECT * from usuario U, entrenador E WHERE U.dni = E.dniEntrenador");
@@ -33,8 +34,19 @@ public function listarUsuarios()
         $entrenadores_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $stmt2 = $this->db->query("SELECT * from usuario");
         $usuarios_db = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt3 = $this->db->query("SELECT * from administrador a,usuario U WHERE U.dni = a.dniAdministrador");
+        $administradores_db = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+        $administradores = array();
         $usuarios = array();
         $entrenadores = array();
+
+        foreach ($administradores_db as $administrador) {
+            array_push($administradores,new Usuario($administrador['dni'],$administrador['nombre'],$administrador['apellidos'],$administrador['edad'],NULL,$administrador['email'],$administrador['telefono'],$administrador['fechaAlta']));
+        }
+
+
         foreach ($entrenadores_db as $entrenador) {
             array_push($entrenadores,new Usuario($entrenador['dni'],$entrenador['nombre'],$entrenador['apellidos'],$entrenador['edad'],NULL,$entrenador['email'],$entrenador['telefono'],$entrenador['fechaAlta']));
         }
@@ -42,8 +54,10 @@ public function listarUsuarios()
         {
             $unusuario = new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],NULL,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']);
             if(!in_array($unusuario,$entrenadores)){
+                if(!in_array($unusuario, $administradores)){
                 array_push($usuarios,$unusuario);
             }
+        }
             
             
          }
@@ -61,8 +75,10 @@ function delete($dniEntrenador)
             if($usuario_db != null)
             {
                 $stmt = $this->db->prepare("DELETE from entrenador WHERE dniEntrenador=?");
+                if($_SESSION['currentuser']==$dniEntrenador){
                 $stmt2 = $this->db->prepare("DELETE from superusuario WHERE dniSuperUsuario=?");
                 $stmt2->execute(array($dniEntrenador));
+            }
                 $stmt->execute(array($dniEntrenador));
             return true;
             }
@@ -83,7 +99,7 @@ public function add($entrenador)
     }else
         {
             return false;
-        }
+       }
 
     }
     protected function esAdministrador(){
