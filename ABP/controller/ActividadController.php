@@ -69,8 +69,6 @@ class ActividadController extends BaseController{
         }
     }
 
-
-
     public function actividadEDIT() 
     {   
         if(isset($_POST["nombre"]) && isset($_POST["precio"]))
