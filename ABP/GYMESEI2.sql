@@ -257,21 +257,9 @@ CREATE TABLE `pef` (
 
 CREATE TABLE `sesionentrenamiento` (
   `idSesionEntrenamiento` bigint(20) NOT NULL,
-  `idActividad` bigint(20) NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci,
   `duracion` bigint(20) DEFAULT NULL,
   `fecha` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sesionentrenamiento_individual`
---
-
-CREATE TABLE `sesionentrenamiento_individual` (
-  `idActividad` bigint(20) NOT NULL,
-  `idSesionEntrenamiento` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -529,15 +517,6 @@ ALTER TABLE `pef`
 --
 ALTER TABLE `sesionentrenamiento`
   ADD PRIMARY KEY (`idSesionEntrenamiento`),
-  ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`),
-  ADD UNIQUE KEY `idActividad` (`idActividad`);
-
---
--- Indexes for table `sesionentrenamiento_individual`
---
-ALTER TABLE `sesionentrenamiento_individual`
-  ADD PRIMARY KEY (`idActividad`,`idSesionEntrenamiento`),
-  ADD UNIQUE KEY `idActividad` (`idActividad`),
   ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`);
 
 --
@@ -746,19 +725,6 @@ ALTER TABLE `pago`
 --
 ALTER TABLE `pef`
   ADD CONSTRAINT `fk_PefDeportista` FOREIGN KEY (`dni`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
-
---
--- Constraints for table `sesionentrenamiento`
---
-ALTER TABLE `sesionentrenamiento`
-  ADD CONSTRAINT `fk_SesionEntrenamientoIndividual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`) ON DELETE CASCADE;
-
---
--- Constraints for table `sesionentrenamiento_individual`
---
-ALTER TABLE `sesionentrenamiento_individual`
-  ADD CONSTRAINT `fk_EntrenamientoSIndividual` FOREIGN KEY (`idSesionEntrenamiento`) REFERENCES `sesionentrenamiento` (`idSesionEntrenamiento`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_SesionEntrenamiento_Individual` FOREIGN KEY (`idActividad`) REFERENCES `individual` (`idActividad`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `sesionentrenamiento_tabla`
