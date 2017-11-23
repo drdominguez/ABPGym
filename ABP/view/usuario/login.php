@@ -19,6 +19,7 @@ $view = ViewManager::getInstance();
         <link href="./view/css/sb-admin.css" rel="stylesheet">
         <!-- Bootstrap core JavaScript-->
         <script src="./view/vendor/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="./view/js/validaciones.js"></script> 
         <script src="./view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -35,7 +36,7 @@ $view = ViewManager::getInstance();
                     <form name='Form' action="index.php?controller=Login&amp;action=login" class="form-signin" accept-charset="UTF-8" method="POST" onsubmit="return validarLogin()">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Login</label>
-                            <input class="form-control" name="dni" id="exampleInputEmail1" type="TEXT" aria-describedby="emailHelp" placeholder="Introduzca DNI" onchange="comprobarVacio(this)  && comprobarTexto(this,10)">
+                            <input class="form-control" name="dni" id="exampleInputEmail1" type="TEXT" aria-describedby="emailHelp" placeholder="Introduzca DNI" onchange="comprobarVacio(this)  && comprobarDni(this)">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>

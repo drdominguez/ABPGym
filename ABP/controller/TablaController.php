@@ -105,10 +105,10 @@ class TablaController extends BaseController
     public function TablaListar() 
     {
         $tipoUsuario = $this->permisos->comprobarTipo();
-       $tablas = $this->tablaMapper->listar();
-       $this->view->setVariable("tablas",$tablas);
+        $tablas = $this->tablaMapper->listar();
+        $this->view->setVariable("tablas",$tablas);
         $this->view->setVariable("tipoUsuario",$tipoUsuario);
-       $this->view->render("tabla","tablaSHOWALL");
+        $this->view->render("tabla","tablaSHOWALL");
     }
 
 

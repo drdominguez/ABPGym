@@ -1,6 +1,6 @@
 /*CÓDIGO VALIDACIONES FORMULARIOS*/
 // JavaScript Document
-/*Creado el 22 de noviembre del 2017 por adrisouto96*/
+/*Creado el 22 de noviembre del 2017 por drdominguez*/
 /*Contiene funciones javascript necesarias para validar los campos del formulario*/
 /*Variable inicial que permite controlar la ventana alert*/
 var avisado = false;
@@ -10,6 +10,9 @@ atributo['contenido'] = i18nMessages['contenido'];
 atributo['Asunto'] = i18nMessages['Asunto'];
 atributo['nombre'] = i18nMessages['nombre'];
 atributo['precio'] = i18nMessages['precio'];
+atributo['dni'] = i18nMessages['dni'];
+atributo['contraseña'] = i18nMessages['contraseña'];
+
 /*Comprueba que el campo no contenga null ni cero*/
 function comprobarVacio(campo) {
     /*Si el campo esta vacio, no se ha escrito ningún caracter o solo se han escrito espacios en blanco salta alerta*/
@@ -240,6 +243,9 @@ function validarActividadEdit(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarSolonum(Form.precio) && comprobarVacio(Form.instalaciones) && comprobarTexto(Form.instalaciones, 1000000000000) && comprobarVacio(Form.plazas) && comprobarEntero(Form.plazas, 0, 255))
 }
 
+function validarLogin(Formu) {
+    return (comprobarVacio(Form.nombre)  && comprobarDni(Form.nombre) && comprobarVacio(Form.contraseña))
+}
 
 
 
