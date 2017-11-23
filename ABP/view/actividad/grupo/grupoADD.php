@@ -14,7 +14,6 @@
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n(" Añadir Actividad Grupo") ?>
                     <div class="card-body"> 
-                        <div id="flash"><?= $view->popFlash() ?></div>
                             <form name='Form' id="form1" action="index.php?controller=Actividad&amp;action=grupoADD" class="form-signin" accept-charset="UTF-8" method="POST" onsubmit="return validarGrupoADD()">
                             <div class="form-group">
                                 <div class="form-row">
