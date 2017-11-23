@@ -159,7 +159,6 @@ class ActividadController extends BaseController{
             }
         }
         $this->view->render("actividad/grupo","grupoADD");
-
     }
 
     }
