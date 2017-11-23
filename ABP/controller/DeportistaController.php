@@ -47,6 +47,15 @@ class DeportistaController extends BaseController
             $deportista = new DeportistaTDU();
             $deportista->setDni($_POST["dni"]);
             $deportista->setTarjeta($_POST["tarjeta"]);
+            if($this->usuarioMapper->ADD($usuario))
+            {
+               $this->view->setFlash("Usuario Añadido Correctamente");
+
+            }else
+            {
+                $errors["username"] = "El usuario no se ha añadido corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
 
         }else{
 
