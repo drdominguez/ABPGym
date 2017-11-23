@@ -50,7 +50,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                         </a>
                                     </td>
                                     <td>
-                                        <a href='./index.php?controller=Tabla&amp;action=TablaEDIT&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/edit.png'>
+                                        <a href='./index.php?controller=Tabla&amp;action=TablaEDIT&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/play.png'>
                                         </a>
                                     </td>
                                 </tr>
