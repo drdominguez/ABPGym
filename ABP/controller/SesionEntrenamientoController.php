@@ -52,6 +52,7 @@ class SesionEntrenamientoController extends BaseController{
     *si de llama por un post guarda la sesion en la bbdd
     */
     public function realizarTabla(){
+
         $listaEjercicios = array();//se iran guardando todos los ejercicios con la informacion detallada
         $carioMapper = new EjercicioCardioMapper();
         $estiramientoMapper = new EjercicioEstiramientoMapper();
@@ -67,6 +68,7 @@ class SesionEntrenamientoController extends BaseController{
             }
              array_push($listaEjercicios, $ejercicioCompleto); //guardo los ejercicios completos
         }
+        array_push($listaEjercicios);/*Como pasar el id de la tabla?¿*/
         $this->view->setVariable("ejercicios",$listaEjercicios);
         $this->view->render("sesionEntrenamiento", "realizarEjercicio");
     }
