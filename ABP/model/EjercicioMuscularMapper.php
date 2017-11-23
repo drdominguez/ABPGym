@@ -77,5 +77,14 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 		}
 		return $lista;
 	}
+
+	public esMuscular($idEjercicio){
+		$stmt=$this->db->prepare("SELECT idEjercicio FROM muscular WHERE muscular.idEjercicio=?");
+		$stmt->execute(array($idEjercicio));
+		if ($stmt->fetchColumn() > 0) {
+           	 return true;
+		}
+		return false;
+	}
 }
 ?>
