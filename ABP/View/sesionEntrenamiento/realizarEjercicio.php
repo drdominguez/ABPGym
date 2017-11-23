@@ -14,7 +14,6 @@
     <div class="container-fluid">
         <div class="card mb-3">
         </div>
-
     </div>
         <?php foreach($ejercicios as $ejercicio){
             if(get_class($ejercicio)=="EjercicioCardio"){?>
