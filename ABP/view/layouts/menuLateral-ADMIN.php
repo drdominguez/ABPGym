@@ -14,10 +14,14 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseUsuarios">
                             <li>
-                                <a href="./index.php?controller=Usuario&action=usuarioADD">Añadir Usuario</a>
+                                <a href="./index.php?controller=Usuario&action=usuarioADD">
+                                    <i class="fa fa-fw fa-link"></i><?= i18n("Añadir Usuario") ?>
+                                </a>
                             </li>
                             <li>
-                                <a href="./index.php?controller=Usuario&amp;action=UsuariosListar">Ver Usuarios</a>
+                                <a href="./index.php?controller=Usuario&amp;action=UsuariosListar">
+                                    <i class="fa fa-fw fa-link"></i><?= i18n("Ver Usuarios") ?>
+                                </a>
                             </li>
                         </ul>
                     </li>
@@ -93,7 +97,7 @@
                             <li class="nav-item" data-placement="right" title="AñadirActividad">
                                 <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAñadirActividad">
                                 <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseAñadirActividad"><?= i18n("Añadir") ?> 
+                                    <span data-toggle="collapse" href="#collapseAñadirActividad"><?= i18n("Añadir Actividad") ?>
                                     </span>
                                 </a>
                                  <ul class="sidenav-third-level collapse" id="collapseAñadirActividad">
@@ -122,7 +126,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseEjercicios">
                             <li>
-                                <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Añadir") ?></a>
+                                <a href="./index.php?controller=Ejercicio&amp;action=loadAddView"><?= i18n("Añadir Ejercicio") ?></a>
                             </li>
                              <li>
                                 <a href="./index.php?controller=Ejercicio&amp;action=loadListView"><?= i18n("Ver Ejercicios") ?></a>

@@ -6,6 +6,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                            <i class="fa fa-fw fa-sign-out"></i>Desconectar</a>
+                            <i class="fa fa-fw fa-sign-out"></i><?= i18n("Desconectar") ?>
+                        </a>
                     </li>
                  
