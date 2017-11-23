@@ -61,7 +61,7 @@ class DeportistaController extends BaseController
 
             $usuarios = $this->usuarioMapper->listar();
             $this->view->setVariable("usuarios",$usuarios);
-            $this->view->render("usuario/deportistas","deportistaADD");
+            $this->view->render("usuario/deportistas","tduADD");
 
         }
         
