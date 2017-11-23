@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2017 a las 16:53:54
+-- Tiempo de generación: 23-11-2017 a las 17:48:09
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.10
 
@@ -17,11 +17,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `gymesei2`
---
-
 -- --------------------------------------------------------
 --
 -- Database: `GYMESEI2`
@@ -124,6 +119,14 @@ CREATE TABLE `deportista` (
   `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `deportista`
+--
+
+INSERT INTO `deportista` (`dni`) VALUES
+('11111111X'),
+('22222222X');
+
 -- --------------------------------------------------------
 
 --
@@ -160,6 +163,13 @@ INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `image
 CREATE TABLE `entrenador` (
   `dniEntrenador` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `entrenador`
+--
+
+INSERT INTO `entrenador` (`dniEntrenador`) VALUES
+('33333333X');
 
 -- --------------------------------------------------------
 
@@ -368,6 +378,7 @@ CREATE TABLE `superusuario` (
 --
 
 INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
+('33333333X'),
 ('44490816F'),
 ('44497121X'),
 ('53192250N');
@@ -485,6 +496,14 @@ CREATE TABLE `tdu` (
   `tarjeta` varchar(60) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `tdu`
+--
+
+INSERT INTO `tdu` (`dni`, `tarjeta`) VALUES
+('11111111X', '65as564653a'),
+('22222222X', '65as564653a');
+
 -- --------------------------------------------------------
 
 --
@@ -507,9 +526,12 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
+('11111111X', 'TDU', 'TDU', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
+('22222222X', 'PEF', 'PEF', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
+('33333333X', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08'),
 ('44490816F', 'Daniel', 'Rodríguez Domínguez', 25, 'e10adc3949ba59abbe56e057f20f883e', 'danieldrd@outlook.es', '123456789', '2017-11-08'),
 ('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
-('53192250N', 'Alexandre', 'Viana Sixto', 28, '5edef9793eacc635c6c30b064a81ccca', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08'),
+('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08'),
 ('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
 
 --
