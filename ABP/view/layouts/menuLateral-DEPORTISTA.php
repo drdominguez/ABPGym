@@ -7,19 +7,27 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                     <li class="nav-item" data-toggle="tooltip">
-                        <a class="nav-link" href="./index.php?controller=actividad&amp;action=actividadListar">
-                            <i class="fa fa-fw fa-link"></i>
-                            <span class="nav-link-text"> <?= i18n("Actividades");?></span>
-                        </a>
-                    </li>
                     <li class="nav-item" data-toggle="tooltip">
                         <a class="nav-link" href="./index.php?controller=Tabla&amp;action=TablaListar">
                             <i class="fa fa-fw fa-link"></i>
                             <span class="nav-link-text"> <?= i18n("Tablas");?></span>
                         </a>
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sesiones">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSesiones" data-parent="#exampleAccordion">
+                           <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text"><?= i18n("Gestión de Sesiones") ?></span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseSesiones">
+                            <li>
+                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Realizar Sesión") ?></a>
+                            </li>
+                            <li>
+                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Consultar Sesiones") ?></a>
+                            </li>
+                        </ul>
                     </li> 
-                      <li class="nav-item" data-toggle="tooltip">
+                    <li class="nav-item" data-toggle="tooltip">
                         <a class="nav-link" href="./index.php?controller=Pago&amp;action=PagoListar">
                             <i class="fa fa-fw fa-link"></i>
                             <span class="nav-link-text"> <?= i18n("Pagos");?></span>
