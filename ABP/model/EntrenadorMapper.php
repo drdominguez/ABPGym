@@ -75,7 +75,7 @@ function delete($dniEntrenador)
             if($usuario_db != null)
             {
                 $stmt = $this->db->prepare("DELETE from entrenador WHERE dniEntrenador=?");
-                if($_SESSION['currentuser']==$dniEntrenador){
+                if($_SESSION['currentuser']!=$dniEntrenador){
                 $stmt2 = $this->db->prepare("DELETE from superusuario WHERE dniSuperUsuario=?");
                 $stmt2->execute(array($dniEntrenador));
             }

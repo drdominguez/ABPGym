@@ -691,7 +691,7 @@ ALTER TABLE `entrenador`
 --
 ALTER TABLE `entrenador_deportista`
   ADD CONSTRAINT `fk_EntrenadorDerportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_Entrenador_Entrenador` FOREIGN KEY (`dniEntrenador`) REFERENCES `entrenador` (`dniEntrenador`);
+  ADD CONSTRAINT `fk_Entrenador_Entrenador` FOREIGN KEY (`dniEntrenador`) REFERENCES `entrenador` (`dniEntrenador`)ON DELETE CASCADE;
 
 --
 -- Constraints for table `estiramiento`
