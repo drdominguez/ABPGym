@@ -29,6 +29,7 @@ $view->setVariable("title", "DeportistasTDU");
                             <th><?= i18n("Tarjeta") ?></th>
                             <th><?= i18n("Editar") ?></th>
                             <th><?= i18n("Borrar") ?></th>
+                            <th><?= i18n("Ver") ?></th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -39,6 +40,7 @@ $view->setVariable("title", "DeportistasTDU");
                             <th><?= i18n("Tarjeta") ?></th>
                             <th><?= i18n("Editar") ?></th>
                             <th><?= i18n("Borrar") ?></th>
+                            <th><?= i18n("Ver") ?></th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -55,6 +57,10 @@ $view->setVariable("title", "DeportistasTDU");
                                 </td>
                                 <td>
                                     <a href='./index.php?controller=Deportista&amp;action=TduDELETE&amp;dni=<?php echo $deportista["dni"];?>'><img src='./view/Icons/delete.png'>
+                                    </a>
+                                </td>
+                                 <td>
+                                    <a href='./index.php?controller=Deportista&amp;action=TduView&amp;dni=<?php echo $deportista["dni"];?>'><img src='./view/Icons/detalle.png'>
                                     </a>
                                 </td>
                             </tr>

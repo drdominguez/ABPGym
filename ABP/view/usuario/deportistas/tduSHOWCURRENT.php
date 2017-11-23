@@ -23,7 +23,12 @@ $view->setVariable("title", "Ver Deportista");
                 <b><?= i18n("DNI") ?>:</b> <?php echo $deportista["dni"]; ?><br>
                 <b><?= i18n("Nombre") ?>:</b> <?php echo $deportista["nombre"]; ?><br>
                 <b><?= i18n("Apellidos") ?>:</b> <?php echo $deportista["apellidos"]; ?><br>
-                <button type="button" onclick="window.location.href='./index.php?controller=Deportista&amp;action=listar'" class="btn btn-primary">Volver</button>
+                <b><?= i18n("Edad") ?>:</b> <?php echo $deportista["edad"]; ?><br>
+                <b><?= i18n("Email") ?>:</b> <?php echo $deportista["email"]; ?><br>
+                <b><?= i18n("Telefono") ?>:</b> <?php echo $deportista["telefono"]; ?><br>
+                <b><?= i18n("Fecha Alta") ?>:</b> <?php echo $deportista["fechaAlta"]; ?><br>
+                <b><?= i18n("Tarjeta") ?>:</b> <?php echo $deportista["tarjeta"]; ?><br>
+                <button type="button" onclick="window.location.href='./index.php?controller=Deportista&amp;action=listarTDU'" class="btn btn-primary">Volver</button>
             </div>
         </div>
     </div>

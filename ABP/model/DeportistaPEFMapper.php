@@ -66,12 +66,12 @@ Class DeportistaPEFMapper extends DeportistaMapper {
 
     public function findById($dni)
     {
-        $stmt = $this->db->prepare("SELECT * FROM pef WHERE dni=?");
+        $stmt = $this->db->prepare("SELECT * FROM pef p, usuario u WHERE p.dni=? AND p.dni=u.dni");
         $stmt->execute(array($dni));
         $deportistaPEF = $stmt->fetch(PDO::FETCH_ASSOC);
         if($deportistaPEF != null)
         {
-            return new DeportistaPEF($deportistaPEF["dni"],$deportistaPEF["tarjeta"],$deportistaPEF["comentarioRivision"]);
+            return $deportistaPEF;
         }else
         {
             return NULL;

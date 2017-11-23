@@ -21,9 +21,16 @@ $view->setVariable("title", "Borrar Deportista TDU");
             </div>
             <div class="card-body">
                 <form name = 'Form' id="form1" action = './index.php?controller=Deportista&amp;action=tduDELETE' method = 'post' onsubmit = 'comprobar()'>
-                    <b><?= i18n("DNI") ?>:</b> <?php echo $deportista->getDni(); ?><br>
+                   <b><?= i18n("DNI") ?>:</b> <?php echo $deportista["dni"]; ?><br>
+                <b><?= i18n("Nombre") ?>:</b> <?php echo $deportista["nombre"]; ?><br>
+                <b><?= i18n("Apellidos") ?>:</b> <?php echo $deportista["apellidos"]; ?><br>
+                <b><?= i18n("Edad") ?>:</b> <?php echo $deportista["edad"]; ?><br>
+                <b><?= i18n("Email") ?>:</b> <?php echo $deportista["email"]; ?><br>
+                <b><?= i18n("Telefono") ?>:</b> <?php echo $deportista["telefono"]; ?><br>
+                <b><?= i18n("Fecha Alta") ?>:</b> <?php echo $deportista["fechaAlta"]; ?><br>
+                <b><?= i18n("Tarjeta") ?>:</b> <?php echo $deportista["tarjeta"]; ?><br>
 
-                    <input type="hidden" name="dni" value="<?php echo $deportista->getDni(); ?>">
+                    <input type="hidden" name="dni" value="<?php echo $deportista["dni"]; ?>">
                     <input type="hidden" name="borrar" value="ok">
                     <button type="button" onclick="window.location.href='./index.php?controller=Deportista&amp;action=tduDELETE'" class="btn btn-default">Volver</button>
                     <button  type='submit' name='action' value='tduDELETE' class="btn btn-primary"><?= i18n("Borrar") ?></button>

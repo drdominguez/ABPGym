@@ -29,18 +29,6 @@ class DeportistaController extends BaseController
 
     }
 
-
-
-    /*Notificacion ADD
-    *Si se llama con un get carga la vista
-    *si se llama con un post añade la notificacion
-    */
-    public function DeportistaADD() {
-        $usuarios = $this->usuarioMapper->listar();
-        $this->view->setVariable("usuarios",$usuarios);
-        $this->view->render("usuario/deportistas","deportistaADD");
-    }
-
     public function tduADD() {
 
         if(isset($_POST['dni']) && isset($_POST['tarjeta'])){
@@ -96,30 +84,6 @@ class DeportistaController extends BaseController
         
     }
 
-    public function addTDU() {
-        $this->deportistaPEFMapper = new DeportistaPEFMapper();
-        if(isset($_POST["tarjeta"]) && isset($_POST["comentarioRivision"])){//si existen los post añado el ejercicio
-            $pef = new DeportistaPEF('',$_POST["tarjeta"], $_POST["comentarioRivision"]);
-            if($this->deportistaPEFMapper->addPef($pef)){
-                $this->view->setFlash("Deportista Añadido Corectamente");
-            }else{
-                $errors["username"] = "El deportista no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
-        }
-        $this->view->render("usuario/deportistas","pefFORM");
-    }
-
-    /*NotificacionListar
-    *Muestra una lista con todos las Notificaciones
-    */
-    public function listar()
-    {
-        $deportistas = $this->deportistaMapper->listar();
-        $this->view->setVariable("deportistas",$deportistas);
-        $this->view->render("usuario/deportistas","deportistaSHOWALL");
-    }
-
     public function listarTDU()
     {
         $deportistasTDU = $this->deportistaTDUMapper->listarTDU();
@@ -136,43 +100,8 @@ class DeportistaController extends BaseController
 
 
 
-    /*NotificacionListar
-    *Muestra una lista con todos las Notificaciones
-    */
-    public function DeportistaEDIT()
-    {
-        if(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]))
-        {//si existen los post añado la notificacion
-            $usuario = new Usuario();
-            $usuario->setDni($_POST["dni"]);
-            $usuario->setNombre($_POST["nombre"]);
-            $usuario->setApellidos($_POST["apellidos"]);
-            $usuario->setEdad($_POST["edad"]);
-            $usuario->setEmail($_POST["email"]);
-            $usuario->setTelefono($_POST["telefono"]);
-            $usuario->setFecha(date("Y-m-d"));
-            if($this->usuarioMapper->EDIT($usuario))
-            {
-                $this->view->setFlash("Usuario Editado Correctamente");
-            }else
-            {
-                $errors["username"] = "El usuario no se ha editado corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
-            $this->view->redirect("Usuario", "UsuariosListar");
-        }else
-        {
-            $dni = $_GET["dni"];
-            $usuario = $this->usuarioMapper->findById($dni);
-            if ($usuario == NULL)
-            {
-                throw new Exception("No existe usuario con este dni: ".$dni);
-            }
 
-            $this->view->setVariable("usuario",$usuario);
-            $this->view->render("usuario","usuarioEDIT");
-        }
-    }
+
 
     public function PefEDIT()
     {
@@ -232,44 +161,6 @@ class DeportistaController extends BaseController
 
             $this->view->setVariable("usuario",$pef);
             $this->view->render("usuario/deportistas","tduEDIT");
-        }
-    }
-
-
-    /*NotificacionListar
-    *Muestra una lista con todos las Notificaciones
-    */
-    public function DeportistaDELETE()
-    {
-        if(!isset($_POST['borrar']))
-        {
-            if (!isset($_GET["dni"]))
-            {
-                throw new Exception("El dni es obligatorio");
-            }
-            $dni = $_GET["dni"];
-            // find the notification object in the database
-            $deportista = $this->deportistaMapper->findById($dni);
-            if ($deportista == NULL)
-            {
-                throw new Exception("No existe deportista con este dni: ".$dni);
-            }
-            // put the notification object to the view
-            $this->view->setVariable("deportista", $deportista);
-            // render the view (/view/posts/view.php)
-            $this->view->render("usuario/deportistas", "deportistaDELETE");
-        }else
-        {
-            $dni = $_POST["dni"];
-            if($deportista = $this->deportistaMapper->delete($dni))
-            {
-                $this->view->setFlash("Deportista Eliminado Correctamente");
-            }else
-            {
-                $errors["username"] = "El deportista no se ha eliminado corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
-            $this->view->redirect("Deportista", "listar");
         }
     }
 
@@ -347,7 +238,7 @@ class DeportistaController extends BaseController
     *Si se llama con un get carga la vista
     *si se llama con un post muestra notificacion
     */
-    public function DeportistaView()
+    public function TduView()
     {
         if (!isset($_GET["dni"]))
         {
@@ -355,7 +246,7 @@ class DeportistaController extends BaseController
         }
         $dni = $_GET["dni"];
         // find the notification object in the database
-        $deportista = $this->deportistaMapper->findById($dni);
+        $deportista = $this->deportistaTDUMapper->findById($dni);
         if ($deportista == NULL)
         {
             throw new Exception("No existe usuario con este dni: ".$dni);
@@ -363,8 +254,33 @@ class DeportistaController extends BaseController
         // put the notification object to the view
         $this->view->setVariable("deportista", $deportista);
         // render the view (/view/posts/view.php)
-        $this->view->render("usuario/deportistas", "deportistaSHOWCURRENT");
+        $this->view->render("usuario/deportistas", "tduSHOWCURRENT");
     }
+
+
+     /*Notificacion SHOW CURRENT
+    *Si se llama con un get carga la vista
+    *si se llama con un post muestra notificacion
+    */
+    public function PefView()
+    {
+        if (!isset($_GET["dni"]))
+        {
+            throw new Exception("El dni es obligatorio");
+        }
+        $dni = $_GET["dni"];
+        // find the notification object in the database
+        $deportista = $this->deportistaPEFMapper->findById($dni);
+        if ($deportista == NULL)
+        {
+            throw new Exception("No existe usuario con este dni: ".$dni);
+        }
+        // put the notification object to the view
+        $this->view->setVariable("deportista", $deportista);
+        // render the view (/view/posts/view.php)
+        $this->view->render("usuario/deportistas", "pefSHOWCURRENT");
+    }
+
 
 }
 ?>

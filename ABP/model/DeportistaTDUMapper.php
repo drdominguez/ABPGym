@@ -29,8 +29,8 @@ Class DeportistaTDUMapper extends DeportistaMapper {
         if($usuario_db == null){
             return false;
         }else{
-            $stmt = $this->db->prepare("UPDATE tdu SET nombre=?,tarjeta=? WHERE dni=?");
-            $stmt->execute(array($usuario->getNombre(), $usuario->getTarjeta()));
+            $stmt = $this->db->prepare("UPDATE tdu SET tarjeta=? WHERE dni=?");
+            $stmt->execute(array($usuario->getTarjeta(),$usuario->getDni()));
             return true;
         }
     }
@@ -65,12 +65,12 @@ Class DeportistaTDUMapper extends DeportistaMapper {
 
     public function findById($dni)
     {
-        $stmt = $this->db->prepare("SELECT * FROM tdu WHERE dni=?");
+       $stmt = $this->db->prepare("SELECT * FROM tdu t, usuario u WHERE t.dni=? AND t.dni=u.dni");
         $stmt->execute(array($dni));
         $deportistaTDU = $stmt->fetch(PDO::FETCH_ASSOC);
         if($deportistaTDU != null)
         {
-            return new DeportistaTDU($deportistaTDU["dni"],$deportistaTDU["tarjeta"]);
+            return $deportistaTDU;
         }else
         {
             return NULL;

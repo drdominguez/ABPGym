@@ -26,15 +26,12 @@ $currentuser = $view->getVariable("currentusername");
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
-                                <label for="dni"><?= i18n("DNI") ?>: </label>
-                                <input class="form-control" type = 'text' name = 'dni' size = '9' readonly value = '<?php echo $usuario->getDni(); ?>'  onchange="comprobarVacio(this)  && comprobarDni(this)" >
-                            </div>
-                            <div class="col-md-6">
                                 <label for="tarjeta"><?= i18n("Tarjeta") ?>: </label>
-                                <input class="form-control" type = 'text' name = 'nombre' size = '60' value = '<?php echo $usuario->getTarjeta(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                                <input class="form-control" type = 'text' name = 'tarjeta' size = '60' value = '<?php echo $usuario['tarjeta']; ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" name="dni" value="<?php echo $usuario['dni']; ?>">
                     <button type="button" onclick="window.location.href='./index.php?controller=Deportista&amp;action=listarTDU'" class="btn btn-default"><?= i18n("Volver") ?></button>
                     <button  type='submit' name='action' value='TduEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
 
