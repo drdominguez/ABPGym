@@ -83,7 +83,7 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 		return $lista;
 	}
 
-	public esCardio($idEjercicio){
+	public function esCardio($idEjercicio){
 		$stmt=$this->db->prepare("SELECT idEjercicio FROM cardio WHERE cardio.idEjercicio=?");
 		$stmt->execute(array($idEjercicio));
 		if ($stmt->fetchColumn() > 0) {

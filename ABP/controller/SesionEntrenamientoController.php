@@ -6,6 +6,9 @@ require_once(__DIR__ . "/../model/SesionEntrenamientoMapper.php");
 require_once(__DIR__ . "/../model/TablaMapper.php");
 require_once(__DIR__ . "/../model/Tabla.php");
 require_once(__DIR__ . "/../model/EjercicioMapper.php");
+require_once(__DIR__ . "/../model/EjercicioCardioMapper.php");
+require_once(__DIR__ . "/../model/EjercicioMuscularMapper.php");
+require_once(__DIR__ . "/../model/EjercicioEstiramientoMapper.php");
 
 class SesionEntrenamientoController extends BaseController{
 
@@ -51,14 +54,14 @@ class SesionEntrenamientoController extends BaseController{
     public function realizarTabla(){
         $listaEjercicios = array();//se iran guardando todos los ejercicios con la informacion detallada
         $carioMapper = new EjercicioCardioMapper();
-        $estiramientoMapper = new EjericioEstiramientoMapper();
+        $estiramientoMapper = new EjercicioEstiramientoMapper();
         $muscularMapper = new EjercicioMuscularMapper();
-        $ejercicios=$this->tablaMapper->findEjerciciosById($_GET["idTabla"];
+        $ejercicios=$this->tablaMapper->findEjerciciosById($_GET["idTabla"]);
         foreach ($ejercicios as $ejercicio) {//voy recorriendo todos los ejercicios de la tabla a realizar
             if($carioMapper->esCardio($ejercicio->getIdEjercicio())){
                 $ejercicioCompleto=$carioMapper->getCardioById($ejercicio->getIdEjercicio());
             }elseif($estiramientoMapper->esEstiramiento($ejercicio->getIdEjercicio())){
-                $ejercicioCompleto=$carioMapper->getEstiramientoById($ejercicio->getIdEjercicio());
+                $ejercicioCompleto=$estiramientoMapper->getEstiramientoById($ejercicio->getIdEjercicio());
             }else{//si no es ni cardio ni estiramiento solo puede ser muscular
                 $ejercicioCompleto=$muscularMapper->getMuscularById($ejercicio->getIdEjercicio());
             }
