@@ -19,7 +19,7 @@
         'La letra del DNI no es correcta'=>'The DNI letter is not correct',
         ' no tiene un formato válido de telefeno.'=>' does not have a valid telephone format.',
         ' debe estar compuesto únicamente por digitos.'=>' must be only digits.',
-
+        'Gestión de Actividades' => 'Activity Management',
 
 
                 'Borrado correctamente' => 'Successfully Deleted',
