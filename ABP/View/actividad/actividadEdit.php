@@ -19,7 +19,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n(" Editar Actividad") ?>
                     <div class="card-body"> 
-            <form name = 'Form' action='./index.php?controller=Actividad&amp;action=actividadEDIT' method='post' onsubmit='return comprobar_notificacion()'>
+            <form name = 'Form' action='./index.php?controller=Actividad&amp;action=actividadEDIT' method='post' onsubmit='return validarActividadEDIT()'>
                     <div class="card-body">     
                         <div class="form-group">
                             <div class="form-row">

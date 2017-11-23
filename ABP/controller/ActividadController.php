@@ -18,6 +18,8 @@ class ActividadController extends BaseController{
     public function __construct() {
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
         $this->actividadMapper = new ActividadMapper();
+        $this->actividadGrupoMapper = new ActividadGrupoMapper();
+            $this->individualMapper = new ActividadIndividualMapper();
     }
 
     public function actividadView() 
@@ -81,17 +83,12 @@ class ActividadController extends BaseController{
                 if($this->actividadGrupoMapper->editGrupo($actividad,$idActividad))
             {
 
-            exit;
                $this->view->setFlash("Actividad Editada Correctamente");
             }else
             {
-
-            exit;
                 $errors["idActividad"] = "La actividad no se ha editado corectamente";
                 $this->view->setFlash($errors["idActividad"]);
             }
-
-            exit;
             $this->view->redirect("actividad", "actividadListar");
 
             }else{
@@ -131,7 +128,7 @@ class ActividadController extends BaseController{
     }
     
     public function individualADD() {
-        $this->individualMapper = new ActividadIndividualMapper();
+    
 
         if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad
             $individual = new ActividadIndividual();
