@@ -1,7 +1,7 @@
   <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-fw fa-bell"></i>
-                            <span class="nav-link-text">Notificaciones</span>
+                            <span class="nav-link-text"><?= i18n("Notificaciones") ?></span>
 <?php                  
                         require_once './model/NotificacionMapper.php';
                         require_once './model/Notificacion.php';
@@ -18,7 +18,7 @@
 ?>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">Notificaciones nuevas: <?php echo $numNotificaciones[0];?></h6>
+                            <h6 class="dropdown-header"><?= i18n("Notificaciones nuevas:") ?> <?php echo $numNotificaciones[0];?></h6>
            <?php 
                             $notificaciones=$notificacionMapper->listarSinVer();
                             $i=0;
@@ -41,7 +41,7 @@
            ?>
 
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item small" href="./index.php?controller=Notificacion&amp;action=NotificacionListar">Ver todas las notificaciones:</a>
+                            <a class="dropdown-item small" href="./index.php?controller=Notificacion&amp;action=NotificacionListar"><?= i18n("Ver todas las notificaciones:") ?></a>
                         </div>
                     </li>
                 

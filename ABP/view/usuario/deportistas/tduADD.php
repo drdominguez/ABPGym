@@ -16,7 +16,7 @@ $view->setVariable("title", "Deportistas");
 
            <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i> Añadir TDU</div>
+                <i class="fa fa-table"></i><?= i18n("Añadir TDU") ?></div>
             <div class="card-body">
                 <div id="flash"><?= $view->popFlash() ?></div>
                 <form name='Form' id="form1" action="index.php?controller=Deportista&amp;action=tduADD" class="form-signin" accept-charset="UTF-8" method="POST">
