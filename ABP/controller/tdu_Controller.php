@@ -13,12 +13,12 @@
     include '../locates/Strings_'.$_SESSION['idioma'].'.php';
 
     /*Generamos los includes de las diferentes vistas*/
-    include '../view/tdu_ADD_View.php';
-    include '../view/tdu_DELETE_View.php';
-    include '../view/tdu_EDIT_View.php';
+    include '../view/tduADD.php';
+    include '../view/tduDELETE.php';
+    include '../view/tduEDIT.php';
     include '../view/tdu_SEARCH_View.php';
-    include '../view/tdu_SHOWCURRENT_View.php';
-    include '../view/tdu_SHOWALL_View.php';
+    include '../view/tduSHOWCURRENT.php';
+    include '../view/tduSHOWALL.php';
 
     function get_data_form(){
 

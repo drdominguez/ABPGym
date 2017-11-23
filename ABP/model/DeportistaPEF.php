@@ -38,7 +38,7 @@ class DeportistaPEF extends Deportista
         $this->tarjeta = $tarjeta;
     }
 
-    public function getComentarioRevision(){
+    public function getComentario(){
         return $this->comentarioRevision;
     }
 

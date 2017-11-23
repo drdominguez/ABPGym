@@ -13,12 +13,12 @@
     include '../locates/Strings_'.$_SESSION['idioma'].'.php';
 
     /*Generamos los includes de las diferentes vistas*/
-    include '../view/pef_ADD_View.php';
-    include '../view/pef_DELETE_View.php';
-    include '../view/pef_EDIT_View.php';
+    include '../view/pefADD.php';
+    include '../view/pefDELETE.php';
+    include '../view/pefEDIT.php';
     include '../view/pef_SEARCH_View.php';
-    include '../view/pef_SHOWCURRENT_View.php';
-    include '../view/pef_SHOWALL_View.php';
+    include '../view/pefSHOWCURRENT.php';
+    include '../view/pefSHOWALL.php';
 
     function get_data_form(){
 

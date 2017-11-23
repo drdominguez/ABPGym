@@ -21,23 +21,58 @@ Class DeportistaTDUMapper extends DeportistaMapper {
         }
         return false;
     }
-    public function editTDU($tdu){
-        parent::edit($tdu);//se actualizan los cambios en la tabla ejercicio por si cambiara alguno
-        $stmt=$this->db-> prepare("UPDATE pef SET dni=?, tarjeta=? WHERE dni=?");
-        if(parent::permisosDeportista($tdu->getDni())){
-            $stmt=execute(array($tdu->getDni(),$tdu->getTarjeta()));
+    public function editTDU($usuario)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tdu WHERE dni =?");
+        $stmt->execute(array($usuario->getDni()));
+        $usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($usuario_db == null){
+            return false;
+        }else{
+            $stmt = $this->db->prepare("UPDATE tdu SET nombre=?,tarjeta=? WHERE dni=?");
+            $stmt->execute(array($usuario->getNombre(), $usuario->getTarjeta()));
             return true;
+        }
+    }
+
+    public function deleteTDU($dni)
+    {
+        if($this->esAdministrador())
+        {
+            $stmt = $this->db->prepare("SELECT * FROM tdu WHERE dni=?");
+            $stmt-> execute(array($dni));
+            $deportistaTDU_db = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($deportistaTDU_db != null)
+            {
+                $stmt = $this->db->prepare("DELETE from tdu WHERE dni=?");
+                $stmt->execute(array($dni));
+                return true;
+            }
+            return false;
         }
         return false;
     }
-    public function removeTDU($dni){
-        $stmt = $this->db->prepare("DELETE FROM tdu WHERE dni = ?");
-        if(parent::permisosDeportista($dni)){
-            $stmt= execute(array($dni));
-            parent::remove($dni);
-            return true;
+
+    public function listarTDU()
+    {
+        $stmt = $this->db->query("SELECT tdu.*, usuario.nombre, usuario.apellidos FROM `usuario`, `tdu` WHERE tdu.dni = usuario.dni");
+        $stmt -> execute();
+        $lista = $stmt->fetchAll();
+        return $lista;
+    }
+
+    public function findById($dni)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tdu WHERE dni=?");
+        $stmt->execute(array($dni));
+        $deportistaTDU = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($deportistaTDU != null)
+        {
+            return new DeportistaTDU($deportistaTDU["dni"],$deportistaTDU["tarjeta"]);
+        }else
+        {
+            return NULL;
         }
-        return false;
     }
 }
 ?>
