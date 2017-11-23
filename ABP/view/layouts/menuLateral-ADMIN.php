@@ -118,7 +118,7 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseSesiones">
                             <li>
-                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=realizarSesion"><?= i18n("Realizar Sesión") ?></a>
+                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Realizar Sesión") ?></a>
                             </li>
                             <li>
                                 <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Consultar Sesiones") ?></a>
