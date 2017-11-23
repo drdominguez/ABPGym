@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputTiempo">Precio</label>
-                                        <input class="form-control" name="precio" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Precio" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000)">
+                                        <input class="form-control" name="precio" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Precio" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
                                 </div>
                             </div>
                         </div>  

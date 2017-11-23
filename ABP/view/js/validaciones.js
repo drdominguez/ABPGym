@@ -230,7 +230,7 @@ function validarLogin(Formu) {
 
 
 function validarIndividualADD(Formu) {
-    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000))
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarSolonum(Form.precio))
 }
 
 function validarNotificacionADD(Formu) {
