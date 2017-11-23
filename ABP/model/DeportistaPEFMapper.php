@@ -16,7 +16,7 @@ Class DeportistaPEFMapper extends DeportistaMapper {
         parent::add($pef);//llama al add de la clase padre
         $stmt = $this->db->prepare("INSERT INTO pef(dni,tarjeta,comentarioRevision) VALUES (?,?,?)");
         if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-            $stmt->execute(array($pef->getDni(),$pef->getTarjeta(),$pef->getComentarioRevision()));//
+            $stmt->execute(array($pef->getDni(),$pef->getTarjeta(),$pef->getComentario()));//
             return true;
         }
         return false;
