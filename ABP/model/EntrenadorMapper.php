@@ -83,7 +83,7 @@ public function add($entrenador)
     }else
         {
             return false;
-       }
+        }
 
     }
     protected function esAdministrador(){
