@@ -47,6 +47,8 @@ Class DeportistaPEFMapper extends DeportistaMapper {
             {
                 $stmt = $this->db->prepare("DELETE from pef WHERE dni=?");
                 $stmt->execute(array($dni));
+                $stmt = $this->db->prepare("DELETE from deportista WHERE dni=?");
+                $stmt->execute(array($dni));
                 return true;
             }
             return false;
@@ -74,6 +76,16 @@ Class DeportistaPEFMapper extends DeportistaMapper {
         {
             return NULL;
         }
+    }
+public function esAdministrador()
+    {
+        $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
+        $stmt->execute(array($_SESSION["currentuser"]));
+        if ($stmt->fetchColumn()>0)
+        {
+            return true;
+        }
+        return false;
     }
 
 }
