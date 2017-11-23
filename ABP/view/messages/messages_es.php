@@ -37,7 +37,9 @@
         'Cargando...'=>'Cargando...',
         'Procesando...'=>'Procesando...',
         'Buscar:'=>'Buscar:',
-        'No se encontró nada'=>'No se encontró nada'
+        'No se encontró nada'=>'No se encontró nada',
+        'dni' => 'dni',
+        'contraseña' => 'contraseña'
 
     );
 ?>
