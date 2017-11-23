@@ -4,6 +4,8 @@ require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/SesionEntrenamientoMapper.php");
 require_once(__DIR__ . "/../model/TablaMapper.php");
+require_once(__DIR__ . "/../model/Tabla.php");
+require_once(__DIR__ . "/../model/EjercicioMapper.php");
 
 class SesionEntrenamientoController extends BaseController{
 
@@ -29,7 +31,8 @@ class SesionEntrenamientoController extends BaseController{
         $idTabla = $_GET["idTabla"];
         // find the notification object in the database
         $tabla =  $tablaMapper->findTablaById($idTabla);
-        $ejercicios = $this->tablaMapper->findEjerciciosById($idTabla);
+        $ejercicios = $tablaMapper->findEjerciciosById($idTabla);
+
         if ($tabla == NULL){
             throw new Exception("No existe tabla con este id: ".$idTabla);
         }

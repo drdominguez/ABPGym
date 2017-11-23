@@ -183,8 +183,7 @@ Class TablaMapper
         $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $tabla_ejercicios= array();
         if($ejercicios_db != null) 
-        {
-            
+        { 
             foreach($ejercicios_db as $ejercicio_db)
             {
                 $stmt = $this->db->prepare("SELECT * FROM ejercicio WHERE idEjercicio=?");

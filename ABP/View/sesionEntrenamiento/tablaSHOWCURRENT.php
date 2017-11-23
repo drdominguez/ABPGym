@@ -53,28 +53,19 @@ require_once(__DIR__."/../../core/ViewManager.php");
                             </tr>
                         </tfoot>
                         <tbody>
-<?php
-                        foreach($ejercicios as $ejercicio)
-                        {
-?>
-                            <tr>
-                                <td><?php echo $ejercicio->getNombre(); ?></td>
-                                <td><?php echo $ejercicio->getDescripcion(); ?></td>
-                                <td><?php echo $ejercicio->getVideo(); ?></td>
-                                <td><?php echo $ejercicio->getImagen(); ?></td>
-                                <td>
-                                    <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $ejercicio->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
-                                    </a>
-                                </td>
-                            </tr>
-<?php
-                        }   
-?>
+                            <?php foreach($ejercicios as $ejercicio) { ?>
+                                <tr>
+                                    <td><?php echo $ejercicio->getNombre(); ?></td>
+                                    <td><?php echo $ejercicio->getDescripcion(); ?></td>
+                                    <td><?php echo $ejercicio->getVideo(); ?></td>
+                                    <td><?php echo $ejercicio->getImagen(); ?></td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-primary">Volver</button> 
+        <button type="button" onclick="window.location.href='./index.php?controller=SesionEntrenamiento&amp;action=TablaListar'" class="btn btn-primary">Volver</button> 
     </div>
 </div>
