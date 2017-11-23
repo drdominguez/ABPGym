@@ -228,14 +228,16 @@ function validarLogin(Formu) {
     return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.contraseña))
 }
 
-
 function validarIndividualADD(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarSolonum(Form.precio))
 }
-
-function validarNotificacionADD(Formu) {
-    return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
+function validarGrupoADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarSolonum(Form.precio) && comprobarVacio(Form.instalaciones) && comprobarTexto(Form.instalaciones,1000000000000) && comprobarVacio(Form.plazas) && comprobarEntero(Form.plazas, 0, 255))
 }
+function validarSctividadEdit(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarSolonum(Form.precio) && comprobarVacio(Form.instalaciones) && comprobarTexto(Form.instalaciones,1000000000000) && comprobarVacio(Form.plazas) && comprobarEntero(Form.plazas, 0, 255))
+}
+
 
 
 

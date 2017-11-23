@@ -76,14 +76,22 @@ class ActividadController extends BaseController{
             $idActividad=$_POST['idActividad'];
             if($this->actividadMapper->esGrupo($idActividad)){            
                 $actividad = new ActividadGrupo(null,$_POST["nombre"],$_POST["precio"],$_POST['instalaciones'],$_POST['plazas']);
+
+            
                 if($this->actividadGrupoMapper->editGrupo($actividad,$idActividad))
             {
+
+            exit;
                $this->view->setFlash("Actividad Editada Correctamente");
             }else
             {
+
+            exit;
                 $errors["idActividad"] = "La actividad no se ha editado corectamente";
                 $this->view->setFlash($errors["idActividad"]);
             }
+
+            exit;
             $this->view->redirect("actividad", "actividadListar");
 
             }else{
