@@ -30,8 +30,8 @@ Class DeportistaPEFMapper extends DeportistaMapper {
         if($usuario_db == null){
             return false;
         }else{
-            $stmt = $this->db->prepare("UPDATE pef SET nombre=?,tarjeta=?,comentarioRivision=? WHERE dni=?");
-            $stmt->execute(array($usuario->getNombre(), $usuario->getTarjeta(),$usuario->getComentario()));
+            $stmt = $this->db->prepare("UPDATE pef SET tarjeta=?,comentarioRevision=? WHERE dni=?");
+            $stmt->execute(array( $usuario->getTarjeta(),$usuario->getComentario(),$usuario->getDni()));
             return true;
         }
     }

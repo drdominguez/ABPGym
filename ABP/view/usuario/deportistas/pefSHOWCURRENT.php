@@ -28,7 +28,7 @@ $view->setVariable("title", "Ver Deportista");
                 <b><?= i18n("Telefono") ?>:</b> <?php echo $deportista["telefono"]; ?><br>
                 <b><?= i18n("Fecha Alta") ?>:</b> <?php echo $deportista["fechaAlta"]; ?><br>
                 <b><?= i18n("Tarjeta") ?>:</b> <?php echo $deportista["tarjeta"]; ?><br>
-                <b><?= i18n("Comentario") ?>:</b> <?php echo $deportista["comentarioRivision"]; ?><br>
+                <b><?= i18n("Comentario") ?>:</b> <?php echo $deportista["comentarioRevision"]; ?><br>
                 <button type="button" onclick="window.location.href='./index.php?controller=Deportista&amp;action=listarPEF'" class="btn btn-primary">Volver</button>
             </div>
         </div>

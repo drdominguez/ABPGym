@@ -30,6 +30,7 @@ $view->setVariable("title", "DeportistasPEF");
                             <th><?= i18n("Comentario") ?></th>
                             <th><?= i18n("Editar") ?></th>
                             <th><?= i18n("Borrar") ?></th>
+                            <th><?= i18n("Ver") ?></th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -41,6 +42,7 @@ $view->setVariable("title", "DeportistasPEF");
                             <th><?= i18n("Comentario") ?></th>
                             <th><?= i18n("Editar") ?></th>
                             <th><?= i18n("Borrar") ?></th>
+                            <th><?= i18n("Ver") ?></th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -58,6 +60,10 @@ $view->setVariable("title", "DeportistasPEF");
                                 </td>
                                 <td>
                                     <a href='./index.php?controller=Deportista&amp;action=PefDELETE&amp;dni=<?php echo $deportista["dni"];?>'><img src='./view/Icons/delete.png'>
+                                    </a>
+                                </td>
+                                 <td>
+                                    <a href='./index.php?controller=Deportista&amp;action=PefView&amp;dni=<?php echo $deportista["dni"];?>'><img src='./view/Icons/detalle.png'>
                                     </a>
                                 </td>
                             </tr>
