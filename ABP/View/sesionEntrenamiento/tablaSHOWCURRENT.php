@@ -18,7 +18,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar tabla") ?>
+                <i class="fa fa-table"></i><?= i18n("Datos Tabla") ?>
             </div>
             <div class="card-body">
                 <b><?= i18n("idTabla") ?>:</b> <?php echo $tabla->getIdTabla(); ?><br>
@@ -29,7 +29,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
         </div>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar todos los ejercicios") ?>
+                <i class="fa fa-table"></i><?= i18n("Datos Ejercicios") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

@@ -67,7 +67,7 @@ class SesionEntrenamientoController extends BaseController{
             }
              array_push($listaEjercicios, $ejercicioCompleto); //guardo los ejercicios completos
         }
-        $this->view->setVariable($listaEjercicios);
+        $this->view->setVariable("ejercicios",$listaEjercicios);
         $this->view->render("sesionEntrenamiento", "realizarEjercicio");
     }
 }
