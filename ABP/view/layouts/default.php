@@ -32,7 +32,7 @@ $currentuser = $view->getVariable("currentusername");
 				}elseif ($permisos->esDeportista()) {
 					include(__DIR__."/menuLateral-DEPORTISTA.php");
 				}				
-				include(__DIR__."/notificacionesMenu.php");
+				//include(__DIR__."/notificacionesMenu.php");
 				include(__DIR__."/menuSuperior.php");
 				include(__DIR__."/language_select_element.php");
 				?>
