@@ -237,6 +237,7 @@
                 'Anterior' => 'Previous',
                 'Siguiente' => 'Next',
                 'Mostrando _START_ a _END_ de _TOTAL_ elementos' => 'Showing _START_ to _END_ of _TOTAL_ elements',
+                            'Mostrando 0 a 0 de 0 elementos'=>'Showing 0 to 0 of 0 elements',
                 'Notificaciones' => 'Notifications',
                 'Notificaciones nuevas:' => 'New notifications',
                 'Ver todas las notificaciones:' => 'View all notifications',

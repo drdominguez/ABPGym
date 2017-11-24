@@ -124,8 +124,8 @@ CREATE TABLE `deportista` (
 --
 
 INSERT INTO `deportista` (`dni`) VALUES
-('11111111X'),
-('22222222X');
+('11111111H'),
+('22222222J');
 
 -- --------------------------------------------------------
 
@@ -169,7 +169,7 @@ CREATE TABLE `entrenador` (
 --
 
 INSERT INTO `entrenador` (`dniEntrenador`) VALUES
-('33333333X');
+('33333333P');
 
 -- --------------------------------------------------------
 
@@ -378,7 +378,7 @@ CREATE TABLE `superusuario` (
 --
 
 INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
-('33333333X'),
+('33333333P'),
 ('44490816F'),
 ('44497121X'),
 ('53192250N');
@@ -501,8 +501,8 @@ CREATE TABLE `tdu` (
 --
 
 INSERT INTO `tdu` (`dni`, `tarjeta`) VALUES
-('11111111X', '65as564653a'),
-('22222222X', '65as564653a');
+('11111111H', '65as564653a'),
+('22222222J', '65as564653a');
 
 -- --------------------------------------------------------
 
@@ -526,13 +526,13 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
-('11111111X', 'TDU', 'TDU', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
-('22222222X', 'PEF', 'PEF', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
-('33333333X', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08'),
+('11111111H', 'TDU', 'TDU', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
+('22222222J', 'PEF', 'PEF', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
+('33333333P', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08'),
 ('44490816F', 'Daniel', 'Rodríguez Domínguez', 25, 'e10adc3949ba59abbe56e057f20f883e', 'danieldrd@outlook.es', '123456789', '2017-11-08'),
 ('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
 ('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08'),
-('98765432X', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
+('98765432M', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
 
 --
 -- Índices para tablas volcadas

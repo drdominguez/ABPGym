@@ -9,7 +9,7 @@ $currentuser = $view->getVariable("currentusername");
 	<head>
 		 <title>GYMABP</title>
 		<meta charset="utf-8">
-			<script src="index.php?controller=language&amp;action=i18njs"></script>
+			<script src="./index.php?controller=language&action=i18njs"></script>
 			<?= $view->getFragment("css") ?>
 			<?= $view->getFragment("javascript") ?>
 	</head>

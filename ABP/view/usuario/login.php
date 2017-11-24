@@ -18,6 +18,7 @@ $view = ViewManager::getInstance();
         <!-- Custom styles for this template-->
         <link href="./view/css/sb-admin.css" rel="stylesheet">
         <!-- Bootstrap core JavaScript-->
+        <script src="./index.php?controller=language&action=i18njs"></script>
         <script src="./view/vendor/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="./view/js/validaciones.js"></script> 
         <script src="./view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -40,7 +41,7 @@ $view = ViewManager::getInstance();
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input class="form-control" id="exampleInputPassword1" name="contraseña" type="password" placeholder="Password" onblur="comprobarVacio(this)">
+                            <input class="form-control" id="exampleInputPassword1" name="contraseña" type="password" placeholder="Password" onchange="comprobarVacio(this)">
                         </div>
                         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">ENTRAR</button>
                     </form>
