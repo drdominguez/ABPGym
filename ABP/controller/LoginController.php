@@ -22,7 +22,7 @@ class LoginController{
 	}
 	
     public function loadView() {/*Carga la vista de login para entrar en la web*/
-        require_once("view/usuario/login2.php");
+        require_once("view/usuario/login.php");
     }
 
     /*Inicia sesión
@@ -43,7 +43,7 @@ class LoginController{
                 $this->view->setFlash($errors["username"]);
             }
         }
-    	require_once("view/usuario/login2.php");
+    	require_once("view/usuario/login.php");
     }
     /*Cierra la sesion */
     public function logout() {
