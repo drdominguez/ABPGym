@@ -1,7 +1,9 @@
 <?php
     $view=ViewManager::getInstance();
+    if($view->getVariable("fragmento")!=""){
+    $fragmento=$view->getVariable("fragmento");
+    }
 ?>
-
 <!DOCTYPE html>
 <html>    
 <div class="content-wrapper">
@@ -13,7 +15,7 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Añadir usuario") ?>
+                <i class="fa fa-table"></i><?= i18n("Añadir ".$view->getVariable("usuarioTipo"))?>
             </div>
             <div class="card-body">                  
                 <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioADD' method='post' onsubmit='return validarUsuarioADD()'>
@@ -61,8 +63,15 @@
                         </div>
                       </div>
                     </div>
+                    <div>
+                        <?php 
+                            if(isset($fragmento)){ 
+                                include($fragmento); 
+                            } 
+                        ?>
+                    </div>
                     <br>
-                    <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuariosListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
+                    <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=administradorADD'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                     <button  type='submit' name='action' value='UsuarioADD' class="btn btn-primary"><?= i18n("Añadir") ?></button>
                 </form>
             </div>

@@ -9,6 +9,7 @@ require_once(__DIR__ . "/../core/permisos.php");
 class UsuarioController extends BaseController
 {
     private $usuarioMapper;
+    private $permisos;
 
     public function __construct() 
     {
@@ -16,50 +17,73 @@ class UsuarioController extends BaseController
         $this->usuarioMapper = new UsuarioMapper();
         $this->permisos= new Permisos();
     }
-    
-
 
     /*Notificacion ADD
-    *Si se llama con un get carga la vista
-    *si se llama con un post añade la notificacion
+    *carga una vista para selecionar el tipo de usuario a añadir
+    *si es llamado por un usuario sin permisos carga la vista por defecto
     */
     public function UsuarioADD() 
     {
-         if($this->permisos->esAdministrador())
-         {
-        if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"]))
-        {//si existen los post añado la notificacion
-            $usuario = new Usuario();
-            $usuario->setDni($_POST["dni"]);
-            $usuario->setNombre($_POST["nombre"]);
-            $usuario->setApellidos($_POST["apellidos"]);
-            $usuario->setEdad($_POST["edad"]);
-            $usuario->setPassword($_POST["contrasena"]);
-            $usuario->setEmail($_POST["email"]);
-            $usuario->setTelefono($_POST["telefono"]);
-            $usuario->setFecha(date("Y-m-d"));
-            if($this->usuarioMapper->ADD($usuario))
-            {
-               $this->view->setFlash("Usuario Añadido Correctamente");
-
-            }else
-            {
-                $errors["username"] = "El usuario no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
-            $this->view->redirect("Usuario", "UsuariosListar");
-        }else
-        {
-            $this->view->render("usuario","usuarioADD");
-        }
-         }else{
-        $this->view->redirect("main", "index");
-    }
-        
+    	if($this->permisos->esAdministrador()){
+    		$this->view->render("usuario","selectAdd");
+    	}else{
+    		$this->view->redirect("main", "index");
+    	}
     }
 
+    public function deportistaADD(){
+    	if($this->permisos->esAdministrador()){
 
 
+    	}
+    }
+
+    /*administradorADD
+    *Permite añadir a un nuevo administrador a la bbdd
+    *Es necesario ser administrador.
+    *Si se llama con un Post Carga añade un nuevo administrador
+    *Si es llamado por un get muestra la vista.
+    */
+    public function administradorADD(){
+    	if($this->permisos->esAdministrador()){
+    		var_dump("esAdministrador");
+    		if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"])){
+    			$usuario = new Usuario($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"));
+    			var_dump("existen Variables");
+    			exit;
+    			if($this->usuarioMapper->administradorADD()){
+    				$this->view->setFlash("Usuario Añadido Correctamente");
+    			}else{
+    				$errors["username"] = "El usuario no se ha añadido corectamente";
+		            $this->view->setFlash($errors["username"]);
+    			}
+    		}
+    	}else{
+    		$errors["username"] = "No tienes permisos, solo un administrador puede añadir usuarios";
+		        $this->view->setFlash($errors["username"]);
+    	}
+    	$this->view->setVariable("usuarioTipo","Administrador");
+    	$this->view->render("usuario", "usuarioADD");
+    }
+
+    public function entrenadorADD(){
+    	if($this->permisos->esAdministrador()){
+    		if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"])){
+    			$usuario = new Usuario($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"));
+    			if($this->usuarioMapper->entrenadorADD()){
+    				$this->view->setFlash("Usuario Añadido Correctamente");
+    			}else{
+    				$errors["username"] = "El usuario no se ha añadido corectamente";
+		            $this->view->setFlash($errors["username"]);
+    			}
+    		}
+    	}else{
+    		$errors["username"] = "No tienes permisos, solo un administrador puede añadir usuarios";
+		        $this->view->setFlash($errors["username"]);
+    	}
+    	$this->view->setVariable("usuarioTipo","Entrenador");
+    	$this->view->render("usuario", "usuarioADD");
+    }
 
     /*NotificacionListar
     *Muestra una lista con todos las Notificaciones
@@ -73,11 +97,8 @@ class UsuarioController extends BaseController
        $this->view->render("usuario","usuarioSHOWALL");
         }else{
         $this->view->redirect("main", "index");
+    	}
     }
-    }
-    
-
-
 
     /*NotificacionListar
     *Muestra una lista con todos las Notificaciones
@@ -119,10 +140,8 @@ class UsuarioController extends BaseController
             }
              }else{
         $this->view->redirect("main", "index");
+    	}
     }
-    }
-    
-
 
     /*NotificacionListar
     *Muestra una lista con todos las Notificaciones
@@ -165,9 +184,6 @@ class UsuarioController extends BaseController
         $this->view->redirect("main", "index");
     }
     }
-    
-
-
 
     /*Notificacion SHOW CURRENT
     *Si se llama con un get carga la vista

@@ -4,31 +4,23 @@ require_once(__DIR__."/../core/Access_DB.php");
 
 Class Permisos {
 
-    
-     protected $db;
+    protected $db;
 
-
-     public function __construct()
-    {
+    public function __construct(){
         $this->db=PDOConnection::getInstance();
     }
     
     public function comprobarTipo(){
-            if($this->esAdministrador()){
-                return "administrador";
+        if($this->esAdministrador()){
+            return "administrador";
+        }else{
+            if($this->esEntrenador()){
+                return "entrenador";
             }else{
-                if($this->esEntrenador()){
-                    return "entrenador";
-                }else{
-                    return "deportista";
-                }
-
+                return "deportista";
             }
-
-
+        }
     }
-
-
 
     public function esAdministrador()
     {
@@ -41,8 +33,6 @@ Class Permisos {
         return false;
     }
 
-
-
     public function esSuperusuario()
     {
         $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
@@ -54,7 +44,6 @@ Class Permisos {
         return false;
     }
 
-
     public function esEntrenador(){
         $stmt = $this->db->prepare("SELECT dniEntrenador FROM entrenador WHERE dniEntrenador=?");
         $stmt->execute(array($_SESSION["currentuser"]));
@@ -63,9 +52,8 @@ Class Permisos {
         }
         return false;
     }
-
-
-        public function esDeportista(){
+    
+    public function esDeportista(){
         $stmt = $this->db->prepare("SELECT dni FROM deportista WHERE dni=?");
         $stmt->execute(array($_SESSION["currentuser"]));
         if ($stmt->fetchColumn() > 0) {
@@ -74,7 +62,7 @@ Class Permisos {
         return false;
     }
 
-        public function esDeportista2($dni){
+    public function esDeportista2($dni){
         $stmt = $this->db->prepare("SELECT dni FROM deportista WHERE dni=?");
         $stmt->execute(array($dni));
         if ($stmt->fetchColumn() > 0) {
@@ -84,5 +72,4 @@ Class Permisos {
     }
 
 }
-
-    ?>
+?>

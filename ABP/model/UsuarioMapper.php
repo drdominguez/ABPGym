@@ -13,9 +13,14 @@ class UsuarioMapper {
     public function __construct() 
     {
         $this->db = PDOConnection::getInstance();
-         $this->permisos= new Permisos();
+        $this->permisos= new Permisos();
     }
-    /*Comprueba si existe un susario con ese dni y contraseña*/
+
+    /*login
+    *@dni el dni el usuario que intenta logearse
+    *@password su contraseña
+    * si es correcto devuelve true
+    */
     function login($dni,$password)
     {
         $stmt = $this->db->prepare("SELECT count(dni) FROM usuario where dni=? and contrasena=?");
@@ -25,27 +30,68 @@ class UsuarioMapper {
         }
         return false;
     }
-    //funcion de destrucción del objeto: se ejecuta automaticamente
-    //al finalizar el script
-    function __destruct()
-    {
-    }
-    //Añadir
-    function ADD($usuario)
-    {
-        if($this->permisos->esAdministrador())
-        {
-        $stmt = $this->db->prepare("SELECT * FROM usuario WHERE dni=?");
-        $stmt-> execute(array($usuario->getDni()));
-        $usuario_db = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($usuario_db == null)
-         {
-            $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");
-            $stmt-> execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),$usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
+
+    /*administradorADD
+    *@usuario el usuario a añadir
+    * permite añadir a un administrador a la bbdd
+    * es necesario tener permiso para añadirlo y que esxista el dni
+    */
+    public function administradorADD($usuario){
+        if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
+            $stmt= $this->db->prepare("INSERT INTO superusuario VALUES(?)");
+            $stmt->execute(array($usuario->getDni));
+            $stmt=$this->db->prepare("INSERT INTO administrador VALUES(?)");
+            $stmt->execute(array($usuario->getDni));
             return true;
         }
         return false;
     }
+
+    public function entrenadorADD($usuario){
+        if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
+            $stmt= $this->db->prepare("INSERT INTO superusuario VALUES(?)");
+            $stmt->execute(array($usuario->getDni));
+            $stmt=$this->db->prepare("INSERT INTO entrenador VALUES(?)");
+            $stmt->execute(array($usuario->getDni));
+            return true;
+        }
+        return false;
+    }
+
+    public function tduADD($usuario){
+        if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
+            $stmt= $this->db->prepare("INSERT INTO deportista VALUES(?)");
+            $stmt->execute(array($usuario->getDni));
+            $stmt=$this->db->prepare("INSERT INTO administrador VALUES(?,?)");
+            $stmt->execute(array($usuario->getTarjeta(), $usuario->getDni));
+            return true;
+        }
+        return false;
+    }
+
+    public function pefADD($usuario){
+        if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
+            $stmt= $this->db->prepare("INSERT INTO deportista VALUES(?)");
+            $stmt->execute(array($usuario->getDni));
+            $stmt=$this->db->prepare("INSERT INTO deportista VALUES(?,?,?)");
+            $stmt->execute(array($usuario->getDni, $usuario->getTarjeta(), $usuario->getComentario()));
+            return true;
+        }
+        return false;
+    }
+
+    /*usuarioADD
+    *@usuario el usuario a añadir
+    *Añade en la tabla de usuarios un nuevo usuario
+    *En caso de que se añada devuelve un true
+    */
+    private function usuarioADD($usuario)
+    {
+        if($this->permisos->esAdministrador() && !empty($usuario->getDni())){
+            $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");
+            $stmt-> execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),$usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
+            return true;
+        }
         return false;
     }
 
@@ -68,9 +114,7 @@ class UsuarioMapper {
     return false;
     }
 
-
-
-       public function listar()
+    public function listar()
     {
         $stmt = $this->db->query("SELECT * from usuario");
         $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -114,19 +158,6 @@ class UsuarioMapper {
                 return true;
             }
     }
-
-    public function esSuperusuario()
-    {
-        $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
-        $stmt-> execute(array($_SESSION["currentuser"]));
-        if ($stmt->fetchColumn()>0)
-        {
-            return true;
-        }
-        return false;
-    }
-
-
 
 }
 ?>
