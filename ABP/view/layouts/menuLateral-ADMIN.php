@@ -25,69 +25,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Deportistas">
-                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDeportistas" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text"><?= i18n("Gestión de Deportistas")?></span>
-                        </a>
-                        <ul class="sidenav-second-level collapse" id="collapseDeportistas">
-                            <li class="nav-item" data-placement="right" title="AñadirDeportista">
-                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAñadirDeportista">
-                                    <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseAñadirDeportista"><?= i18n("Añadir Deportista") ?>
-                                    </span>
-                                </a>
-                                <ul class="sidenav-third-level collapse" id="collapseAñadirDeportista">
-                                    <li>
-                                        <a href="./index.php?controller=Deportista&amp;action=tduADD">
-                                            <i class="fa fa-fw fa-link"></i><?= i18n("TDU") ?>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./index.php?controller=Deportista&amp;action=pefADD">
-                                            <i class="fa fa-fw fa-link"></i><?= i18n("PEF") ?>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item" data-placement="right" title="VerDeportista">
-                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseVerDeportista">
-                                    <i class="fa fa-fw fa-wrench"></i>
-                                    <span data-toggle="collapse" href="#collapseVerDeportista"><?= i18n("Ver Deportistas") ?>
-                                    </span>
-                                </a>
-                                <ul class="sidenav-third-level collapse" id="collapseVerDeportista">
-                                    <li>
-                                        <a href="./index.php?controller=Deportista&amp;action=listarTDU">
-                                            <i class="fa fa-fw fa-link"></i><?= i18n("TDU") ?>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./index.php?controller=Deportista&amp;action=listarPEF">
-                                            <i class="fa fa-fw fa-link"></i><?= i18n("PEF") ?>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Entrenadores">
-                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEntrenadores" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text"><?= i18n("Gestión de Entrenadores") ?></span>
-                        </a>
-                        <ul class="sidenav-second-level collapse" id="collapseEntrenadores">
-                            <li>
-                                <a href="./index.php?controller=Entrenador&amp;action=entrenadorADD"><i class="fa fa-fw fa-link"></i><?= i18n("Añadir Entrenadores") ?></a>
-                            </li>
-                            <li>
-                                <a href="./index.php?controller=Entrenador&amp;action=entrenadorListar"><i class="fa fa-fw fa-link"></i><?= i18n("Ver Entrenadores") ?></a>
-                            </li>
-                            </li>
-                        </ul>
-                    </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Actividades">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseActividades" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
@@ -113,7 +50,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            
                             <li>
                                 <a href="./index.php?controller=actividad&amp;action=actividadListar"><i class="fa fa-fw fa-link"></i><?= i18n("Ver Actividades") ?></a>
                             </li>
