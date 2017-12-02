@@ -46,12 +46,10 @@ class UsuarioController extends BaseController
     */
     public function administradorADD(){
     	if($this->permisos->esAdministrador()){
-    		var_dump("esAdministrador");
     		if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"])){
+    			var_dump("existen variables");
     			$usuario = new Usuario($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"));
-    			var_dump("existen Variables");
-    			exit;
-    			if($this->usuarioMapper->administradorADD()){
+    			if($this->usuarioMapper->administradorADD($usuario)){
     				$this->view->setFlash("Usuario Añadido Correctamente");
     			}else{
     				$errors["username"] = "El usuario no se ha añadido corectamente";

@@ -37,11 +37,11 @@ class UsuarioMapper {
     * es necesario tener permiso para añadirlo y que esxista el dni
     */
     public function administradorADD($usuario){
-        if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
+        if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($usuario)){
             $stmt= $this->db->prepare("INSERT INTO superusuario VALUES(?)");
-            $stmt->execute(array($usuario->getDni));
+            $stmt->execute(array($usuario->getDni()));
             $stmt=$this->db->prepare("INSERT INTO administrador VALUES(?)");
-            $stmt->execute(array($usuario->getDni));
+            $stmt->execute(array($usuario->getDni()));
             return true;
         }
         return false;
@@ -50,9 +50,9 @@ class UsuarioMapper {
     public function entrenadorADD($usuario){
         if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
             $stmt= $this->db->prepare("INSERT INTO superusuario VALUES(?)");
-            $stmt->execute(array($usuario->getDni));
+            $stmt->execute(array($usuario->getDni()));
             $stmt=$this->db->prepare("INSERT INTO entrenador VALUES(?)");
-            $stmt->execute(array($usuario->getDni));
+            $stmt->execute(array($usuario->getDni()));
             return true;
         }
         return false;
@@ -61,9 +61,9 @@ class UsuarioMapper {
     public function tduADD($usuario){
         if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
             $stmt= $this->db->prepare("INSERT INTO deportista VALUES(?)");
-            $stmt->execute(array($usuario->getDni));
+            $stmt->execute(array($usuario->getDni()));
             $stmt=$this->db->prepare("INSERT INTO administrador VALUES(?,?)");
-            $stmt->execute(array($usuario->getTarjeta(), $usuario->getDni));
+            $stmt->execute(array($usuario->getTarjeta(), $usuario->getDni()));
             return true;
         }
         return false;
