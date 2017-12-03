@@ -52,7 +52,7 @@ class UsuarioController extends BaseController
     			if($this->usuarioMapper->administradorADD($usuario)){
     				$this->view->setFlash("Usuario Añadido Correctamente");
     			}else{
-    				$errors["username"] = "El usuario no se ha añadido corectamente";
+    				$errors["username"] = "Administrador añadido corectamente";
 		            $this->view->setFlash($errors["username"]);
     			}
     		}
@@ -68,10 +68,10 @@ class UsuarioController extends BaseController
     	if($this->permisos->esAdministrador()){
     		if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"])){
     			$usuario = new Usuario($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"));
-    			if($this->usuarioMapper->entrenadorADD()){
+    			if($this->usuarioMapper->entrenadorADD($usuario)){
     				$this->view->setFlash("Usuario Añadido Correctamente");
     			}else{
-    				$errors["username"] = "El usuario no se ha añadido corectamente";
+    				$errors["username"] = "Entrenador añadido corectamente";
 		            $this->view->setFlash($errors["username"]);
     			}
     		}
@@ -79,7 +79,7 @@ class UsuarioController extends BaseController
     		$errors["username"] = "No tienes permisos, solo un administrador puede añadir usuarios";
 		        $this->view->setFlash($errors["username"]);
     	}
-    	$this->view->setVariable("usuarioTipo","Entrenador");
+    	$this->view->setVariable("usuarioTipo","entrenador");
     	$this->view->render("usuario", "usuarioADD");
     }
 

@@ -17,11 +17,16 @@
             <div class="card-header">
                 <i class="fa fa-table"></i><?= i18n("Añadir ".$view->getVariable("usuarioTipo"))?>
             </div>
-            <div class="card-body">                  
-                  <form name='Form' id="form1" action="index.php?controller=Usuario&amp;action=administradorADD" class="form-signin" accept-charset="UTF-8" method="POST">
-                    <div class="form-group">
-                        <div class="form-row">
-                          <div class="col-md-6">
+            <div class="card-body">
+            <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8"  method="POST" action="<?php 
+                if($view->getVariable("usuarioTipo")=="Administrador"){ 
+                    echo 'index.php?controller=Usuario&amp;action=administradorADD';
+                }else{
+                    echo 'index.php?controller=Usuario&amp;action=entrenadorADD';
+                }?>">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
                         <label for="dni"><?= i18n("DNI") ?>: </label>
                         <input class="form-control" type = 'text' name = 'dni' size = '9' required="true" value = ''  onchange="comprobarVacio(this)  && comprobarDni(this)" >
                         </div>
@@ -72,8 +77,7 @@
                     </div>
                     <br>
                     <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuarioADD'" class="btn btn-default"><?= i18n("Volver") ?></button> 
-                     <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Añadir</button> 
-
+                     <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Añadir</button>
                 </form>
             </div>
         </div>

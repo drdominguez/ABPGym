@@ -23,9 +23,9 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                             <tr>
-                                <th><?= i18n("dni") ?></th>
-                                <th><?= i18n("nombre") ?></th>
-                                <th><?= i18n("apellidos") ?></th>
+                                <th><?= i18n("Dni") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Apellidos") ?></th>
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>
@@ -33,9 +33,9 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th><?= i18n("dni") ?></th>
-                                <th><?= i18n("nombre") ?></th>
-                                <th><?= i18n("apellidos") ?></th>
+                                <th><?= i18n("Dni") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Apellidos") ?></th>
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>
@@ -43,9 +43,7 @@
                         </tfoot>
                         <tbody>
 
-                        <?php foreach($usuarios as $usuario){ 
-                                ?>
-
+                        <?php foreach($usuarios as $usuario){ ?>
                             <tr>
                                 <td><?php echo $usuario->getDni(); ?></td>
                                 <td><?php echo $usuario->getNombre(); ?></td>

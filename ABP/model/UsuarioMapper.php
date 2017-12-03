@@ -48,7 +48,7 @@ class UsuarioMapper {
     }
 
     public function entrenadorADD($usuario){
-        if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
+        if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($usuario)){
             $stmt= $this->db->prepare("INSERT INTO superusuario VALUES(?)");
             $stmt->execute(array($usuario->getDni()));
             $stmt=$this->db->prepare("INSERT INTO entrenador VALUES(?)");
