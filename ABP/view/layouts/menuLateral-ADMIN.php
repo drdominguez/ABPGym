@@ -101,7 +101,7 @@
                     </li>
 
 
-<?php /*
+
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Notificaciones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseNotificaciones" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
@@ -116,7 +116,6 @@
                             </li>
                         </ul>
                     </li>
-                    */?>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pagos">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapsePagos" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>

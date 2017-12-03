@@ -1,4 +1,4 @@
-  <?php /* <li class="nav-item dropdown">
+<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-fw fa-bell"></i>
 
@@ -45,4 +45,3 @@
                             <a class="dropdown-item small" href="./index.php?controller=Notificacion&amp;action=NotificacionListar"><?= i18n("Ver todas las notificaciones:") ?></a>
                         </div>
                     </li>
-                */?>
