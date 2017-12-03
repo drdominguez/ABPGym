@@ -250,5 +250,11 @@
                 'Tarjeta' => 'Card',
                 'Comentario' => 'Comment',
                 'Añadir deportista' => 'Add athlete',
+                'Añadir Pago' => 'Add Payment',
+                'Precio' => 'Cost',
+                'Seleccionar' => 'Select',
+                'Mostrar todos los pagos' => 'Show all payments',
+                'Importe' => 'Amount',
+                'IDActividad' => 'IDActivity',
                 );
 ?>

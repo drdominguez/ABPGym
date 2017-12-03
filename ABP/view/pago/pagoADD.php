@@ -10,14 +10,14 @@ $currentuser = $view->getVariable("currentusername");
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="../Controller/PagoController.php">Añadir Pago</a>
+                <a href="../Controller/PagoController.php"><?= i18n("Añadir Pago") ?></a>
             </li>
             <li class="breadcrumb-item active">ADD</li>
         </ol>
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i> Añadir Pago</div>
+                <i class="fa fa-table"></i><?= i18n("Añadir Pago") ?></div>
             <div class="card-body">
                 <div id="flash"><?= $view->popFlash() ?></div>
                 <form name='Form' id="form1" action="index.php?controller=Pago&amp;action=PagoADD" class="form-signin" accept-charset="UTF-8" method="POST">
@@ -79,7 +79,7 @@ $currentuser = $view->getVariable("currentusername");
                         </div>
                     </div>
 
-                <button type="button" onclick="window.location.href='./index.php?controller=Pago&amp;action=PagosListar''" class="btn btn-default">Volver</button>
+                <button type="button" onclick="window.location.href='./index.php?controller=Pago&amp;action=PagosListar''" class="btn btn-default"><?= i18n("Volver") ?></button>
                 <button type='submit' name='action'  value='PagoADD' class="btn btn-primary"><?= i18n("Insertar") ?></button>
                 </form>
             </div>
