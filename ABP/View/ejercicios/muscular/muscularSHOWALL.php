@@ -4,6 +4,12 @@ $listaMusculares = $view->getVariable("musculares");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Estiramientos");
 ?>
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>
 <div class="content-wrapper">
             <div class="container-fluid">
                  <!-- Breadcrumbs-->
@@ -51,14 +57,14 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $muscular["carga"]; ?></td>
                                             <td><?php echo $muscular["repeticiones"]; ?></td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularVer&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><img src='./view/Icons/detalle.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularVer&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularEdit&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><img src='./view/Icons/edit.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularEdit&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-editar" class="icon-pencil22"></span>
                                             </td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularRemove&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><img src='./view/Icons/delete.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularRemove&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-eliminar" class=" icon-bin"></span>
                                                 </a>
                                             </td>
                                         </tr>

@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+* {/*Elimina los margenes que meten los navegadores por defecto*/
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+}
+
+#icon-ver{
+	margin-top: 15px;
+	margin-left: 10px;
+	margin-bottom: 1px;
+	font-size:25px;
+}
+
+#icon-ver:hover{
+	color:#F85C00;
+}
+
+#icon-editar{
+	margin-left: 15px;
+	font-size:25px;
+}
+
+#icon-editar:hover{
+	color:#F85C00;
+}
+
+#icon-eliminar {
+    margin-left: 25px;
+	font-size:25px;
+}
+
+#icon-eliminar:hover {
+	color:#F85C00;
+	font-size:25px;
+}
