@@ -116,10 +116,9 @@ class ActividadMapper{
     }
     public function selectRecurso(){
         $stmt= $this->db->query("SELECT * FROM recursos");
-        $stmt -> execute(array($idActividad));
         $recursos_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $recursos = array();
-        foreach ($recursos_db as $recursos) 
+        foreach ($recursos_db as $recurso) 
         {
             array_push($recursos, new Recurso($recurso['idRecurso'],$recurso['nombreRecurso']));
         }

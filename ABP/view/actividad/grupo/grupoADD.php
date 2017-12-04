@@ -35,11 +35,9 @@
                                         <label for="exampleInputNombre">Instalaciones</label>
                                         <select class="form-control" name="tipo">
 <?php
-var_dump($listarecursos);
-exit;
                                         foreach($listarecursos as $recurso){
 ?>
-                                        <option value="<?php $recurso['idRecurso'];?>"><?php $recurso['nombreRecurso']; ?></option>
+                                        <option value="<?php echo $recurso->getIdRecurso();?>"><?php echo $recurso->getNombreRecurso();?></option>
 <?php                                            
                                         }
 ?>

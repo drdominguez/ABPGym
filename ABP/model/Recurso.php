@@ -6,12 +6,12 @@ class Recurso
         private $nombreRecurso;
 
         function __construct($idRecurso=NULL,$nombreRecurso=NULL){
-            $this->idActividad = $idActividad;
+            $this->idRecurso = $idRecurso;
             $this->nombreRecurso = $nombreRecurso;
         }
         
     public function getIdRecurso() {
-        return $this->idActividad;
+        return $this->idRecurso;
     }
     public function getNombreRecurso() {
         return $this->nombreRecurso;
