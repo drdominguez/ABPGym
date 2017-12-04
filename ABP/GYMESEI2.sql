@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2017 a las 17:48:09
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.1.10
+-- Servidor: localhost
+-- Tiempo de generación: 04-12-2017 a las 11:11:01
+-- Versión del servidor: 5.7.20
+-- Versión de PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
--- --------------------------------------------------------
+
 --
 -- Database: `GYMESEI2`
 --
@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `GYMESEI2`;
 CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `GYMESEI2`;
+
+-- --------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `actividad`
 --
@@ -33,19 +36,20 @@ USE `GYMESEI2`;
 CREATE TABLE `actividad` (
   `idActividad` bigint(20) NOT NULL,
   `precio` double DEFAULT NULL,
-  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `idInstalaciones` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `actividad`
 --
 
-INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`) VALUES
-(3, 40, 'Gymnasio del Carmen'),
-(4, 35, 'Gymnasio Trabazos'),
-(5, 20, 'Fútbol'),
-(6, 15, 'Baloncesto'),
-(7, 42, 'Karate');
+INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`) VALUES
+(3, 40, 'Gymnasio del Carmen', 0),
+(4, 35, 'Gymnasio Trabazos', 0),
+(5, 20, 'Fútbol', 0),
+(6, 15, 'Baloncesto', 0),
+(7, 42, 'Karate', 0);
 
 -- --------------------------------------------------------
 
@@ -342,6 +346,17 @@ CREATE TABLE `pef` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `recursos`
+--
+
+CREATE TABLE `recursos` (
+  `idRecurso` int(3) NOT NULL,
+  `nombreRecurso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `sesionentrenamiento`
 --
 
@@ -470,19 +485,19 @@ CREATE TABLE `tabla_ejercicios` (
 --
 
 INSERT INTO `tabla_ejercicios` (`idTabla`, `idEjercicio`) VALUES
-(1, 2),
-(1, 3),
-(1, 6),
-(1, 7),
 (2, 1),
-(2, 4),
-(2, 5),
 (3, 1),
+(1, 2),
 (3, 2),
+(1, 3),
 (3, 3),
+(2, 4),
 (3, 4),
+(2, 5),
 (3, 5),
+(1, 6),
 (3, 6),
+(1, 7),
 (3, 7);
 
 -- --------------------------------------------------------
@@ -676,6 +691,12 @@ ALTER TABLE `pef`
   ADD UNIQUE KEY `dni` (`dni`);
 
 --
+-- Indices de la tabla `recursos`
+--
+ALTER TABLE `recursos`
+  ADD PRIMARY KEY (`idRecurso`);
+
+--
 -- Indices de la tabla `sesionentrenamiento`
 --
 ALTER TABLE `sesionentrenamiento`
@@ -778,6 +799,12 @@ ALTER TABLE `notificacion`
 --
 ALTER TABLE `pago`
   MODIFY `idPago` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `recursos`
+--
+ALTER TABLE `recursos`
+  MODIFY `idRecurso` int(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `superusuario_ejercicio`
