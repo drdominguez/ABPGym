@@ -45,11 +45,11 @@ CREATE TABLE `actividad` (
 --
 
 INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`) VALUES
-(3, 40, 'Gymnasio del Carmen', 0),
-(4, 35, 'Gymnasio Trabazos', 0),
-(5, 20, 'Fútbol', 0),
-(6, 15, 'Baloncesto', 0),
-(7, 42, 'Karate', 0);
+(3, 40, 'Gymnasio del Carmen', 1),
+(4, 35, 'Gymnasio Trabazos', 2),
+(5, 20, 'Fútbol', 3),
+(6, 15, 'Baloncesto', 4),
+(7, 42, 'Karate', 5);
 
 -- --------------------------------------------------------
 
@@ -351,9 +351,15 @@ CREATE TABLE `pef` (
 
 CREATE TABLE `recursos` (
   `idRecurso` int(3) NOT NULL,
-  `nombreRecurso` int(11) NOT NULL
+  `nombreRecurso` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+INSERT INTO `recursos` (`idRecurso`,`nombreRecurso`) VALUES
+(1,'Pista Tenis'),
+(2,'Gimnasio'),
+(3,'Pabellón'),
+(4,'Campo Exterior'),
+(5,'Campo Interior');
 -- --------------------------------------------------------
 
 --
@@ -558,7 +564,8 @@ INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `emai
 --
 ALTER TABLE `actividad`
   ADD PRIMARY KEY (`idActividad`),
-  ADD UNIQUE KEY `idActividad` (`idActividad`);
+  ADD UNIQUE KEY `idActividad` (`idActividad`),
+  ADD KEY `fk_ActividadRecurso` (`idInstalaciones`);
 
 --
 -- Indices de la tabla `actividad_deportista`
@@ -694,7 +701,7 @@ ALTER TABLE `pef`
 -- Indices de la tabla `recursos`
 --
 ALTER TABLE `recursos`
-  ADD PRIMARY KEY (`idRecurso`);
+  ADD KEY `fk_ActividadRecurso` (`idRecurso`);
 
 --
 -- Indices de la tabla `sesionentrenamiento`
@@ -822,6 +829,11 @@ ALTER TABLE `tabla`
 -- Restricciones para tablas volcadas
 --
 
+--
+-- Filtros para la tabla `actividad`
+--
+ALTER TABLE `actividad`
+  ADD CONSTRAINT `fk_ActividadRecurso` FOREIGN KEY (`idInstalaciones`) REFERENCES `recursos` (`idRecurso`) ON DELETE CASCADE;
 --
 -- Filtros para la tabla `actividad_deportista`
 --
