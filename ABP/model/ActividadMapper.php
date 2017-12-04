@@ -47,7 +47,7 @@ class ActividadMapper{
         
         $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=? WHERE idActividad=? ");
         if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),,$actividad->getIdInstalaciones(),$idActividad));
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$idActividad));
             return true;            
         } 
                     
@@ -80,7 +80,7 @@ class ActividadMapper{
             if($stmt2!=null)
             {
                 $actividad2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],,$actividad['idInstalaciones'],$actividad2["plazas"]);
+                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad2["plazas"]);
                 }else 
                 {
 
