@@ -33,7 +33,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <label for="exampleInputNombre">Instalaciones</label>
-                                        <select class="form-control" name="tipo">
+                                        <select class="form-control" name="idInstalaciones">
 <?php
                                         foreach($listarecursos as $recurso){
 ?>

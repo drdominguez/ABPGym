@@ -146,6 +146,8 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
+        $listarrecursos=$this->actividadMapper->selectRecurso();
+        $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->render("actividad/individual","individualADD");
     }
 
