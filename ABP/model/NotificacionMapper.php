@@ -92,7 +92,7 @@ Class NotificacionMapper
     {
         if($this->permisos->esAdministrador())
         {
-            $stmt = $this->db->query("SELECT * from usuario");
+            $stmt = $this->db->query("SELECT * from deportista d, usuario u WHERE d.dni=u.dni;");
         }
         $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $usuarios = array();
