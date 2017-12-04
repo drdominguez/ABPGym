@@ -99,9 +99,20 @@
                             </li>
                         </ul>
                     </li>
-
-
-
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Instalaciones">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseInstalaciones" data-parent="#exampleAccordion">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text"><?= i18n("Gestión de Instalaciones") ?></span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="collapseInstalaciones">
+                            <li>
+                                <a href="./index.php?controller=Recurso&amp;action=recursoADD"><?= i18n("Añadir Instalacion") ?></a>
+                            </li>
+                            <li>
+                                <a href="./index.php?controller=Recurso&amp;action=recursoListar"><?= i18n("Ver Instalaciones") ?></a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Notificaciones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseNotificaciones" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-table"></i>
