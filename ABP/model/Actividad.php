@@ -23,7 +23,7 @@ class Actividad
     public function getPrecio() {
         return $this->precio;
     }
-    public function getIdInstalaciones() {
+    public function getIdIdInstalaciones() {
         return $this->idInstalaciones;
     }
     public function setIdActividad($idActividad) {

@@ -14,9 +14,9 @@ class ActividadMapper{
     
     //Añadir
     function add($actividad){ 
-        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio) values (?,?)");
+        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones) values (?,?,?)");
         if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio()));
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones()));
             return true;
         }
         return false;
@@ -34,9 +34,9 @@ class ActividadMapper{
     function editGrupo($actividad,$idActividad){
        
         if(self::esAdministrador()){
-            $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=? WHERE idActividad=? ");
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$idActividad));
-            $stmt1 -> execute(array($actividad->getInstalaciones(),$actividad->getPlazas(),$idActividad));
+            $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=? WHERE idActividad=? ");
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$idActividad),$actividad->getIdInstalaciones());
+            $stmt1 -> execute(array($actividad->getPlazas(),$idActividad));
             return true;
         }
         return false;
@@ -45,9 +45,9 @@ class ActividadMapper{
     //Funcion editar
     function edit($actividad,$idActividad){
         
-        $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=? WHERE idActividad=? ");
+        $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=? WHERE idActividad=? ");
         if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$idActividad));
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),,$actividad->getIdInstalaciones(),$idActividad));
             return true;            
         } 
                     
@@ -60,7 +60,7 @@ class ActividadMapper{
             $actividades = array();
 
             foreach ($actividades_db as $actividad) {
-                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio']));
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['idInstalaciones']));
             
             }
         return $actividades;
@@ -80,7 +80,7 @@ class ActividadMapper{
             if($stmt2!=null)
             {
                 $actividad2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad2["instalaciones"],$actividad2["plazas"]);
+                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],,$actividad['idInstalaciones'],$actividad2["plazas"]);
                 }else 
                 {
 
@@ -88,7 +88,7 @@ class ActividadMapper{
                 $stmt3->execute(array($idActividad));
                 if($stmt3!=null){
                     $actividad3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"]);
+                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones']);
                 }
             }
         }
