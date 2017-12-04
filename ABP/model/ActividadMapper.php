@@ -67,6 +67,18 @@ class ActividadMapper{
         return $actividades;
         
         }
+
+    public function idRecurso($idActividad){
+        $stmt = $this->db->prepare("SELECT idInstalaciones FROM actividad WHERE idActividad=?");
+        $stmt->execute(array($idActividad));
+        $actividad = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($actividad!=null){
+            return $actividad['idInstalaciones'];
+        }else{
+        return null;
+        }
+    }
+
     public function findNomIdInstalaciones($idInstalaciones){
         $stmt = $this->db->prepare("SELECT * FROM recursos WHERE idRecurso=?");
         $stmt->execute(array($idInstalaciones));
@@ -75,7 +87,7 @@ class ActividadMapper{
             return new Recurso($actividad['idRecurso'],$actividad['nombreRecurso']);
         }else{
         return null;
-    }
+        }
     }
     public function findById($idActividad)
     {

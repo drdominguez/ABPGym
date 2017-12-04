@@ -3,6 +3,7 @@
 
     $view = ViewManager::getInstance();
     $actividad = $view->getVariable("actividad");
+    $recurso = $view->getVariable("nombreInstalación");
     $currentuser = $view->getVariable("currentusername");
     $errors = $view->getVariable("errors");
     $view->setVariable("title", "Borrar Actividad");
@@ -24,11 +25,11 @@
                     <b><?= i18n("idActividad") ?>:</b> <?php echo $actividad->getIdActividad(); ?><br>
                     <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
                     <b><?= i18n("nombre") ?>:</b> <?php echo $actividad->getNombre(); ?><br>
-                    <b><?= i18n("precio") ?>:</b> <?php echo $actividad->getPrecio(); ?><br>
-<?php if($actividad->getInstalaciones()!=null){?>
-                    <b><?= i18n("instalaciones") ?>:</b> <?php echo $actividad->getInstalaciones(); ?><br>
-                    <b><?= i18n("plazas") ?>:</b> <?php echo $actividad->getPlazas(); ?><br>                    
-<?php }?>
+                    <b><?= i18n("precio") ?>:</b> <?php echo $actividad->getPrecio(); ?><br>                
+                    <b><?= i18n("instalaciones") ?>:</b> <?php echo $recurso->getNombreRecurso(); ?><br>
+<?php if($actividad->getPlazas()!=null){?>
+                     <b><?= i18n("plazas") ?>: </b> <?php echo $actividad->getPlazas(); ?><br> 
+<?php }?> 
                     <input type="hidden" name="borrar" value="ok">
                     <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default">Volver</button> 
                     <button  type='submit' name='action' value='actividadDelete' class="btn btn-primary"><?= i18n("Borrar") ?></button>

@@ -48,6 +48,9 @@ class ActividadController extends BaseController{
                 throw new Exception("El id es obligatorio");
             }
             $idActividad = $_GET["idActividad"];
+            $idRecurso = $this->actividadMapper->idRecurso($idActividad);
+            $nomRecurso=$this->actividadMapper->findNomIdInstalaciones($idRecurso);
+            
             // find the notification object in the database
             $actividad = $this->actividadMapper->findById($idActividad);
             if ($actividad == NULL) 
@@ -55,6 +58,7 @@ class ActividadController extends BaseController{
                 throw new Exception("No existe actividad con este id: ".$idActividad);
             }
             // put the notification object to the view
+            $this->view->setVariable("nombreInstalación", $nomRecurso);
             $this->view->setVariable("actividad", $actividad);
             // render the view (/view/posts/view.php)
             $this->view->render("actividad", "actividadDELETE");
@@ -69,6 +73,7 @@ class ActividadController extends BaseController{
                 $errors["idActividad"] = "La actividad no se ha eliminado corectamente";
                 $this->view->setFlash($errors["idActividad"]);
             }
+            
             $this->view->redirect("Actividad", "actividadListar");
         }
     }
