@@ -22,18 +22,17 @@ class TablaController extends BaseController
     *Si se llama con un get carga la vista
     *si se llama con un post añade la notificacion
     */
-    public function TablaADD() 
+    public function EstandarADD() 
     {
 
         if($this->permisos->esSuperusuario()){
-        if(isset($_POST["tipo"]) && isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
+        if(isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
         {//si existen los post añado la notificacion
             $ejercicios = $_POST["ejercicios"];
             $tabla = new Tabla();
-            $tabla->setTipo($_POST["tipo"]);
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
-            if($this->tablaMapper->add($tabla,$ejercicios))
+            if($this->tablaMapper->addEstandar($tabla,$ejercicios))
             {
                $this->view->setFlash("Tabla Añadida Correctamente");
             }else
@@ -46,9 +45,38 @@ class TablaController extends BaseController
         {
             $ejercicios = $this->tablaMapper->listarEjercicios();
             $this->view->setVariable("ejercicios",$ejercicios);
-            $this->view->render("tabla","tablaADD");
+            $this->view->render("tabla","estandarADD");
         }
+    }else{
+        $this->view->redirect("main", "index");
+    }
+    }
 
+public function PersonalizadaADD() 
+    {
+
+        if($this->permisos->esSuperusuario()){
+        if(isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
+        {//si existen los post añado la notificacion
+            $ejercicios = $_POST["ejercicios"];
+            $tabla = new Tabla();
+            $tabla->setNombre($_POST["nombre"]);
+            $tabla->setComentario($_POST['comentario']);
+            if($this->tablaMapper->addPersonalizada($tabla,$ejercicios))
+            {
+               $this->view->setFlash("Tabla Añadida Correctamente");
+            }else
+            {
+                $errors["username"] = "La tabla no se ha añadido corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("Tabla", "tablaListar");
+        }else
+        {
+            $ejercicios = $this->tablaMapper->listarEjercicios();
+            $this->view->setVariable("ejercicios",$ejercicios);
+            $this->view->render("tabla","personalizadaADD");
+        }
     }else{
         $this->view->redirect("main", "index");
     }
