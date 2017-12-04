@@ -71,19 +71,26 @@
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tablas">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseTablas" data-parent="#exampleAccordion">
-                           <i class="fa fa-fw fa-table"></i>
+                            <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text"><?= i18n("Gestión de Tablas") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseTablas">
                             <li>
-                                <a href="./index.php?controller=Tabla&amp;action=TablaADD"><?= i18n("Añadir Tabla") ?></a>
+                                <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2"><?= i18n("Añadir Tabla") ?></a>
+                                <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                                    <li>
+                                        <a href="./index.php?controller=Tabla&amp;action=EstandarADD">Estándar</a>
+                                    </li>
+                                    <li>
+                                        <a href="./index.php?controller=Tabla&amp;action=PersonalizadaADD">Personalizada</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="./index.php?controller=Tabla&amp;action=TablaListar"><?= i18n("Ver Tablas") ?></a>
                             </li>
                         </ul>
                     </li>
-
 
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sesiones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSesiones" data-parent="#exampleAccordion">
