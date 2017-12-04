@@ -4,6 +4,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $view=ViewManager::getInstance();
     $actividad = $view->getVariable("actividad");
     $currentuser = $view->getVariable("currentusername");
+    $listarecursos = $view->getVariable("listarecursos");
 ?>
 
 <!DOCTYPE html>
@@ -31,16 +32,28 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <label for="exampleInputPrecio">Precio</label>
                                     <input class="form-control" name="precio" id="exampleInputPrecio" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPrecio(); ?>"   onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
                                 </div>
-<?php if($actividad->getInstalaciones()!=null){?>
+
                                 <div class="col-md-6">
                                     <label for="exampleInputInstalaciones">Instalaciones</label>
-                                    <input class="form-control" name="instalaciones" id="exampleInputInstalacioneso" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getInstalaciones(); ?>"   onchange="comprobarVacio(this)  && comprobarTexto(this,1000000000000)">
+                                    <select class="form-control" name="idInstalaciones">
+<?php
+                                        foreach($listarecursos as $recurso){
+                                            if($actividad->getIdInstalaciones()==$recurso->getIdRecurso()){
+?>
+                                        <option selected value="<?php echo $recurso->getIdRecurso();?>"><?php echo $recurso->getNombreRecurso();?></option>
+<?php                                            
+                                        }else{?> <option selected value="<?php echo $recurso->getIdRecurso();?>"><?php echo $recurso->getNombreRecurso();?></option>
+<?php                                            }
+                                        }
+?>
+                                            
+                                        </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputPlazas">Plazas</label>
                                     <input class="form-control" name="plazas" id="exampleInputPlazas" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPlazas(); ?>"   onchange="comprobarVacio(this)  && comprobarEntero($this, 0, 255)">
                                 </div>
-                                <?php }?>
+                                
                             </div>
                         </div>
                     </div>

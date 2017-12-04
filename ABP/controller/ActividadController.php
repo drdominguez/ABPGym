@@ -102,7 +102,7 @@ class ActividadController extends BaseController{
                 $actividad = new Actividad();
                 $actividad->setNombre($_POST["nombre"]);
                 $actividad->setPrecio($_POST["precio"]);
-                $actividad->setIdUnstalaciones($_POST["idInstalaciones"]);  
+                $actividad->setIdInstalaciones($_POST["idInstalaciones"]);  
                 if($this->actividadMapper->edit($actividad,$idActividad))
             {
                $this->view->setFlash("Actividad Editada Correctamente");
@@ -123,7 +123,8 @@ class ActividadController extends BaseController{
             {
                 throw new Exception("No existe actividad con este id: ".$idActividad);
             }
-
+                $listarrecursos=$this->actividadMapper->selectRecurso();
+                $this->view->setVariable("listarecursos",$listarrecursos);
                 $this->view->setVariable("actividad", $actividad);
                 $this->view->render("actividad","actividadEDIT");
             }
