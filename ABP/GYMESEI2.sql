@@ -215,7 +215,6 @@ INSERT INTO `estiramiento` (`idEjercicio`, `tiempo`, `unidad`) VALUES
 
 CREATE TABLE `grupo` (
   `idActividad` bigint(20) NOT NULL,
-  `instalaciones` text COLLATE utf8_spanish_ci,
   `plazas` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -223,10 +222,10 @@ CREATE TABLE `grupo` (
 -- Volcado de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`idActividad`, `instalaciones`, `plazas`) VALUES
-(5, 'Pabellon Municipal', 12),
-(6, 'Pabellón del Carmen (Vigo)', 9),
-(7, 'Gimnasio Okinawa', 30);
+INSERT INTO `grupo` (`idActividad`,`plazas`) VALUES
+(5, 12),
+(6, 9),
+(7, 30);
 
 -- --------------------------------------------------------
 
