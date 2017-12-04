@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Actividad.php");
+require_once(__DIR__."/Recurso.php");
 require_once(__DIR__."/ActividadGrupo.php");
 
 class ActividadMapper{
@@ -66,6 +67,16 @@ class ActividadMapper{
         return $actividades;
         
         }
+    public function findNomIdInstalaciones($idInstalaciones){
+        $stmt = $this->db->prepare("SELECT * FROM recursos WHERE idRecurso=?");
+        $stmt->execute(array($idInstalaciones));
+        $actividad = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($actividad!=null){
+            return new Recurso($actividad['idRecurso'],$actividad['nombreRecurso']);
+        }else{
+        return null;
+    }
+    }
     public function findById($idActividad)
     {
         $stmt = $this->db->prepare("SELECT * FROM actividad WHERE idActividad =?");
@@ -103,8 +114,17 @@ class ActividadMapper{
         }
         return false;
     }
-
-    
+    public function selectRecurso(){
+        $stmt= $this->db->query("SELECT * FROM recursos");
+        $stmt -> execute(array($idActividad));
+        $recursos_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $recursos = array();
+        foreach ($recursos_db as $recursos) 
+        {
+            array_push($recursos, new Recurso($recurso['idRecurso'],$recurso['nombreRecurso']));
+        }
+        return $recursos;
+    }
 
     protected function permisosActividad($idActividad){
         /*Comprobar si el susuario es un administrador*/

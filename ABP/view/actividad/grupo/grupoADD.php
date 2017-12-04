@@ -1,5 +1,7 @@
 <?php
     $view=ViewManager::getInstance();
+
+    $listarecursos = $view->getVariable("listarecursos");
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +33,18 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <label for="exampleInputNombre">Instalaciones</label>
-                                        <input class="form-control" name="instalaciones" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Instalaciones" onchange="comprobarVacio(this)  && comprobarTexto(this,1000000000000)">
+                                        <select class="form-control" name="tipo">
+<?php
+var_dump($listarecursos);
+exit;
+                                        foreach($listarecursos as $recurso){
+?>
+                                        <option value="<?php $recurso['idRecurso'];?>"><?php $recurso['nombreRecurso']; ?></option>
+<?php                                            
+                                        }
+?>
+                                            
+                                        </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputTiempo">Plazas</label>

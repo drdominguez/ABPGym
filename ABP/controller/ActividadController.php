@@ -30,11 +30,13 @@ class ActividadController extends BaseController{
         }
         $idActividad = $_GET["idActividad"];
         $actividad = $this->actividadMapper->findById($idActividad);
+        $nomRecurso=$this->actividadMapper->findNomIdInstalaciones($actividad->getIdInstalaciones());
         if ($actividad == NULL) 
         {
             throw new Exception("No existe actividad con este id: ".$idActividad);
         }
         $this->view->setVariable("actividad", $actividad);
+        $this->view->setVariable("nombreInstalación", $nomRecurso);
         $this->view->render("actividad", "actividadSHOWCURRENT");
     }
     public function actividadDELETE() 
@@ -77,7 +79,7 @@ class ActividadController extends BaseController{
         {//si existen los post añado la notificacion
             $idActividad=$_POST['idActividad'];
             if($this->actividadMapper->esGrupo($idActividad)){            
-                $actividad = new ActividadGrupo(null,$_POST["nombre"],$_POST["precio"],$_POST['instalaciones'],$_POST['plazas']);
+                $actividad = new ActividadGrupo(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas']);
 
             
                 if($this->actividadGrupoMapper->editGrupo($actividad,$idActividad))
@@ -94,7 +96,8 @@ class ActividadController extends BaseController{
             }else{
                 $actividad = new Actividad();
                 $actividad->setNombre($_POST["nombre"]);
-                $actividad->setPrecio($_POST["precio"]); 
+                $actividad->setPrecio($_POST["precio"]);
+                $actividad->setIdUnstalaciones($_POST["idInstalaciones"]);  
                 if($this->actividadMapper->edit($actividad,$idActividad))
             {
                $this->view->setFlash("Actividad Editada Correctamente");
@@ -134,6 +137,7 @@ class ActividadController extends BaseController{
             $individual = new ActividadIndividual();
             $individual->setNombre($_POST["nombre"]);
             $individual->setPrecio($_POST["precio"]);
+            $actividad->setIdUnstalaciones($_POST["idInstalaciones"]);  
             if($this->individualMapper->addIndividual($individual)){
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
@@ -147,11 +151,11 @@ class ActividadController extends BaseController{
 
     public function grupoADD() {
         $this->grupoMapper = new ActividadGrupoMapper();
-        if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["instalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+        if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
             $grupo = new ActividadGrupo();
             $grupo->setPrecio($_POST["precio"]);
             $grupo->setNombre($_POST["nombre"]);
-            $grupo->setInstalaciones($_POST["instalaciones"]);
+            $grupo->setIdInstalaciones($_POST["idInstalaciones"]);
             $grupo->setPlazas($_POST["plazas"]);
             if($this->grupoMapper->addGrupo($grupo)){
                $this->view->setFlash("Actividad Grupo Añadida Corectamente");
@@ -161,6 +165,8 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
+        $listarrecursos=$this->actividadMapper->selectRecurso();
+        $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->render("actividad/grupo","grupoADD");
 
     }
