@@ -27,13 +27,14 @@ class NotificacionController extends BaseController
     public function NotificacionADD() 
     {
         if($this->permisos->esAdministrador()){
-            if(isset($_POST["Asunto"]) && isset($_POST["contenido"]))
+            if(isset($_POST["Asunto"]) && isset($_POST["contenido"]) && isset($_POST["usuarios"]))
             {//si existen los post añado la notificacion
+                $usuarios = $_POST['usuarios'];
                 $notificacion = new Notificacion();
                 $notificacion->setAsunto($_POST["Asunto"]);
                 $notificacion->setContenido($_POST["contenido"]);
                 $notificacion->setFecha(date("Y-m-d H:i:s"));
-                if($this->notificacionMapper->add($notificacion))
+                if($this->notificacionMapper->add($notificacion,$usuarios))
                 {
                    $this->view->setFlash("Notificación Añadida Correctamente");
 
@@ -45,6 +46,8 @@ class NotificacionController extends BaseController
                 $this->view->redirect("Notificacion", "NotificacionListar");
             }else
             {
+                $usuarios = $this->notificacionMapper->listarUsuarios();
+                $this->view->setVariable("usuarios",$usuarios);
                 $this->view->render("notificacion","notificacionADD");
             }
             
@@ -83,14 +86,22 @@ class NotificacionController extends BaseController
             throw new Exception("El id es obligatorio");
         }
         $idNotificacion = $_GET["idNotificacion"];
+        $tipoUsuario = $this->permisos->comprobarTipo();
+
         // find the notification object in the database
         $notificacion = $this->notificacionMapper->findById($idNotificacion);
+        if($this->permisos->esAdministrador()){
+             $usuarios = $this->notificacionMapper->listarUsuariosNotificacion($idNotificacion);
+             $this->view->setVariable("usuarios", $usuarios);
+        }
         if ($notificacion == NULL) 
         {
             throw new Exception("No existe notificacion con este id: ".$idNotificacion);
         }
         // put the notification object to the view
         $this->view->setVariable("notificacion", $notificacion);
+        $this->view->setVariable("tipoUsuario", $tipoUsuario);
+
         $this->notificacionMapper->visto($notificacion->getIdNotificacion(),$_SESSION['currentuser']);
         // render the view (/view/posts/view.php)
         $this->view->render("notificacion", "notificacionSHOWCURRENT");

@@ -2,6 +2,7 @@
 
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Deportista.php");
+require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/Notificacion.php");
 require_once(__DIR__ . "/../core/permisos.php");
 
@@ -19,7 +20,7 @@ Class NotificacionMapper
 
     }
     
-    public function add($notificacion)
+    public function add($notificacion,$usuarios)
     {
 
         $stmt = $this->db->prepare("INSERT INTO notificacion(dniAdministrador,Asunto,contenido,fecha) VALUES (?,?,?,?)");
@@ -27,12 +28,12 @@ Class NotificacionMapper
         {
             $stmt->execute(array($_SESSION['currentuser'],$notificacion->getAsunto(),$notificacion->getContenido(),$notificacion->getFecha()));
             $this->idNotificacion= $this->db->lastInsertId();
-            $stmt = $this->db->query("SELECT dni FROM deportista");
-            $deportistas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $deportistas = array();
-            foreach ($deportistas_db as $deportista) 
+            foreach ($usuarios as $usuario) 
             {
-                array_push($deportistas, new Deportista($deportista["dni"]));
+                $usuario_insertar = new Usuario();
+                $usuario_insertar->setDni($usuario);
+                array_push($deportistas, $usuario_insertar);
             }
             if ($deportistas) 
             {
@@ -49,7 +50,21 @@ Class NotificacionMapper
         }
     }
 
+    public function listarUsuariosNotificacion($notificacion){
+        if($this->permisos->esAdministrador()){
+            $stmt=$this->db->prepare("SELECT * FROM usuario u, notificacion_deportista n WHERE u.dni=n.dniDeportista AND n.idNotificacion=?");
+            $stmt->execute(array($notificacion));
+            $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+             }
+            $usuarios = array();
 
+            foreach ($usuarios_db as $usuario) {
+                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos']));
+            }
+            return $usuarios;
+       
+
+    }
 
 
     public function listar()
@@ -71,6 +86,22 @@ Class NotificacionMapper
         return $notificaciones;
     }
 
+
+
+    public function listarUsuarios()
+    {
+        if($this->permisos->esAdministrador())
+        {
+            $stmt = $this->db->query("SELECT * from usuario");
+        }
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
+        {
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos']));
+        }
+        return $usuarios;
+    }
 
 
 

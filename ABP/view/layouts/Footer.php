@@ -53,7 +53,7 @@ include_once '../Functions/Authentication.php';
         <?php if($_GET['action']=='NotificacionListar'){?>
             <script src="./view/vendor/datatables/jquery.dataTables2.js"></script>
         <?php }else{
-                if(($_GET['action'] == 'TablaADD') || ($_GET['action'] == 'TablaEDIT')){ ?>
+                if(($_GET['action'] == 'TablaADD') || ($_GET['action'] == 'TablaEDIT') || ($_GET['action'] == 'NotificacionADD')){ ?>
             <script src="./view/vendor/datatables/jquery.dataTables3.js"></script>
              <?php }else{ ?>
             <script src="./view/vendor/datatables/jquery.dataTables.js"></script>
