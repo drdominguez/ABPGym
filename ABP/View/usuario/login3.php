@@ -28,12 +28,10 @@
         <script src="./View/video/video-3.js"></script>
     </head>
     <body class="bg-dark">
-        <video id="video-background" width="560" height="315" autoplay preload muted>
+        <video id="video-background" width="560" height="315" autoplay loop preload muted>
 			<source src="./View/video/login_video.mp4" type='video/mp4; codecs="avc1,mp4a"' />
 		</video>
         <div id="foo">
-        	<div class="container">
-            <div class="card card-login mx-auto mt-5">
                 <img src="./view/Icons/logo.png">
                 <div class="card-body">
                      <ol class="breadcrumb">
