@@ -31,7 +31,7 @@
 		</video>
         <div id="foo">
                 <img src="./view/Icons/logo.png">
-                <div class="card-body">
+                <div class="card-login">
                      <ol class="breadcrumb">
                     <div id="flash"><?= $view->popFlash()?></div>
                 </ol>
@@ -47,7 +47,7 @@
                         <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">ENTRAR</button>
                     </form>
                 </div>
-            </div>
+            
         </div>
     </body>
 </html>
