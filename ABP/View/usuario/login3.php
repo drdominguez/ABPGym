@@ -27,7 +27,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="./View/video/video-3.js"></script>
     </head>
-    <body>
+    <body class="bg-dark">
         <video id="video-background" width="560" height="315" autoplay preload muted>
 			<source src="./View/video/login_video.mp4" type='video/mp4; codecs="avc1,mp4a"' />
 		</video>
