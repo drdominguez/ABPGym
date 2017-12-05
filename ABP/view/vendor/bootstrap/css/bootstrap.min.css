@@ -4272,7 +4272,7 @@ tbody.collapse.show {
 
 .card-body {
     -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
+    flex: 1 1 ;
     padding: 1.25rem
 }
 
