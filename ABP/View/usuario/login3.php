@@ -14,10 +14,12 @@
         <script src="./index.php?controller=language&action=i18njs"></script>
         <script src="./view/vendor/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="./view/js/validaciones.js"></script> 
+        <script src="./view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
         <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
-        <link href="./View/video/video.css" type="text/css" rel="stylesheet" />
-        <script src="./View/video/video-3.js"></script>
+        <link href="./view/video/video.css" type="text/css" rel="stylesheet" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="./view/video/video-3.js"></script>
     </head>
     <body class="bg-dark">
         <video id="video-background" autoplay loop preload muted>
