@@ -22,8 +22,8 @@
         <script src="./View/video/video-3.js"></script>
     </head>
     <body class="bg-dark">
-        <video id="video-background" width="560" height="315" autoplay loop preload muted>
-			<source src="./View/video/login_video.mp4" type='video/mp4; codecs="avc1,mp4a"' />
+        <video id="video-background" autoplay loop preload muted>
+			<source src="./View/video/login_video.mp4" type='video/mp4' />
 		</video>
         <div id="foo">
                 <img src="./view/Icons/logo.png">
