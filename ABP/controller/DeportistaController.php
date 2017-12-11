@@ -30,6 +30,14 @@ class DeportistaController extends BaseController
     }
 
     public function tduADD() {
+       $this->view->render("usuario/deportistas","deportistaADD");
+    }
+
+    public function pefADD(){
+        $this->view->render("usuario/deportistas","deportistaADD");
+    }
+
+   /* public function tduADD() {
 
         if(isset($_POST['dni']) && isset($_POST['tarjeta'])){
             $deportista = new DeportistaTDU();
@@ -54,8 +62,8 @@ class DeportistaController extends BaseController
 
         }
         
-    }
-      public function pefADD() {
+    }*/
+    /*  public function pefADD() {
 
         if(isset($_POST['dni']) && isset($_POST['tarjeta']) && isset($_POST['comentario'])){
             $deportista = new DeportistaPEF();
@@ -82,7 +90,7 @@ class DeportistaController extends BaseController
 
         }
         
-    }
+    }*/
 
     public function listarTDU()
     {
@@ -96,12 +104,6 @@ class DeportistaController extends BaseController
         $this->view->setVariable("deportistasPEF",$deportistasPEF);
         $this->view->render("usuario/deportistas","pefSHOWALL");
     }
-
-
-
-
-
-
 
     public function PefEDIT()
     {
