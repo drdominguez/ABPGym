@@ -6,8 +6,8 @@
 // Generated File
 //-------------------------------
 define("DB","GYMESEI2");
-define("USER","rootAbp");
-define("PASS","abp");
+define("USER","root");
+define("PASS","");
 define("HOST","localhost");
 define("DIR","ABP");//unuser
 //-------------------------------
