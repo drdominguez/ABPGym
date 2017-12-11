@@ -18,7 +18,6 @@
         <!-- Core plugin JavaScript-->
         <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
         <link href="./view/video/video.css" type="text/css" rel="stylesheet" />
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="./view/video/video-3.js"></script>
     </head>
     <body class="bg-dark">
