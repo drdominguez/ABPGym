@@ -22,7 +22,7 @@
         <script src="./View/video/video-3.js"></script>
     </head>
     <body class="bg-dark">
-        <video id="video-background" autoplay loop preload muted>
+        <video id="video-background" width="20" height="31" autoplay loop preload muted>
 			<source src="./View/video/login_video.mp4" type='video/mp4' />
 		</video>
         <div id="foo">
