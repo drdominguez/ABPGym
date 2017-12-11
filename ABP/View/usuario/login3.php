@@ -20,7 +20,7 @@
         <link href="./view/video/video.css" type="text/css" rel="stylesheet" />
         <script src="./view/video/video-3.js"></script>
     </head>
-    <body class="bg-dark">
+    <body id="bodyvideo">
         <video id="video-background" autoplay loop preload muted>
 			<source src="./View/video/login_video.mp4" type='video/mp4' />
 		</video>
