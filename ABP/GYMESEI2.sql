@@ -746,9 +746,9 @@ ALTER TABLE `superusuario_individual`
 --
 ALTER TABLE `superusuario_tabla_deportista`
   ADD PRIMARY KEY (`dniSuperUsuario`,`dniDeportista`,`idTabla`),
-  ADD UNIQUE KEY `dniSuperUsuario` (`dniSuperUsuario`),
-  ADD UNIQUE KEY `dniDeportista` (`dniDeportista`),
-  ADD UNIQUE KEY `idTabla` (`idTabla`);
+  ADD KEY `dniSuperUsuario` (`dniSuperUsuario`),
+  ADD KEY `dniDeportista` (`dniDeportista`),
+  ADD KEY `idTabla` (`idTabla`);
 
 --
 -- Indices de la tabla `tabla`

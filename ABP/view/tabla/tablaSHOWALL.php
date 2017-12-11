@@ -82,10 +82,10 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     </td>
                                     <?php if($tipoUsuario != 'deportista'){?>
                                     <td>
-                                        
+                                        <?php if($tabla->getTipo()=='estandar'){?>
                                         <a href='./index.php?controller=Tabla&amp;action=TablaAsignar&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/add.png'>
                                         </a>
-                                         
+                                         <?php } ?>
                                     </td>
                                     <?php } ?>
                             </tr>

@@ -59,10 +59,11 @@ public function PersonalizadaADD()
         if(isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
         {//si existen los post añado la notificacion
             $ejercicios = $_POST["ejercicios"];
+            $usuario = $_POST['usuario'];
             $tabla = new Tabla();
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
-            if($this->tablaMapper->addPersonalizada($tabla,$ejercicios))
+            if($this->tablaMapper->addPersonalizada($tabla,$ejercicios,$usuario))
             {
                $this->view->setFlash("Tabla Añadida Correctamente");
             }else
@@ -73,8 +74,10 @@ public function PersonalizadaADD()
             $this->view->redirect("Tabla", "tablaListar");
         }else
         {
+            $usuarios = $this->tablaMapper->listarDeportistas();
             $ejercicios = $this->tablaMapper->listarEjercicios();
             $this->view->setVariable("ejercicios",$ejercicios);
+            $this->view->setVariable("usuarios", $usuarios);
             $this->view->render("tabla","personalizadaADD");
         }
     }else{
@@ -245,6 +248,37 @@ public function PersonalizadaADD()
         $this->view->render("tabla","tablaASIGNAR");
         }
          }else{
+        $this->view->redirect("main", "index");
+    }
+    }
+
+
+    public function DesasignarTabla(){
+        if($this->permisos->esSuperusuario()){
+            if(isset($_POST['borrar']) && isset($_POST['usuario']) && isset($_POST['idTabla'])){
+                $usuario = $_POST['usuario'];
+                $tabla = $_POST['idTabla'];
+                if($this->tablaMapper->desasignar($usuario, $tabla)){
+                    $this->view->setFlash("Tabla Desasignada Correctamente");
+                }else{
+                $errors["username"] = "La tabla no se ha desasignado corectamente";
+                $this->view->setFlash($errors["username"]); 
+                }
+                $this->view->redirect("Tabla", "tablaListar");
+            }else{
+
+            if(isset($_POST['usuario'])){
+                $tablasUsuario = $this->tablaMapper->listarTablasUsuario($_POST['usuario']);
+                $this->view->setVariable("usuario",$_POST['usuario']);
+                $this->view->setVariable("tablas", $tablasUsuario);
+                $this->view->render("tabla", "tablaDESASIGNAR");
+            }else{
+                $usuarios = $this->tablaMapper->listarDeportistas();
+                $this->view->setVariable("usuarios",$usuarios);
+                $this->view->render("tabla","tablaDESASIGNAR");
+            }
+        }
+        }else{
         $this->view->redirect("main", "index");
     }
     }
