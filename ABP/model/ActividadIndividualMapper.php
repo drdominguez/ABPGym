@@ -18,7 +18,7 @@ Class ActividadIndividualMapper extends ActividadMapper{
 		$this->idActividad = $this->db->lastInsertId();
  		if(parent::esAdministrador()){
 			$stmt = $this->db->prepare("INSERT INTO individual(idActividad) VALUES (?)");
-			$stmt -> execute(array($this->idActividad));
+			$stmt -> execute(array($this->idActividad));	
 			$stmt1 = $this->db->prepare("INSERT INTO horario(dia,hora,fechIni,fechFin) values (?,?,?,?)");
             $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin()));
             $this->idHorario = $this->db->lastInsertId();
