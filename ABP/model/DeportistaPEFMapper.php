@@ -6,17 +6,26 @@ require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/Deportista.php");
 require_once(__DIR__."/DeportistaMapper.php");
 require_once(__DIR__."/DeportistaPEF.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 Class DeportistaPEFMapper extends DeportistaMapper {
+
+    private $permisos;
+
     public function __construct(){
         parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
+        $this->permisos= new Permisos();
     }
 
+    /*addPEF
+    * LLama a la clase padre para que añada un deportista en la tabla deportistas
+    * Añade un deportista a la table PEF
+    * Es necesario ser administrador
+    */
     public function addPEF($pef){
-        parent::add($pef);//llama al add de la clase padre
-        $stmt = $this->db->prepare("INSERT INTO pef(dni,tarjeta,comentarioRevision) VALUES (?,?,?)");
-        if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-            $stmt->execute(array($pef->getDni(),$pef->getTarjeta(),$pef->getComentario()));//
+        if($this->permisos->esAdministrador() && parent::add($pef)){ 
+            $stmt = $this->db->prepare("INSERT INTO pef(dni,tarjeta,comentarioRevision) VALUES (?,?,?)");
+            $stmt->execute(array($pef->getDni(),$pef->getTarjeta(),$pef->getComentario()));
             return true;
         }
         return false;
@@ -77,7 +86,8 @@ Class DeportistaPEFMapper extends DeportistaMapper {
             return NULL;
         }
     }
-public function esAdministrador()
+    
+    public function esAdministrador()
     {
         $stmt= $this->db->prepare("SELECT dniAdministrador FROM administrador WHERE dniAdministrador=?");
         $stmt->execute(array($_SESSION["currentuser"]));

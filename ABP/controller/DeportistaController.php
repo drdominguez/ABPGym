@@ -9,6 +9,7 @@ require_once(__DIR__ . "/../model/DeportistaTDUMapper.php");
 require_once(__DIR__ . "/../model/DeportistaPEFMapper.php");
 require_once(__DIR__."/../model/UsuarioMapper.php");
 require_once(__DIR__."/../model/Usuario.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 
 class DeportistaController extends BaseController
@@ -17,7 +18,7 @@ class DeportistaController extends BaseController
     private $usuarioMapper;
     private $deportistaPEFMapper;
     private $deportistaTDUMapper;
-
+    private $permisos;
 
     public function __construct()
     {
@@ -26,80 +27,55 @@ class DeportistaController extends BaseController
         $this->usuarioMapper = new UsuarioMapper();
         $this->deportistaPEFMapper = new DeportistaPEFMapper();
         $this->deportistaTDUMapper = new DeportistaTDUMapper();
-
+        $this->permisos= new Permisos();
     }
 
+    /*tduADD
+    * Añade a un deportista TDU
+    * Es necesario ser administrador para añadir deportistas
+    * Si no es administrador nisiquiera cargará la vista
+    */
     public function tduADD() {
-       $this->view->render("usuario/deportistas","deportistaADD");
+        if($this->permisos->esAdministrador()){
+            if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"]) && isset($_POST["tarjeta"])){
+                $tdu = new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"), $_POST["tarjeta"]);
+                if($this->deportistaTDUMapper->addTDU($tdu)){
+                    $this->view->setFlash("TDU Añadido Correctamente");
+                }else{
+                    $this->view->setFlash("TDU no se ha podido añadir");
+                }
+            }
+            $this->view->setVariable("usuarioTipo","TDU");
+            $this->view->render("usuario/deportistas","deportistaADD");
+        }
     }
 
+    /*pefADD
+    *Añade a un deportista PEF
+    * Es necesario ser administrador para añadir deportistas
+    * De no ser administrador nisiquiera mortrará la vista
+    */
     public function pefADD(){
-        $this->view->render("usuario/deportistas","deportistaADD");
+        if($this->permisos->esAdministrador()){
+            if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"]) && isset($_POST["tarjeta"]) && isset($_POST["comentarioRevision"])){
+                $pef = new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"),$_POST["tarjeta"], $_POST["comentarioRevision"]);
+            }
+            if($this->deportistaPEFMapper->addPEF($pef)){
+                $this->view->setFlash("PEF Añadido Correctamente");
+            }else{
+                $this->view->setFlash("PEF no se ha podido añadir");
+            }
+            $this->view->setVariable("usuarioTipo","PEF");
+            $this->view->render("usuario/deportistas","deportistaADD");
+        }
     }
 
-   /* public function tduADD() {
-
-        if(isset($_POST['dni']) && isset($_POST['tarjeta'])){
-            $deportista = new DeportistaTDU();
-            $deportista->setDni($_POST["dni"]);
-            $deportista->setTarjeta($_POST["tarjeta"]);
-            if($this->deportistaTDUMapper->addTDU($deportista))
-            {
-               $this->view->setFlash("TDU Añadido Correctamente");
-
-            }else
-            {
-                $errors["username"] = "El TDU no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
-             $this->view->redirect("Deportista", "listarTDU");
-
-        }else{
-
-            $usuarios = $this->usuarioMapper->listar();
-            $this->view->setVariable("usuarios",$usuarios);
-            $this->view->render("usuario/deportistas","tduADD");
-
-        }
-        
-    }*/
-    /*  public function pefADD() {
-
-        if(isset($_POST['dni']) && isset($_POST['tarjeta']) && isset($_POST['comentario'])){
-            $deportista = new DeportistaPEF();
-            $deportista->setDni($_POST["dni"]);
-            $deportista->setTarjeta($_POST["tarjeta"]);
-            $deportista->setComentario($_POST["comentario"]);
-
-            if($this->deportistaPEFMapper->addPEF($deportista))
-            {
-               $this->view->setFlash("PEF Añadido Correctamente");
-
-            }else
-            {
-                $errors["username"] = "El PEF no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
-             $this->view->redirect("Deportista", "listarPEF");
-
-        }else{
-
-            $usuarios = $this->usuarioMapper->listar();
-            $this->view->setVariable("usuarios",$usuarios);
-            $this->view->render("usuario/deportistas","pefADD");
-
-        }
-        
-    }*/
-
-    public function listarTDU()
-    {
+    public function listarTDU(){
         $deportistasTDU = $this->deportistaTDUMapper->listarTDU();
         $this->view->setVariable("deportistasTDU",$deportistasTDU);
         $this->view->render("usuario/deportistas","tduSHOWALL");
     }
-    public function listarPEF()
-    {
+    public function listarPEF(){
         $deportistasPEF = $this->deportistaPEFMapper->listarPEF();
         $this->view->setVariable("deportistasPEF",$deportistasPEF);
         $this->view->render("usuario/deportistas","pefSHOWALL");
@@ -233,8 +209,6 @@ class DeportistaController extends BaseController
             $this->view->redirect("Deportista", "listarPEF");
         }
     }
-
-
 
     /*Notificacion SHOW CURRENT
     *Si se llama con un get carga la vista

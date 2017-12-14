@@ -12,9 +12,7 @@ class DeportistaPEF extends Deportista
     public $tarjeta;
     public $comentarioRevision;
 
-    function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,
-                         $email=NULL, $telefono=NULL, $fechaAlta=NULL, $tarjeta=NULL, $comentarioRevision=NULL)
-    {
+    function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,$email=NULL, $telefono=NULL, $fechaAlta=NULL, $tarjeta=NULL, $comentarioRevision=NULL){
         parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta);//llamada al contructor padre
         $this->dni = $dni;
         $this->tarjeta = $tarjeta;

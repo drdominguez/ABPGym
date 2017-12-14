@@ -247,9 +247,6 @@ function validarLogin(Formu) {
     return (comprobarVacio(Form.nombre)  && comprobarDni(Form.nombre) && comprobarVacio(Form.contraseña))
 }
 
-
-
-
 /*Funcion para encriptar la contraseña*/
 function encriptar() {
     if ((document.getElementById('password').value == null) || (document.getElementById('password').value.length == 0) || /^\s*$/.test(document.getElementById('password').value)) { /*si no hay contraseña no hace nada*/

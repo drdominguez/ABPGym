@@ -3,7 +3,6 @@ require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Usuario.php");
 require_once(__DIR__ . "/../core/permisos.php");
 
-
 class UsuarioMapper {
     protected $db;
      private $permisos;
@@ -58,7 +57,7 @@ class UsuarioMapper {
         return false;
     }
 
-    public function tduADD($usuario){
+    /*public function tduADD($usuario){
         if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
             $stmt= $this->db->prepare("INSERT INTO deportista VALUES(?)");
             $stmt->execute(array($usuario->getDni()));
@@ -78,14 +77,14 @@ class UsuarioMapper {
             return true;
         }
         return false;
-    }
+    }*/
 
     /*usuarioADD
     *@usuario el usuario a añadir
     *Añade en la tabla de usuarios un nuevo usuario
     *En caso de que se añada devuelve un true
     */
-    private function usuarioADD($usuario)
+    public function usuarioADD($usuario)
     {
         if($this->permisos->esAdministrador() && !empty($usuario->getDni())){
             $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");

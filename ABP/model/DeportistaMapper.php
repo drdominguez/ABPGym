@@ -4,21 +4,31 @@ require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/UsuarioMapper.php");
 require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/Deportista.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 Class DeportistaMapper extends UsuarioMapper{
+
+    private $permisos;
+
     public function __construct(){
         parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
+        $this->permisos= new Permisos();
     }
 
+    /*ADD
+    * Llama a la clase padre para añadir el usuario en la tabla usuarios
+    * Añade a un deportista en la tabla deportistas
+    * Es necesario der administrador para añadir deportistas
+    */
     public function ADD($usuario){
-        parent::add($usuario);//llama al add de la clase padre
-        $stmt = $this->db->prepare("INSERT INTO deportista(dni) VALUES (?)");
-        if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-            $stmt->execute(array($usuario->dni));//
+        if($this->permisos->esAdministrador() && parent::usuarioADD($usuario)){
+            $stmt = $this->db->prepare("INSERT INTO deportista(dni) VALUES (?)");
+            $stmt->execute(array($usuario->getDni()));//
             return true;
         }
         return false;
     }
+
     public function EDIT($deportista){
         parent::edit($deportista);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
         $stmt=$this->db-> prepare("UPDATE deportista SET dni=? WHERE dni=?");
@@ -28,6 +38,7 @@ Class DeportistaMapper extends UsuarioMapper{
         }
         return false;
     }
+
     function DELETE($dni)
     {
         if($this->esAdministrador())

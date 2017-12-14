@@ -5,7 +5,10 @@
     }
 ?>
 <!DOCTYPE html>
-<html>    
+<html>
+<header>
+    <script src="./view/js/añadirDeportista.js"></script>
+</header>  
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -15,7 +18,7 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Añadir ".$view->getVariable("usuarioTipo"))?>
+              <label class="fa fa-table" id="anadirlabel"><?= i18n(" Añadir PEF") ?>: </label>
             </div>
             <div class="card-body">
             <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8"  method="POST" action="<?php 
@@ -68,22 +71,25 @@
                         </div>
                       </div>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <div class="form-row">
                           <div class="col-md-6">
-                             <select>
-                              <option value="">TDU "Tarjeta Deportista Universitaria"</option>
-                              <option value="">PEF "Ponte en Forma"</option>
+                       <label for="Deportista"><?= i18n("Deportista") ?>: </label>
+                              <select class="form-control" onChange="mostrar(this.value)">
+                              <option value="pef">PEF "Ponte en Forma"</option>
+                              <option value="tdu">TDU "Tarjeta Deportista Universitaria"</option>
                             </select>
-                          </div>
+                        </div>
+                        <div class="col-md-6">
+                        <label for="tarjeta"><?= i18n("Tarjeta")?>: </label>
+                            <input class="form-control" type = 'text' name = 'tarjeta' size = '20' required="true" value = ''  onchange="comprobarVacio(this)">
+                        </div>
                       </div>
-                  </div>
-                    <div>
-                        'Campos propios'
                     </div>
-                    <br>
-                    <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuarioADD'" class="btn btn-default"><?= i18n("Volver") ?></button> 
-                     <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Añadir</button>
+                     <label id="comentarioLabel" for="comentarioRevision"><?= i18n("Comentario Revisión")?>: </label>
+                    <textarea class="form-control" id="textarea" rows="4"  type="text" name="comentarioRevision" placeholder=""></textarea><br>
+                  <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuarioADD'" class="btn btn-default"><?= i18n("Volver") ?></button> 
+                  <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Añadir</button>
                 </form>
             </div>
         </div>

@@ -6,21 +6,26 @@ require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/Deportista.php");
 require_once(__DIR__."/DeportistaMapper.php");
 require_once(__DIR__."/DeportistaTDU.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 Class DeportistaTDUMapper extends DeportistaMapper {
+
+    private $permisos;
+
     public function __construct(){
         parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
+        $this->permisos= new Permisos();
     }
 
     public function addTDU($tdu){
-        parent::add($tdu);//llama al add de la clase padre
-        $stmt = $this->db->prepare("INSERT INTO tdu(dni,tarjeta) VALUES (?,?)");
-        if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
+        if($this->permisos->esAdministrador() && parent::add($tdu)){ 
+            $stmt = $this->db->prepare("INSERT INTO tdu(dni,tarjeta) VALUES (?,?)");
             $stmt->execute(array($tdu->getDni(),$tdu->getTarjeta()));//
             return true;
         }
         return false;
     }
+
     public function editTDU($usuario)
     {
         $stmt = $this->db->prepare("SELECT * FROM tdu WHERE dni =?");
@@ -76,7 +81,6 @@ Class DeportistaTDUMapper extends DeportistaMapper {
             return NULL;
         }
     }
-
 
     public function esAdministrador()
     {

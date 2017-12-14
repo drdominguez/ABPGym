@@ -31,13 +31,6 @@ class UsuarioController extends BaseController
     	}
     }
 
-    public function deportistaADD(){
-    	if($this->permisos->esAdministrador()){
-
-
-    	}
-    }
-
     /*administradorADD
     *Permite añadir a un nuevo administrador a la bbdd
     *Es necesario ser administrador.
@@ -47,12 +40,11 @@ class UsuarioController extends BaseController
     public function administradorADD(){
     	if($this->permisos->esAdministrador()){
     		if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"])){
-    			var_dump("existen variables");
     			$usuario = new Usuario($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"));
     			if($this->usuarioMapper->administradorADD($usuario)){
     				$this->view->setFlash("Usuario Añadido Correctamente");
     			}else{
-    				$errors["username"] = "Administrador añadido corectamente";
+    				$errors["username"] = "Administrador No se ha añadido";
 		            $this->view->setFlash($errors["username"]);
     			}
     		}

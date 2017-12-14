@@ -20,7 +20,7 @@
                                         </a>
                                 </div>
                                 <div class="col-md-4">
-                                        <a href="index.php?controller=usuario&amp;action=tduADD"><img src="./view/pictures/usuarios/Deportista.png" target="blank">
+                                        <a href="index.php?controller=deportista&amp;action=tduADD"><img src="./view/pictures/usuarios/Deportista.png" target="blank">
                                         </a>
                                 </div>
                             </div>
