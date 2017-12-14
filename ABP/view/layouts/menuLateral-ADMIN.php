@@ -86,6 +86,9 @@
                                     </li>
                                 </ul>
                             </li>
+                             <li>
+                                <a href="./index.php?controller=Tabla&amp;action=DesasignarTabla"><?= i18n("Desasignar Tabla") ?></a>
+                            </li>
                             <li>
                                 <a href="./index.php?controller=Tabla&amp;action=TablaListar"><?= i18n("Ver Tablas") ?></a>
                             </li>

@@ -19,12 +19,12 @@ Class TablaMapper
     
 
 
-    public function add($tabla,$ejercicios)
+    public function addEstandar($tabla,$ejercicios)
     {
         $stmt = $this->db->prepare("INSERT INTO tabla(tipo,comentario,nombre,dniSuperUsuario) VALUES (?,?,?,?)");
         if($this->permisos->esSuperusuario())
         {
-            $stmt->execute(array($tabla->getTipo(),$tabla->getComentario(),$tabla->getNombre(),$_SESSION['currentuser']));
+            $stmt->execute(array('estandar',$tabla->getComentario(),$tabla->getNombre(),$_SESSION['currentuser']));
             $this->idTabla= $this->db->lastInsertId();
             foreach ($ejercicios as $ejercicio)
             {
@@ -37,6 +37,28 @@ Class TablaMapper
             return false;
         }
     }
+
+  public function addPersonalizada($tabla,$ejercicios,$usuario)
+    {
+        $stmt = $this->db->prepare("INSERT INTO tabla(tipo,comentario,nombre,dniSuperUsuario) VALUES (?,?,?,?)");
+        if($this->permisos->esSuperusuario())
+        {
+            $stmt->execute(array('personalizada',$tabla->getComentario(),$tabla->getNombre(),$_SESSION['currentuser']));
+            $this->idTabla= $this->db->lastInsertId();
+            foreach ($ejercicios as $ejercicio)
+            {
+                $stmt = $this->db->prepare("INSERT INTO tabla_ejercicios(idTabla,idEjercicio) VALUES (?,?)");
+                $stmt->execute(array($this->idTabla,$ejercicio));
+            }
+            $stmt = $this->db->prepare("INSERT INTO superusuario_tabla_deportista (dniSuperUsuario,dniDeportista,idTabla) VALUES (?,?,?)");
+            $stmt->execute(array($_SESSION['currentuser'],$usuario,$this->idTabla));
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+
 
     public function edit($tabla,$ejercicios,$idTabla)
         {
@@ -75,9 +97,7 @@ Class TablaMapper
         if($this->permisos->esSuperusuario())
         {
 
-            if($this->permisos->esDeportista2($usuario)){
-                        $stmt = $this->db->prepare("DELETE FROM superusuario_tabla_deportista WHERE dniDeportista=?");
-        $stmt->execute(array($usuario));    
+            if($this->permisos->esDeportista2($usuario)){    
         $stmt = $this->db->prepare("INSERT INTO superusuario_tabla_deportista (dniSuperUsuario,dniDeportista,idTabla) VALUES (?,?,?)");
         $stmt->execute(array($_SESSION['currentuser'],$usuario,$idTabla));
         return true;
@@ -115,6 +135,18 @@ Class TablaMapper
     }
 
 
+    public function listarTablasUsuario($usuario){
+        $stmt = $this->db->prepare("SELECT * from tabla t, superusuario_tabla_deportista st WHERE t.idTabla=st.idTabla AND dniDeportista=?");
+                $stmt->execute(array($usuario));
+                $tablas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $tablas = array();
+            foreach ($tablas_db as $tabla) 
+            {
+                array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
+            }
+            return $tablas;
+        
+    }
     public function listarDeportistas()
     {
         $stmt = $this->db->query("SELECT * from deportista d, usuario u WHERE d.dni=u.dni");

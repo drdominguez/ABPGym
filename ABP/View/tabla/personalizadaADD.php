@@ -1,6 +1,7 @@
 <?php
     $view=ViewManager::getInstance();
     $ejercicios = $view->getVariable("ejercicios");
+    $usuarios = $view->getVariable("usuarios");
     $currentuser = $view->getVariable("currentusername");
 ?>
 
@@ -36,6 +37,56 @@
                                 <label for="exampleInputTiempo">Descripción</label>
                                 <textarea class="form-control" name="comentario" rows="10"></textarea>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                                                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los usuarios") ?>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                                <thead>
+                                    <tr>
+                                    <th><?= i18n("DNI") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Apellidos") ?></th>
+                                <th>Detalle</th>
+                                <th>Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                     <tr>
+                                      <th><?= i18n("DNI") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Apellidos") ?></th>
+                                <th>Detalle</th>
+                                <th>Seleccionar</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+<?php
+                                foreach($usuarios as $usuario)
+                                {
+?>
+                                    <tr>
+                                        <td><?php echo $usuario->getDni(); ?></td>
+                                        <td><?php echo $usuario->getNombre(); ?></td>
+                                        <td><?php echo $usuario->getApellidos(); ?></td>
+                                        <td>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <input type="radio" name="usuario" value="<?php echo $usuario->getDni();?>">Seleccionar<br>
+                                        </td>
+                                    </tr>
+<?php
+                                }   
+?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
