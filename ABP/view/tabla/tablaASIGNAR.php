@@ -7,6 +7,13 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $view->setVariable("title", "Asignar Tabla a Deportista");
 ?>
 
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>
+
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -52,8 +59,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <td><?php echo $usuario->getNombre(); ?></td>
                                     <td><?php echo $usuario->getApellidos(); ?></td>
                                     <td>
-                                        <a href=''><img src='./view/Icons/detalle.png'>
-                                        </a>
+                                        <a href=''><span id="icon-ver" class="icon-eye-plus"></span>
                                     </td>
                                      <td>
                                       <input type="radio" name="usuario" value="<?php echo $usuario->getDni(); ?>">

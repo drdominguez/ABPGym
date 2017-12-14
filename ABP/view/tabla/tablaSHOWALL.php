@@ -7,7 +7,12 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $currentuser = $view->getVariable("currentusername");
     $view->setVariable("title", "Tablas");
 ?>
-
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -64,27 +69,25 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <?php if($tipoUsuario != 'deportista'){?>
                                     <td>
                                         
-                                        <a href='./index.php?controller=Tabla&amp;action=TablaEDIT&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/edit.png'>
-                                        </a>
+                                        <a href='./index.php?controller=Tabla&amp;action=TablaEDIT&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><span id="icon-editar" class="icon-pencil22"></span>
                                          
 
                                     </td>
                                     <td>
 
-                                        <a href='./index.php?controller=Tabla&amp;action=TablaDelete&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/delete.png'>
+                                        <a href='./index.php?controller=Tabla&amp;action=TablaDelete&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><span id="icon-eliminar" class=" icon-bin"></span>
                                         </a>
                                          
                                     </td>
                                     <?php } ?>
                                     <td>
-                                        <a href='./index.php?controller=Tabla&amp;action=TablaView&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/detalle.png'>
+                                        <a href='./index.php?controller=Tabla&amp;action=TablaView&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                         </a>
                                     </td>
                                     <?php if($tipoUsuario != 'deportista'){?>
                                     <td>
                                         <?php if($tabla->getTipo()=='estandar'){?>
-                                        <a href='./index.php?controller=Tabla&amp;action=TablaAsignar&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/add.png'>
-                                        </a>
+                                        <a href='./index.php?controller=Tabla&amp;action=TablaAsignar&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><span id="icon-ver" class="icon-address-book"></span>
                                          <?php } ?>
                                     </td>
                                     <?php } ?>

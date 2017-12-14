@@ -4,6 +4,12 @@ $listaCardio = $view->getVariable("cardios");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Estiramientos");
 ?>
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>
 <div class="content-wrapper">
             <div class="container-fluid">
                  <!-- Breadcrumbs-->
@@ -54,14 +60,14 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $cardio["unidad"]; ?></td>
                                             <td><?php echo $cardio["distancia"]; ?></td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=cardioVer&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><img src='./view/Icons/detalle.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=cardioVer&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                                 </a>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=cardioEdit&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><img src='./view/Icons/edit.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=cardioEdit&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><span id="icon-editar" class="icon-pencil22"></span>
                                                 </a>
                                             </td>
                                             <td>
-                                                 <a href='./index.php?controller=Ejercicio&amp;action=cardioRemove&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><img src='./view/Icons/delete.png'>
+                                                 <a href='./index.php?controller=Ejercicio&amp;action=cardioRemove&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><span id="icon-eliminar" class=" icon-bin"></span>
                                                 </a>
                                             </td>
                                         </tr>

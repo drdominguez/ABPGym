@@ -4,6 +4,12 @@ $listaEstiramientos = $view->getVariable("estiramientos");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Estiramientos");
 ?>
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>
 <div class="content-wrapper">
             <div class="container-fluid">
                  <!-- Breadcrumbs-->
@@ -51,15 +57,15 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $estiramiento["tiempo"]; ?></td>
                                             <td><?php echo $estiramiento["unidad"]; ?></td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=estiramientoVer&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><img src='./view/Icons/detalle.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=estiramientoVer&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=estiramientoEdit&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><img src='./view/Icons/edit.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=estiramientoEdit&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><span id="icon-editar" class="icon-pencil22"></span>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=estiramientoRemove&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><img src='./view/Icons/delete.png'>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=estiramientoRemove&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><span id="icon-eliminar" class=" icon-bin"></span>
                                                 </a>
                                             </td>
                                         </tr>
