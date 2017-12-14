@@ -16,9 +16,9 @@ class ActividadMapper{
     
     //Añadir
     function add($actividad){ 
-        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,horario) values (?,?,?,?)");
+        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,plazas) values (?,?,?,?)");
         if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getHorario()));
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas()));
             return true;
         }
         return false;
