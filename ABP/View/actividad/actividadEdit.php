@@ -55,6 +55,30 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 </div>
                                 
                             </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputNombre">Dia</label>
+                                    <input class="form-control" name="dia" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Dia" onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputPrecio">Hora</label>
+                                        <input class="form-control" name="hora" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Hora" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputNombre">FechaInicio</label>
+                                    <input class="form-control" name="fechainicio" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="fechainicio" onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="exampleInputPrecio">FechaFin</label>
+                                        <input class="form-control" name="fechafin" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="fechafin" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>   

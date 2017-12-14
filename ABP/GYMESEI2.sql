@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-12-2017 a las 11:11:01
+-- Tiempo de generación: 14-12-2017 a las 21:44:28
 -- Versión del servidor: 5.7.20
 -- Versión de PHP: 7.1.7
 
@@ -37,19 +37,20 @@ CREATE TABLE `actividad` (
   `idActividad` bigint(20) NOT NULL,
   `precio` double DEFAULT NULL,
   `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
-  `idInstalaciones` int(3) NOT NULL
+  `idInstalaciones` int(3) NOT NULL,
+  `plazas` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `actividad`
 --
 
-INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`) VALUES
-(3, 40, 'Gymnasio del Carmen', 1),
-(4, 35, 'Gymnasio Trabazos', 2),
-(5, 20, 'Fútbol', 3),
-(6, 15, 'Baloncesto', 4),
-(7, 42, 'Karate', 5);
+INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `plazas`) VALUES
+(3, 40, 'Gymnasio del Carmen', 1, 0),
+(4, 35, 'Gymnasio Trabazos', 2, 0),
+(5, 20, 'Fútbol', 3, 0),
+(6, 15, 'Baloncesto', 4, 0),
+(7, 42, 'Karate', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -214,18 +215,17 @@ INSERT INTO `estiramiento` (`idEjercicio`, `tiempo`, `unidad`) VALUES
 --
 
 CREATE TABLE `grupo` (
-  `idActividad` bigint(20) NOT NULL,
-  `plazas` tinyint(4) DEFAULT NULL
+  `idActividad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`idActividad`,`plazas`) VALUES
-(5, 12),
-(6, 9),
-(7, 30);
+INSERT INTO `grupo` (`idActividad`) VALUES
+(5),
+(6),
+(7);
 
 -- --------------------------------------------------------
 
@@ -235,9 +235,10 @@ INSERT INTO `grupo` (`idActividad`,`plazas`) VALUES
 
 CREATE TABLE `horario` (
   `idHorario` bigint(20) NOT NULL,
-  `localizacion` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
   `dia` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
-  `hora` varchar(25) COLLATE utf8_spanish_ci NOT NULL
+  `hora` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `fechIni` date DEFAULT NULL,
+  `fechFin` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -350,15 +351,21 @@ CREATE TABLE `pef` (
 
 CREATE TABLE `recursos` (
   `idRecurso` int(3) NOT NULL,
-  `nombreRecurso` varchar(20) NOT NULL
+  `nombreRecurso` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `observaciones` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-INSERT INTO `recursos` (`idRecurso`,`nombreRecurso`) VALUES
-(1,'Pista Tenis'),
-(2,'Gimnasio'),
-(3,'Pabellón'),
-(4,'Campo Exterior'),
-(5,'Campo Interior');
+--
+-- Volcado de datos para la tabla `recursos`
+--
+
+INSERT INTO `recursos` (`idRecurso`, `nombreRecurso`, `observaciones`) VALUES
+(1, 'Pista Tenis', ''),
+(2, 'Gimnasio', ''),
+(3, 'Pabellón', ''),
+(4, 'Campo Exterior', ''),
+(5, 'Campo Interior', '');
+
 -- --------------------------------------------------------
 
 --
@@ -798,19 +805,19 @@ ALTER TABLE `ejercicio`
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `idPago` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idPago` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `recursos`
 --
 ALTER TABLE `recursos`
-  MODIFY `idRecurso` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idRecurso` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `superusuario_ejercicio`
@@ -833,6 +840,7 @@ ALTER TABLE `tabla`
 --
 ALTER TABLE `actividad`
   ADD CONSTRAINT `fk_ActividadRecurso` FOREIGN KEY (`idInstalaciones`) REFERENCES `recursos` (`idRecurso`) ON DELETE CASCADE;
+
 --
 -- Filtros para la tabla `actividad_deportista`
 --

@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Actividad.php");
+require_once(__DIR__."/Horario.php");
 require_once(__DIR__."/Recurso.php");
 require_once(__DIR__."/ActividadGrupo.php");
 
@@ -15,9 +16,9 @@ class ActividadMapper{
     
     //Añadir
     function add($actividad){ 
-        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones) values (?,?,?)");
+        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,horario) values (?,?,?,?)");
         if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones()));
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getHorario()));
             return true;
         }
         return false;
@@ -32,28 +33,19 @@ class ActividadMapper{
         }
         return false;
     }
-    function editGrupo($actividad,$idActividad){
+    function edit($actividad,$idActividad){
        
         if(self::esAdministrador()){
-            $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=? WHERE idActividad=? ");
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$idActividad),$actividad->getIdInstalaciones());
-            $stmt1 -> execute(array($actividad->getPlazas(),$idActividad));
+            $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
+            
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$idActividad));
+            $stmt1 = $this->db->prepare("UPDATE horario SET dia=?, hora=?, fechIni=?, fechFin=? WHERE idHorario=? ");
+            $stmt1 -> execute(array($horario->getDia(),$horario->getHora(),$horario->getFechIni(),$horario->getFechFin(),$idHorario));
             return true;
         }
         return false;
     }
 
-    //Funcion editar
-    function edit($actividad,$idActividad){
-        
-        $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=? WHERE idActividad=? ");
-        if(self::esAdministrador()){
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$idActividad));
-            return true;            
-        } 
-                    
-        return false;
-    }
     public function listar(){
 
             $stmt = $this->db->query("SELECT * from actividad");
@@ -61,7 +53,7 @@ class ActividadMapper{
             $actividades = array();
 
             foreach ($actividades_db as $actividad) {
-                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['idInstalaciones']));
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['idInstalaciones'],$actividad['horario']));
             
             }
         return $actividades;
@@ -89,7 +81,7 @@ class ActividadMapper{
         return null;
         }
     }
-    public function findById($idActividad)
+/*    public function findById($idActividad)
     {
         $stmt = $this->db->prepare("SELECT * FROM actividad WHERE idActividad =?");
         $stmt->execute(array($idActividad));
@@ -103,7 +95,7 @@ class ActividadMapper{
             if($stmt2!=null)
             {
                 $actividad2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad2["plazas"]);
+                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"]);
                 }else 
                 {
 
@@ -111,12 +103,12 @@ class ActividadMapper{
                 $stmt3->execute(array($idActividad));
                 if($stmt3!=null){
                     $actividad3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones']);
+                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"]);
                 }
             }
         }
         return NULL;
-    }
+    }*/
     public function esGrupo($idActividad){
         $stmt= $this->db->prepare("SELECT A.idActividad FROM actividad A, grupo G WHERE A.idActividad=? AND G.idActividad = A.idActividad");
         

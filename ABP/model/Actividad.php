@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__."/Horario.php");
 class Actividad
 {
         //Definimos las variables

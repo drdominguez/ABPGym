@@ -25,10 +25,10 @@ class Horario
     public function getHora() {
         return $this->hora;
     }
-    public function getFechIni() {
+    public function getFechaInicio() {
         return $this->fetchIni;
     }
-    public function getFechFin() {
+    public function getFechaFin() {
         return $this->fechFin;
     }
     public function setIdHorario($idHorario) {
@@ -40,10 +40,10 @@ class Horario
     public function setHora($hora) {
         $this->hora = $hora;
     }
-    public function setFechIni($fechIni) {
+    public function setFechaInicio($fechIni) {
         $this->fechIni = $fechIni;
     }
-    public function setFechFin($fechFin) {
+    public function setFechaFin($fechFin) {
         $this->fechFin = $fechFin;
     }
 

@@ -3,6 +3,7 @@
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/Actividad.php");
+require_once(__DIR__ . "/../model/Horario.php");
 require_once(__DIR__ . "/../model/ActividadIndividual.php");
 require_once(__DIR__ . "/../model/ActividadGrupo.php");
 require_once(__DIR__ . "/../model/ActividadMapper.php");
@@ -140,10 +141,17 @@ class ActividadController extends BaseController{
     
 
         if(isset($_POST["precio"]) && isset($_POST["nombre"])){//si existen los post añado la actividad
+            $horario = new Horario();
             $individual = new ActividadIndividual();
+            $horario->setDia($_POST["dia"]);
+            $horario->setHora($_POST["hora"]);
+            $horario->setFechaInicio($_POST["fechIni"]);
+            $horario->setFechaFin($_POST["fechFin"]);
             $individual->setNombre($_POST["nombre"]);
             $individual->setPrecio($_POST["precio"]);
-            $actividad->setIdUnstalaciones($_POST["idInstalaciones"]);  
+            $individual->setIdInstalaciones($_POST["idInstalaciones"]);
+            $individual->setPlazas($_POST["plazas"]); 
+            $individual->setHorario($horario); 
             if($this->individualMapper->addIndividual($individual)){
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 

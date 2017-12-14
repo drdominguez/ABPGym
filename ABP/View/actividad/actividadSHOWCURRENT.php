@@ -25,9 +25,12 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 <b><?= i18n("nombre") ?>:</b> <?php echo $actividad->getNombre(); ?><br>
                 <b><?= i18n("precio") ?>:</b> <?php echo $actividad->getPrecio(); ?><br>                
                 <b><?= i18n("instalaciones") ?>:</b> <?php echo $recurso->getNombreRecurso(); ?><br>
-<?php if($actividad->getPlazas()!=null){?>
                 <b><?= i18n("plazas") ?>: </b> <?php echo $actividad->getPlazas(); ?><br> 
-<?php }?> 
+                <b><?= i18n("dia") ?>:</b> <?php echo $horario->getDia(); ?><br>
+                <b><?= i18n("hora") ?>:</b> <?php echo $horario->getHora(); ?><br>                
+                <b><?= i18n("fechaInicio") ?>:</b> <?php echo $horario->getFechaInicio(); ?><br>
+                <b><?= i18n("fechaFin") ?>: </b> <?php echo $horario->getFechaFin(); ?><br>                 
+
                 <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=ActividadListar'" class="btn btn-primary">Volver</button> 
             </div>
         </div>
