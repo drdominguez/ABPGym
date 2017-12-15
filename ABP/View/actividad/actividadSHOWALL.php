@@ -50,15 +50,15 @@ $view->setVariable("title", "Actividades");
                         <td><?php echo $actividad->getNombre(); ?></td>
                         <td><?php echo $actividad->getPrecio(); ?></td> 
                         <td>
-                        <a href='./index.php?controller=Actividad&amp;action=actividadEDIT&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/edit.png'>
+                        <a href='./index.php?controller=Actividad&amp;action=actividadEDIT&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><span id="icon-editar" class="icon-pencil22"></span>
                             </a>
                         </td>
                         <td>
-                         <a href='./index.php?controller=Actividad&amp;action=actividadDELETE&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/delete.png'>
+                         <a href='./index.php?controller=Actividad&amp;action=actividadDELETE&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><span id="icon-eliminar" class=" icon-bin"></span>
                             </a>
                         </td>
                         <td>
-                        <a href='./index.php?controller=Actividad&amp;action=actividadView&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><img src='./view/Icons/detalle.png'>
+                        <a href='./index.php?controller=Actividad&amp;action=actividadView&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                         </a>
                         </td>
 

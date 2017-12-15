@@ -53,13 +53,13 @@ $view->setVariable("title", "Pagos");
                                 <td><?php echo $pago->getImporte(); ?></td>
                                 <?php if($tipoUsuario != 'deportista'){?>
                                 <td>
-                                    <a href='./index.php?controller=Pago&amp;action=PagoDELETE&amp;idPago=<?php echo $pago->getIdPago();?>'><img src='./view/Icons/delete.png'>
+                                    <a href='./index.php?controller=Pago&amp;action=PagoDELETE&amp;idPago=<?php echo $pago->getIdPago();?>'><span id="icon-eliminar" class=" icon-bin"></span>
                                     </a>
                                     
                                 </td>
                                 <?php } ?>
                                 <td>
-                                    <a href='./index.php?controller=Pago&amp;action=PagoView&amp;idPago=<?php echo $pago->getIdPago();?>'><img src='./view/Icons/detalle.png'>
+                                    <a href='./index.php?controller=Pago&amp;action=PagoView&amp;idPago=<?php echo $pago->getIdPago();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                     </a>
                                 </td>
                             </tr>

@@ -46,11 +46,11 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <td><?php echo $tabla->getTipo(); ?></td>
                                     <td><?php echo $tabla->getComentario(); ?></td>
                                     <td>
-                                        <a href='./index.php?controller=SesionEntrenamiento&amp;action=TablaView&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/detalle.png'>
+                                        <a href='./index.php?controller=SesionEntrenamiento&amp;action=TablaView&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                         </a>
                                     </td>
                                     <td>
-                                        <a href='./index.php?controller=SesionEntrenamiento&amp;action=realizarTabla&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><img src='./view/Icons/play.png'>
+                                        <a href='./index.php?controller=SesionEntrenamiento&amp;action=realizarTabla&amp;idTabla=<?php echo $tabla->getIdTabla();?>'><span id="icon-ver" class="icon-play22"></span>
                                         </a>
                                     </td>
                                 </tr>

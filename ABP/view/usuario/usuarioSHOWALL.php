@@ -6,7 +6,12 @@
     $currentuser = $view->getVariable("currentusername");
     $view->setVariable("title", "Usuarios");
 ?>
-
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -49,17 +54,17 @@
                                 <td><?php echo $usuario->getNombre(); ?></td>
                                 <td><?php echo $usuario->getApellidos(); ?></td>
                                 <td>
-                                      <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/edit.png'>
+                                      <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
                                     </a>
                                 </td>
                                   <td>
                                     <?php if($usuario->getDni() != $_SESSION['currentuser']){?>
-                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioDELETE&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/delete.png'>
+                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioDELETE&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-eliminar" class=" icon-bin"></span>
                                     </a>
                                     <?php } ?>
                                 </td>
                                   <td>
-                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                     </a>
                                 </td>
                             </tr>

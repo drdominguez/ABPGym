@@ -47,15 +47,15 @@ $view->setVariable("title", "Recursos");
                     <tr>
                         <td><?php echo $recurso->getNombreRecurso(); ?></td>
                         <td>
-                        <a href='./index.php?controller=Recurso&amp;action=recursoEDIT&amp;idRecurso=<?php echo $recurso->getIdRecurso();?>'><img src='./view/Icons/edit.png'>
+                        <a href='./index.php?controller=Recurso&amp;action=recursoEDIT&amp;idRecurso=<?php echo $recurso->getIdRecurso();?>'><span id="icon-editar" class="icon-pencil22"></span>
                             </a>
                         </td>
                         <td>
-                         <a href='./index.php?controller=Recurso&amp;action=recursoDELETE&amp;idRecurso=<?php echo $recurso->getIdRecurso();?>'><img src='./view/Icons/delete.png'>
+                         <a href='./index.php?controller=Recurso&amp;action=recursoDELETE&amp;idRecurso=<?php echo $recurso->getIdRecurso();?>'><span id="icon-eliminar" class=" icon-bin"></span>
                             </a>
                         </td>
                         <td>
-                        <a href='./index.php?controller=Recurso&amp;action=recursoView&amp;idRecurso=<?php echo $recurso->getIdRecurso();?>'><img src='./view/Icons/detalle.png'>
+                        <a href='./index.php?controller=Recurso&amp;action=recursoView&amp;idRecurso=<?php echo $recurso->getIdRecurso();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                         </a>
                         </td>
 

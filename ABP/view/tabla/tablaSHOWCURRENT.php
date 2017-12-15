@@ -63,7 +63,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <td><?php echo $ejercicio->getVideo(); ?></td>
                                 <td><?php echo $ejercicio->getImagen(); ?></td>
                                 <td>
-                                    <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $ejercicio->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                    <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $ejercicio->getIdEjercicio();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                     </a>
                                 </td>
                             </tr>
