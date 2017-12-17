@@ -32,6 +32,7 @@ class TablaController extends BaseController
             $tabla = new Tabla();
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
+            //Añadir los atributos dependiendo del tipo de ejercicio (cardio, muscular o entrenamiento)
             if($this->tablaMapper->addEstandar($tabla,$ejercicios))
             {
                $this->view->setFlash("Tabla Añadida Correctamente");
@@ -63,6 +64,8 @@ public function PersonalizadaADD()
             $tabla = new Tabla();
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
+            //Añadir los atributos dependiendo del tipo de ejercicio (cardio, muscular o entrenamiento)
+
             if($this->tablaMapper->addPersonalizada($tabla,$ejercicios,$usuario))
             {
                $this->view->setFlash("Tabla Añadida Correctamente");
