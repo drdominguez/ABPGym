@@ -257,7 +257,8 @@ public function PersonalizadaADD()
         if($this->permisos->esSuperusuario()){
             if(isset($_POST['borrar']) && isset($_POST['usuario']) && isset($_POST['idTabla'])){
                 $usuario = $_POST['usuario'];
-                $tabla = $_POST['idTabla'];
+                $idTabla = $_POST['idTabla'];
+                $tabla = $this->tablaMapper->findTablaById($idTabla);
                 if($this->tablaMapper->desasignar($usuario, $tabla)){
                     $this->view->setFlash("Tabla Desasignada Correctamente");
                 }else{

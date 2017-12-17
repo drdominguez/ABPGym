@@ -162,7 +162,7 @@
                 'Gestión de tablas' => 'Xestión de Tablas',
                 'Gestión de tabla_ejercicios' => 'Xestión de tabla_ejercicios',
                 'Gestión de tdu' => 'Xestión de tdu',
-                'Gestión de usuario' => 'Xestión de Usuarios',
+                'Gestión de Usuarios' => 'Xestión de Usuarios',
                 'Añadir Usuario' => 'Engadir Usuario',
                 'Añadir tabla' => 'Engadir Tabla',
                 'Añadir ejercicio' => 'Engadir Ejercicio',

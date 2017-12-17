@@ -7,9 +7,8 @@
 	</a>
 	<a href="index.php?controller=language&amp;action=change&amp;lang=en">
 		<img  src="./view/Icons/ingles.png" width="27" height="28">
-	</a><?php /*
+	</a> 
 	<a href="index.php?controller=language&amp;action=change&amp;lang=gal">
 		<img  src="./view/Icons/gallego.png">
 	</a>
-	*/?>
 </ul>

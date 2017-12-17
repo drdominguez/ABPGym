@@ -109,6 +109,28 @@ Class TablaMapper
 }
     }
 
+    public function desasignar($usuario,$tabla){
+        if($this->permisos->esSuperusuario()){
+            if($this->permisos->esDeportista2($usuario)){
+                if($tabla->getTipo()=='estandar'){
+                    $stmt = $this->db->prepare("DELETE FROM superusuario_tabla_deportista WHERE idTabla=? AND dniDeportista=?");
+                    $stmt->execute(array($tabla->getIdTabla(), $usuario));
+                    return true;
+                }else{
+                    $stmt= $this->db->prepare("DELETE FROM tabla WHERE idTabla=?");
+                    $stmt->execute(array($tabla->getIdTabla()));
+                    return true;
+                }
+                
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+
+    }
+
     public function listar()
     {
         if($this->permisos->esSuperusuario()){

@@ -75,7 +75,6 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-default">Volver</button> 
                     <button  type='submit' name='action' value='DesasignarTabla' class="btn btn-primary"><?= i18n("Continuar") ?></button>
                     <?php }else{?>
 
@@ -132,7 +131,7 @@
         </div>      
                     <input type="hidden" name="borrar" value="ok">
                     <input type="hidden" name="usuario" value="<?php echo $usuario; ?>">
-                    <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-default">Volver</button> 
+                    <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=DesasignarTabla'" class="btn btn-default">Volver</button> 
                     <button  type='submit' name='action' value='DesasignarTabla' class="btn btn-primary"><?= i18n("Borrar") ?></button>
                     <?php } ?>
                 </form>
