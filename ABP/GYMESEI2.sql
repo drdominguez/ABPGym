@@ -46,11 +46,11 @@ CREATE TABLE `actividad` (
 --
 
 INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `plazas`) VALUES
-(3, 40, 'Gymnasio del Carmen', 1, 0),
-(4, 35, 'Gymnasio Trabazos', 2, 0),
-(5, 20, 'Fútbol', 3, 0),
-(6, 15, 'Baloncesto', 4, 0),
-(7, 42, 'Karate', 5, 0);
+(3, 40, 'Gymnasio del Carmen', 1, 12),
+(4, 35, 'Gymnasio Trabazos', 2, 14),
+(5, 20, 'Fútbol', 3, 22),
+(6, 15, 'Baloncesto', 4, 15),
+(7, 42, 'Karate', 5, 10);
 
 -- --------------------------------------------------------
 
