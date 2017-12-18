@@ -27,7 +27,7 @@ Class ActividadGrupoMapper extends ActividadMapper{
 		}
 		return false;
 	}
-	function editGrupo($actividad,$idActividad){
+	/*function editGrupo($actividad,$idActividad){
         	return parent::edit($actividad,$idActividad);
         	if(parent::esAdministrador()){
             	$stmt = $this->db->prepare("UPDATE grupo SET plazas=? WHERE idActividad=?");
@@ -35,7 +35,7 @@ Class ActividadGrupoMapper extends ActividadMapper{
         		return true;
         	}
         	return false;
-    }
+    }*/
 	public function deleteGrupo($idActividad){
 		parent::delete($actividad);//Borro haciendo en cascada aunque es mejor un borrado lógico
 	}

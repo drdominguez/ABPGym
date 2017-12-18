@@ -33,14 +33,13 @@ class ActividadMapper{
         }
         return false;
     }
-    function edit($actividad,$idActividad){
-       
+    function edit($actividad,$idActividad,$idHorario){
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
             
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$idActividad));
             $stmt1 = $this->db->prepare("UPDATE horario SET dia=?, hora=?, fechIni=?, fechFin=? WHERE idHorario=? ");
-            $stmt1 -> execute(array($horario->getDia(),$horario->getHora(),$horario->getFechIni(),$horario->getFechFin(),$idHorario));
+            $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechIni(),$actividad->getHorario()->getFechFin(),$idHorario));
             return true;
         }
         return false;
@@ -81,7 +80,7 @@ class ActividadMapper{
         return null;
         }
     }
-/*    public function findById($idActividad)
+    public function findById($idActividad)
     {
         $stmt = $this->db->prepare("SELECT * FROM actividad WHERE idActividad =?");
         $stmt->execute(array($idActividad));
@@ -108,7 +107,7 @@ class ActividadMapper{
             }
         }
         return NULL;
-    }*/
+    }
     public function esGrupo($idActividad){
         $stmt= $this->db->prepare("SELECT A.idActividad FROM actividad A, grupo G WHERE A.idActividad=? AND G.idActividad = A.idActividad");
         

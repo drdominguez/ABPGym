@@ -85,11 +85,12 @@ class ActividadController extends BaseController{
         if(isset($_POST["nombre"]) && isset($_POST["precio"]))
         {//si existen los post añado la notificacion
             $idActividad=$_POST['idActividad'];
+            $idHorario=$_POST['idHorario'];
             if($this->actividadMapper->esGrupo($idActividad)){            
-                $actividad = new ActividadGrupo(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas']);
+                $actividad = new ActividadGrupo(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$_POST['dia'],$_POST['hora'],$_POST['fechainicio'],$_POST['fechafin']);
 
             
-                if($this->actividadGrupoMapper->editGrupo($actividad,$idActividad))
+                if($this->actividadMapper->edit($actividad,$idActividad,$idHorario))
             {
 
                $this->view->setFlash("Actividad Editada Correctamente");
@@ -101,10 +102,17 @@ class ActividadController extends BaseController{
             $this->view->redirect("actividad", "actividadListar");
 
             }else{
+                $horario = new Horario();
                 $actividad = new Actividad();
+                $horario->setDia($_POST["dia"]);
+                $horario->setHora($_POST["hora"]);
+                $horario->setFechaInicio($_POST["fechIni"]);
+                $horario->setFechaFin($_POST["fechFin"]);
                 $actividad->setNombre($_POST["nombre"]);
                 $actividad->setPrecio($_POST["precio"]);
-                $actividad->setIdInstalaciones($_POST["idInstalaciones"]);  
+                $actividad->setIdInstalaciones($_POST["idInstalaciones"]);
+                $actividad->setPlazas($_POST["plazas"]); 
+                $actividad->setHorario($horario);  
                 if($this->actividadMapper->edit($actividad,$idActividad))
             {
                $this->view->setFlash("Actividad Editada Correctamente");
