@@ -22,8 +22,8 @@ Class ActividadIndividualMapper extends ActividadMapper{
 			$stmt1 = $this->db->prepare("INSERT INTO horario(dia,hora,fechIni,fechFin) values (?,?,?,?)");
             $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin()));
             $this->idHorario = $this->db->lastInsertId();
-            $stmt2 =$this->db->prepare("INSERT INTO actividad_horario(idHorario) VALUES (?)");
-            $stmt2 -> execute(array($this->idHorario));
+            $stmt2 =$this->db->prepare("INSERT INTO actividad_horario(idActividad,idHorario) VALUES (?,?)");
+            $stmt2 -> execute(array($this->idActividad,$this->idHorario));
 			return true;
 		}
 		return false;
