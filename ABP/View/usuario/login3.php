@@ -7,25 +7,25 @@
     <head>
     	<meta charset="utf-8">
         <!-- Bootstrap core CSS-->
-        <link href="./view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./View/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template-->
-        <link href="./view/css/sb-admin.css" rel="stylesheet">
+        <link href="./View/css/sb-admin.css" rel="stylesheet">
         <!-- Bootstrap core JavaScript-->
         <script src="./index.php?controller=language&action=i18njs"></script>
-        <script src="./view/vendor/jquery/jquery.min.js"></script>
+        <script src="./View/vendor/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="./view/js/validaciones.js"></script> 
-        <script src="./view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="./View/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- Core plugin JavaScript-->
-        <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
-        <link href="./view/video/video.css" type="text/css" rel="stylesheet" />
-        <script src="./view/video/video-3.js"></script>
+        <script src="./View/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <link href="./View/video/video.css" type="text/css" rel="stylesheet" />
+        <script src="./View/video/video-3.js"></script>
     </head>
     <body id="bodyvideo">
         <video id="video-background" autoplay loop preload muted>
 			<source src="./View/video/login_video.mp4" type='video/mp4' />
 		</video>
         <div id="foo">
-                <img src="./view/Icons/logo.png">
+                <img src="./View/Icons/logo.png">
                 <div class="card-login">
                      <ol class="breadcrumb">
                     <div id="flash"><?= $view->popFlash()?></div>
