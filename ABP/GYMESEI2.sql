@@ -74,6 +74,17 @@ CREATE TABLE `actividad_horario` (
   `idHorario` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `actividad`
+--
+
+INSERT INTO `actividad_horario` (`idActividad`, `idHorario`) VALUES
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -241,6 +252,12 @@ CREATE TABLE `horario` (
   `fechFin` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+INSERT INTO `horario` (`idHorario`,`dia`,`hora`,`fechIni`,`fechFin`) VALUES
+(3,'Lunes','5',NULL,NULL),
+(4,'Lunes','5',NULL,NULL),
+(5,'Lunes','5',NULL,NULL),
+(6,'Lunes','5',NULL,NULL),
+(7,'Lunes','5',NULL,NULL);
 -- --------------------------------------------------------
 
 --
