@@ -707,8 +707,8 @@ ALTER TABLE `pef`
 -- Indices de la tabla `recursos`
 --
 ALTER TABLE `recursos`
-  ADD KEY `fk_ActividadRecurso` (`idRecurso`);
-
+  ADD PRIMARY KEY (`idRecurso`),
+  ADD UNIQUE KEY `idRecurso` (`idRecurso`);
 --
 -- Indices de la tabla `sesionentrenamiento`
 --

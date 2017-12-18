@@ -29,10 +29,10 @@
                     <b><?= i18n("precio") ?>:</b> <?php echo $actividad->getPrecio(); ?><br>                
                     <b><?= i18n("instalaciones") ?>:</b> <?php echo $recurso->getNombreRecurso(); ?><br>
                     <b><?= i18n("plazas") ?>: </b> <?php echo $actividad->getPlazas(); ?><br>
-                    <b><?= i18n("dia") ?>:</b> <?php echo $horario->getDia(); ?><br>
-                    <b><?= i18n("hora") ?>:</b> <?php echo $horario->getHora(); ?><br>                
-                    <b><?= i18n("fechaInicio") ?>:</b> <?php echo $horario->getFechaInicio(); ?><br>
-                    <b><?= i18n("fechaFin") ?>: </b> <?php echo $horario->getFechaFin(); ?><br>  
+                    <b><?= i18n("dia") ?>:</b> <?php echo $actividad->getHorario()->getDia(); ?><br>
+                    <b><?= i18n("hora") ?>:</b> <?php echo $actividad->getHorario()->getHora(); ?><br>                
+                    <b><?= i18n("fechaInicio") ?>:</b> <?php echo $actividad->getHorario()->getFechaInicio(); ?><br>
+                    <b><?= i18n("fechaFin") ?>: </b> <?php echo $actividad->getHorario()->getFechaFin(); ?><br>  
 
                     <input type="hidden" name="borrar" value="ok">
                     <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default">Volver</button> 

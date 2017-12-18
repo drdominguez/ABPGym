@@ -22,6 +22,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
             <div class="card-body">
                 <b><?= i18n("idRecurso") ?>:</b> <?php echo $recurso->getIdRecurso(); ?><br>
                 <b><?= i18n("nombreRecurso") ?>:</b> <?php echo $recurso->getNombreRecurso(); ?><br>
+                <b><?= i18n("observaciones") ?>:</b> <?php echo $recurso->getObservaciones(); ?><br>
                 <button type="button" onclick="window.location.href='./index.php?controller=Recurso&amp;action=recursoListar'" class="btn btn-primary">Volver</button> 
             </div>
         </div>

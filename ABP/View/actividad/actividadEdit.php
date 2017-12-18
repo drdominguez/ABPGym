@@ -71,11 +71,11 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputFechaInicio">FechaInicio</label>
-                                    <input class="form-control" name="fechainicio" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getFechaInicio(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                    <input class="tcal" name="fechainicio" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getFechaInicio(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputFechaFin">FechaFin</label>
-                                        <input class="form-control" name="fechafin" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getFechaFin(); ?>"  onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
+                                        <input class="tcal" name="fechafin" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getFechaFin(); ?>"  onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 </div>   
 
                 <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
-                <?php/*<input type="hidden" name="idHorario" value="<?php echo $actividad->getHorario()->getIdHorario(); ?>">*/?>
+                <input type="hidden" name="idHorario" value="<?php echo $actividad->getHorario()->getIdHorario(); ?>">
                 <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                 <button  type='submit' name='action' value='actividadEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
 

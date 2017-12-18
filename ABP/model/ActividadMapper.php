@@ -33,13 +33,13 @@ class ActividadMapper{
         }
         return false;
     }
-    function edit($actividad,$idActividad,$idHorario){
+    function edit($actividad,$idActividad){
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
             
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$idActividad));
             $stmt1 = $this->db->prepare("UPDATE horario SET dia=?, hora=?, fechIni=?, fechFin=? WHERE idHorario=? ");
-            $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechIni(),$actividad->getHorario()->getFechFin(),$idHorario));
+            $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin(),$actividad->getHorario()->getIdHorario()));
             return true;
         }
         return false;
@@ -87,14 +87,17 @@ class ActividadMapper{
         $actividad = $stmt->fetch(PDO::FETCH_ASSOC);
         if($actividad != null) 
         {
-
-            $stmt2 = $this->db->prepare("SELECT * FROM  grupo WHERE idActividad =?");
+            $stmt2 = $this->db->prepare("SELECT * FROM horario H,actividad_horario A WHERE H.idHorario=A.idHorario AND A.idActividad=?");  
+            $stmt2->execute(array($idActividad));  
+            $horario_db = $stmt2->fetch(PDO::FETCH_ASSOC);
+            $horario = new Horario($horario_db['idHorario'],$horario_db['dia'],$horario_db['hora'],$horario_db['fechIni'],$horario_db['fechFin']);
+            $stmt2 = $this->db->prepare("SELECT * FROM grupo WHERE idActividad =?");
             $stmt2->execute(array($idActividad));
 
             if($stmt2!=null)
             {
                 $actividad2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"]);
+                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"],$horario);
                 }else 
                 {
 
@@ -102,7 +105,7 @@ class ActividadMapper{
                 $stmt3->execute(array($idActividad));
                 if($stmt3!=null){
                     $actividad3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"]);
+                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"],$horario_db);
                 }
             }
         }

@@ -23,6 +23,7 @@
                     <b><?= i18n("idRecurso") ?>:</b> <?php echo $recurso->getIdRecurso(); ?><br>
                     <input type="hidden" name="idRecurso" value="<?php echo $recurso->getIdRecurso(); ?>">
                     <b><?= i18n("nombre") ?>:</b> <?php echo $recurso->getNombreRecurso(); ?><br>
+                    <b><?= i18n("observaciones") ?>:</b> <?php echo $recurso->getObservaciones(); ?><br>
                     <input type="hidden" name="borrar" value="ok">
                     <button type="button" onclick="window.location.href='./index.php?controller=Recurso&amp;action=recursoListar'" class="btn btn-default">Volver</button> 
                     <button  type='submit' name='action' value='recursoDelete' class="btn btn-primary"><?= i18n("Borrar") ?></button>

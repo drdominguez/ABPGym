@@ -29,6 +29,12 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="form-row">                               
+                                <label for="exampleInputObservacion">Observaciones</label>
+                                <textarea name="observaciones" class="form-control" ><?php echo $recurso->getObservaciones(); ?></textarea>           
+                            </div>
+                        </div>  
                     </div>
                 </div>   
 

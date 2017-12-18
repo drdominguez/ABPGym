@@ -26,7 +26,7 @@ class Horario
         return $this->hora;
     }
     public function getFechaInicio() {
-        return $this->fetchIni;
+        return $this->fechIni;
     }
     public function getFechaFin() {
         return $this->fechFin;

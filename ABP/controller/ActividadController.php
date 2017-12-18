@@ -86,44 +86,23 @@ class ActividadController extends BaseController{
         {//si existen los post añado la notificacion
             $idActividad=$_POST['idActividad'];
             $idHorario=$_POST['idHorario'];
-            if($this->actividadMapper->esGrupo($idActividad)){            
-                $actividad = new ActividadGrupo(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$_POST['dia'],$_POST['hora'],$_POST['fechainicio'],$_POST['fechafin']);
+            
+                $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
+                $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$horario);
 
             
-                if($this->actividadMapper->edit($actividad,$idActividad,$idHorario))
-            {
-
-               $this->view->setFlash("Actividad Editada Correctamente");
-            }else
-            {
-                $errors["idActividad"] = "La actividad no se ha editado corectamente";
-                $this->view->setFlash($errors["idActividad"]);
-            }
-            $this->view->redirect("actividad", "actividadListar");
-
-            }else{
-                $horario = new Horario();
-                $actividad = new Actividad();
-                $horario->setDia($_POST["dia"]);
-                $horario->setHora($_POST["hora"]);
-                $horario->setFechaInicio($_POST["fechIni"]);
-                $horario->setFechaFin($_POST["fechFin"]);
-                $actividad->setNombre($_POST["nombre"]);
-                $actividad->setPrecio($_POST["precio"]);
-                $actividad->setIdInstalaciones($_POST["idInstalaciones"]);
-                $actividad->setPlazas($_POST["plazas"]); 
-                $actividad->setHorario($horario);  
                 if($this->actividadMapper->edit($actividad,$idActividad))
-            {
+                {
+
                $this->view->setFlash("Actividad Editada Correctamente");
-            }else
-            {
-                $errors["username"] = "La actividad no se ha editado corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
+                }else
+                {
+                    $errors["idActividad"] = "La actividad no se ha editado corectamente";
+                    $this->view->setFlash($errors["idActividad"]);
+                }
             $this->view->redirect("actividad", "actividadListar");
 
-            }
+            
             
         }else
         {
@@ -154,8 +133,8 @@ class ActividadController extends BaseController{
             $individual = new ActividadIndividual();
             $horario->setDia($_POST["dia"]);
             $horario->setHora($_POST["hora"]);
-            $horario->setFechaInicio($_POST["fechIni"]);
-            $horario->setFechaFin($_POST["fechFin"]);
+            $horario->setFechaInicio(date_format(date_create($_POST['fechainicio']), 'Y-m-d'));
+            $horario->setFechaFin(date_format(date_create($_POST['fechafin']), 'Y-m-d'));
             $individual->setNombre($_POST["nombre"]);
             $individual->setPrecio($_POST["precio"]);
             $individual->setIdInstalaciones($_POST["idInstalaciones"]);
@@ -180,8 +159,8 @@ class ActividadController extends BaseController{
             $grupo = new ActividadGrupo();
             $horario->setDia($_POST["dia"]);
             $horario->setHora($_POST["hora"]);
-            $horario->setFechaInicio($_POST["fechIni"]);
-            $horario->setFechaFin($_POST["fechFin"]);
+             $horario->setFechaInicio(date_format(date_create($_POST['fechainicio']), 'Y-m-d'));
+            $horario->setFechaFin(date_format(date_create($_POST['fechafin']), 'Y-m-d'));
             $grupo->setNombre($_POST["nombre"]);
             $grupo->setPrecio($_POST["precio"]);
             $grupo->setIdInstalaciones($_POST["idInstalaciones"]);

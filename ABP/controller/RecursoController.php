@@ -76,6 +76,7 @@ class RecursoController extends BaseController{
             $recursoE = new Recurso();
             $recursoE->setIdRecurso($_POST["idRecurso"]);
             $recursoE->setNombreRecurso($_POST["nombreRecurso"]);
+            $recursoE->setObservaciones($_POST["observaciones"]);
             if($this->recursoMapper->edit($recursoE,$_POST["idRecurso"]))
             {
                $this->view->setFlash("Recurso Editado Correctamente");
@@ -114,6 +115,7 @@ class RecursoController extends BaseController{
         if(isset($_POST["nombreRecurso"])){//si existen los post añado la actividad
             $recursoA = new Recurso();
             $recursoA->setNombreRecurso($_POST["nombreRecurso"]);  
+            $recursoA->setObservaciones($_POST["observaciones"]); 
             if($this->recursoMapper->add($recursoA)){
                $this->view->setFlash("Recurso Añadido Corectamente");
 

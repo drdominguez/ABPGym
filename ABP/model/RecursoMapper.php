@@ -13,9 +13,9 @@ class RecursoMapper{
     
     //Añadir
     function add($recurso){ 
-        $stmt = $this->db->prepare("INSERT INTO recursos(nombreRecurso) values (?)");
+        $stmt = $this->db->prepare("INSERT INTO recursos(nombreRecurso,observaciones) values (?,?)");
         if(self::esAdministrador()){
-            $stmt->execute(array($recurso->getNombreRecurso()));
+            $stmt->execute(array($recurso->getNombreRecurso(),$recurso->getObservaciones()));
             return true;
         }
         return false;
@@ -33,8 +33,8 @@ class RecursoMapper{
     function edit($recurso,$idRecurso){
        
         if(self::esAdministrador()){
-            $stmt = $this->db->prepare("UPDATE recursos SET nombreRecurso=? WHERE idRecurso=? ");
-            $stmt->execute(array($recurso->getNombreRecurso(),$idRecurso));
+            $stmt = $this->db->prepare("UPDATE recursos SET nombreRecurso=?,observaciones=? WHERE idRecurso=? ");
+            $stmt->execute(array($recurso->getNombreRecurso(),$recurso->getObservaciones(),$idRecurso));
             return true;
         }
         return false;
@@ -47,7 +47,7 @@ class RecursoMapper{
             $recursos = array();
 
             foreach ($recursos_db as $recurso) {
-                array_push($recursos, new Recurso($recurso['idRecurso'],$recurso['nombreRecurso']));            
+                array_push($recursos, new Recurso($recurso['idRecurso'],$recurso['nombreRecurso'],$recurso['observaciones']));            
             }
         return $recursos;
         
@@ -61,7 +61,7 @@ class RecursoMapper{
         $recurso = $stmt->fetch(PDO::FETCH_ASSOC);
         if($recurso != null) 
             {
-            return new Recurso($idRecurso,$recurso['nombreRecurso']);
+            return new Recurso($idRecurso,$recurso['nombreRecurso'],$recurso['observaciones']);
         }
         return NULL;
     }
@@ -72,7 +72,7 @@ class RecursoMapper{
         $recursos = array();
         foreach ($recursos_db as $recurso) 
         {
-            array_push($recursos, new Recurso($recurso['idRecurso'],$recurso['nombreRecurso']));
+            array_push($recursos, new Recurso($recurso['idRecurso'],$recurso['nombreRecurso'],$recurso['observaciones']));
         }
         return $recursos;
     }
