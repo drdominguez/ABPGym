@@ -16,8 +16,13 @@ Class ActividadGrupoMapper extends ActividadMapper{
 		parent::add($actividad);//llama al add de la clase padre
 		$this->idActividad = $this->db->lastInsertId();
  		if(parent::esAdministrador()){
-			$stmt = $this->db->prepare("INSERT INTO grupo(idActividad,plazas) VALUES (?,?)");
-			$stmt -> execute(array($this->idActividad,$actividad->getPlazas()));
+			$stmt = $this->db->prepare("INSERT INTO grupo(idActividad) VALUES (?)");
+			$stmt -> execute(array($this->idActividad));	
+			$stmt1 = $this->db->prepare("INSERT INTO horario(dia,hora,fechIni,fechFin) values (?,?,?,?)");
+            $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin()));
+            $this->idHorario = $this->db->lastInsertId();
+            $stmt2 =$this->db->prepare("INSERT INTO actividad_horario(idActividad,idHorario) VALUES (?,?)");
+            $stmt2 -> execute(array($this->idActividad,$this->idHorario));
 			return true;
 		}
 		return false;
