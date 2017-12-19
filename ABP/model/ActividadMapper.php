@@ -111,6 +111,17 @@ class ActividadMapper{
         }
         return NULL;
     }
+    public function findByIdMonitor($usuario)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM entrenador WHERE dniEntrenador =?");
+        $stmt->execute(array($usuario));
+        $monitor_db = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($monitor != null) 
+        {          
+            $monitor = new Horario($monitor_db['dni'],$monitor_db['nombre'],$monitor_db['apellidos'],$monitor_db['edad'],$monitor_db['contrasena'],$monitor_db['email'],$monitor_db['telefono'],$monitor_db['fechaAlta']);
+        }
+        return NULL;
+    }
     public function esGrupo($idActividad){
         $stmt= $this->db->prepare("SELECT A.idActividad FROM actividad A, grupo G WHERE A.idActividad=? AND G.idActividad = A.idActividad");
         

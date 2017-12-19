@@ -4,6 +4,7 @@ require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/Actividad.php");
 require_once(__DIR__ . "/../model/Horario.php");
+require_once(__DIR__ . "/../model/Usuario.php");
 require_once(__DIR__ . "/../model/ActividadIndividual.php");
 require_once(__DIR__ . "/../model/ActividadGrupo.php");
 require_once(__DIR__ . "/../model/ActividadMapper.php");
@@ -19,7 +20,6 @@ class ActividadController extends BaseController{
     public function __construct() {
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
         $this->actividadMapper = new ActividadMapper();
-        $this->actividadGrupoMapper = new ActividadGrupoMapper();
         $this->individualMapper = new ActividadIndividualMapper();
         $this->grupoMapper = new ActividadGrupoMapper();
     }
@@ -129,6 +129,8 @@ class ActividadController extends BaseController{
     
 
         if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+            $usuario = $_POST['usuario'];
+            $monitores = $this->actividadMapper->findByIdMonitor($usuario);
             $horario = new Horario();
             $individual = new ActividadIndividual();
             $horario->setDia($_POST["dia"]);
@@ -150,16 +152,18 @@ class ActividadController extends BaseController{
         }
         $listarrecursos=$this->actividadMapper->selectRecurso();
         $this->view->setVariable("listarecursos",$listarrecursos);
+        $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/individual","individualADD");
     }
 
     public function grupoADD() {
         if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+            $monitores = $this->actividadMapper->findByIdMonitor($monitores);
             $horario = new Horario();
             $grupo = new ActividadGrupo();
             $horario->setDia($_POST["dia"]);
             $horario->setHora($_POST["hora"]);
-             $horario->setFechaInicio(date_format(date_create($_POST['fechainicio']), 'Y-m-d'));
+            $horario->setFechaInicio(date_format(date_create($_POST['fechainicio']), 'Y-m-d'));
             $horario->setFechaFin(date_format(date_create($_POST['fechafin']), 'Y-m-d'));
             $grupo->setNombre($_POST["nombre"]);
             $grupo->setPrecio($_POST["precio"]);
@@ -176,6 +180,7 @@ class ActividadController extends BaseController{
         }
         $listarrecursos=$this->actividadMapper->selectRecurso();
         $this->view->setVariable("listarecursos",$listarrecursos);
+        $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/grupo","grupoADD");
 
     }
