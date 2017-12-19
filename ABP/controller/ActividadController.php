@@ -157,7 +157,6 @@ class ActividadController extends BaseController{
 
     public function grupoADD() {
         if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
-            $monitores = $this->actividadMapper->findByIdMonitor($monitores);
             $horario = new Horario();
             $grupo = new ActividadGrupo();
             $horario->setDia($_POST["dia"]);
@@ -177,6 +176,7 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
+        $monitores = $this->actividadMapper->findByIdMonitor();
         $listarrecursos=$this->actividadMapper->selectRecurso();
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
