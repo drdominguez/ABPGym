@@ -100,6 +100,7 @@ class ActividadController extends BaseController{
                     $errors["idActividad"] = "La actividad no se ha editado corectamente";
                     $this->view->setFlash($errors["idActividad"]);
                 }
+
             $this->view->redirect("actividad", "actividadListar");
 
             
@@ -113,8 +114,10 @@ class ActividadController extends BaseController{
                 throw new Exception("No existe actividad con este id: ".$idActividad);
             }
                 $listarrecursos=$this->actividadMapper->selectRecurso();
+                $monitores = $this->actividadMapper->findMonitor();
                 $this->view->setVariable("listarecursos",$listarrecursos);
                 $this->view->setVariable("actividad", $actividad);
+                $this->view->setVariable("monitores", $monitores);
                 $this->view->render("actividad","actividadEDIT");
             }
     }
@@ -148,7 +151,7 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
-        $monitores = $this->actividadMapper->findByIdMonitor();
+        $monitores = $this->actividadMapper->findMonitor();
         $listarrecursos=$this->actividadMapper->selectRecurso();
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
@@ -176,7 +179,7 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
-        $monitores = $this->actividadMapper->findByIdMonitor();
+        $monitores = $this->actividadMapper->findMonitor();
         $listarrecursos=$this->actividadMapper->selectRecurso();
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);

@@ -5,6 +5,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $actividad = $view->getVariable("actividad");
     $currentuser = $view->getVariable("currentusername");
     $listarecursos = $view->getVariable("listarecursos");
+     $monitores = $view->getVariable("monitores");
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +83,57 @@ require_once(__DIR__."/../../core/ViewManager.php");
                         </div>
                     </div>
                 </div>   
-
+                 </div> 
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                <i class="fa fa-table"></i><?= i18n("Mostrar todos los monitores") ?>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                                <thead>
+                                    <tr>
+                                    <th><?= i18n("dniEntrenador") ?></th>
+                                    <th><?= i18n("Nombre") ?></th>
+                                    <th><?= i18n("Apellidos") ?></th>
+                                    <th>Detalle</th>
+                                    <th>Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                    <th><?= i18n("dniEntrenador") ?></th>
+                                    <th><?= i18n("Nombre") ?></th>
+                                    <th><?= i18n("Apellidos") ?></th>
+                                    <th>Detalle</th>
+                                    <th>Seleccionar</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+<?php
+                                foreach($monitores as $monitor)
+                                {
+?>
+                                    <tr>
+                                        <td><?php echo $monitor->getDni(); ?></td>
+                                        <td><?php echo $monitor->getNombre(); ?></td>
+                                        <td><?php echo $monitor->getApellidos(); ?></td>
+                                        <td>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Actividad&amp;action=ActividadADD&amp;idActividad=<?php echo $monitor->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
+                                        </td>
+                                    </tr>
+<?php
+                                }   
+?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
                 <input type="hidden" name="idHorario" value="<?php echo $actividad->getHorario()->getIdHorario(); ?>">
                 <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 

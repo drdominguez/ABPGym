@@ -111,7 +111,7 @@ class ActividadMapper{
         }
         return NULL;
     }
-    public function findByIdMonitor()
+    public function findMonitor()
     {
         $stmt = $this->db->query("SELECT * FROM usuario U, entrenador E WHERE E.dniEntrenador = U.dni ");
         $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
