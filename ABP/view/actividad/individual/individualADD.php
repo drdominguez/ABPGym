@@ -106,7 +106,7 @@
                                 {
 ?>
                                     <tr>
-                                        <td><?php echo $monitor->getDniEntrenador(); ?></td>
+                                        <td><?php echo $monitor->getDni(); ?></td>
                                         <td><?php echo $monitor->getNombre(); ?></td>
                                         <td><?php echo $monitor->getApellidos(); ?></td>
                                         <td>
