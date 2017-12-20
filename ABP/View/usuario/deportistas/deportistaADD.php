@@ -1,14 +1,15 @@
-<?php
-    $view=ViewManager::getInstance();
-    if($view->getVariable("fragmento")!=""){
-    $fragmento=$view->getVariable("fragmento");
-    }
-?>
 <!DOCTYPE html>
 <html>
 <header>
     <script src="./view/js/añadirDeportista.js"></script>
-</header>  
+</header>
+<?php
+    $view=ViewManager::getInstance();
+    if($view->getVariable("fragmento")!=""){
+      $fragmento=$view->getVariable("fragmento");
+    }
+    $tipoDeportista = $view->getVariable("usuarioTipo");
+?>
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->
@@ -18,11 +19,11 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-              <label class="fa fa-table" id="anadirlabel"><?= i18n(" Añadir PEF") ?>: </label>
+              <label class="fa fa-table" id="anadirlabel"><?= i18n("Añadir ");echo $tipoDeportista; ?>: </label>
             </div>
             <div class="card-body">
             <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8"  method="POST" action="<?php 
-                if($view->getVariable("usuarioTipo")=="tdu"){ 
+                if($tipoDeportista=="TDU"){ 
                     echo 'index.php?controller=Deportista&amp;action=tduADD';
                 }else{
                     echo 'index.php?controller=Deportista&amp;action=pefADD';
@@ -74,8 +75,8 @@
                     <div class="form-group">
                         <div class="form-row">
                           <div class="col-md-6">
-                       <label for="Deportista"><?= i18n("Deportista") ?>: </label>
-                              <select class="form-control" onChange="mostrar(this.value)">
+                            <label for="Deportista"><?= i18n("Deportista") ?>: </label>
+                            <select class="form-control" name="tipo[]" onChange="mostrar(this.value)">
                               <option value="pef">PEF "Ponte en Forma"</option>
                               <option value="tdu">TDU "Tarjeta Deportista Universitaria"</option>
                             </select>
