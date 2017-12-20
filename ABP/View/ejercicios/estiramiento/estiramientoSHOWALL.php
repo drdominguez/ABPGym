@@ -28,8 +28,6 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                         <th><?= i18n("Tiempo") ?></th>
-                                        <th><?= i18n("Unidad") ?></th>
                                         <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
@@ -40,8 +38,6 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                        <th><?= i18n("Tiempo") ?></th>
-                                        <th><?= i18n("Unidad") ?></th>
                                         <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
@@ -54,8 +50,6 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $estiramiento["idEjercicio"]; ?></td>
                                             <td><?php echo $estiramiento["nombre"]; ?></td>
                                             <td><?php echo $estiramiento["descripcion"]; ?></td>
-                                            <td><?php echo $estiramiento["tiempo"]; ?></td>
-                                            <td><?php echo $estiramiento["unidad"]; ?></td>
                                             <td>
                                                 <a href='./index.php?controller=Ejercicio&amp;action=estiramientoVer&amp;idEjercicio=<?php echo $estiramiento["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                                 </a>

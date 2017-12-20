@@ -20,9 +20,6 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 		$stmt = $this->db->prepare("SELECT * FROM cardio WHERE idEjercicio=?");//obtenemos el estiramiento
 		$stmt->execute(array($cardioId));
 		$cardio = $stmt->fetch(PDO::FETCH_ASSOC);
-		$ejercicioCardio->setTiempo($cardio["tiempo"]);
-		$ejercicioCardio->setUnidad($cardio["unidad"]);
-		$ejercicioCardio->setDistancia($cardio["distancia"]);
 		return $ejercicioCardio;
 	}
 
@@ -31,10 +28,9 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 	*Siempre y cuando se sea super Usuario
 	*/
 	public function addCardio($ejercicio){
-		parent::add($ejercicio);//llama al add de la clase padre
-		$stmt = $this->db->prepare("INSERT INTO cardio(idEjercicio,tiempo,unidad,distancia ) VALUES (?,?,?,?)");
-		if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-			$stmt -> execute(array($this->idEjercicio,$ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getDistancia()));//
+		if(parent::esSuperusuario() && parent::add($ejercicio)){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
+			$stmt = $this->db->prepare("INSERT INTO cardio(idEjercicio) VALUES (?)");
+			$stmt -> execute(array($this->idEjercicio));//
 			return true;
 		}
 		return false;
@@ -46,8 +42,6 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 	*/
 	public function editCardio($ejercicio){
 		if(parent::edit($ejercicio)){
-			$stmt=$this->db-> prepare("UPDATE cardio SET tiempo=?, unidad=?, distancia=? WHERE idEjercicio=?");
-			$stmt -> execute(array($ejercicio->getTiempo(),$ejercicio->getUnidad(),$ejercicio->getDistancia(),$ejercicio->getIdEjercicio()));
 			return true;
 		}
 		return false;
@@ -70,14 +64,9 @@ Class EjercicioCardioMapper extends EjercicioMapper{
 	*El entrenador solo los que haya creado el
 	*/
 	public function listarCardio(){
-		if(parent::esAdmin()){//todos los estiramientos del sistema
-			$stmt = $this->db->prepare("SELECT ejercicio.*, cardio.tiempo, cardio.unidad, cardio.distancia FROM ejercicio, cardio WHERE ejercicio.idEjercicio = cardio.idEjercicio");
+		if(parent::esSuperusuario()){//todos los estiramientos del sistema
+			$stmt = $this->db->prepare("SELECT ejercicio.* FROM ejercicio, cardio WHERE ejercicio.idEjercicio = cardio.idEjercicio");
 			$stmt -> execute();
-			$lista = $stmt->fetchAll();
-		}
-		if(parent::esEntrenador()){//los ejercicios de cardio de un entrenador concreto
-			$stmt1 = $this->db->prepare("SELECT ejercicio.*, cardio.tiempo, cardio.unidad, cardio.distancia FROM ejercicio, cardio, superusuario_ejercicio se WHERE se.dniSuperUsuario=? AND se.idEjercicio=cardio.idEjercicio AND ejercicio.idEjercicio=cardio.idEjercicio");
-			$stmt -> execute(array($_SESSION["currentuser"]));
 			$lista = $stmt->fetchAll();
 		}
 		return $lista;

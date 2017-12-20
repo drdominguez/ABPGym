@@ -23,41 +23,28 @@
                         <input class="form-control" name="idEjercicio" id="exampleInputIdEjercicio" type="hidden" aria-describedby="emailHelp" value="<?php echo $muscular->getIdEjercicio() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                         <div class="form-group">
                             <div class="form-row">
-                              <div class="col-md-6">
-                            <label for="exampleInputNombre">Nombre</label>
-                            <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $muscular->getNombre() ?>" onblur="esVacio(this)  && comprobarText(this,15)">
+                            <div class="col-md-6">
+                                <label for="exampleInputNombre">Nombre</label>
+                                <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $muscular->getNombre() ?>" onblur="esVacio(this)  && comprobarText(this,15)">
                             </div>
                             <div class="col-md-6">
-                            <label for="exampleInputTiempo">Descripción</label>
-                           <textarea class="form-control" name="descripcion" value="descripcion" rows="2" ><?php echo $muscular->getDescripcion() ?></textarea>
-                        </div>
-                             </div>
-                         </div>
-                        <div class="form-group">
-                             <div class="form-row">
-                                 <div class="col-md-6">
-                            <label for="exampleInputTiempo">Video</label>
-                            <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" valude="<?php echo $muscular->getVideo() ?>" onblur="esVacio(this)  && comprobarText(this,15)">
-                                 </div>
-                                 <div class="col-md-6">
-                            <label for="exampleInputTiempo">Imagen</label>
-                            <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" value="<?php echo $muscular->getImagen() ?>" onblur="esVacio(this)  && comprobarText(this,15)">
-                        </div>
-                             </div>
+                                <label for="exampleInputTiempo">Descripción</label>
+                               <textarea class="form-control" name="descripcion" value="descripcion" rows="2" ><?php echo $muscular->getDescripcion() ?></textarea>
+                            </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                             <div class="form-row">
+                            <div class="form-row">
                                 <div class="col-md-6">
-                            <label for="exampleInputTiempo">Carga</label>
-                            <input class="form-control" name="carga" id="exampleInputCarga" type="TEXT" aria-describedby="emailHelp" value="<?php echo $muscular->getCarga() ?>" onblur="esVacio(this)  && comprobarText(this,15)">
-                        </div>
+                                    <label for="exampleInputTiempo">Video</label>
+                                    <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" valude="<?php echo $muscular->getVideo() ?>" onblur="esVacio(this)  && comprobarText(this,15)">
+                                </div>
                                 <div class="col-md-6">
-                            <label for="exampleInputUnidad">Repeticiones</label>
-                             <input class="form-control" name="repeticiones" id="exampleInputRepeticiones" type="TEXT" aria-describedby="emailHelp" value="<?php echo $muscular->getRepeticiones() ?>" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <label for="exampleInputTiempo">Imagen</label>
+                                    <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" value="<?php echo $muscular->getImagen() ?>" onblur="esVacio(this)  && comprobarText(this,15)">
+                                </div>
+                            </div>
                         </div>
-                             </div>
-                        </div>
-
                     </form>
                     <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=muscularListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                     <button type='submit' name='action' form="form1" value='Edit' class="btn btn-primary"><?= i18n("Edit") ?></button> 

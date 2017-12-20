@@ -34,30 +34,17 @@
                              </div>
                          </div>
                         <div class="form-group">
-                             <div class="form-row">
-                                 <div class="col-md-6">
+                            <div class="form-row">
+                                <div class="col-md-6">
                             <label for="exampleInputTiempo">Video</label>
                             <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" valude="<?php echo $estiramiento->getVideo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
-                                 </div>
-                                 <div class="col-md-6">
-                            <label for="exampleInputTiempo">Imagen</label>
-                            <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" value= "<?php echo $estiramiento->getImagen() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
-                        </div>
-                             </div>
-                        </div>
-                        <div class="form-group">
-                             <div class="form-row">
+                                </div>
                                 <div class="col-md-6">
-                            <label for="exampleInputTiempo">Tiempo</label>
-                            <input class="form-control" name="tiempo" id="exampleInputTiempo" type="TEXT" aria-describedby="emailHelp" value="<?php echo $estiramiento->getTiempo() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <label for="exampleInputTiempo">Imagen</label>
+                                    <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" value= "<?php echo $estiramiento->getImagen() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
+                                </div>
+                            </div>
                         </div>
-                                <div class="col-md-6">
-                            <label for="exampleInputUnidad">Unidad</label>
-                             <input class="form-control" name="unidad" id="exampleInputUnidad" type="TEXT" aria-describedby="emailHelp" value="<?php echo $estiramiento->getUnidad() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
-                        </div>
-                             </div>
-                        </div>
-
                     </form>
                     <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=estiramientoListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                     <button type='submit' name='action' form="form1" value='Remove' class="btn btn-primary"><?= i18n("Eliminar") ?></button> 

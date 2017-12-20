@@ -28,8 +28,6 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                         <th><?= i18n("Carga (Kg)") ?></th>
-                                        <th><?= i18n("Repeticiones") ?></th>
                                         <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
@@ -40,8 +38,6 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                        <th><?= i18n("Carga (kg)") ?></th>
-                                        <th><?= i18n("Repeticiones") ?></th>
                                         <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
@@ -54,8 +50,6 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $muscular["idEjercicio"]; ?></td>
                                             <td><?php echo $muscular["nombre"]; ?></td>
                                             <td><?php echo $muscular["descripcion"]; ?></td>
-                                            <td><?php echo $muscular["carga"]; ?></td>
-                                            <td><?php echo $muscular["repeticiones"]; ?></td>
                                             <td>
                                                 <a href='./index.php?controller=Ejercicio&amp;action=muscularVer&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                                 </a>

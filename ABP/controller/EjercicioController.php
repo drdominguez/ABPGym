@@ -51,8 +51,8 @@ class EjercicioController extends BaseController{
     */
     public function EstiramientoADD() {
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-        if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tiempo"]) && isset($_POST["unidad"])){//si existen los post añado el ejercicio
-            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"]);
+        if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercicio
+            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
             if($this->estiramientoMapper->addEstiramiento($estiramiento)){
                $this->view->setFlash("Ejercicio Añadido Corectamente");
 
@@ -72,7 +72,7 @@ class EjercicioController extends BaseController{
     public function estiramientoEdit(){
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
         if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
-            $estiramiento = new EjercicioEstiramiento($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"]);
+            $estiramiento = new EjercicioEstiramiento($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
             $this->estiramientoMapper->editEstiramiento($estiramiento);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::estiramientoListar();//volvemos a listar los ejercicios
@@ -131,8 +131,8 @@ class EjercicioController extends BaseController{
 	*/
     public function cardioADD() {
         $this->cardioMapper = new EjercicioCardioMapper();
-        if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["tiempo"]) && isset($_POST["unidad"]) && isset($_POST["distancia"])){//si existen los post añado el ejercicio
-            $cardio = new EjercicioCardio('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"],$_POST["distancia"]);
+        if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercicio
+            $cardio = new EjercicioCardio('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
             if($this->cardioMapper->addCardio($cardio)){
                $this->view->setFlash("Ejercicio Añadido Corectamente");
 
@@ -152,7 +152,7 @@ class EjercicioController extends BaseController{
     public function cardioEdit(){
         $this->cardioMapper = new EjercicioCardioMapper();
         if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
-            $cardio = new EjercicioCardio($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["tiempo"],$_POST["unidad"],$_POST["distancia"]);
+            $cardio = new EjercicioCardio($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
             $this->cardioMapper->editCardio($cardio);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::cardioListar();//volvemos a listar los ejercicios
@@ -211,8 +211,8 @@ class EjercicioController extends BaseController{
 	*/
     public function muscularADD() {
         $this->muscularMapper = new EjercicioMuscularMapper();
-        if(isset($_POST["nombre"]) && isset($_POST["descripcion"]) && isset($_POST["carga"]) && isset($_POST["repeticiones"])){//si existen los post añado el ejercicio
-            $muscular = new EjercicioMuscular('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"], $_POST["carga"], $_POST["repeticiones"]);
+        if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercicio
+            $muscular = new EjercicioMuscular('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
             if($this->muscularMapper->addMuscular($muscular)){
                $this->view->setFlash("Ejercicio Añadido Corectamente");
             }else{
@@ -231,7 +231,7 @@ class EjercicioController extends BaseController{
     public function muscularEdit(){
         $this->muscularMapper = new EjercicioMuscularMapper();
         if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
-            $muscular = new EjercicioMuscular($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"],$_POST["carga"],$_POST["repeticiones"]);
+            $muscular = new EjercicioMuscular($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
             $this->muscularMapper->editMuscular($muscular);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::muscularListar();//volvemos a listar los ejercicios

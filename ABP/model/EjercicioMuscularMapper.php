@@ -20,8 +20,6 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 		$stmt = $this->db->prepare("SELECT * FROM muscular WHERE idEjercicio=?");//obtenemos el estiramiento
 		$stmt->execute(array($muscularId));
 		$muscular = $stmt->fetch(PDO::FETCH_ASSOC);
-		$ejercicioMuscular->setCarga($muscular["carga"]);
-		$ejercicioMuscular->setRepeticiones($muscular["repeticiones"]);
 		return $ejercicioMuscular;
 	}
 
@@ -29,10 +27,9 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 	*Añade un ejercicio muscular
 	*/
 	public function addMuscular($ejercicio){
-		parent::add($ejercicio);//llama al add de la clase padre
-		$stmt = $this->db->prepare("INSERT INTO muscular(idEjercicio, carga, repeticiones) VALUES (?,?,?)");
-		if(parent::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
-			$stmt -> execute(array($this->idEjercicio,$ejercicio->getCarga(),$ejercicio->getRepeticiones()));//
+		if(parent::esSuperusuario() && parent::add($ejercicio)){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
+			$stmt = $this->db->prepare("INSERT INTO muscular(idEjercicio) VALUES (?)");
+			$stmt -> execute(array($this->idEjercicio));//
 			return true;
 		}
 		return false;
@@ -43,8 +40,6 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 	*/
 	public function editMuscular($ejercicio){
 		if(parent::edit($ejercicio)){
-			$stmt=$this->db-> prepare("UPDATE muscular SET carga=?, repeticiones=? WHERE idEjercicio=?");
-			$stmt -> execute(array($ejercicio->getCarga(),$ejercicio->getRepeticiones(),$ejercicio->getIdEjercicio()));
 			return true;
 		}
 		return false;
@@ -65,14 +60,9 @@ Class EjercicioMuscularMapper extends EjercicioMapper{
 	*devuelve una lista con ejercicios musculares
 	*/
 	public function listarMuscular(){
-		if(parent::esAdmin()){//todos los estiramientos del sistema
-			$stmt = $this->db->prepare("SELECT ejercicio.*, muscular.carga, muscular.repeticiones FROM ejercicio, muscular WHERE ejercicio.idEjercicio = muscular.idEjercicio");
+		if(parent::esSuperusuario()){//todos los estiramientos del sistema
+			$stmt = $this->db->prepare("SELECT ejercicio.* FROM ejercicio, muscular WHERE ejercicio.idEjercicio = muscular.idEjercicio");
 			$stmt -> execute();
-			$lista = $stmt->fetchAll();
-		}
-		if(parent::esEntrenador()){//los ejercicios de muscular de un entrenador concreto
-			$stmt1 = $this->db->prepare("SELECT ejercicio.*, muscular.carga, muscular.repeticiones FROM ejercicio, muscular, superusuario_ejercicio se WHERE se.dniSuperUsuario=? AND se.idEjercicio=muscular.idEjercicio AND ejercicio.idEjercicio=muscular.idEjercicio");
-			$stmt -> execute(array($_SESSION["currentuser"]));
 			$lista = $stmt->fetchAll();
 		}
 		return $lista;

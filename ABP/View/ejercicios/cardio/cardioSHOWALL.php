@@ -28,9 +28,6 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                         <th><?= i18n("Tiempo") ?></th>
-                                        <th><?= i18n("Unidad") ?></th>
-                                        <th><?= i18n("Distancia(metros)") ?></th>
                                         <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
@@ -41,9 +38,6 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
-                                        <th><?= i18n("Tiempo") ?></th>
-                                        <th><?= i18n("Unidad") ?></th>
-                                        <th><?= i18n("Distancia(metros)") ?></th>
                                         <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
@@ -56,9 +50,6 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $cardio["idEjercicio"]; ?></td>
                                             <td><?php echo $cardio["nombre"]; ?></td>
                                             <td><?php echo $cardio["descripcion"]; ?></td>
-                                            <td><?php echo $cardio["tiempo"]; ?></td>
-                                            <td><?php echo $cardio["unidad"]; ?></td>
-                                            <td><?php echo $cardio["distancia"]; ?></td>
                                             <td>
                                                 <a href='./index.php?controller=Ejercicio&amp;action=cardioVer&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                                 </a>

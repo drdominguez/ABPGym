@@ -21,8 +21,6 @@
                     <b><?= i18n("Descripcion") ?>:</b> <?php echo $estiramiento->getDescripcion(); ?><br>
                     <b><?= i18n("Video") ?>:</b> <?php echo $estiramiento->getVideo() ?><br>
                     <b><?= i18n("Imágen") ?>:</b> <?php echo $estiramiento->getImagen(); ?><br>
-                    <b><?= i18n("Tiempo") ?>:</b> <?php echo $estiramiento->getTiempo(); ?><br>
-                    <b><?= i18n("Unidad") ?>:</b> <?php echo $estiramiento->getUnidad(); ?><br>
                     <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=estiramientoListar'" class="btn btn-primary">Volver</button> 
                 </div>
             </div>
