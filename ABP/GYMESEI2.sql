@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 14-12-2017 a las 21:44:28
--- Versión del servidor: 5.7.20
--- Versión de PHP: 7.1.7
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 21-12-2017 a las 16:58:48
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -46,10 +46,10 @@ CREATE TABLE `actividad` (
 --
 
 INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `plazas`) VALUES
-(3, 40, 'Gymnasio del Carmen', 1, 12),
-(4, 35, 'Gymnasio Trabazos', 2, 14),
-(5, 20, 'Fútbol', 3, 22),
-(6, 15, 'Baloncesto', 4, 15),
+(3, 40, 'Gymnasio del Carmen', 5, 12),
+(4, 35, 'Gymnasio Trabazos', 5, 14),
+(5, 20, 'Fútbol', 5, 22),
+(6, 15, 'Baloncesto', 5, 15),
 (7, 42, 'Karate', 5, 10);
 
 -- --------------------------------------------------------
@@ -75,7 +75,7 @@ CREATE TABLE `actividad_horario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `actividad`
+-- Volcado de datos para la tabla `actividad_horario`
 --
 
 INSERT INTO `actividad_horario` (`idActividad`, `idHorario`) VALUES
@@ -111,19 +111,22 @@ INSERT INTO `administrador` (`dniAdministrador`) VALUES
 --
 
 CREATE TABLE `cardio` (
-  `idEjercicio` bigint(20) NOT NULL,
-  `tiempo` smallint(6) DEFAULT NULL,
-  `unidad` varchar(8) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `distancia` smallint(6) DEFAULT NULL
+  `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `cardio`
+-- Estructura de tabla para la tabla `cardio_tabla`
 --
 
-INSERT INTO `cardio` (`idEjercicio`, `tiempo`, `unidad`, `distancia`) VALUES
-(6, 60, 'Minutos', 5000),
-(7, 20, 'Segundos', 0);
+CREATE TABLE `cardio_tabla` (
+  `id` bigint(20) NOT NULL,
+  `idCardio` bigint(20) NOT NULL,
+  `idTabla` bigint(11) NOT NULL,
+  `tiempo` int(11) DEFAULT NULL,
+  `distancia` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -162,13 +165,7 @@ CREATE TABLE `ejercicio` (
 --
 
 INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `imagen`) VALUES
-(1, 'Estiramiento de Biceps', 'Estirar ambos biceps', 0x00, 0x00),
-(2, 'Estiramiento de gemelos', 'estirar ambos gemelos en las espalderas', 0x00, 0x00),
-(3, 'Estiramiento de cuadriceps', ' Mantén la posición uno o dos segundos y después vuelve a la situación de reposo. Repite todo el movimiento 10 veces con cada pierna', 0x00, 0x00),
-(4, 'Pesas pectorales', 'realizar levantamiento en la banca de pesas', 0x00, 0x00),
-(5, 'Fortalecimiento de triceps', 'levantar las pesas desde la espalda con el codo a 90 grados', 0x00, 0x00),
-(6, 'Ruta 5km', 'Recorrer la ruta 5 en  1 hora', 0x00, 0x00),
-(7, 'spring', 'Realizar 5 series del tiempo especificado', 0x00, 0x00);
+(8, 'Estiramiento999999', 'aoijoisajoisas', 0x00, 0x00);
 
 -- --------------------------------------------------------
 
@@ -205,19 +202,28 @@ CREATE TABLE `entrenador_deportista` (
 --
 
 CREATE TABLE `estiramiento` (
-  `idEjercicio` bigint(20) NOT NULL,
-  `tiempo` smallint(6) NOT NULL,
-  `unidad` varchar(8) COLLATE utf8_spanish_ci DEFAULT NULL
+  `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `estiramiento`
 --
 
-INSERT INTO `estiramiento` (`idEjercicio`, `tiempo`, `unidad`) VALUES
-(1, 15, 'Segundos'),
-(2, 1, 'Minutos'),
-(3, 2, 'Minutos');
+INSERT INTO `estiramiento` (`idEjercicio`) VALUES
+(8);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estiramiento_tabla`
+--
+
+CREATE TABLE `estiramiento_tabla` (
+  `id` bigint(20) NOT NULL,
+  `idEstiramiento` bigint(20) NOT NULL,
+  `idTabla` bigint(20) NOT NULL,
+  `tiempo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -252,12 +258,17 @@ CREATE TABLE `horario` (
   `fechFin` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-INSERT INTO `horario` (`idHorario`,`dia`,`hora`,`fechIni`,`fechFin`) VALUES
-(3,'Lunes','5',NULL,NULL),
-(4,'Lunes','5',NULL,NULL),
-(5,'Lunes','5',NULL,NULL),
-(6,'Lunes','5',NULL,NULL),
-(7,'Lunes','5',NULL,NULL);
+--
+-- Volcado de datos para la tabla `horario`
+--
+
+INSERT INTO `horario` (`idHorario`, `dia`, `hora`, `fechIni`, `fechFin`) VALUES
+(3, 'Lunes', '5', '2017-12-07', '2017-12-25'),
+(4, 'Lunes', '5', '2017-11-29', '2018-12-12'),
+(5, 'Lunes', '5', '2017-12-06', '2017-12-18'),
+(6, 'Lunes', '5', '2017-12-22', '2017-12-31'),
+(7, 'Lunes', '5', '2017-12-25', '2018-01-23');
+
 -- --------------------------------------------------------
 
 --
@@ -294,18 +305,22 @@ CREATE TABLE `inscrito` (
 --
 
 CREATE TABLE `muscular` (
-  `idEjercicio` bigint(20) NOT NULL,
-  `carga` smallint(6) NOT NULL,
-  `repeticiones` smallint(6) DEFAULT NULL
+  `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `muscular`
+-- Estructura de tabla para la tabla `muscular_tabla`
 --
 
-INSERT INTO `muscular` (`idEjercicio`, `carga`, `repeticiones`) VALUES
-(4, 25, 15),
-(5, 1, 30);
+CREATE TABLE `muscular_tabla` (
+  `id` bigint(20) NOT NULL,
+  `idMuscular` bigint(20) NOT NULL,
+  `idTabla` bigint(20) NOT NULL,
+  `carga` int(11) NOT NULL,
+  `repeticiones` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -444,13 +459,7 @@ CREATE TABLE `superusuario_ejercicio` (
 --
 
 INSERT INTO `superusuario_ejercicio` (`id`, `dniSuperUsuario`, `idEjercicio`) VALUES
-(1, '53192250N', 1),
-(2, '53192250N', 2),
-(3, '53192250N', 3),
-(4, '53192250N', 4),
-(5, '53192250N', 5),
-(6, '53192250N', 6),
-(7, '53192250N', 7);
+(8, '53192250N', 8);
 
 -- --------------------------------------------------------
 
@@ -497,37 +506,6 @@ INSERT INTO `tabla` (`idTabla`, `tipo`, `comentario`, `nombre`, `dniSuperUsuario
 (1, 'estandar', 'Tabla de dificultad media, no apta si el deportista padece asma', 'Tabla1', '53192250N'),
 (2, 'personalizada', 'Tabla de estiramientos y fortalecimiento muscular', 'Tabla2', '53192250N'),
 (3, 'estandar', 'Tabla de dificultad alta, repertorio amplio de ejercicios variados.', 'Tabla Completa', '53192250N');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tabla_ejercicios`
---
-
-CREATE TABLE `tabla_ejercicios` (
-  `idTabla` bigint(20) NOT NULL,
-  `idEjercicio` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `tabla_ejercicios`
---
-
-INSERT INTO `tabla_ejercicios` (`idTabla`, `idEjercicio`) VALUES
-(2, 1),
-(3, 1),
-(1, 2),
-(3, 2),
-(1, 3),
-(3, 3),
-(2, 4),
-(3, 4),
-(2, 5),
-(3, 5),
-(1, 6),
-(3, 6),
-(1, 7),
-(3, 7);
 
 -- --------------------------------------------------------
 
@@ -620,6 +598,14 @@ ALTER TABLE `cardio`
   ADD PRIMARY KEY (`idEjercicio`);
 
 --
+-- Indices de la tabla `cardio_tabla`
+--
+ALTER TABLE `cardio_tabla`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_cardioTabla1` (`idCardio`),
+  ADD KEY `fk_cardioTabla2` (`idTabla`);
+
+--
 -- Indices de la tabla `deportista`
 --
 ALTER TABLE `deportista`
@@ -655,6 +641,14 @@ ALTER TABLE `estiramiento`
   ADD PRIMARY KEY (`idEjercicio`);
 
 --
+-- Indices de la tabla `estiramiento_tabla`
+--
+ALTER TABLE `estiramiento_tabla`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_estiramientoTabla1` (`idEstiramiento`),
+  ADD KEY `fk_estiramientoTabla2` (`idTabla`);
+
+--
 -- Indices de la tabla `grupo`
 --
 ALTER TABLE `grupo`
@@ -688,6 +682,14 @@ ALTER TABLE `inscrito`
 ALTER TABLE `muscular`
   ADD PRIMARY KEY (`idEjercicio`),
   ADD UNIQUE KEY `idEjercicio` (`idEjercicio`);
+
+--
+-- Indices de la tabla `muscular_tabla`
+--
+ALTER TABLE `muscular_tabla`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_muscularTabla1` (`idMuscular`),
+  ADD KEY `fk_muscularTabla2` (`idTabla`);
 
 --
 -- Indices de la tabla `notificacion`
@@ -726,6 +728,7 @@ ALTER TABLE `pef`
 ALTER TABLE `recursos`
   ADD PRIMARY KEY (`idRecurso`),
   ADD UNIQUE KEY `idRecurso` (`idRecurso`);
+
 --
 -- Indices de la tabla `sesionentrenamiento`
 --
@@ -782,13 +785,6 @@ ALTER TABLE `tabla`
   ADD KEY `fk_TablaSuperUsuario` (`dniSuperUsuario`);
 
 --
--- Indices de la tabla `tabla_ejercicios`
---
-ALTER TABLE `tabla_ejercicios`
-  ADD PRIMARY KEY (`idTabla`,`idEjercicio`),
-  ADD KEY `fk_Tabla_Ejercicios` (`idEjercicio`);
-
---
 -- Indices de la tabla `tdu`
 --
 ALTER TABLE `tdu`
@@ -813,16 +809,35 @@ ALTER TABLE `actividad`
   MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `cardio_tabla`
+--
+ALTER TABLE `cardio_tabla`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `ejercicio`
 --
 ALTER TABLE `ejercicio`
-  MODIFY `idEjercicio` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idEjercicio` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `estiramiento_tabla`
+--
+ALTER TABLE `estiramiento_tabla`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
   MODIFY `idHorario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `muscular_tabla`
+--
+ALTER TABLE `muscular_tabla`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
@@ -845,7 +860,7 @@ ALTER TABLE `recursos`
 -- AUTO_INCREMENT de la tabla `superusuario_ejercicio`
 --
 ALTER TABLE `superusuario_ejercicio`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `tabla`
@@ -889,6 +904,13 @@ ALTER TABLE `cardio`
   ADD CONSTRAINT `fk_CardioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `cardio_tabla`
+--
+ALTER TABLE `cardio_tabla`
+  ADD CONSTRAINT `fk_cardioTabla1` FOREIGN KEY (`idCardio`) REFERENCES `cardio` (`idEjercicio`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_cardioTabla2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE;
+
+--
 -- Filtros para la tabla `deportista`
 --
 ALTER TABLE `deportista`
@@ -914,6 +936,13 @@ ALTER TABLE `estiramiento`
   ADD CONSTRAINT `fk_EstiramientoEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE;
 
 --
+-- Filtros para la tabla `estiramiento_tabla`
+--
+ALTER TABLE `estiramiento_tabla`
+  ADD CONSTRAINT `fk_estiramientoTabla1` FOREIGN KEY (`idEstiramiento`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_estiramientoTabla2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`);
+
+--
 -- Filtros para la tabla `grupo`
 --
 ALTER TABLE `grupo`
@@ -936,6 +965,13 @@ ALTER TABLE `inscrito`
 --
 ALTER TABLE `muscular`
   ADD CONSTRAINT `fk_MuscularEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `muscular_tabla`
+--
+ALTER TABLE `muscular_tabla`
+  ADD CONSTRAINT `fk_muscularTabla1` FOREIGN KEY (`idMuscular`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_muscularTabla2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `notificacion`
@@ -1001,13 +1037,6 @@ ALTER TABLE `superusuario_tabla_deportista`
 --
 ALTER TABLE `tabla`
   ADD CONSTRAINT `fk_TablaSuperUsuario` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `tabla_ejercicios`
---
-ALTER TABLE `tabla_ejercicios`
-  ADD CONSTRAINT `fk_TablaT_Ejercicios` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_Tabla_Ejercicios` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `tdu`
