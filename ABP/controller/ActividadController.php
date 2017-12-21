@@ -111,6 +111,7 @@ class ActividadController extends BaseController{
             {
                 throw new Exception("No existe actividad con este id: ".$idActividad);
             }
+                $monitorAsignado = $this->actividadMapper->findMonitorAsignado($idActividad);
                 $listarrecursos=$this->actividadMapper->selectRecurso();
                 $monitores = $this->actividadMapper->findMonitor();
                 $usuarios = $this->actividadMapper->listarUsuarios();
@@ -118,6 +119,7 @@ class ActividadController extends BaseController{
                 $this->view->setVariable("listarecursos",$listarrecursos);
                 $this->view->setVariable("actividad", $actividad);
                 $this->view->setVariable("monitores", $monitores);
+                $this->view->setVariable("monitorAsignado", $monitorAsignado);
                 $this->view->render("actividad","actividadEDIT");
             }
     }
@@ -151,8 +153,11 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
+
         $monitores = $this->actividadMapper->findMonitor();
         $listarrecursos=$this->actividadMapper->selectRecurso();
+        $usuarios = $this->actividadMapper->listarUsuarios();
+        $this->view->setVariable("usuarios",$usuarios);
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/individual","individualADD");
@@ -179,8 +184,11 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
+        
         $monitores = $this->actividadMapper->findMonitor();
         $listarrecursos=$this->actividadMapper->selectRecurso();
+        $usuarios = $this->actividadMapper->listarUsuarios();
+        $this->view->setVariable("usuarios",$usuarios);
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/grupo","grupoADD");

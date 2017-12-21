@@ -7,8 +7,21 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $currentuser = $view->getVariable("currentusername");
     $listarecursos = $view->getVariable("listarecursos");
     $monitores = $view->getVariable("monitores");
+    $monitorAsignado = $view->getVariable("monitorAsignado");
 ?>
-
+<script type="text/javascript">
+    function marcar(source) 
+    {
+        checkboxes=document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
+        for(i=0;i<checkboxes.length;i++) //recoremos todos los controles
+        {
+            if(checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
+            {
+                checkboxes[i].checked=source.checked; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
+            }
+        }
+    }
+</script> 
 <!DOCTYPE html>
 <html>    
     <div class="content-wrapper">
@@ -114,6 +127,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 <?php
                                 foreach($monitores as $monitor)
                                 {
+
 ?>
                                     <tr>
                                         <td><?php echo $monitor->getDni(); ?></td>
@@ -124,10 +138,15 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
+<?php                                            if($monitor == $monitorAsignado){ ?>
+                                            <input checked type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
+<?php                                        }else{ ?>
+                                        <input checked type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
+                                    
                                         </td>
                                     </tr>
 <?php
+                                    }
                                 }   
 ?>
                                 </tbody>

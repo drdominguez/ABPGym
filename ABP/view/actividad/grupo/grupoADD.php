@@ -2,6 +2,7 @@
     $view=ViewManager::getInstance();
     
     $monitores = $view->getVariable("monitores");
+    $usuarios = $view->getVariable("usuarios");
     $listarecursos = $view->getVariable("listarecursos");
 ?>
 <!DOCTYPE html>
@@ -124,7 +125,60 @@
                             </table>
                         </div>
                     </div>
-                </div>       
+                </div> 
+                <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i><?= i18n("Asignar Tabla") ?>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <input type="checkbox" onclick="marcar(this);" /> Marcar/Desmarcar Todos
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+                        <thead>
+                            <tr>
+                                <th><?= i18n("DNI") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Apellidos") ?></th>
+                                <th>Detalle</th>
+                                <th>Seleccionar</th>
+
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th><?= i18n("DNI") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Apellidos") ?></th>
+                                <th>Detalle</th>
+                                <th>Seleccionar</th>
+
+                            </tr>
+                        </tfoot>
+                        <tbody>
+<?php
+                        foreach($usuarios as $usuario)
+                        {
+?>
+                            <tr>
+                                    <td><?php echo $usuario->getDni(); ?></td>
+                                    <td><?php echo $usuario->getNombre(); ?></td>
+                                    <td><?php echo $usuario->getApellidos(); ?></td>
+                                    <td>
+                                        <a href=''><img src='./view/Icons/detalle.png'>
+                                        </a>
+                                    </td>
+                                     <td>
+                                      <input type="checkbox" name="usuarios[]" value="<?php echo $usuario->getDni(); ?>">
+                                    </td>
+                            </tr>
+<?php
+                        }   
+?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>      
                     </form>
                      <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default">Volver</button>
                             <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button>
