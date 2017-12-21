@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-12-2017 a las 16:58:48
+-- Tiempo de generación: 21-12-2017 a las 19:58:29
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -26,8 +26,6 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `GYMESEI2`;
 CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `GYMESEI2`;
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `actividad`
@@ -61,6 +59,18 @@ INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `
 CREATE TABLE `actividad_deportista` (
   `idActividad` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `actividad_entrenador`
+--
+
+CREATE TABLE `actividad_entrenador` (
+  `id` bigint(20) NOT NULL,
+  `dniEntrenador` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
+  `idActividad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -577,6 +587,14 @@ ALTER TABLE `actividad_deportista`
   ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
 
 --
+-- Indices de la tabla `actividad_entrenador`
+--
+ALTER TABLE `actividad_entrenador`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_actividadEntrenador2` (`idActividad`),
+  ADD KEY `fk_actividadEntrenador1` (`dniEntrenador`);
+
+--
 -- Indices de la tabla `actividad_horario`
 --
 ALTER TABLE `actividad_horario`
@@ -809,6 +827,12 @@ ALTER TABLE `actividad`
   MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `actividad_entrenador`
+--
+ALTER TABLE `actividad_entrenador`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `cardio_tabla`
 --
 ALTER TABLE `cardio_tabla`
@@ -818,7 +842,7 @@ ALTER TABLE `cardio_tabla`
 -- AUTO_INCREMENT de la tabla `ejercicio`
 --
 ALTER TABLE `ejercicio`
-  MODIFY `idEjercicio` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idEjercicio` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `estiramiento_tabla`
@@ -860,7 +884,7 @@ ALTER TABLE `recursos`
 -- AUTO_INCREMENT de la tabla `superusuario_ejercicio`
 --
 ALTER TABLE `superusuario_ejercicio`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tabla`
@@ -883,6 +907,13 @@ ALTER TABLE `actividad`
 --
 ALTER TABLE `actividad_deportista`
   ADD CONSTRAINT `fk_ActividadDeportista` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `actividad_entrenador`
+--
+ALTER TABLE `actividad_entrenador`
+  ADD CONSTRAINT `fk_actividadEntrenador1` FOREIGN KEY (`dniEntrenador`) REFERENCES `entrenador` (`dniEntrenador`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_actividadEntrenador2` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `actividad_horario`

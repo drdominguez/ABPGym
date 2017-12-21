@@ -37,12 +37,6 @@ $currentuser = $view->getVariable("currentusername");
                                 <textarea class="form-control" name="comentario" rows="10"><?php echo $usuario['comentarioRevision']; ?></textarea>
                             </div>
                         </div>
-
-                         <select class="form-control" name="tipo[]">
-                              <option value="pef">PEF "Ponte en Forma"</option>
-                              <option value="tdu">TDU "Tarjeta Deportista Universitaria"</option>
-                            </select>
-
                     <input type="hidden" name="dni" value="<?php echo $usuario['dni']; ?>">
                     <button type="button" onclick="window.location.href='./index.php?controller=Deportista&amp;action=listarPEF'" class="btn btn-default"><?= i18n("Volver") ?></button>
                     <button  type='submit' name='action' value='TduEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>

@@ -1,7 +1,7 @@
 <?php
-    $view=ViewManager::getInstance();
-    $usuario = $view->getVariable("usuario");
-    $currentuser = $view->getVariable("currentusername");
+$view=ViewManager::getInstance();
+$usuario = $view->getVariable("usuario");
+$currentuser = $view->getVariable("currentusername");
 ?>
 
 <!DOCTYPE html>
