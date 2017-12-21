@@ -110,7 +110,7 @@
                                         <td><?php echo $monitor->getNombre(); ?></td>
                                         <td><?php echo $monitor->getApellidos(); ?></td>
                                         <td>
-                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Actividad&amp;action=ActividadADD&amp;idActividad=<?php echo $monitor->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $monitor->getDni();?>'><img src='./view/Icons/detalle.png'>
                                             </a>
                                         </td>
                                         <td>
