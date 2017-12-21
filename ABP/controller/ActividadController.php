@@ -100,10 +100,8 @@ class ActividadController extends BaseController{
                     $errors["idActividad"] = "La actividad no se ha editado corectamente";
                     $this->view->setFlash($errors["idActividad"]);
                 }
-
-            $this->view->redirect("actividad", "actividadListar");
-
             
+            $this->view->redirect("actividad", "actividadListar"); 
             
         }else
         {
@@ -115,6 +113,8 @@ class ActividadController extends BaseController{
             }
                 $listarrecursos=$this->actividadMapper->selectRecurso();
                 $monitores = $this->actividadMapper->findMonitor();
+                $usuarios = $this->actividadMapper->listarUsuarios();
+                $this->view->setVariable("usuarios",$usuarios);
                 $this->view->setVariable("listarecursos",$listarrecursos);
                 $this->view->setVariable("actividad", $actividad);
                 $this->view->setVariable("monitores", $monitores);

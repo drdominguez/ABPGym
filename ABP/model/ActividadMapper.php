@@ -2,6 +2,7 @@
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Actividad.php");
 require_once(__DIR__."/Horario.php");
+require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/Recurso.php");
 require_once(__DIR__."/ActividadGrupo.php");
 
@@ -156,6 +157,20 @@ class ActividadMapper{
             }
         }
         return false;
+    }
+    public function listarUsuarios()
+    {
+        if($this->esAdministrador())
+        {
+            $stmt = $this->db->query("SELECT * from deportista d, usuario u WHERE d.dni=u.dni;");
+        }
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
+        {
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos']));
+        }
+        return $usuarios;
     }
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador 
