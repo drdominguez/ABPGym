@@ -53,20 +53,34 @@ class EjercicioController extends BaseController{
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
         if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercici
     
-            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],'');
+            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],'','');
             if($idEjercicio = $this->estiramientoMapper->addEstiramiento($estiramiento)){
                     $nombreFoto = $_FILES['imagen']['name'];
                     $tipoFoto = $_FILES['imagen']['type'];
                     $nombreTempFoto = $_FILES['imagen']['tmp_name'];
 
                 if($nombreFoto != null){
-                    $dir_subida = '/../View/pictures/ejercicios/fotos/';
+                    $dir_subida = 'ABP/../View/pictures/ejercicios/fotos/';
                     $extension = substr($tipoFoto, 6);
-                    $ruta = $dir_subida . $idEjercicio . ".". $extension;
-                    move_uploaded_file($nombreTempFoto, $ruta);
+                    $rutaImagen = $dir_subida . $idEjercicio . ".". $extension;
+                    move_uploaded_file($nombreTempFoto, $rutaImagen);
                     
                 }
-                $this->ejercicioMapper->addImagen($idEjercicio,$ruta);
+
+                $nombreVideo = $_FILES['video']['name'];
+                    $tipoVideo = $_FILES['video']['type'];
+                    $nombreTempVideo = $_FILES['video']['tmp_name'];
+
+                if($nombreVideo != null){
+                    $dir_subida = 'ABP/../View/pictures/ejercicios/videos/';
+                    $extension = substr($tipoVideo, 6);
+                    $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
+                    move_uploaded_file($nombreTempVideo, $rutaVideo);
+                    
+                }
+                $this->ejercicioMapper->addImagenVideo($idEjercicio,$rutaVideo,$rutaImagen);
+
+
                 $this->view->setFlash("Ejercicio Añadido Corectamente");
 
             }else{

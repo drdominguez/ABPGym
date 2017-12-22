@@ -39,10 +39,10 @@ Class EjercicioMapper{
 		return false;
 	}
 
-	public function addImagen($idEjercicio,$ruta){
+	public function addImagenVideo($idEjercicio,$rutaVideo, $rutaImagen){
 		if(self::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
-			$stmt=$this->db-> prepare("UPDATE ejercicio SET  imagen=? WHERE idEjercicio=?");
-			$stmt->execute(array($ruta,$idEjercicio));
+			$stmt=$this->db-> prepare("UPDATE ejercicio SET  imagen=?, video=? WHERE idEjercicio=?");
+			$stmt->execute(array($rutaImagen, $rutaVideo ,$idEjercicio));
 			return true;
 
 		}
