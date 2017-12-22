@@ -18,12 +18,18 @@ class ActividadMapper{
     
     //Añadir
     function add($actividad,$actividadEntrenador){ 
+        
         $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,plazas) values (?,?,?,?)");
+
         if(self::esAdministrador()){
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas()));
+
             $idActividad = $this->db->lastInsertId();
+
             $stmt1 = $this->db->prepare("INSERT INTO actividad_entrenador(dniEntrenador,idActividad) values (?,?)");
+
             $stmt1 -> execute(array($actividadEntrenador->getDniEntrenador(),$idActividad));
+
             return true;
         }
         return false;
@@ -188,14 +194,13 @@ class ActividadMapper{
          $stmt -> execute(array($idActividad));
          }
         $entrenador_db = $stmt->fetch(PDO::FETCH_ASSOC);
-        $entrenador = "\"" . $entrenador_db['dniEntrenador']. "\"";
+        $entrenador = $entrenador_db['dniEntrenador'];
         
 
         $stmt1 = $this->db->prepare("SELECT * from usuario where dni = ?");
         $stmt1-> execute(array($entrenador ));
         $entrenadorasignado = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($entrenadorasignado);
-        exit;
+        
         
         return $entrenadorasignado;
 
