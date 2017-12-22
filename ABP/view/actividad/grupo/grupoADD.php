@@ -164,8 +164,8 @@
                                     <td><?php echo $usuario->getNombre(); ?></td>
                                     <td><?php echo $usuario->getApellidos(); ?></td>
                                     <td>
-                                        <a href=''><img src='./view/Icons/detalle.png'>
-                                        </a>
+                                        <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
                                     </td>
                                      <td>
                                       <input type="checkbox" name="usuarios[]" value="<?php echo $usuario->getDni(); ?>">
