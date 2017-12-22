@@ -25,7 +25,7 @@ class ActividadMapper{
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas()));
 
             $idActividad = $this->db->lastInsertId();
-            
+
             $stmt1 = $this->db->prepare("INSERT INTO actividad_entrenador(dniEntrenador,idActividad) values (?,?)");
 
             $stmt1 -> execute(array($actividadEntrenador->getDniEntrenador(),$idActividad));
@@ -45,6 +45,7 @@ class ActividadMapper{
         return false;
     }
     function edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad){
+        
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
             

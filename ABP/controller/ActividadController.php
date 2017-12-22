@@ -83,19 +83,22 @@ class ActividadController extends BaseController{
     public function actividadEDIT() 
     {   
         if(isset($_POST["nombre"]) && isset($_POST["precio"]))
-        {//si existen los post añado la notificacion
+        {
             $idActividad=$_POST['idActividad'];
             $idHorario=$_POST['idHorario'];
-            $dniEntrenador=$_POST['dniEntrenador'];
+            $dniEntrenador=$_POST['monitor'];
+            var_dump($dniEntrenador);
             
                 $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
                 $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$horario);
                 $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
 
-            
+                var_dump($actividadEntrenador);
+
                 if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad))
                 {
-
+                    var_dump($dniEntrenador);
+                    exit;
                $this->view->setFlash("Actividad Editada Correctamente");
                 }else
                 {

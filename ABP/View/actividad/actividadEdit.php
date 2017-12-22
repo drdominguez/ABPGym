@@ -140,15 +140,19 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                             </a>
                                         </td>
                                         <td>
-<?php                                            if($monitor->getDni() == $monitorAsignado[0]['dni']){ ?>
-                                            <input checked type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
+<?php                                             if($monitor->getDni() == $monitorAsignado[0]['dni']){ ?>
+                                        <label>
+                                            <input checked type="radio" name="monitor" value="<?php echo $monitor->getDni(); ?>">Seleccionar
+                                        </label><br>
 <?php                                        }else{ ?>
-                                        <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
+                                        <label>
+                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni(); ?>">Seleccionar
+                                        </label><br>
                                     
                                         </td>
                                     </tr>
 <?php
-                                    }
+                                   }
                                 }   
 ?>
                                 </tbody>
@@ -211,11 +215,12 @@ require_once(__DIR__."/../../core/ViewManager.php");
         </div>
                 <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
                 <input type="hidden" name="idHorario" value="<?php echo $actividad->getHorario()->getIdHorario(); ?>">
-                <input type="hidden" name="dniEntrenador" value="<?php echo $monitor->getDni(); ?>">
+                <input type="hidden" name="monitor" value="<?php echo $monitor->getDni(); ?>">
                 <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                 <button  type='submit' name='action' value='actividadEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
 
             </form>
+            
         </div>
     </div>
 </html>
