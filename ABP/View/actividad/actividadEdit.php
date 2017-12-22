@@ -23,6 +23,10 @@ require_once(__DIR__."/../../core/ViewManager.php");
             }
         }
     }
+
+    function dniEntrenador(dni){
+        document.getElementById("dni").value=dni;
+    }
 </script> 
 <!DOCTYPE html>
 <html>    
@@ -84,6 +88,14 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                         </div>
                                     </div>
                                 </div>
+                                 <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                             <label for="exampleInputMonitor">Monitor</label>
+                                            <input class="form-control" readonly="true" name="monitor" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $monitorAsignado[0]['dni']; ?>">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <div class="form-row">
                                         <div class="col-md-6">
@@ -103,7 +115,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
             
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los monitores") ?>
+                        <i class="fa fa-table"></i><?= i18n("Cambiar Monitor") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -127,11 +139,8 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 </tr>
                                 </tfoot>
                             <tbody>
-<?php
-                                foreach($monitores as $monitor)
-                                {
-
-?>
+                            <?php foreach($monitores as $monitor){
+                                if($monitor->getDni() != $monitorAsignado[0]['dni']){ ?>
                                 <tr>
                                 <td><?php echo $monitor->getDni(); ?></td>
                                 <td><?php echo $monitor->getNombre(); ?></td>
@@ -141,23 +150,13 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 </a>
                                 </td>
                                 <td>
-<?php                                       if($monitor->getDni() == $monitorAsignado[0]['dni']){ ?>
-                                        <label>
-                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni(); ?>" checked >Seleccionar
-                                        </label><br>
-<?php                                        }else{ ?>
-                                        <label>
-                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni(); ?>">Seleccionar
-                                        </label><br>
-
-                                    
+                                    <label>
+                                        <input type="radio" onclick="dniEntrenador(this.value)" name="monitor" value="<?php echo $monitor->getDni(); ?>">
+                                    </label>
+                            <?php }?>
                                 </td>
                                 </tr>
-
-<?php
-                                   }
-                                }   
-?>
+                            <?php } ?>
 
                             </tbody>
                             </table>
@@ -215,6 +214,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                             </table>
                     <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
                     <input type="hidden" name="idHorario" value="<?php echo $actividad->getHorario()->getIdHorario(); ?>">
+                    <input type="hidden" id="dni" name="dni">
                     <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;  action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button>
                     <button  type='submit' name='action' value='actividadEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>   
                         </div>
