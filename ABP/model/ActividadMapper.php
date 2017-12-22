@@ -2,6 +2,7 @@
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/Actividad.php");
 require_once(__DIR__."/Horario.php");
+require_once(__DIR__."/ActividadEntrenador.php");
 require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/Recurso.php");
 require_once(__DIR__."/ActividadGrupo.php");
@@ -16,10 +17,13 @@ class ActividadMapper{
     }
     
     //Añadir
-    function add($actividad){ 
+    function add($actividad,$actividadEntrenador){ 
         $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,plazas) values (?,?,?,?)");
         if(self::esAdministrador()){
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas()));
+            $idActividad = $this->db->lastInsertId();
+            $stmt1 = $this->db->prepare("INSERT INTO actividad_entrenador(dniEntrenador,idActividad) values (?,?)");
+            $stmt1 -> execute(array($actividadEntrenador->getDniEntrenador(),$idActividad));
             return true;
         }
         return false;
@@ -34,13 +38,15 @@ class ActividadMapper{
         }
         return false;
     }
-    function edit($actividad,$idActividad){
+    function edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad){
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
             
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$idActividad));
             $stmt1 = $this->db->prepare("UPDATE horario SET dia=?, hora=?, fechIni=?, fechFin=? WHERE idHorario=? ");
             $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin(),$actividad->getHorario()->getIdHorario()));
+            $stmt2 = $this->db->prepare("UPDATE actividad_entrenador SET dniEntrenador=?  WHERE dniEntrenador=? AND idActividad=?");
+            $stmt2 -> execute(array($actividadEntrenador->getDniEntrenador(),$dniEntrenador,$idActividad));
             return true;
         }
         return false;
@@ -171,6 +177,10 @@ class ActividadMapper{
             array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos']));
         }
         return $usuarios;
+    }
+    public function findMonitorAsignado($idActividad){
+         $stmt = $this->db->query("SELECT * from deportista d, usuario u WHERE d.dni=u.dni;");
+
     }
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador 

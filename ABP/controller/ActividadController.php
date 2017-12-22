@@ -86,12 +86,14 @@ class ActividadController extends BaseController{
         {//si existen los post añado la notificacion
             $idActividad=$_POST['idActividad'];
             $idHorario=$_POST['idHorario'];
+            $dniEntrenador=$_POST['dniEntrenador'];
             
                 $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
                 $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$horario);
+                $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
 
             
-                if($this->actividadMapper->edit($actividad,$idActividad))
+                if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad))
                 {
 
                $this->view->setFlash("Actividad Editada Correctamente");
@@ -136,6 +138,8 @@ class ActividadController extends BaseController{
         if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
             $horario = new Horario();
             $individual = new ActividadIndividual();
+            $actividadEntrenador = new ActividadEntrenador();
+            $actividadEntrenador->setDniEntrenador($_POST["dniEntrenador"]);
             $horario->setDia($_POST["dia"]);
             $horario->setHora($_POST["hora"]);
             $horario->setFechaInicio(date_format(date_create($_POST['fechainicio']), 'Y-m-d'));
@@ -145,7 +149,7 @@ class ActividadController extends BaseController{
             $individual->setIdInstalaciones($_POST["idInstalaciones"]);
             $individual->setPlazas($_POST["plazas"]); 
             $individual->setHorario($horario); 
-            if($this->individualMapper->addIndividual($individual)){
+            if($this->individualMapper->addIndividual($individual,$actividadEntrenador)){
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
             }else{
@@ -167,6 +171,7 @@ class ActividadController extends BaseController{
         if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
             $horario = new Horario();
             $grupo = new ActividadGrupo();
+            $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
             $horario->setDia($_POST["dia"]);
             $horario->setHora($_POST["hora"]);
             $horario->setFechaInicio(date_format(date_create($_POST['fechainicio']), 'Y-m-d'));

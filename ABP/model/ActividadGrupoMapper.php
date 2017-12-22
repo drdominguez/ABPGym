@@ -13,8 +13,9 @@ Class ActividadGrupoMapper extends ActividadMapper{
 		parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
 	}
 	public function addGrupo($actividad){
-		parent::add($actividad);//llama al add de la clase padre
-		$this->idActividad = $this->db->lastInsertId();
+		parent::add($actividad,$actividadEntrenador);//llama al add de la clase padre
+		$idActividadEntrenador = $this->db->lastInsertId();
+		$idActividad=$this->findIdActividad($idActividadEntrenador);
  		if(parent::esAdministrador()){
 			$stmt = $this->db->prepare("INSERT INTO grupo(idActividad) VALUES (?)");
 			$stmt -> execute(array($this->idActividad));	
@@ -39,5 +40,13 @@ Class ActividadGrupoMapper extends ActividadMapper{
 	public function deleteGrupo($idActividad){
 		parent::delete($actividad);//Borro haciendo en cascada aunque es mejor un borrado lógico
 	}
+	public function findIdActividad($idActividadEntrenador){
+        $stmt = $this->db->prepare("SELECT idActividad from actividad_entrenador WHERE id=?;");
+        $stmt -> execute(array($idActividadEntrenador));
+        $actividadentrenador = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $actividadentrenador['idActividad'];
+
+    }
 }
 ?>

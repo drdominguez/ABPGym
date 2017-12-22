@@ -134,14 +134,14 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                         <td><?php echo $monitor->getNombre(); ?></td>
                                         <td><?php echo $monitor->getApellidos(); ?></td>
                                         <td>
-                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Actividad&amp;action=ActividadADD&amp;idActividad=<?php echo $monitor->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $monitor->getDni();?>'><img src='./view/Icons/detalle.png'>
                                             </a>
                                         </td>
                                         <td>
 <?php                                            if($monitor == $monitorAsignado){ ?>
                                             <input checked type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
 <?php                                        }else{ ?>
-                                        <input checked type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
+                                        <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
                                     
                                         </td>
                                     </tr>
@@ -156,7 +156,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 </div>
                 <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Asignar Tabla") ?>
+                <i class="fa fa-table"></i><?= i18n("Asignar Actividad a Usuario") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -192,8 +192,8 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <td><?php echo $usuario->getNombre(); ?></td>
                                     <td><?php echo $usuario->getApellidos(); ?></td>
                                     <td>
-                                        <a href=''><img src='./view/Icons/detalle.png'>
-                                        </a>
+                                        <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $usuario->getDni();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
                                     </td>
                                      <td>
                                       <input type="checkbox" name="usuarios[]" value="<?php echo $usuario->getDni(); ?>">
@@ -209,6 +209,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
         </div>
                 <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
                 <input type="hidden" name="idHorario" value="<?php echo $actividad->getHorario()->getIdHorario(); ?>">
+                <input type="hidden" name="dniEntrenador" value="<?php echo $monitor->getDni(); ?>">
                 <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                 <button  type='submit' name='action' value='actividadEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
 
