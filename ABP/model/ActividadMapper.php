@@ -45,7 +45,7 @@ class ActividadMapper{
         return false;
     }
     function edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad){
-        
+       
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
             

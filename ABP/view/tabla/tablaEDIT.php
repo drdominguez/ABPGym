@@ -112,12 +112,13 @@
                         </div>
                     </div>
                 </div>
+                </form>
                 <input type="hidden" name="idTabla" value="<?php echo $tabla->getIdTabla(); ?>">
                 <input type="hidden" name="tipo" value="<?php echo $tabla->getTipo(); ?>">
                 <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                 <button  type='submit' name='action' value='TablaEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
 
-            </form>
+            
         </div>
     </div>
 </html>

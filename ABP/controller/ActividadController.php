@@ -88,17 +88,16 @@ class ActividadController extends BaseController{
             $idHorario=$_POST['idHorario'];
             $dniEntrenador=$_POST['monitor'];
             var_dump($dniEntrenador);
+            exit;
             
                 $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
                 $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$horario);
                 $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
 
-                var_dump($actividadEntrenador);
-
+            
                 if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad))
                 {
-                    var_dump($dniEntrenador);
-                    exit;
+
                $this->view->setFlash("Actividad Editada Correctamente");
                 }else
                 {

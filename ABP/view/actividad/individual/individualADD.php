@@ -141,7 +141,7 @@
                 </div>
                 <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Asignar Tabla") ?>
+                <i class="fa fa-table"></i><?= i18n("Asignar Deportista") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
