@@ -18,14 +18,14 @@ class ActividadMapper{
     
     //Añadir
     function add($actividad,$actividadEntrenador){ 
-        
+
         $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,plazas) values (?,?,?,?)");
 
         if(self::esAdministrador()){
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas()));
 
             $idActividad = $this->db->lastInsertId();
-
+            
             $stmt1 = $this->db->prepare("INSERT INTO actividad_entrenador(dniEntrenador,idActividad) values (?,?)");
 
             $stmt1 -> execute(array($actividadEntrenador->getDniEntrenador(),$idActividad));

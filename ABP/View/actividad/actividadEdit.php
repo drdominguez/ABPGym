@@ -8,6 +8,11 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $listarecursos = $view->getVariable("listarecursos");
     $monitores = $view->getVariable("monitores");
     $monitorAsignado = $view->getVariable("monitorAsignado");
+    var_dump($monitorAsignado);
+
+    var_dump($monitores);
+    exit;
+
 ?>
 <script type="text/javascript">
     function marcar(source) 
