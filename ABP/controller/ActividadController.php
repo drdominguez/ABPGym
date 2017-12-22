@@ -55,16 +55,16 @@ class ActividadController extends BaseController{
             $idRecurso = $this->actividadMapper->idRecurso($idActividad);
             $nomRecurso=$this->actividadMapper->findNomIdInstalaciones($idRecurso);
             
-            // find the notification object in the database
+            
             $actividad = $this->actividadMapper->findById($idActividad);
             if ($actividad == NULL) 
             {
                 throw new Exception("No existe actividad con este id: ".$idActividad);
             }
-            // put the notification object to the view
+            $monitorAsignado = $this->actividadMapper->findMonitorAsignado($idActividad);
+            $this->view->setVariable("monitorAsignado", $monitorAsignado);
             $this->view->setVariable("nombreInstalación", $nomRecurso);
             $this->view->setVariable("actividad", $actividad);
-            // render the view (/view/posts/view.php)
             $this->view->render("actividad", "actividadDELETE");
         }else
         {
