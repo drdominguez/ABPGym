@@ -44,8 +44,12 @@ class TablaController extends BaseController
             $this->view->redirect("Tabla", "tablaListar");
         }else
         {
-            $ejercicios = $this->tablaMapper->listarEjercicios();
-            $this->view->setVariable("ejercicios",$ejercicios);
+            $cardio = $this->tablaMapper->listarCardio();
+            $muscular = $this->tablaMapper->listarMuscular();
+            $estiramiento = $this->tablaMapper->listarEstiramiento();
+            $this->view->setVariable("cardios",$cardio);
+            $this->view->setVariable("musculares",$muscular);
+            $this->view->setVariable("estiramientos",$estiramiento);
             $this->view->render("tabla","estandarADD");
         }
     }else{

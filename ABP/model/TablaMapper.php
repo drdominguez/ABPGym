@@ -19,16 +19,26 @@ Class TablaMapper
     
 
 
-    public function addEstandar($tabla,$ejercicios)
+    public function addEstandar($tabla,$cardios,$musculares,$estiramientos)
     {
         $stmt = $this->db->prepare("INSERT INTO tabla(tipo,comentario,nombre,dniSuperUsuario) VALUES (?,?,?,?)");
         if($this->permisos->esSuperusuario())
         {
             $stmt->execute(array('estandar',$tabla->getComentario(),$tabla->getNombre(),$_SESSION['currentuser']));
             $this->idTabla= $this->db->lastInsertId();
-            foreach ($ejercicios as $ejercicio)
+            foreach ($cardios as $cardio)
             {
-                $stmt = $this->db->prepare("INSERT INTO tabla_ejercicios(idTabla,idEjercicio) VALUES (?,?)");
+                $stmt = $this->db->prepare("INSERT INTO cardio_tabla(idTabla,idEjercicio) VALUES (?,?)");
+                $stmt->execute(array($this->idTabla,$ejercicio));
+            }
+             foreach ($musculares as $muscular)
+            {
+                $stmt = $this->db->prepare("INSERT INTO muscular_tabla(idTabla,idEjercicio) VALUES (?,?)");
+                $stmt->execute(array($this->idTabla,$ejercicio));
+            }
+             foreach ($estiramientos as $estiramiento)
+            {
+                $stmt = $this->db->prepare("INSERT INTO estiramiento_tabla(idTabla,idEjercicio) VALUES (?,?)");
                 $stmt->execute(array($this->idTabla,$ejercicio));
             }
             return true;
@@ -183,18 +193,50 @@ Class TablaMapper
 
 
 
-    public function listarEjercicios()
+    public function listarMuscular()
     {
         if($this->permisos->esSuperusuario())
         {
-            $stmt = $this->db->query("SELECT * from ejercicio");
-            $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $ejercicios = array();
-            foreach ($ejercicios_db as $ejercicio) 
+            $stmt = $this->db->query("SELECT * from muscular m, ejercicio e WHERE m.idEjercicio=e.idEjercicio");
+            $muscular_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $musculares = array();
+            foreach ($muscular_db as $muscular) 
             {
-                array_push($ejercicios, new Ejercicio($ejercicio['idEjercicio'],$ejercicio['nombre'],$ejercicio['descripcion'],$ejercicio['video'],$ejercicio['imagen']));
+                array_push($musculares, new Ejercicio($muscular['idEjercicio'],$muscular['nombre'],$muscular['descripcion'],$muscular['video'],$muscular['imagen']));
             }
-            return $ejercicios;
+            return $musculares;
+        }
+    }
+
+
+    public function listarCardio()
+    {
+          if($this->permisos->esSuperusuario())
+        {
+            $stmt = $this->db->query("SELECT * from cardio c, ejercicio e WHERE c.idEjercicio=e.idEjercicio");
+            $cardio_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $cardios = array();
+            foreach ($cardio_db as $cardio) 
+            {
+                array_push($cardios, new Ejercicio($cardio['idEjercicio'],$cardio['nombre'],$cardio['descripcion'],$cardio['video'],$cardio['imagen']));
+            }
+            return $cardios;
+        }
+    }
+
+
+    public function listarEstiramiento()
+    {
+          if($this->permisos->esSuperusuario())
+        {
+            $stmt = $this->db->query("SELECT * from estiramiento est, ejercicio e WHERE est.idEjercicio=e.idEjercicio");
+            $estiramientos_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $estiramientos = array();
+            foreach ($estiramientos_db as $estiramiento) 
+            {
+                array_push($estiramientos, new Ejercicio($estiramiento['idEjercicio'],$estiramiento['nombre'],$estiramiento['descripcion'],$estiramiento['video'],$estiramiento['imagen']));
+            }
+            return $estiramientos;
         }
     }
 
