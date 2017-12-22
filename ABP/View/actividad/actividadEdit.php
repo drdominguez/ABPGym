@@ -214,7 +214,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                             </table>
                     <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
                     <input type="hidden" name="idHorario" value="<?php echo $actividad->getHorario()->getIdHorario(); ?>">
-                    <input type="hidden" id="dni" name="dni">
+                    <input type="hidden" id="dni" name="dni" value="<?php echo $monitorAsignado[0]['dni']; ?>">
                     <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;  action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button>
                     <button  type='submit' name='action' value='actividadEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>   
                         </div>
