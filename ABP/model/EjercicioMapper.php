@@ -31,11 +31,23 @@ Class EjercicioMapper{
 			$stmt = $this->db->prepare("INSERT INTO ejercicio(nombre,descripcion,video,imagen) VALUES (?,?,?,?)");
 			$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen()));
 			$this->idEjercicio = $this->db->lastInsertId();//devuelve el ultimo id insertado
+
 			$stmt = $this->db->prepare("INSERT INTO superusuario_ejercicio(dniSuperUsuario,idEjercicio) VALUES (?,?)");
 			$stmt -> execute(array($_SESSION["currentuser"],$this->idEjercicio));
 			return true;
 		}
 		return false;
+	}
+
+	public function addImagen($idEjercicio,$ruta){
+		if(self::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
+			$stmt=$this->db-> prepare("UPDATE ejercicio SET  imagen=? WHERE idEjercicio=?");
+			$stmt->execute(array($ruta,$idEjercicio));
+			return true;
+
+		}
+		return false;
+
 	}
 
 	public function edit($ejercicio){

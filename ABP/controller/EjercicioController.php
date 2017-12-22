@@ -51,10 +51,23 @@ class EjercicioController extends BaseController{
     */
     public function EstiramientoADD() {
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
-        if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercicio
-            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
-            if($this->estiramientoMapper->addEstiramiento($estiramiento)){
-               $this->view->setFlash("Ejercicio Añadido Corectamente");
+        if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercici
+    
+            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],'');
+            if($idEjercicio = $this->estiramientoMapper->addEstiramiento($estiramiento)){
+                    $nombreFoto = $_FILES['imagen']['name'];
+                    $tipoFoto = $_FILES['imagen']['type'];
+                    $nombreTempFoto = $_FILES['imagen']['tmp_name'];
+
+                if($nombreFoto != null){
+                    $dir_subida = '/../View/pictures/ejercicios/fotos/';
+                    $extension = substr($tipoFoto, 6);
+                    $ruta = $dir_subida . $idEjercicio . ".". $extension;
+                    move_uploaded_file($nombreTempFoto, $ruta);
+                    
+                }
+                $this->ejercicioMapper->addImagen($idEjercicio,$ruta);
+                $this->view->setFlash("Ejercicio Añadido Corectamente");
 
             }else{
                 $errors["username"] = "El ejercicio no se ha añadido corectamente";

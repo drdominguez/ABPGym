@@ -31,7 +31,7 @@ Class EjercicioEstiramientoMapper extends EjercicioMapper{
 		if(parent::esSuperusuario() && parent::add($ejercicio)){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio para saber que superUsuario creo ese ejercicio y luego tenga permisos sobre el
 			$stmt = $this->db->prepare("INSERT INTO estiramiento(idEjercicio) VALUES (?)");
 			$stmt->execute(array($this->idEjercicio));//
-			return true;
+			return $this->idEjercicio;
 		}
 		return false;
 	}

@@ -18,7 +18,7 @@
                         <i class="fa fa-table"></i> Añadir Estiramiento</div>
                     <div class="card-body">      
                     <div id="flash"><?= $view->popFlash() ?></div>
-                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=EstiramientoADD" class="form-signin" accept-charset="UTF-8" method="POST">
+                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=EstiramientoADD" class="form-signin" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                     	<div class="form-group">
                             <div class="form-row">
                               <div class="col-md-6">

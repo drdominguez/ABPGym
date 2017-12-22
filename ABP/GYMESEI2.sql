@@ -166,8 +166,8 @@ CREATE TABLE `ejercicio` (
   `idEjercicio` bigint(20) NOT NULL,
   `nombre` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
-  `video` binary(1) DEFAULT NULL,
-  `imagen` binary(1) DEFAULT NULL
+  `video` varchar(60) DEFAULT NULL,
+  `imagen` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `ejercicio` (
 --
 
 INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `imagen`) VALUES
-(8, 'Estiramiento999999', 'aoijoisajoisas', 0x00, 0x00);
+(8, 'Estiramiento999999', 'aoijoisajoisas', null, null);
 
 -- --------------------------------------------------------
 
