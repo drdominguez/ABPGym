@@ -8,10 +8,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $listarecursos = $view->getVariable("listarecursos");
     $monitores = $view->getVariable("monitores");
     $monitorAsignado = $view->getVariable("monitorAsignado");
-    var_dump($monitorAsignado);
 
-    var_dump($monitores);
-    exit;
 
 ?>
 <script type="text/javascript">
@@ -143,7 +140,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                             </a>
                                         </td>
                                         <td>
-<?php                                            if($monitor == $monitorAsignado){ ?>
+<?php                                            if($monitor->getDni() == $monitorAsignado[0]['dni']){ ?>
                                             <input checked type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
 <?php                                        }else{ ?>
                                         <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>">Seleccionar<br>
