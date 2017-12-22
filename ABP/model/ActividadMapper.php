@@ -179,7 +179,25 @@ class ActividadMapper{
         return $usuarios;
     }
     public function findMonitorAsignado($idActividad){
-         $stmt = $this->db->query("SELECT * from deportista d, usuario u WHERE d.dni=u.dni;");
+
+        if($this->esAdministrador())
+        {
+
+         $stmt = $this->db->prepare("SELECT dniEntrenador from actividad_entrenador WHERE idActividad=?;");
+
+         $stmt -> execute(array($idActividad));
+         }
+        $entrenador_db = $stmt->fetch(PDO::FETCH_ASSOC);
+        $entrenador = "\"" . $entrenador_db['dniEntrenador']. "\"";
+        
+
+        $stmt1 = $this->db->prepare("SELECT * from usuario where dni = ?");
+        $stmt1-> execute(array($entrenador ));
+        $entrenadorasignado = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($entrenadorasignado);
+        exit;
+        
+        return $entrenadorasignado;
 
     }
     protected function esAdministrador(){
