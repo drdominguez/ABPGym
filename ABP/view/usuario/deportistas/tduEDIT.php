@@ -5,37 +5,64 @@ $currentuser = $view->getVariable("currentusername");
 ?>
 
 <!DOCTYPE html>
-<html>
-<div class="content-wrapper">
-    <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href=""><?= i18n("Gestión de deportistas") ?></a>
-            </li>
-            <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
-        </ol>
-        <!-- Example DataTables Card-->
-        <form name = 'Form' action='./index.php?controller=Deportista&amp;action=TduEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fa fa-table"></i><?= i18n("Editar deportista") ?>
-                </div>
-                <div class="card-body">
-                    <div id="flash"><?= $view->popFlash() ?></div>
+<html>    
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href=""><?= i18n("Gestión de tablas") ?></a>
+                </li>
+                <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
+            </ol>
+            <!-- Example DataTables Card-->
+            <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i><?= i18n("Editar usuario") ?>
+                    </div>
+                    <div class="card-body">      
+                        <div id="flash"><?= $view->popFlash() ?></div>      
+                       <div class="form-group">
+                        <div class="form-row">
+                          <div class="col-md-6">
+                        <label for="dni"><?= i18n("DNI") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'dni' size = '9' readonly value = '<?php echo $usuario->getDni(); ?>'  onchange="comprobarVacio(this)  && comprobarDni(this)" >
+                        </div>
+                        <div class="col-md-6">
+                        <label for="nombre"><?= i18n("Nombre") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'nombre' size = '30' value = '<?php echo $usuario->getNombre(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                        </div>
+                      </div>
+                    </div>
                     <div class="form-group">
                         <div class="form-row">
-                            <div class="col-md-6">
-                                <label for="tarjeta"><?= i18n("Tarjeta") ?>: </label>
-                                <input class="form-control" type = 'text' name = 'tarjeta' size = '60' value = '<?php echo $usuario['tarjeta']; ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
-                            </div>
+                          <div class="col-md-6">
+                        <label for="apellidos"><?= i18n("Apellidos") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'apellidos' size = '30' value = '<?php echo $usuario->getApellidos(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
                         </div>
+                        <div class="col-md-6">
+                        <label for="edad"><?= i18n("Edad") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'edad' size = '4' value = '<?php echo $usuario->getEdad(); ?>'  onchange="comprobarVacio(this)  && comprobarSolonum(this) && comprobarEntero(this,0,200)" >
+                        </div>
+                      </div>
                     </div>
-                    <input type="hidden" name="dni" value="<?php echo $usuario['dni']; ?>">
-                    <button type="button" onclick="window.location.href='./index.php?controller=Deportista&amp;action=listarTDU'" class="btn btn-default"><?= i18n("Volver") ?></button>
-                    <button  type='submit' name='action' value='TduEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
+                     <div class="form-group">
+                        <div class="form-row">
+                        <div class="col-md-6">
+                        <label for="email"><?= i18n("Email") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'email' size = '100' value = '<?php echo $usuario->getEmail(); ?>'  onchange="comprobarVacio(this)  &&  comprobarEmail(this) && comprobarTexto(this,100)" >
+                        </div>
+                         <div class="col-md-6">
+                        <label for="telefono"><?= i18n("Teléfono") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'telefono' size = '20' value = '<?php echo $usuario->getTelefono(); ?>'  onchange="comprobarVacio(this)  && comprobarTelf(this)" >
+                        </div>
+                      </div>
+                    </div>
+                <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuariosListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
+                <button  type='submit' name='action' value='UsuarioEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
 
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 </html>
