@@ -13,16 +13,18 @@ Class ActividadIndividualMapper extends ActividadMapper{
 	public function __construct(){
 		parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
 	}
-	public function addIndividual($actividad,$actividadEntrenador){
+	public function addIndividual($actividad,$actividadEntrenador,$usuariosd){
 
 		parent::add($actividad,$actividadEntrenador);//llama al add de la clase padre
 		$idActividadEntrenador = $this->db->lastInsertId();
 		$idActividad=$this->findIdActividad($idActividadEntrenador);
+		parent::addDeportista($usuariosd,$idActividad);
 		
  		if(parent::esAdministrador()){
 
 			$stmt = $this->db->prepare("INSERT INTO grupo(idActividad) VALUES (?)");
 			$stmt -> execute(array($idActividad));	
+			
 			$stmt1 = $this->db->prepare("INSERT INTO horario(dia,hora,fechIni,fechFin) values (?,?,?,?)");
             $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin()));
             $this->idHorario = $this->db->lastInsertId();

@@ -16,36 +16,47 @@ class ActividadMapper{
     public function __construct() {
         $this->db = PDOConnection::getInstance();
     }
-    
+    function addDeportista($usuariosd,$idActividad){
+        $deportistas = array();
+
+        if(self::esAdministrador())
+        {
+
+            foreach ($usuariosd as $usuariod) 
+            {
+                $usuariod_insertar = new ActividadDeportista();
+                $usuariod_insertar->setDniDeportista($usuariod);
+                array_push($deportistas, $usuariod_insertard);
+
+            }
+            if($deportistas){
+                foreach($deportistas as $deportista)
+                {
+                    $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
+                    $stmt3->execute(array($idActividad,$usuariod_insertar->getDniDeportista()));
+
+                }
+            }
+            return true;
+        }
+        return false;
+    }
     //Añadir
     function add($actividad,$actividadEntrenador){ 
 
         $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,plazas) values (?,?,?,?)");
 
         if(self::esAdministrador()){
+
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas()));
 
             $idActividad = $this->db->lastInsertId();
 
+
             $stmt1 = $this->db->prepare("INSERT INTO actividad_entrenador(dniEntrenador,idActividad) values (?,?)");
 
             $stmt1 -> execute(array($actividadEntrenador->getDniEntrenador(),$idActividad));
-            $deportistas = array();
-            foreach ($usuarios as $usuario) 
-            {
-                $usuario_insertar = new ActividadDeportista();
-                $usuario_insertar->setDniDeportista($usuario);
-                array_push($deportistas, $usuario_insertar);
-            }
-            if($deportistas){
-                foreach($deportistas as $deportista)
-                {
-                    $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
-                    $stmt->execute(array($idActividad,$deportista->getDni()));
-                }
-            }
-            return true;
-
+            
             return true;
         }
         return false;
@@ -71,17 +82,19 @@ class ActividadMapper{
             $stmt2 = $this->db->prepare("UPDATE actividad_entrenador SET dniEntrenador=? WHERE idActividad=?");
             $stmt2 -> execute(array($dniEntrenador,$idActividad));
             $deportistas = array();
+
             foreach ($usuarios as $usuario) 
             {
                 $usuario_insertar = new ActividadDeportista();
                 $usuario_insertar->setDniDeportista($usuario);
                 array_push($deportistas, $usuario_insertar);
+
             }
             if($deportistas){
                 foreach($deportistas as $deportista)
                 {
-                    $stmt3 = $this->db->prepare("UPDATE actividad_deportista SET dniDeportista=? WHERE idActividad=?");
-                    $stmt3->execute(array($deportista->getDniDeportista(),$idActividad));
+                    $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
+                    $stmt3->execute(array($idActividad,$usuario_insertar->getDniDeportista()));
                 }
             }
             return true;

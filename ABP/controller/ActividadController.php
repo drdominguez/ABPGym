@@ -89,13 +89,13 @@ class ActividadController extends BaseController{
             $idActividad=$_POST['idActividad'];
             $idHorario=$_POST['idHorario'];
             $dniEntrenador=$_POST['dni'];
-            $usuarios = $_POST['usuarios'];
+            $usuariosd = $_POST['usuarios'];
                 $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
                 $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$horario);
                 $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
 
             
-                if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad,$usuarios))
+                if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad,$usuariosd))
                 {
 
                $this->view->setFlash("Actividad Editada Correctamente");
@@ -138,6 +138,7 @@ class ActividadController extends BaseController{
     
 
         if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+            $usuariosd= $_POST['usuarios'];
             $horario = new Horario();
             $individual = new ActividadIndividual();
             $actividadEntrenador = new ActividadEntrenador();
@@ -151,7 +152,7 @@ class ActividadController extends BaseController{
             $individual->setIdInstalaciones($_POST["idInstalaciones"]);
             $individual->setPlazas($_POST["plazas"]); 
             $individual->setHorario($horario); 
-            if($this->individualMapper->addIndividual($individual,$actividadEntrenador)){
+            if($this->individualMapper->addIndividual($individual,$actividadEntrenador,$usuariosd)){
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
             }else{
@@ -171,6 +172,7 @@ class ActividadController extends BaseController{
 
     public function grupoADD() {
         if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+            $usuariosd = $_POST['usuarios'];
             $horario = new Horario();
             $grupo = new ActividadGrupo();
             $actividadEntrenador = new ActividadEntrenador();
@@ -184,7 +186,7 @@ class ActividadController extends BaseController{
             $grupo->setIdInstalaciones($_POST["idInstalaciones"]);
             $grupo->setPlazas($_POST["plazas"]); 
             $grupo->setHorario($horario); 
-            if($this->grupoMapper->addGrupo($grupo,$actividadEntrenador)){
+            if($this->grupoMapper->addGrupo($grupo,$actividadEntrenador,$usuariosd)){
                $this->view->setFlash("Actividad Grupo Añadida Corectamente");
 
             }else{
