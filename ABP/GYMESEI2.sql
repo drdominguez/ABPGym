@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 21-12-2017 a las 19:58:29
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.1.11
+-- Servidor: localhost
+-- Tiempo de generación: 23-12-2017 a las 00:30:40
+-- Versión del servidor: 5.7.20
+-- Versión de PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,18 +19,20 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `GYMESEI2`
+-- Base de datos: `GYMESEI2`
 --
-
--- --------------------------------------------------------
 DROP DATABASE IF EXISTS `GYMESEI2`;
 CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `GYMESEI2`;
+
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `actividad`
 --
 
+DROP TABLE IF EXISTS `actividad`;
 CREATE TABLE `actividad` (
   `idActividad` bigint(20) NOT NULL,
   `precio` double DEFAULT NULL,
@@ -48,7 +50,9 @@ INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `
 (4, 35, 'Gymnasio Trabazos', 5, 14),
 (5, 20, 'Fútbol', 5, 22),
 (6, 15, 'Baloncesto', 5, 15),
-(7, 42, 'Karate', 5, 10);
+(7, 42, 'Karate', 5, 10),
+(8, 12, 'grupoAsignar', 1, 23),
+(11, 12, 'individualeadio', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -56,7 +60,9 @@ INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `
 -- Estructura de tabla para la tabla `actividad_deportista`
 --
 
+DROP TABLE IF EXISTS `actividad_deportista`;
 CREATE TABLE `actividad_deportista` (
+  `id` bigint(20) NOT NULL,
   `idActividad` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -67,11 +73,26 @@ CREATE TABLE `actividad_deportista` (
 -- Estructura de tabla para la tabla `actividad_entrenador`
 --
 
+DROP TABLE IF EXISTS `actividad_entrenador`;
 CREATE TABLE `actividad_entrenador` (
   `id` bigint(20) NOT NULL,
   `dniEntrenador` varchar(9) COLLATE utf8_spanish_ci NOT NULL,
   `idActividad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `actividad_entrenador`
+--
+
+INSERT INTO `actividad_entrenador` (`id`, `dniEntrenador`, `idActividad`) VALUES
+(1, '33333333P', 8),
+(3, '12345678Z', 11),
+(4, '12345678Z', 6),
+(5, '66666666Q', 4),
+(6, '33333333P', 4),
+(7, '12345678Z', 5),
+(8, '33333333P', 7),
+(9, '33333333P', 3);
 
 -- --------------------------------------------------------
 
@@ -79,6 +100,7 @@ CREATE TABLE `actividad_entrenador` (
 -- Estructura de tabla para la tabla `actividad_horario`
 --
 
+DROP TABLE IF EXISTS `actividad_horario`;
 CREATE TABLE `actividad_horario` (
   `idActividad` bigint(20) NOT NULL,
   `idHorario` bigint(20) NOT NULL
@@ -93,7 +115,9 @@ INSERT INTO `actividad_horario` (`idActividad`, `idHorario`) VALUES
 (4, 4),
 (5, 5),
 (6, 6),
-(7, 7);
+(7, 7),
+(8, 8),
+(11, 10);
 
 -- --------------------------------------------------------
 
@@ -101,6 +125,7 @@ INSERT INTO `actividad_horario` (`idActividad`, `idHorario`) VALUES
 -- Estructura de tabla para la tabla `administrador`
 --
 
+DROP TABLE IF EXISTS `administrador`;
 CREATE TABLE `administrador` (
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -120,6 +145,7 @@ INSERT INTO `administrador` (`dniAdministrador`) VALUES
 -- Estructura de tabla para la tabla `cardio`
 --
 
+DROP TABLE IF EXISTS `cardio`;
 CREATE TABLE `cardio` (
   `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -130,6 +156,7 @@ CREATE TABLE `cardio` (
 -- Estructura de tabla para la tabla `cardio_tabla`
 --
 
+DROP TABLE IF EXISTS `cardio_tabla`;
 CREATE TABLE `cardio_tabla` (
   `id` bigint(20) NOT NULL,
   `idCardio` bigint(20) NOT NULL,
@@ -144,6 +171,7 @@ CREATE TABLE `cardio_tabla` (
 -- Estructura de tabla para la tabla `deportista`
 --
 
+DROP TABLE IF EXISTS `deportista`;
 CREATE TABLE `deportista` (
   `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -162,12 +190,13 @@ INSERT INTO `deportista` (`dni`) VALUES
 -- Estructura de tabla para la tabla `ejercicio`
 --
 
+DROP TABLE IF EXISTS `ejercicio`;
 CREATE TABLE `ejercicio` (
   `idEjercicio` bigint(20) NOT NULL,
   `nombre` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
-  `video` varchar(60) DEFAULT NULL,
-  `imagen` varchar(60) DEFAULT NULL
+  `video` binary(1) DEFAULT NULL,
+  `imagen` binary(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -175,7 +204,7 @@ CREATE TABLE `ejercicio` (
 --
 
 INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `imagen`) VALUES
-(8, 'Estiramiento999999', 'aoijoisajoisas', null, null);
+(8, 'Estiramiento999999', 'aoijoisajoisas', 0x00, 0x00);
 
 -- --------------------------------------------------------
 
@@ -183,6 +212,7 @@ INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `image
 -- Estructura de tabla para la tabla `entrenador`
 --
 
+DROP TABLE IF EXISTS `entrenador`;
 CREATE TABLE `entrenador` (
   `dniEntrenador` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -192,7 +222,9 @@ CREATE TABLE `entrenador` (
 --
 
 INSERT INTO `entrenador` (`dniEntrenador`) VALUES
-('33333333P');
+('12345678Z'),
+('33333333P'),
+('66666666Q');
 
 -- --------------------------------------------------------
 
@@ -200,6 +232,7 @@ INSERT INTO `entrenador` (`dniEntrenador`) VALUES
 -- Estructura de tabla para la tabla `entrenador_deportista`
 --
 
+DROP TABLE IF EXISTS `entrenador_deportista`;
 CREATE TABLE `entrenador_deportista` (
   `dniEntrenador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
@@ -211,6 +244,7 @@ CREATE TABLE `entrenador_deportista` (
 -- Estructura de tabla para la tabla `estiramiento`
 --
 
+DROP TABLE IF EXISTS `estiramiento`;
 CREATE TABLE `estiramiento` (
   `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -228,6 +262,7 @@ INSERT INTO `estiramiento` (`idEjercicio`) VALUES
 -- Estructura de tabla para la tabla `estiramiento_tabla`
 --
 
+DROP TABLE IF EXISTS `estiramiento_tabla`;
 CREATE TABLE `estiramiento_tabla` (
   `id` bigint(20) NOT NULL,
   `idEstiramiento` bigint(20) NOT NULL,
@@ -241,6 +276,7 @@ CREATE TABLE `estiramiento_tabla` (
 -- Estructura de tabla para la tabla `grupo`
 --
 
+DROP TABLE IF EXISTS `grupo`;
 CREATE TABLE `grupo` (
   `idActividad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -252,7 +288,9 @@ CREATE TABLE `grupo` (
 INSERT INTO `grupo` (`idActividad`) VALUES
 (5),
 (6),
-(7);
+(7),
+(8),
+(11);
 
 -- --------------------------------------------------------
 
@@ -260,6 +298,7 @@ INSERT INTO `grupo` (`idActividad`) VALUES
 -- Estructura de tabla para la tabla `horario`
 --
 
+DROP TABLE IF EXISTS `horario`;
 CREATE TABLE `horario` (
   `idHorario` bigint(20) NOT NULL,
   `dia` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
@@ -277,7 +316,10 @@ INSERT INTO `horario` (`idHorario`, `dia`, `hora`, `fechIni`, `fechFin`) VALUES
 (4, 'Lunes', '5', '2017-11-29', '2018-12-12'),
 (5, 'Lunes', '5', '2017-12-06', '2017-12-18'),
 (6, 'Lunes', '5', '2017-12-22', '2017-12-31'),
-(7, 'Lunes', '5', '2017-12-25', '2018-01-23');
+(7, 'Lunes', '5', '2017-12-25', '2018-01-23'),
+(8, 'Lunes', '5-6', '2017-12-25', '2018-01-16'),
+(9, 'hoy', '12', '2017-12-19', '2017-12-26'),
+(10, 'as', '5', '2017-12-27', '2017-12-25');
 
 -- --------------------------------------------------------
 
@@ -285,6 +327,7 @@ INSERT INTO `horario` (`idHorario`, `dia`, `hora`, `fechIni`, `fechFin`) VALUES
 -- Estructura de tabla para la tabla `individual`
 --
 
+DROP TABLE IF EXISTS `individual`;
 CREATE TABLE `individual` (
   `idActividad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -303,6 +346,7 @@ INSERT INTO `individual` (`idActividad`) VALUES
 -- Estructura de tabla para la tabla `inscrito`
 --
 
+DROP TABLE IF EXISTS `inscrito`;
 CREATE TABLE `inscrito` (
   `idGrupo` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
@@ -314,6 +358,7 @@ CREATE TABLE `inscrito` (
 -- Estructura de tabla para la tabla `muscular`
 --
 
+DROP TABLE IF EXISTS `muscular`;
 CREATE TABLE `muscular` (
   `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -324,6 +369,7 @@ CREATE TABLE `muscular` (
 -- Estructura de tabla para la tabla `muscular_tabla`
 --
 
+DROP TABLE IF EXISTS `muscular_tabla`;
 CREATE TABLE `muscular_tabla` (
   `id` bigint(20) NOT NULL,
   `idMuscular` bigint(20) NOT NULL,
@@ -338,6 +384,7 @@ CREATE TABLE `muscular_tabla` (
 -- Estructura de tabla para la tabla `notificacion`
 --
 
+DROP TABLE IF EXISTS `notificacion`;
 CREATE TABLE `notificacion` (
   `idNotificacion` bigint(20) NOT NULL,
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
@@ -346,12 +393,20 @@ CREATE TABLE `notificacion` (
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `notificacion`
+--
+
+INSERT INTO `notificacion` (`idNotificacion`, `dniAdministrador`, `Asunto`, `contenido`, `fecha`) VALUES
+(1, '44490816F', 'as', 'asa', '2017-12-23 00:06:37');
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `notificacion_deportista`
 --
 
+DROP TABLE IF EXISTS `notificacion_deportista`;
 CREATE TABLE `notificacion_deportista` (
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
@@ -359,12 +414,21 @@ CREATE TABLE `notificacion_deportista` (
   `visto` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `notificacion_deportista`
+--
+
+INSERT INTO `notificacion_deportista` (`dniAdministrador`, `dniDeportista`, `idNotificacion`, `visto`) VALUES
+('44490816F', '11111111H', 1, 0),
+('44490816F', '22222222J', 1, 0);
+
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `pago`
 --
 
+DROP TABLE IF EXISTS `pago`;
 CREATE TABLE `pago` (
   `idPago` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
@@ -379,6 +443,7 @@ CREATE TABLE `pago` (
 -- Estructura de tabla para la tabla `pef`
 --
 
+DROP TABLE IF EXISTS `pef`;
 CREATE TABLE `pef` (
   `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `tarjeta` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
@@ -391,6 +456,7 @@ CREATE TABLE `pef` (
 -- Estructura de tabla para la tabla `recursos`
 --
 
+DROP TABLE IF EXISTS `recursos`;
 CREATE TABLE `recursos` (
   `idRecurso` int(3) NOT NULL,
   `nombreRecurso` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
@@ -414,6 +480,7 @@ INSERT INTO `recursos` (`idRecurso`, `nombreRecurso`, `observaciones`) VALUES
 -- Estructura de tabla para la tabla `sesionentrenamiento`
 --
 
+DROP TABLE IF EXISTS `sesionentrenamiento`;
 CREATE TABLE `sesionentrenamiento` (
   `idSesionEntrenamiento` bigint(20) NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci,
@@ -427,6 +494,7 @@ CREATE TABLE `sesionentrenamiento` (
 -- Estructura de tabla para la tabla `sesionentrenamiento_tabla`
 --
 
+DROP TABLE IF EXISTS `sesionentrenamiento_tabla`;
 CREATE TABLE `sesionentrenamiento_tabla` (
   `idSesionEntrenamiento` bigint(20) NOT NULL,
   `idTabla` bigint(20) NOT NULL
@@ -438,6 +506,7 @@ CREATE TABLE `sesionentrenamiento_tabla` (
 -- Estructura de tabla para la tabla `superusuario`
 --
 
+DROP TABLE IF EXISTS `superusuario`;
 CREATE TABLE `superusuario` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -447,10 +516,12 @@ CREATE TABLE `superusuario` (
 --
 
 INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
+('12345678Z'),
 ('33333333P'),
 ('44490816F'),
 ('44497121X'),
-('53192250N');
+('53192250N'),
+('66666666Q');
 
 -- --------------------------------------------------------
 
@@ -458,6 +529,7 @@ INSERT INTO `superusuario` (`dniSuperUsuario`) VALUES
 -- Estructura de tabla para la tabla `superusuario_ejercicio`
 --
 
+DROP TABLE IF EXISTS `superusuario_ejercicio`;
 CREATE TABLE `superusuario_ejercicio` (
   `id` bigint(20) NOT NULL,
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
@@ -477,6 +549,7 @@ INSERT INTO `superusuario_ejercicio` (`id`, `dniSuperUsuario`, `idEjercicio`) VA
 -- Estructura de tabla para la tabla `superusuario_individual`
 --
 
+DROP TABLE IF EXISTS `superusuario_individual`;
 CREATE TABLE `superusuario_individual` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idActividad` bigint(20) NOT NULL
@@ -488,6 +561,7 @@ CREATE TABLE `superusuario_individual` (
 -- Estructura de tabla para la tabla `superusuario_tabla_deportista`
 --
 
+DROP TABLE IF EXISTS `superusuario_tabla_deportista`;
 CREATE TABLE `superusuario_tabla_deportista` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
@@ -500,6 +574,7 @@ CREATE TABLE `superusuario_tabla_deportista` (
 -- Estructura de tabla para la tabla `tabla`
 --
 
+DROP TABLE IF EXISTS `tabla`;
 CREATE TABLE `tabla` (
   `idTabla` bigint(20) NOT NULL,
   `tipo` enum('estandar','personalizada') COLLATE utf8_spanish_ci NOT NULL,
@@ -523,6 +598,7 @@ INSERT INTO `tabla` (`idTabla`, `tipo`, `comentario`, `nombre`, `dniSuperUsuario
 -- Estructura de tabla para la tabla `tdu`
 --
 
+DROP TABLE IF EXISTS `tdu`;
 CREATE TABLE `tdu` (
   `dni` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `tarjeta` varchar(60) COLLATE utf8_spanish_ci NOT NULL
@@ -542,6 +618,7 @@ INSERT INTO `tdu` (`dni`, `tarjeta`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `dni` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -559,11 +636,13 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
 ('11111111H', 'TDU', 'TDU', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
+('12345678Z', 'Entrenador2', 'entrenador2', 28, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador2@hotmail.com', '123456789', '2017-12-22'),
 ('22222222J', 'PEF', 'PEF', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
 ('33333333P', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08'),
 ('44490816F', 'Daniel', 'Rodríguez Domínguez', 25, 'e10adc3949ba59abbe56e057f20f883e', 'danieldrd@outlook.es', '123456789', '2017-11-08'),
 ('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
 ('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08'),
+('66666666Q', '66666666Q', '66666666Q', 34, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador3@hotmail.com', '123456789', '2017-12-22'),
 ('98765432M', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
 
 --
@@ -582,9 +661,9 @@ ALTER TABLE `actividad`
 -- Indices de la tabla `actividad_deportista`
 --
 ALTER TABLE `actividad_deportista`
-  ADD PRIMARY KEY (`idActividad`,`dniDeportista`),
-  ADD UNIQUE KEY `idActividad` (`idActividad`),
-  ADD UNIQUE KEY `dniDeportista` (`dniDeportista`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_idActividadDeportista` (`idActividad`),
+  ADD KEY `fk_dniDeportista` (`dniDeportista`);
 
 --
 -- Indices de la tabla `actividad_entrenador`
@@ -824,13 +903,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `actividad_deportista`
+--
+ALTER TABLE `actividad_deportista`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `actividad_entrenador`
 --
 ALTER TABLE `actividad_entrenador`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `cardio_tabla`
@@ -854,7 +939,7 @@ ALTER TABLE `estiramiento_tabla`
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `idHorario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idHorario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `muscular_tabla`
@@ -866,7 +951,7 @@ ALTER TABLE `muscular_tabla`
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idNotificacion` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
@@ -906,7 +991,8 @@ ALTER TABLE `actividad`
 -- Filtros para la tabla `actividad_deportista`
 --
 ALTER TABLE `actividad_deportista`
-  ADD CONSTRAINT `fk_ActividadDeportista` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_dniDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_idActividadDeportista` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `actividad_entrenador`
