@@ -11,6 +11,7 @@ class Usuario
             private $email;
             private $telefono;
             private $fechaAlta;
+            private $tipo;/*solo se usará para tratar de solucionar el editar usuario(no se guarda en la bbdd solo se usara como bandera), hay que poder editar usuarios de diferente tipo llamando a cada uno a su editar para eso de usuara ste campo(forma más simple que se me ocurrio para solucionar cosas que tendría que arreglar JUAN RAMÓN)*/
         function __construct($dni=NULL,$nombre=NULL,$apellidos=NULL,$edad=NULL,$password=NULL,$email=NULL,$telefono=NULL,$fechaAlta=NULL){
             $this->dni = $dni;
             $this->nombre = $nombre;
@@ -49,6 +50,9 @@ class Usuario
     public function getFecha(){
         return $this->fechaAlta;
     }
+    public function getTipo(){
+        return $this->tipo;
+    }
     public function setDni($dni) {
         $this->dni = $dni;
     }
@@ -76,6 +80,9 @@ class Usuario
     }
     public function setFecha($fechaAlta){
         $this->fechaAlta = $fechaAlta;
+    }
+    public function setTipo($tipo){
+        $this->tipo=$tipo;
     }
     /**
     * Comprueba que el usuario sea valido

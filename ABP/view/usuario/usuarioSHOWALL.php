@@ -54,8 +54,16 @@
                                 <td><?php echo $usuario->getNombre(); ?></td>
                                 <td><?php echo $usuario->getApellidos(); ?></td>
                                 <td>
-                                      <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
-                                    </a>
+                                    <?if($usuario->getTipo()=="superUsuario"){?>
+                                        <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
+                                        </a>
+                                    <?}elseif($usuario->getTipo()=="TDU"){?>
+                                        <a href='./index.php?controller=Deportista&amp;action=tduEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
+                                        </a>
+                                    <?}else{?>
+                                        <a href='./index.php?controller=Deportista&amp;action=pefEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
+                                        </a>
+                                    <??>
                                 </td>
                                   <td>
                                     <?php if($usuario->getDni() != $_SESSION['currentuser']){?>
