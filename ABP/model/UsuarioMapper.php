@@ -120,17 +120,13 @@ class UsuarioMapper {
         $usuarios = array();
         foreach ($usuarios_db as $usuario) 
         {
-            if($this->permisos->esSuperUsuario($usuario->getDni()){
-                $usuario->setTipo("superUsuario");
-                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
-            }elseif($this->permisos->esTDU($usuario->getDni()){
-                $usuario->setTipo("TDU");
-                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
+            if($this->permisos->esSuperUsuario2($usuario['dni'])){
+                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"superUsuario"));
+            }elseif($this->permisos->esTDU($usuario['dni'])){
+                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"TDU"));
             }else{//si no es superUsuario ni TDU sólo puede ser PEF
-                $usuario->setTipo("PEF");
-                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
+                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"PEF"));
             }
-            
         }
         return $usuarios;
     }

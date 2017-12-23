@@ -106,7 +106,6 @@ class DeportistaController extends BaseController
             {
                 throw new Exception("No existe deportista con este dni: ".$dni);
             }
-
             $this->view->setVariable("usuario",$pef);
             $this->view->render("usuario/deportistas","pefEDIT");
         }

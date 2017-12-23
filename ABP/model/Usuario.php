@@ -12,7 +12,7 @@ class Usuario
             private $telefono;
             private $fechaAlta;
             private $tipo;/*solo se usará para tratar de solucionar el editar usuario(no se guarda en la bbdd solo se usara como bandera), hay que poder editar usuarios de diferente tipo llamando a cada uno a su editar para eso de usuara ste campo(forma más simple que se me ocurrio para solucionar cosas que tendría que arreglar JUAN RAMÓN)*/
-        function __construct($dni=NULL,$nombre=NULL,$apellidos=NULL,$edad=NULL,$password=NULL,$email=NULL,$telefono=NULL,$fechaAlta=NULL){
+        function __construct($dni=NULL,$nombre=NULL,$apellidos=NULL,$edad=NULL,$password=NULL,$email=NULL,$telefono=NULL,$fechaAlta=NULL,$tipo=NULL){
             $this->dni = $dni;
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;
@@ -21,6 +21,7 @@ class Usuario
             $this->email = $email;
             $this->telefono = $telefono;//Comprobamos si es un atributo de tipo fecha o no 
             $this->fechaAlta=$fechaAlta;   
+            $this->tipo=$tipo;
         }
     public function getDni() {
         return $this->dni;

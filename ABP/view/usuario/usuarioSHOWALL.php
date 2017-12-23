@@ -47,36 +47,41 @@
                             </tr>
                         </tfoot>
                         <tbody>
-
-                        <?php foreach($usuarios as $usuario){ ?>
-                            <tr>
-                                <td><?php echo $usuario->getDni(); ?></td>
-                                <td><?php echo $usuario->getNombre(); ?></td>
-                                <td><?php echo $usuario->getApellidos(); ?></td>
-                                <td>
-                                    <?if($usuario->getTipo()=="superUsuario"){?>
-                                        <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
-                                        </a>
-                                    <?}elseif($usuario->getTipo()=="TDU"){?>
-                                        <a href='./index.php?controller=Deportista&amp;action=tduEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
-                                        </a>
-                                    <?}else{?>
-                                        <a href='./index.php?controller=Deportista&amp;action=pefEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
-                                        </a>
-                                    <??>
-                                </td>
-                                  <td>
-                                    <?php if($usuario->getDni() != $_SESSION['currentuser']){?>
-                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioDELETE&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-eliminar" class=" icon-bin"></span>
-                                    </a>
+                            <?php foreach($usuarios as $usuario){ ?>
+                                <tr>
+                                    <td><?php echo $usuario->getDni(); ?></td>
+                                    <td><?php echo $usuario->getNombre(); ?></td>
+                                    <td><?php echo $usuario->getApellidos(); ?></td>
+                                    <td>
+                                    <?php if($usuario->getTipo()=="superUsuario"){ ?>
+                                        
+                                            <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
+                                            </a>
+                                        
+                                        <?php }elseif($usuario->getTipo()=="TDU"){ ?>
+                                        
+                                            <a href='./index.php?controller=Deportista&amp;action=tduEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
+                                            </a>
+                                        
+                                        <?php }else{ ?>
+                                        
+                                            <a href='./index.php?controller=Deportista&amp;action=pefEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
+                                            </a>
+                                        <? } ?>
                                     <?php } ?>
-                                </td>
-                                  <td>
-                                    <a href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-ver" class="icon-eye-plus"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <?php if($usuario->getDni() != $_SESSION['currentuser']){ ?>
+                                        <a href='./index.php?controller=Usuario&amp;action=UsuarioDELETE&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-eliminar" class=" icon-bin"></span>
+                                        </a>
+                                        <?php } ?>
+                                    </td>
+                                    <td>
+                                        <a href='./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-ver" class="icon-eye-plus"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

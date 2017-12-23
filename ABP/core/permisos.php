@@ -44,7 +44,7 @@ Class Permisos {
         return false;
     }
 
-    public function esSuperusuario($dni)
+    public function esSuperusuario2($dni)
     {
         $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
         $stmt-> execute(array($dni));
