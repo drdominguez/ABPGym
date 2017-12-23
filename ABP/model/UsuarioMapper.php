@@ -56,7 +56,7 @@ class UsuarioMapper {
         }
         return false;
     }
-
+    /*CODIGO HECHO POR JUAN RAMÓN ESTA TODO MAL*/
     /*public function tduADD($usuario){
         if($this->permisos->esAdministrador() && !empty($usuario->getDni()) && self::usuarioADD($administrador)){
             $stmt= $this->db->prepare("INSERT INTO deportista VALUES(?)");
@@ -83,7 +83,7 @@ class UsuarioMapper {
     *@usuario el usuario a añadir
     *Añade en la tabla de usuarios un nuevo usuario
     *En caso de que se añada devuelve un true
-    */
+    *//* /*CODIGO HECHO POR JUAN RAMÓN ESTA TODO MAL*/
     public function usuarioADD($usuario)
     {
         if($this->permisos->esAdministrador() && !empty($usuario->getDni())){
