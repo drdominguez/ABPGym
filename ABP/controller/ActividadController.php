@@ -95,7 +95,7 @@ class ActividadController extends BaseController{
                 $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
 
             
-                if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad))
+                if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad,$usuarios))
                 {
 
                $this->view->setFlash("Actividad Editada Correctamente");
