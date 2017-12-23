@@ -80,8 +80,8 @@ class DeportistaController extends BaseController
         $this->view->setVariable("deportistasPEF",$deportistasPEF);
         $this->view->render("usuario/deportistas","pefSHOWALL");
     }
-
-    public function PefEDIT()
+/*La parte de deportistas deberia haber sido hecha por Juan Ramon Este codigo produce errores y no funciona*/
+    /*public function PefEDIT()
     {
         if(isset($_POST["dni"]) && isset($_POST["tarjeta"]) && isset($_POST["comentario"]))
         {//si existen los post añado la notificacion
@@ -139,75 +139,30 @@ class DeportistaController extends BaseController
             $this->view->setVariable("usuario",$pef);
             $this->view->render("usuario/deportistas","tduEDIT");
         }
+    }*/
+    /*La parte de deportistas deberia haber sido hecha por Juan Ramon Este codigo produce errores y no funciona*/
+    /*Hecha por Álex la de Juan Ramón no funcionaba correctamente*/
+    public function TduEDIT(){
+        if($this->permisos->esAdministrador()){
+            if($_GET['dni']){
+                $dep=$this->deportistaMapper->getTDU($_GET['dni']);
+                $tdu=new DeportistaTDU($dep['dni'],$dep['nombre'],$dep['apellidos'],$dep['edad'],$dep['contrasena'],$dep['email'],$dep['telefono'],$dep['fechaAlta'],$dep['tarjeta']);
+                $this->view->setVariable("usuario",$tdu);
+            }else{
+                $this->view->setFlash("ERROR: No se puede eliminar a un usuario sin 'DNI'");
+            }
+        }else{
+            $this->view->redirect("main","index");
+        }
+        $this->view->render("usuario/deportista", "tduEDIT");
+    }
+    /*Hecha por Álex la de Juan Ramón no funcionaba correctamente*/
+    public function PefEDIT(){
     }
 
-    public function TduDELETE()
-    {
-        if(!isset($_POST['borrar']))
-        {
-            if (!isset($_GET["dni"]))
-            {
-                throw new Exception("El dni es obligatorio");
-            }
-            $dni = $_GET["dni"];
-            // find the notification object in the database
-            $deportistaTDU = $this->deportistaTDUMapper->findById($dni);
-            if ($deportistaTDU == NULL)
-            {
-                throw new Exception("No existe deportista con este dni: ".$dni);
-            }
-            // put the notification object to the view
-            $this->view->setVariable("deportista", $deportistaTDU);
-            // render the view (/view/posts/view.php)
-            $this->view->render("usuario/deportistas", "tduDELETE");
-        }else
-        {
-            $dni = $_POST["dni"];
-            if($deportistaTDU = $this->deportistaTDUMapper->deleteTDU($dni))
-            {
-                $this->view->setFlash("Deportista Eliminado Correctamente");
-            }else
-            {
-                $errors["username"] = "El deportista no se ha eliminado corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
-            $this->view->redirect("Deportista", "listarTDU");
-        }
-    }
+    
 
-    public function PefDELETE()
-    {
-        if(!isset($_POST['borrar']))
-        {
-            if (!isset($_GET["dni"]))
-            {
-                throw new Exception("El dni es obligatorio");
-            }
-            $dni = $_GET["dni"];
-            // find the notification object in the database
-            $deportistaPEF = $this->deportistaPEFMapper->findById($dni);
-            if ($deportistaPEF == NULL)
-            {
-                throw new Exception("No existe deportista con este dni: ".$dni);
-            }
-            // put the notification object to the view
-            $this->view->setVariable("deportista", $deportistaPEF);
-            // render the view (/view/posts/view.php)
-            $this->view->render("usuario/deportistas", "pefDELETE");
-        }else
-        {
-            $dni = $_POST["dni"];
-            if($deportista = $this->deportistaPEFMapper->deletePEF($dni))
-            {
-                $this->view->setFlash("Deportista Eliminado Correctamente");
-            }else
-            {
-                $errors["username"] = "El deportista no se ha eliminado corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
-            $this->view->redirect("Deportista", "listarPEF");
-        }
-    }
+    
 
     /*Notificacion SHOW CURRENT
     *Si se llama con un get carga la vista

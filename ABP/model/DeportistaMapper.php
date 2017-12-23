@@ -82,6 +82,18 @@ Class DeportistaMapper extends UsuarioMapper{
         }
     }
 
+    public function getTDU($dni){
+        $stmt = $this->db->prepare("SELECT usuario.*,tdu.tarjeta FROM usuario,tdu WHERE tdu.dni=usuario.dni AND usuario.dni=?");
+        $stmt->execute(array($dni));
+        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+    }
+
+     public function getPEF($dni){
+        $stmt = $this->db->prepare("SELECT usuario.*,pef.tarjeta, pef.comentarioRevision FROM usuario,pef WHERE pef.dni=usuario.dni AND usuario.dni=?");
+        $stmt->execute(array($dni));
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function esSuperusuario(){
         $stmt= $this->db->prepare("SELECT dniSuperUsuario FROM superusuario WHERE dniSuperUsuario=?");
         $stmt-> execute(array($_SESSION["currentuser"]));

@@ -12,7 +12,6 @@ class Deportista extends Usuario
     {
         parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta);//lamada al contructor padre
         $this->dni = $dni;
-
     }
 
     public function getDni(){

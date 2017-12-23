@@ -54,17 +54,12 @@
                                     <td><?php echo $usuario->getApellidos(); ?></td>
                                     <td>
                                     <?php if($usuario->getTipo()=="superUsuario"){ ?>
-                                        
                                             <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
                                             </a>
-                                        
                                         <?php }elseif($usuario->getTipo()=="TDU"){ ?>
-                                        
                                             <a href='./index.php?controller=Deportista&amp;action=tduEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
                                             </a>
-                                        
                                         <?php }else{ ?>
-                                        
                                             <a href='./index.php?controller=Deportista&amp;action=pefEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
                                             </a>
                                         <? } ?>
