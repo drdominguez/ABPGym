@@ -26,14 +26,21 @@ class TablaController extends BaseController
     {
 
         if($this->permisos->esSuperusuario()){
-        if(isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
+        if(isset($_POST["nombre"]) && (isset($_POST["estiramientos"]) || isset($_POST["musculares"])|| isset($_POST["cardios"])))
         {//si existen los post añado la notificacion
-            $ejercicios = $_POST["ejercicios"];
+            $estiramientos = $_POST["estiramientos"];
+            $musculares = $_POST["musculares"];
+            $cardios = $_POST["cardios"];
+
+            var_dump($estiramientos);
+            var_dump($cardios);
+            var_dump($musculares);
+
             $tabla = new Tabla();
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
             //Añadir los atributos dependiendo del tipo de ejercicio (cardio, muscular o entrenamiento)
-            if($this->tablaMapper->addEstandar($tabla,$ejercicios))
+            if($this->tablaMapper->addEstandar($tabla,$estiramientos,$musculares,$cardios))
             {
                $this->view->setFlash("Tabla Añadida Correctamente");
             }else
