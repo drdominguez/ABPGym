@@ -1,5 +1,4 @@
 <?php
-
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__ . "/../controller/BaseController.php");
 require_once(__DIR__ . "/../model/DeportistaMapper.php");
@@ -9,8 +8,6 @@ require_once(__DIR__ . "/../model/DeportistaTDUMapper.php");
 require_once(__DIR__ . "/../model/DeportistaPEFMapper.php");
 require_once(__DIR__."/../model/UsuarioMapper.php");
 require_once(__DIR__."/../model/Usuario.php");
-require_once(__DIR__ . "/../core/permisos.php");
-
 
 class DeportistaController extends BaseController
 {
@@ -146,7 +143,7 @@ class DeportistaController extends BaseController
         if($this->permisos->esAdministrador()){
             if($_GET['dni']){
                 $dep=$this->deportistaMapper->getTDU($_GET['dni']);
-                $tdu=new DeportistaTDU($dep['dni'],$dep['nombre'],$dep['apellidos'],$dep['edad'],$dep['contrasena'],$dep['email'],$dep['telefono'],$dep['fechaAlta'],$dep['tarjeta']);
+                $tdu=new DeportistaTDU($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep["tarjeta"]);
                 $this->view->setVariable("usuario",$tdu);
             }else{
                 $this->view->setFlash("ERROR: No se puede eliminar a un usuario sin 'DNI'");
@@ -154,10 +151,22 @@ class DeportistaController extends BaseController
         }else{
             $this->view->redirect("main","index");
         }
-        $this->view->render("usuario/deportista", "tduEDIT");
+        $this->view->render("usuario/deportistas", "tduEDIT");
     }
     /*Hecha por Álex la de Juan Ramón no funcionaba correctamente*/
     public function PefEDIT(){
+        if($this->permisos->esAdministrador()){
+            if($_GET['dni']){
+                $dep=$this->deportistaMapper->getPEF($_GET['dni']);
+                $pef=new DeportistaTDU($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep["tarjeta"],$dep["comentarioRevision"]);
+                $this->view->setVariable("usuario",$pef);
+            }else{
+                $this->view->setFlash("ERROR: No se puede eliminar a un usuario sin 'DNI'");
+            }
+        }else{
+            $this->view->redirect("main","index");
+        }
+        $this->view->render("usuario/deportistas", "tduPEF");
     }
 
     

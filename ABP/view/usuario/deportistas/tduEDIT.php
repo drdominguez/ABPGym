@@ -2,7 +2,6 @@
 $view=ViewManager::getInstance();
 $usuario = $view->getVariable("usuario");
 ?>
-
 <!DOCTYPE html>
 <html>    
     <div class="content-wrapper">
@@ -10,7 +9,7 @@ $usuario = $view->getVariable("usuario");
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href=""><?= i18n("Gestión de tablas") ?></a>
+                    <a href=""><?= i18n("Gestión de Deportistas") ?></a>
                 </li>
                 <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
             </ol>
@@ -18,7 +17,7 @@ $usuario = $view->getVariable("usuario");
             <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Editar usuario") ?>
+                        <i class="fa fa-table"></i><?= i18n(" Editar TDU") ?>
                     </div>
                     <div class="card-body">      
                         <div id="flash"><?= $view->popFlash() ?></div>      
@@ -26,7 +25,7 @@ $usuario = $view->getVariable("usuario");
                         <div class="form-row">
                           <div class="col-md-6">
                         <label for="dni"><?= i18n("DNI") ?>: </label>
-                        <input class="form-control" type = 'text' name = 'dni' size = '9' readonly value = '<?php echo $usuario->getDni(); ?>'  onchange="comprobarVacio(this)  && comprobarDni(this)" >
+                        <input class="form-control" type = 'text' name = 'dni' size = '9' readonly value = '<?php echo $usuario->getDni(); ?>'>
                         </div>
                         <div class="col-md-6">
                         <label for="nombre"><?= i18n("Nombre") ?>: </label>
@@ -55,6 +54,21 @@ $usuario = $view->getVariable("usuario");
                          <div class="col-md-6">
                         <label for="telefono"><?= i18n("Teléfono") ?>: </label>
                         <input class="form-control" type = 'text' name = 'telefono' size = '20' value = '<?php echo $usuario->getTelefono(); ?>'  onchange="comprobarVacio(this)  && comprobarTelf(this)" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                        <div class="col-md-6">
+                        <label for="email"><?= i18n("Tarjeta") ?>: </label>
+                        <input class="form-control" type = 'text' name = 'tarjeta' size = '100' value = '<?php echo $usuario->getTarjeta(); ?>'>
+                        </div>
+                         <div class="col-md-6">
+                        <label for="telefono"><?= i18n("Tipo Deportista") ?>: </label>
+                        <select class="form-control" name="tipo[]" onChange="mostrar(this.value)">
+                            <option value="tdu">TDU "Tarjeta Deportista Universitaria"</option>
+                            <option value="pef">PEF "Ponte en Forma"</option>
+                        </select>
                         </div>
                       </div>
                     </div>

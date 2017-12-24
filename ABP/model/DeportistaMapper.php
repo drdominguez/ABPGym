@@ -4,6 +4,8 @@ require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/UsuarioMapper.php");
 require_once(__DIR__."/Usuario.php");
 require_once(__DIR__."/Deportista.php");
+require_once(__DIR__."/DeportistaTDU.php");
+require_once(__DIR__."/DeportistaPEF.php");
 require_once(__DIR__ . "/../core/permisos.php");
 
 Class DeportistaMapper extends UsuarioMapper{
@@ -85,13 +87,21 @@ Class DeportistaMapper extends UsuarioMapper{
     public function getTDU($dni){
         $stmt = $this->db->prepare("SELECT usuario.*,tdu.tarjeta FROM usuario,tdu WHERE tdu.dni=usuario.dni AND usuario.dni=?");
         $stmt->execute(array($dni));
-        return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+        $tdu=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        if($tdu != null){
+            return $tdu[0];
+        }
+        return NULL;
     }
 
-     public function getPEF($dni){
-        $stmt = $this->db->prepare("SELECT usuario.*,pef.tarjeta, pef.comentarioRevision FROM usuario,pef WHERE pef.dni=usuario.dni AND usuario.dni=?");
+    public function getPEF($dni){
+        $stmt = $this->db->prepare("SELECT usuario.*,pef.tarjeta,pef.comentarioRevision FROM usuario,pef WHERE pef.dni=usuario.dni AND usuario.dni=?");
         $stmt->execute(array($dni));
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $pef=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        if($tdu != null){
+            return $pef[0];
+        }
+        return NULL;
     }
 
     public function esSuperusuario(){
