@@ -7,7 +7,7 @@ class EjercicioCardio extends Ejercicio
     private $unidad;
     private $distancia;
     
-        function __construct($idEjercicio=NULL, $nombre=NULL, $descripcion=NUKL, $video=NULL, $imagen=NULL, $tiempo=NULL,$unidad=NULL, $distancia=NULL){
+        function __construct($idEjercicio=NULL, $nombre=NULL, $descripcion=NUKL, $video=NULL, $imagen=NULL, $tiempo=NULL, $distancia=NULL,$unidad=NULL){
             parent::__construct($idEjercicio, $nombre, $descripcion, $video, $imagen);//lamada al contructor padre
             $this->idEjercicio = $idEjercicio;
             $this->tiempo = $tiempo;

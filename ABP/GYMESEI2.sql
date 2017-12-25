@@ -647,7 +647,7 @@ CREATE TABLE `tabla` (
 
 INSERT INTO `tabla` (`idTabla`, `tipo`, `comentario`, `nombre`, `dniSuperUsuario`) VALUES
 (1, 'estandar', 'Tabla de dificultad media, no apta si el deportista padece asma', 'Tabla1', '53192250N'),
-(2, 'personalizada', 'Tabla de estiramientos y fortalecimiento muscular', 'Tabla2', '53192250N'),
+(2, 'personalizada', 'Tabla de estiramientos y fortalecimiento muscular', 'Tabla2', '44497121X'),
 (3, 'estandar', 'Tabla de dificultad alta, repertorio amplio de ejercicios variados.', 'Tabla Completa', '53192250N');
 
 -- --------------------------------------------------------
@@ -1061,7 +1061,7 @@ ALTER TABLE `actividad_entrenador`
 -- Filtros para la tabla `actividad_horario`
 --
 ALTER TABLE `actividad_horario`
-  ADD CONSTRAINT `fk_ActHorario` FOREIGN KEY (`idHorario`) REFERENCES `horario` (`idHorario`),
+  ADD CONSTRAINT `fk_ActHorario` FOREIGN KEY (`idHorario`) REFERENCES `horario` (`idHorario`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_ActividadAc` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idActividad`) ON DELETE CASCADE;
 
 --
@@ -1113,7 +1113,7 @@ ALTER TABLE `estiramiento`
 --
 ALTER TABLE `estiramiento_tabla`
   ADD CONSTRAINT `fk_estiramientoTabla1` FOREIGN KEY (`idEstiramiento`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_estiramientoTabla2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`);
+  ADD CONSTRAINT `fk_estiramientoTabla2` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `grupo`
@@ -1150,13 +1150,13 @@ ALTER TABLE `muscular_tabla`
 -- Filtros para la tabla `notificacion`
 --
 ALTER TABLE `notificacion`
-  ADD CONSTRAINT `fk_NotificacionAdministrador` FOREIGN KEY (`dniAdministrador`) REFERENCES `administrador` (`dniAdministrador`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_NotificacionAdministrador` FOREIGN KEY (`dniAdministrador`) REFERENCES `administrador` (`dniAdministrador`);
 
 --
 -- Filtros para la tabla `notificacion_deportista`
 --
 ALTER TABLE `notificacion_deportista`
-  ADD CONSTRAINT `fk_NotificacionDeportista` FOREIGN KEY (`idNotificacion`) REFERENCES `notificacion` (`idNotificacion`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_NotificacionDeportista` FOREIGN KEY (`idNotificacion`) REFERENCES `notificacion` (`idNotificacion`);
 
 --
 -- Filtros para la tabla `pago`
@@ -1188,7 +1188,7 @@ ALTER TABLE `superusuario`
 --
 ALTER TABLE `superusuario_ejercicio`
   ADD CONSTRAINT `fk_SuperusuarioEjercicio` FOREIGN KEY (`idEjercicio`) REFERENCES `ejercicio` (`idEjercicio`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_dniSuperUsuarioS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_dniSuperUsuarioS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`);
 
 --
 -- Filtros para la tabla `superusuario_individual`
@@ -1203,13 +1203,13 @@ ALTER TABLE `superusuario_individual`
 ALTER TABLE `superusuario_tabla_deportista`
   ADD CONSTRAINT `FK_SuperUsuarioTab` FOREIGN KEY (`idTabla`) REFERENCES `tabla` (`idTabla`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_SuperUsuarioTablaDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_SuperUsuarioTalaS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_SuperUsuarioTalaS` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`);
 
 --
 -- Filtros para la tabla `tabla`
 --
 ALTER TABLE `tabla`
-  ADD CONSTRAINT `fk_TablaSuperUsuario` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_TablaSuperUsuario` FOREIGN KEY (`dniSuperUsuario`) REFERENCES `superusuario` (`dniSuperUsuario`);
 
 --
 -- Filtros para la tabla `tdu`

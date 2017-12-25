@@ -2,11 +2,10 @@
     require_once(__DIR__."/../../core/ViewManager.php");
 
     $view = ViewManager::getInstance();
-    $tabla = $view->getVariable("tabla");
-    $ejercicios = $view->getVariable("ejercicios");
-    $currentuser = $view->getVariable("currentusername");
-    $errors = $view->getVariable("errors");
-    $view->setVariable("title", "Borrar Tabla");
+    $tabla = $view->getVariable("tabla");    
+    $estiramientos = $view->getVariable("estiramientos");
+    $cardios = $view->getVariable("cardios");
+    $musculares = $view->getVariable("musculares");
 ?>
 
 <div class="content-wrapper">
@@ -29,55 +28,147 @@
                     <b><?= i18n("comentario") ?>:</b> <?php echo $tabla->getComentario(); ?><br>
                     <input type="hidden" name="borrar" value="ok">
                     
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <i class="fa fa-table"></i><?= i18n("Mostrar todos los ejercicios") ?>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
-                                    <thead>
-                                        <tr>
-                                            <th><?= i18n("Nombre") ?></th>
-                                            <th><?= i18n("Descripción") ?></th>
-                                            <th><?= i18n("Vídeo") ?></th>
-                                            <th><?= i18n("Imágen") ?></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th><?= i18n("Nombre") ?></th>
-                                            <th><?= i18n("Descripción") ?></th>
-                                            <th><?= i18n("Vídeo") ?></th>
-                                            <th><?= i18n("Imágen") ?></th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-
+                   <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los estiramientos") ?>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0" >
+                                <thead>
+                                    <tr>
+                                        <th><?= i18n("Nombre") ?></th>
+                                        <th><?= i18n("Descripción") ?></th>
+                                        <th><?= i18n("Tiempo") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                     <tr>
+                                        <th><?= i18n("Nombre") ?></th>
+                                        <th><?= i18n("Descripción") ?></th>
+                                        <th><?= i18n("Tiempo") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
 <?php
-                                    foreach($ejercicios as $ejercicio)
-                                    {
+                                foreach($estiramientos as $estiramiento)
+                                {
 ?>
-                                        <tr>
-                                            <td><?php echo $ejercicio->getNombre(); ?></td>
-                                            <td><?php echo $ejercicio->getDescripcion(); ?></td>
-                                            <td><?php echo $ejercicio->getVideo(); ?></td>
-                                            <td><?php echo $ejercicio->getImagen(); ?></td> 
-                                            <td>
-                                                    <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $ejercicio->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
-                                                    </a>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td><?php echo $estiramiento->getNombre(); ?></td>
+                                        <td><?php echo $estiramiento->getDescripcion(); ?></td>
+                                        <td><?php echo $estiramiento->getTiempo(); ?></td>
+                                        <td>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $estiramiento->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
+                                        </td>
+                                    </tr>
 <?php
-                                    }   
+                                }   
 ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los cardios") ?>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0" >
+                                <thead>
+                                    <tr>
+                                        <th><?= i18n("Nombre") ?></th>
+                                        <th><?= i18n("Descripción") ?></th>
+                                        <th><?= i18n("Tiempo") ?></th>
+                                        <th><?= i18n("Distancia") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                     <tr>
+                                        <th><?= i18n("Nombre") ?></th>
+                                        <th><?= i18n("Descripción") ?></th>
+                                        <th><?= i18n("Tiempo") ?></th>
+                                        <th><?= i18n("Distancia") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+<?php
+                                foreach($cardios as $cardio)
+                                {
+?>
+                                    <tr>
+                                        <td><?php echo $cardio->getNombre(); ?></td>
+                                        <td><?php echo $cardio->getDescripcion(); ?></td>
+                                        <td><?php echo $cardio->getTiempo(); ?></td>
+                                        <td><?php echo $cardio->getDistancia(); ?></td>  
+                                        <td>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $cardio->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
+                                        </td>
+                                    </tr>
+<?php
+                                }   
+?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los musculares") ?>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0" >
+                                <thead>
+                                    <tr>
+                                        <th><?= i18n("Nombre") ?></th>
+                                        <th><?= i18n("Descripción") ?></th>
+                                        <th><?= i18n("Carga") ?></th>
+                                        <th><?= i18n("Repeticiones") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                     <tr>
+                                        <th><?= i18n("Nombre") ?></th>
+                                        <th><?= i18n("Descripción") ?></th>
+                                        <th><?= i18n("Carga") ?></th>
+                                        <th><?= i18n("Repeticiones") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+<?php
+                                foreach($musculares as $muscular)
+                                {
+?>
+                                    <tr>
+                                        <td><?php echo $muscular->getNombre(); ?></td>
+                                        <td><?php echo $muscular->getDescripcion(); ?></td>
+                                        <td><?php echo $muscular->getCarga(); ?></td>
+                                        <td><?php echo $muscular->getRepeticiones(); ?></td> 
+                                        <td>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $muscular->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
+                                        </td>
+                                    </tr>
+<?php
+                                }   
+?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                     <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-default">Volver</button> 
                     <button  type='submit' name='action' value='TablaDelete' class="btn btn-primary"><?= i18n("Borrar") ?></button>
                 </form>

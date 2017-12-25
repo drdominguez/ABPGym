@@ -28,19 +28,52 @@ class TablaController extends BaseController
         if($this->permisos->esSuperusuario()){
         if(isset($_POST["nombre"]) && (isset($_POST["estiramientos"]) || isset($_POST["musculares"])|| isset($_POST["cardios"])))
         {//si existen los post añado la notificacion
-            $estiramientos = $_POST["estiramientos"];
+            if(isset($_POST["estiramientos"])){
+
+                $estiramientos = $_POST["estiramientos"];
+
+            }else{
+                $estiramientos=array();
+            }
+             if(isset($_POST["musculares"])){
+
             $musculares = $_POST["musculares"];
+
+            }else{
+                $musculares=array();
+            }
+             if(isset($_POST["cardios"])){
+
             $cardios = $_POST["cardios"];
 
-            var_dump($estiramientos);
-            var_dump($cardios);
-            var_dump($musculares);
+            }else{
+                $cardios= array();
+            }
+
+            $array_musculares= array();
+            $array_cardios= array();
+            $array_musculares= array();
+
+            foreach ($estiramientos as $estiramiento) {
+                $array_estiramientos["tiempo_".$estiramiento] = $_POST["estiramientotiempo_" . $estiramiento];
+            }
+
+            foreach ($musculares as $muscular) {
+                $array_musculares["carga_".$muscular] = $_POST["muscularcarga_" . $muscular];
+                $array_musculares["repeticiones_".$muscular] = $_POST["muscularrepeticiones_" . $muscular];
+            }
+
+
+            foreach ($cardios as $cardio) {
+                $array_cardios["tiempo_".$cardio] = $_POST["cardiotiempo_" . $cardio];
+                $array_cardios["distancia_".$cardio] = $_POST["cardiodistancia_" . $cardio];
+            }
 
             $tabla = new Tabla();
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
             //Añadir los atributos dependiendo del tipo de ejercicio (cardio, muscular o entrenamiento)
-            if($this->tablaMapper->addEstandar($tabla,$estiramientos,$musculares,$cardios))
+            if($this->tablaMapper->addEstandar($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios))
             {
                $this->view->setFlash("Tabla Añadida Correctamente");
             }else
@@ -68,16 +101,57 @@ public function PersonalizadaADD()
     {
 
         if($this->permisos->esSuperusuario()){
-        if(isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
+        if(isset($_POST["nombre"]) && (isset($_POST["estiramientos"]) || isset($_POST["musculares"])|| isset($_POST["cardios"])))
         {//si existen los post añado la notificacion
-            $ejercicios = $_POST["ejercicios"];
+
+            if(isset($_POST["estiramientos"])){
+
+                $estiramientos = $_POST["estiramientos"];
+
+            }else{
+                $estiramientos=array();
+            }
+             if(isset($_POST["musculares"])){
+
+            $musculares = $_POST["musculares"];
+
+            }else{
+                $musculares=array();
+            }
+             if(isset($_POST["cardios"])){
+
+            $cardios = $_POST["cardios"];
+
+            }else{
+                $cardios= array();
+            }
+
+            $array_musculares= array();
+            $array_cardios= array();
+            $array_musculares= array();
+
+            foreach ($estiramientos as $estiramiento) {
+                $array_estiramientos["tiempo_".$estiramiento] = $_POST["estiramientotiempo_" . $estiramiento];
+            }
+
+            foreach ($musculares as $muscular) {
+                $array_musculares["carga_".$muscular] = $_POST["muscularcarga_" . $muscular];
+                $array_musculares["repeticiones_".$muscular] = $_POST["muscularrepeticiones_" . $muscular];
+            }
+
+
+            foreach ($cardios as $cardio) {
+                $array_cardios["tiempo_".$cardio] = $_POST["cardiotiempo_" . $cardio];
+                $array_cardios["distancia_".$cardio] = $_POST["cardiodistancia_" . $cardio];
+            }
+
             $usuario = $_POST['usuario'];
             $tabla = new Tabla();
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
             //Añadir los atributos dependiendo del tipo de ejercicio (cardio, muscular o entrenamiento)
 
-            if($this->tablaMapper->addPersonalizada($tabla,$ejercicios,$usuario))
+            if($this->tablaMapper->addPersonalizada($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios,$usuario))
             {
                $this->view->setFlash("Tabla Añadida Correctamente");
             }else
@@ -89,8 +163,12 @@ public function PersonalizadaADD()
         }else
         {
             $usuarios = $this->tablaMapper->listarDeportistas();
-            $ejercicios = $this->tablaMapper->listarEjercicios();
-            $this->view->setVariable("ejercicios",$ejercicios);
+            $cardio = $this->tablaMapper->listarCardio();
+            $muscular = $this->tablaMapper->listarMuscular();
+            $estiramiento = $this->tablaMapper->listarEstiramiento();
+            $this->view->setVariable("cardios",$cardio);
+            $this->view->setVariable("musculares",$muscular);
+            $this->view->setVariable("estiramientos",$estiramiento);
             $this->view->setVariable("usuarios", $usuarios);
             $this->view->render("tabla","personalizadaADD");
         }
@@ -127,18 +205,26 @@ public function PersonalizadaADD()
         }else
         {
             $idTabla = $_GET["idTabla"];
-            $ejercicios = $this->tablaMapper->listarEjercicios();
-            $ejerciciosSelected = $this->tablaMapper->listarEjerciciosSelected($idTabla);
+            $cardio = $this->tablaMapper->listarCardio();
+            $muscular = $this->tablaMapper->listarMuscular();
+            $estiramiento = $this->tablaMapper->listarEstiramiento();
+            $cardioSelected = $this->tablaMapper->listarCardioSelected();
+            $musculaSelectedr = $this->tablaMapper->listarMuscularSelected();
+            $estiramientoSelected = $this->tablaMapper->listarEstiramientoSelected();
             $tabla = $this->tablaMapper->findTablaById($idTabla);
             if ($tabla == NULL) 
             {
                 throw new Exception("No existe tabla con este id: ".$idTabla);
             }
 
-                $this->view->setVariable("ejercicios",$ejercicios);
-                 $this->view->setVariable("tabla", $tabla);
-                $this->view->setVariable("ejerciciosSelected",$ejerciciosSelected);
-                $this->view->render("tabla","tablaEDIT");
+            $this->view->setVariable("cardios",$cardio);
+            $this->view->setVariable("musculares",$muscular);
+            $this->view->setVariable("estiramientos",$estiramiento);
+            $this->view->setVariable("cardiosselected",$cardioselected);
+            $this->view->setVariable("muscularesselected",$muscularselected);
+            $this->view->setVariable("estiramientosselected",$estiramientoselected);
+            $this->view->setVariable("tabla", $tabla);
+            $this->view->render("tabla","tablaEDIT");
             }
       }else{
         $this->view->redirect("main", "index");
@@ -175,14 +261,18 @@ public function PersonalizadaADD()
             $idTabla = $_GET["idTabla"];
             // find the notification object in the database
             $tabla = $this->tablaMapper->findTablaById($idTabla);
-            $ejercicios = $this->tablaMapper->findEjerciciosById($idTabla);
+            $musculares = $this->tablaMapper->findMuscularesById($idTabla);
+            $cardios = $this->tablaMapper->findCardiosById($idTabla);
+            $estiramientos = $this->tablaMapper->findEstiramientosById($idTabla);
             if ($tabla == NULL) 
             {
                 throw new Exception("No existe tabla con este id: ".$idTabla);
             }
             // put the notification object to the view
-            $this->view->setVariable("tabla", $tabla);
-            $this->view->setVariable("ejercicios", $ejercicios);
+            $this->view->setVariable("tabla", $tabla);            
+            $this->view->setVariable("cardios",$cardios);
+            $this->view->setVariable("musculares",$musculares);
+            $this->view->setVariable("estiramientos",$estiramientos);
             // render the view (/view/posts/view.php)
             $this->view->render("tabla", "tablaDELETE");
         }else
@@ -221,14 +311,19 @@ public function PersonalizadaADD()
 
         // find the notification object in the database
         $tabla = $this->tablaMapper->findTablaById($idTabla);
-        $ejercicios = $this->tablaMapper->findEjerciciosById($idTabla);
+        $musculares = $this->tablaMapper->findMuscularesById($idTabla);
+        $cardios = $this->tablaMapper->findCardiosById($idTabla);
+        $estiramientos = $this->tablaMapper->findEstiramientosById($idTabla);
+
         if ($tabla == NULL) 
         {
             throw new Exception("No existe tabla con este id: ".$idTabla);
         }
         // put the notification object to the view
-        $this->view->setVariable("tabla", $tabla);
-        $this->view->setVariable("ejercicios", $ejercicios);
+        $this->view->setVariable("tabla", $tabla);            
+        $this->view->setVariable("cardios",$cardios);
+        $this->view->setVariable("musculares",$musculares);
+        $this->view->setVariable("estiramientos",$estiramientos);
 
         // render the view (/view/posts/view.php)
         $this->view->render("tabla", "tablaSHOWCURRENT");
