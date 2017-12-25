@@ -217,9 +217,9 @@ public function PersonalizadaADD()
             $cardio = $this->tablaMapper->listarCardio();
             $muscular = $this->tablaMapper->listarMuscular();
             $estiramiento = $this->tablaMapper->listarEstiramiento();
-            $cardioSelected = $this->tablaMapper->listarCardioSelected();
-            $musculaSelectedr = $this->tablaMapper->listarMuscularSelected();
-            $estiramientoSelected = $this->tablaMapper->listarEstiramientoSelected();
+            $cardioselected = $this->tablaMapper->listarCardioSelected($idTabla);
+            $muscularselected = $this->tablaMapper->listarMuscularSelected($idTabla);
+            $estiramientoselected = $this->tablaMapper->listarEstiramientoSelected($idTabla);
             $tabla = $this->tablaMapper->findTablaById($idTabla);
             if ($tabla == NULL) 
             {
@@ -229,9 +229,9 @@ public function PersonalizadaADD()
             $this->view->setVariable("cardios",$cardio);
             $this->view->setVariable("musculares",$muscular);
             $this->view->setVariable("estiramientos",$estiramiento);
-            $this->view->setVariable("cardiosselected",$cardioselected);
-            $this->view->setVariable("muscularesselected",$muscularselected);
-            $this->view->setVariable("estiramientosselected",$estiramientoselected);
+            $this->view->setVariable("cardioselected",$cardioselected);
+            $this->view->setVariable("muscularselected",$muscularselected);
+            $this->view->setVariable("estiramientoselected",$estiramientoselected);
             $this->view->setVariable("tabla", $tabla);
             $this->view->render("tabla","tablaEDIT");
             }

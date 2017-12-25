@@ -356,7 +356,7 @@ public function listarDeportistas()
 
     
 
-    public function listarMuscularesSelected($idTabla)
+    public function listarMuscularSelected($idTabla)
     {
             $stmt = $this->db->prepare("SELECT * from muscular_tabla m, ejercicio e WHERE m.idTabla=? AND m.idMuscular=e.idEjercicio");
             $stmt->execute(array($idTabla));
@@ -384,7 +384,7 @@ public function listarDeportistas()
             return $ejercicios;
     }
 
-    public function listarEstiramientosSelected($idTabla)
+    public function listarEstiramientoSelected($idTabla)
     {
             $stmt = $this->db->prepare("SELECT * from estiramiento_tabla m, ejercicio e WHERE m.idTabla=? AND m.idEstiramiento=e.idEjercicio");
             $stmt->execute(array($idTabla));
