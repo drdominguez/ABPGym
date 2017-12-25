@@ -28,9 +28,13 @@
 
 }
 
-</script> 
+</script>
 <script type="text/javascript">
-   function anadirestiramiento(id,nombre,descripcion) {    
+     var i1 = 0; 
+
+   function anadirestiramiento(id,nombre,descripcion) {  
+
+   
 
     var table = document.getElementById("dataTableEstiramientos");
     var row = table.insertRow(table.rows.length-1);
@@ -43,25 +47,38 @@
     var input = document.createElement("input");
      input.setAttribute('type', 'text');
      input.setAttribute('class','form-control');
-     input.setAttribute('name', 'estiramientotiempo_' + id);
+     input.setAttribute('name', 'estiramientotiempo_' + id + "_" + i1);
+     input.setAttribute('id', 'estiramientotiempo_' + id + "_" + i1);
+
+
+      var input2 = document.createElement("input");
+     input2.setAttribute('type', 'hidden');
+     input2.setAttribute('class','form-control');
+     input2.setAttribute('name', 'idEstiramiento_' + id + "_" + i1);
+     input2.setAttribute('value', id);
 
      var check = document.createElement("input");
      check.setAttribute('type', 'checkbox');
      check.setAttribute('class','form-control');
-     check.setAttribute('id','checkestiramiento_' + id);
+     check.setAttribute('id','checkestiramiento_' + id + "_" + i1);
      check.setAttribute('name', 'estiramientos[]');
-     check.setAttribute('value', id);
+     check.setAttribute('value', id + "_" + i1);
      check.setAttribute('checked','');
+     check.setAttribute('onClick','toggle(\'checkestiramiento_' + id + "_" + i1 + '\',\'estiramientotiempo_' + id + "_" + i1 + '\');');
 
     cell1.innerHTML = nombre;
     cell2.innerHTML = descripcion;
     cell3.appendChild(input);
+    cell3.appendChild(input2);
     cell4.innerHTML = "xd";
     cell5.appendChild(check);
+    i1++;
 }
 
 </script>  
 <script type="text/javascript">
+
+    var i2 = 0;
    function anadircardio(id,nombre,descripcion) {    
 
     var table = document.getElementById("dataTableCardios");
@@ -76,35 +93,52 @@
      var input = document.createElement("input");
      input.setAttribute('type', 'text');
      input.setAttribute('class','form-control');
-     input.setAttribute('name', 'cardiotiempo_' + id);
+     input.setAttribute('name', 'cardiotiempo_' + id + "_" + i2);
+     input.setAttribute('id', 'cardiotiempo_' + id + "_" + i2);
+
 
      var input2 = document.createElement("input");
      input2.setAttribute('type', 'text');
      input2.setAttribute('class','form-control');
-     input2.setAttribute('name', 'cardiodistancia_' + id);
+     input2.setAttribute('name', 'cardiodistancia_' + id + "_" + i2);
+     input2.setAttribute('id', 'cardiodistancia_' + id + "_" + i2);
+
+
+     var input3 = document.createElement("input");
+     input3.setAttribute('type', 'hidden');
+     input3.setAttribute('class','form-control');
+     input3.setAttribute('name', 'idCardio_' + id + "_" + i2);
+     input3.setAttribute('value', id);
+
 
      var check = document.createElement("input");
      check.setAttribute('type', 'checkbox');
      check.setAttribute('class','form-control');
-     check.setAttribute('id','checkcardio_' + id);
+     check.setAttribute('id','checkcardio_' + id + "_" + i2);
      check.setAttribute('name', 'cardios[]');
-     check.setAttribute('value', id);
+     check.setAttribute('value', id + "_" + i2);
      check.setAttribute('checked','');
+     check.setAttribute('onClick','toggle2(\'checkcardio_' + id + "_" + i2 + '\',\'cardiotiempo_' + id + "_" + i2 + '\', \'cardiodistancia_' + id + "_" + i2 + '\');');
 
     cell1.innerHTML = nombre;
     cell2.innerHTML = descripcion;
     cell3.appendChild(input);
     cell4.appendChild(input2);
+    cell4.appendChild(input3);
     cell5.innerHTML = "xd";
     cell6.appendChild(check);
+    i2++;
 }
 
 </script>  
 <script type="text/javascript">
+
+    var i3 = 0;
+
    function anadirmuscular(id,nombre,descripcion) {    
 
     var table = document.getElementById("dataTableMusculares");
-        var row = table.insertRow(table.rows.length-1);
+    var row = table.insertRow(table.rows.length-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
@@ -115,30 +149,42 @@
      var input = document.createElement("input");
      input.setAttribute('type', 'text');
      input.setAttribute('class','form-control');
-     input.setAttribute('name', 'muscularcarga_' + id);
+     input.setAttribute('name', 'muscularcarga_' + id + "_" + i3);
+     input.setAttribute('id', 'muscularcarga_' + id + "_" + i3);
+
 
      var input2 = document.createElement("input");
      input2.setAttribute('type', 'text');
      input2.setAttribute('class','form-control');
-     input2.setAttribute('name', 'muscularrepeticiones_' + id);
+     input2.setAttribute('name', 'muscularrepeticiones_' + id + "_" + i3);
+     input2.setAttribute('id', 'muscularrepeticiones_' + id + "_" + i3);
+
+      var input3 = document.createElement("input");
+     input3.setAttribute('type', 'hidden');
+     input3.setAttribute('class','form-control');
+     input3.setAttribute('name', 'idMuscular_' + id + "_" + i3);
+     input3.setAttribute('value', id);
 
      var check = document.createElement("input");
      check.setAttribute('type', 'checkbox');
      check.setAttribute('class','form-control');
-     check.setAttribute('id','checkmuscular' + id);
+     check.setAttribute('id','checkmuscular_' + id + "_" + i3);
      check.setAttribute('name', 'musculares[]');
-     check.setAttribute('value', id);
+     check.setAttribute('value', id + "_" + i3);
      check.setAttribute('checked','');
+     check.setAttribute('onClick','toggle2(\'checkmuscular_' + id + "_" + i3 + '\',\'muscularcarga_' + id + "_" + i3 + '\',\'muscularrepeticiones_' + id + "_" + i3 + '\');');
 
     cell1.innerHTML = nombre;
     cell2.innerHTML = descripcion;
     cell3.appendChild(input);
     cell4.appendChild(input2);
+    cell4.appendChild(input3);
     cell5.innerHTML = "xd";
     cell6.appendChild(check);
+    i3++;
 }
 
-</script>  
+</script> 
     <div class="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->

@@ -55,20 +55,24 @@ class TablaController extends BaseController
             $array_musculares= array();
 
             foreach ($estiramientos as $estiramiento) {
-                $array_estiramientos["tiempo_".$estiramiento] = $_POST["estiramientotiempo_" . $estiramiento];
+                $array_estiramientos["tiempo_" . $estiramiento] = $_POST["estiramientotiempo_" . $estiramiento];
+                $array_estiramientos["idEstiramiento_" . $estiramiento] = $_POST["idEstiramiento_" . $estiramiento];
             }
 
             foreach ($musculares as $muscular) {
                 $array_musculares["carga_".$muscular] = $_POST["muscularcarga_" . $muscular];
                 $array_musculares["repeticiones_".$muscular] = $_POST["muscularrepeticiones_" . $muscular];
+                $array_musculares["idMuscular_" . $muscular] = $_POST["idMuscular_" . $muscular];
+
             }
 
 
             foreach ($cardios as $cardio) {
                 $array_cardios["tiempo_".$cardio] = $_POST["cardiotiempo_" . $cardio];
                 $array_cardios["distancia_".$cardio] = $_POST["cardiodistancia_" . $cardio];
-            }
+                $array_cardios["idCardio_" . $cardio] = $_POST["idCardio_" . $cardio];
 
+            }
             $tabla = new Tabla();
             $tabla->setNombre($_POST["nombre"]);
             $tabla->setComentario($_POST['comentario']);
@@ -131,18 +135,23 @@ public function PersonalizadaADD()
             $array_musculares= array();
 
             foreach ($estiramientos as $estiramiento) {
-                $array_estiramientos["tiempo_".$estiramiento] = $_POST["estiramientotiempo_" . $estiramiento];
+                $array_estiramientos["tiempo_" . $estiramiento] = $_POST["estiramientotiempo_" . $estiramiento];
+                $array_estiramientos["idEstiramiento_" . $estiramiento] = $_POST["idEstiramiento_" . $estiramiento];
             }
 
             foreach ($musculares as $muscular) {
                 $array_musculares["carga_".$muscular] = $_POST["muscularcarga_" . $muscular];
                 $array_musculares["repeticiones_".$muscular] = $_POST["muscularrepeticiones_" . $muscular];
+                $array_musculares["idMuscular_" . $muscular] = $_POST["idMuscular_" . $muscular];
+
             }
 
 
             foreach ($cardios as $cardio) {
                 $array_cardios["tiempo_".$cardio] = $_POST["cardiotiempo_" . $cardio];
                 $array_cardios["distancia_".$cardio] = $_POST["cardiodistancia_" . $cardio];
+                $array_cardios["idCardio_" . $cardio] = $_POST["idCardio_" . $cardio];
+
             }
 
             $usuario = $_POST['usuario'];
