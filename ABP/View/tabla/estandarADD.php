@@ -28,14 +28,45 @@
 }
 
 </script>  
+<script type="text/javascript">
+   function anadirestiramiento(id,nombre,descripcion) {    
+
+    var table = document.getElementById("dataTableEstiramientos");
+    var row = table.insertRow(table.rows.length-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+    var input = document.createElement("input");
+     input.setAttribute('type', 'text');
+     input.setAttribute('class','form-control');
+     input.setAttribute('name', 'estiramientotiempo_' + id);
+
+     var check = document.createElement("input");
+     check.setAttribute('type', 'checkbox');
+     check.setAttribute('class','form-control');
+     check.setAttribute('id','checkestiramiento_' + id);
+     check.setAttribute('name', 'estiramientos[]');
+     check.setAttribute('value', id);
+     check.setAttribute('checked','');
+
+    cell1.innerHTML = nombre;
+    cell2.innerHTML = descripcion;
+    cell3.appendChild(input);
+    cell4.innerHTML = "xd";
+    cell5.appendChild(check);
+
+
+}
+
+</script>  
     <div class="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href=""><?= i18n("Gestión de tablas") ?></a>
-                </li>
-                <li class="breadcrumb-item active"><?= i18n("Añadir") ?></li>
+                <div id="flash"><?= $view->popFlash() ?></div>   
             </ol>
             <!-- Example DataTables Card-->
             <form name = 'Form' action='./index.php?controller=Tabla&amp;action=estandarADD' method='post' onsubmit='return validarTablaADD()'>
@@ -44,7 +75,7 @@
                         <i class="fa fa-table"></i><?= i18n("Anadir tabla") ?>
                     </div>
                     <div class="card-body">      
-                        <div id="flash"><?= $view->popFlash() ?></div>      
+                           
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
@@ -67,7 +98,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0" >
+                            <table class="table table-bordered" id="dataTableEstiramientos" width="100%" cellspacing="0" >
                                 <thead>
                                     <tr>
                                         <th><?= i18n("Nombre") ?></th>
@@ -100,7 +131,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="checkbox" id="estiramiento_<?php echo $estiramiento->getIdEjercicio();?>" onClick="toggle('estiramiento_<?php echo $estiramiento->getIdEjercicio();?>', 'estiramientotiempo_<?php echo $estiramiento->getIdEjercicio();?>')" name="estiramientos[]" value="<?php echo $estiramiento->getIdEjercicio();?>">Añadir<br>
+                                            <input type="button" value="Seleccionar" onclick="anadirestiramiento('<?php echo $estiramiento->getIdEjercicio();?>','<?php echo $estiramiento->getNombre(); ?>','<?php echo $estiramiento->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php

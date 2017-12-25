@@ -33,10 +33,7 @@
         <div class="container-fluid">
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href=""><?= i18n("Gestión de tablas") ?></a>
-                </li>
-                <li class="breadcrumb-item active"><?= i18n("Añadir") ?></li>
+                <div id="flash"><?= $view->popFlash() ?></div>   
             </ol>
             <!-- Example DataTables Card-->
             <form name = 'Form' action='./index.php?controller=Tabla&amp;action=personalizadaADD' method='post' onsubmit='return validarTablaADD()'>
@@ -44,8 +41,7 @@
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Anadir tabla") ?>
                     </div>
-                    <div class="card-body">      
-                        <div id="flash"><?= $view->popFlash() ?></div>      
+                    <div class="card-body">   
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
