@@ -28,6 +28,116 @@
 
 }
 
+</script> 
+<script type="text/javascript">
+   function anadirestiramiento(id,nombre,descripcion) {    
+
+    var table = document.getElementById("dataTableEstiramientos");
+    var row = table.insertRow(table.rows.length-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+    var input = document.createElement("input");
+     input.setAttribute('type', 'text');
+     input.setAttribute('class','form-control');
+     input.setAttribute('name', 'estiramientotiempo_' + id);
+
+     var check = document.createElement("input");
+     check.setAttribute('type', 'checkbox');
+     check.setAttribute('class','form-control');
+     check.setAttribute('id','checkestiramiento_' + id);
+     check.setAttribute('name', 'estiramientos[]');
+     check.setAttribute('value', id);
+     check.setAttribute('checked','');
+
+    cell1.innerHTML = nombre;
+    cell2.innerHTML = descripcion;
+    cell3.appendChild(input);
+    cell4.innerHTML = "xd";
+    cell5.appendChild(check);
+}
+
+</script>  
+<script type="text/javascript">
+   function anadircardio(id,nombre,descripcion) {    
+
+    var table = document.getElementById("dataTableCardios");
+    var row = table.insertRow(table.rows.length-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+
+     var input = document.createElement("input");
+     input.setAttribute('type', 'text');
+     input.setAttribute('class','form-control');
+     input.setAttribute('name', 'cardiotiempo_' + id);
+
+     var input2 = document.createElement("input");
+     input2.setAttribute('type', 'text');
+     input2.setAttribute('class','form-control');
+     input2.setAttribute('name', 'cardiodistancia_' + id);
+
+     var check = document.createElement("input");
+     check.setAttribute('type', 'checkbox');
+     check.setAttribute('class','form-control');
+     check.setAttribute('id','checkcardio_' + id);
+     check.setAttribute('name', 'cardios[]');
+     check.setAttribute('value', id);
+     check.setAttribute('checked','');
+
+    cell1.innerHTML = nombre;
+    cell2.innerHTML = descripcion;
+    cell3.appendChild(input);
+    cell4.appendChild(input2);
+    cell5.innerHTML = "xd";
+    cell6.appendChild(check);
+}
+
+</script>  
+<script type="text/javascript">
+   function anadirmuscular(id,nombre,descripcion) {    
+
+    var table = document.getElementById("dataTableMusculares");
+        var row = table.insertRow(table.rows.length-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+
+     var input = document.createElement("input");
+     input.setAttribute('type', 'text');
+     input.setAttribute('class','form-control');
+     input.setAttribute('name', 'muscularcarga_' + id);
+
+     var input2 = document.createElement("input");
+     input2.setAttribute('type', 'text');
+     input2.setAttribute('class','form-control');
+     input2.setAttribute('name', 'muscularrepeticiones_' + id);
+
+     var check = document.createElement("input");
+     check.setAttribute('type', 'checkbox');
+     check.setAttribute('class','form-control');
+     check.setAttribute('id','checkmuscular' + id);
+     check.setAttribute('name', 'musculares[]');
+     check.setAttribute('value', id);
+     check.setAttribute('checked','');
+
+    cell1.innerHTML = nombre;
+    cell2.innerHTML = descripcion;
+    cell3.appendChild(input);
+    cell4.appendChild(input2);
+    cell5.innerHTML = "xd";
+    cell6.appendChild(check);
+}
+
 </script>  
     <div class="content-wrapper">
         <div class="container-fluid">
@@ -114,7 +224,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0" >
+                            <table class="table table-bordered" id="dataTableEstiramientos" width="100%" cellspacing="0" >
                                 <thead>
                                     <tr>
                                         <th><?= i18n("Nombre") ?></th>
@@ -139,6 +249,7 @@
                                 {
 ?>
                                     <tr>
+                                        
                                         <td><?php echo $estiramiento->getNombre(); ?></td>
                                         <td><?php echo $estiramiento->getDescripcion(); ?></td>
                                         <td><input type="text" disabled id="estiramientotiempo_<?php echo $estiramiento->getIdEjercicio();?>" class="form-control" name="estiramientotiempo_<?php echo $estiramiento->getIdEjercicio();?>"></td>
@@ -147,7 +258,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="checkbox" id="estiramiento_<?php echo $estiramiento->getIdEjercicio();?>" onClick="toggle('estiramiento_<?php echo $estiramiento->getIdEjercicio();?>', 'estiramientotiempo_<?php echo $estiramiento->getIdEjercicio();?>')" name="estiramientos[]" value="<?php echo $estiramiento->getIdEjercicio();?>">Añadir<br>
+                                            <input type="button" value="Seleccionar" onclick="anadirestiramiento('<?php echo $estiramiento->getIdEjercicio();?>','<?php echo $estiramiento->getNombre(); ?>','<?php echo $estiramiento->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php
@@ -164,7 +275,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0" >
+                            <table class="table table-bordered" id="dataTableCardios" width="100%" cellspacing="0" >
                                 <thead>
                                     <tr>
                                         <th><?= i18n("Nombre") ?></th>
@@ -200,7 +311,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="checkbox" id="cardio_<?php echo $cardio->getIdEjercicio();?>" onClick="toggle2('cardio_<?php echo $cardio->getIdEjercicio();?>', 'cardiotiempo_<?php echo $cardio->getIdEjercicio();?>', 'cardiodistancia_<?php echo $cardio->getIdEjercicio();?>' )" name="cardios[]" value="<?php echo $cardio->getIdEjercicio();?>">Añadir<br>
+                                            <input type="button" value="Seleccionar" onclick="anadircardio('<?php echo $cardio->getIdEjercicio();?>','<?php echo $cardio->getNombre(); ?>','<?php echo $cardio->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php
@@ -217,7 +328,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0" >
+                            <table class="table table-bordered" id="dataTableMusculares" width="100%" cellspacing="0" >
                                 <thead>
                                     <tr>
                                         <th><?= i18n("Nombre") ?></th>
@@ -253,7 +364,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="checkbox" id="muscular_<?php echo $muscular->getIdEjercicio();?>" name="musculares[]" onClick="toggle2('muscular_<?php echo $muscular->getIdEjercicio();?>', 'muscularcarga_<?php echo $muscular->getIdEjercicio();?>', 'muscularrepeticiones_<?php echo $muscular->getIdEjercicio();?>' )" value="<?php echo $muscular->getIdEjercicio();?>">Añadir<br>
+                                             <input type="button" value="Seleccionar" onclick="anadirmuscular('<?php echo $muscular->getIdEjercicio();?>','<?php echo $muscular->getNombre(); ?>','<?php echo $muscular->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php
