@@ -27,16 +27,19 @@ class ActividadMapper{
             {
                 $usuariod_insertar = new ActividadDeportista();
                 $usuariod_insertar->setDniDeportista($usuariod);
-                array_push($deportistas, $usuariod_insertard);
+                array_push($deportistas, $usuariod_insertar);
 
             }
             if($deportistas){
+                $i=0;
                 foreach($deportistas as $deportista)
                 {
+                    echo $i;
                     $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
-                    $stmt3->execute(array($idActividad,$usuariod_insertar->getDniDeportista()));
-                    $actividad->setContador($cont++);
-
+                    $stmt3->execute(array($idActividad,$deportista->getDniDeportista()));
+                    $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
+                    $stmt4->execute(array($idActividad));
+                    $i++;
                 }
             }
             return true;

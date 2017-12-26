@@ -154,6 +154,7 @@ class ActividadController extends BaseController{
             $individual->setPlazas($_POST["plazas"]); 
             $individual->setHorario($horario);
             $individual->setContador($contador); 
+            
             if($this->individualMapper->addIndividual($individual,$actividadEntrenador,$usuariosd)){
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
