@@ -45,8 +45,9 @@ $currentuser = $view->getVariable("currentusername");
 			</main>
 		</section>
 		<?php
+			if(($_GET['action']=='index') && ($_GET['controller']=='main')){
 				include(__DIR__."/default_cards.php");
-
+			}
 			?>
 		<footer>
 			<?php
