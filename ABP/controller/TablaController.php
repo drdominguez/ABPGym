@@ -194,15 +194,62 @@ public function PersonalizadaADD()
     public function TablaEDIT() 
     {   
         if($this->permisos->esSuperusuario()){
-        if(isset($_POST["tipo"]) && isset($_POST["nombre"]) && isset($_POST["ejercicios"]))
+        if(isset($_POST["nombre"]) && (isset($_POST["estiramientos"]) || isset($_POST["musculares"])|| isset($_POST["cardios"])))
         {//si existen los post añado la notificacion
-            $ejercicios = $_POST["ejercicios"];
-            $tablaE = new Tabla();
-            $tablaE->setTipo($_POST["tipo"]);
-            $tablaE->setNombre($_POST["nombre"]);
-            $tablaE->setComentario($_POST['comentario']);
+
+            if(isset($_POST["estiramientos"])){
+
+                $estiramientos = $_POST["estiramientos"];
+
+            }else{
+                $estiramientos=array();
+            }
+             if(isset($_POST["musculares"])){
+
+            $musculares = $_POST["musculares"];
+
+            }else{
+                $musculares=array();
+            }
+             if(isset($_POST["cardios"])){
+
+            $cardios = $_POST["cardios"];
+
+            }else{
+                $cardios= array();
+            }
+
+            $array_musculares= array();
+            $array_cardios= array();
+            $array_musculares= array();
+
+            foreach ($estiramientos as $estiramiento) {
+                $array_estiramientos["tiempo_" . $estiramiento] = $_POST["estiramientotiempo_" . $estiramiento];
+                $array_estiramientos["idEstiramiento_" . $estiramiento] = $_POST["idEstiramiento_" . $estiramiento];
+            }
+
+            foreach ($musculares as $muscular) {
+                $array_musculares["carga_".$muscular] = $_POST["muscularcarga_" . $muscular];
+                $array_musculares["repeticiones_".$muscular] = $_POST["muscularrepeticiones_" . $muscular];
+                $array_musculares["idMuscular_" . $muscular] = $_POST["idMuscular_" . $muscular];
+
+            }
+
+
+            foreach ($cardios as $cardio) {
+                $array_cardios["tiempo_".$cardio] = $_POST["cardiotiempo_" . $cardio];
+                $array_cardios["distancia_".$cardio] = $_POST["cardiodistancia_" . $cardio];
+                $array_cardios["idCardio_" . $cardio] = $_POST["idCardio_" . $cardio];
+
+            }
+
             $idTabla = $_POST['idTabla'];
-            if($this->tablaMapper->edit($tablaE,$ejercicios,$idTabla))
+            $tipo = $_POST['tipo'];
+            $tabla = new Tabla($idTabla,$tipo);
+            $tabla->setNombre($_POST["nombre"]);
+            $tabla->setComentario($_POST['comentario']);
+
+            if($this->tablaMapper->edit($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios))
             {
                $this->view->setFlash("Tabla Editada Correctamente");
             }else

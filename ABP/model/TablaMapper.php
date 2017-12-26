@@ -106,6 +106,66 @@ Class TablaMapper
     }
 
 
+
+    public function edit($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios)
+        {
+            $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla =?");
+             if($this->permisos->esSuperusuario())
+        {
+            $stmt->execute(array($tabla->getIdTabla()));
+            $tablaDB = $stmt->fetch(PDO::FETCH_ASSOC);
+            if($tablaDB == null){
+                return false;
+            }else{
+                if($tablaDB['dniSuperUsuario']==$_SESSION['currentuser'] || $this->permisos->esAdministrador()){
+
+                    $stmt = $this->db->prepare("UPDATE tabla set nombre=?,comentario=? where idTabla=?");
+                    $stmt->execute(array($tabla->getNombre(),$tabla->getComentario(),$tabla->getIdTabla()));
+                    $stmt = $this->db->prepare("DELETE from cardio_tabla WHERE idTabla=?");
+                    $stmt->execute(array($tabla->getIdTabla()));
+                    $stmt = $this->db->prepare("DELETE from estiramiento_tabla WHERE idTabla=?");
+                    $stmt->execute(array($tabla->getIdTabla()));
+                    $stmt = $this->db->prepare("DELETE from muscular_tabla WHERE idTabla=?");
+                    $stmt->execute(array($tabla->getIdTabla()));
+
+                    foreach ($cardios as $cardio)
+                {
+                    $tiempo_cardio= $array_cardios["tiempo_" . $cardio];
+                    $distancia_cardio=$array_cardios["distancia_" . $cardio];
+
+                    $stmt = $this->db->prepare("INSERT INTO cardio_tabla(idCardio,idTabla,tiempo,distancia) VALUES (?,?,?,?)");
+                    $stmt->execute(array($cardio, $tabla->getIdTabla(),$tiempo_cardio,$distancia_cardio));
+                }
+
+                 foreach ($musculares as $muscular)
+                {
+                    $carga_muscular= $array_musculares["carga_" . $muscular];
+                    $repeticiones_muscular=$array_musculares["repeticiones_" . $muscular];
+
+                    $stmt = $this->db->prepare("INSERT INTO muscular_tabla(idMuscular,idTabla,carga,repeticiones) VALUES (?,?,?,?)");
+                    $stmt->execute(array($muscular,$tabla->getIdTabla(),$carga_muscular,$repeticiones_muscular));
+                }
+
+                 foreach ($estiramientos as $estiramiento)
+                {
+                    $tiempo_estiramiento= $array_estiramientos["tiempo_" . $estiramiento];
+
+
+                    $stmt = $this->db->prepare("INSERT INTO estiramiento_tabla(idEstiramiento,idTabla,tiempo) VALUES (?,?,?)");
+                    $stmt->execute(array($estiramiento,$tabla->getIdTabla(),$tiempo_estiramiento));
+                }
+                    return true;
+
+                }else{
+                    return false;
+                }
+                
+            }
+        }
+        return false;
+        }
+
+
     public function listar()
     {
         if($this->permisos->esSuperusuario()){
@@ -397,66 +457,6 @@ public function listarDeportistas()
             }
             return $ejercicios;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function edit($tabla,$ejercicios,$idTabla)
-        {
-            $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla =?");
-             if($this->permisos->esSuperusuario())
-        {
-            $stmt->execute(array($idTabla));
-            $tablaDB = $stmt->fetch(PDO::FETCH_ASSOC);
-            if($tablaDB == null){
-                return false;
-            }else{
-                if($tablaDB['dniSuperUsuario']==$_SESSION['currentuser'] || $this->permisos->esAdministrador()){
-
-                    $stmt = $this->db->prepare("UPDATE tabla set nombre=?,comentario=? where idTabla=?");
-                    $stmt->execute(array($tabla->getNombre(),$tabla->getComentario(),$idTabla));
-                    $stmt = $this->db->prepare("DELETE from tabla_ejercicios WHERE idTabla=?");
-                    $stmt->execute(array($idTabla));
-                    foreach ($ejercicios as $ejercicio)
-                    {
-                    $stmt = $this->db->prepare("INSERT INTO tabla_ejercicios(idTabla,idEjercicio) VALUES (?,?)");
-                    $stmt->execute(array($idTabla,$ejercicio));
-                    }
-                    return true;
-
-                }else{
-                    return false;
-                }
-                
-            }
-        }
-        return false;
-        }
-
-
-
-
-
-
-
-
-    
-
 
 }
 ?>

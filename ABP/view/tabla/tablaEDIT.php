@@ -12,6 +12,194 @@
 
 <!DOCTYPE html>
 <html>    
+ 
+<script type="text/javascript">
+    function toggle(checkboxID, toggleID) {
+     var checkbox = document.getElementById(checkboxID);
+     var toggle = document.getElementById(toggleID);
+     updateToggle = checkbox.checked ? toggle.disabled=false : toggle.disabled=true;
+}
+</script>  
+<script type="text/javascript">
+   function toggle2(checkboxID, toggleID1,toggleID2) {
+     var checkbox = document.getElementById(checkboxID);
+     var toggle1 = document.getElementById(toggleID1);
+     var toggle2 = document.getElementById(toggleID2);
+
+     updateToggle1 = checkbox.checked ? toggle1.disabled=false : toggle1.disabled=true;
+     updateToggle2 = checkbox.checked ? toggle2.disabled=false : toggle2.disabled=true;
+
+}
+
+</script>  
+<script type="text/javascript">
+     var i1 = 0; 
+
+     function anadirestiramientoi(){
+        i1++;
+     }
+
+   function anadirestiramiento(id,nombre,descripcion) {  
+
+   
+
+    var table = document.getElementById("dataTableEstiramientos");
+    var row = table.insertRow(table.rows.length-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+
+    var input = document.createElement("input");
+     input.setAttribute('type', 'text');
+     input.setAttribute('class','form-control');
+     input.setAttribute('name', 'estiramientotiempo_' + id + "_" + i1);
+     input.setAttribute('id', 'estiramientotiempo_' + id + "_" + i1);
+
+
+      var input2 = document.createElement("input");
+     input2.setAttribute('type', 'hidden');
+     input2.setAttribute('class','form-control');
+     input2.setAttribute('name', 'idEstiramiento_' + id + "_" + i1);
+     input2.setAttribute('value', id);
+
+     var check = document.createElement("input");
+     check.setAttribute('type', 'checkbox');
+     check.setAttribute('class','form-control');
+     check.setAttribute('id','checkestiramiento_' + id + "_" + i1);
+     check.setAttribute('name', 'estiramientos[]');
+     check.setAttribute('value', id + "_" + i1);
+     check.setAttribute('checked','');
+     check.setAttribute('onClick','toggle(\'checkestiramiento_' + id + "_" + i1 + '\',\'estiramientotiempo_' + id + "_" + i1 + '\');');
+
+    cell1.innerHTML = nombre;
+    cell2.innerHTML = descripcion;
+    cell3.appendChild(input);
+    cell3.appendChild(input2);
+    cell4.innerHTML = "xd";
+    cell5.appendChild(check);
+    i1++;
+}
+
+</script>  
+<script type="text/javascript">
+
+    var i2 = 0;
+    function anadircardioi(){
+        i2++;
+     }
+
+   function anadircardio(id,nombre,descripcion) {    
+
+    var table = document.getElementById("dataTableCardios");
+    var row = table.insertRow(table.rows.length-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+
+     var input = document.createElement("input");
+     input.setAttribute('type', 'text');
+     input.setAttribute('class','form-control');
+     input.setAttribute('name', 'cardiotiempo_' + id + "_" + i2);
+     input.setAttribute('id', 'cardiotiempo_' + id + "_" + i2);
+
+
+     var input2 = document.createElement("input");
+     input2.setAttribute('type', 'text');
+     input2.setAttribute('class','form-control');
+     input2.setAttribute('name', 'cardiodistancia_' + id + "_" + i2);
+     input2.setAttribute('id', 'cardiodistancia_' + id + "_" + i2);
+
+
+     var input3 = document.createElement("input");
+     input3.setAttribute('type', 'hidden');
+     input3.setAttribute('class','form-control');
+     input3.setAttribute('name', 'idCardio_' + id + "_" + i2);
+     input3.setAttribute('value', id);
+
+
+     var check = document.createElement("input");
+     check.setAttribute('type', 'checkbox');
+     check.setAttribute('class','form-control');
+     check.setAttribute('id','checkcardio_' + id + "_" + i2);
+     check.setAttribute('name', 'cardios[]');
+     check.setAttribute('value', id + "_" + i2);
+     check.setAttribute('checked','');
+     check.setAttribute('onClick','toggle2(\'checkcardio_' + id + "_" + i2 + '\',\'cardiotiempo_' + id + "_" + i2 + '\', \'cardiodistancia_' + id + "_" + i2 + '\');');
+
+    cell1.innerHTML = nombre;
+    cell2.innerHTML = descripcion;
+    cell3.appendChild(input);
+    cell4.appendChild(input2);
+    cell4.appendChild(input3);
+    cell5.innerHTML = "xd";
+    cell6.appendChild(check);
+    i2++;
+}
+
+</script>  
+<script type="text/javascript">
+
+    var i3 = 0;
+
+    function anadirmusculari(){
+        i3++;
+     }
+
+   function anadirmuscular(id,nombre,descripcion) {    
+
+    var table = document.getElementById("dataTableMusculares");
+    var row = table.insertRow(table.rows.length-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+
+     var input = document.createElement("input");
+     input.setAttribute('type', 'text');
+     input.setAttribute('class','form-control');
+     input.setAttribute('name', 'muscularcarga_' + id + "_" + i3);
+     input.setAttribute('id', 'muscularcarga_' + id + "_" + i3);
+
+
+     var input2 = document.createElement("input");
+     input2.setAttribute('type', 'text');
+     input2.setAttribute('class','form-control');
+     input2.setAttribute('name', 'muscularrepeticiones_' + id + "_" + i3);
+     input2.setAttribute('id', 'muscularrepeticiones_' + id + "_" + i3);
+
+      var input3 = document.createElement("input");
+     input3.setAttribute('type', 'hidden');
+     input3.setAttribute('class','form-control');
+     input3.setAttribute('name', 'idMuscular_' + id + "_" + i3);
+     input3.setAttribute('value', id);
+
+     var check = document.createElement("input");
+     check.setAttribute('type', 'checkbox');
+     check.setAttribute('class','form-control');
+     check.setAttribute('id','checkmuscular_' + id + "_" + i3);
+     check.setAttribute('name', 'musculares[]');
+     check.setAttribute('value', id + "_" + i3);
+     check.setAttribute('checked','');
+     check.setAttribute('onClick','toggle2(\'checkmuscular_' + id + "_" + i3 + '\',\'muscularcarga_' + id + "_" + i3 + '\',\'muscularrepeticiones_' + id + "_" + i3 + '\');');
+
+    cell1.innerHTML = nombre;
+    cell2.innerHTML = descripcion;
+    cell3.appendChild(input);
+    cell4.appendChild(input2);
+    cell4.appendChild(input3);
+    cell5.innerHTML = "xd";
+    cell6.appendChild(check);
+    i3++;
+}
+
+</script>  
     <div class="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
@@ -99,6 +287,31 @@
                                     </tr>
 <?php
                                 }   
+                                        $i=0;
+                                        foreach($estiramientosselected as $estiramientoselected)
+                                {
+?>
+                                    <tr>
+                                        <td><?php echo $estiramientoselected->getNombre(); ?></td>
+                                        <td><?php echo $estiramientoselected->getDescripcion(); ?></td>
+                                        <td><input type="text" id="estiramientotiempo_<?php echo $estiramientoselected->getIdEjercicio();?>_<?php echo $i; ?>" class="form-control" value="<?php echo $estiramientoselected->getTiempo();?>" name="estiramientotiempo_<?php echo $estiramientoselected->getIdEjercicio();?>_<?php echo $i; ?>">
+                                           <input type="hidden" class="form-control" name="idEstiramiento_<?php echo $estiramientoselected->getIdEjercicio();?>_<?php echo $i; ?>" value="<?php echo $estiramientoselected->getIdEjercicio();?>"></td>
+                                        <td>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $estiramientoselected->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="checkbox" id="checkestiramiento_<?php echo $estiramientoselected->getIdEjercicio();?>_<?php echo $i; ?>" name="estiramientos[]" value="<?php echo $estiramientoselected->getIdEjercicio();?>_<?php echo $i; ?>" checked="" onclick="toggle('checkestiramiento_<?php echo $estiramientoselected->getIdEjercicio();?>_<?php echo $i; ?>','estiramientotiempo_<?php echo $estiramientoselected->getIdEjercicio();?>_<?php echo $i; ?>');"/>
+                                        </td>
+                                    </tr>
+<?php
+                                        $i++;
+                                        ?>
+                                        <script type="text/javascript"> 
+                                            anadirestiramientoi(); 
+                                        </script>
+                                        <?php 
+                                        }   
 ?>
                                 </tbody>
                             </table>
@@ -152,6 +365,34 @@
                                     </tr>
 <?php
                                 }   
+                                
+                                $i1=0;
+                                foreach($cardiosselected as $cardioselected)
+                                {
+?>
+                                    <tr>
+                                        <td><?php echo $cardioselected->getNombre(); ?></td>
+                                        <td><?php echo $cardioselected->getDescripcion(); ?></td>
+                                        <td><input type="text" value="<?php echo $cardioselected->getTiempo();?>" id="cardiotiempo_<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>" class="form-control" name="cardiotiempo_<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>"></td>
+                                        <td><input type="text" value="<?php echo $cardioselected->getDistancia();?>" id="cardiodistancia_<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>" class="form-control" name="cardiodistancia_<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>" >
+                                           <input type="hidden" class="form-control" name="idCardio_<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>" value="<?php echo $cardioselected->getIdEjercicio();?>"></td>  
+                                        <td>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $cardio->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
+                                        </td>
+                                        <td>
+                                              <input class="form-control" type="checkbox" id="checkcardio_<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>" name="cardios[]" value="<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>" checked="" onclick="toggle('cardiotiempo_<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>','cardiodistancia_<?php echo $cardioselected->getIdEjercicio();?>_<?php echo $i1; ?>');"/>
+                                        </td>
+                                    </tr>
+<?php
+
+                                        $i1++;
+  ?>    
+                                        <script type="text/javascript"> 
+                                            anadircardioi(); 
+                                        </script>
+                                        <?php 
+                                }   
 ?>
                                 </tbody>
                             </table>
@@ -204,6 +445,34 @@
                                         </td>
                                     </tr>
 <?php
+                                }   
+                                $i2=0;
+                                foreach($muscularesselected as $muscularselected)
+                                {
+?>
+                                    <tr>
+                                        <td><?php echo $muscularselected->getNombre(); ?></td>
+                                        <td><?php echo $muscularselected->getDescripcion(); ?></td>
+                                        <td><input type="text" value="<?php echo $muscularselected->getCarga();?>" id="muscularcarga_<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>" class="form-control" name="muscularcarga_<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>"></td>
+                                        <td><input type="text" value="<?php echo $muscularselected->getRepeticiones();?>" id="muscularrepeticiones_<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>" class="form-control" name="muscularrepeticiones_<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>" >
+                                           <input type="hidden" class="form-control" name="idMuscular_<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>" value="<?php echo $muscularselected->getIdEjercicio();?>"></td> 
+                                        <td>
+                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $muscularselected->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="checkbox" id="checkmuscular_<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>" name="musculares[]" value="<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>" checked="" onclick="toggle('muscularcarga_<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>','muscularrepeticiones_<?php echo $muscularselected->getIdEjercicio();?>_<?php echo $i2; ?>');"/>
+                                        </td>
+                                    </tr>
+<?php
+
+
+                                    $i2++;
+                                  ?>
+                                        <script type="text/javascript"> 
+                                            anadirmusculari(); 
+                                        </script>
+                                        <?php 
                                 }   
 ?>
                                 </tbody>
