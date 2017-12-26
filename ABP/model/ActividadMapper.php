@@ -19,6 +19,7 @@ class ActividadMapper{
     function addDeportista($usuariosd,$idActividad,$actividad){
         $deportistas = array();
         $cont=$actividad->getContador();
+        $plazas=$actividad->getPlazas();
 
         if(self::esAdministrador())
         {
@@ -30,13 +31,16 @@ class ActividadMapper{
                 array_push($deportistas, $usuariod_insertar);
 
             }
-            if($deportistas){
+
+            if($deportistas && $plazas>=sizeof($deportistas)){
                 foreach($deportistas as $deportista)
                 {
+                    if($plazas>$cont){
                     $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
                     $stmt3->execute(array($idActividad,$deportista->getDniDeportista()));
                     $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
                     $stmt4->execute(array($idActividad));
+                    }
                 }
             }
             return true;
