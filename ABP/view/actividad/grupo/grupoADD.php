@@ -29,9 +29,9 @@
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n(" Añadir Actividad Individual") ?>
+                        <i class="fa fa-table"></i><?= i18n(" Añadir Actividad Grupo") ?>
                     <div class="card-body"> 
-                    <form name='Form' id="form1" action="index.php?controller=Actividad&amp;action=individualADD" class="form-signin" accept-charset="UTF-8" method="POST" onsubmit="return validarIndividualADD()">
+                    <form name='Form' id="form1" action="index.php?controller=Actividad&amp;action=grupoADD" class="form-signin" accept-charset="UTF-8" method="POST" onsubmit="return validarGrupoADD()">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">

@@ -9,14 +9,16 @@ class Actividad
         private $idInstalaciones;
         private $plazas;
         private $horario;
+        private $contador;
 
-        function __construct($idActividad=NULL,$nombre=NULL,$precio=NULL,$idInstalaciones=NULL,$plazas=NULL,$horario=NULL){
+        function __construct($idActividad=NULL,$nombre=NULL,$precio=NULL,$idInstalaciones=NULL,$plazas=NULL,$horario=NULL,$contador=NULL){
             $this->idActividad = $idActividad;
             $this->nombre = $nombre;
             $this->precio = $precio;
             $this->idInstalaciones = $idInstalaciones;
             $this->plazas = $plazas;
             $this->horario=$horario;
+            $this->contador=$contador;
         }
         
     public function getIdActividad() {
@@ -37,6 +39,9 @@ class Actividad
     public function getHorario(){
         return $this->horario;
     }
+    public function getContador(){
+        return $this->contador;
+    }
     public function setIdActividad($idActividad) {
         $this->idActividad = $idActividad;
     }
@@ -54,6 +59,9 @@ class Actividad
     }
     public function setHorario($horario){
         $this->horario = $horario;
+    }
+    public function setContador($contador){
+        $this->contador = $contador;
     }
 
 }//fin de clase

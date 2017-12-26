@@ -138,7 +138,8 @@ class ActividadController extends BaseController{
     
 
         if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
-            $usuariosd= $_POST['usuarios'];
+            $contador = 0;
+            $usuariosd = $_POST['usuarios'];
             $horario = new Horario();
             $individual = new ActividadIndividual();
             $actividadEntrenador = new ActividadEntrenador();
@@ -151,7 +152,8 @@ class ActividadController extends BaseController{
             $individual->setPrecio($_POST["precio"]);
             $individual->setIdInstalaciones($_POST["idInstalaciones"]);
             $individual->setPlazas($_POST["plazas"]); 
-            $individual->setHorario($horario); 
+            $individual->setHorario($horario);
+            $individual->setContador($contador); 
             if($this->individualMapper->addIndividual($individual,$actividadEntrenador,$usuariosd)){
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
@@ -172,6 +174,7 @@ class ActividadController extends BaseController{
 
     public function grupoADD() {
         if(isset($_POST["precio"]) && isset($_POST["nombre"]) && isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+            $contador = 0;
             $usuariosd = $_POST['usuarios'];
             $horario = new Horario();
             $grupo = new ActividadGrupo();
@@ -185,7 +188,8 @@ class ActividadController extends BaseController{
             $grupo->setPrecio($_POST["precio"]);
             $grupo->setIdInstalaciones($_POST["idInstalaciones"]);
             $grupo->setPlazas($_POST["plazas"]); 
-            $grupo->setHorario($horario); 
+            $grupo->setHorario($horario);
+            $grupo->setContador($contador);  
             if($this->grupoMapper->addGrupo($grupo,$actividadEntrenador,$usuariosd)){
                $this->view->setFlash("Actividad Grupo Añadida Corectamente");
 

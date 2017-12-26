@@ -16,8 +16,9 @@ class ActividadMapper{
     public function __construct() {
         $this->db = PDOConnection::getInstance();
     }
-    function addDeportista($usuariosd,$idActividad){
+    function addDeportista($usuariosd,$idActividad,$actividad){
         $deportistas = array();
+        $cont=$actividad->getContador();
 
         if(self::esAdministrador())
         {
@@ -34,6 +35,7 @@ class ActividadMapper{
                 {
                     $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
                     $stmt3->execute(array($idActividad,$usuariod_insertar->getDniDeportista()));
+                    $actividad->setContador($cont++);
 
                 }
             }
@@ -44,11 +46,11 @@ class ActividadMapper{
     //Añadir
     function add($actividad,$actividadEntrenador){ 
 
-        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,plazas) values (?,?,?,?)");
+        $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,plazas,contador) values (?,?,?,?,?)");
 
         if(self::esAdministrador()){
 
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas()));
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$actividad->getContador()));
 
             $idActividad = $this->db->lastInsertId();
 
@@ -72,6 +74,7 @@ class ActividadMapper{
         return false;
     }
     function edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad,$usuarios){
+        $cont=$actividad->getContador();
 
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
@@ -95,6 +98,8 @@ class ActividadMapper{
                 {
                     $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
                     $stmt3->execute(array($idActividad,$usuario_insertar->getDniDeportista()));
+                    $actividad->setContador($cont++);
+
                 }
             }
             return true;

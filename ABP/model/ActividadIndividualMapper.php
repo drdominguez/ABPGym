@@ -18,11 +18,11 @@ Class ActividadIndividualMapper extends ActividadMapper{
 		parent::add($actividad,$actividadEntrenador);//llama al add de la clase padre
 		$idActividadEntrenador = $this->db->lastInsertId();
 		$idActividad=$this->findIdActividad($idActividadEntrenador);
-		parent::addDeportista($usuariosd,$idActividad);
+		parent::addDeportista($usuariosd,$idActividad,$actividad);
 		
  		if(parent::esAdministrador()){
 
-			$stmt = $this->db->prepare("INSERT INTO grupo(idActividad) VALUES (?)");
+			$stmt = $this->db->prepare("INSERT INTO individual(idActividad) VALUES (?)");
 			$stmt -> execute(array($idActividad));	
 			
 			$stmt1 = $this->db->prepare("INSERT INTO horario(dia,hora,fechIni,fechFin) values (?,?,?,?)");
