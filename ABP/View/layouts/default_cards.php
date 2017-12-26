@@ -12,9 +12,9 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-comments"></i>
               </div>
-              <div class="mr-5">26 Nuevas Notificaciones!</div>
+              <div class="mr-5 mt-3">26 Nuevas Notificaciones!</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Notificacion&action=NotificacionListar">
               <span class="float-left">Ver notitificaciones</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
@@ -28,9 +28,9 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-list"></i>
               </div>
-              <div class="mr-5">11 Tablas de Ejercicios!</div>
+              <div class="mr-5 mt-3">11 Tablas de Ejercicios!</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Tabla&action=TablaListar">
               <span class="float-left">Ver Tablas</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
@@ -46,9 +46,9 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-shopping-cart"></i>
               </div>
-              <div class="mr-5">123 Pagos!</div>
+              <div class="mr-5 mt-3">123 Pagos!</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Pago&action=PagoListar">
               <span class="float-left">Ver Pagos</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
@@ -62,9 +62,9 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-support"></i>
               </div>
-              <div class="mr-5">13 Sesiones de Entrenamiento!</div>
+              <div class="mr-5 mt-3">13 Sesiones de Entrenamiento!</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=SesionEntrenamiento&action=TablaListar">
               <span class="float-left">Ver Sesiones</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
