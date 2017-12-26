@@ -30,7 +30,8 @@ Class DeportistaMapper extends UsuarioMapper{
         }
         return false;
     }
-
+    /*Esta hecho por Juan Ramón, ESTA TODO MAL, de un deportista no se puede actualizar el DNI por que es un dato que nunca cambia,EN LA CLASE PADRE DeportistaMapper NO EXISTE NINGUNA FUNCION CON EL NOMBRE 'permisoDeportista'*/
+    /*
     public function EDIT($deportista){
         parent::edit($deportista);//se mactualizan los cambios en la tabla ejercicio por si cambiara alguno
         $stmt=$this->db-> prepare("UPDATE deportista SET dni=? WHERE dni=?");
@@ -39,7 +40,7 @@ Class DeportistaMapper extends UsuarioMapper{
             return true;
         }
         return false;
-    }
+    }*/
 
     function DELETE($dni)
     {

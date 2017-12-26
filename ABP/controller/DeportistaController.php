@@ -139,20 +139,37 @@ class DeportistaController extends BaseController
     }*/
     /*La parte de deportistas deberia haber sido hecha por Juan Ramon Este codigo produce errores y no funciona*/
     /*Hecha por Álex la de Juan Ramón no funcionaba correctamente*/
+    /*TduEDIT
+    *Abre la vista de editar un deportista tdu desde la vista de listarUsuarios
+    *si es llamado por un get envia a la vista tdos los datos del deportista TDU
+    * Si es llamado por un post actualiza los datos del deportista en la bbdd
+    */
     public function TduEDIT(){
         if($this->permisos->esAdministrador()){
-            if($_GET['dni']){
+            if($_GET['dni']){//se llama con un get desde la vista listar usuarios, quiere caragar el formulario de editar deportista tdu
                 $dep=$this->deportistaMapper->getTDU($_GET['dni']);
                 $tdu=new DeportistaTDU($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep["tarjeta"]);
                 $this->view->setVariable("usuario",$tdu);
-            }else{
+            //se quieren actualizar los datos del deportista
+            }elseif(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["edad"]),isset($_POST["email"]),isset($_POST["telefono"])){
+                //creamos el tdu con los datos recogidos por el formulario de editar TDU
+                $tdu=new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],$_POST["fechaAlta"],$_POST["tarjeta"]);
+                /*se quiere cambiar de tipo de deportista*/
+                if($_POST("tipo")=="TDU Tarjeta Deportista Universitaria"){
+                    
+                }else{//solo se quieren actualizar los datos del deportista
+                    
+                }
+            }
+            else{
                 $this->view->setFlash("ERROR: No se puede eliminar a un usuario sin 'DNI'");
             }
-        }else{
+        }else{//no es administrador no puede cambiar los datos de un deportista
             $this->view->redirect("main","index");
         }
         $this->view->render("usuario/deportistas", "tduEDIT");
     }
+
     /*Hecha por Álex la de Juan Ramón no funcionaba correctamente*/
     public function PefEDIT(){
         if($this->permisos->esAdministrador()){

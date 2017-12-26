@@ -14,7 +14,7 @@ $usuario = $view->getVariable("usuario");
                 <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
             </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
+            <form name = 'Form' action='./index.php?controller=Deportista&amp;action=TduEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n(" Editar TDU") ?>
@@ -66,8 +66,8 @@ $usuario = $view->getVariable("usuario");
                          <div class="col-md-6">
                         <label for="telefono"><?= i18n("Tipo Deportista") ?>: </label>
                         <select class="form-control" name="tipo[]" onChange="mostrar(this.value)">
-                            <option value="tdu">TDU "Tarjeta Deportista Universitaria"</option>
-                            <option value="pef">PEF "Ponte en Forma"</option>
+                            <option value="tdu">TDU Tarjeta Deportista Universitaria</option>
+                            <option value="pef">PEF Ponte en Forma</option>
                         </select>
                         </div>
                       </div>
