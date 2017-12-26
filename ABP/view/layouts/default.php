@@ -36,11 +36,18 @@ $currentuser = $view->getVariable("currentusername");
 				include(__DIR__."/menuSuperior.php");
 				include(__DIR__."/language_select_element.php");
 				?>
+
 			</aside>
+
 			<main>
 					<?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
+
 			</main>
 		</section>
+		<?php
+				include(__DIR__."/default_cards.php");
+
+			?>
 		<footer>
 			<?php
 			include(__DIR__."/Footer.php");
