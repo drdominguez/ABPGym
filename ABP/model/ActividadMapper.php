@@ -31,15 +31,12 @@ class ActividadMapper{
 
             }
             if($deportistas){
-                $i=0;
                 foreach($deportistas as $deportista)
                 {
-                    echo $i;
                     $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
                     $stmt3->execute(array($idActividad,$deportista->getDniDeportista()));
                     $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
                     $stmt4->execute(array($idActividad));
-                    $i++;
                 }
             }
             return true;
