@@ -113,9 +113,8 @@ class ActividadMapper{
             $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $actividades = array();
 
-            foreach ($actividades_db as $actividad) {
-                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['idInstalaciones'],$actividad['horario']));
-            
+            foreach ($actividades_db as $actividad) {    
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['idInstalaciones']));
             }
         return $actividades;
         
