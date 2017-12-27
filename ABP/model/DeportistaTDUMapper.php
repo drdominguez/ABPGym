@@ -51,9 +51,23 @@ Class DeportistaTDUMapper extends DeportistaMapper {
     */
     public function editTDU($tdu){
         // si tiene permisos y actualizo la tabla usuario actualiza la tabla tdu
-        if($this->permisos->esAdministrador(),self::actualizarUsuario($tdu)){
-            $stmt=$this->DB->prepare("UPDATE tdu SET tarjeta=? WHERE dni=?");
-            $stmt->execute(arry($tdu->getTarjeta(),$tdu->getDni()));
+        if($this->permisos->esAdministrador() && self::actualizarUsuario($tdu)){
+            $stmt=$this->db->prepare("UPDATE tdu SET tarjeta=? WHERE dni=?");
+            $stmt->execute(array($tdu->getTarjeta(),$tdu->getDni()));
+            return true;
+        }
+        return false;//si no es administrador no puede editar un deportista
+    }
+
+    //Hecho por Álex
+    /*editPEF
+    *Permite editar un deportista de tipo PEF
+    */
+    public function editPEF($pef){
+        // si tiene permisos y actualizo la tabla usuario actualiza la tabla tdu
+        if($this->permisos->esAdministrador() && self::actualizarUsuario($pef)){
+            $stmt=$this->db->prepare("UPDATE pef SET tarjeta=?, comentarioRevision=?  WHERE dni=?");
+            $stmt->execute(array($pef->getTarjeta(),$pef->comentarioRevision(),$pef->getDni()));
             return true;
         }
         return false;//si no es administrador no puede editar un deportista
@@ -66,14 +80,27 @@ Class DeportistaTDUMapper extends DeportistaMapper {
     public function changeUser($tdu){
        if($this->permisos->esAdministrador()){
         //eliminido al deportista de la tabla tdu
-        self::removeTDU($tdu->getDni();
-        //actualizo sus datos en la tabla usuario por si se modifico alguno en el formulario
-        self::actualizarUsuario($tdu);
+        self::removeTDU($tdu->getDni());
         //inserto al deportista en la tabla PEF
         $stmt=$this->db->prepare("INSERT INTO pef(dni,tarjeta) VALUES(?,?)");
-        $stmt->execute($tdu->getDni(),$tdu->getTarjeta());
+        $stmt->execute(array($tdu->getDni(),$tdu->getTarjeta()));
+        // actualizo sus datos en la tabla usuario y en la tabla pef
+        self::editPEF($tdu);
        }
     }
+
+    public function changeUser2($tdu){
+       if($this->permisos->esAdministrador()){
+        //eliminido al deportista de la tabla tdu
+        self::removePEF($tdu->getDni());
+        //inserto al deportista en la tabla PEF
+        $stmt=$this->db->prepare("INSERT INTO tdu(dni,tarjeta) VALUES(?,?)");
+        $stmt->execute($tdu->getDni(),$tdu->getTarjeta());
+        // actualizo sus datos en la tabla usuario y en la tabla pef
+        self::editTDU($tdu);
+       }
+    }
+
     /*hecha por Juan Ramón, NO ESTA BIEN, si quieres eliminar un deportista se hace un delete desde la tabla usuario y por el cascade se borra de todos los sitios. Además si le pasas el dni ya sabes de que usuario se trata para que lo recoges con un SLECT¿?¿?¿?¿? NO TIENE SENTIDO*/
     /*
     public function deleteTDU($dni)
@@ -124,9 +151,16 @@ Class DeportistaTDUMapper extends DeportistaMapper {
     */
     private function actualizarUsuario($tdu){
          //Se actualizan los datos en la tabla usuario
-            $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,contrasena=?,email=?,telefono=? WHERE dni=?");
-            $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(),$tdu->getContraseña(),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getDni()));
+        if($tdu->getContraseña()!=""){//se actualiza la contraseña
+             $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,contrasena=?,email=?,telefono=? WHERE dni=?");
+            $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(), md5($tdu->getContraseña()),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getDni()));
             return true;
+        }else{//no se actualiza la contraseña
+            $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,email=?,telefono=? WHERE dni=?");
+            $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getDni()));
+            return true;
+        }
+        return false;
     }
 
     /*removeTDU hecho por Álex

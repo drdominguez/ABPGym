@@ -1,29 +1,14 @@
 
 function mostrar(id) {
-    if (id == "tdu") {
+    if (id == "TDU") {
         $("#textarea").hide();
         $("#comentarioLabel").hide();
-        $("#anadirlabel").value=" Añadir TDU";
-        tdu();
+        $("#anadirlabel").value="TDU";
     }
 
-    if (id == "pef") {
+    if (id == "PEF") {
         $("#textarea").show();
         $("#comentarioLabel").show();
-        $("#anadirlabel").value=" Añadir PEF";
-        pef();
+        $("#anadirlabel").value="PEF";
     }
-    window.location = "./view/usuario/deportistas/deportistaADD?tipoDeportista=" + tipoDeportista;
-}
-
-function iniciar(){
-    window.location = "./view/usuario/deportistas/deportistaADD?tipoDeportista=" + tipoDeportista;
-}
-
-function pef(){
-    tipoDeportista="PEF";
-}
-
-function tdu(){
-    tipoDeportista="TDU";
 }

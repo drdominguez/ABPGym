@@ -27,36 +27,53 @@ class DeportistaController extends BaseController
         $this->permisos= new Permisos();
     }
 
+    //Hecho por Álex
+    /*
+    * Carga la vista de tduAdd por defecto
+    */
+    public function loadDeportistaAddView(){
+        $this->view->render("usuario/deportistas","deportistaADD");
+    }
+
+    //Hecho por Álex
+    /*deportistaADD
+    * Segun el tipo de deportista seleccionado llama a su funcion de añadir
+    */
+    public function deportistaADD(){
+            if($_POST["tipo"][0]=="TDU"){
+                $tdu = new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"), $_POST["tarjeta"]);
+               self::tduADD($tdu);
+            }
+            $pef = new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"),$_POST["tarjeta"], $_POST["comentarioRevision"]);
+            self::pefADD($pef);
+    }
+
+    //Hecho por Álex
     /*tduADD
     * Añade a un deportista TDU
     * Es necesario ser administrador para añadir deportistas
     * Si no es administrador nisiquiera cargará la vista
     */
-    public function tduADD() {
+    public function tduADD($tdu) {
         if($this->permisos->esAdministrador()){
-            if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"]) && isset($_POST["tarjeta"])){
-                $tdu = new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"), $_POST["tarjeta"]);
                 if($this->deportistaTDUMapper->addTDU($tdu)){
                     $this->view->setFlash("TDU Añadido Correctamente");
                 }else{
-                    $this->view->setFlash("TDU no se ha podido añadir");
+                    $this->view->setFlash("ERROR: TDU no se ha podido añadir");
                 }
-            }
-            $this->view->setVariable("usuarioTipo","TDU");
-            $this->view->render("usuario/deportistas","deportistaADD");
         }
+        $this->view->setVariable("usuarioTipo","TDU");
+        $this->view->render("usuario/deportistas","deportistaADD");
     }
 
+    //Hecho por Álex
     /*pefADD
     *Añade a un deportista PEF
     * Es necesario ser administrador para añadir deportistas
     * De no ser administrador nisiquiera mortrará la vista
     */
-    public function pefADD(){
+    public function pefADD($pef){
         if($this->permisos->esAdministrador()){
-            if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"]) && isset($_POST["tarjeta"]) && isset($_POST["comentarioRevision"])){
-                $pef = new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"),$_POST["tarjeta"], $_POST["comentarioRevision"]);
-            }
             if($this->deportistaPEFMapper->addPEF($pef)){
                 $this->view->setFlash("PEF Añadido Correctamente");
             }else{
@@ -67,17 +84,26 @@ class DeportistaController extends BaseController
         }
     }
 
+    //Hecha por Juan Ramón
+    //Álex... creo que no se llama nunca, al igual que a las vistas implicadas
+    /*listarTDU
+    */
     public function listarTDU(){
         $deportistasTDU = $this->deportistaTDUMapper->listarTDU();
         $this->view->setVariable("deportistasTDU",$deportistasTDU);
         $this->view->render("usuario/deportistas","tduSHOWALL");
     }
+
+    //Hecha por Juan Ramón
+    //Álex... creo que no se llama nunca, al igual que a las vistas implicadas
+    /*listarTDU
+    */
     public function listarPEF(){
         $deportistasPEF = $this->deportistaPEFMapper->listarPEF();
         $this->view->setVariable("deportistasPEF",$deportistasPEF);
         $this->view->render("usuario/deportistas","pefSHOWALL");
     }
-/*La parte de deportistas deberia haber sido hecha por Juan Ramon Este codigo produce errores y no funciona*/
+/*La parte de deportistas deberia haber sido hecha por Juan Ramón Este codigo produce errores y no funciona*/
     /*public function PefEDIT()
     {
         if(isset($_POST["dni"]) && isset($_POST["tarjeta"]) && isset($_POST["comentario"]))
@@ -137,8 +163,8 @@ class DeportistaController extends BaseController
             $this->view->render("usuario/deportistas","tduEDIT");
         }
     }*/
-    /*La parte de deportistas deberia haber sido hecha por Juan Ramon Este codigo produce errores y no funciona*/
-    /*Hecha por Álex la de Juan Ramón no funcionaba correctamente*/
+
+    /*Hecha por Álex*/
     /*TduEDIT
     *Abre la vista de editar un deportista tdu desde la vista de listarUsuarios
     *si es llamado por un get envia a la vista tdos los datos del deportista TDU
@@ -146,20 +172,20 @@ class DeportistaController extends BaseController
     */
     public function TduEDIT(){
         if($this->permisos->esAdministrador()){
-            if($_GET['dni']){//se llama con un get desde la vista listar usuarios, quiere caragar el formulario de editar deportista tdu
+            if(isset($_GET['dni'])){//se llama con un get desde la vista listar usuarios, quiere caragar el formulario de editar deportista tdu
                 $dep=$this->deportistaMapper->getTDU($_GET['dni']);
                 $tdu=new DeportistaTDU($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep["tarjeta"]);
                 $this->view->setVariable("usuario",$tdu);
             //se quieren actualizar los datos del deportista
-            }elseif(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["edad"]),isset($_POST["email"]),isset($_POST["telefono"])){
+            }elseif(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["edad"])&& isset($_POST["email"]) && isset($_POST["telefono"])){
                 //creamos el tdu con los datos recogidos por el formulario de editar TDU
-                $tdu=new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],$_POST["fechaAlta"],$_POST["tarjeta"]);
-                /*se quiere cambiar de tipo de deportista*/
-                if($_POST("tipo")=="TDU Tarjeta Deportista Universitaria"){
-                    
-                }else{//solo se quieren actualizar los datos del deportista
-                    
+                $tdu=new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contraseña"],$_POST["email"],$_POST["telefono"],null,$_POST["tarjeta"]);
+                if($_POST["tipo"][0]=="TDU"){//se actualizan los datos del deportista
+                    $this->deportistaTDUMapper->editTDU($tdu);
+                }else{//se cambia de tipo de deportista y se actualizan sus datos
+                    $this->deportistaTDUMapper->changeUser($tdu);
                 }
+                $this->view->redirect("Usuario","UsuariosListar");
             }
             else{
                 $this->view->setFlash("ERROR: No se puede eliminar a un usuario sin 'DNI'");
@@ -170,25 +196,37 @@ class DeportistaController extends BaseController
         $this->view->render("usuario/deportistas", "tduEDIT");
     }
 
-    /*Hecha por Álex la de Juan Ramón no funcionaba correctamente*/
+    //Hecha por Álex
+    /*PefEDIT
+    *Abre la vista de editar un deportista Pef desde la vista de listarUsuarios
+    *si es llamado por un get envia a la vista tdos los datos del deportista Pef
+    * Si es llamado por un post actualiza los datos del deportista en la bbdd
+    */
     public function PefEDIT(){
         if($this->permisos->esAdministrador()){
-            if($_GET['dni']){
+            if(isset($_GET['dni'])){//se llama con un get desde la vista listar usuarios, quiere caragar el formulario de editar deportista pef
                 $dep=$this->deportistaMapper->getPEF($_GET['dni']);
-                $pef=new DeportistaTDU($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep["tarjeta"],$dep["comentarioRevision"]);
+                $pef=new DeportistaPEF($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep["tarjeta"]);
                 $this->view->setVariable("usuario",$pef);
-            }else{
+            //se quieren actualizar los datos del deportista
+            }elseif(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["edad"])&& isset($_POST["email"]) && isset($_POST["telefono"])){
+                //creamos el pef con los datos recogidos por el formulario de editar TDU
+                $pef=new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contraseña"],$_POST["email"],$_POST["telefono"],null,$_POST["tarjeta"]);
+                if($_POST["tipo"][0]=="PEF"){//se actualizan los datos del deportista
+                    $this->deportistaTDUMapper->editPEF($pef);
+                }else{//se cambia de tipo de deportista y se actualizan sus datos
+                    $this->deportistaTDUMapper->changeUser2($pef);
+                }
+                $this->view->redirect("Usuario","UsuariosListar");
+            }
+            else{
                 $this->view->setFlash("ERROR: No se puede eliminar a un usuario sin 'DNI'");
             }
-        }else{
+        }else{//no es administrador no puede cambiar los datos de un deportista
             $this->view->redirect("main","index");
         }
-        $this->view->render("usuario/deportistas", "tduPEF");
+        $this->view->render("usuario/deportistas", "pefEDIT");
     }
-
-    
-
-    
 
     /*Notificacion SHOW CURRENT
     *Si se llama con un get carga la vista

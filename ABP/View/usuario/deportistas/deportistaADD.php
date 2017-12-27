@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <header>
-    <script src="./view/js/añadirDeportista.js"></script>
+    <script src="./View/js/añadirDeportista.js"></script>
 </header>
 <?php
     $view=ViewManager::getInstance();
@@ -19,15 +19,10 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-              <label class="fa fa-table" id="anadirlabel"><?= i18n("Añadir ");echo $tipoDeportista; ?>: </label>
+              <label class="fa fa-table" id="anadirlabel"><?= i18n("Añadir Deportista");?></label>
             </div>
             <div class="card-body">
-            <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8"  method="POST" action="<?php 
-                if($tipoDeportista=="TDU"){ 
-                    echo 'index.php?controller=Deportista&amp;action=tduADD';
-                }else{
-                    echo 'index.php?controller=Deportista&amp;action=pefADD';
-                }?>">
+            <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8"  method="POST" action='index.php?controller=Deportista&amp;action=deportistaADD'>
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
@@ -77,8 +72,8 @@
                           <div class="col-md-6">
                             <label for="Deportista"><?= i18n("Deportista") ?>: </label>
                             <select class="form-control" name="tipo[]" onChange="mostrar(this.value)">
-                              <option value="pef">PEF "Ponte en Forma"</option>
-                              <option value="tdu">TDU "Tarjeta Deportista Universitaria"</option>
+                              <option value="PEF">PEF Ponte en Forma</option>
+                              <option value="TDU">TDU Tarjeta Deportista Universitaria</option>
                             </select>
                         </div>
                         <div class="col-md-6">

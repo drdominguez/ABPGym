@@ -66,9 +66,17 @@ $usuario = $view->getVariable("usuario");
                          <div class="col-md-6">
                         <label for="telefono"><?= i18n("Tipo Deportista") ?>: </label>
                         <select class="form-control" name="tipo[]" onChange="mostrar(this.value)">
-                            <option value="tdu">TDU Tarjeta Deportista Universitaria</option>
-                            <option value="pef">PEF Ponte en Forma</option>
+                            <option value="TDU">TDU Tarjeta Deportista Universitaria</option>
+                            <option value="PEF">PEF Ponte en Forma</option>
                         </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                        <div class="col-md-6">
+                        <label for="contraseña"><?= i18n("Contraseña (Introducir sólo si modificación)") ?>: </label>
+                        <input class="form-control" type = 'password' name = 'contraseña' size = '100' value = ''>
                         </div>
                       </div>
                     </div>
