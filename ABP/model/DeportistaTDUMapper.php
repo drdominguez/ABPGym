@@ -67,7 +67,7 @@ Class DeportistaTDUMapper extends DeportistaMapper {
         // si tiene permisos y actualizo la tabla usuario actualiza la tabla tdu
         if($this->permisos->esAdministrador() && self::actualizarUsuario($pef)){
             $stmt=$this->db->prepare("UPDATE pef SET tarjeta=?, comentarioRevision=?  WHERE dni=?");
-            $stmt->execute(array($pef->getTarjeta(),$pef->comentarioRevision(),$pef->getDni()));
+            $stmt->execute(array($pef->getTarjeta(),$pef->getComentarioRevision(),$pef->getDni()));
             return true;
         }
         return false;//si no es administrador no puede editar un deportista
@@ -95,7 +95,7 @@ Class DeportistaTDUMapper extends DeportistaMapper {
         self::removePEF($tdu->getDni());
         //inserto al deportista en la tabla PEF
         $stmt=$this->db->prepare("INSERT INTO tdu(dni,tarjeta) VALUES(?,?)");
-        $stmt->execute($tdu->getDni(),$tdu->getTarjeta());
+        $stmt->execute(array($tdu->getDni(),$tdu->getTarjeta()));
         // actualizo sus datos en la tabla usuario y en la tabla pef
         self::editTDU($tdu);
        }
@@ -171,6 +171,16 @@ Class DeportistaTDUMapper extends DeportistaMapper {
         $stmt=$this->db->prepare("DELETE FROM tdu WHERE dni=?");
         $stmt->execute(array($dni));
     }
+
+     /*removeTDU hecho por Álex
+    * Elimina un tdu SÓLO de la tabla PEF con el fin de agregarlo luego a otra tabla como por ejemplo PEF
+    * no comprueba si es administrador por que lo comprobara la funcion desde la que se llama
+    */
+    public function removePEF($dni){
+        $stmt=$this->db->prepare("DELETE FROM pef WHERE dni=?");
+        $stmt->execute(array($dni));
+    }
+
     /*Esa función esta hecha en el core permisos, no hace falta replicarla, aunque no está mal, no la borro por si se llama en algún lado y evitar errores, hay que tener en cuenta que esta funcion no deberia ser public sino PRIVATE*/
     public function esAdministrador()
     {

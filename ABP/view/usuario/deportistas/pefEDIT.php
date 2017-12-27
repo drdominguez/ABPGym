@@ -3,7 +3,10 @@ $view=ViewManager::getInstance();
 $usuario = $view->getVariable("usuario");
 ?>
 <!DOCTYPE html>
-<html>    
+<html>
+<header>
+    <script src="./View/js/añadirDeportista.js"></script>
+</header>
     <div class="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
@@ -66,8 +69,8 @@ $usuario = $view->getVariable("usuario");
                              <div class="col-md-6">
                                 <label for="telefono"><?= i18n("Tipo Deportista") ?>: </label>
                                 <select class="form-control" name="tipo[]" onChange="mostrar(this.value)">
-                                    <option value="pef">PEF "Ponte en Forma"</option>
-                                    <option value="tdu">TDU "Tarjeta Deportista Universitaria"</option>
+                                    <option value="PEF">PEF "Ponte en Forma"</option>
+                                    <option value="TDU">TDU "Tarjeta Deportista Universitaria"</option>
                                 </select>
                             </div>
                         </div>
@@ -79,10 +82,10 @@ $usuario = $view->getVariable("usuario");
                                 <input class="form-control" type = 'password' name = 'contraseña' size = '100' value = ''>
                             </div>
                             <div class="col-md-6">
-                                <label for="telefono"><?= i18n("Comentario Revisión") ?>: </label>
-                                 <textarea rows="4">
-                                    <?php echo $usuario->getComentario(); ?>
-                                </textarea> 
+                               
+                                <label id="comentarioLabel" for="comentarioRevision"><?= i18n("Comentario Revisión")?>: </label>
+                                <textarea class="form-control" id="textarea" rows="4"  type="text" name="comentarioRevision"><?php echo $usuario->getComentarioRevision(); ?>
+                                </textarea><br>
                             </div>
                       </div>
                     </div>

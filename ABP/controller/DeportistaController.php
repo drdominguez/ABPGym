@@ -206,16 +206,16 @@ class DeportistaController extends BaseController
         if($this->permisos->esAdministrador()){
             if(isset($_GET['dni'])){//se llama con un get desde la vista listar usuarios, quiere caragar el formulario de editar deportista pef
                 $dep=$this->deportistaMapper->getPEF($_GET['dni']);
-                $pef=new DeportistaPEF($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep["tarjeta"]);
+                $pef=new DeportistaPEF($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep["tarjeta"],$dep["comentarioRevision"]);
                 $this->view->setVariable("usuario",$pef);
             //se quieren actualizar los datos del deportista
             }elseif(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["edad"])&& isset($_POST["email"]) && isset($_POST["telefono"])){
                 //creamos el pef con los datos recogidos por el formulario de editar TDU
-                $pef=new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contraseña"],$_POST["email"],$_POST["telefono"],null,$_POST["tarjeta"]);
+                $pef=new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contraseña"],$_POST["email"],$_POST["telefono"],null,$_POST["tarjeta"],$_POST["comentarioRevision"]);
                 if($_POST["tipo"][0]=="PEF"){//se actualizan los datos del deportista
-                    $this->deportistaTDUMapper->editPEF($pef);
+                    $this->deportistaPEFMapper->editPEF($pef);
                 }else{//se cambia de tipo de deportista y se actualizan sus datos
-                    $this->deportistaTDUMapper->changeUser2($pef);
+                    $this->deportistaPEFMapper->changeUser2($pef);
                 }
                 $this->view->redirect("Usuario","UsuariosListar");
             }

@@ -67,6 +67,10 @@ class DeportistaTDU extends Deportista
     	return $this->fechaAlta;
     }
 
+    public function getComentarioRevision(){
+        return "";
+    }
+
     public function setDni($dni){
         $this->dni = $dni;
     }

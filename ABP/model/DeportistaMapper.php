@@ -99,7 +99,7 @@ Class DeportistaMapper extends UsuarioMapper{
         $stmt = $this->db->prepare("SELECT usuario.*,pef.tarjeta,pef.comentarioRevision FROM usuario,pef WHERE pef.dni=usuario.dni AND usuario.dni=?");
         $stmt->execute(array($dni));
         $pef=$stmt->fetchAll(PDO::FETCH_ASSOC);
-        if($tdu != null){
+        if($pef != null){
             return $pef[0];
         }
         return NULL;

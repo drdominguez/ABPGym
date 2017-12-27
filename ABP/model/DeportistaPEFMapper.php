@@ -33,17 +33,29 @@ Class DeportistaPEFMapper extends DeportistaMapper {
 
     //Hecho por Álex
     /*changeUser
-    * Se llama cuando se cambia un tipo de usuario de pef a tdu
+    * Se llama cuando se cambia un tipo de usuario de pef a pef
     */
-    public function changeUser($tdu){
+    public function changeUser($pef){
        if($this->permisos->esAdministrador()){
-        //eliminido al deportista de la tabla tdu
-        self::removeTDU($tdu->getDni());
+        //eliminido al deportista de la tabla pef
+        self::removeTDU($pef->getDni());
         //actualizo sus datos en la tabla usuario por si se modifico alguno en el formulario
-        self::actualizarUsuario($tdu);
+        self::actualizarUsuario($pef);
         //inserto al deportista en la tabla PEF
         $stmt=$this->db->prepare("INSERT INTO pef(dni,tarjeta) VALUES(?,?)");
-        $stmt->execute($tdu->getDni(),$tdu->getTarjeta());
+        $stmt->execute($pef->getDni(),$pef->getTarjeta());
+       }
+    }
+
+     public function changeUser2($tdu){
+       if($this->permisos->esAdministrador()){
+        //eliminido al deportista de la tabla tdu
+        self::removePEF($tdu->getDni());
+        //inserto al deportista en la tabla PEF
+        $stmt=$this->db->prepare("INSERT INTO tdu(dni,tarjeta) VALUES(?,?)");
+        $stmt->execute(array($tdu->getDni(),$tdu->getTarjeta()));
+        // actualizo sus datos en la tabla usuario y en la tabla pef
+        self::editTDU($tdu);
        }
     }
 
@@ -136,18 +148,29 @@ Class DeportistaPEFMapper extends DeportistaMapper {
     /*actualizarUsuario
     * Permite actualizar los datos de un deportista en la tabla usuario.
     */
-    private function actualizarUsuario($tdu){
+    private function actualizarUsuario($pef){
          //Se actualizan los datos en la tabla usuario
-        if($tdu->getContraseña()!=""){//se actualiza la contraseña
+        var_dump($pef->getContraseña());
+        exit;
+        if($pef->getContraseña()!=""){//se actualiza la contraseña
              $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,contrasena=?,email=?,telefono=? WHERE dni=?");
-            $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(), md5($tdu->getContraseña()),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getDni()));
+            $stmt->execute(array($pef->getNombre(),$pef->getApellidos(),$pef->getEdad(), md5($pef->getContraseña()),$pef->getEmail(),$pef->getTelefono(),$pef->getDni()));
             return true;
         }else{//no se actualiza la contraseña
             $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,email=?,telefono=? WHERE dni=?");
-            $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getDni()));
+            $stmt->execute(array($pef->getNombre(),$pef->getApellidos(),$pef->getEdad(),$pef->getEmail(),$pef->getTelefono(),$pef->getDni()));
             return true;
         }
         return false;
+    }
+
+    /*removeTDU hecho por Álex
+    * Elimina un tdu SÓLO de la tabla PEF con el fin de agregarlo luego a otra tabla como por ejemplo PEF
+    * no comprueba si es administrador por que lo comprobara la funcion desde la que se llama
+    */
+    public function removePEF($dni){
+        $stmt=$this->db->prepare("DELETE FROM pef WHERE dni=?");
+        $stmt->execute(array($dni));
     }
 
 }

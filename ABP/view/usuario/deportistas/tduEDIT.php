@@ -3,7 +3,10 @@ $view=ViewManager::getInstance();
 $usuario = $view->getVariable("usuario");
 ?>
 <!DOCTYPE html>
-<html>    
+<html>
+<header>
+    <script src="./View/js/añadirDeportista.js"></script>
+</header>
     <div class="content-wrapper">
         <div class="container-fluid">
             <!-- Breadcrumbs-->
