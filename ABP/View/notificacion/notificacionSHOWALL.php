@@ -55,5 +55,6 @@
                 </div>
             </div>
         </div>
+         <button type="button" onclick="window.location.href='./index.php?controller=main&action=index'" class="btn btn-primary"><?= i18n("Volver") ?></button> 
     </div>
 </div>
