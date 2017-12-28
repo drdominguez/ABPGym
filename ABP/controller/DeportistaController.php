@@ -40,11 +40,24 @@ class DeportistaController extends BaseController
     * Segun el tipo de deportista seleccionado llama a su funcion de añadir
     */
     public function deportistaADD(){
+         
+         $nombreFoto = $_FILES['fotoperfil']['name'];
+                    $tipoFoto = $_FILES['fotoperfil']['type'];
+                    $nombreTempFoto = $_FILES['fotoperfil']['tmp_name'];
+
+                if($nombreFoto != null){
+                    $dir_subida = 'ABP/../View/pictures/usuarios/fotoperfil/';
+                    $extension = substr($tipoFoto, 6);
+                    $rutaFotoPerfil = $dir_subida . $_POST['dni'] . ".". $extension;
+                    move_uploaded_file($nombreTempFoto, $rutaFotoPerfil);
+                    
+                }
+
             if($_POST["tipo"][0]=="TDU"){
-                $tdu = new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"), $_POST["tarjeta"]);
+                $tdu = new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"), $rutaFotoPerfil, $_POST["tarjeta"]);
                self::tduADD($tdu);
             }
-            $pef = new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"),$_POST["tarjeta"], $_POST["comentarioRevision"]);
+            $pef = new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"), $rutaFotoPerfil ,$_POST["tarjeta"], $_POST["comentarioRevision"]);
             self::pefADD($pef);
     }
 

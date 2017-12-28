@@ -17,9 +17,10 @@ class DeportistaTDU extends Deportista
     private $telefono;
     private $fechaAlta;
     private $tarjeta;
+    private $fotoperfil;
 
-    function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,$email=NULL, $telefono=NULL, $fechaAlta=NULL, $tarjeta=NULL){
-        parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta);//llamada al contructor padre
+    function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,$email=NULL, $telefono=NULL, $fechaAlta=NULL, $fotoperfil=NULL, $tarjeta=NULL){
+        parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta, $fotoperfil);//llamada al contructor padre
         $this->dni = $dni;
         $this->nombre=$nombre;
         $this->apellidos=$apellidos;
@@ -29,6 +30,7 @@ class DeportistaTDU extends Deportista
         $this->telefono=$telefono;
         $this->fechaAlta=$fechaAlta;
         $this->tarjeta = $tarjeta;
+        $this->fotoperfil = $fotoperfil;
     }
 
     public function getDni(){
@@ -71,6 +73,10 @@ class DeportistaTDU extends Deportista
         return "";
     }
 
+    public function getFotoPerfil(){
+        return $this->fotoperfil;
+    }
+
     public function setDni($dni){
         $this->dni = $dni;
     }
@@ -105,6 +111,9 @@ class DeportistaTDU extends Deportista
 
     public function setTarjeta($tarjeta){
         $this->tarjeta = $tarjeta;
+    }
+    public function setFotoPerfil($fotoperfil){
+        $this->fotoperfil = $fotoperfil;
     }
 }//fin de clase
 

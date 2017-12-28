@@ -73,6 +73,20 @@ class UsuarioController extends BaseController
     public function entrenadorADD(){
     	if($this->permisos->esAdministrador()){
     		if(isset($_POST["dni"]) && isset($_POST["nombre"])&& isset($_POST["apellidos"])&& isset($_POST["edad"])&& isset($_POST["contrasena"])&& isset($_POST["email"])&& isset($_POST["telefono"])){
+
+                $nombreFoto = $_FILES['fotoperfil']['name'];
+                    $tipoFoto = $_FILES['fotoperfil']['type'];
+                    $nombreTempFoto = $_FILES['fotoperfil']['tmp_name'];
+
+                if($nombreFoto != null){
+                    $dir_subida = 'ABP/../View/pictures/usuarios/fotoperfil/';
+                    $extension = substr($tipoFoto, 6);
+                    $rutaFotoPerfil = $dir_subida . $_POST['dni'] . ".". $extension;
+                    move_uploaded_file($nombreTempFoto, $rutaFotoPerfil);
+                    
+                }
+
+
     			$usuario = new Usuario($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contrasena"],$_POST["email"],$_POST["telefono"],date("Y-m-d"));
     			if($this->usuarioMapper->entrenadorADD($usuario)){
     				$this->view->setFlash("Usuario Añadido Correctamente");

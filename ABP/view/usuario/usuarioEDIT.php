@@ -16,7 +16,7 @@ $currentuser = $view->getVariable("currentusername");
                 <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
             </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
+            <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioEDIT' enctype="multipart/form-data" method='post' onsubmit='return validarUsuarioEDIT()'>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Editar usuario") ?>
@@ -56,6 +56,18 @@ $currentuser = $view->getVariable("currentusername");
                          <div class="col-md-6">
                         <label for="telefono"><?= i18n("Teléfono") ?>: </label>
                         <input class="form-control" type = 'text' name = 'telefono' size = '20' value = '<?php echo $usuario->getTelefono(); ?>'  onchange="comprobarVacio(this)  && comprobarTelf(this)" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                          <div class="col-md-6">
+                        <label for="contrasena"><?= i18n("Contraseña") ?>: </label>
+                        <input class="form-control" type = 'password' name = 'contrasena' size = '30' required="true" value = ''>
+                        </div>
+                         <div class="col-md-6">
+                        <label for="exampleInputTiempo">Imagen</label>
+                        <input class="form-control" name="fotoperfil" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                       </div>
                     </div>

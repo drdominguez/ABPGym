@@ -19,10 +19,11 @@ class DeportistaPEF extends Deportista
     private $telefono;
     private $fechaAlta;
     private $tarjeta;
+    private $fotoperfil;
     public $comentarioRevision;
 
-    function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,$email=NULL, $telefono=NULL, $fechaAlta=NULL, $tarjeta=NULL, $comentarioRevision=NULL){
-        parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta);//llamada al contructor padre
+    function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,$email=NULL, $telefono=NULL, $fechaAlta=NULL, $fotoperfil=NULL, $tarjeta=NULL, $comentarioRevision=NULL){
+        parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta, $fotoperfil);//llamada al contructor padre
         $this->dni = $dni;
         $this->tarjeta = $tarjeta;
         $this->comentarioRevision = $comentarioRevision;
@@ -69,6 +70,10 @@ class DeportistaPEF extends Deportista
         return $this->comentarioRevision;
     }
 
+    public function getFotoPerfil(){
+        return $fotoperfil;
+    }
+
     public function setDni($dni){
         $this->dni = $dni;
     }
@@ -107,6 +112,9 @@ class DeportistaPEF extends Deportista
 
     public function setComentarioRevision($comentarioRevision){
         $this->comentarioRevision = $comentarioRevision;
+    }
+     public function setFotoPerfil($fotoperfil){
+        $this->fotoperfil = $fotoperfil;
     }
 }//fin de clase
 
