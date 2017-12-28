@@ -12,10 +12,16 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-comments"></i>
               </div>
-              <div class="mr-5 mt-3">26 Nuevas Notificaciones!</div>
+              <?php                  
+                        require_once './model/NotificacionMapper.php';
+                          $notificacionMapper = new NotificacionMapper();
+                          $numNotificaciones=$notificacionMapper->contarNotificacionesSinVer();?>
+
+
+              <div class="mr-5 mt-3"><?php echo $numNotificaciones[0];?> <?= i18n("Nuevas Notificaciones!") ?> </div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Notificacion&action=NotificacionListar">
-              <span class="float-left">Ver notitificaciones</span>
+              <span class="float-left"><?= i18n("Ver Notificaciones") ?></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -28,10 +34,14 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-list"></i>
               </div>
-              <div class="mr-5 mt-3">11 Tablas de Ejercicios!</div>
+              <?php                  
+                        require_once './model/TablaMapper.php';
+                          $tablaMapper = new TablaMapper();
+                          $numTablas=$tablaMapper->contarTablas();?>
+              <div class="mr-5 mt-3"><?php echo $numTablas[0];?> <?= i18n("Tablas de Ejercicios!") ?> </div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Tabla&action=TablaListar">
-              <span class="float-left">Ver Tablas</span>
+              <span class="float-left"><?= i18n("Ver Tablas") ?></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -46,10 +56,14 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-shopping-cart"></i>
               </div>
-              <div class="mr-5 mt-3">123 Pagos!</div>
+               <?php                  
+                        require_once './model/PagoMapper.php';
+                          $pagoMapper = new PagoMapper();
+                          $numPagos=$pagoMapper->contarPagos();?>
+              <div class="mr-5 mt-3"><?php echo $numPagos[0];?> <?= i18n("Pagos!") ?></div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Pago&action=PagoListar">
-              <span class="float-left">Ver Pagos</span>
+              <span class="float-left"><?= i18n("Ver Pagos") ?></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>
@@ -62,10 +76,14 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-support"></i>
               </div>
-              <div class="mr-5 mt-3">13 Sesiones de Entrenamiento!</div>
+              <?php                  
+                        require_once './model/SesionEntrenamientoMapper.php';
+                          $sesionMapper = new SesionEntrenamientoMapper();
+                          $numSesiones=$sesionMapper->contarSesiones();?>
+              <div class="mr-5 mt-3"><?php echo $numSesiones[0];?> <?= i18n("Sesiones de Entrenamiento!") ?></div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=SesionEntrenamiento&action=TablaListar">
-              <span class="float-left">Ver Sesiones</span>
+              <span class="float-left"><?= i18n("Ver Sesiones") ?></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>

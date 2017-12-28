@@ -458,5 +458,30 @@ public function listarDeportistas()
             return $ejercicios;
     }
 
+    public function contarTablas(){
+        if($this->permisos->esSuperusuario()){
+            if($this->permisos->esAdministrador()){
+                $stmt = $this->db->query("SELECT COUNT(*) FROM tabla");
+            }else{
+                $stmt = $this->db->prepare("SELECT COUNT(*) FROM tabla WHERE dniSuperUsuario=?");
+                $stmt->execute(array($_SESSION["currentuser"]));
+            }
+        }else{
+            if($this->permisos->esDeportista()){
+                $stmt = $this->db->prepare("SELECT COUNT(t.*) FROM tabla t, superusuario_tabla_deportista s WHERE s.dniDeportista = ? AND t.idTabla=s.idTabla");
+                $stmt->execute(array($_SESSION["currentuser"]));
+            }else{
+                return false;
+            }
+        }
+        $tablas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $tablas = array();
+        foreach ($tablas_db as $tabla) 
+        {
+            array_push($tablas, $tabla['COUNT(*)']);
+        }
+        return $tablas;
+    }
+
 }
 ?>

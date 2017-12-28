@@ -3,10 +3,16 @@
 require_once(__DIR__."/../core/Access_DB.php");
 require_once(__DIR__."/SesionEntrenamientoMapper.php");
 require_once(__DIR__."/SesionEntrenamiento.php");
+require_once(__DIR__ . "/../core/permisos.php");
+
 
 Class SesionEntrenamientoMapper{
+
+	private $permisos;
+
 	public function __construct(){
 		$this->db=PDOConnection::getInstance();//obtiene la instancia de la conexion con base de datos
+		$this->permisos= new Permisos();
 	}
 
 	/*Falta el id de la tabla.. no se de donde sacarlo para añadirlo en sesionentrenamiento_tabla*/
@@ -18,6 +24,26 @@ Class SesionEntrenamientoMapper{
 			$stmt=$this->db->prepare("INSERT INTO sesionentrenamiento_tabla values(?,?)");
 			//$stmt->execute(array($idSesion,));
 		}
+	}
+
+	public function contarSesiones(){
+		if($this->permisos->esAdministrador()){
+			$stmt = $this->db->query("SELECT COUNT(*) FROM sesionentrenamiento");
+		}else{
+			if($this->permisos->esDeportista()){
+				$stmt = $this->db->query("SELECT COUNT(*) FROM sesionentrenamiento;");
+
+			}else{
+				return false;
+			}
+		}
+		 $sesiones_bd = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $sesiones = array();
+        foreach ($sesiones_bd as $sesion) 
+        {
+            array_push($sesiones, $sesion['COUNT(*)']);
+        }
+        return $sesiones;
 	}
 	/*
 	*comprueba si el usuario actual es administrador

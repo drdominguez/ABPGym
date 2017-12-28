@@ -99,6 +99,26 @@ Class PagoMapper{
         }
     }
 
+    public function contarPagos(){
+        if($this->permisos->esAdministrador()){
+            $stmt = $this->db->query("SELECT COUNT(*) FROM pago");
+        }else{
+            if($this->permisos->esDeportista()){
+                $stmt = $this->db->prepare("SELECT COUNT(*) FROM pago WHERE dniDeportista=?");
+                $stmt->execute(array($_SESSION["currentuser"]));
+            }else{
+                return false;
+            }
+        }
+        $pagos_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $pagos = array();
+        foreach ($pagos_db as $pago) 
+        {
+            array_push($pagos, $pago['COUNT(*)']);
+        }
+        return $pagos;
+    }
+
 }
 ?>
 
