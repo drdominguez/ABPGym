@@ -162,5 +162,12 @@ class UsuarioMapper {
             }
     }
 
+    public function obtenerFotoPerfil(){
+        $stmt = $this->db->prepare("SELECT fotoperfil FROM usuario WHERE dni=?");
+        $stmt->execute(array($_SESSION['currentuser']));
+        $foto_db = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $foto_db['fotoperfil'];
+    }
+
 }
 ?>

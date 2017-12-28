@@ -468,7 +468,7 @@ public function listarDeportistas()
             }
         }else{
             if($this->permisos->esDeportista()){
-                $stmt = $this->db->prepare("SELECT COUNT(t.*) FROM tabla t, superusuario_tabla_deportista s WHERE s.dniDeportista = ? AND t.idTabla=s.idTabla");
+                $stmt = $this->db->prepare("SELECT COUNT(*) FROM tabla t, superusuario_tabla_deportista s WHERE s.dniDeportista = ? AND t.idTabla=s.idTabla");
                 $stmt->execute(array($_SESSION["currentuser"]));
             }else{
                 return false;

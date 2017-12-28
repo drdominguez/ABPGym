@@ -7,7 +7,11 @@
 </header>
                     <li class="nav-item" data-toggle="tooltip">
                         <a class="nav-link" href="./index.php?controller=Usuario&amp;action=UsuarioView&amp;dni=<?php echo $_SESSION['currentuser'];?>">
-                           <span id="icon-eliminar" class="icon-user-circle"></span>
+                            <?php require_once './model/UsuarioMapper.php';
+                            $UsuarioMapper = new UsuarioMapper();
+                            $fotoperfil = $UsuarioMapper->obtenerFotoPerfil();
+                            ?>
+                            <img class="imgRedonda" src="<?php echo $fotoperfil; ?>" height="40" width="40">
                             <span class="nav-link-text"> <?= i18n("Usuario");?>: <?php echo $_SESSION['currentuser']; ?></span>
                         </a>
                     </li>

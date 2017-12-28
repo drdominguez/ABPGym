@@ -8647,3 +8647,9 @@ a.text-dark:hover {
     visibility: hidden!important
 }
 
+.imgRedonda {
+    width:30px;
+    height:30px;
+    border-radius:160px;
+    border:2px solid #f96d00;
+}
