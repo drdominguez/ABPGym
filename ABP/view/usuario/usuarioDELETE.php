@@ -27,7 +27,9 @@
                     <b><?= i18n("Edad") ?>:</b> <?php echo $usuario->getEdad(); ?><br>
                     <b><?= i18n("Email") ?>: </b> <?php echo $usuario->getEmail(); ?><br>
                     <b><?= i18n("Teléfono") ?>: </b> <?php echo $usuario->getTelefono(); ?><br>  
-                    <b><?= i18n("Fecha de Alta") ?>: </b> <?php echo $usuario->getFecha(); ?><br>    
+                    <b><?= i18n("Fecha de Alta") ?>: </b> <?php echo $usuario->getFecha(); ?><br>
+                    <br>    
+                    <b><?= i18n("Foto de Perfil") ?>: </b><img src="<?php echo $usuario->getFotoPerfil(); ?>" height="300" width="300"><br>      
                     <input type="hidden" name="dni" value="<?php echo $usuario->getDni(); ?>">
                     <input type="hidden" name="borrar" value="ok">
                     <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuarioDELETE'" class="btn btn-default">Volver</button> 
