@@ -11,8 +11,9 @@ class Usuario
             private $email;
             private $telefono;
             private $fechaAlta;
+            private $fotoperfil;
             private $tipo;/*solo se usará para tratar de solucionar el editar usuario(no se guarda en la bbdd solo se usara como bandera), hay que poder editar usuarios de diferente tipo llamando a cada uno a su editar para eso de usuara ste campo(forma más simple que se me ocurrio para solucionar cosas que tendría que arreglar JUAN RAMÓN)*/
-        function __construct($dni=NULL,$nombre=NULL,$apellidos=NULL,$edad=NULL,$password=NULL,$email=NULL,$telefono=NULL,$fechaAlta=NULL,$tipo=NULL){
+        function __construct($dni=NULL,$nombre=NULL,$apellidos=NULL,$edad=NULL,$password=NULL,$email=NULL,$telefono=NULL,$fechaAlta=NULL,$tipo=NULL,$fotoperfil=NULL){
             $this->dni = $dni;
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;
@@ -22,6 +23,7 @@ class Usuario
             $this->telefono = $telefono;//Comprobamos si es un atributo de tipo fecha o no 
             $this->fechaAlta=$fechaAlta;   
             $this->tipo=$tipo;
+            $this->fotoperfil=$fotoperfil;
         }
     public function getDni() {
         return $this->dni;
@@ -54,6 +56,9 @@ class Usuario
     public function getTipo(){
         return $this->tipo;
     }
+    public function getFotoPerfil(){
+        return $this->fotoperfil;
+    }
     public function setDni($dni) {
         $this->dni = $dni;
     }
@@ -84,6 +89,9 @@ class Usuario
     }
     public function setTipo($tipo){
         $this->tipo=$tipo;
+    }
+    public function setFotoPerfil($fotoperfil){
+        $this->fotoperfil=$fotoperfil;
     }
     /**
     * Comprueba que el usuario sea valido

@@ -250,8 +250,8 @@ CREATE TABLE `ejercicio` (
   `idEjercicio` bigint(20) NOT NULL,
   `nombre` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
-  `video` binary(1) DEFAULT NULL,
-  `imagen` binary(1) DEFAULT NULL
+  `video` varchar(50) DEFAULT NULL,
+  `imagen` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -259,7 +259,7 @@ CREATE TABLE `ejercicio` (
 --
 
 INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `imagen`) VALUES
-(8, 'Estiramiento999999', 'aoijoisajoisas', 0x00, 0x00);
+(8, 'Estiramiento999999', 'aoijoisajoisas', '', '');
 
 -- --------------------------------------------------------
 
@@ -683,23 +683,24 @@ CREATE TABLE `usuario` (
   `contrasena` varchar(128) COLLATE utf8_spanish2_ci NOT NULL,
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `telefono` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `fechaAlta` date NOT NULL
+  `fechaAlta` date NOT NULL,
+  `fotoperfil` varchar(100)  CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`) VALUES
-('11111111H', 'TDU', 'TDU', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
-('12345678Z', 'Entrenador2', 'entrenador2', 28, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador2@hotmail.com', '123456789', '2017-12-22'),
-('22222222J', 'PEF', 'PEF', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08'),
-('33333333P', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08'),
-('44490816F', 'Daniel', 'Rodríguez Domínguez', 25, 'e10adc3949ba59abbe56e057f20f883e', 'danieldrd@outlook.es', '123456789', '2017-11-08'),
-('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06'),
-('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08'),
-('66666666Q', '66666666Q', '66666666Q', 34, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador3@hotmail.com', '123456789', '2017-12-22'),
-('98765432M', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08');
+INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`,`fotoperfil`) VALUES
+('11111111H', 'TDU', 'TDU', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08',''),
+('12345678Z', 'Entrenador2', 'entrenador2', 28, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador2@hotmail.com', '123456789', '2017-12-22',''),
+('22222222J', 'PEF', 'PEF', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08',''),
+('33333333P', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08',''),
+('44490816F', 'Daniel', 'Rodríguez Domínguez', 25, 'e10adc3949ba59abbe56e057f20f883e', 'danieldrd@outlook.es', '123456789', '2017-11-08',''),
+('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06',''),
+('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08',''),
+('66666666Q', '66666666Q', '66666666Q', 34, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador3@hotmail.com', '123456789', '2017-12-22',''),
+('98765432M', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08','');
 
 --
 -- Índices para tablas volcadas

@@ -87,8 +87,8 @@ class UsuarioMapper {
     public function usuarioADD($usuario)
     {
         if($this->permisos->esAdministrador() && !empty($usuario->getDni())){
-            $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?)");
-            $stmt-> execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),$usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha()));
+            $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?,?,?,?)");
+            $stmt-> execute(array($usuario->getDni(), $usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),$usuario->getPassword(),$usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha(), $usuario->getFotoPerfil()));
             return true;
         }
         return false;
@@ -119,11 +119,11 @@ class UsuarioMapper {
         foreach ($usuarios_db as $usuario) 
         {
             if($this->permisos->esSuperUsuario2($usuario['dni'])){
-                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"superUsuario"));
+                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"superUsuario", $usuario['fotoperfil']));
             }elseif($this->permisos->esTDU($usuario['dni'])){
-                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"TDU"));
+                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"TDU", $usuario['fotoperfil']));
             }else{//si no es superUsuario ni TDU sólo puede ser PEF
-                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"PEF"));
+                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],null,$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],"PEF", $usuario['fotoperfil']));
             }
         }
         return $usuarios;
@@ -138,7 +138,7 @@ class UsuarioMapper {
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
         if($usuario != null)
          {
-            return new Usuario($usuario["dni"],$usuario["nombre"],$usuario["apellidos"],$usuario["edad"],null,$usuario["email"],$usuario["telefono"],$usuario["fechaAlta"]);
+            return new Usuario($usuario["dni"],$usuario["nombre"],$usuario["apellidos"],$usuario["edad"],null,$usuario["email"],$usuario["telefono"],$usuario["fechaAlta"],'', $usuario['fotoperfil']);
         }else 
         {
             return NULL;
@@ -155,9 +155,9 @@ class UsuarioMapper {
             if($usuario_db == null){
                 return false;
             }else{
-                $stmt = $this->db->prepare("UPDATE usuario SET nombre=?,apellidos=?,edad=?,email=?,telefono=?,fechaAlta=? WHERE dni=?");
+                $stmt = $this->db->prepare("UPDATE usuario SET nombre=?,apellidos=?,edad=?,email=?,telefono=?,fechaAlta=?,fotoperfil=? WHERE dni=?");
                 $stmt->execute(array($usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
-                        $usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha(),$usuario->getDni()));
+                        $usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha(), $usuario->getFotoPerfil(),$usuario->getDni()));
                 return true;
             }
     }

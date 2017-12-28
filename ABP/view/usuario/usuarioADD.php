@@ -18,7 +18,7 @@
                 <i class="fa fa-table"></i><?= i18n("Añadir ".$view->getVariable("usuarioTipo"))?>
             </div>
             <div class="card-body">
-            <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8"  method="POST" action="<?php 
+            <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8" enctype="multipart/form-data" method="POST" action="<?php 
                 if($view->getVariable("usuarioTipo")=="Administrador"){ 
                     echo 'index.php?controller=Usuario&amp;action=administradorADD';
                 }else{
@@ -65,6 +65,10 @@
                           <div class="col-md-6">
                         <label for="telefono"><?= i18n("Teléfono") ?>: </label>
                         <input class="form-control" type = 'text' name = 'telefono' size = '20' required="true" value = ''  onchange="comprobarVacio(this)  && comprobarTelf(this)" >
+                        </div>
+                        <div class="col-md-6">
+                        <label for="exampleInputTiempo">Imagen</label>
+                        <input class="form-control" name="fotoperfil" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                       </div>
                     </div>
