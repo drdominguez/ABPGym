@@ -31,7 +31,7 @@ Class SesionEntrenamientoMapper{
 			$stmt = $this->db->query("SELECT COUNT(*) FROM sesionentrenamiento");
 		}else{
 			if($this->permisos->esDeportista()){
-				$stmt = $this->db->query("SELECT COUNT(*) FROM sesionentrenamiento;");
+				$stmt = $this->db->query("SELECT COUNT(*) FROM sesionentrenamiento");
 
 			}else{
 				return false;
