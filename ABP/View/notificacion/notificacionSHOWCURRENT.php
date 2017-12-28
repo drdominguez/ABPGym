@@ -26,14 +26,15 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 <b><?= i18n("dniAdministrador") ?>:</b> <?php echo $notificacion->getDniAdministrador(); ?><br>
                 <b><?= i18n("Asunto") ?>:</b> <?php echo $notificacion->getAsunto(); ?><br>
                 <b><?= i18n("contenido") ?>:</b> <?php echo $notificacion->getContenido(); ?><br>
-                <b><?= i18n("fecha") ?>: </b> <?php echo $notificacion->getFecha(); ?><br>  
-                <button type="button" onclick="window.location.href='./index.php?controller=Notificacion&amp;action=NotificacionListar'" class="btn btn-primary">Volver</button> 
+                <b><?= i18n("fecha") ?>: </b> <?php echo $notificacion->getFecha(); ?><br><br> 
             </div>
         </div>
+
+        <button type="button" onclick="window.location.href='./index.php?controller=Notificacion&amp;action=NotificacionListar'" class="btn btn-primary">Volver</button> <br><br>
 <?php if($tipoUsuario == 'administrador'){?>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Asignar Tabla") ?>
+                <i class="fa fa-table"></i><?= i18n("Usuarios") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -77,6 +78,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 </div>
             </div>
         </div>
+        <button type="button" onclick="window.location.href='./index.php?controller=Notificacion&amp;action=NotificacionListar'" class="btn btn-primary">Volver</button> 
              <?php } ?>
     </div>
 </div>

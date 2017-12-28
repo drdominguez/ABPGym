@@ -49,10 +49,8 @@ $currentuser = $view->getVariable("currentusername");
 				include(__DIR__."/default_cards.php");
 			}
 			?>
-		<footer>
 			<?php
 			include(__DIR__."/Footer.php");
 			?>
-		</footer>
 	</body>
 </html>

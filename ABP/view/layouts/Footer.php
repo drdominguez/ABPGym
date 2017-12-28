@@ -19,7 +19,7 @@ include_once '../Functions/Authentication.php';
                         <small>Copyright © ABP_G42 2017</small>
                     </div>
                 </div>
-            </footer>
+</footer>
             <!-- Scroll to Top Button-->
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fa fa-angle-up"></i>
