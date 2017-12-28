@@ -6,9 +6,12 @@
 <?php                  
                         require_once './model/NotificacionMapper.php';
                         require_once './model/Notificacion.php';
+                        require_once( './core/permisos.php');
+                        $permisos= new Permisos();
+
                           $notificacionMapper = new NotificacionMapper();
                           $numNotificaciones=$notificacionMapper->contarNotificacionesSinVer();
-                        if($numNotificaciones[0]>0){
+                        if($numNotificaciones[0]>0 && $permisos->esAdministrador()== false){
 ?>
                             <span class="indicator text-warning d-none d-lg-block">
               <i class="fa fa-fw fa-circle"></i>

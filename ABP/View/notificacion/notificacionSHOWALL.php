@@ -3,6 +3,7 @@
 
     $view = ViewManager::getInstance();
     $notificaciones = $view->getVariable("notificaciones");
+    $tipoUsuario = $view->getVariable("tipoUsuario");
     $currentuser = $view->getVariable("currentusername");
     $view->setVariable("title", "Notificaciones");
 ?>
@@ -40,8 +41,13 @@
                         <tbody>
 
                         <?php foreach($notificaciones as $notificacion){ ?>
-                            <tr>
-                                <td><?php echo $notificacion->getFecha(); ?></td>
+                            <tr >
+                                <?php if($tipoUsuario != 'administrador' && $notificacion->getVisto() ==0){?>
+                                     <td class="tablaNotif" ><?php echo $notificacion->getFecha(); ?></td>
+                               <?php }else{ ?>
+                                     <td ><?php echo $notificacion->getFecha(); ?></td>
+                               <?php  } ?>
+                               
                                 <td><?php echo $notificacion->getAsunto(); ?></td>
                                 <td><?php echo $notificacion->getContenido(); ?></td>
                                 <td>

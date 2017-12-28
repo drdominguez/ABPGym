@@ -67,7 +67,9 @@ class NotificacionController extends BaseController
     public function NotificacionListar() 
     {
        $notificaciones = $this->notificacionMapper->listar();
+       $tipoUsuario = $this->permisos->comprobarTipo();
        $this->view->setVariable("notificaciones",$notificaciones);
+       $this->view->setVariable("tipoUsuario", $tipoUsuario);
        $this->view->render("notificacion","notificacionSHOWALL");
     }
     

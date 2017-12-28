@@ -71,17 +71,17 @@ Class NotificacionMapper
     {
         if($this->permisos->esAdministrador())
         {
-            $stmt = $this->db->query("SELECT * from notificacion");
+            $stmt = $this->db->query("SELECT DISTINCT(n.idNotificacion),n.dniAdministrador,n.Asunto,n.contenido,n.fecha,nd.visto from notificacion n, notificacion_deportista nd WHERE n.idNotificacion=nd.idNotificacion");
         }else
         {
-            $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion");
+            $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha,D.visto from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion");
             $stmt->execute(array($_SESSION['currentuser']));
         }
         $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $notificaciones = array();
         foreach ($notificaciones_db as $notificacion) 
         {
-            array_push($notificaciones, new Notificacion($notificacion['idNotificacion'],$notificacion['dniAdministrador'],$notificacion['Asunto'],$notificacion['contenido'],$notificacion['fecha']));
+            array_push($notificaciones, new Notificacion($notificacion['idNotificacion'],$notificacion['dniAdministrador'],$notificacion['Asunto'],$notificacion['contenido'],$notificacion['fecha'],$notificacion['visto']));
         }
         return $notificaciones;
     }
@@ -109,10 +109,10 @@ Class NotificacionMapper
     {
         if($this->permisos->esAdministrador())
         {
-            $stmt = $this->db->query("SELECT * from notificacion");
+            $stmt = $this->db->query("SELECT * from notificacion ORDER BY fecha DESC");
         }else
         {
-            $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion AND D.visto=0");
+            $stmt = $this->db->prepare("SELECT N.idNotificacion, N.dniAdministrador,N.Asunto,N.contenido,N.fecha from notificacion N, notificacion_deportista D WHERE D.dniDeportista =? AND N.idNotificacion=D.idNotificacion AND D.visto=0 ORDER BY N.fecha DESC");
             $stmt->execute(array($_SESSION['currentuser']));
         }
         $notificaciones_db = $stmt->fetchAll(PDO::FETCH_ASSOC);

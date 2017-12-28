@@ -9,8 +9,9 @@ class Notificacion
     private $Asunto;
     private $contenido;
     private $fecha;
+    private $visto;
 
-    function __construct($idNotificacion = NULL, $dniAdministrador = NULL,$Asunto = NULL,$contenido = NULL,$fecha = NULL)
+    function __construct($idNotificacion = NULL, $dniAdministrador = NULL,$Asunto = NULL,$contenido = NULL,$fecha = NULL,$visto=NULL)
     {
 
         $this->idNotificacion = $idNotificacion;
@@ -18,6 +19,7 @@ class Notificacion
         $this->Asunto = $Asunto;
         $this->contenido = $contenido;
         $this->fecha = $fecha;
+        $this->visto = $visto;
 
     }
 
@@ -47,6 +49,9 @@ class Notificacion
     {
         return $this->fecha;
     }
+    public function getVisto(){
+        return $this->visto;
+    }
 
     public function setIdNotificacion($idNotificacion)
     {
@@ -71,6 +76,9 @@ class Notificacion
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
+    }
+    public function setVisto($visto){
+        $this->visto = $visto;
     }
 }//fin de clase
 
