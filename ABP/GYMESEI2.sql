@@ -260,7 +260,7 @@ CREATE TABLE `ejercicio` (
 --
 
 INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `imagen`) VALUES
-(8, 'Estiramiento999999', 'aoijoisajoisas', '', '');
+(8, 'Estiramiento 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget justo tincidunt, finibus ante ac, ultricies ex. Duis sagittis, purus. ', '', '');
 
 -- --------------------------------------------------------
 
@@ -458,7 +458,7 @@ CREATE TABLE `muscular_tabla` (
 CREATE TABLE `notificacion` (
   `idNotificacion` bigint(20) NOT NULL,
   `dniAdministrador` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
-  `Asunto` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `Asunto` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
   `contenido` text COLLATE utf8_spanish_ci,
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -468,7 +468,7 @@ CREATE TABLE `notificacion` (
 --
 
 INSERT INTO `notificacion` (`idNotificacion`, `dniAdministrador`, `Asunto`, `contenido`, `fecha`) VALUES
-(1, '44490816F', 'as', 'asa', '2017-12-23 00:06:37');
+(1, '44490816F', 'Notificación de Prueba', 'Esta es una notificación para probar el funcionamiento correcto del sistema de notificaciones', '2017-12-23 00:06:37');
 
 -- --------------------------------------------------------
 
@@ -489,6 +489,7 @@ CREATE TABLE `notificacion_deportista` (
 
 INSERT INTO `notificacion_deportista` (`dniAdministrador`, `dniDeportista`, `idNotificacion`, `visto`) VALUES
 ('44490816F', '11111111H', 1, 0),
+('44490816F', '98765432M', 1, 0),
 ('44490816F', '22222222J', 1, 0);
 
 -- --------------------------------------------------------
@@ -638,7 +639,7 @@ CREATE TABLE `tabla` (
   `idTabla` bigint(20) NOT NULL,
   `tipo` enum('estandar','personalizada') COLLATE utf8_spanish_ci NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci,
-  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -678,14 +679,14 @@ INSERT INTO `tdu` (`dni`, `tarjeta`) VALUES
 
 CREATE TABLE `usuario` (
   `dni` varchar(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `apellidos` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `apellidos` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `edad` tinyint(4) DEFAULT NULL,
   `contrasena` varchar(128) COLLATE utf8_spanish2_ci NOT NULL,
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `telefono` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `fechaAlta` date NOT NULL,
-  `fotoperfil` varchar(100)  CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+  `fotoperfil` varchar(200)  CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
