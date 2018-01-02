@@ -185,10 +185,10 @@
 
 </script> 
 <script type="text/javascript">
-    function mostrarModalEstiramiento(){
-          $('#ModalEstiramiento').on('show.bs.modal', function (event) {
+    function mostrarModalEjercicio(){
+          $('#ModalEjercicio').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) // Button that triggered the modal
-          var recipient = button.data('estiramiento-nombre')
+          var recipient = button.data('ejercicio-nombre')
           var descripcion = button.data('descripcion')
           var imagen = button.data('imagen') 
           var video = button.data('video')// Extract info from data-* attributes
@@ -269,7 +269,7 @@
                                         <td><?php echo $estiramiento->getDescripcion(); ?></td>
                                         <td><input type="text" disabled id="estiramientotiempo_<?php echo $estiramiento->getIdEjercicio();?>" class="form-control" name="estiramientotiempo_<?php echo $estiramiento->getIdEjercicio();?>"></td>
                                         <td>
-                                            <a  data-toggle="modal" data-target="#ModalEstiramiento" data-estiramiento-nombre="<?php echo $estiramiento->getNombre(); ?>" data-descripcion="<?php echo $estiramiento->getDescripcion(); ?>" data-imagen="<?php echo $estiramiento->getImagen(); ?>" data-video="<?php echo $estiramiento->getVideo(); ?>" onclick="mostrarModalEstiramiento();" ><img src='./view/Icons/detalle.png'>
+                                            <a  data-toggle="modal" data-target="#ModalEjercicio" data-ejercicio-nombre="<?php echo $estiramiento->getNombre(); ?>" data-descripcion="<?php echo $estiramiento->getDescripcion(); ?>" data-imagen="<?php echo $estiramiento->getImagen(); ?>" data-video="<?php echo $estiramiento->getVideo(); ?>" onclick="mostrarModalEjercicio();" ><span id="icon-ver" class="icon-eye-plus"></span>
                                             </a>
                                         </td>
                                         <td>
@@ -283,33 +283,27 @@
                         </div>
                     </div>
                 </div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="ModalEstiramiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="EstiramientoTitle">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p id="descripcion"> </p><br>
-        <img id="imagen" src="">
-        <p id="video"> </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
+                <!-- Modal -->
+                <div class="modal fade" id="ModalEjercicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="EstiramientoTitle">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p id="descripcion"> </p><br>
+                        <img id="imagen" width="300" height="300" src="">
+                        <p id="video"> </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Mostrar todos los cardios") ?>
@@ -348,7 +342,7 @@
                                         <td><input type="text" disabled id="cardiotiempo_<?php echo $cardio->getIdEjercicio();?>" class="form-control" name="cardiotiempo_<?php echo $cardio->getIdEjercicio();?>"></td>
                                         <td><input type="text" disabled id="cardiodistancia_<?php echo $cardio->getIdEjercicio();?>" class="form-control" name="cardiodistancia_<?php echo $cardio->getIdEjercicio();?>" ></td>  
                                         <td>
-                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $cardio->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                            <a  data-toggle="modal" data-target="#ModalEjercicio" data-ejercicio-nombre="<?php echo $cardio->getNombre(); ?>" data-descripcion="<?php echo $cardio->getDescripcion(); ?>" data-imagen="<?php echo $cardio->getImagen(); ?>" data-video="<?php echo $cardio->getVideo(); ?>" onclick="mostrarModalEjercicio();" ><span id="icon-ver" class="icon-eye-plus"></span>
                                             </a>
                                         </td>
                                         <td>
@@ -401,7 +395,7 @@
                                         <td><input type="text" disabled id="muscularcarga_<?php echo $muscular->getIdEjercicio();?>" class="form-control" name="muscularcarga_<?php echo $muscular->getIdEjercicio();?>"></td>
                                         <td><input type="text" disabled id="muscularrepeticiones_<?php echo $muscular->getIdEjercicio();?>" class="form-control" name="muscularrepeticiones_<?php echo $muscular->getIdEjercicio();?>" ></td> 
                                         <td>
-                                            <a target="_blank" onclick="window.open(this.href, this.target, 'width=500,height=400'); return false;" href='./index.php?controller=Tabla&amp;action=TablaADD&amp;idEjercicio=<?php echo $muscular->getIdEjercicio();?>'><img src='./view/Icons/detalle.png'>
+                                            <a  data-toggle="modal" data-target="#ModalEjercicio" data-ejercicio-nombre="<?php echo $muscular->getNombre(); ?>" data-descripcion="<?php echo $muscular->getDescripcion(); ?>" data-imagen="<?php echo $muscular->getImagen(); ?>" data-video="<?php echo $muscular->getVideo(); ?>" onclick="mostrarModalEjercicio();" ><span id="icon-ver" class="icon-eye-plus"></span>
                                             </a>
                                         </td>
                                         <td>

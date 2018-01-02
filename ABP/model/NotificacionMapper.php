@@ -59,7 +59,7 @@ Class NotificacionMapper
             $usuarios = array();
 
             foreach ($usuarios_db as $usuario) {
-                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos']));
+                array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],'',$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],'',$usuario['fotoperfil']));
             }
             return $usuarios;
        
@@ -98,7 +98,7 @@ Class NotificacionMapper
         $usuarios = array();
         foreach ($usuarios_db as $usuario) 
         {
-            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos']));
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],'',$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],'',$usuario['fotoperfil']));
         }
         return $usuarios;
     }

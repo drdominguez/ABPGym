@@ -24,18 +24,19 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                             <tr>
-                                <th><?= i18n("fecha") ?></th>
+                                <th><?= i18n("Fecha") ?></th>
                                 <th><?= i18n("Asunto") ?></th>
-                                <th><?= i18n("contenido") ?></th>
-                                <th></th>
+                                <th><?= i18n("Contenido") ?></th>
+                                <th><?= i18n("Ver") ?></th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th><?= i18n("fecha") ?></th>
+                                <th><?= i18n("Fecha") ?></th>
                                 <th><?= i18n("Asunto") ?></th>
-                                <th><?= i18n("contenido") ?></th>
-                                <th></th>
+                                <th><?= i18n("Contenido") ?></th>
+                                <th><?= i18n("Ver") ?></th>
+                            </tr>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -51,7 +52,7 @@
                                 <td><?php echo $notificacion->getAsunto(); ?></td>
                                 <td><?php echo $notificacion->getContenido(); ?></td>
                                 <td>
-                                    <a href='./index.php?controller=Notificacion&amp;action=NotificacionView&amp;idNotificacion=<?php echo $notificacion->getIdNotificacion();?>'><img src='./view/Icons/detalle.png'>
+                                    <a href='./index.php?controller=Notificacion&amp;action=NotificacionView&amp;idNotificacion=<?php echo $notificacion->getIdNotificacion();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                     </a>
                                 </td>
                             </tr>
