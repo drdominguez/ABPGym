@@ -17,7 +17,7 @@ $view->setVariable("title", "Pagos");
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar todos los pagos") ?>
+                <i class="fa fa-table"></i><?= i18n("Todos los Pagos") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -25,7 +25,7 @@ $view->setVariable("title", "Pagos");
                         <thead>
                         <tr>
                             <?php if($tipoUsuario == 'administrador'){?>
-                            <th><?= i18n("DNI") ?></th>
+                            <th><?= i18n("DNI del Deportista") ?></th>
                             <?php } ?>
                             <th><?= i18n("Actividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
@@ -38,7 +38,7 @@ $view->setVariable("title", "Pagos");
                         <tfoot>
                         <tr>
                             <?php if($tipoUsuario == 'administrador'){?>
-                            <th><?= i18n("DNI") ?></th>
+                            <th><?= i18n("DNI del Deportista") ?></th>
                             <?php } ?>
                             <th><?= i18n("Actividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
