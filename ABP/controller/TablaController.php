@@ -325,6 +325,8 @@ public function PersonalizadaADD()
                 throw new Exception("No existe tabla con este id: ".$idTabla);
             }
             // put the notification object to the view
+            $tipoUsuario = $this->permisos->comprobarTipo();
+            $this->view->setVariable("tipoUsuario",$tipoUsuario);
             $this->view->setVariable("tabla", $tabla);            
             $this->view->setVariable("cardios",$cardios);
             $this->view->setVariable("musculares",$musculares);

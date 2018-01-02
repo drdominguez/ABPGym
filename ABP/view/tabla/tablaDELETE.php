@@ -43,12 +43,12 @@
              
             <div class="card-body">
                  <?php if($tipoUsuario == 'administrador'){?>
-                    <b><?= i18n("idTabla") ?>:</b> <p><?php echo $tabla->getIdTabla(); ?></p>
+                    <b><?= i18n("ID de Tabla") ?>:</b> <p><?php echo $tabla->getIdTabla(); ?></p>
                     <?php } ?>
                     <input type="hidden" name="idTabla" value="<?php echo $tabla->getIdTabla(); ?>">
-                    <b><?= i18n("nombre") ?>:</b> <p><?php echo $tabla->getNombre(); ?></p>
-                    <b><?= i18n("tipo") ?>:</b> <p><?php echo $tabla->getTipo(); ?></p>
-                    <b><?= i18n("comentario") ?>:</b> <p><?php echo $tabla->getComentario(); ?></p>
+                    <b><?= i18n("Nombre") ?>:</b> <p><?php echo $tabla->getNombre(); ?></p>
+                    <b><?= i18n("Tipo") ?>:</b> <p><?php echo $tabla->getTipo(); ?></p>
+                    <b><?= i18n("Comentario") ?>:</b> <p><?php echo $tabla->getComentario(); ?></p>
                     <input type="hidden" name="borrar" value="ok">
                     </div>
                     </div>

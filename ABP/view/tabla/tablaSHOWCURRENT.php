@@ -6,6 +6,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $estiramientos = $view->getVariable("estiramientos");
     $cardios = $view->getVariable("cardios");
     $musculares = $view->getVariable("musculares");
+    $tipoUsuario = $view->getVariable("tipoUsuario");
     $currentuser = $view->getVariable("currentusername");
 ?>
 <script type="text/javascript">
@@ -41,7 +42,9 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 <i class="fa fa-table"></i><?= i18n("Ver Tabla") ?>
             </div>
             <div class="card-body">
+                <?php if($tipoUsuario == 'administrador'){?>
                 <b><?= i18n("ID de Tabla") ?>:</b>  <p><?php echo $tabla->getIdTabla(); ?></p>
+                <?php } ?>
                 <b><?= i18n("Nombre") ?>:</b> <p><?php echo $tabla->getNombre(); ?></p>
                 <b><?= i18n("Tipo") ?>:</b> <p><?php echo $tabla->getTipo(); ?></p>
                 <b><?= i18n("Comentario") ?>:</b><p> <?php echo $tabla->getComentario(); ?></p>
