@@ -24,10 +24,12 @@ $view->setVariable("title", "Pagos");
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                         <tr>
+                            <?php if($tipoUsuario == 'administrador'){?>
                             <th><?= i18n("DNI") ?></th>
-                            <th><?= i18n("IDActividad") ?></th>
+                            <?php } ?>
+                            <th><?= i18n("Actividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
-                            <?php if($tipoUsuario != 'deportista'){?>
+                            <?php if($tipoUsuario == 'administrador'){?>
                             <th><?= i18n("Borrar") ?></th>
                             <?php } ?>
                             <th><?= i18n("Ver") ?></th>
@@ -35,10 +37,12 @@ $view->setVariable("title", "Pagos");
                         </thead>
                         <tfoot>
                         <tr>
+                            <?php if($tipoUsuario == 'administrador'){?>
                             <th><?= i18n("DNI") ?></th>
-                            <th><?= i18n("IDActividad") ?></th>
+                            <?php } ?>
+                            <th><?= i18n("Actividad") ?></th>
                             <th><?= i18n("Importe") ?></th>
-                             <?php if($tipoUsuario != 'deportista'){?>
+                             <?php if($tipoUsuario == 'administrador'){?>
                             <th><?= i18n("Borrar") ?></th>
                               <?php } ?>
                             <th><?= i18n("Ver") ?></th>
@@ -48,10 +52,12 @@ $view->setVariable("title", "Pagos");
 
                         <?php foreach($pagos as $pago){ ?>
                             <tr>
+                            <?php if($tipoUsuario == 'administrador'){?>
                                 <td><?php echo $pago->getDniDeportista(); ?></td>
+                                <?php } ?>
                                 <td><?php echo $pago->getActividad(); ?></td>
-                                <td><?php echo $pago->getImporte(); ?></td>
-                                <?php if($tipoUsuario != 'deportista'){?>
+                                <td><?php echo $pago->getImporte(); ?>€</td>
+                                <?php if($tipoUsuario == 'administrador'){?>
                                 <td>
                                     <a href='./index.php?controller=Pago&amp;action=PagoDELETE&amp;idPago=<?php echo $pago->getIdPago();?>'><span id="icon-eliminar" class=" icon-bin"></span>
                                     </a>

@@ -17,18 +17,18 @@ $view->setVariable("title", "Borrar Pago");
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Borrar pago") ?>
+                <i class="fa fa-table"></i><?= i18n("Borrar Pago") ?>
             </div>
             <div class="card-body">
                 <form name = 'Form' id="form1" action = './index.php?controller=Pago&amp;action=PagoDELETE' method = 'post' onsubmit = 'comprobar()'>
-                    <b><?= i18n("IDPago") ?>:</b> <?php echo $pago->getIdPago(); ?><br>
-                    <b><?= i18n("DNI") ?>:</b> <?php echo $pago->getDniDeportista(); ?><br>
-                    <b><?= i18n("Actividad") ?>:</b> <?php echo $pago->getActividad(); ?><br>
-                    <b><?= i18n("Importe") ?>:</b> <?php echo $pago->getImporte(); ?><br>
-                    <b><?= i18n("Fecha") ?>: </b> <?php echo $pago->getFecha(); ?><br>
+                    <b><?= i18n("ID del Pago") ?>:</b> <p><?php echo $pago->getIdPago(); ?></p>
+                    <b><?= i18n("DNI del Deportista") ?>:</b> <p><?php echo $pago->getDniDeportista(); ?></p>
+                    <b><?= i18n("Actividad") ?>:</b><p> <?php echo $pago->getActividad(); ?></p>
+                    <b><?= i18n("Importe") ?>:</b> <p><?php echo $pago->getImporte(); ?></p>
+                    <b><?= i18n("Fecha") ?>: </b> <p><?php echo $pago->getFecha(); ?></p>
                     <input type="hidden" name="idPago" value="<?php echo $pago->getIdPago(); ?>">
                     <input type="hidden" name="borrar" value="ok">
-                    <button type="button" onclick="window.location.href='./index.php?controller=Pago&amp;action=PagoDELETE'" class="btn btn-default">Volver</button>
+                    <button type="button" onclick="window.location.href='./index.php?controller=Pago&amp;action=PagoListar'" class="btn btn-default"><?= i18n("Volver") ?></button>
                     <button  type='submit' name='action' value='PagoDELETE' class="btn btn-primary"><?= i18n("Borrar") ?></button>
                 </form>
             </div>

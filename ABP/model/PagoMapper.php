@@ -36,29 +36,29 @@ Class PagoMapper{
     {
         if($this->permisos->esAdministrador())
         {
-            $stmt = $this->db->query("SELECT * from pago");
+            $stmt = $this->db->query("SELECT * from pago p, actividad a WHERE p.idActividad=a.idActividad");
         }else
         {
-            $stmt = $this->db->prepare("SELECT * from pago WHERE dniDeportista =?");
+            $stmt = $this->db->prepare("SELECT * from pago p, actividad a WHERE dniDeportista =? AND p.idActividad=a.idActividad");
             $stmt->execute(array($_SESSION['currentuser']));
         }
         $pagos_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $pagos = array();
         foreach ($pagos_db as $pago)
         {
-            array_push($pagos, new Pago($pago['idPago'],$pago['dniDeportista'],$pago['idActividad'],$pago['importe'],$pago['fecha']));
+            array_push($pagos, new Pago($pago['idPago'],$pago['dniDeportista'],$pago['nombre'],$pago['importe'],$pago['fecha']));
         }
         return $pagos;
     }
 
     public function findById($idPago)
     {
-        $stmt = $this->db->prepare("SELECT * FROM pago WHERE idPago=?");
+        $stmt = $this->db->prepare("SELECT * FROM pago p, actividad a WHERE idPago=? AND p.idActividad=a.idActividad");
         $stmt->execute(array($idPago));
         $pago = $stmt->fetch(PDO::FETCH_ASSOC);
         if($pago != null)
         {
-            return new Pago($pago["idPago"],$pago["dniDeportista"],$pago["idActividad"],$pago["importe"],$pago["fecha"]);
+            return new Pago($pago["idPago"],$pago["dniDeportista"],$pago["nombre"],$pago["importe"],$pago["fecha"]);
         }else
         {
             return NULL;
