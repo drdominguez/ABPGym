@@ -56,7 +56,7 @@
                                 <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th><?= i18n("Detalle") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
                                 <th><?= i18n("Seleccionar") ?></th>
 
                             </tr>
@@ -66,7 +66,7 @@
                                 <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th><?= i18n("Detalle") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
                                 <th><?= i18n("Seleccionar") ?></th>
 
                             </tr>

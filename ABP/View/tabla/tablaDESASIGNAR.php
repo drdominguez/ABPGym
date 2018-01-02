@@ -69,16 +69,11 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Desasignar tabla") ?>
+                <i class="fa fa-table"></i><?= i18n("Desasignar Tabla") ?>
             </div>
             <div class="card-body">
                 <form name = 'Form' id="form1" action = './index.php?controller=Tabla&amp;action=DesasignarTabla' method = 'post' onsubmit = 'comprobar()'>
                     <?php if(!isset($usuario)){?>
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <i class="fa fa-table"></i><?= i18n("Mostrar todos los usuarios") ?>
-                        </div>
-                        <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                                     <thead>
@@ -86,8 +81,8 @@
                                        <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th>Detalle</th>
-                                <th>Seleccionar</th>
+                                        <th><?= i18n("Ver") ?></th>
+                                <th><?= i18n("Seleccionar") ?></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -95,8 +90,8 @@
                                              <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th>Detalle</th>
-                                <th>Seleccionar</th>
+                                        <th><?= i18n("Ver") ?></th>
+                                <th><?= i18n("Seleccionar") ?></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -114,7 +109,7 @@
                                             </a>
                                             </td>
                                             <td>
-                                            <input type="radio" name="usuario" value="<?php echo $usuario->getDni();?>">Seleccionar<br>
+                                            <input type="radio" name="usuario" value="<?php echo $usuario->getDni();?>"><?= i18n("Seleccionar") ?><br>
                                         </td>
                                         </tr>
 <?php
@@ -146,34 +141,28 @@
                             <b><?= i18n("Foto de Perfil") ?>: </b> <img id="imagen" width="300" height="300" src="">  
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
                           </div>
                         </div>
                       </div>
                     </div>
                     <?php }else{?>
-
-        <div class="card mb-3">
-            <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar todas las tablas") ?>
-            </div>
-            <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                             <tr>
-                                <th><?= i18n("nombre") ?></th>
-                                <th><?= i18n("tipo") ?></th>
-                                <th><?= i18n("comentario") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Tipo") ?></th>
+                                <th><?= i18n("Comentario") ?></th>
                                 <th><?= i18n("Ver") ?></th>
                                 <th><?= i18n("Seleccionar") ?></th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th><?= i18n("nombre") ?></th>
-                                <th><?= i18n("tipo") ?></th>
-                                <th><?= i18n("comentario") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Tipo") ?></th>
+                                <th><?= i18n("Comentario") ?></th>
                                 <th><?= i18n("Ver") ?></th>
                                 <th><?= i18n("Seleccionar") ?></th>
                             </tr>
@@ -192,7 +181,7 @@
                                             </a>
                                     </td>
                                     <td>
-                                            <input type="radio" name="idTabla" value="<?php echo $tabla->getIdTabla();?>">Seleccionar<br>
+                                            <input type="radio" name="idTabla" value="<?php echo $tabla->getIdTabla();?>"><?= i18n("Seleccionar") ?><br>
 
                                     </td>
                             </tr>
@@ -206,7 +195,7 @@
         </div>      
                     <input type="hidden" name="borrar" value="ok">
                     <input type="hidden" name="usuario" value="<?php echo $usuario; ?>">
-                    <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=DesasignarTabla'" class="btn btn-default">Volver</button> 
+                    <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=DesasignarTabla'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                     <button  type='submit' name='action' value='DesasignarTabla' class="btn btn-primary"><?= i18n("Borrar") ?></button>
                     <?php } ?>
                 </form>
@@ -229,7 +218,7 @@
                             <b><?= i18n("Comentario") ?>: </b><p id="comentario"></p>  
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
                           </div>
                         </div>
                       </div>

@@ -4,6 +4,7 @@
     $view = ViewManager::getInstance();
     $tabla = $view->getVariable("tabla");    
     $estiramientos = $view->getVariable("estiramientos");
+    $tipoUsuario = $view->getVariable("tipoUsuario");
     $cardios = $view->getVariable("cardios");
     $musculares = $view->getVariable("musculares");
 ?>
@@ -34,22 +35,26 @@
             <div id="flash"><?= $view->popFlash() ?></div>
         </ol>
         <!-- Example DataTables Card-->
+        <form name = 'Form' id="form1" action = './index.php?controller=Tabla&amp;action=TablaDelete' method = 'post' onsubmit = 'comprobar()'>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Borrar tabla") ?>
+                <i class="fa fa-table"></i><?= i18n("Borrar Tabla") ?>
             </div>
+             
             <div class="card-body">
-                <form name = 'Form' id="form1" action = './index.php?controller=Tabla&amp;action=TablaDelete' method = 'post' onsubmit = 'comprobar()'>
-                    <b><?= i18n("idTabla") ?>:</b> <?php echo $tabla->getIdTabla(); ?><br>
+                 <?php if($tipoUsuario == 'administrador'){?>
+                    <b><?= i18n("idTabla") ?>:</b> <p><?php echo $tabla->getIdTabla(); ?></p>
+                    <?php } ?>
                     <input type="hidden" name="idTabla" value="<?php echo $tabla->getIdTabla(); ?>">
-                    <b><?= i18n("nombre") ?>:</b> <?php echo $tabla->getNombre(); ?><br>
-                    <b><?= i18n("tipo") ?>:</b> <?php echo $tabla->getTipo(); ?><br>
-                    <b><?= i18n("comentario") ?>:</b> <?php echo $tabla->getComentario(); ?><br>
+                    <b><?= i18n("nombre") ?>:</b> <p><?php echo $tabla->getNombre(); ?></p>
+                    <b><?= i18n("tipo") ?>:</b> <p><?php echo $tabla->getTipo(); ?></p>
+                    <b><?= i18n("comentario") ?>:</b> <p><?php echo $tabla->getComentario(); ?></p>
                     <input type="hidden" name="borrar" value="ok">
-                    
+                    </div>
+                    </div>
                    <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los estiramientos") ?>
+                        <i class="fa fa-table"></i><?= i18n("Estiramientos") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -94,7 +99,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los cardios") ?>
+                        <i class="fa fa-table"></i><?= i18n("Ejercicios Cardio") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -142,7 +147,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los musculares") ?>
+                        <i class="fa fa-table"></i><?= i18n("Ejercicios Musculares") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -188,7 +193,7 @@
                         </div>
                     </div>
                 </div>
-                    <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-default">Volver</button> 
+                    <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                     <button  type='submit' name='action' value='TablaDelete' class="btn btn-primary"><?= i18n("Borrar") ?></button>
                 </form>
             </div>
@@ -212,7 +217,7 @@
                         <p id="video"> </p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
                       </div>
                     </div>
                   </div>

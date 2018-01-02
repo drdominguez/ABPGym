@@ -71,10 +71,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
     <div class="container-fluid">
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../Controller/PagoController.php"><?= i18n("Añadir Pago") ?></a>
-            </li>
-            <li class="breadcrumb-item active">ADD</li>
+            <div id="flash"><?= $view->popFlash() ?></div>
         </ol>
         <?php if($seleccionarusuario=="ok"){
             ?>

@@ -77,7 +77,6 @@
     cell2.innerHTML = descripcion;
     cell3.appendChild(input);
     cell3.appendChild(input2);
-    cell4.innerHTML = "xd";
     cell5.appendChild(check);
     i1++;
 }
@@ -136,7 +135,6 @@
     cell3.appendChild(input);
     cell4.appendChild(input2);
     cell4.appendChild(input3);
-    cell5.innerHTML = "xd";
     cell6.appendChild(check);
     i2++;
 }
@@ -194,7 +192,6 @@
     cell3.appendChild(input);
     cell4.appendChild(input2);
     cell4.appendChild(input3);
-    cell5.innerHTML = "xd";
     cell6.appendChild(check);
     i3++;
 }
@@ -232,26 +229,26 @@
             <form name = 'Form' action='./index.php?controller=Tabla&amp;action=TablaEDIT' method='post' onsubmit='return validarTablaEDIT()'>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Editar tabla") ?>
+                        <i class="fa fa-table"></i><?= i18n("Editar Tabla") ?>
                     </div>
                     <div class="card-body">         
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputNombre">Nombre</label>
+                                    <label for="exampleInputNombre"><?= i18n("Nombre") ?></label>
                                     <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $tabla->getNombre(); ?>" onchange="comprobarVacio(this)  && comprobarTexto(this,15)">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="exampleInputTipo">Tipo</label>
+                                    <label for="exampleInputTipo"><?= i18n("Tipo") ?></label>
                                     <select disabled class="form-control" name="tipo">
                                         <?php if($tabla->getTipo()=='estandar'){
                                             ?>
-                                        <option value="estandar" selected>Estándar</option>
-                                        <option value="personalizada">Personalizada</option>
+                                        <option value="estandar" selected><?= i18n("Estándar") ?></option>
+                                        <option value="personalizada"><?= i18n("Personalizada") ?></option>
                                         <?php }else{ ?>
 
-                                        <option value="estandar" >Estándar</option>
-                                        <option value="personalizada" selected>Personalizada</option>
+                                        <option value="estandar" ><?= i18n("Estándar") ?></option>
+                                        <option value="personalizada" selected><?= i18n("Personalizada") ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -259,7 +256,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-row">
-                                <label for="exampleInputTiempo">Descripción</label>
+                                <label for="exampleInputTiempo"><?= i18n("Descripción") ?></label>
                                 <textarea class="form-control" name="comentario" rows="10"><?php echo $tabla->getComentario();?></textarea>
                             </div>
                         </div>
@@ -267,7 +264,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los estiramientos") ?>
+                        <i class="fa fa-table"></i><?= i18n("Estiramientos") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -342,7 +339,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los cardios") ?>
+                        <i class="fa fa-table"></i><?= i18n("Ejercicios Cardio") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -423,7 +420,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los musculares") ?>
+                        <i class="fa fa-table"></i><?= i18n("Ejercicios Musculares") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -528,7 +525,7 @@
                         <p id="video"> </p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
                       </div>
                     </div>
                   </div>

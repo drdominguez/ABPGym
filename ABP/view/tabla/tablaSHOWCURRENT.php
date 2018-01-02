@@ -38,18 +38,18 @@ require_once(__DIR__."/../../core/ViewManager.php");
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar tabla") ?>
+                <i class="fa fa-table"></i><?= i18n("Ver Tabla") ?>
             </div>
             <div class="card-body">
-                <b><?= i18n("idTabla") ?>:</b> <?php echo $tabla->getIdTabla(); ?><br>
-                <b><?= i18n("nombre") ?>:</b> <?php echo $tabla->getNombre(); ?><br>
-                <b><?= i18n("tipo") ?>:</b> <?php echo $tabla->getTipo(); ?><br>
-                <b><?= i18n("comentario") ?>:</b> <?php echo $tabla->getComentario(); ?><br>
+                <b><?= i18n("ID de Tabla") ?>:</b>  <p><?php echo $tabla->getIdTabla(); ?></p>
+                <b><?= i18n("Nombre") ?>:</b> <p><?php echo $tabla->getNombre(); ?></p>
+                <b><?= i18n("Tipo") ?>:</b> <p><?php echo $tabla->getTipo(); ?></p>
+                <b><?= i18n("Comentario") ?>:</b><p> <?php echo $tabla->getComentario(); ?></p>
             </div>
         </div>
          <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los estiramientos") ?>
+                        <i class="fa fa-table"></i><?= i18n("Estiramientos") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -94,7 +94,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los cardios") ?>
+                        <i class="fa fa-table"></i><?= i18n("Ejercicios Cardio") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -142,7 +142,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los musculares") ?>
+                        <i class="fa fa-table"></i><?= i18n("Ejercicios Musculares") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -188,7 +188,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                         </div>
                     </div>
                 </div>
-        <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-primary">Volver</button> 
+        <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-primary"><?= i18n("Volver") ?></button> 
     </div>
 </div>
 <!-- Modal -->
@@ -207,7 +207,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                         <p id="video"> </p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
                       </div>
                     </div>
                   </div>

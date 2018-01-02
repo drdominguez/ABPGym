@@ -22,16 +22,16 @@ require_once(__DIR__."/../../core/ViewManager.php");
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar todas las tablas") ?>
+                <i class="fa fa-table"></i><?= i18n("Mostrar Todas las Tablas") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                             <tr>
-                                <th><?= i18n("nombre") ?></th>
-                                <th><?= i18n("tipo") ?></th>
-                                <th><?= i18n("comentario") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Tipo") ?></th>
+                                <th><?= i18n("Comentario") ?></th>
                                 <?php if($tipoUsuario != 'deportista'){?>
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>
@@ -44,9 +44,9 @@ require_once(__DIR__."/../../core/ViewManager.php");
                         </thead>
                         <tfoot>
                             <tr>
-                                <th><?= i18n("nombre") ?></th>
-                                <th><?= i18n("tipo") ?></th>
-                                <th><?= i18n("comentario") ?></th>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Tipo") ?></th>
+                                <th><?= i18n("Comentario") ?></th>
                                  <?php if($tipoUsuario != 'deportista'){?>
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>

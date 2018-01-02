@@ -69,7 +69,6 @@
     cell2.innerHTML = descripcion;
     cell3.appendChild(input);
     cell3.appendChild(input2);
-    cell4.innerHTML = "xd";
     cell5.appendChild(check);
     i1++;
 }
@@ -124,7 +123,6 @@
     cell3.appendChild(input);
     cell4.appendChild(input2);
     cell4.appendChild(input3);
-    cell5.innerHTML = "xd";
     cell6.appendChild(check);
     i2++;
 }
@@ -178,7 +176,6 @@
     cell3.appendChild(input);
     cell4.appendChild(input2);
     cell4.appendChild(input3);
-    cell5.innerHTML = "xd";
     cell6.appendChild(check);
     i3++;
 }
@@ -214,21 +211,21 @@
             <form name = 'Form' action='./index.php?controller=Tabla&amp;action=estandarADD' method='post' onsubmit='return validarTablaADD()'>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Anadir tabla") ?>
+                        <i class="fa fa-table"></i><?= i18n("Añadir Tabla Estándar") ?>
                     </div>
                     <div class="card-body">      
                            
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputNombre">Nombre</label>
+                                    <label for="exampleInputNombre"><?= i18n("Nombre") ?>:</label>
                                     <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onchange="comprobarVacio(this);comprobarTexto(this,30);">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row">
-                                <label for="exampleInputTiempo">Descripción</label>
+                                <label for="exampleInputTiempo"><?= i18n("Descripción") ?>:</label>
                                 <textarea class="form-control" name="comentario" rows="10"></textarea>
                             </div>
                         </div>
@@ -236,7 +233,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los estiramientos") ?>
+                        <i class="fa fa-table"></i><?= i18n("Estiramientos") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -273,7 +270,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="button" value="Seleccionar" onclick="anadirestiramiento('<?php echo $estiramiento->getIdEjercicio();?>','<?php echo $estiramiento->getNombre(); ?>','<?php echo $estiramiento->getDescripcion(); ?>')"/>
+                                            <input type="button" class="btn btn-primary" value="Seleccionar" onclick="anadirestiramiento('<?php echo $estiramiento->getIdEjercicio();?>','<?php echo $estiramiento->getNombre(); ?>','<?php echo $estiramiento->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr><?php
                                 }   
@@ -299,14 +296,14 @@
                         <p id="video"> </p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los cardios") ?>
+                        <i class="fa fa-table"></i><?= i18n("Ejercicios Cardio") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -346,7 +343,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                              <input type="button" value="Seleccionar" onclick="anadircardio('<?php echo $cardio->getIdEjercicio();?>','<?php echo $cardio->getNombre(); ?>','<?php echo $cardio->getDescripcion(); ?>')"/>
+                                              <input type="button" class="btn btn-primary" value="Seleccionar" onclick="anadircardio('<?php echo $cardio->getIdEjercicio();?>','<?php echo $cardio->getNombre(); ?>','<?php echo $cardio->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php
@@ -359,7 +356,7 @@
                 </div>
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los musculares") ?>
+                        <i class="fa fa-table"></i><?= i18n("Ejercicios Musculares") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -399,7 +396,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="button" value="Seleccionar" onclick="anadirmuscular('<?php echo $muscular->getIdEjercicio();?>','<?php echo $muscular->getNombre(); ?>','<?php echo $muscular->getDescripcion(); ?>')"/>
+                                            <input type="button" class="btn btn-primary" value="Seleccionar" onclick="anadirmuscular('<?php echo $muscular->getIdEjercicio();?>','<?php echo $muscular->getNombre(); ?>','<?php echo $muscular->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php

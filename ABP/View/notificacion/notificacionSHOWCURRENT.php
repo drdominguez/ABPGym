@@ -76,15 +76,14 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th>Detalle</th>
-                            </tr>
+                                        <th><?= i18n("Ver") ?></th>                            </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th>Detalle</th>
+                                        <th><?= i18n("Ver") ?></th>
 
                             </tr>
                         </tfoot>
@@ -129,7 +128,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                             <b><?= i18n("Foto de Perfil") ?>: </b> <img id="imagen" width="300" height="300" src="">  
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                           </div>
                         </div>
                       </div>
