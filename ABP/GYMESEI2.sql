@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 24-12-2017 a las 12:43:16
--- Versión del servidor: 5.7.20
--- Versión de PHP: 7.1.7
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 02-01-2018 a las 19:08:29
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -24,7 +24,6 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `GYMESEI2`;
 CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `GYMESEI2`;
-
 
 -- --------------------------------------------------------
 
@@ -83,30 +82,6 @@ CREATE TABLE `actividad_deportista` (
   `idActividad` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `actividad_deportista`
---
-
-INSERT INTO `actividad_deportista` (`id`, `idActividad`, `dniDeportista`) VALUES
-(1, 3, '11111111H'),
-(21, 28, '11111111H'),
-(22, 29, '11111111H'),
-(23, 30, '11111111H'),
-(24, 31, '11111111H'),
-(26, 18, '22222222J'),
-(27, 18, '22222222J'),
-(28, 46, '22222222J'),
-(29, 47, '22222222J'),
-(30, 47, '22222222J'),
-(31, 48, '22222222J'),
-(32, 48, '22222222J'),
-(33, 49, '22222222J'),
-(34, 49, '22222222J'),
-(35, 50, '22222222J'),
-(36, 50, '22222222J'),
-(37, 51, '22222222J'),
-(38, 51, '22222222J');
 
 -- --------------------------------------------------------
 
@@ -238,8 +213,8 @@ CREATE TABLE `deportista` (
 
 INSERT INTO `deportista` (`dni`) VALUES
 ('11111111H'),
-('98765432M'),
-('22222222J');
+('22222222J'),
+('98765432M');
 
 -- --------------------------------------------------------
 
@@ -251,8 +226,8 @@ CREATE TABLE `ejercicio` (
   `idEjercicio` bigint(20) NOT NULL,
   `nombre` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
-  `video` varchar(50) DEFAULT NULL,
-  `imagen` varchar(50) DEFAULT NULL
+  `video` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `imagen` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
@@ -489,8 +464,8 @@ CREATE TABLE `notificacion_deportista` (
 
 INSERT INTO `notificacion_deportista` (`dniAdministrador`, `dniDeportista`, `idNotificacion`, `visto`) VALUES
 ('44490816F', '11111111H', 1, 0),
-('44490816F', '98765432M', 1, 0),
-('44490816F', '22222222J', 1, 0);
+('44490816F', '22222222J', 1, 0),
+('44490816F', '98765432M', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -517,6 +492,13 @@ CREATE TABLE `pef` (
   `tarjeta` varchar(60) COLLATE utf8_spanish_ci NOT NULL,
   `comentarioRevision` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pef`
+--
+
+INSERT INTO `pef` (`dni`, `tarjeta`, `comentarioRevision`) VALUES
+('11111111H', '456', 'Problemas lumbares y cervicales moderados, no formar zona lumbar ni zona cervical.');
 
 -- --------------------------------------------------------
 
@@ -668,8 +650,7 @@ CREATE TABLE `tdu` (
 --
 
 INSERT INTO `tdu` (`dni`, `tarjeta`) VALUES
-('11111111H', '65as564653a'),
-('22222222J', '65as564653a');
+('22222222J', '555999888P');
 
 -- --------------------------------------------------------
 
@@ -686,23 +667,23 @@ CREATE TABLE `usuario` (
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `telefono` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `fechaAlta` date NOT NULL,
-  `fotoperfil` varchar(200)  CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+  `fotoperfil` varchar(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`,`fotoperfil`) VALUES
-('11111111H', 'TDU', 'TDU', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08','ABP/../View/pictures/usuarios/fotoperfil/11111111H.png'),
-('12345678Z', 'Entrenador2', 'entrenador2', 28, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador2@hotmail.com', '123456789', '2017-12-22','ABP/../View/pictures/usuarios/fotoperfil/12345678Z.png'),
-('22222222J', 'PEF', 'PEF', 25, 'e10adc3949ba59abbe56e057f20f883e', 'email@gmail.com', '666666666', '2017-11-08','ABP/../View/pictures/usuarios/fotoperfil/22222222J.png'),
-('33333333P', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08','ABP/../View/pictures/usuarios/fotoperfil/33333333P.png'),
-('44490816F', 'Daniel', 'Rodríguez Domínguez', 25, 'e10adc3949ba59abbe56e057f20f883e', 'danieldrd@outlook.es', '123456789', '2017-11-08','ABP/../View/pictures/usuarios/fotoperfil/44490816F.png'),
-('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06','ABP/../View/pictures/usuarios/fotoperfil/44497121X.png'),
-('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '646089168', '2017-11-08','ABP/../View/pictures/usuarios/fotoperfil/53192250N.png'),
-('66666666Q', '66666666Q', '66666666Q', 34, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador3@hotmail.com', '123456789', '2017-12-22','ABP/../View/pictures/usuarios/fotoperfil/66666666Q.png'),
-('98765432M', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08','ABP/../View/pictures/usuarios/fotoperfil/98765432M.png');
+INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`, `fotoperfil`) VALUES
+('11111111H', 'Manuel', 'Pérez López', 23, 'e10adc3949ba59abbe56e057f20f883e', 'manuel@gmail.com', '666333222', '2018-01-02', 'ABP/../View/pictures/usuarios/fotoperfil/11111111H.png'),
+('12345678Z', 'Entrenador2', 'entrenador2', 28, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador2@hotmail.com', '123456789', '2017-12-22', 'ABP/../View/pictures/usuarios/fotoperfil/12345678Z.png'),
+('22222222J', 'Antonio', 'De la Iglésia Rodríguez', 35, 'e10adc3949ba59abbe56e057f20f883e', 'antonio@iglesia.es', '666000222', '2018-01-02', 'ABP/../View/pictures/usuarios/fotoperfil/22222222J.png'),
+('33333333P', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08', 'ABP/../View/pictures/usuarios/fotoperfil/33333333P.png'),
+('44490816F', 'Daniel', 'Rodríguez Domínguez', 25, 'e10adc3949ba59abbe56e057f20f883e', 'danieldrd@outlook.es', '123456789', '2017-11-08', 'ABP/../View/pictures/usuarios/fotoperfil/44490816F.png'),
+('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06', 'ABP/../View/pictures/usuarios/fotoperfil/44497121X.png'),
+('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '666000222', '2018-01-02', NULL),
+('66666666Q', '66666666Q', '66666666Q', 34, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador3@hotmail.com', '123456789', '2017-12-22', 'ABP/../View/pictures/usuarios/fotoperfil/66666666Q.png'),
+('98765432M', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08', 'ABP/../View/pictures/usuarios/fotoperfil/98765432M.png');
 
 --
 -- Índices para tablas volcadas

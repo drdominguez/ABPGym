@@ -84,8 +84,7 @@ $usuario = $view->getVariable("usuario");
                             <div class="col-md-6">
                                
                                 <label id="comentarioLabel" for="comentarioRevision"><?= i18n("Comentario Revisión")?>: </label>
-                                <textarea class="form-control" id="textarea" rows="4"  type="text" name="comentarioRevision"><?php echo $usuario->getComentarioRevision(); ?>
-                                </textarea><br>
+                                <textarea class="form-control" id="textarea" rows="4"  type="text" name="comentarioRevision"><?php echo $usuario->getComentarioRevision(); ?></textarea><br>
                             </div>
                       </div>
                     </div>

@@ -23,9 +23,9 @@ Class DeportistaPEFMapper extends DeportistaMapper {
     * Es necesario ser administrador
     */
     public function addPEF($pef){
-        if($this->permisos->esAdministrador() && parent::add($pef)){ 
+        if($this->permisos->esAdministrador() && parent::ADD($pef)){ 
             $stmt = $this->db->prepare("INSERT INTO pef(dni,tarjeta,comentarioRevision) VALUES (?,?,?)");
-            $stmt->execute(array($pef->getDni(),$pef->getTarjeta(),$pef->getComentario()));
+            $stmt->execute(array($pef->getDni(),$pef->getTarjeta(),$pef->getComentarioRevision()));
             return true;
         }
         return false;
@@ -54,9 +54,23 @@ Class DeportistaPEFMapper extends DeportistaMapper {
         //inserto al deportista en la tabla PEF
         $stmt=$this->db->prepare("INSERT INTO tdu(dni,tarjeta) VALUES(?,?)");
         $stmt->execute(array($tdu->getDni(),$tdu->getTarjeta()));
-        // actualizo sus datos en la tabla usuario y en la tabla pef
+        //actualizo sus datos en la tabla usuario y en la tabla TDU
         self::editTDU($tdu);
        }
+    }
+
+    /*editTDU
+    *Actualiza los datos del tdu despues de cambiar un usuario pef a tdu
+    *
+    */
+    private function editTDU($tdu){
+        // si tiene permisos y actualizo la tabla usuario actualiza la tabla tdu
+        if($this->permisos->esAdministrador() && self::actualizarUsuario($tdu)){
+            $stmt=$this->db->prepare("UPDATE tdu SET tarjeta=? WHERE dni=?");
+            $stmt->execute(array($tdu->getTarjeta(),$tdu->getDni()));
+            return true;
+        }
+        return false;//si no es administrador no puede editar un deportista
     }
 
     /*Esta hecho por JUAN RAMÓN, no está bien actualizar un deportsta PEF es más que actualizar su tarjeta y su comentario de revisión, se puede actualizar su nombre, telefono, email, contraseña, edad...etc*/
@@ -84,7 +98,7 @@ Class DeportistaPEFMapper extends DeportistaMapper {
         // si tiene permisos y actualizo la tabla usuario actualiza la tabla tdu
         if($this->permisos->esAdministrador() && self::actualizarUsuario($pef)){
             $stmt=$this->db->prepare("UPDATE pef SET tarjeta=?, comentarioRevision=?  WHERE dni=?");
-            $stmt->execute(array($pef->getTarjeta(),$pef->comentarioRevision(),$pef->getDni()));
+            $stmt->execute(array($pef->getTarjeta(),$pef->getComentarioRevision(),$pef->getDni()));
             return true;
         }
         return false;//si no es administrador no puede editar un deportista
@@ -149,9 +163,6 @@ Class DeportistaPEFMapper extends DeportistaMapper {
     * Permite actualizar los datos de un deportista en la tabla usuario.
     */
     private function actualizarUsuario($pef){
-         //Se actualizan los datos en la tabla usuario
-        var_dump($pef->getContraseña());
-        exit;
         if($pef->getContraseña()!=""){//se actualiza la contraseña
              $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,contrasena=?,email=?,telefono=? WHERE dni=?");
             $stmt->execute(array($pef->getNombre(),$pef->getApellidos(),$pef->getEdad(), md5($pef->getContraseña()),$pef->getEmail(),$pef->getTelefono(),$pef->getDni()));

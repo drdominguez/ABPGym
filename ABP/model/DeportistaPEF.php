@@ -8,8 +8,6 @@ require_once(__DIR__."/Deportista.php");
 class DeportistaPEF extends Deportista
 {
     //Definimos las variables
-
-
     private $dni;
     private $nombre;
     private $apellidos;
@@ -20,14 +18,21 @@ class DeportistaPEF extends Deportista
     private $fechaAlta;
     private $tarjeta;
     private $fotoperfil;
-    public $comentarioRevision;
+    private $comentarioRevision;
 
     function __construct($dni=NULL, $nombre=NULL, $apellidos=NULL, $edad=NULL, $contraseña=NULL,$email=NULL, $telefono=NULL, $fechaAlta=NULL, $fotoperfil=NULL, $tarjeta=NULL, $comentarioRevision=NULL){
         parent::__construct($dni, $nombre, $apellidos, $edad, $contraseña, $email, $telefono, $fechaAlta, $fotoperfil);//llamada al contructor padre
         $this->dni = $dni;
+        $this->nombre=$nombre;
+        $this->apellidos=$apellidos;
+        $this->edad=$edad;;
+        $this->contraseña=$contraseña;
+        $this->email=$email;
+        $this->telefono=$telefono;
+        $this->fechaAlta=$fechaAlta;
         $this->tarjeta = $tarjeta;
+        $this->fotoperfil = $fotoperfil;
         $this->comentarioRevision = $comentarioRevision;
-
     }
 
     public function getDni(){
@@ -71,7 +76,7 @@ class DeportistaPEF extends Deportista
     }
 
     public function getFotoPerfil(){
-        return $fotoperfil;
+        return $this->fotoperfil;
     }
 
     public function setDni($dni){

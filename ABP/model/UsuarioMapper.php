@@ -129,8 +129,6 @@ class UsuarioMapper {
         return $usuarios;
     }
 
-
-
       public function findById($dni)
     {
         $stmt = $this->db->prepare("SELECT * FROM usuario WHERE dni=?");
@@ -144,7 +142,6 @@ class UsuarioMapper {
             return NULL;
         }
     }
-
 
     //Funcion editar
     public function EDIT($usuario)

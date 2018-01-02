@@ -31,6 +31,7 @@
                                 <th><?= i18n("Dni") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
+                                <th><?= i18n("Tipo") ?></th>
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>
@@ -41,6 +42,7 @@
                                 <th><?= i18n("Dni") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
+                                <th><?= i18n("Tipo") ?></th>
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>
@@ -52,6 +54,15 @@
                                     <td><?php echo $usuario->getDni(); ?></td>
                                     <td><?php echo $usuario->getNombre(); ?></td>
                                     <td><?php echo $usuario->getApellidos(); ?></td>
+                                    <td>
+                                        <?php if($usuario->getTipo()=="superUsuario"){ ?>
+                                            Super Usuario
+                                        <?php }elseif($usuario->getTipo()=="TDU"){ ?>
+                                            TDU
+                                        <?php }else{ ?>
+                                            PEF
+                                        <?php }?>
+                                    </td>
                                     <td>
                                     <?php if($usuario->getTipo()=="superUsuario"){ ?>
                                             <a href='./index.php?controller=Usuario&amp;action=UsuarioEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
