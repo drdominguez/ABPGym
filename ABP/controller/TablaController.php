@@ -320,6 +320,7 @@ public function PersonalizadaADD()
             $musculares = $this->tablaMapper->findMuscularesById($idTabla);
             $cardios = $this->tablaMapper->findCardiosById($idTabla);
             $estiramientos = $this->tablaMapper->findEstiramientosById($idTabla);
+            $usuarios = $this->tablaMapper->listarUsuariosTabla($idTabla);
             if ($tabla == NULL) 
             {
                 throw new Exception("No existe tabla con este id: ".$idTabla);
@@ -329,6 +330,7 @@ public function PersonalizadaADD()
             $this->view->setVariable("tipoUsuario",$tipoUsuario);
             $this->view->setVariable("tabla", $tabla);            
             $this->view->setVariable("cardios",$cardios);
+            $this->view->setVariable("usuarios",$usuarios);
             $this->view->setVariable("musculares",$musculares);
             $this->view->setVariable("estiramientos",$estiramientos);
             // render the view (/view/posts/view.php)
@@ -372,6 +374,8 @@ public function PersonalizadaADD()
         $musculares = $this->tablaMapper->findMuscularesById($idTabla);
         $cardios = $this->tablaMapper->findCardiosById($idTabla);
         $estiramientos = $this->tablaMapper->findEstiramientosById($idTabla);
+        $usuarios = $this->tablaMapper->listarUsuariosTabla($idTabla);
+        $tipoUsuario = $this->permisos->comprobarTipo();
 
         if ($tabla == NULL) 
         {
@@ -379,10 +383,11 @@ public function PersonalizadaADD()
         }
         // put the notification object to the view
 
-        $tipoUsuario = $this->permisos->comprobarTipo();
+        
         $this->view->setVariable("tipoUsuario",$tipoUsuario);
         $this->view->setVariable("tabla", $tabla);            
         $this->view->setVariable("cardios",$cardios);
+        $this->view->setVariable("usuarios",$usuarios);
         $this->view->setVariable("musculares",$musculares);
         $this->view->setVariable("estiramientos",$estiramientos);
 

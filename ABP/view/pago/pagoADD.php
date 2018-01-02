@@ -78,7 +78,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
 
                  <div class="card mb-3">
                         <div class="card-header">
-                            <i class="fa fa-table"></i><?= i18n("Mostrar todas las actividades") ?>
+                            <i class="fa fa-table"></i><?= i18n("Seleccione Actividad") ?>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -147,7 +147,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                             <b><?= i18n("Fecha Fin") ?>: </b> <p id="fechaFin"></p> 
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
                           </div>
                         </div>
                       </div>
@@ -161,7 +161,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                         
             <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i><?= i18n("Mostrar todos los usuarios") ?>
+                        <i class="fa fa-table"></i><?= i18n("Seleccione Usuario") ?>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -172,8 +172,8 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                                     <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th>Detalle</th>
-                                <th>Seleccionar</th>
+                                        <th><?= i18n("Ver") ?></th>
+                                        <th><?= i18n("Seleccionar") ?></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -181,8 +181,8 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                                       <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th>Detalle</th>
-                                <th>Seleccionar</th>
+                                        <th><?= i18n("Ver") ?></th>
+                                        <th><?= i18n("Seleccionar") ?></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -200,7 +200,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dniDeportista" value="<?php echo $usuario->getDni();?>">Seleccionar<br>
+                                            <input type="radio" name="dniDeportista" value="<?php echo $usuario->getDni();?>"><?= i18n("Seleccionar") ?><br>
                                         </td>
                                     </tr>
 <?php
@@ -230,7 +230,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                             <b><?= i18n("Foto de Perfil") ?>: </b> <img id="imagen" width="300" height="300" src="">  
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
                           </div>
                         </div>
                       </div>
