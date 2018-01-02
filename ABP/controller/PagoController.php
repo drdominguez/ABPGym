@@ -46,9 +46,20 @@ class PagoController extends BaseController
 
         }else
         {
-            $actividades = $this->pagoMapper->listarActividades();
-            $this->view->setVariable("actividades",$actividades);
-            $this->view->render("pago","pagoADD");
+            if(isset($_POST["dniDeportista"])){
+
+                $actividades = $this->pagoMapper->listarActividades();
+                $this->view->setVariable("actividades",$actividades);
+                $this->view->setVariable("usuario",$_POST['dniDeportista']);
+                $this->view->setVariable("seleccionarusuario", "ok");
+                $this->view->render("pago","pagoADD");
+
+            }else{
+                $deportistas = $this->pagoMapper->listarDeportistas();
+                $this->view->setVariable("usuarios",$deportistas);
+                $this->view->setVariable("seleccionarusuario", "no");
+                $this->view->render("pago","pagoADD");
+            }
         }
         }else{
                 $this->view->redirect("main", "index");

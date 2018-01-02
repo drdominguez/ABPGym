@@ -88,12 +88,13 @@ Class PagoMapper{
     {
         if($this->permisos->esAdministrador())
         {
-            $stmt = $this->db->query("SELECT * FROM actividad");
+            $stmt = $this->db->query("SELECT * FROM actividad A, horario H, actividad_horario AH, recursos R WHERE A.idActividad=AH.idActividad AND AH.idHorario=H.idHorario AND A.idInstalaciones=R.idRecurso");
             $actividades_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $actividades = array();
             foreach ($actividades_db as $actividad)
             {
-                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio']));
+                $horario = new Horario($actividad['idHorario'],$actividad['dia'],$actividad['hora'],$actividad['fechIni'],$actividad['fechFin']);
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['nombreRecurso'],$actividad['plazas'],$horario));
             }
             return $actividades;
         }
@@ -118,6 +119,20 @@ Class PagoMapper{
         }
         return $pagos;
     }
+
+
+public function listarDeportistas()
+    {
+        $stmt = $this->db->query("SELECT * from deportista d, usuario u WHERE d.dni=u.dni");
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
+        {
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],'',$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],'',$usuario['fotoperfil']));
+        }
+        return $usuarios;
+    }
+
 
 }
 ?>
