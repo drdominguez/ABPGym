@@ -49,14 +49,16 @@ require_once(__DIR__."/../../core/ViewManager.php");
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar notificacion") ?>
+                <i class="fa fa-table"></i><?= i18n("Mostrar Notificación") ?>
             </div>
             <div class="card-body">
-                <b><?= i18n("idNotificacion") ?>:</b> <?php echo $notificacion->getIdNotificacion(); ?><br>
-                <b><?= i18n("dniAdministrador") ?>:</b> <?php echo $notificacion->getDniAdministrador(); ?><br>
-                <b><?= i18n("Asunto") ?>:</b> <?php echo $notificacion->getAsunto(); ?><br>
-                <b><?= i18n("contenido") ?>:</b> <?php echo $notificacion->getContenido(); ?><br>
-                <b><?= i18n("fecha") ?>: </b> <?php echo $notificacion->getFecha(); ?><br><br> 
+              <?php if($tipoUsuario == 'administrador'){?>
+                <b><?= i18n("ID de la Notificación") ?>:</b> <p><?php echo $notificacion->getIdNotificacion(); ?></p>
+                <b><?= i18n("DNI del Administrador") ?>:</b> <p><?php echo $notificacion->getDniAdministrador(); ?></p>
+                <?php } ?>
+                <b><?= i18n("Asunto") ?>:</b> <p><?php echo $notificacion->getAsunto(); ?></p>
+                <b><?= i18n("Contenido") ?>:</b> <p><?php echo $notificacion->getContenido(); ?></p>
+                <b><?= i18n("Fecha") ?>: </b> <p><?php echo $notificacion->getFecha(); ?></p>
             </div>
         </div>
 
@@ -64,7 +66,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 <?php if($tipoUsuario == 'administrador'){?>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Usuarios") ?>
+                <i class="fa fa-table"></i><?= i18n("Usuarios a los que fue enviada la notificación") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

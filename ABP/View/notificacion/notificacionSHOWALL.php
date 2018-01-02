@@ -17,7 +17,7 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Mostrar todas las notificaciones") ?>
+                <i class="fa fa-table"></i><?= i18n("Mostrar Todas las Notificaciones") ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

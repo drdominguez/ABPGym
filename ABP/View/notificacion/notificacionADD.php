@@ -27,7 +27,7 @@
         <!-- Example DataTables Card-->
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Enviar notificacion") ?>
+                <i class="fa fa-table"></i><?= i18n("Enviar Notificación") ?>
             </div>
             <div class="card-body">                  
                 <form name = 'Form' action='./index.php?controller=Notificacion&amp;action=NotificacionADD' method='post' onsubmit='return validarNotificacionADD()'>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group">
                         <div class="form-row">
-                        <label for="contenido"><?= i18n("contenido") ?> : </label>
+                        <label for="contenido"><?= i18n("Contenido") ?>: </label>
                         <textarea class="form-control" name = 'contenido' rows="6"  value = ''  onchange="comprobarVacio(this)" ></textarea>
                         </div>
                     </div>
@@ -49,15 +49,15 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <input type="checkbox" onclick="marcar(this);" /> Marcar/Desmarcar Todos
+                    <input type="checkbox" onclick="marcar(this);" /><?= i18n("Marcar/Desmarcar Todos") ?> 
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                             <tr>
                                 <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th>Detalle</th>
-                                <th>Seleccionar</th>
+                                <th><?= i18n("Detalle") ?></th>
+                                <th><?= i18n("Seleccionar") ?></th>
 
                             </tr>
                         </thead>
@@ -66,8 +66,8 @@
                                 <th><?= i18n("DNI") ?></th>
                                 <th><?= i18n("Nombre") ?></th>
                                 <th><?= i18n("Apellidos") ?></th>
-                                <th>Detalle</th>
-                                <th>Seleccionar</th>
+                                <th><?= i18n("Detalle") ?></th>
+                                <th><?= i18n("Seleccionar") ?></th>
 
                             </tr>
                         </tfoot>
