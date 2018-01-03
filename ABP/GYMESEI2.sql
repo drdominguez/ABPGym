@@ -1017,6 +1017,12 @@ ALTER TABLE `superusuario_ejercicio`
 ALTER TABLE `tabla`
   MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+
+--
+-- AUTO_INCREMENT de la tabla `sesionentrenamiento`
+--
+ALTER TABLE `sesionentrenamiento`
+  MODIFY `idSesionEntrenamiento` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --
