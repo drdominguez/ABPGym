@@ -533,7 +533,8 @@ CREATE TABLE `sesionentrenamiento` (
   `idSesionEntrenamiento` bigint(20) NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci,
   `duracion` bigint(20) DEFAULT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -871,7 +872,8 @@ ALTER TABLE `recursos`
 --
 ALTER TABLE `sesionentrenamiento`
   ADD PRIMARY KEY (`idSesionEntrenamiento`),
-  ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`);
+  ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`),
+  ADD KEY `dniDeportista` (`dniDeportista`);
 
 --
 -- Indices de la tabla `sesionentrenamiento_tabla`
@@ -879,7 +881,7 @@ ALTER TABLE `sesionentrenamiento`
 ALTER TABLE `sesionentrenamiento_tabla`
   ADD PRIMARY KEY (`idSesionEntrenamiento`,`idTabla`),
   ADD UNIQUE KEY `idSesionEntrenamiento` (`idSesionEntrenamiento`),
-  ADD UNIQUE KEY `idTabla` (`idTabla`);
+  ADD KEY `idTabla` (`idTabla`);
 
 --
 -- Indices de la tabla `superusuario`
@@ -1159,6 +1161,12 @@ ALTER TABLE `pago`
 --
 ALTER TABLE `pef`
   ADD CONSTRAINT `fk_PefDeportista` FOREIGN KEY (`dni`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `pef`
+--
+ALTER TABLE `sesionentrenamiento`
+  ADD CONSTRAINT `fk_SesionEntrenamientoDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `sesionentrenamiento_tabla`
