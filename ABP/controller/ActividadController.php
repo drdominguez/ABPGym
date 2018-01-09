@@ -178,30 +178,31 @@ class ActividadController extends BaseController{
     public function ActividadAsignar() 
     {
         if($this->permisos->esSuperusuario()){
-         if(isset($_POST["usuarios"]) && isset($_POST["idActividad"]))
-        {
-            $usuarios = $_POST['usuarios'];
-            $idActividad = $_POST['idActividad'];
-            $actividad = $this->actividadMapper->findById($idActividad);
-             if($this->actividadMapper->addDeportista($usuarios,$idActividad,$actividad))
+            if(isset($_POST["usuarios"]) && isset($_POST["idActividad"]))
             {
-               $this->view->setFlash("Usuarios Asignados Correctamente");
-            }else
-            {
-                $errors["username"] = "El usuario no se ha asignado corectamente";
-                $this->view->setFlash($errors["username"]);
-            }
+                $usuarios = $_POST['usuarios'];
+                $idActividad = $_POST['idActividad'];
+                $actividad = $this->actividadMapper->findById($idActividad);
+                $this->actividadMapper->eliminarDeportistas($idActividad);
+                if($this->actividadMapper->addDeportista($usuarios,$idActividad,$actividad))
+                {
+                    $this->view->setFlash("Usuarios Asignados Correctamente");
+                }else
+                {
+                    $errors["username"] = "El usuario no se ha asignado corectamente";
+                    $this->view->setFlash($errors["username"]);
+                }
             $this->view->redirect("Actividad", "actividadListar");
             
+            }else{
+                $usuarios = $this->actividadMapper->listarDeportistas();
+                $deportistasAs = $this->actividadMapper->deportistasAsignados($_GET['idActividad']);
+                $this->view->setVariable("deportistasAs",$deportistasAs);
+                $this->view->setVariable("usuarios",$usuarios);
+                $this->view->render("actividad","actividadASIGNAR");
+            }
         }else{
-        $usuarios = $this->actividadMapper->listarDeportistas();
-        $deportistasAs = $this->actividadMapper->deportistasAsignados($_GET['idActividad']);
-        $this->view->setVariable("deportistasAs",$deportistasAs);
-        $this->view->setVariable("usuarios",$usuarios);
-        $this->view->render("actividad","actividadASIGNAR");
-        }
-         }else{
-        $this->view->redirect("main", "index");
+            $this->view->redirect("main", "index");
         }
     }
 

@@ -271,6 +271,16 @@ class ActividadMapper{
         }
         return $usuarios;
     }
+    public function eliminarDeportistas($idActividad){
+        $stmt = $this->db->prepare("DELETE from actividad_deportista WHERE idActividad=?");
+        if(self::esAdministrador()){
+            $stmt-> execute(array($idActividad));
+            $stmt1 = $this->db->prepare("UPDATE actividad SET contador=0 WHERE idActividad=?");
+            $stmt1->execute(array($idActividad));
+            return true;
+        }
+        return false;
+    }
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador 
         FROM administrador WHERE dniAdministrador=?");
