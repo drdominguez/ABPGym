@@ -29,6 +29,7 @@ $view->setVariable("title", "Actividades");
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>
+                                <th><?= i18n("Asignar") ?></th>
                         </tr>
                         </thead>
                             <tfoot>
@@ -38,6 +39,7 @@ $view->setVariable("title", "Actividades");
                                 <th><?= i18n("Editar") ?></th>
                                 <th><?= i18n("Borrar") ?></th>
                                 <th><?= i18n("Ver") ?></th>
+                                <th><?= i18n("Asignar") ?></th>
                             </tr>
                             </tfoot>
             <tbody>
@@ -61,7 +63,10 @@ $view->setVariable("title", "Actividades");
                         <a href='./index.php?controller=Actividad&amp;action=actividadView&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><span id="icon-ver" class="icon-eye-plus"></span>
                         </a>
                         </td>
-
+                        <td>
+                        <a href='./index.php?controller=Actividad&amp;action=actividadAsignar&amp;idActividad=<?php echo $actividad->getIdActividad();?>'><span id="icon-ver" class="icon-address-book"></span>
+                        </a>
+                        </td>
                     </tr>
 <?php
                 }   

@@ -10,18 +10,21 @@ require_once(__DIR__ . "/../model/ActividadGrupo.php");
 require_once(__DIR__ . "/../model/ActividadMapper.php");
 require_once(__DIR__ . "/../model/ActividadIndividualMapper.php");
 require_once(__DIR__ . "/../model/ActividadGrupoMapper.php");
+require_once(__DIR__ . "/../core/permisos.php");
 
 class ActividadController extends BaseController{
 
     private $actividadMapper;
     private $individualMapper;
     private $grupoMapper;
+    private $permisos;
 
     public function __construct() {
         parent::__construct();/*llama al contructor padre 'BaseController de gestion de la sesion*/
         $this->actividadMapper = new ActividadMapper();
         $this->individualMapper = new ActividadIndividualMapper();
         $this->grupoMapper = new ActividadGrupoMapper();
+        $this->permisos= new Permisos();
     }
 
     public function actividadView() 
@@ -171,6 +174,32 @@ class ActividadController extends BaseController{
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/individual","individualADD");
+    }
+    public function ActividadAsignar() 
+    {
+        if($this->permisos->esSuperusuario()){
+         if(isset($_POST["usuario"]) && isset($_POST["idAsignar"]))
+        {
+            $usuario = $_POST['usuario'];
+            $tabla = $_POST['idAsignar'];
+             if($this->tablaMapper->asignar($usuario,$actividad))
+            {
+               $this->view->setFlash("Usuarios Asignados Correctamente");
+            }else
+            {
+                $errors["username"] = "El usuario no se ha asignado corectamente";
+                $this->view->setFlash($errors["username"]);
+            }
+            $this->view->redirect("Actividad", "actividadListar");
+            
+        }else{
+        $usuarios = $this->actividadMapper->listarDeportistas();
+        $this->view->setVariable("usuarios",$usuarios);
+        $this->view->render("actividad","actividadASIGNAR");
+        }
+         }else{
+        $this->view->redirect("main", "index");
+        }
     }
 
     public function grupoADD() {

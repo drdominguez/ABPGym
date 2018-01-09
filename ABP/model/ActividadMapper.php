@@ -183,7 +183,7 @@ class ActividadMapper{
         $usuarios = array();
         foreach ($usuarios_db as $usuario) 
         {
-            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],$usuario['email'],$usuario['telefono'],$usuario['fechaAlta']));
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],'',$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],'',$usuario['fotoperfil']));
         }
         return $usuarios;
     }
@@ -266,6 +266,17 @@ class ActividadMapper{
             return true;
         }
         return false;
+    }
+    public function listarDeportistas()
+    {
+        $stmt = $this->db->query("SELECT * from deportista d, usuario u WHERE d.dni=u.dni");
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
+        {
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],'',$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],'',$usuario['fotoperfil']));
+        }
+        return $usuarios;
     }
 }//fin de clase
 ?> 
