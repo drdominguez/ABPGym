@@ -12,12 +12,11 @@ Class ActividadGrupoMapper extends ActividadMapper{
 	public function __construct(){
 		parent::__construct();//inicia el atributo protected $this->db de conexion con la BBDD
 	}
-	public function addGrupo($actividad,$actividadEntrenador,$usuariosd){
+	public function addGrupo($actividad,$actividadEntrenador){
 		
 		parent::add($actividad,$actividadEntrenador);//llama al add de la clase padre
 		$idActividadEntrenador = $this->db->lastInsertId();
 		$idActividad=$this->findIdActividad($idActividadEntrenador);
-		parent::addDeportista($usuariosd,$idActividad,$actividad);
 
  		if(parent::esAdministrador()){
 			$stmt = $this->db->prepare("INSERT INTO grupo(idActividad) VALUES (?)");

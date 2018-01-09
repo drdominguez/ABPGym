@@ -23,7 +23,6 @@ class ActividadMapper{
 
         if(self::esAdministrador())
         {
-
             foreach ($usuariosd as $usuariod) 
             {
                 $usuariod_insertar = new ActividadDeportista();
@@ -33,17 +32,20 @@ class ActividadMapper{
             }
 
             if($deportistas && $plazas>=sizeof($deportistas)){
-                foreach($deportistas as $deportista)
+                 foreach($deportistas as $deportista)
                 {
                     if($plazas>$cont){
+
+                    
                     $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
                     $stmt3->execute(array($idActividad,$deportista->getDniDeportista()));
                     $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
                     $stmt4->execute(array($idActividad));
                     }
                 }
+                return true;
             }
-            return true;
+            return false;
         }
         return false;
     }
@@ -162,7 +164,7 @@ class ActividadMapper{
             if($stmt2!=null)
             {
                 $actividad2 = $stmt2->fetch(PDO::FETCH_ASSOC);
-                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"],$horario);
+                return new ActividadGrupo($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"],$actividad["contador"],$horario);
                 }else 
                 {
 
@@ -170,7 +172,7 @@ class ActividadMapper{
                 $stmt3->execute(array($idActividad));
                 if($stmt3!=null){
                     $actividad3 = $stmt3->fetch(PDO::FETCH_ASSOC);
-                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"],$horario_db);
+                    return new ActividadIndividual($actividad["idActividad"],$actividad["nombre"],$actividad["precio"],$actividad['idInstalaciones'],$actividad["plazas"],$actividad["contador"],$horario_db);
                 }
             }
         }
@@ -256,6 +258,18 @@ class ActividadMapper{
         
         return $entrenadorasignado;
 
+    }
+    public function deportistasAsignados($idActividad)
+    {
+        $stmt = $this->db->prepare("SELECT * from actividad_deportista ad, usuario u WHERE idActividad=? AND ad.dniDeportista=u.dni");
+        $stmt-> execute(array($idActividad));
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
+        {
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],'',$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],'',$usuario['fotoperfil']));
+        }
+        return $usuarios;
     }
     protected function esAdministrador(){
         $stmt= $this->db->prepare("SELECT dniAdministrador 

@@ -3,6 +3,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 
     $view = ViewManager::getInstance();
     $usuarios = $view->getVariable("usuarios");
+    $deportistasAs = $view->getVariable("deportistasAs");
     $currentuser = $view->getVariable("currentusername");
     $view->setVariable("title", "Asignar Deportista a Actividad");
 ?>
@@ -67,7 +68,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
             <div id="flash"><?= $view->popFlash() ?></div>
         </ol>
         <!-- Example DataTables Card-->
-    <form name='Form' action='./index.php?controller=Usuario&amp;action=ActividadAsignar' method='post'>
+    <form name='Form' action='./index.php?controller=Actividad&amp;action=ActividadAsignar' method='post'>
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-table"></i><?= i18n("Asignar Tabla Estándar") ?>
@@ -110,7 +111,11 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                             </a>
                                     </td>
                                      <td>
-                                      <input type="checkbox" name="usuario" value="<?php echo $usuario->getDni(); ?>">
+                                      <?php if(in_array($usuario,$deportistasAs)){ ?>
+                                      <input checked type="checkbox" name="usuarios[]" value="<?php echo $usuario->getDni(); ?>">
+                                      <?php }else{ ?>
+                                      <input type="checkbox" name="usuarios[]" value="<?php echo $usuario->getDni(); ?>">
+                                      <?php } ?>
                                     </td>
                             </tr>
 <?php
@@ -121,7 +126,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 </div>
             </div>
         </div>
-                    <input type="hidden" name="idActividad" value="<?php echo $_GET['idACtividad']; ?>">
+                    <input type="hidden" name="idActividad" value="<?php echo $_GET['idActividad']; ?>">
                         <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=ActividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                 <button  type='submit' name='action' value='ActiviadAsignar' class="btn btn-primary"><?= i18n("Asignar") ?></button>
             </form>

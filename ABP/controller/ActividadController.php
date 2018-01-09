@@ -178,11 +178,12 @@ class ActividadController extends BaseController{
     public function ActividadAsignar() 
     {
         if($this->permisos->esSuperusuario()){
-         if(isset($_POST["usuario"]) && isset($_POST["idAsignar"]))
+         if(isset($_POST["usuarios"]) && isset($_POST["idActividad"]))
         {
-            $usuario = $_POST['usuario'];
-            $tabla = $_POST['idAsignar'];
-             if($this->tablaMapper->asignar($usuario,$actividad))
+            $usuarios = $_POST['usuarios'];
+            $idActividad = $_POST['idActividad'];
+            $actividad = $this->actividadMapper->findById($idActividad);
+             if($this->actividadMapper->addDeportista($usuarios,$idActividad,$actividad))
             {
                $this->view->setFlash("Usuarios Asignados Correctamente");
             }else
@@ -194,6 +195,8 @@ class ActividadController extends BaseController{
             
         }else{
         $usuarios = $this->actividadMapper->listarDeportistas();
+        $deportistasAs = $this->actividadMapper->deportistasAsignados($_GET['idActividad']);
+        $this->view->setVariable("deportistasAs",$deportistasAs);
         $this->view->setVariable("usuarios",$usuarios);
         $this->view->render("actividad","actividadASIGNAR");
         }

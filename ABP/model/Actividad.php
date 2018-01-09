@@ -11,7 +11,7 @@ class Actividad
         private $horario;
         private $contador;
 
-        function __construct($idActividad=NULL,$nombre=NULL,$precio=NULL,$idInstalaciones=NULL,$plazas=NULL,$horario=NULL,$contador=NULL){
+        function __construct($idActividad=NULL,$nombre=NULL,$precio=NULL,$idInstalaciones=NULL,$plazas=NULL,$contador=NULL,$horario=NULL){
             $this->idActividad = $idActividad;
             $this->nombre = $nombre;
             $this->precio = $precio;
