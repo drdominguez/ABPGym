@@ -73,8 +73,7 @@
                                         <?php }else{ ?>
                                             <a href='./index.php?controller=Deportista&amp;action=pefEDIT&amp;dni=<?php echo $usuario->getDni();?>'><span id="icon-editar" class="icon-pencil22"></span>
                                             </a>
-                                        <? } ?>
-                                    <?php } ?>
+                                        <?php } ?>
                                     </td>
                                     <td>
                                         <?php if($usuario->getDni() != $_SESSION['currentuser']){ ?>
@@ -87,7 +86,7 @@
                                         </a>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php }?>
                         </tbody>
                     </table>
                 </div>
