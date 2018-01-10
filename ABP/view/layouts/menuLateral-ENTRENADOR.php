@@ -48,7 +48,13 @@
                                 <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Consultar Sesiones") ?></a>
                             </li>
                         </ul>
-                    </li>                    
+                    </li>
+                    <li class="nav-item" data-toggle="tooltip">
+                        <a class="nav-link" href="./index.php?controller=Estadistica&amp;action=Listar">
+                            <i class="fa fa-fw fa-link"></i>
+                            <span class="nav-link-text"> <?= i18n("Estadísticas");?></span>
+                        </a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav sidenav-toggler">
                     <li class="nav-item">

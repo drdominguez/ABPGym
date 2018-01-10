@@ -9,8 +9,9 @@ class Estadistica
     private $comentario;
     private $duracion;
     private $fecha;
+    private $dni;
 
-    function __construct($idTabla=NULL,$idSes=NULL,$nombre=NULL,$tipo=NULL,$descripcion=NULL,$comentario=NULL,$duracion=NULL,$fecha=NULL)
+    function __construct($idTabla=NULL,$idSes=NULL,$nombre=NULL,$tipo=NULL,$descripcion=NULL,$comentario=NULL,$duracion=NULL,$fecha=NULL, $dni=NULL)
     {
         $this->idTabla = $idTabla;
         $this->idSes = $idSes;
@@ -20,6 +21,7 @@ class Estadistica
         $this->comentario = $comentario;
         $this->duracion = $duracion;
         $this->fecha = $fecha;
+        $this->dni = $dni;
     }
 
 
@@ -54,6 +56,10 @@ class Estadistica
         return $this->fecha;
     }
 
+    public function getDNI(){
+        return $this->dni;
+    }
+
     public function setNombre($nombre)
     {
         $this->nombre=$nombre;
@@ -75,6 +81,10 @@ class Estadistica
     }
     public function setFecha($fecha){
         $this->fecha=$fecha;
+    }
+
+    public function setDNI($dni){
+        $this->dni=$dni;
     }
 
 }//fin de clase

@@ -19,31 +19,33 @@ class EstadisticaController extends BaseController{
         $this->permisos= new Permisos();
     }
 
-    public function Listar(){
+    public function Listar()
+    {
+        $tipoUsuario = $this->permisos->comprobarTipo();
         $estadisticaMapper = new EstadisticaMapper();
         $estadisticas = $estadisticaMapper->listar();
         $this->view->setVariable("estadistica",$estadisticas);
+        $this->view->setVariable("tipoUsuario",$tipoUsuario);
         $this->view->render("Estadistica","estadisticaSHOWALL");
     }
 
-    public function TablaView() {
-        $tablaMapper = new TablaMapper();
+    public function EstadisticaView() {
+        $estadisticaMapper = new EstadisticaMapper();
         if (!isset($_GET["idTabla"])){
-            throw new Exception("El id es obligatorio");
+            throw new Exception("El idTabla es obligatorio");
         }
         $idTabla = $_GET["idTabla"];
+        $idSesion = $_GET["idSes"];
         // find the notification object in the database
-        $tabla =  $tablaMapper->findTablaById($idTabla);
-        $ejercicios = $tablaMapper->findEjerciciosById($idTabla);
+        $estadistica =  $estadisticaMapper->mostrarEstadistica($idTabla,$idSesion);
 
-        if ($tabla == NULL){
+        if ($estadistica == NULL){
             throw new Exception("No existe tabla con este id: ".$idTabla);
         }
         // put the notification object to the view
-        $this->view->setVariable("tabla", $tabla);
-        $this->view->setVariable("ejercicios", $ejercicios);
+        $this->view->setVariable("estadistica", $estadistica);
         // render the view (/view/posts/view.php)
-        $this->view->render("sesionEntrenamiento", "tablaSHOWCURRENT");
+        $this->view->render("Estadistica", "estadisticaSHOWCURRENT");
     }
 
 }

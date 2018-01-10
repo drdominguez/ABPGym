@@ -31,23 +31,17 @@ if (isset($_POST["grafica"]))
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                         <tr>
-                            <th><?= i18n("nombre") ?></th>
-                            <th><?= i18n("tipo") ?></th>
-                            <th><?= i18n("descripción") ?></th>
-                            <th><?= i18n("comentario") ?></th>
-                            <th><?= i18n("duración") ?></th>
-                            <th><?= i18n("fecha") ?></th>
+                            <th><?= i18n("Nombre") ?></th>
+                            <th><?= i18n("Duración") ?></th>
+                            <th><?= i18n("Fecha") ?></th>
                             <th><?= i18n("Ver") ?></th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th><?= i18n("nombre") ?></th>
-                            <th><?= i18n("tipo") ?></th>
-                            <th><?= i18n("descripción") ?></th>
-                            <th><?= i18n("comentario") ?></th>
-                            <th><?= i18n("duración") ?></th>
-                            <th><?= i18n("fecha") ?></th>
+                            <th><?= i18n("Nombre") ?></th>
+                            <th><?= i18n("Duración") ?></th>
+                            <th><?= i18n("Fecha") ?></th>
                             <th><?= i18n("Ver") ?></th>
                         </tr>
                         </tfoot>
@@ -59,16 +53,13 @@ if (isset($_POST["grafica"]))
                             ?>
                             <tr>
                                 <td><?php echo $estadistica->getNombre(); ?></td>
-                                <td><?php echo $estadistica->getTipo(); ?></td>
-                                <td><?php echo $estadistica->getDescripcion(); ?></td>
-                                <td><?php echo $estadistica->getComentario(); ?></td>
                                 <td><?php echo $estadistica->getDuracion(); ?></td>
                                 <td><?php echo $estadistica->getFecha();
-                                $arrayP = array($estadistica->getDuracion(),$estadistica->getFecha(),$estadistica->getDuracion()+3);
+                                $arrayP = array($estadistica->getDuracion(),$estadistica->getFecha());
                                 array_push($arrayPHP, $arrayP)?></td>
                                 <td>
-                                    <!--<a href='./index.php?controller=Estadistica&amp;action=EstadisticaView&amp;idTabla=<//  ?php echo $tabla->getIdTabla();?>'><span id="icon-ver" class="icon-eye-plus"></span>
-                                    </a>-->
+                                    <a href='./index.php?controller=Estadistica&amp;action=EstadisticaView&amp;idTabla=<?php echo $estadistica->getIdTabla()?>&amp;idSes=<?php echo $estadistica->getIdSesion()?>'><span id="icon-ver" class="icon-eye-plus"></span>
+                                    </a>
                                 </td>
                             </tr>
                             <?php

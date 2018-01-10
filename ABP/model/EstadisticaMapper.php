@@ -27,8 +27,9 @@ Class EstadisticaMapper
                 $stmt->execute(array($_SESSION['currentuser']));
             }
         }else{
-            $stmt = $this->db->prepare("SELECT t.idTabla, t. tipo, t.comentario as descripcion, t.nombre,
-                                                         s.idSesionEntrenamiento, s.comentario as coment, s.duracion, s.fecha
+            $stmt = $this->db->prepare("SELECT t.idTabla, t.tipo, t.comentario as descripcion, t.nombre,
+                                                         s.idSesionEntrenamiento, s.comentario as coment, s.duracion, s.fecha,
+                                                         s.dniDeportista
                                                         from tabla t, sesionentrenamiento s,
                                                             sesionentrenamiento_tabla st 
                                                             WHERE t.idTabla = st.idTabla 
@@ -42,24 +43,32 @@ Class EstadisticaMapper
         $estadisticas = array();
         foreach ($estadisticas_db as $estadistica)
         {
-            array_push($estadisticas, new Estadistica($estadistica['idTabla'],$estadistica['idSesionEntrenamiento'],$estadistica['nombre'],
-                $estadistica['tipo'],$estadistica['descripcion'],$estadistica['coment'],$estadistica['duracion'],$estadistica['fecha']));
+            array_push($estadisticas, new Estadistica($estadistica['idTabla'],$estadistica['idSesionEntrenamiento'],
+                $estadistica['nombre'],$estadistica['tipo'],$estadistica['descripcion'],$estadistica['coment'],
+                $estadistica['duracion'],$estadistica['fecha'],$estadistica['dniDeportista']));
         }
         return $estadisticas;
 
     }
 
 
-    public function listarTablasUsuario($usuario){
-        $stmt = $this->db->prepare("SELECT * from tabla t, superusuario_tabla_deportista st WHERE t.idTabla=st.idTabla AND dniDeportista=?");
-        $stmt->execute(array($usuario));
-        $tablas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $tablas = array();
-        foreach ($tablas_db as $tabla)
-        {
-            array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
-        }
-        return $tablas;
+    public function mostrarEstadistica($idTabla, $idSesion){
+        $stmt = $this->db->prepare("SELECT t.idTabla, t.tipo, t.comentario as descripcion, t.nombre,
+                                                         s.idSesionEntrenamiento, s.comentario as coment, s.duracion, s.fecha,
+                                                         s.dniDeportista
+                                                        from tabla t, sesionentrenamiento s,
+                                                            sesionentrenamiento_tabla st 
+                                                            WHERE t.idTabla = st.idTabla 
+                                                            AND s.idSesionEntrenamiento = st.idSesionEntrenamiento
+                                                            AND t.idTabla = ? AND s.idSesionEntrenamiento = ?");
+
+        $stmt->execute(array($idTabla,$idSesion));
+        $estadistica = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        return new Estadistica($estadistica['idTabla'],$estadistica['idSesionEntrenamiento'],
+            $estadistica['nombre'],$estadistica['tipo'],$estadistica['descripcion'],$estadistica['coment'],
+            $estadistica['duracion'],$estadistica['fecha'],$estadistica['dniDeportista']);
 
     }
 }
