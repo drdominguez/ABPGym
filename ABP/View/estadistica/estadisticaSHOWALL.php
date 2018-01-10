@@ -31,17 +31,25 @@ if (isset($_POST["grafica"]))
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                         <tr>
-                            <th><?= i18n("Nombre") ?></th>
-                            <th><?= i18n("Duración") ?></th>
-                            <th><?= i18n("Fecha") ?></th>
-                            <th><?= i18n("Ver") ?></th>
+                            <?php if($tipoUsuario != 'deportista'){?>
+                                <th><?= i18n("DNI") ?></th>
+                            <?php }else{ ?>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Duración") ?></th>
+                                <th><?= i18n("Fecha") ?></th>
+                            <?php } ?>
+                                <th><?= i18n("Ver") ?></th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th><?= i18n("Nombre") ?></th>
-                            <th><?= i18n("Duración") ?></th>
-                            <th><?= i18n("Fecha") ?></th>
+                            <<?php if($tipoUsuario != 'deportista'){?>
+                                <th><?= i18n("DNI") ?></th>
+                            <?php }else{ ?>
+                                <th><?= i18n("Nombre") ?></th>
+                                <th><?= i18n("Duración") ?></th>
+                                <th><?= i18n("Fecha") ?></th>
+                            <?php } ?>
                             <th><?= i18n("Ver") ?></th>
                         </tr>
                         </tfoot>
@@ -52,11 +60,13 @@ if (isset($_POST["grafica"]))
                         {
                             ?>
                             <tr>
+                                <?php if($tipoUsuario == 'deportista'){?>
                                 <td><?php echo $estadistica->getNombre(); ?></td>
                                 <td><?php echo $estadistica->getDuracion(); ?></td>
                                 <td><?php echo $estadistica->getFecha();
                                 $arrayP = array($estadistica->getDuracion(),$estadistica->getFecha());
                                 array_push($arrayPHP, $arrayP)?></td>
+                                <?php } ?>
                                 <td>
                                     <a href='./index.php?controller=Estadistica&amp;action=EstadisticaView&amp;idTabla=<?php echo $estadistica->getIdTabla()?>&amp;idSes=<?php echo $estadistica->getIdSesion()?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                     </a>
