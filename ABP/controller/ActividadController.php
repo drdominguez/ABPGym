@@ -201,9 +201,12 @@ class ActividadController extends BaseController{
             $this->view->redirect("Actividad", "actividadListar");
             
             }else{
+                $idActividad = $_GET['idActividad'];
+                $actividad = $this->actividadMapper->findById($idActividad);
                 $usuarios = $this->actividadMapper->listarDeportistas();
                 $deportistasAs = $this->actividadMapper->deportistasAsignados($_GET['idActividad']);
                 $this->view->setVariable("deportistasAs",$deportistasAs);
+                $this->view->setVariable("actividad",$actividad);
                 $this->view->setVariable("usuarios",$usuarios);
                 $this->view->render("actividad","actividadASIGNAR");
             }

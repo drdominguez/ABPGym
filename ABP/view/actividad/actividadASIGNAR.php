@@ -4,9 +4,9 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $view = ViewManager::getInstance();
     $usuarios = $view->getVariable("usuarios");
     $deportistasAs = $view->getVariable("deportistasAs");
+    $actividad = $view->getVariable("actividad");
     $currentuser = $view->getVariable("currentusername");
 ?>
-
 <header>
     <meta charset="UTF-8">
     <title>Iconos</title>
@@ -70,7 +70,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
     <form name='Form' action='./index.php?controller=Actividad&amp;action=ActividadAsignar' method='post'>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Asignar Deportista a Actividad") ?>
+                <i class="fa fa-table"></i><?= i18n("Asignar Deportista a ");?> <?php echo $actividad->getNombre() ?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
