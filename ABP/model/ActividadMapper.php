@@ -18,37 +18,34 @@ class ActividadMapper{
     }
     function addDeportista($usuariosd,$idActividad,$actividad){
         $deportistas = array();
-        $cont=$actividad->getContador();
         $plazas=$actividad->getPlazas();
 
         if(self::esAdministrador())
         {
-            var_dump($usuariosd);
+
+            $stmt = $this->db->prepare("DELETE from actividad_deportista WHERE idActividad=?");
+            $stmt->execute(array($idActividad));
+            $stmt1 = $this->db->prepare("UPDATE actividad SET contador=0 WHERE idActividad=?");
+            $stmt1->execute(array($idActividad));
 
             foreach ($usuariosd as $usuariod) 
             {
                 $usuariod_insertar = new ActividadDeportista();
                 $usuariod_insertar->setDniDeportista($usuariod);
                 array_push($deportistas, $usuariod_insertar);
-                
-
             }
 
             if($deportistas && $plazas>=sizeof($deportistas)){
                  foreach($deportistas as $deportista)
                 {
-                    if($plazas>$cont){
                     $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
                     $stmt3->execute(array($idActividad,$deportista->getDniDeportista()));
                     $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
                     $stmt4->execute(array($idActividad));
-                    
-                    }
                 }
                 return true; 
             }
         }
-        exit;
         return false;
     }
     //Añadir
@@ -276,7 +273,7 @@ class ActividadMapper{
     public function eliminarDeportistas($idActividad){
         $stmt = $this->db->prepare("DELETE from actividad_deportista WHERE idActividad=?");
         if(self::esAdministrador()){
-            $stmt-> execute(array($idActividad));
+            $stmt->execute(array($idActividad));
             $stmt1 = $this->db->prepare("UPDATE actividad SET contador=0 WHERE idActividad=?");
             $stmt1->execute(array($idActividad));
             return true;

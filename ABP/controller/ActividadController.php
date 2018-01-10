@@ -185,8 +185,8 @@ class ActividadController extends BaseController{
                 $idActividad = $_POST['idActividad'];
                 $actividad = $this->actividadMapper->findById($idActividad);
                 if($this->actividadMapper->comprobarPlazas($actividad,count($usuarios))){
-                    $this->actividadMapper->eliminarDeportistas($idActividad);
                     if($this->actividadMapper->addDeportista($usuarios,$idActividad,$actividad))
+
                     {
                         $this->view->setFlash("Usuarios Asignados Correctamente");
                     }else
@@ -196,7 +196,6 @@ class ActividadController extends BaseController{
                     }  
                 }else
                     {
-                        exit;
                         $this->view->setFlash("Demasiados deportistas");
                     }
             $this->view->redirect("Actividad", "actividadListar");
