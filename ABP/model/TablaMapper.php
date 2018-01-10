@@ -127,7 +127,6 @@ Class TablaMapper
                     $stmt->execute(array($tabla->getIdTabla()));
                     $stmt = $this->db->prepare("DELETE from muscular_tabla WHERE idTabla=?");
                     $stmt->execute(array($tabla->getIdTabla()));
-
                     foreach ($cardios as $cardio)
                 {
                     $tiempo_cardio= $array_cardios["tiempo_" . $cardio];
