@@ -1,25 +1,11 @@
-<?php
-/*  
-include_once '../Functions/Authentication.php';
-  if(isset($_SESSION['lang'])){
-        if(strcmp($_SESSION['lang'],'ENGLISH')==0)
-            include("../Locates/Strings_ENGLISH.php"); 
-        else if(strcmp($_SESSION['lang'],'SPANISH')==0)
-            include("../Locates/Strings_SPANISH.php");
-        else if(strcmp($_SESSION['lang'], 'GALICIAN')==0)
-        include("../Locates/Strings_GALICIAN.php"); 
-    }else{
-        include("../Locates/Strings_GALICIAN.php"); 
-    }*/
-?>
-
- <footer class="sticky-footer">
-                <div class="container">
-                    <div class="text-center">
-                        <small>Copyright © ABP_G42 2017</small>
-                    </div>
-                </div>
-</footer>
+<html>
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright © Your Website 2017</small>
+        </div>
+      </div>
+    </footer>
             <!-- Scroll to Top Button-->
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fa fa-angle-up"></i>
@@ -50,17 +36,8 @@ include_once '../Functions/Authentication.php';
             <script src="./view/vendor/jquery-easing/jquery.easing.min.js"></script>
             <!-- Page level plugin JavaScript-->
             <!--<script src="./view/vendor/chart.js/Chart.min.js"></script>-->
-        <?php if($_GET['action']=='NotificacionListar'){?>
-            <script src="./view/vendor/datatables/jquery.dataTables2.js"></script>
-        <?php }else{
-                if(($_GET['action'] == 'TablaADD') || ($_GET['action'] == 'TablaEDIT') || ($_GET['action'] == 'NotificacionADD') || ($_GET['action'] == 'actividadAsignar')){ ?>
-            <script src="./view/vendor/datatables/jquery.dataTables3.js"></script>
-             <?php }else{ ?>
-            <script src="./view/vendor/datatables/jquery.dataTables.js"></script>
-        <?php }
-            }
-        ?>
-            <script src="./view/vendor/datatables/dataTables.bootstrap4.js"></script>
+                    <script src="./view/vendor/datatables/jquery.dataTables.js"></script>
+                    <script src="./view/vendor/datatables/dataTables.bootstrap4.js"></script>
             <!-- Custom scripts for all pages-->
             <script src="./view/js/sb-admin.min.js"></script>
             <!-- Custom scripts for this page-->
@@ -68,5 +45,4 @@ include_once '../Functions/Authentication.php';
             <!--<script src="./view/js/sb-admin-charts.min.js"></script>-->
         </div>
     </body>
-
-    </html>
+</html>

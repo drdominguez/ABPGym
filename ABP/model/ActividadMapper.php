@@ -23,11 +23,14 @@ class ActividadMapper{
 
         if(self::esAdministrador())
         {
+            var_dump($usuariosd);
+
             foreach ($usuariosd as $usuariod) 
             {
                 $usuariod_insertar = new ActividadDeportista();
                 $usuariod_insertar->setDniDeportista($usuariod);
                 array_push($deportistas, $usuariod_insertar);
+                
 
             }
 
@@ -35,18 +38,17 @@ class ActividadMapper{
                  foreach($deportistas as $deportista)
                 {
                     if($plazas>$cont){
-
-                    
                     $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
                     $stmt3->execute(array($idActividad,$deportista->getDniDeportista()));
                     $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
                     $stmt4->execute(array($idActividad));
+                    
                     }
                 }
-                return true;
+                return true; 
             }
-            return false;
         }
+        exit;
         return false;
     }
     //Añadir
@@ -277,6 +279,13 @@ class ActividadMapper{
             $stmt-> execute(array($idActividad));
             $stmt1 = $this->db->prepare("UPDATE actividad SET contador=0 WHERE idActividad=?");
             $stmt1->execute(array($idActividad));
+            return true;
+        }
+        return false;
+    }
+    public function comprobarPlazas($actividad,$usuarios){
+        $plazas=$actividad->getPlazas();
+        if($plazas>=$usuarios){
             return true;
         }
         return false;

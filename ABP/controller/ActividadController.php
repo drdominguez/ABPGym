@@ -178,20 +178,27 @@ class ActividadController extends BaseController{
     public function ActividadAsignar() 
     {
         if($this->permisos->esSuperusuario()){
+
             if(isset($_POST["usuarios"]) && isset($_POST["idActividad"]))
             {
                 $usuarios = $_POST['usuarios'];
                 $idActividad = $_POST['idActividad'];
                 $actividad = $this->actividadMapper->findById($idActividad);
-                $this->actividadMapper->eliminarDeportistas($idActividad);
-                if($this->actividadMapper->addDeportista($usuarios,$idActividad,$actividad))
-                {
-                    $this->view->setFlash("Usuarios Asignados Correctamente");
+                if($this->actividadMapper->comprobarPlazas($actividad,count($usuarios))){
+                    $this->actividadMapper->eliminarDeportistas($idActividad);
+                    if($this->actividadMapper->addDeportista($usuarios,$idActividad,$actividad))
+                    {
+                        $this->view->setFlash("Usuarios Asignados Correctamente");
+                    }else
+                    {
+
+                        $this->view->setFlash("El deportista o deportistas no se ha asignado corectamente");
+                    }  
                 }else
-                {
-                    $errors["username"] = "El usuario no se ha asignado corectamente";
-                    $this->view->setFlash($errors["username"]);
-                }
+                    {
+                        exit;
+                        $this->view->setFlash("Demasiados deportistas");
+                    }
             $this->view->redirect("Actividad", "actividadListar");
             
             }else{
