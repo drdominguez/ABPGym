@@ -152,12 +152,25 @@ Class DeportistaTDUMapper extends DeportistaMapper {
     private function actualizarUsuario($tdu){
          //Se actualizan los datos en la tabla usuario
         if($tdu->getContraseña()!=""){//se actualiza la contraseña
+            if($tdu->getFotoPerfil()==null){
              $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,contrasena=?,email=?,telefono=? WHERE dni=?");
             $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(), md5($tdu->getContraseña()),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getDni()));
+            }else{
+                $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,contrasena=?,email=?,telefono=?,fotoperfil=? WHERE dni=?");
+                $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(), md5($tdu->getContraseña()),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getFotoPerfil(),$tdu->getDni()));
+                
+            }
             return true;
         }else{//no se actualiza la contraseña
-            $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,email=?,telefono=? WHERE dni=?");
-            $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getDni()));
+            if($tdu->getFotoPerfil()==null){
+                $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,email=?,telefono=? WHERE dni=?");
+                $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getDni())); 
+            }else{
+
+                 $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,email=?,telefono=?,fotoperfil=? WHERE dni=?");
+                $stmt->execute(array($tdu->getNombre(),$tdu->getApellidos(),$tdu->getEdad(),$tdu->getEmail(),$tdu->getTelefono(),$tdu->getFotoPerfil(),$tdu->getDni())); 
+            }
+
             return true;
         }
         return false;

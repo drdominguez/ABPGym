@@ -164,12 +164,26 @@ Class DeportistaPEFMapper extends DeportistaMapper {
     */
     private function actualizarUsuario($pef){
         if($pef->getContraseña()!=""){//se actualiza la contraseña
+            if($pef->getFotoPerfil()==null){
              $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,contrasena=?,email=?,telefono=? WHERE dni=?");
-            $stmt->execute(array($pef->getNombre(),$pef->getApellidos(),$pef->getEdad(), md5($pef->getContraseña()),$pef->getEmail(),$pef->getTelefono(),$pef->getDni()));
+              $stmt->execute(array($pef->getNombre(),$pef->getApellidos(),$pef->getEdad(), md5($pef->getContraseña()),$pef->getEmail(),$pef->getTelefono(),$pef->getDni()));
+            }else{
+            $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,contrasena=?,email=?,telefono=?,fotoperfil=? WHERE dni=?");
+             $stmt->execute(array($pef->getNombre(),$pef->getApellidos(),$pef->getEdad(), md5($pef->getContraseña()),$pef->getEmail(),$pef->getTelefono(),$pef->getFotoPerfil(),$pef->getDni()));
+            }
+           
             return true;
         }else{//no se actualiza la contraseña
-            $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,email=?,telefono=? WHERE dni=?");
+            if($pef->getFotoPerfil()==null){
+                $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,email=?,telefono=? WHERE dni=?");
+
             $stmt->execute(array($pef->getNombre(),$pef->getApellidos(),$pef->getEdad(),$pef->getEmail(),$pef->getTelefono(),$pef->getDni()));
+            }else{
+                $stmt = $this->db->prepare("UPDATE usuario SET nombre=?, apellidos=?,edad=?,email=?,telefono=?,fotoperfil=? WHERE dni=?");
+
+                $stmt->execute(array($pef->getNombre(),$pef->getApellidos(),$pef->getEdad(),$pef->getEmail(),$pef->getTelefono(),$pef->getFotoPerfil(),$pef->getDni()));
+            }
+            
             return true;
         }
         return false;

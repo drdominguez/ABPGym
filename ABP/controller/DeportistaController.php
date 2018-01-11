@@ -186,12 +186,31 @@ class DeportistaController extends BaseController
         if($this->permisos->esAdministrador()){
             if(isset($_GET['dni'])){//se llama con un get desde la vista listar usuarios, quiere caragar el formulario de editar deportista tdu
                 $dep=$this->deportistaMapper->getTDU($_GET['dni']);
-                $tdu=new DeportistaTDU($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],NULL,$dep["tarjeta"]);
+                $tdu=new DeportistaTDU($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep['fotoperfil'],$dep["tarjeta"]);
                 $this->view->setVariable("usuario",$tdu);
             //se quieren actualizar los datos del deportista
             }elseif(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["edad"])&& isset($_POST["email"]) && isset($_POST["telefono"])){
+
+                if(isset($_FILES['fotoperfil'])){
+
+                    $nombreFoto = $_FILES['fotoperfil']['name'];
+                    $tipoFoto = $_FILES['fotoperfil']['type'];
+                    $nombreTempFoto = $_FILES['fotoperfil']['tmp_name'];
+
+                    if($nombreFoto != null){
+                        $dir_subida = 'ABP/../View/pictures/usuarios/fotoperfil/';
+                        $extension = substr($tipoFoto, 6);
+                        $rutaFotoPerfil = $dir_subida . $_POST['dni'] . ".". $extension;
+                         unlink($_POST['imagenvieja']);
+                        move_uploaded_file($nombreTempFoto, $rutaFotoPerfil);
+                    }
+
+                }else{
+                    $rutaFotoPerfil=null;
+                }
+
                 //creamos el tdu con los datos recogidos por el formulario de editar TDU
-                $tdu=new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contraseña"],$_POST["email"],$_POST["telefono"],NULL,NULL,$_POST["tarjeta"]);
+                $tdu=new DeportistaTDU($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contraseña"],$_POST["email"],$_POST["telefono"],NULL,$rutaFotoPerfil,$_POST["tarjeta"]);
                 if($_POST["tipo"][0]=="TDU"){//se actualizan los datos del deportista
                     $this->deportistaTDUMapper->editTDU($tdu);
                 }else{//se cambia de tipo de deportista y se actualizan sus datos
@@ -218,12 +237,30 @@ class DeportistaController extends BaseController
         if($this->permisos->esAdministrador()){
             if(isset($_GET['dni'])){//se llama con un get desde la vista listar usuarios, quiere caragar el formulario de editar deportista pef
                 $dep=$this->deportistaMapper->getPEF($_GET['dni']);
-                $pef=new DeportistaPEF($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],NULL,$dep["tarjeta"],$dep["comentarioRevision"]);
+                $pef=new DeportistaPEF($dep["dni"],$dep["nombre"],$dep["apellidos"],$dep["edad"],$dep["contrasena"],$dep["email"],$dep["telefono"],$dep["fechaAlta"],$dep['fotoperfil'],$dep["tarjeta"],$dep["comentarioRevision"]);
                 $this->view->setVariable("usuario",$pef);
             //se quieren actualizar los datos del deportista
             }elseif(isset($_POST["dni"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["edad"])&& isset($_POST["email"]) && isset($_POST["telefono"])){
+
+                if(isset($_FILES['fotoperfil'])){
+
+                    $nombreFoto = $_FILES['fotoperfil']['name'];
+                    $tipoFoto = $_FILES['fotoperfil']['type'];
+                    $nombreTempFoto = $_FILES['fotoperfil']['tmp_name'];
+
+                    if($nombreFoto != null){
+                        $dir_subida = 'ABP/../View/pictures/usuarios/fotoperfil/';
+                        $extension = substr($tipoFoto, 6);
+                        $rutaFotoPerfil = $dir_subida . $_POST['dni'] . ".". $extension;
+                        unlink($_POST['imagenvieja']);
+                        move_uploaded_file($nombreTempFoto, $rutaFotoPerfil);
+                    }
+
+                }else{
+                    $rutaFotoPerfil=null;
+                }
                 //creamos el pef con los datos recogidos por el formulario de editar TDU
-                $pef=new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contraseña"],$_POST["email"],$_POST["telefono"],NULL,NULL,$_POST["tarjeta"],$_POST["comentarioRevision"]);
+                $pef=new DeportistaPEF($_POST["dni"],$_POST["nombre"],$_POST["apellidos"],$_POST["edad"],$_POST["contraseña"],$_POST["email"],$_POST["telefono"],NULL,$rutaFotoPerfil,$_POST["tarjeta"],$_POST["comentarioRevision"]);
                 if($_POST["tipo"][0]=="PEF"){//se actualizan los datos del deportista
                     $this->deportistaPEFMapper->editPEF($pef);
                 }else{//se cambia de tipo de deportista y se actualizan sus datos

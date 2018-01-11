@@ -68,16 +68,13 @@ class EjercicioController extends BaseController{
                 }else{
                     $rutaImagen=null;
                 }
-
-                $nombreVideo = $_FILES['video']['name'];
-                    $tipoVideo = $_FILES['video']['type'];
-                    $nombreTempVideo = $_FILES['video']['tmp_name'];
+                    $nombreVideo = $_FILES['video']['name'];
 
                 if($nombreVideo != null){
-                    $dir_subida = 'ABP/../View/video/ejercicios/';
-                    $extension = substr($tipoVideo, 6);
+                    $dir_subida = 'ABP/../view/video/ejercicios/';
+                    $extension = 'mp4';
                     $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
-                    move_uploaded_file($nombreTempVideo, $rutaVideo);
+                    move_uploaded_file($nombreVideo, $rutaVideo);
                     
                 }else{
                     $rutaVideo=null;

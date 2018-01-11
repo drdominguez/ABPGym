@@ -17,7 +17,7 @@ $usuario = $view->getVariable("usuario");
                 <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
             </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' action='./index.php?controller=Deportista&amp;action=TduEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
+            <form name = 'Form' enctype="multipart/form-data" action='./index.php?controller=Deportista&amp;action=TduEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n(" Editar TDU") ?>
@@ -83,6 +83,19 @@ $usuario = $view->getVariable("usuario");
                         </div>
                       </div>
                     </div>
+                       <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="exampleInputTiempo">Imagen</label>
+                                <input class="form-control" name="fotoperfil" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" >
+                                
+                            </div>
+                           <div class="col-md-6">
+                                <img src="<?php echo $usuario->getFotoPerfil(); ?>" height="300" width="300">   
+                        </div>
+                      </div>
+                    </div>
+                    <input type="hidden" name="imagenvieja" value="<?php echo $usuario->getFotoPerfil(); ?>">
                 <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuariosListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
                 <button  type='submit' name='action' value='UsuarioEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>
 

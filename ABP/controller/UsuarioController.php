@@ -135,6 +135,28 @@ class UsuarioController extends BaseController
             $usuario->setEmail($_POST["email"]);
             $usuario->setTelefono($_POST["telefono"]);
             $usuario->setFecha(date("Y-m-d"));
+
+            if(isset($_FILES['fotoperfil'])){
+
+                    $nombreFoto = $_FILES['fotoperfil']['name'];
+                    $tipoFoto = $_FILES['fotoperfil']['type'];
+                    $nombreTempFoto = $_FILES['fotoperfil']['tmp_name'];
+
+                    if($nombreFoto != null){
+                        $dir_subida = 'ABP/../View/pictures/usuarios/fotoperfil/';
+                        $extension = substr($tipoFoto, 6);
+                        $rutaFotoPerfil = $dir_subida . $_POST['dni'] . ".". $extension;
+                        unlink($_POST['imagenvieja']);
+                        move_uploaded_file($nombreTempFoto, $rutaFotoPerfil);
+                    }
+
+            }else{
+                $rutaFotoPerfil=null;
+            }
+
+            $usuario->setFotoPerfil($rutaFotoPerfil);
+
+
             if($this->usuarioMapper->EDIT($usuario))
             {
                $this->view->setFlash("Usuario Editado Correctamente");

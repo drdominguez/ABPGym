@@ -153,9 +153,16 @@ class UsuarioMapper {
             if($usuario_db == null){
                 return false;
             }else{
-                $stmt = $this->db->prepare("UPDATE usuario SET nombre=?,apellidos=?,edad=?,email=?,telefono=?,fechaAlta=?,fotoperfil=? WHERE dni=?");
-                $stmt->execute(array($usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
+                if($usuario->getFotoPerfil()==null){
+                     $stmt = $this->db->prepare("UPDATE usuario SET nombre=?,apellidos=?,edad=?,email=?,telefono=?,fechaAlta=? WHERE dni=?");
+                    $stmt->execute(array($usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
+                        $usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha(),$usuario->getDni()));
+                }else{
+                     $stmt = $this->db->prepare("UPDATE usuario SET nombre=?,apellidos=?,edad=?,email=?,telefono=?,fechaAlta=?,fotoperfil=? WHERE dni=?");
+                    $stmt->execute(array($usuario->getNombre(), $usuario->getApellidos(),$usuario->getEdad(),
                         $usuario->getEmail(), $usuario->getTelefono(), $usuario->getFecha(), $usuario->getFotoPerfil(),$usuario->getDni()));
+                }
+               
                 return true;
             }
     }
