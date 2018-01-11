@@ -16,11 +16,11 @@
                     <i class="fa fa-table"></i><?= i18n("Mostrar Ejercicio") ?>
                 </div>
                 <div class="card-body">
-                    <b><?= i18n("Id") ?>:</b> <?php echo $cardio->getIdEjercicio(); ?><br>
-                    <b><?= i18n("Nombre") ?>:</b> <?php echo $cardio->getNombre(); ?><br>
-                    <b><?= i18n("Descripcion") ?>:</b> <?php echo $cardio->getDescripcion(); ?><br>
-                    <b><?= i18n("Video") ?>:</b> <iframe width="280" height="155" allowfullscreen frameborder="0" src="<?php echo $cardio->getVideo(); ?>"></iframe><br>
-                    <b><?= i18n("Imágen") ?>:</b> <img src="<?php echo $cardio->getImagen(); ?>" height="300" width="300"><br>
+                    <b><?= i18n("Id") ?>:</b> <p><?php echo $cardio->getIdEjercicio(); ?></p><br>
+                    <b><?= i18n("Nombre") ?>:</b> <p><?php echo $cardio->getNombre(); ?></p><br>
+                    <b><?= i18n("Descripcion") ?>:</b> <p><?php echo $cardio->getDescripcion(); ?></p><br>
+                    <b><?= i18n("Video") ?>:</b> <p><iframe width="280" height="155" allowfullscreen frameborder="0" src="<?php echo $cardio->getVideo(); ?>"></iframe></p><br>
+                    <b><?= i18n("Imágen") ?>:</b> <p><img src="<?php echo $cardio->getImagen(); ?>" height="300" width="300"></p><br>
                     <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=CardioListar'" class="btn btn-primary">Volver</button> 
                 </div>
             </div>
