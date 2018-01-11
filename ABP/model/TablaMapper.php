@@ -19,8 +19,6 @@ Class TablaMapper
         $this->db=PDOConnection::getInstance();
           $this->permisos= new Permisos();
     }
-    
-
 
     public function addEstandar($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios)
     {
@@ -105,8 +103,6 @@ Class TablaMapper
         }
     }
 
-
-
     public function edit($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios)
         {
             $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla =?");
@@ -160,7 +156,7 @@ Class TablaMapper
             }
         }
         return false;
-        }
+    }
 
 
     public function listar()
@@ -184,7 +180,7 @@ Class TablaMapper
             {
                 array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
             }
-            return $tablas;
+        return $tablas;
         
     }
 
@@ -198,8 +194,7 @@ Class TablaMapper
             {
                 array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
             }
-            return $tablas;
-        
+        return $tablas;
     }
 
 
