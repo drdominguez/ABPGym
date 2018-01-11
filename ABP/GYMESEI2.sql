@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-01-2018 a las 19:08:29
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.1.11
+-- Servidor: localhost
+-- Tiempo de generación: 11-01-2018 a las 13:58:15
+-- Versión del servidor: 5.7.20
+-- Versión de PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,31 +45,11 @@ CREATE TABLE `actividad` (
 --
 
 INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `plazas`, `contador`) VALUES
-(3, 40, 'Gymnasio del Carmen', 5, 12, 0),
-(4, 35, 'Gymnasio Trabazos', 5, 14, 0),
-(11, 12, 'individualeadio', 5, 1, 0),
-(15, 12, 'usuarios', 1, 1, 0),
-(17, 12, 'usuariosgrupo', 1, 50, 0),
-(18, 12, 'usuariosgrupo', 5, 50, 0),
-(28, 12, 'individualusuarios', 1, 23, 0),
-(29, 12, 'individualusuarios', 1, 23, 0),
-(30, 12, 'individualusuarios', 1, 23, 0),
-(31, 12, 'individualusuarios', 1, 23, 0),
-(37, 23, 'grupooooo', 1, 50, 0),
-(38, 33, 'ooooo', 1, 12, 0),
-(39, 34, 'asdsadasdsa', 1, 34, 0),
-(40, 23232, 'djfbkdsjlfbfgklfdjsbvkjf', 1, 23, 0),
-(41, 23232, 'djfbkdsjlfbfgklfdjsbvkjf', 1, 23, 0),
-(42, 23232, 'djfbkdsjlfbfgklfdjsbvkjf', 1, 23, 0),
-(43, 12, '12as', 1, 12, 0),
-(44, 12, '12as', 1, 12, 0),
-(45, 12, '12as', 1, 12, 0),
-(46, 12, '12as', 1, 12, 0),
-(47, 12, '12as', 1, 12, 0),
-(48, 12, '12as', 1, 12, 0),
-(49, 12, 'hastaloshuevos', 1, 50, 0),
-(50, 12, 'hastaloshuevos', 1, 50, 0),
-(51, 23, 'aaaaaaaaindividual', 1, 1, 0);
+(53, 50, 'Asistencia', 2, 1, 1),
+(54, 25, 'Futbol', 4, 23, 0),
+(55, 20, 'Karate', 3, 20, 0),
+(56, 30, 'tenis', 1, 5, 0),
+(57, 30, 'Baloncesto', 5, 18, 0);
 
 -- --------------------------------------------------------
 
@@ -82,6 +62,13 @@ CREATE TABLE `actividad_deportista` (
   `idActividad` bigint(20) NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `actividad_deportista`
+--
+
+INSERT INTO `actividad_deportista` (`id`, `idActividad`, `dniDeportista`) VALUES
+(12, 53, '11111111H');
 
 -- --------------------------------------------------------
 
@@ -100,31 +87,11 @@ CREATE TABLE `actividad_entrenador` (
 --
 
 INSERT INTO `actividad_entrenador` (`id`, `dniEntrenador`, `idActividad`) VALUES
-(3, '12345678Z', 11),
-(5, '66666666Q', 4),
-(6, '33333333P', 4),
-(9, '33333333P', 3),
-(13, '33333333P', 15),
-(15, '66666666Q', 17),
-(16, '66666666Q', 18),
-(25, '33333333P', 28),
-(26, '33333333P', 29),
-(27, '33333333P', 30),
-(28, '33333333P', 31),
-(34, '12345678Z', 37),
-(35, '33333333P', 38),
-(36, '33333333P', 39),
-(37, '33333333P', 41),
-(38, '33333333P', 42),
-(39, '33333333P', 43),
-(40, '33333333P', 44),
-(41, '33333333P', 45),
-(42, '33333333P', 46),
-(43, '33333333P', 47),
-(44, '33333333P', 48),
-(45, '66666666Q', 49),
-(46, '66666666Q', 50),
-(47, '66666666Q', 51);
+(49, '66666666Q', 53),
+(50, '33333333P', 54),
+(51, '12345678Z', 55),
+(52, '66666666Q', 56),
+(53, '33333333P', 57);
 
 -- --------------------------------------------------------
 
@@ -142,17 +109,11 @@ CREATE TABLE `actividad_horario` (
 --
 
 INSERT INTO `actividad_horario` (`idActividad`, `idHorario`) VALUES
-(3, 3),
-(4, 4),
-(11, 10),
-(15, 14),
-(17, 16),
-(18, 17),
-(37, 23),
-(38, 24),
-(39, 25),
-(50, 26),
-(51, 27);
+(53, 29),
+(54, 30),
+(55, 31),
+(56, 32),
+(57, 33);
 
 -- --------------------------------------------------------
 
@@ -182,6 +143,13 @@ INSERT INTO `administrador` (`dniAdministrador`) VALUES
 CREATE TABLE `cardio` (
   `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cardio`
+--
+
+INSERT INTO `cardio` (`idEjercicio`) VALUES
+(9);
 
 -- --------------------------------------------------------
 
@@ -235,7 +203,9 @@ CREATE TABLE `ejercicio` (
 --
 
 INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `imagen`) VALUES
-(8, 'Estiramiento 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget justo tincidunt, finibus ante ac, ultricies ex. Duis sagittis, purus. ', '', '');
+(8, 'Estiramiento 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget justo tincidunt, finibus ante ac, ultricies ex. Duis sagittis, purus. ', '', ''),
+(9, 'Cardio', 'Es cardio', NULL, 'ElMundoesMio04.jpg'),
+(10, 'Estiramiento', 'Es un estiramiento', NULL, 'ABP/../View/pictures/ejercicios/fotos/10.jpeg');
 
 -- --------------------------------------------------------
 
@@ -282,7 +252,8 @@ CREATE TABLE `estiramiento` (
 --
 
 INSERT INTO `estiramiento` (`idEjercicio`) VALUES
-(8);
+(8),
+(10);
 
 -- --------------------------------------------------------
 
@@ -312,19 +283,10 @@ CREATE TABLE `grupo` (
 --
 
 INSERT INTO `grupo` (`idActividad`) VALUES
-(11),
-(15),
-(17),
-(18),
-(37),
-(38),
-(39),
-(41),
-(47),
-(48),
-(49),
-(50),
-(51);
+(54),
+(55),
+(56),
+(57);
 
 -- --------------------------------------------------------
 
@@ -369,7 +331,13 @@ INSERT INTO `horario` (`idHorario`, `dia`, `hora`, `fechIni`, `fechFin`) VALUES
 (24, 'todos', '14', '2017-12-25', '2017-12-31'),
 (25, 'todos', '24', '2017-12-18', '2017-12-26'),
 (26, 'hoy', '34', '2017-12-26', '2017-12-31'),
-(27, 'hoy', '3-4', '2017-12-25', '2018-01-01');
+(27, 'hoy', '3-4', '2017-12-25', '2018-01-01'),
+(28, 'Hoy', '23', '2018-01-16', '2018-01-30'),
+(29, 'Todos', '8:00 - 24:00', '2018-01-01', '2019-01-01'),
+(30, 'Todos', '16:00 - 21:00', '2018-01-01', '2018-02-01'),
+(31, 'Todos', '15:00-17:00', '2018-01-01', '2018-02-01'),
+(32, 'Todos', '9:00 - 12:00', '2018-01-01', '2018-02-01'),
+(33, 'Todos', '16:00 - 18:00', '2018-01-01', '2018-02-01');
 
 -- --------------------------------------------------------
 
@@ -386,8 +354,7 @@ CREATE TABLE `individual` (
 --
 
 INSERT INTO `individual` (`idActividad`) VALUES
-(3),
-(4);
+(53);
 
 -- --------------------------------------------------------
 
@@ -534,7 +501,7 @@ CREATE TABLE `sesionentrenamiento` (
   `comentario` text COLLATE utf8_spanish_ci,
   `duracion` bigint(20) DEFAULT NULL,
   `fecha` date NOT NULL,
-  `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL 
+  `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -587,7 +554,9 @@ CREATE TABLE `superusuario_ejercicio` (
 --
 
 INSERT INTO `superusuario_ejercicio` (`id`, `dniSuperUsuario`, `idEjercicio`) VALUES
-(8, '53192250N', 8);
+(8, '53192250N', 8),
+(9, '44490816F', 9),
+(10, '44490816F', 10);
 
 -- --------------------------------------------------------
 
@@ -633,7 +602,8 @@ CREATE TABLE `tabla` (
 INSERT INTO `tabla` (`idTabla`, `tipo`, `comentario`, `nombre`, `dniSuperUsuario`) VALUES
 (1, 'estandar', 'Tabla de dificultad media, no apta si el deportista padece asma', 'Tabla1', '53192250N'),
 (2, 'personalizada', 'Tabla de estiramientos y fortalecimiento muscular', 'Tabla2', '44497121X'),
-(3, 'estandar', 'Tabla de dificultad alta, repertorio amplio de ejercicios variados.', 'Tabla Completa', '53192250N');
+(3, 'estandar', 'Tabla de dificultad alta, repertorio amplio de ejercicios variados.', 'Tabla Completa', '53192250N'),
+(4, 'estandar', 'Es souto', 'Souto', '44490816F');
 
 -- --------------------------------------------------------
 
@@ -945,19 +915,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `idActividad` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `actividad_deportista`
 --
 ALTER TABLE `actividad_deportista`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `actividad_entrenador`
 --
 ALTER TABLE `actividad_entrenador`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `cardio_tabla`
@@ -969,7 +939,7 @@ ALTER TABLE `cardio_tabla`
 -- AUTO_INCREMENT de la tabla `ejercicio`
 --
 ALTER TABLE `ejercicio`
-  MODIFY `idEjercicio` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idEjercicio` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `estiramiento_tabla`
@@ -981,7 +951,7 @@ ALTER TABLE `estiramiento_tabla`
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `idHorario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idHorario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `muscular_tabla`
@@ -1008,23 +978,23 @@ ALTER TABLE `recursos`
   MODIFY `idRecurso` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de la tabla `sesionentrenamiento`
+--
+ALTER TABLE `sesionentrenamiento`
+  MODIFY `idSesionEntrenamiento` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `superusuario_ejercicio`
 --
 ALTER TABLE `superusuario_ejercicio`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tabla`
 --
 ALTER TABLE `tabla`
-  MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idTabla` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
-
---
--- AUTO_INCREMENT de la tabla `sesionentrenamiento`
---
-ALTER TABLE `sesionentrenamiento`
-  MODIFY `idSesionEntrenamiento` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --
@@ -1163,7 +1133,7 @@ ALTER TABLE `pef`
   ADD CONSTRAINT `fk_PefDeportista` FOREIGN KEY (`dni`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `pef`
+-- Filtros para la tabla `sesionentrenamiento`
 --
 ALTER TABLE `sesionentrenamiento`
   ADD CONSTRAINT `fk_SesionEntrenamientoDeportista` FOREIGN KEY (`dniDeportista`) REFERENCES `deportista` (`dni`) ON DELETE CASCADE;

@@ -169,8 +169,6 @@ class ActividadController extends BaseController{
 
         $monitores = $this->actividadMapper->findMonitor();
         $listarrecursos=$this->actividadMapper->selectRecurso();
-        $usuarios = $this->actividadMapper->listarUsuarios();
-        $this->view->setVariable("usuarios",$usuarios);
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/individual","individualADD");
@@ -244,8 +242,6 @@ class ActividadController extends BaseController{
         
         $monitores = $this->actividadMapper->findMonitor();
         $listarrecursos=$this->actividadMapper->selectRecurso();
-        $usuarios = $this->actividadMapper->listarUsuarios();
-        $this->view->setVariable("usuarios",$usuarios);
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/grupo","grupoADD");
