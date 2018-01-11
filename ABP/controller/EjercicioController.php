@@ -74,7 +74,7 @@ class EjercicioController extends BaseController{
                     $nombreTempVideo = $_FILES['video']['tmp_name'];
 
                 if($nombreVideo != null){
-                    $dir_subida = 'ABP/../View/pictures/ejercicios/videos/';
+                    $dir_subida = 'ABP/../View/video/ejercicios/';
                     $extension = substr($tipoVideo, 6);
                     $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
                     move_uploaded_file($nombreTempVideo, $rutaVideo);
@@ -186,7 +186,7 @@ class EjercicioController extends BaseController{
                     $nombreTempVideo = $_FILES['video']['tmp_name'];
 
                 if($nombreVideo != null){
-                    $dir_subida = 'ABP/../View/pictures/ejercicios/videos/';
+                    $dir_subida = 'ABP/../View/video/ejercicios/';
                     $extension = substr($tipoVideo, 6);
                     $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
                     move_uploaded_file($nombreTempVideo, $rutaVideo);
@@ -296,7 +296,7 @@ class EjercicioController extends BaseController{
                     $nombreTempVideo = $_FILES['video']['tmp_name'];
 
                 if($nombreVideo != null){
-                    $dir_subida = 'ABP/../View/pictures/ejercicios/videos/';
+                    $dir_subida = 'ABP/../View/video/ejercicios/';
                     $extension = substr($tipoVideo, 6);
                     $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
                     move_uploaded_file($nombreTempVideo, $rutaVideo);

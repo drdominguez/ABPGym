@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Imagen</label>
-                                    <input class="form-control" name="imagen" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="imagen" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
                                 </div>
                              </div>
                         </div>

@@ -20,7 +20,7 @@
                     <b><?= i18n("Nombre") ?>:</b> <?php echo $cardio->getNombre(); ?><br>
                     <b><?= i18n("Descripcion") ?>:</b> <?php echo $cardio->getDescripcion(); ?><br>
                     <b><?= i18n("Video") ?>:</b> <?php echo $cardio->getVideo() ?><br>
-                    <b><?= i18n("Imágen") ?>:</b> <?php echo $cardio->getImagen(); ?><br>
+                    <b><?= i18n("Imágen") ?>:</b> <img src="<?php echo $cardio->getImagen(); ?>" height="300" width="300"><br>
                     <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=CardioListar'" class="btn btn-primary">Volver</button> 
                 </div>
             </div>
