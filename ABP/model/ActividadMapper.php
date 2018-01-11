@@ -79,8 +79,7 @@ class ActividadMapper{
         return false;
     }
     function edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad){
-        var_dump($actividad->getHorario()->getDia());
-        exit;
+        
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
             
