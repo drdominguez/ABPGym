@@ -181,7 +181,6 @@ Class TablaMapper
                 array_push($tablas, new Tabla($tabla['idTabla'],$tabla['tipo'],$tabla['comentario'],$tabla['nombre']));
             }
         return $tablas;
-        
     }
 
 
@@ -211,8 +210,6 @@ public function listarDeportistas()
         return $usuarios;
     }
 
-
-
     public function listarMuscular()
     {
         if($this->permisos->esSuperusuario())
@@ -227,7 +224,6 @@ public function listarDeportistas()
             return $musculares;
         }
     }
-
 
     public function listarCardio()
     {
@@ -260,11 +256,7 @@ public function listarDeportistas()
         }
     }
 
-
-
-
-    public function findTablaById($idTabla)
-    {
+    public function findTablaById($idTabla){
         $stmt = $this->db->prepare("SELECT * FROM tabla WHERE idTabla=?");
         $stmt->execute(array($idTabla));
         $tabla = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -277,9 +269,7 @@ public function listarDeportistas()
         }
     }
 
-
-    public function findMuscularesById($idTabla)
-    {
+    public function findMuscularesById($idTabla){
         $stmt = $this->db->prepare("SELECT idMuscular,carga,repeticiones FROM muscular_tabla WHERE idTabla=?");
         $stmt->execute(array($idTabla));
         $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -300,8 +290,7 @@ public function listarDeportistas()
         }
     
 
-        public function findCardiosById($idTabla)
-    {
+        public function findCardiosById($idTabla){
         $stmt = $this->db->prepare("SELECT idCardio,tiempo,distancia FROM cardio_tabla WHERE idTabla=?");
         $stmt->execute(array($idTabla));
         $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -316,15 +305,11 @@ public function listarDeportistas()
                 $ejercicio = new EjercicioCardio($ejercicio2_db["idEjercicio"],$ejercicio2_db["nombre"],$ejercicio2_db["descripcion"],$ejercicio2_db["video"],$ejercicio2_db["imagen"],$ejercicio_db["tiempo"],$ejercicio_db["distancia"]);
                 array_push($tabla_ejercicios, $ejercicio);
             }
-                
         }
         return $tabla_ejercicios;
         }
-    
 
-
-        public function findEstiramientosById($idTabla)
-    {
+        public function findEstiramientosById($idTabla){
         $stmt = $this->db->prepare("SELECT idEstiramiento,tiempo FROM estiramiento_tabla WHERE idTabla=?");
         $stmt->execute(array($idTabla));
         $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -339,11 +324,9 @@ public function listarDeportistas()
                 $ejercicio = new EjercicioEstiramiento($ejercicio2_db["idEjercicio"],$ejercicio2_db["nombre"],$ejercicio2_db["descripcion"],$ejercicio2_db["video"],$ejercicio2_db["imagen"],$ejercicio_db["tiempo"]);
                 array_push($tabla_ejercicios, $ejercicio);
             }
-                
         }
         return $tabla_ejercicios;
         }
-    
 
       public function asignar($usuario,$idTabla){
         if($this->permisos->esSuperusuario())
@@ -403,10 +386,7 @@ public function listarDeportistas()
         }else{
             return false;
         }
-
     }
-
-    
 
     public function listarMuscularSelected($idTabla)
     {

@@ -75,6 +75,10 @@ class SesionEntrenamientoController extends BaseController{
         $carioMapper = new EjercicioCardioMapper();
         $estiramientoMapper = new EjercicioEstiramientoMapper();
         $muscularMapper = new EjercicioMuscularMapper();
+
+
+
+
         $ejercicios=$this->tablaMapper->findEjerciciosById($_GET["idTabla"]);
         foreach ($ejercicios as $ejercicio) {//voy recorriendo todos los ejercicios de la tabla a realizar
             if($carioMapper->esCardio($ejercicio->getIdEjercicio())){
@@ -84,9 +88,11 @@ class SesionEntrenamientoController extends BaseController{
             }else{//si no es ni cardio ni estiramiento solo puede ser muscular
                 $ejercicioCompleto=$muscularMapper->getMuscularById($ejercicio->getIdEjercicio());
             }
-             array_push($listaEjercicios, $ejercicioCompleto); //guardo los ejercicios completos
+            array_push($listaEjercicios, $ejercicioCompleto); //guardo los ejercicios completos
         }
-        array_push($listaEjercicios);/*Como pasar el id de la tabla?¿*/
+
+
+
         $this->view->setVariable("ejercicios",$listaEjercicios);
         $this->view->render("sesionEntrenamiento", "realizarEjercicio");
     }

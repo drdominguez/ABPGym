@@ -28,8 +28,8 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
+                                        <th><?= i18n("Editar") ?></th>
                                         <th><?= i18n("Ver") ?></th>
-                                        <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
                                     </tr>
                                 </thead>
@@ -38,8 +38,8 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Id") ?></th>
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
+                                        <th><?= i18n("Editar") ?></th>
                                         <th><?= i18n("Ver") ?></th>
-                                        <th><?= i18n("Eitar") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
                                     </tr>
                                 </tfoot>
@@ -51,11 +51,11 @@ $view->setVariable("title", "Estiramientos");
                                             <td><?php echo $muscular["nombre"]; ?></td>
                                             <td><?php echo $muscular["descripcion"]; ?></td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularVer&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
-                                                </a>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularEdit&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-editar" class="icon-pencil22"></span>
                                             </td>
                                             <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularEdit&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-editar" class="icon-pencil22"></span>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=muscularVer&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
+                                                </a>
                                             </td>
                                             <td>
                                                 <a href='./index.php?controller=Ejercicio&amp;action=muscularRemove&amp;idEjercicio=<?php echo $muscular["idEjercicio"];?>'><span id="icon-eliminar" class=" icon-bin"></span>
