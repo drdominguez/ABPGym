@@ -3,7 +3,6 @@ require_once(__DIR__."/../../core/ViewManager.php");
 
     $view=ViewManager::getInstance();
     $actividad = $view->getVariable("actividad");
-    $usuarios = $view->getVariable("usuarios");
     $currentuser = $view->getVariable("currentusername");
     $listarecursos = $view->getVariable("listarecursos");
     $monitores = $view->getVariable("monitores");

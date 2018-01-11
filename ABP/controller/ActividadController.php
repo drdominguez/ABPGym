@@ -92,13 +92,11 @@ class ActividadController extends BaseController{
             $idActividad=$_POST['idActividad'];
             $idHorario=$_POST['idHorario'];
             $dniEntrenador=$_POST['dni'];
-            $usuariosd = $_POST['usuarios'];
-                $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
-                $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$horario);
-                $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
+            $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
+            $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],$horario);
+            $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
 
-            
-                if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad,$usuariosd))
+                if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad))
                 {
 
                $this->view->setFlash("Actividad Editada Correctamente");
@@ -121,8 +119,6 @@ class ActividadController extends BaseController{
                 $monitorAsignado = $this->actividadMapper->findMonitorAsignado($idActividad);
                 $listarrecursos=$this->actividadMapper->selectRecurso();
                 $monitores = $this->actividadMapper->findMonitor();
-                $usuarios = $this->actividadMapper->listarUsuarios();
-                $this->view->setVariable("usuarios",$usuarios);
                 $this->view->setVariable("listarecursos",$listarrecursos);
                 $this->view->setVariable("actividad", $actividad);
                 $this->view->setVariable("monitores", $monitores);

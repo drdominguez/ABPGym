@@ -78,9 +78,9 @@ class ActividadMapper{
         }
         return false;
     }
-    function edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad,$usuarios){
-        $cont=$actividad->getContador();
-
+    function edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad){
+        var_dump($actividad->getHorario()->getDia());
+        exit;
         if(self::esAdministrador()){
             $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
             
@@ -89,24 +89,6 @@ class ActividadMapper{
             $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin(),$actividad->getHorario()->getIdHorario()));
             $stmt2 = $this->db->prepare("UPDATE actividad_entrenador SET dniEntrenador=? WHERE idActividad=?");
             $stmt2 -> execute(array($dniEntrenador,$idActividad));
-            $deportistas = array();
-
-            foreach ($usuarios as $usuario) 
-            {
-                $usuario_insertar = new ActividadDeportista();
-                $usuario_insertar->setDniDeportista($usuario);
-                array_push($deportistas, $usuario_insertar);
-
-            }
-            if($deportistas){
-                foreach($deportistas as $deportista)
-                {
-                    $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
-                    $stmt3->execute(array($idActividad,$usuario_insertar->getDniDeportista()));
-                    $actividad->setContador($cont++);
-
-                }
-            }
             return true;
         }
         return false;
