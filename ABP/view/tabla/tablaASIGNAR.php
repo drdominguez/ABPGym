@@ -126,8 +126,8 @@ require_once(__DIR__."/../../core/ViewManager.php");
                             <b><?= i18n("Edad") ?>:</b><p id="edad"></p>
                             <b><?= i18n("Email") ?>: </b><p id="email"></p>
                             <b><?= i18n("Teléfono") ?>: </b><p id="telefono"></p>  
-                            <b><?= i18n("Fecha de Alta") ?>: </b><p id="fechaalta"></p>   
-                            <b><?= i18n("Foto de Perfil") ?>: </b> <img id="imagen" width="300" height="300" src="">  
+                            <b><?= i18n("Fecha de Alta") ?>: </b><p> id="fechaalta"></p>   
+                            <b><?= i18n("Foto de Perfil") ?>: </b> <p><img id="imagen" width="300" height="300" src=""> </p> 
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>

@@ -292,8 +292,8 @@
                       </div>
                       <div class="modal-body">
                         <p id="descripcion"> </p><br>
-                        <img id="imagen" width="300" height="300" src="">
-                        <p id="video"> </p>
+                        <p><iframe width="280" id="video" height="155" allowfullscreen frameborder="0" ></iframe></p>
+                        <p> <img id="imagen" width="300" height="300" src=""></p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= i18n("OK") ?></button>
