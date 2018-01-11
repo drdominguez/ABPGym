@@ -29,8 +29,8 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
                                         <th><?= i18n("Editar") ?></th>
-                                        <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -39,8 +39,8 @@ $view->setVariable("title", "Estiramientos");
                                         <th><?= i18n("Nombre") ?></th>
                                         <th><?= i18n("Descripción") ?></th>
                                         <th><?= i18n("Editar") ?></th>
-                                        <th><?= i18n("Ver") ?></th>
                                         <th><?= i18n("Eliminar") ?></th>
+                                        <th><?= i18n("Ver") ?></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -54,13 +54,13 @@ $view->setVariable("title", "Estiramientos");
                                                 <a href='./index.php?controller=Ejercicio&amp;action=cardioEdit&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><span id="icon-editar" class="icon-pencil22"></span>
                                                 </a>
                                             </td>
-                                            <td>
-                                                <a href='./index.php?controller=Ejercicio&amp;action=cardioVer&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
-                                                </a>
-                                            <td>
+                                             <td>
                                                  <a href='./index.php?controller=Ejercicio&amp;action=cardioRemove&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><span id="icon-eliminar" class=" icon-bin"></span>
                                                 </a>
                                             </td>
+                                            <td>
+                                                <a href='./index.php?controller=Ejercicio&amp;action=cardioVer&amp;idEjercicio=<?php echo $cardio["idEjercicio"];?>'><span id="icon-ver" class="icon-eye-plus"></span>
+                                                </a>
                                         </tr>
                                     <?php }} ?>
                                 </tbody>
