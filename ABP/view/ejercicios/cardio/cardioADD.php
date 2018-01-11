@@ -14,7 +14,7 @@
                     <div class="card-header">
                         <i class="fa fa-table"></i> Añadir Cardio</div>
                     <div class="card-body">
-                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=cardioADD" class="form-signin" accept-charset="UTF-8" method="POST">
+                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=cardioADD" class="form-signin" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                         <div class="form-group">
                             <div class="form-row">
                               <div class="col-md-6">

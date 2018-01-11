@@ -65,6 +65,8 @@ class EjercicioController extends BaseController{
                     $rutaImagen = $dir_subida . $idEjercicio . ".". $extension;
                     move_uploaded_file($nombreTempFoto, $rutaImagen);
                     
+                }else{
+                    $rutaImagen=null;
                 }
 
                 $nombreVideo = $_FILES['video']['name'];
@@ -77,7 +79,10 @@ class EjercicioController extends BaseController{
                     $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
                     move_uploaded_file($nombreTempVideo, $rutaVideo);
                     
+                }else{
+                    $rutaVideo=null;
                 }
+
                 $this->ejercicioMapper->addImagenVideo($idEjercicio,$rutaVideo,$rutaImagen);
 
 
@@ -159,8 +164,39 @@ class EjercicioController extends BaseController{
     public function cardioADD() {
         $this->cardioMapper = new EjercicioCardioMapper();
         if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercicio
-            $cardio = new EjercicioCardio('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
-            if($this->cardioMapper->addCardio($cardio)){
+            $cardio = new EjercicioCardio('',$_POST["nombre"], $_POST["descripcion"],'','');
+            if($idEjercicio = $this->cardioMapper->addCardio($cardio)){
+
+                    $nombreFoto = $_FILES['imagen']['name'];
+                    $tipoFoto = $_FILES['imagen']['type'];
+                    $nombreTempFoto = $_FILES['imagen']['tmp_name'];
+
+                if($nombreFoto != null){
+                    $dir_subida = 'ABP/../View/pictures/ejercicios/fotos/';
+                    $extension = substr($tipoFoto, 6);
+                    $rutaImagen = $dir_subida . $idEjercicio . ".". $extension;
+                    move_uploaded_file($nombreTempFoto, $rutaImagen);
+                    
+                }else{
+                    $rutaImagen=null;
+                }
+
+                    $nombreVideo = $_FILES['video']['name'];
+                    $tipoVideo = $_FILES['video']['type'];
+                    $nombreTempVideo = $_FILES['video']['tmp_name'];
+
+                if($nombreVideo != null){
+                    $dir_subida = 'ABP/../View/pictures/ejercicios/videos/';
+                    $extension = substr($tipoVideo, 6);
+                    $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
+                    move_uploaded_file($nombreTempVideo, $rutaVideo);
+                    
+                }else{
+                    $rutaVideo=null;
+                }
+
+                 $this->ejercicioMapper->addImagenVideo($idEjercicio,$rutaVideo,$rutaImagen);
+
                $this->view->setFlash("Ejercicio Añadido Corectamente");
 
             }else{
@@ -239,8 +275,37 @@ class EjercicioController extends BaseController{
     public function muscularADD() {
         $this->muscularMapper = new EjercicioMuscularMapper();
         if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercicio
-            $muscular = new EjercicioMuscular('',$_POST["nombre"], $_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
-            if($this->muscularMapper->addMuscular($muscular)){
+            $muscular = new EjercicioMuscular('',$_POST["nombre"], $_POST["descripcion"],'','');
+            if($idEjercicio = $this->muscularMapper->addMuscular($muscular)){
+                 $nombreFoto = $_FILES['imagen']['name'];
+                    $tipoFoto = $_FILES['imagen']['type'];
+                    $nombreTempFoto = $_FILES['imagen']['tmp_name'];
+
+                if($nombreFoto != null){
+                    $dir_subida = 'ABP/../View/pictures/ejercicios/fotos/';
+                    $extension = substr($tipoFoto, 6);
+                    $rutaImagen = $dir_subida . $idEjercicio . ".". $extension;
+                    move_uploaded_file($nombreTempFoto, $rutaImagen);
+                    
+                }else{
+                    $rutaImagen=null;
+                }
+
+                    $nombreVideo = $_FILES['video']['name'];
+                    $tipoVideo = $_FILES['video']['type'];
+                    $nombreTempVideo = $_FILES['video']['tmp_name'];
+
+                if($nombreVideo != null){
+                    $dir_subida = 'ABP/../View/pictures/ejercicios/videos/';
+                    $extension = substr($tipoVideo, 6);
+                    $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
+                    move_uploaded_file($nombreTempVideo, $rutaVideo);
+                    
+                }else{
+                    $rutaVideo=null;
+                }
+                 $this->ejercicioMapper->addImagenVideo($idEjercicio,$rutaVideo,$rutaImagen);
+
                $this->view->setFlash("Ejercicio Añadido Corectamente");
             }else{
                 $errors["username"] = "El ejercicio no se ha añadido corectamente";
