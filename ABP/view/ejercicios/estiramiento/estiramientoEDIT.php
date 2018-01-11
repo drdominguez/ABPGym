@@ -9,16 +9,13 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a>Gestión</a>
-                    </li>
-                    <li class="breadcrumb-item active">Ejercicios</li>
+                        <div id="flash"><?= $view->popFlash() ?></div>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i>Editar Estiramiento</div>
-                    <div class="card-body">      
-                    <div id="flash"><?= $view->popFlash() ?></div>
+                    <div class="card-body">
                     <form name='Form' id="form1" class="form-signin" action="index.php?controller=Ejercicio&amp;action=estiramientoEdit" accept-charset="UTF-8" method="POST">
                         <input class="form-control" name="idEjercicio" id="exampleInputIdEjercicio" type="hidden" aria-describedby="emailHelp" value="<?php echo $estiramiento->getIdEjercicio() ?>" readonly="readonly" onblur="esVacio(this)  && comprobarText(this,15)">
                         <div class="form-group">

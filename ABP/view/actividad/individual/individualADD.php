@@ -52,7 +52,7 @@
             <div class="container-fluid">
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
-                        <div id="flash"><?= $view->popFlash() ?></div>
+                    <div id="flash"><?= $view->popFlash() ?></div>
                 </ol>
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
