@@ -39,7 +39,7 @@ class LoginController{
             $this->view->redirect("main", "index");
             }else{
                 /*se pone un mensaje de error y se reresca la vista*/
-                $errors["username"] = "El nombre de usuario/contraseña no existen en el sistema";
+                $errors["username"] = "El nombre de usuario o la contraseña no existen en el sistema";
                 $this->view->setFlash($errors["username"]);
             }
         }
