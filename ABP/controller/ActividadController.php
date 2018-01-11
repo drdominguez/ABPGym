@@ -91,9 +91,10 @@ class ActividadController extends BaseController{
         {
             $idActividad=$_POST['idActividad'];
             $idHorario=$_POST['idHorario'];
-            $dniEntrenador=$_POST['dni'];
+            $dniEntrenador=$_POST["monitor"];
             $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
             $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],'',$horario);
+            
             $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
 
                 if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad))

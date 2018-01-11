@@ -10,6 +10,23 @@ require_once(__DIR__."/../../core/ViewManager.php");
 ?>
 
 <script type="text/javascript">
+    function marcar(source) 
+    {
+        checkboxes=document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
+        for(i=0;i<checkboxes.length;i++) //recoremos todos los controles
+        {
+            if(checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
+            {
+                checkboxes[i].checked=source.checked; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
+            }
+        }
+    }
+
+    function dniEntrenador(dni){
+        document.getElementById("dni").value=dni;
+    }
+</script>    
+<script type="text/javascript">
     function mostrarModalUsuarios(){
           $('#ModalUsuarios').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) // Button that triggered the modal
@@ -101,7 +118,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <div class="form-row">
                                         <div class="col-md-6">
                                              <label for="exampleInputMonitor">Monitor</label>
-                                            <input class="form-control" readonly="true" name="monitor" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $monitorAsignado[0]['dni']; ?>">
+                                            <input class="form-control" readonly="true" name="dni" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $monitorAsignado[0]['dni']; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +192,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 
                     <input type="hidden" name="idActividad" value="<?php echo $actividad->getIdActividad(); ?>">
                     <input type="hidden" name="idHorario" value="<?php echo $actividad->getHorario()->getIdHorario(); ?>">
-                    <input type="hidden" id="dni" name="dni" value="<?php echo $monitorAsignado[0]['dni']; ?>">
+                    <input type="hidden" id="dni" name="monitor" value="<?php echo $monitor->getDni(); ?>">
                     <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;  action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button>
                     <button  type='submit' name='action' value='actividadEDIT' class="btn btn-primary"><?= i18n("Editar") ?></button>   
                         </div>
