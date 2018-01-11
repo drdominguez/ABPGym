@@ -21,15 +21,15 @@
             </div>
             <div class="card-body">
                 <form name = 'Form' id="form1" action = './index.php?controller=Usuario&amp;action=UsuarioDELETE' method = 'post' onsubmit = 'comprobar()'>
-                    <b><?= i18n("DNI") ?>:</b> <?php echo $usuario->getDni(); ?><br>
-                    <b><?= i18n("Nombre") ?>:</b> <?php echo $usuario->getNombre(); ?><br>
-                    <b><?= i18n("Apellidos") ?>:</b> <?php echo $usuario->getApellidos(); ?><br>
-                    <b><?= i18n("Edad") ?>:</b> <?php echo $usuario->getEdad(); ?><br>
-                    <b><?= i18n("Email") ?>: </b> <?php echo $usuario->getEmail(); ?><br>
-                    <b><?= i18n("Teléfono") ?>: </b> <?php echo $usuario->getTelefono(); ?><br>  
-                    <b><?= i18n("Fecha de Alta") ?>: </b> <?php echo $usuario->getFecha(); ?><br>
+                    <b><?= i18n("DNI") ?>:</b> <p><?php echo $usuario->getDni(); ?></p><br>
+                    <b><?= i18n("Nombre") ?>:</b> <p><?php echo $usuario->getNombre(); ?></p><br>
+                    <b><?= i18n("Apellidos") ?>:</b> <p><?php echo $usuario->getApellidos(); ?></p><br>
+                    <b><?= i18n("Edad") ?>:</b> <p><?php echo $usuario->getEdad(); ?></p><br>
+                    <b><?= i18n("Email") ?>: </b> <p><?php echo $usuario->getEmail(); ?></p><br>
+                    <b><?= i18n("Teléfono") ?>: </b> <p><?php echo $usuario->getTelefono(); ?></p><br>  
+                    <b><?= i18n("Fecha de Alta") ?>: </b> <p><?php echo $usuario->getFecha(); ?></p><br>
                     <br>    
-                    <b><?= i18n("Foto de Perfil") ?>: </b><img src="<?php echo $usuario->getFotoPerfil(); ?>" height="300" width="300"><br>      
+                    <b><?= i18n("Foto de Perfil") ?>: </b><p><img src="<?php echo $usuario->getFotoPerfil(); ?>" height="300" width="300"></p><br>      
                     <input type="hidden" name="dni" value="<?php echo $usuario->getDni(); ?>">
                     <input type="hidden" name="borrar" value="ok">
                     <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuarioDELETE'" class="btn btn-default">Volver</button> 

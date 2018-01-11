@@ -52,8 +52,15 @@ class EjercicioController extends BaseController{
     public function EstiramientoADD() {
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
         if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercici
+
+                if($_POST['video']=='https://www.youtube.com/embed/'){
+                    $rutavideo=null;
+                }else{
+                    $rutavideo=$_POST['video'];
+                }
+                
     
-            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],'','');
+            $estiramiento = new EjercicioEstiramiento('',$_POST["nombre"], $_POST["descripcion"],$rutavideo,'');
             if($idEjercicio = $this->estiramientoMapper->addEstiramiento($estiramiento)){
                     $nombreFoto = $_FILES['imagen']['name'];
                     $tipoFoto = $_FILES['imagen']['type'];
@@ -68,19 +75,8 @@ class EjercicioController extends BaseController{
                 }else{
                     $rutaImagen=null;
                 }
-                    $nombreVideo = $_FILES['video']['name'];
 
-                if($nombreVideo != null){
-                    $dir_subida = 'ABP/../view/video/ejercicios/';
-                    $extension = 'mp4';
-                    $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
-                    move_uploaded_file($nombreVideo, $rutaVideo);
-                    
-                }else{
-                    $rutaVideo=null;
-                }
-
-                $this->ejercicioMapper->addImagenVideo($idEjercicio,$rutaVideo,$rutaImagen);
+                 $this->ejercicioMapper->addImagen($idEjercicio,$rutaImagen);
 
 
                 $this->view->setFlash("Ejercicio Añadido Corectamente");
@@ -119,8 +115,13 @@ class EjercicioController extends BaseController{
                 }else{
                     $rutaImagen=null;
                 }
+                if($_POST['video']=='https://www.youtube.com/embed/'){
+                    $rutavideo=null;
+                }else{
+                    $rutavideo=$_POST['video'];
+                }
 
-            $estiramiento = new EjercicioEstiramiento($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$rutaImagen);
+            $estiramiento = new EjercicioEstiramiento($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$rutavideo,$rutaImagen);
             $this->estiramientoMapper->editEstiramiento($estiramiento);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::estiramientoListar();//volvemos a listar los ejercicios
@@ -180,7 +181,14 @@ class EjercicioController extends BaseController{
     public function cardioADD() {
         $this->cardioMapper = new EjercicioCardioMapper();
         if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercicio
-            $cardio = new EjercicioCardio('',$_POST["nombre"], $_POST["descripcion"],'','');
+
+                if($_POST['video']=='https://www.youtube.com/embed/'){
+                    $rutavideo=null;
+                }else{
+                    $rutavideo=$_POST['video'];
+                }
+
+            $cardio = new EjercicioCardio('',$_POST["nombre"], $_POST["descripcion"],$rutavideo,'');
             if($idEjercicio = $this->cardioMapper->addCardio($cardio)){
 
                     $nombreFoto = $_FILES['imagen']['name'];
@@ -196,22 +204,7 @@ class EjercicioController extends BaseController{
                 }else{
                     $rutaImagen=null;
                 }
-
-                    $nombreVideo = $_FILES['video']['name'];
-                    $tipoVideo = $_FILES['video']['type'];
-                    $nombreTempVideo = $_FILES['video']['tmp_name'];
-
-                if($nombreVideo != null){
-                    $dir_subida = 'ABP/../View/video/ejercicios/';
-                    $extension = substr($tipoVideo, 6);
-                    $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
-                    move_uploaded_file($nombreTempVideo, $rutaVideo);
-                    
-                }else{
-                    $rutaVideo=null;
-                }
-
-                 $this->ejercicioMapper->addImagenVideo($idEjercicio,$rutaVideo,$rutaImagen);
+                 $this->ejercicioMapper->addImagen($idEjercicio,$rutaImagen);
 
                $this->view->setFlash("Ejercicio Añadido Corectamente");
 
@@ -242,7 +235,7 @@ class EjercicioController extends BaseController{
                         $dir_subida = 'ABP/../View/pictures/ejercicios/fotos/';
                         $extension = substr($tipoFoto, 6);
                         $rutaImagen = $dir_subida . $_POST['idEjercicio'] . ".". $extension;
-                         unlink($_POST['imagenvieja']);
+                        unlink($_POST['imagenvieja']);
                         move_uploaded_file($nombreTempFoto, $rutaImagen);
                     }
 
@@ -250,7 +243,14 @@ class EjercicioController extends BaseController{
                     $rutaImagen=null;
                 }
 
-            $cardio = new EjercicioCardio($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$rutaImagen);
+
+                if($_POST['video']=='https://www.youtube.com/embed/'){
+                    $rutavideo=null;
+                }else{
+                    $rutavideo=$_POST['video'];
+                }
+
+            $cardio = new EjercicioCardio($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$rutavideo,$rutaImagen);
             $this->cardioMapper->editCardio($cardio);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::cardioListar();//volvemos a listar los ejercicios
@@ -310,7 +310,16 @@ class EjercicioController extends BaseController{
     public function muscularADD() {
         $this->muscularMapper = new EjercicioMuscularMapper();
         if(isset($_POST["nombre"]) && isset($_POST["descripcion"])){//si existen los post añado el ejercicio
-            $muscular = new EjercicioMuscular('',$_POST["nombre"], $_POST["descripcion"],'','');
+
+
+                if($_POST['video']=='https://www.youtube.com/embed/'){
+                    $rutavideo=null;
+                }else{
+                    $rutavideo=$_POST['video'];
+                }
+                
+
+            $muscular = new EjercicioMuscular('',$_POST["nombre"], $_POST["descripcion"],$rutavideo,'');
             if($idEjercicio = $this->muscularMapper->addMuscular($muscular)){
                  $nombreFoto = $_FILES['imagen']['name'];
                     $tipoFoto = $_FILES['imagen']['type'];
@@ -325,21 +334,7 @@ class EjercicioController extends BaseController{
                 }else{
                     $rutaImagen=null;
                 }
-
-                    $nombreVideo = $_FILES['video']['name'];
-                    $tipoVideo = $_FILES['video']['type'];
-                    $nombreTempVideo = $_FILES['video']['tmp_name'];
-
-                if($nombreVideo != null){
-                    $dir_subida = 'ABP/../View/video/ejercicios/';
-                    $extension = substr($tipoVideo, 6);
-                    $rutaVideo = $dir_subida . $idEjercicio . ".". $extension;
-                    move_uploaded_file($nombreTempVideo, $rutaVideo);
-                    
-                }else{
-                    $rutaVideo=null;
-                }
-                 $this->ejercicioMapper->addImagenVideo($idEjercicio,$rutaVideo,$rutaImagen);
+                 $this->ejercicioMapper->addImagen($idEjercicio,$rutaImagen);
 
                $this->view->setFlash("Ejercicio Añadido Corectamente");
             }else{
@@ -377,8 +372,13 @@ class EjercicioController extends BaseController{
                     $rutaImagen=null;
                 }
                 
+                if($_POST['video']=='https://www.youtube.com/embed/'){
+                    $rutavideo=null;
+                }else{
+                    $rutavideo=$_POST['video'];
+                }
                 
-            $muscular = new EjercicioMuscular($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$rutaImagen);
+            $muscular = new EjercicioMuscular($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$rutavideo,$rutaImagen);
             $this->muscularMapper->editMuscular($muscular);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::muscularListar();//volvemos a listar los ejercicios
@@ -388,7 +388,6 @@ class EjercicioController extends BaseController{
             $this->view->render("ejercicios/muscular","muscularEDIT");
         }
     }
-
     /*muscularRemove
 	*Si se llama con un get carga la vista
 	*si se llama con un post añade el muscular

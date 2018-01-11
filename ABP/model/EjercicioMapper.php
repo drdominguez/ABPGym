@@ -39,10 +39,10 @@ Class EjercicioMapper{
 		return false;
 	}
 
-	public function addImagenVideo($idEjercicio,$rutaVideo, $rutaImagen){
+	public function addImagen($idEjercicio, $rutaImagen){
 		if(self::esSuperusuario()){//guardamos el ejercicio y añadimos el dni y el id en la tabla superusuario_ejercicio
-			$stmt=$this->db-> prepare("UPDATE ejercicio SET  imagen=?, video=? WHERE idEjercicio=?");
-			$stmt->execute(array($rutaImagen, $rutaVideo ,$idEjercicio));
+			$stmt=$this->db-> prepare("UPDATE ejercicio SET  imagen=? WHERE idEjercicio=?");
+			$stmt->execute(array($rutaImagen,$idEjercicio));
 			return true;
 
 		}
@@ -53,11 +53,24 @@ Class EjercicioMapper{
 	public function edit($ejercicio){
 		if(self::esSuperusuario()){
 			if($ejercicio->getImagen()==null){
-				$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=? WHERE idEjercicio=?");
-				$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getIdEjercicio()));
+				if($ejercicio->getVideo()==null){
+					$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=? WHERE idEjercicio=?");
+					$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getIdEjercicio()));
+
+				}else{
+					$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=? WHERE idEjercicio=?");
+					$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getIdEjercicio()));
+				}
+				
 			}else{
-				$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=?, imagen=? WHERE idEjercicio=?");
-				$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen(),$ejercicio->getIdEjercicio()));
+				if($ejercicio->getVideo()==null){
+					$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, imagen=? WHERE idEjercicio=?");
+					$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getImagen(),$ejercicio->getIdEjercicio()));
+				}else{
+						
+					$stmt=$this->db-> prepare("UPDATE ejercicio SET nombre=?, descripcion=?, video=?, imagen=? WHERE idEjercicio=?");
+					$stmt->execute(array($ejercicio->getNombre(),$ejercicio->getDescripcion(),$ejercicio->getvideo(),$ejercicio->getImagen(),$ejercicio->getIdEjercicio()));
+				}
 			}
 			
 			return true;
