@@ -301,7 +301,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="button" value="Seleccionar" onclick="anadirestiramiento('<?php echo $estiramiento->getIdEjercicio();?>','<?php echo $estiramiento->getNombre(); ?>','<?php echo $estiramiento->getDescripcion(); ?>')"/>
+                                            <input type="button" class="btn btn-primary" value="Seleccionar" onclick="anadirestiramiento('<?php echo $estiramiento->getIdEjercicio();?>','<?php echo $estiramiento->getNombre(); ?>','<?php echo $estiramiento->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php
@@ -379,7 +379,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                              <input type="button" value="Seleccionar" onclick="anadircardio('<?php echo $cardio->getIdEjercicio();?>','<?php echo $cardio->getNombre(); ?>','<?php echo $cardio->getDescripcion(); ?>')"/>
+                                              <input type="button" class="btn btn-primary" value="Seleccionar" onclick="anadircardio('<?php echo $cardio->getIdEjercicio();?>','<?php echo $cardio->getNombre(); ?>','<?php echo $cardio->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php
@@ -460,7 +460,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="button" value="Seleccionar" onclick="anadirmuscular('<?php echo $muscular->getIdEjercicio();?>','<?php echo $muscular->getNombre(); ?>','<?php echo $muscular->getDescripcion(); ?>')"/>
+                                            <input type="button" class="btn btn-primary" value="Seleccionar" onclick="anadirmuscular('<?php echo $muscular->getIdEjercicio();?>','<?php echo $muscular->getNombre(); ?>','<?php echo $muscular->getDescripcion(); ?>')"/>
                                         </td>
                                     </tr>
 <?php

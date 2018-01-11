@@ -2,7 +2,7 @@
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © Your Website 2017</small>
+          <small>Copyright © ABP_G42 (Adrián, Juan Ramón, Daniel y Álexandre)</small>
         </div>
       </div>
     </footer>
@@ -15,13 +15,13 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Seguro que desea salir
+                            <h5 class="modal-title" id="exampleModalLabel">¿Seguro que desea salir?
                             </h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">'Seleccione "Salir" si desea cerrar sesion.'</div>
+                        <div class="modal-body">Seleccione "Salir" si desea cerrar sesion.</div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                             <a class="btn btn-primary" href="index.php?controller=Login&amp;action=logout">Salir</a>
