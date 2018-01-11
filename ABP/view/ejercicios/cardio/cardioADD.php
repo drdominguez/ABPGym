@@ -31,7 +31,7 @@
                              <div class="form-row">
                                  <div class="col-md-6">
                                     <label for="exampleInputTiempo">Video</label>
-                                    <input class="form-control" name="video" id="exampleInputVideo" type="file" aria-describedby="emailHelp" placeholder="Video" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="video" id="exampleInputVideo" type="url" aria-describedby="emailHelp" placeholder="Video" value="https://www.youtube.com/embed/" onblur="esVacio(this)  && comprobarText(this,15)">
                                  </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Imagen</label>

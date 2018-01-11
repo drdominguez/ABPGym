@@ -19,7 +19,7 @@
                     <b><?= i18n("Id") ?>:</b> <?php echo $muscular->getIdEjercicio(); ?><br>
                     <b><?= i18n("Nombre") ?>:</b> <?php echo $muscular->getNombre(); ?><br>
                     <b><?= i18n("Descripcion") ?>:</b> <?php echo $muscular->getDescripcion(); ?><br>
-                    <b><?= i18n("Video") ?>:</b> <?php echo $muscular->getVideo() ?><br>
+                    <b><?= i18n("Video") ?>:</b>  <iframe width="280" height="155" allowfullscreen frameborder="0" src="<?php echo $muscular->getVideo(); ?>"></iframe><br>
                     <b><?= i18n("Imágen") ?>:</b><img src="<?php echo $muscular->getImagen(); ?>" height="300" width="300"><br>
                     <br>
                     <button type="button" onclick="window.location.href='./index.php?controller=Ejercicio&amp;action=MuscularListar'" class="btn btn-primary">Volver</button> 
