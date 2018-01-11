@@ -104,6 +104,7 @@ class UsuarioMapper {
             if($usuario_db != null){
                 $stmt = $this->db->prepare("DELETE from usuario WHERE dni=?");
                 $stmt->execute(array($dni));
+                unlink($usuario_db['fotoperfil']);
                 return true;
             }
             return false;

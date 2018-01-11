@@ -61,9 +61,17 @@ Class EjercicioMapper{
 
 	public function remove($idEjercicio){
 		if(self::esSuperusuario()){
-			$stmt = $this->db->prepare("DELETE FROM ejercicio WHERE idEjercicio = ?");
-			$stmt-> execute(array($idEjercicio));
-			return true;
+			$stmt = $this->db->prepare("SELECT * FROM ejercicio WHERE idEjercicio=?");
+            $stmt-> execute(array($idEjercicio));
+            $ejercicio_db = $stmt->fetch(PDO::FETCH_ASSOC);
+			if($ejercicio_db != null){
+				$stmt = $this->db->prepare("DELETE FROM ejercicio WHERE idEjercicio = ?");
+				$stmt-> execute(array($idEjercicio));
+                unlink($ejercicio_db['imagen']);
+                unlink($ejercicio_db['video']);
+				return true;
+			}
+            return false;
 		}
 		return false;
 	}

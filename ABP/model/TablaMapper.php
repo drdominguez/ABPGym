@@ -154,11 +154,9 @@ Class TablaMapper
                     $stmt->execute(array($estiramiento,$tabla->getIdTabla(),$tiempo_estiramiento));
                 }
                     return true;
-
                 }else{
                     return false;
                 }
-                
             }
         }
         return false;

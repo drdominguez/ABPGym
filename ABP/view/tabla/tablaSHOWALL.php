@@ -5,7 +5,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
     $tablas = $view->getVariable("tablas");
     $tipoUsuario = $view->getVariable("tipoUsuario");
     $currentuser = $view->getVariable("currentusername");
-    $view->setVariable("title", "Tablas");
+    $view->setVariable("title", "Tablas"); 
 ?>
 <header>
     <meta charset="UTF-8">
