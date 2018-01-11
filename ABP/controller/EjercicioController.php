@@ -101,7 +101,26 @@ class EjercicioController extends BaseController{
     public function estiramientoEdit(){
         $this->estiramientoMapper = new EjercicioEstiramientoMapper();
         if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
-            $estiramiento = new EjercicioEstiramiento($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
+
+            if(isset($_FILES['imagen'])){
+
+                    $nombreFoto = $_FILES['imagen']['name'];
+                    $tipoFoto = $_FILES['imagen']['type'];
+                    $nombreTempFoto = $_FILES['imagen']['tmp_name'];
+
+                    if($nombreFoto != null){
+                        $dir_subida = 'ABP/../View/pictures/ejercicios/fotos/';
+                        $extension = substr($tipoFoto, 6);
+                        $rutaImagen = $dir_subida . $_POST['idEjercicio'] . ".". $extension;
+                         unlink($_POST['imagenvieja']);
+                        move_uploaded_file($nombreTempFoto, $rutaImagen);
+                    }
+
+                }else{
+                    $rutaImagen=null;
+                }
+
+            $estiramiento = new EjercicioEstiramiento($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$rutaImagen);
             $this->estiramientoMapper->editEstiramiento($estiramiento);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::estiramientoListar();//volvemos a listar los ejercicios
@@ -212,7 +231,26 @@ class EjercicioController extends BaseController{
     public function cardioEdit(){
         $this->cardioMapper = new EjercicioCardioMapper();
         if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
-            $cardio = new EjercicioCardio($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
+
+             if(isset($_FILES['imagen'])){
+
+                    $nombreFoto = $_FILES['imagen']['name'];
+                    $tipoFoto = $_FILES['imagen']['type'];
+                    $nombreTempFoto = $_FILES['imagen']['tmp_name'];
+
+                    if($nombreFoto != null){
+                        $dir_subida = 'ABP/../View/pictures/ejercicios/fotos/';
+                        $extension = substr($tipoFoto, 6);
+                        $rutaImagen = $dir_subida . $_POST['idEjercicio'] . ".". $extension;
+                         unlink($_POST['imagenvieja']);
+                        move_uploaded_file($nombreTempFoto, $rutaImagen);
+                    }
+
+                }else{
+                    $rutaImagen=null;
+                }
+
+            $cardio = new EjercicioCardio($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$rutaImagen);
             $this->cardioMapper->editCardio($cardio);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::cardioListar();//volvemos a listar los ejercicios
@@ -320,7 +358,27 @@ class EjercicioController extends BaseController{
     public function muscularEdit(){
         $this->muscularMapper = new EjercicioMuscularMapper();
         if(isset($_POST["idEjercicio"]) && !empty($_POST["idEjercicio"])){//si lo llamamos por POST lo borra
-            $muscular = new EjercicioMuscular($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$_POST["imagen"]);
+
+            if(isset($_FILES['imagen'])){
+
+                    $nombreFoto = $_FILES['imagen']['name'];
+                    $tipoFoto = $_FILES['imagen']['type'];
+                    $nombreTempFoto = $_FILES['imagen']['tmp_name'];
+
+                    if($nombreFoto != null){
+                        $dir_subida = 'ABP/../View/pictures/ejercicios/fotos/';
+                        $extension = substr($tipoFoto, 6);
+                        $rutaImagen = $dir_subida . $_POST['idEjercicio'] . ".". $extension;
+                         unlink($_POST['imagenvieja']);
+                        move_uploaded_file($nombreTempFoto, $rutaImagen);
+                    }
+
+                }else{
+                    $rutaImagen=null;
+                }
+                
+                
+            $muscular = new EjercicioMuscular($_POST["idEjercicio"],$_POST["nombre"],$_POST["descripcion"],$_POST["video"],$rutaImagen);
             $this->muscularMapper->editMuscular($muscular);
             $this->view->setFlash("Ejercicio Editado Corectamente");
             self::muscularListar();//volvemos a listar los ejercicios
