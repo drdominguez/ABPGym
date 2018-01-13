@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 11-01-2018 a las 13:58:15
--- Versión del servidor: 5.7.20
--- Versión de PHP: 7.1.7
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-01-2018 a las 13:23:44
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -24,6 +24,7 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `GYMESEI2`;
 CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `GYMESEI2`;
+
 
 -- --------------------------------------------------------
 
@@ -165,6 +166,13 @@ CREATE TABLE `cardio_tabla` (
   `distancia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `cardio_tabla`
+--
+
+INSERT INTO `cardio_tabla` (`id`, `idCardio`, `idTabla`, `tiempo`, `distancia`) VALUES
+(1, 9, 4, 50, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -267,6 +275,14 @@ CREATE TABLE `estiramiento_tabla` (
   `idTabla` bigint(20) NOT NULL,
   `tiempo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `estiramiento_tabla`
+--
+
+INSERT INTO `estiramiento_tabla` (`id`, `idEstiramiento`, `idTabla`, `tiempo`) VALUES
+(1, 8, 4, 2),
+(2, 10, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -499,10 +515,18 @@ INSERT INTO `recursos` (`idRecurso`, `nombreRecurso`, `observaciones`) VALUES
 CREATE TABLE `sesionentrenamiento` (
   `idSesionEntrenamiento` bigint(20) NOT NULL,
   `comentario` text COLLATE utf8_spanish_ci,
-  `duracion` bigint(20) DEFAULT NULL,
+  `duracion` float DEFAULT NULL,
   `fecha` date NOT NULL,
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `sesionentrenamiento`
+--
+
+INSERT INTO `sesionentrenamiento` (`idSesionEntrenamiento`, `comentario`, `duracion`, `fecha`, `dniDeportista`) VALUES
+(1, '', 0.0166667, '2018-01-13', '11111111H'),
+(2, 'otra sesion', 0.0833333, '2018-01-13', '11111111H');
 
 -- --------------------------------------------------------
 
@@ -514,6 +538,14 @@ CREATE TABLE `sesionentrenamiento_tabla` (
   `idSesionEntrenamiento` bigint(20) NOT NULL,
   `idTabla` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `sesionentrenamiento_tabla`
+--
+
+INSERT INTO `sesionentrenamiento_tabla` (`idSesionEntrenamiento`, `idTabla`) VALUES
+(1, 4),
+(2, 4);
 
 -- --------------------------------------------------------
 
@@ -580,6 +612,13 @@ CREATE TABLE `superusuario_tabla_deportista` (
   `dniDeportista` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idTabla` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `superusuario_tabla_deportista`
+--
+
+INSERT INTO `superusuario_tabla_deportista` (`dniSuperUsuario`, `dniDeportista`, `idTabla`) VALUES
+('53192250N', '11111111H', 4);
 
 -- --------------------------------------------------------
 
@@ -933,7 +972,7 @@ ALTER TABLE `actividad_entrenador`
 -- AUTO_INCREMENT de la tabla `cardio_tabla`
 --
 ALTER TABLE `cardio_tabla`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ejercicio`
@@ -945,7 +984,7 @@ ALTER TABLE `ejercicio`
 -- AUTO_INCREMENT de la tabla `estiramiento_tabla`
 --
 ALTER TABLE `estiramiento_tabla`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `horario`
@@ -981,7 +1020,7 @@ ALTER TABLE `recursos`
 -- AUTO_INCREMENT de la tabla `sesionentrenamiento`
 --
 ALTER TABLE `sesionentrenamiento`
-  MODIFY `idSesionEntrenamiento` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `idSesionEntrenamiento` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `superusuario_ejercicio`
