@@ -68,11 +68,6 @@
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseSesiones">
                             <li>
-                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar">
-                                    <i class="icon-clock3"></i> <?= i18n("Realizar Sesión") ?>  
-                                </a>
-                            </li>
-                            <li>
                                 <a class="nav-link" href="./index.php?controller=Estadistica&amp;action=Listar">
                                     <i class="icon-graph"></i> <?= i18n("Consultar Estadisticas") ?> 
                                 </a>
