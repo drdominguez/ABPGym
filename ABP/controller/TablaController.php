@@ -105,7 +105,7 @@ public function PersonalizadaADD()
     {
 
         if($this->permisos->esSuperusuario()){
-        if(isset($_POST["nombre"]) && (isset($_POST["estiramientos"]) || isset($_POST["musculares"])|| isset($_POST["cardios"])))
+        if(isset($_POST["nombre"]) && isset($_POST["usuario"]))
         {//si existen los post añado la notificacion
 
             if(isset($_POST["estiramientos"])){
@@ -418,8 +418,9 @@ public function PersonalizadaADD()
             $this->view->redirect("Tabla", "tablaListar");
             
         }else{
+            $idTabla = $_GET['idTabla'];
             $usuarios = $this->tablaMapper->listarDeportistas();
-            $usuariosAsignados = $this->tablaMapper->listarDeportistasAsignados($_GET['idTabla']);
+            $usuariosAsignados = $this->tablaMapper->listarDeportistasAsignados($idTabla);
             $this->view->setVariable("usuariosAsignados",$usuariosAsignados);
             $this->view->setVariable("usuarios",$usuarios);
             $this->view->render("tabla","tablaASIGNAR");

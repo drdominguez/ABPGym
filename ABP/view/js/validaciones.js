@@ -214,6 +214,31 @@ function comprobarSolonum(campo) {
     }
 }
 
+    function radioValidation(radio){
+
+        var radioValue = false;
+
+        for(var i=0; i<radio.length;i++){
+            if(radio[i].checked == true){
+                radioValue = true;    
+            }
+        }
+
+        if(!radioValue){
+            alert(i18nMessages['Debe seleccionar al menos un ']+ atributo[campo.name]);
+            setTimeout('radioValue=false', 50);
+            radio.focus();
+            return false;
+        }
+        return true;
+
+    }
+
+function habilitarAsignar(){
+
+    document.getElementById("btnAsignar").disabled = false;
+}
+
 function validarPersonalizadaADD(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
 }
@@ -223,8 +248,7 @@ function validarEstandarADD(Formu) {
 }
 
 function validarTablaEDIT(Formu) {
-    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 15))
-
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
 }
 
 function validarNotificacionADD(Formu) {

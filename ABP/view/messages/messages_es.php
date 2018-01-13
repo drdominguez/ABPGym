@@ -20,6 +20,7 @@
     	' no tiene un formato válido de telefeno.'=>' no tiene un formato válido de telefeno.',
     	' debe estar compuesto únicamente por digitos.'=>' debe estar compuesto únicamente por digitos.',
         'precio' => 'precio',
+        'Debe seleccionar al menos un deportista.' => 'Debe seleccionar al menos un deportista.',
 
         //STRINGS jquery.dataTables.js
 

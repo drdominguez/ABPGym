@@ -298,7 +298,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="radio" name="usuario" value="<?php echo $usuario->getDni();?>">
+                                            <input type="radio" name="usuario" onchange="habilitarAsignar()" value="<?php echo $usuario->getDni();?>">
                                         <?= i18n("Seleccionar") ?><br>
                                         </td>
                                     </tr>
@@ -513,7 +513,7 @@
                     </div>
                 </div>
                 <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
-                <button  type='submit' name='action' value='TablaADD' class="btn btn-primary"><?= i18n("Añadir") ?></button>
+                <button  type='submit' name='action' id="btnAsignar" disabled value='TablaADD' class="btn btn-primary"><?= i18n("Añadir") ?></button>
             </form>
         </div>
     </div>

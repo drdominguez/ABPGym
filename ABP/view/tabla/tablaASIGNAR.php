@@ -94,11 +94,11 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                             </a>
                                     </td>
                                      <td>
-                                      <input type="radio" name="usuario" value="<?php echo $usuario->getDni(); ?>">
+                                      <input type="radio" name="usuario" onchange="habilitarAsignar()" value="<?php echo $usuario->getDni(); ?>">
                                     </td>
                             </tr>
 <?php
-                          }
+                        }
                         }   
 ?>
                         </tbody>
@@ -108,7 +108,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
         </div>
                     <input type="hidden" name="idTabla" value="<?php echo $_GET['idTabla']; ?>">
                         <button type="button" onclick="window.location.href='./index.php?controller=Tabla&amp;action=TablaListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
-                <button  type='submit' name='action' value='TablaAsignar' class="btn btn-primary"><?= i18n("Asignar") ?></button>
+                <button  type='submit' name='action' disabled id="btnAsignar" value='TablaAsignar' class="btn btn-primary"><?= i18n("Asignar") ?></button>
             </form>
 
     </div>

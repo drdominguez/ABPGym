@@ -236,7 +236,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre"><?= i18n("Nombre") ?></label>
-                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $tabla->getNombre(); ?>" onchange="comprobarVacio(this)  && comprobarTexto(this,15)">
+                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $tabla->getNombre(); ?>" onchange="comprobarVacio(this)  && comprobarTexto(this,50)">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTipo"><?= i18n("Tipo") ?></label>
