@@ -214,8 +214,12 @@ function comprobarSolonum(campo) {
     }
 }
 
-function validarTablaADD(Formu) {
-    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 15))
+function validarPersonalizadaADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
+}
+
+function validarEstandarADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
 }
 
 function validarTablaEDIT(Formu) {

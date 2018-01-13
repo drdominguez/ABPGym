@@ -3,6 +3,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 
     $view = ViewManager::getInstance();
     $usuarios = $view->getVariable("usuarios");
+    $usuariosAsignados = $view->getVariable("usuariosAsignados");
     $currentuser = $view->getVariable("currentusername");
     $view->setVariable("title", "Asignar Tabla a Deportista");
 ?>
@@ -82,6 +83,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 <?php
                         foreach($usuarios as $usuario)
                         {
+                          if(!in_array($usuario, $usuariosAsignados)){
 ?>
                             <tr>
                                     <td><?php echo $usuario->getDni(); ?></td>
@@ -96,6 +98,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     </td>
                             </tr>
 <?php
+                          }
                         }   
 ?>
                         </tbody>

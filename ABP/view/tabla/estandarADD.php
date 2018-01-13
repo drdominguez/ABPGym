@@ -208,7 +208,7 @@
                 <div id="flash"><?= $view->popFlash() ?></div>   
             </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' action='./index.php?controller=Tabla&amp;action=estandarADD' method='post' onsubmit='return validarTablaADD()'>
+            <form name = 'Form' action='./index.php?controller=Tabla&amp;action=estandarADD' method='post' onsubmit='return validarEstandarADD()'>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Añadir Tabla Estándar") ?>
@@ -219,7 +219,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre"><?= i18n("Nombre") ?>:</label>
-                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onchange="comprobarVacio(this);comprobarTexto(this,30);">
+                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onchange="comprobarVacio(this);comprobarTexto(this,50);">
                                 </div>
                             </div>
                         </div>
@@ -285,7 +285,7 @@
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="EstiramientoTitle">New message</h5>
+                        <h5 class="modal-title" id="EstiramientoTitle"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>

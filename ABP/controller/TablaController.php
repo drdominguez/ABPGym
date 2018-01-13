@@ -418,9 +418,11 @@ public function PersonalizadaADD()
             $this->view->redirect("Tabla", "tablaListar");
             
         }else{
-        $usuarios = $this->tablaMapper->listarDeportistas();
-        $this->view->setVariable("usuarios",$usuarios);
-        $this->view->render("tabla","tablaASIGNAR");
+            $usuarios = $this->tablaMapper->listarDeportistas();
+            $usuariosAsignados = $this->tablaMapper->listarDeportistasAsignados($_GET['idTabla']);
+            $this->view->setVariable("usuariosAsignados",$usuariosAsignados);
+            $this->view->setVariable("usuarios",$usuarios);
+            $this->view->render("tabla","tablaASIGNAR");
         }
          }else{
         $this->view->redirect("main", "index");

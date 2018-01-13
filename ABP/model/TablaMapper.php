@@ -210,6 +210,19 @@ public function listarDeportistas()
         return $usuarios;
     }
 
+  public function listarDeportistasAsignados($idTabla)
+    {
+        $stmt = $this->db->prepare("SELECT * from superusuario_tabla_deportista s, usuario u WHERE s.dniDeportista=u.dni AND s.idTabla=?");
+        $stmt->execute(array($idTabla));
+        $usuarios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $usuarios = array();
+        foreach ($usuarios_db as $usuario) 
+        {
+            array_push($usuarios, new Usuario($usuario['dni'],$usuario['nombre'],$usuario['apellidos'],$usuario['edad'],'',$usuario['email'],$usuario['telefono'],$usuario['fechaAlta'],'',$usuario['fotoperfil']));
+        }
+        return $usuarios;
+    }  
+
     public function listarMuscular()
     {
         if($this->permisos->esSuperusuario())
