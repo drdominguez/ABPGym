@@ -267,6 +267,8 @@ function validarNotificacionADD(Formu) {
     return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido) && checkboxValidation())
 }
 
+
+
 function validarLogin(Formu) {
     return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.contraseña))
 }

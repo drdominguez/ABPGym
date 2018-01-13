@@ -116,7 +116,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                                             <td>
                                                 <input type="hidden" name="importe" value="<?php echo $actividad->getPrecio();?>">
                                                 <input type="hidden" name="dniDeportista" value="<?php echo $usuario;?>">
-                                                <input type="radio" name="idActividad" value="<?php echo $actividad->getIdActividad();?>"><?= i18n("Seleccionar") ?><br>
+                                                <input type="radio" name="idActividad" onchange="habilitarAsignar()" value="<?php echo $actividad->getIdActividad();?>"><?= i18n("Seleccionar") ?><br>
                                             </td>
                                         </tr>
                                         <?php
@@ -154,7 +154,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                     </div>
 
                     <button type="button" onclick="window.location.href='./index.php?controller=Pago&amp;action=PagoADD'" class="btn btn-default"><?= i18n("Volver") ?></button>
-                    <button type='submit' name='action'  value='PagoADD' class="btn btn-primary"><?= i18n("Insertar") ?></button>
+                    <button type='submit' name='action' id="btnAsignar" disabled value='PagoADD' class="btn btn-primary"><?= i18n("Insertar") ?></button>
                 </form>
                     <?php }else{ ?>
 
@@ -200,7 +200,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="radio" name="dniDeportista" value="<?php echo $usuario->getDni();?>"><?= i18n("Seleccionar") ?><br>
+                                            <input type="radio" name="dniDeportista"  onchange="habilitarAsignar()" value="<?php echo $usuario->getDni();?>"><?= i18n("Seleccionar") ?><br>
                                         </td>
                                     </tr>
 <?php
@@ -238,7 +238,7 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
 
 
                 <button type="button" onclick="window.location.href='./index.php?controller=Pago&amp;action=PagoListar'" class="btn btn-default"><?= i18n("Volver") ?></button>
-                    <button type='submit' name='action'  value='PagoADD' class="btn btn-primary"><?= i18n("Insertar") ?></button>
+                    <button type='submit' name='action' id="btnAsignar" disabled value='PagoADD' class="btn btn-primary"><?= i18n("Insertar") ?></button>
                 </form>
                     <?php } ?>
                 

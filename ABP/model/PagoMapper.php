@@ -94,7 +94,7 @@ Class PagoMapper{
             foreach ($actividades_db as $actividad)
             {
                 $horario = new Horario($actividad['idHorario'],$actividad['dia'],$actividad['hora'],$actividad['fechIni'],$actividad['fechFin']);
-                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['nombreRecurso'],$actividad['plazas'],$horario));
+                array_push($actividades, new Actividad($actividad['idActividad'],$actividad['nombre'],$actividad['precio'],$actividad['nombreRecurso'],$actividad['plazas'],null,$horario));
             }
             return $actividades;
         }
