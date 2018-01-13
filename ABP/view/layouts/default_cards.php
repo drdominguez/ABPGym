@@ -82,7 +82,7 @@
                           $numSesiones=$sesionMapper->contarSesiones();?>
               <div class="mr-5 mt-3"><?php echo $numSesiones[0];?> <?= i18n("Sesiones de Entrenamiento!") ?></div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=SesionEntrenamiento&action=TablaListar">
+            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Estadistica&amp;action=Listar">
               <span class="float-left"><?= i18n("Ver Sesiones") ?></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
