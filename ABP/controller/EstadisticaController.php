@@ -29,6 +29,20 @@ class EstadisticaController extends BaseController{
         $this->view->render("Estadistica","estadisticaSHOWALL");
     }
 
+    public function Listar2(){
+        if (!isset($_GET["dni"])){
+            throw new Exception("El dni es obligatorio");
+        }
+        $dni = $_GET["dni"];
+        $tipoUsuario = $this->permisos->comprobarTipo();
+        $estadisticaMapper = new EstadisticaMapper();
+        $estadisticas = $estadisticaMapper->listarDeportista($dni);
+        $this->view->setVariable("estadistica",$estadisticas);
+        $this->view->setVariable("tipoUsuario",$tipoUsuario);
+        $this->view->render("Estadistica","estadisticaSHOWDEPORTISTA");
+    }
+
+
     public function EstadisticaView() {
         $estadisticaMapper = new EstadisticaMapper();
         if (!isset($_GET["idTabla"])){

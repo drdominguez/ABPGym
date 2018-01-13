@@ -20,13 +20,9 @@ Class EstadisticaMapper
     public function listar()
     {
         if($this->permisos->esSuperusuario()){
-            if($this->permisos->esAdministrador()){
-                $stmt = $this->db->query("SELECT * from tabla");
-            }else{
-                $stmt = $this->db->prepare("SELECT * from tabla WHERE dniSuperUsuario=?");
+                $stmt = $this->db->prepare("SELECT dniDeportista from entrenador_deportista WHERE dniEntrenador=?");
                 $stmt->execute(array($_SESSION['currentuser']));
-            }
-        }else{
+            }else{
             $stmt = $this->db->prepare("SELECT t.idTabla, t.tipo, t.comentario as descripcion, t.nombre,
                                                          s.idSesionEntrenamiento, s.comentario as coment, s.duracion, s.fecha,
                                                          s.dniDeportista
@@ -43,12 +39,37 @@ Class EstadisticaMapper
         $estadisticas = array();
         foreach ($estadisticas_db as $estadistica)
         {
-            array_push($estadisticas, new Estadistica($estadistica['idTabla'],$estadistica['idSesionEntrenamiento'],
-                $estadistica['nombre'],$estadistica['tipo'],$estadistica['descripcion'],$estadistica['coment'],
-                $estadistica['duracion'],$estadistica['fecha'],$estadistica['dniDeportista']));
+            if($this->permisos->esSuperusuario()){
+                array_push($estadisticas, $estadistica['dniDeportista']);
+            }else {
+                array_push($estadisticas, new Estadistica($estadistica['idTabla'], $estadistica['idSesionEntrenamiento'],
+                    $estadistica['nombre'], $estadistica['tipo'], $estadistica['descripcion'], $estadistica['coment'],
+                    $estadistica['duracion'], $estadistica['fecha'], $estadistica['dniDeportista']));
+            }
         }
         return $estadisticas;
+    }
 
+    public function listarDeportista($dni){
+        $stmt = $this->db->prepare("SELECT t.idTabla, t.tipo, t.comentario as descripcion, t.nombre,
+                                                         s.idSesionEntrenamiento, s.comentario as coment, s.duracion, s.fecha,
+                                                         s.dniDeportista
+                                                        from tabla t, sesionentrenamiento s,
+                                                            sesionentrenamiento_tabla st 
+                                                            WHERE t.idTabla = st.idTabla 
+                                                            AND s.idSesionEntrenamiento = st.idSesionEntrenamiento
+                                                            AND dniDeportista=?");
+        $stmt->execute(array($dni));
+
+        $estadisticas_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $estadisticas = array();
+        foreach ($estadisticas_db as $estadistica)
+        {
+                array_push($estadisticas, new Estadistica($estadistica['idTabla'], $estadistica['idSesionEntrenamiento'],
+                    $estadistica['nombre'], $estadistica['tipo'], $estadistica['descripcion'], $estadistica['coment'],
+                    $estadistica['duracion'], $estadistica['fecha'], $estadistica['dniDeportista']));
+        }
+        return $estadisticas;
     }
 
 
