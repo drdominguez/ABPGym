@@ -225,7 +225,7 @@ function comprobarSolonum(campo) {
         }
 
         if(!radioValue){
-            alert(i18nMessages['Debe seleccionar al menos un ']+ atributo[campo.name]);
+            alert(i18nMessages['Debe seleccionar al menos un deportista']);
             setTimeout('radioValue=false', 50);
             radio.focus();
             return false;
