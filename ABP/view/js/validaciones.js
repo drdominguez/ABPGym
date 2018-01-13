@@ -234,6 +234,18 @@ function comprobarSolonum(campo) {
 
     }
 
+
+function checkboxValidation()
+{
+    if($('input:checkbox').is(':checked')){
+        return true;
+    }else{
+        alert(i18nMessages['Debe seleccionar al menos un deportista.']);
+        return false;
+    }
+}
+
+
 function habilitarAsignar(){
 
     document.getElementById("btnAsignar").disabled = false;
@@ -252,7 +264,7 @@ function validarTablaEDIT(Formu) {
 }
 
 function validarNotificacionADD(Formu) {
-    return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido))
+    return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido) && checkboxValidation())
 }
 
 function validarLogin(Formu) {

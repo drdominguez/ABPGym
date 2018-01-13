@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <div class="form-row">
                         <label for="Asunto"><?= i18n("Asunto") ?>: </label>
-                        <input class="form-control" type = 'text' name = 'Asunto' size = '50' value = ''  onchange="comprobarVacio(this)  && comprobarTexto(this, 50)" >
+                        <input class="form-control" type = 'text' name = 'Asunto' onchange="comprobarVacio(this)  && comprobarTexto(this, 200)" >
                         </div>
                     </div>
                     <div class="form-group">
