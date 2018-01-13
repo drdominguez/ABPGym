@@ -70,7 +70,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
     <form name='Form' action='./index.php?controller=Actividad&amp;action=ActividadAsignar' method='post'>
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i><?= i18n("Asignar Deportista a ");?> <?php echo $actividad->getNombre() ?>
+                <i class="fa fa-table"></i><?= i18n("Asignar Deportista a Actividad");?>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

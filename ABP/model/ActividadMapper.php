@@ -263,7 +263,7 @@ class ActividadMapper{
     }
     public function comprobarPlazas($actividad,$usuarios){
         $plazas=$actividad->getPlazas();
-        if($plazas>=$usuarios){
+        if($usuarios!=0 && $plazas>=$usuarios){
             return true;
         }
         return false;
