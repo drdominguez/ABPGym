@@ -174,9 +174,11 @@ class ActividadController extends BaseController{
     {
         if($this->permisos->esSuperusuario()){
 
-            if(isset($_POST["usuarios"]) && isset($_POST["idActividad"]))
+            if(isset($_POST["idActividad"]) )
             {
+                if (isset($_POST['usuarios'])){
                 $usuarios = $_POST['usuarios'];
+                }else $usuarios =array();
                 $idActividad = $_POST['idActividad'];
                 $actividad = $this->actividadMapper->findById($idActividad);
                 if($this->actividadMapper->comprobarPlazas($actividad,count($usuarios))){
@@ -193,7 +195,7 @@ class ActividadController extends BaseController{
                     {
                         $this->view->setFlash("Demasiados deportistas");
                     }
-            $this->view->redirect("Actividad", "actividadListar");
+            $this->view->redirect("Actividad", "actividadASIGNAR");
             
             }else{
                 $idActividad = $_GET['idActividad'];
