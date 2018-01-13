@@ -326,7 +326,60 @@ public function listarDeportistas()
             }
         }
         return $tabla_ejercicios;
+    }
+
+    /*getAllEjercicios
+    * obtiene todos los ejercicios de una tabla
+    * puede ser llamada por cualquier tipo de usuario por eso no se controla
+    */
+    public function getAllEjercicios($idTabla){
+        $listaEjercicios= array();
+        //Obtenemos los estiramientos
+         $stmt = $this->db->prepare("SELECT idEstiramiento,tiempo FROM estiramiento_tabla WHERE idTabla=?");
+        $stmt->execute(array($idTabla));
+        $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if($ejercicios_db != null) 
+        { 
+            foreach($ejercicios_db as $ejercicio_db)
+            {
+                $stmt = $this->db->prepare("SELECT * FROM ejercicio WHERE idEjercicio=?");
+                $stmt->execute(array($ejercicio_db['idEstiramiento']));
+                $ejercicio2_db = $stmt->fetch(PDO::FETCH_ASSOC);
+                $ejercicio = new EjercicioEstiramiento($ejercicio2_db["idEjercicio"],$ejercicio2_db["nombre"],$ejercicio2_db["descripcion"],$ejercicio2_db["video"],$ejercicio2_db["imagen"],$ejercicio_db["tiempo"]);
+                array_push($listaEjercicios, $ejercicio);
+            }
         }
+        //obtenemos los musculares
+        $stmt = $this->db->prepare("SELECT idMuscular,carga,repeticiones FROM muscular_tabla WHERE idTabla=?");
+        $stmt->execute(array($idTabla));
+        $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if($ejercicios_db != null){ 
+            foreach($ejercicios_db as $ejercicio_db)
+            {
+                $stmt = $this->db->prepare("SELECT * FROM ejercicio WHERE idEjercicio=?");
+                $stmt->execute(array($ejercicio_db['idMuscular']));
+                $ejercicio2_db = $stmt->fetch(PDO::FETCH_ASSOC);
+                $ejercicio = new EjercicioMuscular($ejercicio2_db["idEjercicio"],$ejercicio2_db["nombre"],$ejercicio2_db["descripcion"],$ejercicio2_db["video"],$ejercicio2_db["imagen"],$ejercicio_db["carga"],$ejercicio_db["repeticiones"]);
+                array_push($listaEjercicios, $ejercicio);
+            }
+        }
+        //obtenemos los cardio
+        $stmt = $this->db->prepare("SELECT idCardio,tiempo,distancia FROM cardio_tabla WHERE idTabla=?");
+        $stmt->execute(array($idTabla));
+        $ejercicios_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if($ejercicios_db != null){ 
+            foreach($ejercicios_db as $ejercicio_db)
+            {
+                $stmt = $this->db->prepare("SELECT * FROM ejercicio WHERE idEjercicio=?");
+                $stmt->execute(array($ejercicio_db['idCardio']));
+                $ejercicio2_db = $stmt->fetch(PDO::FETCH_ASSOC);
+                $ejercicio = new EjercicioCardio($ejercicio2_db["idEjercicio"],$ejercicio2_db["nombre"],$ejercicio2_db["descripcion"],$ejercicio2_db["video"],$ejercicio2_db["imagen"],$ejercicio_db["tiempo"],$ejercicio_db["distancia"]);
+                array_push($listaEjercicios, $ejercicio);
+            }
+        }
+        //devolvemos la lista con los ejercicios que haya
+        return $listaEjercicios;
+    }
 
       public function asignar($usuario,$idTabla){
         if($this->permisos->esSuperusuario())

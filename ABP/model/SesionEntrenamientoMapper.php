@@ -5,9 +5,7 @@ require_once(__DIR__."/SesionEntrenamientoMapper.php");
 require_once(__DIR__."/SesionEntrenamiento.php");
 require_once(__DIR__ . "/../core/permisos.php");
 
-
 Class SesionEntrenamientoMapper{
-
 	private $permisos;
 
 	public function __construct(){
@@ -15,14 +13,16 @@ Class SesionEntrenamientoMapper{
 		$this->permisos= new Permisos();
 	}
 
-	/*Falta el id de la tabla.. no se de donde sacarlo para añadirlo en sesionentrenamiento_tabla*/
-	public function sesionAdd($sesion){
+	/*sesionAdd
+	* Guarda una sesion de entrenamiento
+	*/
+	public function sesionAdd($sesion,$idTabla){
 		if(self::esDeportista()){
-			$stmt = $this->db->prepare("INSERT INTO sesionentrenamiento(comentario,duracion,fecha) VALUES(?,?,?)");
-			$stmt->execute(array($sesion->getComentario(),$sesion->getDuracion(),$sesion->getFecha()));
+			$stmt = $this->db->prepare("INSERT INTO sesionentrenamiento(comentario,duracion,fecha,dniDeportista) VALUES(?,?,?,?)");
+			$stmt->execute(array($sesion->getComentario(),$sesion->getDuracion(),$sesion->getFecha(),$sesion->getDniDeportista()));
 			$idSesion = $this->db->lastInsertId();//devuelve el ultimo id insertado
 			$stmt=$this->db->prepare("INSERT INTO sesionentrenamiento_tabla values(?,?)");
-			//$stmt->execute(array($idSesion,));
+			$stmt->execute(array($idSesion,$idTabla));
 		}
 	}
 
