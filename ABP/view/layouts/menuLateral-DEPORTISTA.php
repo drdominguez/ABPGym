@@ -23,7 +23,7 @@
                                 <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Realizar Sesión") ?></a>
                             </li>
                             <li>
-                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Consultar Sesiones") ?></a>
+                                <a class="nav-link" href="./index.php?controller=Estadistica&amp;action=Listar"><?= i18n("Consultar Estadisticas") ?></a>
                             </li>
                         </ul>
                     </li> 
@@ -31,12 +31,6 @@
                         <a class="nav-link" href="./index.php?controller=Pago&amp;action=PagoListar">
                             <i class="fa fa-fw fa-link"></i>
                             <span class="nav-link-text"> <?= i18n("Pagos");?></span>
-                        </a>
-                    </li>
-                    <li class="nav-item" data-toggle="tooltip">
-                        <a class="nav-link" href="./index.php?controller=Estadistica&amp;action=Listar">
-                            <i class="fa fa-fw fa-link"></i>
-                            <span class="nav-link-text"> <?= i18n("Estadísticas");?></span>
                         </a>
                     </li>
                 </ul>
