@@ -9,28 +9,31 @@
                 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
                     <li class="nav-item" data-toggle="tooltip">
                         <a class="nav-link" href="./index.php?controller=Tabla&amp;action=TablaListar">
-                            <i class="fa fa-fw fa-link"></i>
+                            <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text"> <?= i18n("Tablas");?></span>
                         </a>
                     </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sesiones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSesiones" data-parent="#exampleAccordion">
-                           <i class="fa fa-fw fa-table"></i>
-                            <span class="nav-link-text"><?= i18n("Gestión de Sesiones") ?></span>
+                           <i class="icon-clock3"></i>
+                            <span class="nav-link-text"><?= i18n("Entrenamiento") ?></span>
                         </a>
                         <ul class="sidenav-second-level collapse" id="collapseSesiones">
                             <li>
-                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar"><?= i18n("Realizar Sesión") ?></a>
+                                <a href="./index.php?controller=SesionEntrenamiento&amp;action=TablaListar">
+                                    <i class="icon-yelp"></i> <?= i18n("Realizar Sesión") ?>
+                                </a>
                             </li>
                             <li>
-                                <a class="nav-link" href="./index.php?controller=Estadistica&amp;action=Listar"><?= i18n("Consultar Estadisticas") ?></a>
+                                <a class="nav-link" href="./index.php?controller=Estadistica&amp;action=Listar">
+                                    <i class="icon-graph"></i> <?= i18n("Consultar Estadisticas") ?>
+                                </a>
                             </li>
                         </ul>
                     </li> 
                     <li class="nav-item" data-toggle="tooltip">
                         <a class="nav-link" href="./index.php?controller=Pago&amp;action=PagoListar">
-                            <i class="fa fa-fw fa-link"></i>
-                            <span class="nav-link-text"> <?= i18n("Pagos");?></span>
+                            <i class="icon-money"></i> <span class="nav-link-text"><?= i18n("Pagos");?></span>
                         </a>
                     </li>
                 </ul>
