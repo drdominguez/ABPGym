@@ -43,7 +43,7 @@ if (isset($_POST["grafica"]))
                         </thead>
                         <tfoot>
                         <tr>
-                            <<?php if($tipoUsuario != 'deportista'){?>
+                            <?php if($tipoUsuario != 'deportista'){?>
                                 <th><?= i18n("DNI") ?></th>
                             <?php }else{ ?>
                                 <th><?= i18n("Nombre") ?></th>
@@ -56,30 +56,32 @@ if (isset($_POST["grafica"]))
                         <tbody>
                         <?php
                         $arrayPHP = array();
+                        $dni = array();
                         foreach($estadisticas as $estadistica)
                         {
-                            ?>
+                        ?>
                             <tr>
-                                <?php if($tipoUsuario = '!deportista'){?>
-                                    <td><?php echo $estadistica->getDNI(); ?></td>
+                                <?php if($tipoUsuario != 'deportista'){?>
+                                    <td><?php $dni[count($dni)] = $estadistica;
+                                    echo $dni[0];?></td>
                                 <?php }else{ ?>
-                                    <td><?php echo $estadistica->getNombre(); ?></td>
-                                    <td><?php echo $estadistica->getDuracion(); ?></td>
-                                    <td><?php echo $estadistica->getFecha();
+                                <td><?php echo $estadistica->getNombre(); ?></td>
+                                <td><?php echo $estadistica->getDuracion(); ?></td>
+                                <td><?php echo $estadistica->getFecha();
                                     $arrayP = array($estadistica->getDuracion(),$estadistica->getFecha());
                                     array_push($arrayPHP, $arrayP)?></td>
                                 <?php } ?>
                                 <td>
-                                    <?php if($tipoUsuario = '!deportista'){?>
-                                        <a href='./index.php?controller=Estadistica&amp;action=EstadisticaView&amp;idTabla=<?php echo $estadistica->getIdTabla()?>&amp;idSes=<?php echo $estadistica->getIdSesion()?>'><span id="icon-ver" class="icon-eye-plus"></span>
+                                    <?php if($tipoUsuario != 'deportista'){?>
+                                        <a href='./index.php?controller=Estadistica&amp;action=Listar2&amp;dni=<?php echo $dni[0]?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                         </a>
                                     <?php }else{ ?>
                                         <a href='./index.php?controller=Estadistica&amp;action=EstadisticaView&amp;idTabla=<?php echo $estadistica->getIdTabla()?>&amp;idSes=<?php echo $estadistica->getIdSesion()?>'><span id="icon-ver" class="icon-eye-plus"></span>
                                         </a>
-                                    <?php }?>
+                                    <?php } ?>
                                 </td>
                             </tr>
-                            <?php
+                        <?php
                         }
                         ?>
                         </tbody>
