@@ -21,10 +21,10 @@
                         <div class="card mb-3">
                             <div class="card-body">
                                 <b><?= i18n("Nombre") ?>:</b> <?php echo $ejercicio->getNombre(); ?><br>
-                                <b><?= i18n("Descripcion") ?>:</b> <?php echo $ejercicio->getDescripcion(); ?><br>
-                                <b><?= i18n("Video") ?>:</b> <?php echo $ejercicio->getVideo() ?><br>
-                                <b><?= i18n("Imágen") ?>:</b> <?php echo $ejercicio->getImagen(); ?><br>
-                                <b><?= i18n("Tiempo") ?>:</b> <?php echo $ejercicio->getTiempo(); ?><br><br>
+                                <b><?= i18n("Descripcion") ?>:</b> <p><?php echo $ejercicio->getDescripcion(); ?></p>
+                                <b><?= i18n("Video") ?>:</b> <p> <iframe width="280" height="155" allowfullscreen frameborder="0" src="<?php echo $ejercicio->getVideo(); ?>"></iframe></p>
+                                <b><?= i18n("Imágen") ?>:</b> <p><img src="<?php echo $ejercicio->getImagen(); ?>" height="300" width="300"></p>
+                                <b><?= i18n("Tiempo") ?>:</b> <?php echo $ejercicio->getTiempo(); ?>
                             </div>
                         </div>
             <?php }
@@ -33,8 +33,8 @@
                         <div class="card-body">
                             <b><?= i18n("Nombre") ?>:</b> <?php echo $ejercicio->getNombre(); ?><br>
                             <b><?= i18n("Descripcion") ?>:</b> <?php echo $ejercicio->getDescripcion(); ?><br>
-                            <b><?= i18n("Video") ?>:</b> <?php echo $ejercicio->getVideo() ?><br>
-                            <b><?= i18n("Imágen") ?>:</b> <?php echo $ejercicio->getImagen(); ?><br>
+                                <b><?= i18n("Video") ?>:</b> <p> <iframe width="280" height="155" allowfullscreen frameborder="0" src="<?php echo $ejercicio->getVideo(); ?>"></iframe></p>
+                                <b><?= i18n("Imágen") ?>:</b> <p><img src="<?php echo $ejercicio->getImagen(); ?>" height="300" width="300"></p>
                             <b><?= i18n("Tiempo") ?>:</b> <?php echo $ejercicio->getTiempo(); ?><br>
                             <b><?= i18n("Distancia") ?>:</b> <?php echo $ejercicio->getDistancia(); ?><br><br>
                         </div>
@@ -46,8 +46,8 @@
                             <div class="card-body">
                                 <b><?= i18n("Nombre") ?>:</b> <?php echo $ejercicio->getNombre(); ?><br>
                                 <b><?= i18n("Descripcion") ?>:</b> <?php echo $ejercicio->getDescripcion(); ?><br>
-                                <b><?= i18n("Video") ?>:</b> <?php echo $ejercicio->getVideo() ?><br>
-                                <b><?= i18n("Imágen") ?>:</b> <?php echo $ejercicio->getImagen(); ?><br>
+                                <b><?= i18n("Video") ?>:</b> <p> <iframe width="280" height="155" allowfullscreen frameborder="0" src="<?php echo $ejercicio->getVideo(); ?>"></iframe></p>
+                                <b><?= i18n("Imágen") ?>:</b> <p><img src="<?php echo $ejercicio->getImagen(); ?>" height="300" width="300"></p>
                                 <b><?= i18n("Carga") ?>:</b> <?php echo $ejercicio->getCarga(); ?><br>
                                 <b><?= i18n("Repeticiones") ?>:</b> <?php echo $ejercicio->getRepeticiones(); ?><br><br>
                             </div>
