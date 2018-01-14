@@ -140,7 +140,7 @@ class ActividadController extends BaseController{
     public function individualADD() {
     
 
-        if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+        if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"])){//si existen los post añado la actividad
             $contador = 0;
             $usuariosd = $_POST['usuarios'];
             $horario = new Horario();
@@ -156,9 +156,9 @@ class ActividadController extends BaseController{
             $individual->setNombre($_POST["nombre"]);
             $individual->setPrecio($_POST["precio"]);
             $individual->setIdInstalaciones($_POST["idInstalaciones"]);
-            $individual->setPlazas($_POST["plazas"]); 
+            $individual->setPlazas(0); 
             $individual->setHorario($horario);
-            $individual->setContador($contador); 
+            $individual->setContador(0); 
             
 
         

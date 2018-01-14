@@ -93,13 +93,8 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                         }else{?> <option selected value="<?php echo $recurso->getIdRecurso();?>"><?php echo $recurso->getNombreRecurso();?></option>
 <?php                                            }
                                         }
-?>
-                                            
+?>    
                                         </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="exampleInputPlazas">Plazas</label>
-                                        <input class="form-control" name="plazas" id="exampleInputPlazas" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getPlazas(); ?>"    onchange="comprobarVacio(this)  && comprobarEntero($this, 0, 255)">
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -22,28 +22,30 @@ class ActividadMapper{
 
         if(self::esAdministrador())
         {
+            if($actividad->getPlazas() != 0)
+            { 
+                $stmt = $this->db->prepare("DELETE from actividad_deportista WHERE idActividad=?");
+                $stmt->execute(array($idActividad));
+                $stmt1 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
+                $stmt1->execute(array($idActividad));
 
-            $stmt = $this->db->prepare("DELETE from actividad_deportista WHERE idActividad=?");
-            $stmt->execute(array($idActividad));
-            $stmt1 = $this->db->prepare("UPDATE actividad SET contador=0 WHERE idActividad=?");
-            $stmt1->execute(array($idActividad));
-
-            foreach ($usuariosd as $usuariod) 
-            {
-                $usuariod_insertar = new ActividadDeportista();
-                $usuariod_insertar->setDniDeportista($usuariod);
-                array_push($deportistas, $usuariod_insertar);
-            }
-
-            if($deportistas && $plazas>=sizeof($deportistas)){
-                 foreach($deportistas as $deportista)
+                foreach ($usuariosd as $usuariod) 
                 {
-                    $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
-                    $stmt3->execute(array($idActividad,$deportista->getDniDeportista()));
-                    $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
-                    $stmt4->execute(array($idActividad));
+                    $usuariod_insertar = new ActividadDeportista();
+                    $usuariod_insertar->setDniDeportista($usuariod);
+                    array_push($deportistas, $usuariod_insertar);
                 }
-                return true; 
+
+                if($deportistas && $plazas>=sizeof($deportistas)){
+                    foreach($deportistas as $deportista)
+                    {
+                        $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
+                        $stmt3->execute(array($idActividad,$deportista->getDniDeportista()));
+                        $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
+                        $stmt4->execute(array($idActividad));
+                    }
+                    return true; 
+                }
             }
         }
         return false;
@@ -73,7 +75,6 @@ class ActividadMapper{
                 return true;
 
             }
-
         }
         return false;
     }

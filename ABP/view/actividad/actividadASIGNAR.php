@@ -71,11 +71,12 @@ require_once(__DIR__."/../../core/ViewManager.php");
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-table"></i><?= i18n("Asignar Deportista a Actividad");?>
-               <!-- <?php echo $actividad->getNombre();?>-->
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+                   <?php if($actividad->getPlazas() != 0){ ?>
                    <input type="checkbox" onclick="marcar(this);" /><?= i18n("Marcar/Desmarcar Todos") ?> 
+                   <?php } ?>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                             <tr>
@@ -111,7 +112,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                             </a>
                                     </td>
                                      <td>
-                                      <?php if(in_array($usuario,$deportistasAs)){ ?>
+                                      <?php if(in_array($usuario,$deportistasAs) || $actividad->getPlazas() == 0){ ?>
                                       <input checked type="checkbox" name="usuarios[]" value="<?php echo $usuario->getDni(); ?>">
                                       <?php }else{ ?>
                                       <input type="checkbox" name="usuarios[]" value="<?php echo $usuario->getDni(); ?>">
@@ -128,7 +129,9 @@ require_once(__DIR__."/../../core/ViewManager.php");
         </div>
                     <input type="hidden" name="idActividad" value="<?php echo $_GET['idActividad']; ?>">
                         <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=ActividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
+                        <?php if($actividad->getPlazas() != 0){ ?>
                 <button  type='submit' name='action' value='ActiviadAsignar' class="btn btn-primary"><?= i18n("Asignar") ?></button>
+                <?php } ?>
             </form>
 
     </div>

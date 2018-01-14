@@ -87,10 +87,7 @@
                                             
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="exampleInputTiempo">Plazas</label>
-                                        <input class="form-control" name="plazas" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Plazas" onchange="comprobarVacio(this)  && comprobarEntero($this, 0, 255)">
-                                    </div>
+                                    
                                 </div>
                             </div>
                         <div class="form-group">
