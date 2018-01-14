@@ -129,7 +129,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
         </div>
                     <input type="hidden" name="idActividad" value="<?php echo $_GET['idActividad']; ?>">
                         <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=ActividadListar'" class="btn btn-default"><?= i18n("Volver") ?></button> 
-                        <?php if($actividad->getPlazas() != 0){ ?>
+                        <?php if($actividad->getPlazas() == null || $actividad->getPlazas() != 0){ ?>
                 <button  type='submit' name='action' value='ActiviadAsignar' class="btn btn-primary"><?= i18n("Asignar") ?></button>
                 <?php } ?>
             </form>

@@ -140,7 +140,7 @@ class ActividadController extends BaseController{
     public function individualADD() {
     
 
-        if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"])){//si existen los post añado la actividad
+        if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
             $contador = 0;
             $usuariosd = $_POST['usuarios'];
             $horario = new Horario();
@@ -156,9 +156,9 @@ class ActividadController extends BaseController{
             $individual->setNombre($_POST["nombre"]);
             $individual->setPrecio($_POST["precio"]);
             $individual->setIdInstalaciones($_POST["idInstalaciones"]);
-            $individual->setPlazas(0); 
+            $individual->setPlazas($_POST["plazas"]); 
             $individual->setHorario($horario);
-            $individual->setContador(0); 
+            $individual->setContador($contador); 
             
 
         
@@ -207,13 +207,13 @@ class ActividadController extends BaseController{
                     {
                         $this->view->setFlash("Demasiados deportistas");
                     }
-            $this->view->redirect("Actividad", "actividadASIGNAR");
+                    $this->view->redirect("Actividad", "actividadListar");
             
             }else{
                 $idActividad = $_GET['idActividad'];
                 $actividad = $this->actividadMapper->findById($idActividad);
                 $usuarios = $this->actividadMapper->listarDeportistas();
-                $deportistasAs = $this->actividadMapper->deportistasAsignados($_GET['idActividad']);
+                $deportistasAs = $this->actividadMapper->deportistasAsignados($idActividad);
                 $this->view->setVariable("deportistasAs",$deportistasAs);
                 $this->view->setVariable("actividad",$actividad);
                 $this->view->setVariable("usuarios",$usuarios);
