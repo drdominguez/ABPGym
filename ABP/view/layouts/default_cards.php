@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">Bienvenido a GymApp!</li>
+        <li class="breadcrumb-item"><marquee>Bienvenido a GymApp!</marquee></li>
       </ol>
       <!-- Icon Cards-->
       <div class="row">

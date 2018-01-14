@@ -79,13 +79,11 @@ class TablaController extends BaseController
             //Añadir los atributos dependiendo del tipo de ejercicio (cardio, muscular o entrenamiento)
             if($this->tablaMapper->addEstandar($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios))
             {
-               $this->view->setFlash("Tabla Añadida Correctamente");
+                $this->view->redirect("Tabla", "tablaListar","Tabla Añadida Correctamente");
             }else
             {
-                $errors["username"] = "La tabla no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
+                $this->view->redirect("Tabla", "tablaListar","La tabla no se ha añadido corectamente");
             }
-            $this->view->redirect("Tabla", "tablaListar");
         }else
         {
             $cardio = $this->tablaMapper->listarCardio();
@@ -162,13 +160,11 @@ public function PersonalizadaADD()
 
             if($this->tablaMapper->addPersonalizada($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios,$usuario))
             {
-               $this->view->setFlash("Tabla Añadida Correctamente");
+                $this->view->redirect("Tabla", "tablaListar","Tabla Añadida Correctamente");
             }else
             {
-                $errors["username"] = "La tabla no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
+                $this->view->redirect("Tabla", "tablaListar","La tabla no se ha añadido corectamente");
             }
-            $this->view->redirect("Tabla", "tablaListar");
         }else
         {
             $usuarios = $this->tablaMapper->listarDeportistas();
@@ -251,13 +247,11 @@ public function PersonalizadaADD()
 
             if($this->tablaMapper->edit($tabla,$estiramientos,$musculares,$cardios,$array_estiramientos,$array_musculares,$array_cardios))
             {
-               $this->view->setFlash("Tabla Editada Correctamente");
+                $this->view->redirect("Tabla", "tablaListar","Tabla Editada Correctamente");
             }else
             {
-                $errors["username"] = "La tabla no se ha editado corectamente";
-                $this->view->setFlash($errors["username"]);
+                $this->view->redirect("Tabla", "tablaListar","La tabla no se ha editado corectamente");
             }
-            $this->view->redirect("Tabla", "tablaListar");
         }else
         {
             $idTabla = $_GET["idTabla"];
@@ -291,6 +285,9 @@ public function PersonalizadaADD()
     */
     public function TablaListar() 
     {
+        if(isset($_GET['setflash'])){
+            $this->view->setFlash($_GET['setflash']);
+        }
         $tipoUsuario = $this->permisos->comprobarTipo();
         $tablas = $this->tablaMapper->listar();
         $this->view->setVariable("tablas",$tablas);
@@ -340,13 +337,11 @@ public function PersonalizadaADD()
             $idTabla = $_POST["idTabla"];
             if($tabla = $this->tablaMapper->delete($idTabla))
             {
-               $this->view->setFlash("Tabla Eliminada Correctamente");
+                $this->view->redirect("Tabla", "tablaListar","Tabla Eliminada Correctamente");
             }else
             {
-                $errors["username"] = "La tabla no se ha eliminado corectamente";
-                $this->view->setFlash($errors["username"]);
+                $this->view->redirect("Tabla", "tablaListar","La tabla no se ha eliminado corectamente");
             }
-            $this->view->redirect("Tabla", "tablaListar");
         }
         }else{
         $this->view->redirect("main", "index");
@@ -409,14 +404,11 @@ public function PersonalizadaADD()
             $tabla = $_POST['idTabla'];
              if($this->tablaMapper->asignar($usuario,$tabla))
             {
-               $this->view->setFlash("Tabla Asignada Correctamente");
+                $this->view->redirect("Tabla", "tablaListar","Tabla Asignada Correctamente");
             }else
             {
-                $errors["username"] = "La tabla no se ha asignado corectamente";
-                $this->view->setFlash($errors["username"]);
+                $this->view->redirect("Tabla", "tablaListar","La tabla no se ha asignado corectamente");
             }
-            $this->view->redirect("Tabla", "tablaListar");
-            
         }else{
             $idTabla = $_GET['idTabla'];
             $usuarios = $this->tablaMapper->listarDeportistas();
@@ -438,25 +430,24 @@ public function PersonalizadaADD()
                 $idTabla = $_POST['idTabla'];
                 $tabla = $this->tablaMapper->findTablaById($idTabla);
                 if($this->tablaMapper->desasignar($usuario, $tabla)){
-                    $this->view->setFlash("Tabla Desasignada Correctamente");
-                }else{
-                $errors["username"] = "La tabla no se ha desasignado corectamente";
-                $this->view->setFlash($errors["username"]); 
+                    $this->view->redirect("Tabla", "tablaListar","Tabla Desasignada Correctamente");
+                }else
+                {
+                    $this->view->redirect("Tabla", "tablaListar","La tabla no se ha desasignado corectamente");
                 }
-                $this->view->redirect("Tabla", "tablaListar");
             }else{
 
-            if(isset($_POST['usuario'])){
-                $tablasUsuario = $this->tablaMapper->listarTablasUsuario($_POST['usuario']);
-                $this->view->setVariable("usuario",$_POST['usuario']);
-                $this->view->setVariable("tablas", $tablasUsuario);
-                $this->view->render("tabla", "tablaDESASIGNAR");
-            }else{
-                $usuarios = $this->tablaMapper->listarDeportistas();
-                $this->view->setVariable("usuarios",$usuarios);
-                $this->view->render("tabla","tablaDESASIGNAR");
+                if(isset($_POST['usuario'])){
+                    $tablasUsuario = $this->tablaMapper->listarTablasUsuario($_POST['usuario']);
+                    $this->view->setVariable("usuario",$_POST['usuario']);
+                    $this->view->setVariable("tablas", $tablasUsuario);
+                    $this->view->render("tabla", "tablaDESASIGNAR");
+                }else{
+                    $usuarios = $this->tablaMapper->listarDeportistas();
+                    $this->view->setVariable("usuarios",$usuarios);
+                    $this->view->render("tabla","tablaDESASIGNAR");
+                }
             }
-        }
         }else{
         $this->view->redirect("main", "index");
     }
