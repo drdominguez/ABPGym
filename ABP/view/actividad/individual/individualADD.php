@@ -156,7 +156,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>" required>Seleccionar<br>
+                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>" >Seleccionar<br>
                                         </td>
                                     </tr>
 <?php

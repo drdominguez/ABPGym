@@ -54,6 +54,7 @@ class ActividadMapper{
         $stmt = $this->db->prepare("INSERT INTO actividad(nombre,precio,idInstalaciones,plazas,contador) values (?,?,?,?,?)");
 
         if(self::esAdministrador()){
+            if($actividadEntrenador != null){
 
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$actividad->getContador()));
 
@@ -61,10 +62,18 @@ class ActividadMapper{
 
 
             $stmt1 = $this->db->prepare("INSERT INTO actividad_entrenador(dniEntrenador,idActividad) values (?,?)");
-
-            $stmt1 -> execute(array($actividadEntrenador->getDniEntrenador(),$idActividad));
             
-            return true;
+
+                $stmt1 -> execute(array($actividadEntrenador->getDniEntrenador(),$idActividad));
+                
+                return true;
+            }else{
+                $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$actividad->getContador()));
+
+                return true;
+
+            }
+
         }
         return false;
     }
@@ -86,7 +95,11 @@ class ActividadMapper{
             $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$idActividad));
             $stmt1 = $this->db->prepare("UPDATE horario SET dia=?, hora=?, fechIni=?, fechFin=? WHERE idHorario=? ");
             $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin(),$actividad->getHorario()->getIdHorario()));
-            $stmt2 = $this->db->prepare("UPDATE actividad_entrenador SET dniEntrenador=? WHERE idActividad=?");
+            if($this->findMonitorAsignado($idActividad)!=null){
+                $stmt2 = $this->db->prepare("UPDATE actividad_entrenador SET dniEntrenador=? WHERE idActividad=?");
+            }else{
+                $stmt2 = $this->db->prepare("INSERT INTO actividad_entrenador(dniEntrenador,idActividad) values (?,?)");
+            }
             $stmt2 -> execute(array($dniEntrenador,$idActividad));
             return true;
         }

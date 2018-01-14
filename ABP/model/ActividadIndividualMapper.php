@@ -16,9 +16,17 @@ Class ActividadIndividualMapper extends ActividadMapper{
 	public function addIndividual($actividad,$actividadEntrenador){
 
 		parent::add($actividad,$actividadEntrenador);//llama al add de la clase padre
+
 		$idActividadEntrenador = $this->db->lastInsertId();
-		$idActividad=$this->findIdActividad($idActividadEntrenador);
-		
+
+		if($this->comprobarEntrenador($idActividadEntrenador)){//En caso de que tenga entrenadores
+			$idActividad=$this->findIdActividad($idActividadEntrenador);
+
+		}else{
+			$idActividad = $idActividadEntrenador;
+			
+		}
+
  		if(parent::esAdministrador()){
 
 			$stmt = $this->db->prepare("INSERT INTO individual(idActividad) VALUES (?)");
@@ -47,6 +55,16 @@ Class ActividadIndividualMapper extends ActividadMapper{
 
         return $actividadentrenador['idActividad'];
 
+    }
+    public function comprobarEntrenador($idActividadEntrenador){
+    	
+		$stmt = $this->db->prepare("SELECT idActividad from actividad_entrenador WHERE id=?;");
+    	$stmt -> execute(array($idActividadEntrenador));
+    	$actividadentrenador = $stmt->fetch(PDO::FETCH_ASSOC);
+    	if($actividadentrenador != null){		
+        	return true;
+        }
+        return false;
     }
 }
 ?>

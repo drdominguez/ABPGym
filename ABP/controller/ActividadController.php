@@ -92,10 +92,12 @@ class ActividadController extends BaseController{
             $idActividad=$_POST['idActividad'];
             $idHorario=$_POST['idHorario'];
             $dniEntrenador=$_POST["monitor"];
+
             $horario = new Horario($idHorario,$_POST['dia'],$_POST['hora'],date_format(date_create($_POST['fechainicio']), 'Y-m-d'),date_format(date_create($_POST['fechafin']), 'Y-m-d'));            
             $actividad = new Actividad(null,$_POST["nombre"],$_POST["precio"],$_POST['idInstalaciones'],$_POST['plazas'],'',$horario);
             
             $actividadEntrenador = new ActividadEntrenador(null,$dniEntrenador,$idActividad);
+            
 
                 if($this->actividadMapper->edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad))
                 {
@@ -118,6 +120,7 @@ class ActividadController extends BaseController{
                 throw new Exception("No existe actividad con este id: ".$idActividad);
             }
                 $monitorAsignado = $this->actividadMapper->findMonitorAsignado($idActividad);
+                
                 $listarrecursos=$this->actividadMapper->selectRecurso();
                 $monitores = $this->actividadMapper->findMonitor();
                 $this->view->setVariable("listarecursos",$listarrecursos);
@@ -143,7 +146,9 @@ class ActividadController extends BaseController{
             $horario = new Horario();
             $individual = new ActividadIndividual();
             $actividadEntrenador = new ActividadEntrenador();
-            $actividadEntrenador->setDniEntrenador($_POST["monitor"]);
+            if(isset($_POST["monitor"])){
+                $actividadEntrenador->setDniEntrenador($_POST["monitor"]);
+            }else $actividadEntrenador = array();
             $horario->setDia($_POST["dia"]);
             $horario->setHora($_POST["hora"]);
             $horario->setFechaInicio(date_format(date_create($_POST['fechainicio']), 'Y-m-d'));
@@ -155,17 +160,24 @@ class ActividadController extends BaseController{
             $individual->setHorario($horario);
             $individual->setContador($contador); 
             
+
+        
             if($this->individualMapper->addIndividual($individual,$actividadEntrenador,$usuariosd)){
+
+            
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
 
             }else{
+
                 $errors["actividaderror"] = "La actividad individual no se ha añadido corectamente";
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
 
         $monitores = $this->actividadMapper->findMonitor();
+
         $listarrecursos=$this->actividadMapper->selectRecurso();
+
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/individual","individualADD");

@@ -71,6 +71,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fa fa-table"></i><?= i18n("Asignar Deportista a Actividad");?>
+               <!-- <?php echo $actividad->getNombre();?>-->
             </div>
             <div class="card-body">
                 <div class="table-responsive">
