@@ -138,6 +138,8 @@ class ActividadController extends BaseController{
     }
     
     public function individualADD() {
+    
+
         if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
             $contador = 0;
             $usuariosd = $_POST['usuarios'];
@@ -157,15 +159,25 @@ class ActividadController extends BaseController{
             $individual->setPlazas($_POST["plazas"]); 
             $individual->setHorario($horario);
             $individual->setContador($contador); 
+            
+
+        
             if($this->individualMapper->addIndividual($individual,$actividadEntrenador,$usuariosd)){
+
+            
                $this->view->setFlash("Actividad Individual Añadida Corectamente");
+
             }else{
+
                 $errors["actividaderror"] = "La actividad individual no se ha añadido corectamente";
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
+
         $monitores = $this->actividadMapper->findMonitor();
+
         $listarrecursos=$this->actividadMapper->selectRecurso();
+
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/individual","individualADD");
