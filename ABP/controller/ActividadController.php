@@ -258,7 +258,6 @@ class ActividadController extends BaseController{
                 $this->view->setFlash($errors["actividaderror"]);
             }
         }
-        
         $monitores = $this->actividadMapper->findMonitor();
         $listarrecursos=$this->actividadMapper->selectRecurso();
         $this->view->setVariable("listarecursos",$listarrecursos);
