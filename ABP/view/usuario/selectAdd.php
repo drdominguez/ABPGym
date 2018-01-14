@@ -2,7 +2,13 @@
     $view=ViewManager::getInstance();
 ?>
 <!DOCTYPE html>
-<html>       
+<html>
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>       
     <div class="content-wrapper">
             <div class="container-fluid">
                 <!-- Example DataTables Card-->
@@ -12,7 +18,8 @@
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-4">
-                                        <a href="index.php?controller=usuario&amp;action=administradorADD"><img src="./view/pictures/usuarios/Administrador.jpg" target="blank">
+                                        <a href="index.php?controller=usuario&amp;action=administradorADD">
+                                            <img src="./view/pictures/usuarios/Administrador.jpg" target="blank">
                                         </a>
                                 </div>
                                 <div class="col-md-4">

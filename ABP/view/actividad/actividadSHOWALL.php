@@ -7,7 +7,12 @@ $actividades = $view->getVariable("actividades");
 $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Actividades");
 ?>
-
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>
 <div class="content-wrapper">
     <div class="container-fluid">
         <!-- Breadcrumbs-->

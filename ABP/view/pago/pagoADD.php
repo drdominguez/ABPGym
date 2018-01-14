@@ -8,7 +8,12 @@ $seleccionarusuario = $view->getVariable("seleccionarusuario");
 ?>
 <!DOCTYPE html>
 <html>
-
+<header>
+    <meta charset="UTF-8">
+    <title>Iconos</title>
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/style.css">
+    <link rel="stylesheet" type="text/css" href="./view/Icons/icomoon/modifyIcon.css">
+</header>
 <script type="text/javascript">
     function mostrarModalUsuarios(){
           $('#ModalUsuarios').on('show.bs.modal', function (event) {
