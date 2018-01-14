@@ -36,14 +36,13 @@ class NotificacionController extends BaseController
                 $notificacion->setFecha(date("Y-m-d H:i:s"));
                 if($this->notificacionMapper->add($notificacion,$usuarios))
                 {
-                   $this->view->setFlash("Notificación Añadida Correctamente");
+                    $this->view->redirect("Notificacion", "NotificacionListar","Notificación Añadida Correctamente");
 
                 }else
                 {
-                    $errors["username"] = "La notificación no se ha añadido corectamente";
-                    $this->view->setFlash($errors["username"]);
+                    $this->view->redirect("Notificacion", "NotificacionListar","La notificación no se ha añadido corectamente");
                 }
-                $this->view->redirect("Notificacion", "NotificacionListar");
+                
             }else
             {
                 $usuarios = $this->notificacionMapper->listarUsuarios();
@@ -66,6 +65,9 @@ class NotificacionController extends BaseController
     */
     public function NotificacionListar() 
     {
+       if(isset($_GET['setflash'])){
+        $this->view->setFlash($_GET['setflash']);
+       }
        $notificaciones = $this->notificacionMapper->listar();
        $tipoUsuario = $this->permisos->comprobarTipo();
        $this->view->setVariable("notificaciones",$notificaciones);
