@@ -20,8 +20,9 @@ Class EstadisticaMapper
     public function listar()
     {
         if($this->permisos->esSuperusuario()){
-                $stmt = $this->db->prepare("SELECT dniDeportista from entrenador_deportista WHERE dniEntrenador=?");
-                $stmt->execute(array($_SESSION['currentuser']));
+                $stmt = $this->db->prepare("SELECT d.dni, u.nombre, u.apellidos from deportista d, usuario u 
+                                                      WHERE d.dni=u.dni");
+                $stmt->execute(array());
             }else{
             $stmt = $this->db->prepare("SELECT t.idTabla, t.tipo, t.comentario as descripcion, t.nombre,
                                                          s.idSesionEntrenamiento, s.comentario as coment, s.duracion, s.fecha,
@@ -40,7 +41,7 @@ Class EstadisticaMapper
         foreach ($estadisticas_db as $estadistica)
         {
             if($this->permisos->esSuperusuario()){
-                array_push($estadisticas, $estadistica['dniDeportista']);
+                array_push($estadisticas, $estadistica);
             }else {
                 array_push($estadisticas, new Estadistica($estadistica['idTabla'], $estadistica['idSesionEntrenamiento'],
                     $estadistica['nombre'], $estadistica['tipo'], $estadistica['descripcion'], $estadistica['coment'],
