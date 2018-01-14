@@ -90,9 +90,9 @@ class ActividadMapper{
     function edit($actividad,$actividadEntrenador,$dniEntrenador,$idActividad){
         
         if(self::esAdministrador()){
-            $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?, plazas=?  WHERE idActividad=? ");
+            $stmt = $this->db->prepare("UPDATE actividad SET nombre=?, precio=?, idInstalaciones=?  WHERE idActividad=? ");
             
-            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$actividad->getPlazas(),$idActividad));
+            $stmt -> execute(array($actividad->getNombre(),$actividad->getPrecio(),$actividad->getIdInstalaciones(),$idActividad));
             $stmt1 = $this->db->prepare("UPDATE horario SET dia=?, hora=?, fechIni=?, fechFin=? WHERE idHorario=? ");
             $stmt1 -> execute(array($actividad->getHorario()->getDia(),$actividad->getHorario()->getHora(),$actividad->getHorario()->getFechaInicio(),$actividad->getHorario()->getFechaFin(),$actividad->getHorario()->getIdHorario()));
             if($this->findMonitorAsignado($idActividad)!=null){

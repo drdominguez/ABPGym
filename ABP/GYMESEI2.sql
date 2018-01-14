@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 13-01-2018 a las 13:23:44
--- Versión del servidor: 10.1.28-MariaDB
--- Versión de PHP: 7.1.11
+-- Servidor: localhost
+-- Tiempo de generación: 14-01-2018 a las 19:10:30
+-- Versión del servidor: 5.7.20
+-- Versión de PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -24,7 +24,6 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `GYMESEI2`;
 CREATE DATABASE IF NOT EXISTS `GYMESEI2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 USE `GYMESEI2`;
-
 
 -- --------------------------------------------------------
 
@@ -46,8 +45,8 @@ CREATE TABLE `actividad` (
 --
 
 INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `plazas`, `contador`) VALUES
-(53, 50, 'Asistencia', 2, 1, 1),
-(54, 25, 'Futbol', 4, 23, 0),
+(53, 50, 'Asistencia', 2, 0, 3),
+(54, 25, 'Fútbol', 5, 23, 0),
 (55, 20, 'Karate', 3, 20, 0),
 (56, 30, 'tenis', 1, 5, 0),
 (57, 30, 'Baloncesto', 5, 18, 0);
@@ -69,7 +68,9 @@ CREATE TABLE `actividad_deportista` (
 --
 
 INSERT INTO `actividad_deportista` (`id`, `idActividad`, `dniDeportista`) VALUES
-(12, 53, '11111111H');
+(13, 53, '11111111H'),
+(14, 53, '22222222J'),
+(15, 53, '98765432M');
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,7 @@ CREATE TABLE `actividad_entrenador` (
 
 INSERT INTO `actividad_entrenador` (`id`, `dniEntrenador`, `idActividad`) VALUES
 (49, '66666666Q', 53),
-(50, '33333333P', 54),
+(50, '66666666Q', 54),
 (51, '12345678Z', 55),
 (52, '66666666Q', 56),
 (53, '33333333P', 57);
@@ -961,7 +962,7 @@ ALTER TABLE `actividad`
 -- AUTO_INCREMENT de la tabla `actividad_deportista`
 --
 ALTER TABLE `actividad_deportista`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `actividad_entrenador`
