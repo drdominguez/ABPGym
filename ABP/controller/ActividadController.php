@@ -140,7 +140,7 @@ class ActividadController extends BaseController{
     public function individualADD() {
     
 
-        if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"]) && isset($_POST["plazas"])){//si existen los post añado la actividad
+        if(isset($_POST["precio"]) && isset($_POST["nombre"])&& isset($_POST["idInstalaciones"])){//si existen los post añado la actividad
             $contador = 0;
             $usuariosd = $_POST['usuarios'];
             $horario = new Horario();
@@ -156,7 +156,7 @@ class ActividadController extends BaseController{
             $individual->setNombre($_POST["nombre"]);
             $individual->setPrecio($_POST["precio"]);
             $individual->setIdInstalaciones($_POST["idInstalaciones"]);
-            $individual->setPlazas($_POST["plazas"]); 
+            $individual->setPlazas(0); 
             $individual->setHorario($horario);
             $individual->setContador($contador); 
             
@@ -193,20 +193,29 @@ class ActividadController extends BaseController{
                 }else $usuarios =array();
                 $idActividad = $_POST['idActividad'];
                 $actividad = $this->actividadMapper->findById($idActividad);
-                if($this->actividadMapper->comprobarPlazas($actividad,count($usuarios))){
+                
+                if($actividad->getPlazas() != 0){
+                    if($this->actividadMapper->comprobarPlazas($actividad,count($usuarios)))
+                    {
+                        if($this->actividadMapper->addDeportista($usuarios,$idActividad,$actividad))
+                        {
+                            $this->view->setFlash("Usuarios Asignados Correctamente");
+                        }else
+                        {
+                            $this->view->setFlash("El deportista o deportistas no se ha asignado corectamente");
+                        }  
+                    }else
+                        {
+                            $this->view->setFlash("Demasiados deportistas");
+                        }
+                }else{
                     if($this->actividadMapper->addDeportista($usuarios,$idActividad,$actividad))
-
                     {
                         $this->view->setFlash("Usuarios Asignados Correctamente");
-                    }else
-                    {
-
+                    }else{
                         $this->view->setFlash("El deportista o deportistas no se ha asignado corectamente");
-                    }  
-                }else
-                    {
-                        $this->view->setFlash("Demasiados deportistas");
-                    }
+                    } 
+                }
                     $this->view->redirect("Actividad", "actividadListar");
             
             }else{

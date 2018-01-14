@@ -17,16 +17,15 @@ class ActividadMapper{
         $this->db = PDOConnection::getInstance();
     }
     function addDeportista($usuariosd,$idActividad,$actividad){
+
         $deportistas = array();
         $plazas=$actividad->getPlazas();
 
         if(self::esAdministrador())
-        {
-            if($actividad->getPlazas() != 0)
-            { 
+        {   
                 $stmt = $this->db->prepare("DELETE from actividad_deportista WHERE idActividad=?");
                 $stmt->execute(array($idActividad));
-                $stmt1 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
+                $stmt1 = $this->db->prepare("UPDATE actividad SET contador=0 WHERE idActividad=?");
                 $stmt1->execute(array($idActividad));
 
                 foreach ($usuariosd as $usuariod) 
@@ -36,7 +35,7 @@ class ActividadMapper{
                     array_push($deportistas, $usuariod_insertar);
                 }
 
-                if($deportistas && $plazas>=sizeof($deportistas)){
+                if($deportistas){
                     foreach($deportistas as $deportista)
                     {
                         $stmt3 = $this->db->prepare("INSERT INTO actividad_deportista(idActividad,dniDeportista) VALUES (?,?)");
@@ -46,7 +45,7 @@ class ActividadMapper{
                     }
                     return true; 
                 }
-            }
+            
         }
         return false;
     }
@@ -278,6 +277,7 @@ class ActividadMapper{
     public function comprobarPlazas($actividad,$usuarios){
         $plazas=$actividad->getPlazas();
         if($plazas>=$usuarios){
+
             return true;
         }
         return false;
