@@ -36,13 +36,12 @@ class PagoController extends BaseController
             $pago->setImporte($_POST["importe"]);
             $pago->setFecha(date("Y-m-d H:i:s"));
             if($this->pagoMapper->add($pago)){
-                $this->view->setFlash("Pago Añadido Corectamente");
+                $this->view->redirect("pago", "PagoListar","Pago Añadido Corectamente");
 
             }else{
-                $errors["username"] = "El pago no se ha añadido corectamente";
-                $this->view->setFlash($errors["username"]);
+                $this->view->redirect("pago", "PagoListar","El pago no se ha añadido corectamente");
             }
-            $this->view->redirect("pago", "PagoListar");
+            
 
         }else
         {
@@ -69,11 +68,14 @@ class PagoController extends BaseController
     public function PagoListar()
     {
         if($this->permisos->esAdministrador() || $this->permisos->esDeportista() ){
-        $tipoUsuario = $this->permisos->comprobarTipo();
-        $pagos = $this->pagoMapper->listar();
-        $this->view->setVariable("pagos",$pagos);
-         $this->view->setVariable("tipoUsuario",$tipoUsuario);
-        $this->view->render("pago","pagoSHOWALL");
+            if(isset($_GET['setflash'])){
+                $this->view->setFlash($_GET['setflash']);
+            }
+            $tipoUsuario = $this->permisos->comprobarTipo();
+            $pagos = $this->pagoMapper->listar();
+            $this->view->setVariable("pagos",$pagos);
+            $this->view->setVariable("tipoUsuario",$tipoUsuario);
+            $this->view->render("pago","pagoSHOWALL");
         }else{
                 $this->view->redirect("main", "index");
         }
@@ -89,28 +91,23 @@ class PagoController extends BaseController
                 throw new Exception("El idPago es obligatorio");
             }
             $idPago = $_GET["idPago"];
-            // find the notification object in the database
             $pago = $this->pagoMapper->findById($idPago);
             if ($pago == NULL)
             {
                 throw new Exception("No existe ese pago");
             }
-            // put the notification object to the view
             $this->view->setVariable("pago", $pago);
-            // render the view (/view/posts/view.php)
             $this->view->render("pago", "pagoDELETE");
         }else
         {
             $idPago = $_POST["idPago"];
             if($pago = $this->pagoMapper->delete($idPago))
             {
-                $this->view->setFlash("Pago Eliminado Correctamente");
+                $this->view->redirect("Pago", "PagoListar","Pago Eliminado Correctamente");
             }else
             {
-                $errors["username"] = "El pago no se ha eliminado corectamente";
-                $this->view->setFlash($errors["username"]);
+                $this->view->redirect("Pago", "PagoListar","El pago no se ha eliminado corectamente");
             }
-            $this->view->redirect("Pago", "PagoListar");
         }
         }else{
                 $this->view->redirect("main", "index");
