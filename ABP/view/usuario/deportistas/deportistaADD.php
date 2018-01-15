@@ -89,7 +89,7 @@
                      <label id="comentarioLabel" for="comentarioRevision"><?= i18n("Comentario Revisión")?>: </label>
                     <textarea class="form-control" id="textarea" rows="4"  type="text" name="comentarioRevision" placeholder=""></textarea><br>
                   <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuarioADD'" class="btn btn-default"><?= i18n("Volver") ?></button> 
-                  <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Añadir</button>
+                  <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary"><?= i18n("Añadir") ?></button>
                 </form>
             </div>
         </div>

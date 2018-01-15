@@ -67,7 +67,7 @@
                         <input class="form-control" type = 'text' name = 'telefono' size = '20' required="true" value = ''  onchange="comprobarVacio(this)  && comprobarTelf(this)" >
                         </div>
                         <div class="col-md-6">
-                        <label for="exampleInputTiempo">Imagen</label>
+                        <label for="exampleInputTiempo"><?= i18n("Imagen") ?>: </label>
                         <input class="form-control" name="fotoperfil" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                       </div>
@@ -81,7 +81,7 @@
                     </div>
                     <br>
                     <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuarioADD'" class="btn btn-default"><?= i18n("Volver") ?></button> 
-                     <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Añadir</button>
+                     <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary"><?= i18n("Añadir") ?></button>
                 </form>
             </div>
         </div>
