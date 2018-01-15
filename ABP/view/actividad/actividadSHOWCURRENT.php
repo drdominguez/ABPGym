@@ -27,18 +27,18 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 <i class="fa fa-table"></i><?= i18n("Mostrar Actividad") ?>
             </div>
             <div class="card-body">
-                <b><?= i18n("idActividad") ?>:</b> <?php echo $actividad->getIdActividad(); ?><br>
-                <b><?= i18n("nombre") ?>:</b> <?php echo $actividad->getNombre(); ?><br>
-                <b><?= i18n("precio") ?>:</b> <?php echo $actividad->getPrecio(); ?><br>                
-                <b><?= i18n("instalaciones") ?>:</b> <?php echo $recurso->getNombreRecurso(); ?><br>
-                <b><?= i18n("plazas") ?>: </b> <?php echo $actividad->getPlazas(); ?><br> 
-                <b><?= i18n("dia") ?>:</b> <?php echo $actividad->getHorario()->getDia(); ?><br>
-                <b><?= i18n("hora") ?>:</b> <?php echo $actividad->getHorario()->getHora(); ?><br>                
-                <b><?= i18n("fechaInicio") ?>:</b> <?php echo $actividad->getHorario()->getFechaInicio(); ?><br>
-                <b><?= i18n("fechaFin") ?>: </b> <?php echo $actividad->getHorario()->getFechaFin(); ?><br>
-                <b><?= i18n("Dni Monitor") ?>: </b> <?php echo $monitorAsignado[0]['dni'] ; ?><br>
-                <b><?= i18n("Nombre Monitor") ?>: </b> <?php echo $monitorAsignado[0]['nombre'] ; ?><br>
-                <b><?= i18n("Apellidos Monitor") ?>: </b> <?php echo $monitorAsignado[0]['apellidos'] ; ?><br>
+                <b><?= i18n("idActividad") ?>:</b> <p><?php echo $actividad->getIdActividad(); ?></p>
+                <b><?= i18n("nombre") ?>:</b> <p><?php echo $actividad->getNombre(); ?></p>
+                <b><?= i18n("precio") ?>:</b> <p><?php echo $actividad->getPrecio(); ?></p>                
+                <b><?= i18n("instalaciones") ?>:</b><p><?php echo $recurso->getNombreRecurso(); ?></p>
+                <b><?= i18n("plazas") ?>: </b><p> <?php echo $actividad->getPlazas(); ?></p> 
+                <b><?= i18n("dia") ?>:</b> <p><?php echo $actividad->getHorario()->getDia(); ?></p>
+                <b><?= i18n("hora") ?>:</b><p> <?php echo $actividad->getHorario()->getHora(); ?></p>
+                <b><?= i18n("fechaInicio") ?>:</b> <p><?php echo $actividad->getHorario()->getFechaInicio(); ?></p>
+                <b><?= i18n("fechaFin") ?>: </b> <p><?php echo $actividad->getHorario()->getFechaFin(); ?></p>
+                <b><?= i18n("Dni Monitor") ?>: </b> <p><?php echo $monitorAsignado[0]['dni'] ; ?></p>
+                <b><?= i18n("Nombre Monitor") ?>: </b> <p><?php echo $monitorAsignado[0]['nombre'] ; ?></p>
+                <b><?= i18n("Apellidos Monitor") ?>: </b> <p><?php echo $monitorAsignado[0]['apellidos'] ; ?></p>
 
                 <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=ActividadListar'" class="btn btn-primary">Volver</button> 
             </div>
