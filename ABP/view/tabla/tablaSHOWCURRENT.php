@@ -221,7 +221,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                     </div>
                 </div>
 
-                <?php if($tipoUsuario == 'administrador'){?>
+                <?php if($tipoUsuario == 'administrador' || $tipoUsuario == 'entrenador'){?>
                                        <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Deportistas con esta Tabla") ?>
