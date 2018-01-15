@@ -6,12 +6,23 @@
 var avisado = false;
 /*Defino un array atributo con los diferentes campos para que cambien de idioma*/
 var atributo = new Array();
-atributo['contenido'] = i18nMessages['contenido'];
+atributo['contenido'] = i18nMessages['Contenido'];
 atributo['Asunto'] = i18nMessages['Asunto'];
-atributo['nombre'] = i18nMessages['nombre'];
-atributo['precio'] = i18nMessages['precio'];
-atributo['dni'] = i18nMessages['dni'];
-atributo['contraseña'] = i18nMessages['contraseña'];
+atributo['nombre'] = i18nMessages['Nombre'];
+atributo['precio'] = i18nMessages['Precio'];
+atributo['dni'] = i18nMessages['Dni'];
+atributo['contraseña'] = i18nMessages['Contraseña'];
+atributo['tarjeta'] = i18nMessages['Tarjeta'];
+atributo['apellidos'] = i18nMessages['Apellidos'];
+atributo['edad'] = i18nMessages['Edad'];
+atributo['email'] = i18nMessages['Email'];
+atributo['telefono'] = i18nMessages['Teléfono'];
+atributo['idInstalaciones'] = i18nMessages['Instalaciones'];
+atributo['plazas'] = i18nMessages['Plazas'];
+atributo['dia'] = i18nMessages['Día'];
+atributo['hora'] = i18nMessages['Hora'];
+atributo['monitor'] = i18nMessages['Monitor'];
+atributo['usuarios'] = i18nMessages['Usuarios'];
 
 /*Comprueba que el campo no contenga null ni cero*/
 function comprobarVacio(campo) {
@@ -347,7 +358,7 @@ function validarActividadEDIT(Formu) {
 }
 
 function validarUsuarioADD(Formu){
-    return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.apellidos) && comprobarTexto(Form.apellidos, 50) && comprobarVacio(Form.edad) && comprobarSolonum(Form.edad) && comprobarEntero(Form.edad,0,200) && comprobarVacio(Form.contraseña) && comprobarTexto(Form.contraseña,30) && comprobarVacio(Form.email) && comprobarEmail(Form.email) && comprobarTexto(Form.email,100) && comprobarVacio(Form.telefono) && comprobarTelf(Form.telefono))
+    return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.apellidos) && comprobarTexto(Form.apellidos, 50) && comprobarVacio(Form.edad) && comprobarSolonum(Form.edad) && comprobarEntero(Form.edad,0,200) && comprobarVacio(Form.Día) && comprobarTexto(Form.contraseña,30) && comprobarVacio(Form.email) && comprobarEmail(Form.email) && comprobarTexto(Form.email,100) && comprobarVacio(Form.telefono) && comprobarTelf(Form.telefono))
 }
 
 function validarDeportistaADD(Formu){
