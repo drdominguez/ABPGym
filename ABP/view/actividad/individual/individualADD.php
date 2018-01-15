@@ -63,11 +63,11 @@
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputNombre">Nombre</label>
+                                    <label for="exampleInputNombre"><?= i18n("Nombre") ?>: </label>
                                     <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="exampleInputPrecio">Precio</label>
+                                        <label for="exampleInputPrecio"><?= i18n("Precio") ?>: </label>
                                         <input class="form-control" name="precio" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Precio" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
                                     </div>
                             </div>
@@ -75,7 +75,7 @@
                         <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-6">
-                                        <label for="exampleInputNombre">Instalaciones</label>
+                                        <label for="exampleInputNombre"><?= i18n("Instalaciones") ?>: </label>
                                         <select class="form-control" name="idInstalaciones">
 <?php
                                         foreach($listarecursos as $recurso){
@@ -93,11 +93,11 @@
                         <div class="form-group">
                                 <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputNombre">Dia</label>
+                                    <label for="exampleInputNombre"><?= i18n("Dia") ?>: </label>
                                     <input class="form-control" name="dia" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Dia" onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="exampleInputPrecio">Hora</label>
+                                        <label for="exampleInputPrecio"><?= i18n("Hora") ?>: </label>
                                         <input class="form-control" name="hora" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Hora" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
                                     </div>
                                 </div>
@@ -105,11 +105,11 @@
                             <div class="form-group">
                                 <div class="form-row">
                                 <div class="col-md-6">
-                                    <label for="exampleInputNombre">FechaInicio</label>
+                                    <label for="exampleInputNombre"><?= i18n("FechaInicio") ?>: </label>
                                     <input class="tcal" name="fechainicio" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="fechainicio" onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="exampleInputPrecio">FechaFin</label>
+                                        <label for="exampleInputPrecio"><?= i18n("FechaFin") ?>: </label>
                                         <input class="tcal" name="fechafin" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="fechafin" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
                                     </div>
                                 </div>
@@ -126,8 +126,8 @@
                                     <th><?= i18n("dniEntrenador") ?></th>
                                     <th><?= i18n("Nombre") ?></th>
                                     <th><?= i18n("Apellidos") ?></th>
-                                    <th>Detalle</th>
-                                    <th>Seleccionar</th>
+                                    <th><?= i18n("Detalle") ?> </th>
+                                    <th><?= i18n("Seleccionar") ?></th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -135,8 +135,8 @@
                                     <th><?= i18n("dniEntrenador") ?></th>
                                     <th><?= i18n("Nombre") ?></th>
                                     <th><?= i18n("Apellidos") ?></th>
-                                    <th>Detalle</th>
-                                    <th>Seleccionar</th>
+                                    <th><?= i18n("Detalle") ?></th>
+                                    <th><?= i18n("Seleccionar") ?></th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -165,8 +165,8 @@
                     </div>
                 </div>
                 </form>
-                     <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default">Volver</button>
-                            <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary">Insertar</button>
+                     <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?> </button>
+                            <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary"><?= i18n("Insertar") ?> </button>
                     </div>
                 </div>
             </div>

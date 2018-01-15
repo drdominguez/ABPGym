@@ -62,7 +62,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
             </div>
         </div>
 
-        <button type="button" onclick="window.location.href='./index.php?controller=Notificacion&amp;action=NotificacionListar'" class="btn btn-primary">Volver</button> <br><br>
+        <button type="button" onclick="window.location.href='./index.php?controller=Notificacion&amp;action=NotificacionListar'" class="btn btn-primary"><?= i18n("Volver") ?></button> <br><br>
 <?php if($tipoUsuario == 'administrador'){?>
         <div class="card mb-3">
             <div class="card-header">
@@ -133,7 +133,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                         </div>
                       </div>
                     </div>
-        <button type="button" onclick="window.location.href='./index.php?controller=Notificacion&amp;action=NotificacionListar'" class="btn btn-primary">Volver</button> 
+        <button type="button" onclick="window.location.href='./index.php?controller=Notificacion&amp;action=NotificacionListar'" class="btn btn-primary"><?= i18n("Volver") ?></button>
              <?php } ?>
     </div>
 </div>

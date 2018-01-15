@@ -66,7 +66,7 @@
                         <input class="form-control" type = 'text' name = 'telefono' size = '20' required="true" value = ''  onchange="comprobarVacio(this)  && comprobarTelf(this)" >
                         </div>
                         <div class="col-md-6">
-                        <label for="exampleInputTiempo">Imagen</label>
+                        <label for="exampleInputTiempo"><?= i18n("Imagen") ?>: </label>
                         <input class="form-control" name="fotoperfil" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
                         </div>
                       </div>

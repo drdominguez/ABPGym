@@ -11,7 +11,7 @@ $currentuser = $view->getVariable("currentusername");
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href=""><?= i18n("Gestión de tablas") ?></a>
+                    <a href=""><?= i18n("Gestión de usuarios") ?></a>
                 </li>
                 <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
             </ol>
@@ -70,7 +70,7 @@ $currentuser = $view->getVariable("currentusername");
                      <div class="form-group">
                         <div class="form-row">
                          <div class="col-md-6">
-                        <label for="exampleInputTiempo">Imagen</label>
+                        <label for="exampleInputTiempo"><?= i18n("Imagen") ?>: </label>
                         <input class="form-control" name="fotoperfil" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" >
                         </div>
                           <div class="col-md-6">
