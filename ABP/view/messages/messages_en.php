@@ -220,9 +220,9 @@
                 'Ver usuario actual' => 'Show actual user',
                 'Usuarios' => 'Users',
                 'Ver todos los usuarios' => 'Show all users',
-                'Tablas' => 'Tables',
-                'Ver todas las tablas' => 'Show all tables',
-                'Mostrar todas las tablas' => 'Show all tables',
+                'Tablas' => 'Boards',
+                'Ver todas las tablas' => 'Show all boards',
+                'Mostrar todas las tablas' => 'Show all boards',
                 'El nombre de usuario/contraseña no existen en el sistema' =>'User/password not exist in the system',
                 'Notificaciones' => 'Notifications',
                 'Añadir' => 'Add',
@@ -335,6 +335,10 @@
                 'Nuevas Notificaciones!' => 'New Notifications!',
                 'Tablas de Ejercicios!' => 'Boards!',
                 'Pagos!' => 'Payments!',
-                'Sesiones de Entrenamiento!' => 'Training Sessions!'
+                'Sesiones de Entrenamiento!' => 'Training Sessions!',
+                'Pagos' => 'Payments',
+                'Realizar' => 'Perform',
+                'Entrenamiento' => 'Training',
+                'Mostrar Detalles Estadística' => 'Show Statistic Detail'
                 );
 ?>

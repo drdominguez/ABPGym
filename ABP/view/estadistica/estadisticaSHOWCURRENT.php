@@ -29,7 +29,7 @@ $view->setVariable("title", "Ver Detalles Estadistica");
                 <b><?= i18n("Duración") ?>:</b> <p><?php echo $estadistica->getDuracion(); ?></p>
                 <b><?= i18n("Fecha") ?>:</b> <p><?php echo $estadistica->getFecha(); ?></p>
 
-                <button type="button" onclick="window.location.href='./index.php?controller=Estadistica&amp;action=Listar'" class="btn btn-primary">Volver</button>
+                <button type="button" onclick="window.location.href='./index.php?controller=Estadistica&amp;action=Listar'" class="btn btn-primary"><?= i18n("Volver") ?></button>
             </div>
         </div>
     </div>
