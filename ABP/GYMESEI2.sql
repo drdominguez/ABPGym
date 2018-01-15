@@ -34,7 +34,7 @@ USE `GYMESEI2`;
 CREATE TABLE `actividad` (
   `idActividad` bigint(20) NOT NULL,
   `precio` double DEFAULT NULL,
-  `nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `idInstalaciones` int(3) NOT NULL,
   `plazas` tinyint(4) NOT NULL,
   `contador` int(11) NOT NULL
@@ -313,7 +313,7 @@ INSERT INTO `grupo` (`idActividad`) VALUES
 
 CREATE TABLE `horario` (
   `idHorario` bigint(20) NOT NULL,
-  `dia` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `dia` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `hora` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `fechIni` date DEFAULT NULL,
   `fechFin` date DEFAULT NULL
@@ -661,7 +661,8 @@ CREATE TABLE `tdu` (
 --
 
 INSERT INTO `tdu` (`dni`, `tarjeta`) VALUES
-('22222222J', '555999888P');
+('22222222J', '555999888P'),
+('98765432M', '383828239O');
 
 -- --------------------------------------------------------
 

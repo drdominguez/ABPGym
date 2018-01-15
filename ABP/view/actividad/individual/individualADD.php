@@ -94,11 +94,11 @@
                                 <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre"><?= i18n("Dia") ?>: </label>
-                                    <input class="form-control" name="dia" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Dia" onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                    <input class="form-control" name="dia" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Dia" onchange="comprobarVacio(this)  && comprobarTexto(this,25)">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputPrecio"><?= i18n("Hora") ?>: </label>
-                                        <input class="form-control" name="hora" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Hora" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
+                                        <input class="form-control" name="hora" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="Hora" onchange="comprobarVacio(this)  &&  comprobarTexto(this,25)">
                                     </div>
                                 </div>
                             </div>
@@ -106,11 +106,11 @@
                                 <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre"><?= i18n("FechaInicio") ?>: </label>
-                                    <input class="tcal" name="fechainicio" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="fechainicio" onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                    <input class="tcal" name="fechainicio" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="fechainicio" >
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputPrecio"><?= i18n("FechaFin") ?>: </label>
-                                        <input class="tcal" name="fechafin" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="fechafin" onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
+                                        <input class="tcal" name="fechafin" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" placeholder="fechafin" >
                                     </div>
                                 </div>
                             </div> 
@@ -153,7 +153,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>" >Seleccionar<br>
+                                            <input type="radio" name="monitor" onchange="habilitarAsignar()" value="<?php echo $monitor->getDni();?>" >Seleccionar<br>
                                         </td>
                                     </tr>
 <?php
@@ -166,7 +166,7 @@
                 </div>
                 </form>
                      <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?> </button>
-                            <button type='submit' name='action' form="form1" value='ADD' class="btn btn-primary"><?= i18n("Insertar") ?> </button>
+                            <button type='submit' name='action' id="btnAsignar" disabled form="form1" value='ADD' class="btn btn-primary"><?= i18n("Insertar") ?> </button>
                     </div>
                 </div>
             </div>

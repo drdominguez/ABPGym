@@ -274,7 +274,12 @@ function checkboxValidation()
     }
 }
 
-
+function validarDatePicker(campo){
+    if(campo.value() == "") {
+        alert("no date selected");
+          return false;
+    }
+}
 
 function habilitarAsignar(){
 
@@ -330,13 +335,20 @@ function validarMuscularEDIT(Formu){
 }
 
 
+function validarIndividualADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.dia) && comprobarTexto(Form.dia,25) && comprobarVacio(Form.hora) && comprobarTexto(Form.hora, 25) && validarDatePicker(Form.fechainicio) && validarDatePicker(Form.fechafin))
+}
+
+
+function validarGrupoADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.dia) && comprobarTexto(Form.dia,25) && comprobarVacio(Form.hora) && comprobarTexto(Form.hora, 25))
+}
+
+
 function validarLogin(Formu) {
     return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.contraseña))
 }
 
-function validarIndividualADD(Formu) {
-    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarSolonum(Form.precio))
-}
 
 function validarGrupoADD(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.instalaciones) && comprobarTexto(Form.instalaciones, 1000000000000) && comprobarVacio(Form.plazas) && comprobarEntero(Form.plazas, 0, 255))

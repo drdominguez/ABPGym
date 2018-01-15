@@ -32,7 +32,7 @@
                     <b><?= i18n("Foto de Perfil") ?>: </b><p><img src="<?php echo $usuario->getFotoPerfil(); ?>" height="300" width="300"></p><br>      
                     <input type="hidden" name="dni" value="<?php echo $usuario->getDni(); ?>">
                     <input type="hidden" name="borrar" value="ok">
-                    <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuarioDELETE'" class="btn btn-default">Volver</button> 
+                    <button type="button" onclick="window.location.href='./index.php?controller=Usuario&amp;action=UsuariosListar'" class="btn btn-default">Volver</button> 
                     <button  type='submit' name='action' value='UsuarioDELETE' class="btn btn-primary"><?= i18n("Borrar") ?></button>
                 </form>
             </div>
