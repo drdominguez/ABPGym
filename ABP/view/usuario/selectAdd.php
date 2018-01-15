@@ -19,7 +19,7 @@
                             <div class="form-row">
                                 <div class="col-md-4">
                                         <a href="index.php?controller=usuario&amp;action=administradorADD">
-                                            <img src="./view/pictures/usuarios/Administrador.jpg" target="blank">
+                                            <img src="./view/pictures/usuarios/Administrador.png" target="blank">
                                         </a>
                                 </div>
                                 <div class="col-md-4">
