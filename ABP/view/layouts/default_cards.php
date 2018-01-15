@@ -2,7 +2,9 @@
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><marquee>Bienvenido a GymApp!</marquee></li>
+        <div> 
+        <li class="breadcrumb-item"><marquee><?= i18n("Bienvenido a GymApp!") ?></marquee></li>
+      </div>
       </ol>
       <!-- Icon Cards-->
       <div class="row">

@@ -267,6 +267,14 @@ function validarNotificacionADD(Formu) {
     return (comprobarVacio(Form.Asunto) && comprobarTexto(Form.Asunto, 15) && comprobarVacio(Form.contenido) && checkboxValidation())
 }
 
+function validarRecursoADD(Formu) {
+    return (comprobarVacio(Form.nombreRecurso) && comprobarTexto(Form.nombreRecurso, 50))
+}
+
+function validarRecursoEDIT(Formu) {
+    return (comprobarVacio(Form.nombreRecurso) && comprobarTexto(Form.nombreRecurso, 50))
+}
+
 
 
 function validarLogin(Formu) {
