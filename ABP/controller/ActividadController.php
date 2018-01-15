@@ -206,7 +206,7 @@ class ActividadController extends BaseController{
                             $this->view->redirect("Actividad", "actividadListar","Usuarios Asignados Correctamente");
                         }else
                         {
-                            $this->view->redirect("Actividad", "actividadASIGNAR","El deportista o deportistas no se ha asignado corectamente");
+                            $this->view->redirect("Actividad", "actividadASIGNAR","El deportista o deportistas no se ha asignado corectamente", $idActividad);
                            
                         }  
                     }else

@@ -43,9 +43,9 @@ class ActividadMapper{
                         $stmt4 = $this->db->prepare("UPDATE actividad SET contador=contador+1 WHERE idActividad=?");
                         $stmt4->execute(array($idActividad));
                     }
-                    return true; 
                 }
             
+                    return true; 
         }
         return false;
     }

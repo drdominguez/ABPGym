@@ -18,7 +18,7 @@
                 <i class="fa fa-table"></i><?= i18n("Añadir ".$view->getVariable("usuarioTipo"))?>
             </div>
             <div class="card-body">
-            <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8" enctype="multipart/form-data" method="POST" action="<?php 
+            <form name='Form' id="form1"  class="form-signin" accept-charset="UTF-8" onsubmit="return validarUsuarioADD()" enctype="multipart/form-data" method="POST" action="<?php 
                 if($view->getVariable("usuarioTipo")=="Administrador"){ 
                     echo 'index.php?controller=Usuario&amp;action=administradorADD';
                 }else{
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-6">
                         <label for="nombre"><?= i18n("Nombre") ?>: </label>
-                        <input class="form-control" type = 'text' name = 'nombre' size = '30' required="true" value = ''  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                        <input class="form-control" type = 'text' name = 'nombre' size = '30' required="true" value = ''  onchange="comprobarVacio(this)  && comprobarTexto(this,50)" >
                         </div>
                       </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="form-row">
                           <div class="col-md-6">
                         <label for="apellidos"><?= i18n("Apellidos") ?>: </label>
-                        <input class="form-control" type = 'text' name = 'apellidos' size = '30' required="true" value = ''  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                        <input class="form-control" type = 'text' name = 'apellidos' size = '30' required="true" value = ''  onchange="comprobarVacio(this)  && comprobarTexto(this,50)" >
                         </div>
                         <div class="col-md-6">
                         <label for="edad"><?= i18n("Edad") ?>: </label>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="col-md-6">
                         <label for="exampleInputTiempo"><?= i18n("Imagen") ?>: </label>
-                        <input class="form-control" name="fotoperfil" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
+                        <input class="form-control" name="fotoperfil" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen">
                         </div>
                       </div>
                     </div>

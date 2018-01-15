@@ -16,7 +16,7 @@ $currentuser = $view->getVariable("currentusername");
                 <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
             </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioEDIT' enctype="multipart/form-data" method='post' >
+            <form name = 'Form' action='./index.php?controller=Usuario&amp;action=UsuarioEDIT' enctype="multipart/form-data" method='post' onsubmit="return validarUsuarioEDIT();">
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n("Editar usuario") ?>
@@ -31,7 +31,7 @@ $currentuser = $view->getVariable("currentusername");
                         </div>
                         <div class="col-md-6">
                         <label for="nombre"><?= i18n("Nombre") ?>: </label>
-                        <input class="form-control" type = 'text' name = 'nombre' size = '30' value = '<?php echo $usuario->getNombre(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                        <input class="form-control" type = 'text' name = 'nombre' size = '30' value = '<?php echo $usuario->getNombre(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,50)" >
                         </div>
                       </div>
                     </div>
@@ -39,7 +39,7 @@ $currentuser = $view->getVariable("currentusername");
                         <div class="form-row">
                           <div class="col-md-6">
                         <label for="apellidos"><?= i18n("Apellidos") ?>: </label>
-                        <input class="form-control" type = 'text' name = 'apellidos' size = '30' value = '<?php echo $usuario->getApellidos(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                        <input class="form-control" type = 'text' name = 'apellidos' size = '30' value = '<?php echo $usuario->getApellidos(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,50)" >
                         </div>
                         <div class="col-md-6">
                         <label for="edad"><?= i18n("Edad") ?>: </label>
@@ -63,7 +63,7 @@ $currentuser = $view->getVariable("currentusername");
                         <div class="form-row">
                           <div class="col-md-6">
                         <label for="contrasena"><?= i18n("Contraseña") ?>: </label>
-                        <input class="form-control" type = 'password' name = 'contrasena' size = '30'  value = ''>
+                        <input class="form-control" type = 'password' name = 'contrasena' size = '30' onchange="comprobarTexto(this,30)" value = ''>
                         </div>
                       </div>
                     </div>

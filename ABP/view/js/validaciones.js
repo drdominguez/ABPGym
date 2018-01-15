@@ -346,26 +346,29 @@ function validarActividadEDIT(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.dia) && comprobarTexto(Form.dia,25) && comprobarVacio(Form.hora) && comprobarTexto(Form.hora, 25))
 }
 
-
-
-
-
-
-function validarLogin(Formu) {
-    return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.contraseña))
+function validarUsuarioADD(Formu){
+    return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.apellidos) && comprobarTexto(Form.apellidos, 50) && comprobarVacio(Form.edad) && comprobarSolonum(Form.edad) && comprobarEntero(Form.edad,0,200) && comprobarVacio(Form.contraseña) && comprobarTexto(Form.contraseña,30) && comprobarVacio(Form.email) && comprobarEmail(Form.email) && comprobarTexto(Form.email,100) && comprobarVacio(Form.telefono) && comprobarTelf(Form.telefono))
 }
 
-
-function validarGrupoADD(Formu) {
-    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.instalaciones) && comprobarTexto(Form.instalaciones, 1000000000000) && comprobarVacio(Form.plazas) && comprobarEntero(Form.plazas, 0, 255))
-}
-
-function validarActividadEdit(Formu) {
-    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 30) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarSolonum(Form.precio) && comprobarVacio(Form.instalaciones) && comprobarTexto(Form.instalaciones, 1000000000000) && comprobarVacio(Form.plazas) && comprobarEntero(Form.plazas, 0, 255))
+function validarDeportistaADD(Formu){
+    return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.apellidos) && comprobarTexto(Form.apellidos, 50) && comprobarVacio(Form.edad) && comprobarSolonum(Form.edad) && comprobarEntero(Form.edad,0,200) && comprobarVacio(Form.contraseña) && comprobarTexto(Form.contraseña,30) && comprobarVacio(Form.email) && comprobarEmail(Form.email) && comprobarTexto(Form.email,100) && comprobarVacio(Form.telefono) && comprobarTelf(Form.telefono) && comprobarVacio(Form.tarjeta) && comprobarTexto(Form.tarjeta,60))
 }
 
 function validarLogin(Formu) {
-    return (comprobarVacio(Form.nombre)  && comprobarDni(Form.nombre) && comprobarVacio(Form.contraseña))
+    return (comprobarVacio(Form.dni) && comprobarDni(Form.dni) && comprobarVacio(Form.contraseña) && comprobarTexto(Form.contraseña,30))
+}
+
+function validarUsuarioEDIT(Formu){
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.apellidos) && comprobarTexto(Form.apellidos, 50) && comprobarVacio(Form.edad) && comprobarSolonum(Form.edad) && comprobarEntero(Form.edad,0,200) && comprobarTexto(Form.contraseña,30) && comprobarVacio(Form.email) && comprobarEmail(Form.email) && comprobarTexto(Form.email,100) && comprobarVacio(Form.telefono) && comprobarTelf(Form.telefono))
+}
+
+
+function validarPefEDIT(Formu){
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.apellidos) && comprobarTexto(Form.apellidos, 50) && comprobarVacio(Form.edad) && comprobarSolonum(Form.edad) && comprobarEntero(Form.edad,0,200) && comprobarTexto(Form.contraseña,30) && comprobarVacio(Form.email) && comprobarEmail(Form.email) && comprobarTexto(Form.email,100) && comprobarVacio(Form.telefono) && comprobarTelf(Form.telefono) && comprobarVacio(Form.tarjeta) && comprobarTexto(Form.tarjeta,60))
+}
+
+function validarTduEDIT(Formu){
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.apellidos) && comprobarTexto(Form.apellidos, 50) && comprobarVacio(Form.edad) && comprobarSolonum(Form.edad) && comprobarEntero(Form.edad,0,200) && comprobarTexto(Form.contraseña,30) && comprobarVacio(Form.email) && comprobarEmail(Form.email) && comprobarTexto(Form.email,100) && comprobarVacio(Form.telefono) && comprobarTelf(Form.telefono) && comprobarVacio(Form.tarjeta) && comprobarTexto(Form.tarjeta,60))
 }
 
 /*Funcion para encriptar la contraseña*/

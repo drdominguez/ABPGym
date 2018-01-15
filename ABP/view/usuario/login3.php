@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input class="form-control" id="texto" name="contraseña" type="password" placeholder="Password" onchange="comprobarVacio(this)">
+                    <input class="form-control" id="texto" name="contraseña" type="password" placeholder="Password" onchange="comprobarVacio(this) && comprobarTexto(this,30)">
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="texto" type="submit">ENTRAR</button>
             </form>

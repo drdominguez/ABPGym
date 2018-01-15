@@ -17,7 +17,7 @@ $usuario = $view->getVariable("usuario");
                 <li class="breadcrumb-item active"><?= i18n("Editar") ?></li>
             </ol>
             <!-- Example DataTables Card-->
-            <form name = 'Form' enctype="multipart/form-data" action='./index.php?controller=Deportista&amp;action=PefEDIT' method='post' onsubmit='return validarUsuarioEDIT()'>
+            <form name = 'Form' enctype="multipart/form-data" action='./index.php?controller=Deportista&amp;action=PefEDIT' method='post' onsubmit='return validarPefEDIT()'>
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fa fa-table"></i><?= i18n(" Editar PEF") ?>
@@ -32,7 +32,7 @@ $usuario = $view->getVariable("usuario");
                         </div>
                         <div class="col-md-6">
                         <label for="nombre"><?= i18n("Nombre") ?>: </label>
-                        <input class="form-control" type = 'text' name = 'nombre' size = '30' value = '<?php echo $usuario->getNombre(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                        <input class="form-control" type = 'text' name = 'nombre' size = '30' value = '<?php echo $usuario->getNombre(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,50)" >
                         </div>
                       </div>
                     </div>
@@ -40,7 +40,7 @@ $usuario = $view->getVariable("usuario");
                         <div class="form-row">
                               <div class="col-md-6">
                             <label for="apellidos"><?= i18n("Apellidos") ?>: </label>
-                            <input class="form-control" type = 'text' name = 'apellidos' size = '30' value = '<?php echo $usuario->getApellidos(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,30)" >
+                            <input class="form-control" type = 'text' name = 'apellidos' size = '30' value = '<?php echo $usuario->getApellidos(); ?>'  onchange="comprobarVacio(this)  && comprobarTexto(this,50)" >
                             </div>
                             <div class="col-md-6">
                                 <label for="edad"><?= i18n("Edad") ?>: </label>
@@ -64,7 +64,7 @@ $usuario = $view->getVariable("usuario");
                         <div class="form-row">
                             <div class="col-md-6">
                             <label for="email"><?= i18n("Tarjeta") ?>: </label>
-                            <input class="form-control" type = 'text' name = 'tarjeta' size = '100' value = '<?php echo $usuario->getTarjeta(); ?>'>
+                            <input class="form-control" type = 'text' name = 'tarjeta' size = '100' value = '<?php echo $usuario->getTarjeta(); ?>' onchange="comprobarVacio(this) && comprobarTexto(this,60)">
                             </div>
                              <div class="col-md-6">
                                 <label for="telefono"><?= i18n("Tipo Deportista") ?>: </label>
@@ -84,7 +84,7 @@ $usuario = $view->getVariable("usuario");
                             </div>
                             <div class="col-md-6">
                                 <label for="contraseña"><?= i18n("Contraseña (Introducir sólo si modificación)") ?>: </label>
-                                <input class="form-control" type = 'password' name = 'contraseña' size = '100' value = ''>
+                                <input class="form-control" onchange="comprobarTexto(this,30)"  type = 'password' name = 'contraseña' size = '100' value = ''>
                             </div>
                           
                       </div>
