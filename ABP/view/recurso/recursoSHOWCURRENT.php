@@ -20,9 +20,9 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 <i class="fa fa-table"></i><?= i18n("Mostrar Recurso") ?>
             </div>
             <div class="card-body">
-                <b><?= i18n("idRecurso") ?>:</b> <?php echo $recurso->getIdRecurso(); ?><br>
-                <b><?= i18n("nombreRecurso") ?>:</b> <?php echo $recurso->getNombreRecurso(); ?><br>
-                <b><?= i18n("observaciones") ?>:</b> <?php echo $recurso->getObservaciones(); ?><br>
+                <b><?= i18n("idRecurso") ?>:</b> <p><?php echo $recurso->getIdRecurso(); ?></p>
+                <b><?= i18n("nombreRecurso") ?>:</b> <p><?php echo $recurso->getNombreRecurso(); ?></p>
+                <b><?= i18n("observaciones") ?>:</b> <p><?php echo $recurso->getObservaciones(); ?></p>
                 <button type="button" onclick="window.location.href='./index.php?controller=Recurso&amp;action=recursoListar'" class="btn btn-primary">Volver</button> 
             </div>
         </div>
