@@ -334,15 +334,21 @@ function validarMuscularEDIT(Formu){
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
 }
 
-
 function validarIndividualADD(Formu) {
-    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.dia) && comprobarTexto(Form.dia,25) && comprobarVacio(Form.hora) && comprobarTexto(Form.hora, 25) && validarDatePicker(Form.fechainicio) && validarDatePicker(Form.fechafin))
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.dia) && comprobarTexto(Form.dia,25) && comprobarVacio(Form.hora) && comprobarTexto(Form.hora, 25))
 }
-
 
 function validarGrupoADD(Formu) {
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.dia) && comprobarTexto(Form.dia,25) && comprobarVacio(Form.hora) && comprobarTexto(Form.hora, 25))
 }
+
+function validarActividadEDIT(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50) && comprobarVacio(Form.precio) && comprobarReal(Form.precio, 2, 0, 1000000) && comprobarVacio(Form.dia) && comprobarTexto(Form.dia,25) && comprobarVacio(Form.hora) && comprobarTexto(Form.hora, 25))
+}
+
+
+
+
 
 
 function validarLogin(Formu) {

@@ -64,7 +64,7 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <label for="exampleInputNombre"><?= i18n("Nombre") ?>: </label>
-                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                    <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onchange="comprobarVacio(this)  && comprobarTexto(this,50)">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputPrecio"><?= i18n("Precio") ?>: </label>

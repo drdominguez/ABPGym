@@ -74,7 +74,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <label for="exampleInputNombre">Nombre</label>
-                                        <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getNombre(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                        <input class="form-control" name="nombre" id="exampleInputNombre" type="text" aria-describedby="emailHelp" value="<?php echo $actividad->getNombre(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,50)">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="exampleInputPrecio">Precio</label>
@@ -101,11 +101,11 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <label for="exampleInputDia">Dia</label>
-                                            <input class="form-control" name="dia" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getDia(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                            <input class="form-control" name="dia" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getDia(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,25)">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="exampleInputHora">Hora</label>
-                                            <input class="form-control" name="hora" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getHora(); ?>"  onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
+                                            <input class="form-control" name="hora" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getHora(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,25)">
                                         </div>
                                     </div>
                                 </div>
@@ -121,11 +121,11 @@ require_once(__DIR__."/../../core/ViewManager.php");
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <label for="exampleInputFechaInicio">FechaInicio</label>
-                                            <input class="tcal" name="fechainicio" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getFechaInicio(); ?>"  onchange="comprobarVacio(this)  && comprobarTexto(this,30)">
+                                            <input class="tcal" name="fechainicio" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getFechaInicio(); ?>" >
                                         </div>
                                         <div class="col-md-6">
                                             <label for="exampleInputFechaFin">FechaFin</label>
-                                            <input class="tcal" name="fechafin" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getFechaFin(); ?>"  onchange="comprobarVacio(this)  && comprobarReal(this,2,0,1000000) && comprobarSolonum(this)">
+                                            <input class="tcal" name="fechafin" id="exampleInputDescripcion" type="TEXT" aria-describedby="emailHelp" value="<?php echo $actividad->getHorario()->getFechaFin(); ?>">
                                         </div>
                                     </div>
                                 </div>
