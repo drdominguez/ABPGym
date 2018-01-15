@@ -20,14 +20,14 @@ $view->setVariable("title", "Ver Detalles Estadistica");
                 <i class="fa fa-table"></i><?= i18n("Mostrar Detalles Estadística") ?>
             </div>
             <div class="card-body">
-                <b><?= i18n("idTabla") ?>:</b> <?php echo $estadistica->getIdTabla(); ?><br>
-                <b><?= i18n("idSesion") ?>:</b> <?php echo $estadistica->GetIdSesion(); ?><br>
-                <b><?= i18n("Nombre") ?>:</b> <?php echo $estadistica->getNombre(); ?><br>
-                <b><?= i18n("Tipo") ?>:</b> <?php echo $estadistica->getTipo(); ?><br>
-                <b><?= i18n("Descripcion") ?>: </b> <?php echo $estadistica->getDescripcion(); ?><br>
-                <b><?= i18n("Comentario") ?>:</b> <?php echo $estadistica->getComentario(); ?><br>
-                <b><?= i18n("Duración") ?>:</b> <?php echo $estadistica->getDuracion(); ?><br>
-                <b><?= i18n("Fecha") ?>:</b> <?php echo $estadistica->getFecha(); ?><br>
+                <b><?= i18n("idTabla") ?>:</b> <p><?php echo $estadistica->getIdTabla(); ?></p>
+                <b><?= i18n("idSesion") ?>:</b> <p><?php echo $estadistica->GetIdSesion(); ?></p>
+                <b><?= i18n("Nombre") ?>:</b> <p><?php echo $estadistica->getNombre(); ?></p>
+                <b><?= i18n("Tipo") ?>:</b> <p><?php echo $estadistica->getTipo(); ?></p>
+                <b><?= i18n("Descripcion") ?>: </b> <p><?php echo $estadistica->getDescripcion(); ?></p>
+                <b><?= i18n("Comentario") ?>:</b> <p><?php echo $estadistica->getComentario(); ?></p>
+                <b><?= i18n("Duración") ?>:</b> <p><?php echo $estadistica->getDuracion(); ?></p>
+                <b><?= i18n("Fecha") ?>:</b> <p><?php echo $estadistica->getFecha(); ?></p>
 
                 <button type="button" onclick="window.location.href='./index.php?controller=Estadistica&amp;action=Listar'" class="btn btn-primary">Volver</button>
             </div>
