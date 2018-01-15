@@ -327,6 +327,9 @@
                 'Gestión' => 'Management',
                 'Listado de estiramientos' => 'Stretches list',
                 'Listado de musculares' => 'Muscular list',
-
+                'Listado de Cardios' => 'Cardio list',
+                ' Añadir Estiramiento' => ' Add Stretch',
+                'Añadir Muscular' => 'Add Muscular',
+                'Añadir Cardio' => 'Add Cardio'
                 );
 ?>
