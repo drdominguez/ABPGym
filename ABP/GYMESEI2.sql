@@ -201,7 +201,7 @@ INSERT INTO `deportista` (`dni`) VALUES
 
 CREATE TABLE `ejercicio` (
   `idEjercicio` bigint(20) NOT NULL,
-  `nombre` varchar(60) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nombre` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `descripcion` text COLLATE utf8_spanish_ci,
   `video` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   `imagen` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL

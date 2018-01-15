@@ -14,12 +14,12 @@
                     <div class="card-header">
                         <i class="fa fa-table"></i> Añadir Cardio</div>
                     <div class="card-body">
-                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=cardioADD" class="form-signin" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                    <form name='Form' id="form1" action="index.php?controller=Ejercicio&amp;action=cardioADD" class="form-signin" accept-charset="UTF-8" enctype="multipart/form-data" method="POST" onsubmit="return validarCardioADD();">
                         <div class="form-group">
                             <div class="form-row">
                               <div class="col-md-6">
                                 <label for="exampleInputNombre">Nombre</label>
-                                <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" required onblur="esVacio(this)  && comprobarText(this,15)">
+                                <input class="form-control" name="nombre" id="exampleInputNombre" type="TEXT" aria-describedby="emailHelp" placeholder="Nombre" onblur="comprobarVacio(this)  && comprobarTexto(this,50)">
                               </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Descripción</label>
@@ -31,11 +31,11 @@
                              <div class="form-row">
                                  <div class="col-md-6">
                                     <label for="exampleInputTiempo">Video</label>
-                                    <input class="form-control" name="video" id="exampleInputVideo" type="url" aria-describedby="emailHelp" placeholder="Video" value="https://www.youtube.com/embed/" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="video" id="exampleInputVideo" type="url" aria-describedby="emailHelp" placeholder="Video" value="https://www.youtube.com/embed/">
                                  </div>
                                 <div class="col-md-6">
                                     <label for="exampleInputTiempo">Imagen</label>
-                                    <input class="form-control" name="imagen" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen" onblur="esVacio(this)  && comprobarText(this,15)">
+                                    <input class="form-control" name="imagen" accept=".jpg, .jpeg, .png" id="exampleInputImagen" type="file" aria-describedby="emailHelp" placeholder="Imagen">
                                 </div>
                              </div>
                         </div>

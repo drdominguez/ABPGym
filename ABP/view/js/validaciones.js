@@ -63,6 +63,35 @@ function comprobarEmail(campo) {
     }
     return true;
 }
+
+function comprobarEmail(campo) {
+    /*comprobacion permite validar que la estructura del email es correcta*/
+    var comprobacion = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    /*si no cumple el formato correcto salta la alerta*/
+    if (comprobacion.test(campo.value) == false) {
+        /*Para controlar bucle infinito del onblur*/
+        if (!avisado) {
+            alert(i18nMessages['El atributo no sigue el formato correcto. Pruebe example@example.com']);
+            avisado = true;
+            setTimeout('avisado=false', 50);
+            campo.focus();
+            return false;
+        }
+    }
+    return true;
+}
+
+function comprobarVideo(campo) {
+    var stringYoutube = "https://www.youtube.com/embed/";
+    var video = campo.value.substr(0,30);
+        if (video != stringYoutube) {
+            alert(i18nMessages['El video no sigue el formato correcto. Tiene que tener el siguiente formato https://www.youtube.com/embed/(id del video)']);
+            campo.focus();
+            return false;
+        }
+    return true;
+}
+
 /*Comprueba que el campo contenga todo caracteres alfabéticos*/
 function comprobarAlfabetico(campo, size) {
     /*variable "abc" para la expresion regular que va a validar que un campo solo contenga caracteres alfabéticos*/
@@ -246,6 +275,7 @@ function checkboxValidation()
 }
 
 
+
 function habilitarAsignar(){
 
     document.getElementById("btnAsignar").disabled = false;
@@ -275,6 +305,10 @@ function validarRecursoEDIT(Formu) {
     return (comprobarVacio(Form.nombreRecurso) && comprobarTexto(Form.nombreRecurso, 50))
 }
 
+
+function validarCardioADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
+}
 
 
 function validarLogin(Formu) {
