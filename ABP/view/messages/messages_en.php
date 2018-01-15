@@ -330,6 +330,11 @@
                 'Listado de Cardios' => 'Cardio list',
                 ' Añadir Estiramiento' => ' Add Stretch',
                 'Añadir Muscular' => 'Add Muscular',
-                'Añadir Cardio' => 'Add Cardio'
+                'Añadir Cardio' => 'Add Cardio',
+                'Bienvenido a GymApp!' => 'Welcome to GymApp!',
+                'Nuevas Notificaciones!' => 'New Notifications!',
+                'Tablas de Ejercicios!' => 'Boards!',
+                'Pagos!' => 'Payments!',
+                'Sesiones de Entrenamiento!' => 'Training Sessions!'
                 );
 ?>
