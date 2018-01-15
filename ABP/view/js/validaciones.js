@@ -305,8 +305,27 @@ function validarRecursoEDIT(Formu) {
     return (comprobarVacio(Form.nombreRecurso) && comprobarTexto(Form.nombreRecurso, 50))
 }
 
-
 function validarCardioADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
+}
+
+function validarEstiramientoADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
+}
+
+function validarMuscularADD(Formu) {
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
+}
+
+function validarCardioEDIT(Formu){
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
+}
+
+function validarEstiramientoEDIT(Formu){
+    return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
+}
+
+function validarMuscularEDIT(Formu){
     return (comprobarVacio(Form.nombre) && comprobarTexto(Form.nombre, 50))
 }
 
