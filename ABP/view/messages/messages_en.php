@@ -339,6 +339,14 @@
                 'Pagos' => 'Payments',
                 'Realizar' => 'Perform',
                 'Entrenamiento' => 'Training',
-                'Mostrar Detalles Estadística' => 'Show Statistic Detail'
+                'Mostrar Detalles Estadística' => 'Show Statistic Detail',
+                'Borrar usuario' => 'Delete user',
+                'Borrar Actividad' => 'Delete Activity',
+                'Eliminar Estiramiento' => 'Delete Stretch',
+                'Eliminar Muscular' => 'Delete Muscular',
+                'Eliminar Cardio' => 'Delete Cardio',
+                'Borrar Tabla' => 'Delete Board',
+                'Borrar Recurso' => 'Delete Resource',
+                'Borrar Pago' => 'Delete Payment'
                 );
 ?>

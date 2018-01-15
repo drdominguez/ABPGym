@@ -14,7 +14,7 @@
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fa fa-table"></i>Eliminar Cardio</div>
+                        <i class="fa fa-table"></i><?= i18n("Eliminar Cardio") ?></div>
                     <div class="card-body">
                    <b><?= i18n("Id") ?>:</b> <p><?php echo $cardio->getIdEjercicio(); ?></p><br>
                     <b><?= i18n("Nombre") ?>:</b> <p><?php echo $cardio->getNombre(); ?></p><br>
