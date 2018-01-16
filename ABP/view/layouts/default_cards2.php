@@ -32,7 +32,7 @@
               </div>
               <div class="mr-5 mt-3"><?= i18n("Nuestras Actividades!") ?> </div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Tabla&action=TablaListar">
+            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Actividad&amp;action=actividad2Listar">
               <span class="float-left"><?= i18n("Ver Actividades") ?></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
@@ -50,7 +50,7 @@
               </div>
               <div class="mr-5 mt-3"><?= i18n("¿Dónde estamos?") ?></div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Pago&action=PagoListar">
+            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Localizacion&amp;action=localizacionListar">
               <span class="float-left"><?= i18n("Ver Localización") ?></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
