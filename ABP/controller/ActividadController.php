@@ -46,6 +46,25 @@ class ActividadController extends BaseController{
         $this->view->setVariable("nombreInstalación", $nomRecurso);
         $this->view->render("actividad", "actividadSHOWCURRENT");
     }
+    public function actividad2View() 
+    {
+        if (!isset($_GET["idActividad"])) 
+        {
+            throw new Exception("El id es obligatorio");
+        }
+        $idActividad = $_GET["idActividad"];
+        $actividad = $this->actividadMapper->findById($idActividad);
+        $nomRecurso=$this->actividadMapper->findNomIdInstalaciones($actividad->getIdInstalaciones());
+        if ($actividad == NULL) 
+        {
+            throw new Exception("No existe actividad con este id: ".$idActividad);
+        }
+        $monitorAsignado = $this->actividadMapper->findMonitorAsignado($idActividad);
+        $this->view->setVariable("monitorAsignado", $monitorAsignado);
+        $this->view->setVariable("actividad", $actividad);
+        $this->view->setVariable("nombreInstalación", $nomRecurso);
+        $this->view->render("actividad2", "actividad2SHOWCURRENT");
+    }
     public function actividadDELETE() 
     {   
         if(!isset($_POST['borrar']))
@@ -139,6 +158,14 @@ class ActividadController extends BaseController{
         $this->view->setVariable("actividades",$actividades);
         $this->view->render("actividad","actividadSHOWALL");
     }
+    public function actividad2Listar() {
+        if(isset($_GET['setflash'])){
+            $this->view->setFlash($_GET['setflash']);
+        }
+        $actividades = $this->actividadMapper->listar();
+        $this->view->setVariable("actividades",$actividades);
+        $this->view->render("actividad2","actividad2SHOWALL");
+    }
     
     public function individualADD() {
     
@@ -206,7 +233,7 @@ class ActividadController extends BaseController{
                             $this->view->redirect("Actividad", "actividadListar","Usuarios Asignados Correctamente");
                         }else
                         {
-                            $this->view->redirect("Actividad", "actividadASIGNAR","El deportista o deportistas no se ha asignado corectamente", $idActividad);
+                            $this->view->redirect("Actividad", "actividadASIGNAR","El deportista o deportistas no se ha asignado corectamente");
                            
                         }  
                     }else
