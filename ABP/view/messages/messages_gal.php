@@ -347,6 +347,8 @@
         'Eliminar Cardio' => 'Eliminar Cardio',
         'Borrar Tabla' => 'Borrar Táboa',
         'Borrar Recurso' => 'Borrar Recurso',
-        'Borrar Pago' => 'Borrar Pagamento'
+        'Borrar Pago' => 'Borrar Pagamento',
+        '¿Seguro que desea salir?' => 'Seguro que desea sair?',
+        "Seleccione 'Salir' si desea cerrar sesión" => "Seleccione 'Sair' se desexa cerrar sesión"
     );
     ?>
