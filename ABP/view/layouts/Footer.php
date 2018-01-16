@@ -15,16 +15,16 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">¿Seguro que desea salir?
+                            <h5 class="modal-title" id="exampleModalLabel"><?= i18n("¿Seguro que desea salir?") ?>
                             </h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Seleccione "Salir" si desea cerrar sesion.</div>
+                        <div class="modal-body"><?= i18n("Seleccione 'Salir' si desea cerrar sesión") ?></div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary" href="index.php?controller=Login&amp;action=logout">Salir</a>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal"><?= i18n("Cancelar") ?></button>
+                            <a class="btn btn-primary" href="index.php?controller=Login&amp;action=logout"><?= i18n("Salir") ?></a>
                         </div>
                     </div>
                 </div>

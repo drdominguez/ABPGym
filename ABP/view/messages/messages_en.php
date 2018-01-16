@@ -347,6 +347,8 @@
                 'Eliminar Cardio' => 'Delete Cardio',
                 'Borrar Tabla' => 'Delete Board',
                 'Borrar Recurso' => 'Delete Resource',
-                'Borrar Pago' => 'Delete Payment'
+                'Borrar Pago' => 'Delete Payment',
+                '¿Seguro que desea salir?' => 'Are you sure you want to exit?',
+                "Seleccione 'Salir' si desea cerrar sesión" => "Select 'Exit' if you want to log out"
                 );
 ?>
