@@ -4,7 +4,7 @@
         //STRINGS validaciones.js
         'Asunto' => 'Subject',
         'contenido' => 'Content',
-        'nombre' => 'name',
+        'nombre' => 'Name',
         'El atributo '=>'The attribute ',
         ' no puede ser vacío' => ' cannot be empty',
         'Longitud incorrecta. El atributo ' => 'Incorrect length. The attribute ',
@@ -63,7 +63,7 @@
                 'Volver' => 'Back',
                 'Error' => 'Error',
                 'actividad' => 'activity',
-                'idActividad' => 'idActividad',
+                'idActividad' => 'Activity ID',
                 'precio' => 'price',
                 'actividad_deportista' => 'actividad_deportista',
                 'dniDeportista' => 'dniDeportista',
@@ -79,7 +79,7 @@
                 'deportista' => 'athlete',
                 'dni' => 'dni',
                 'ejercicio' => 'exercise',
-                'nombre' => 'name',
+                'Nombre' => 'Name',
                 'descripcion' => 'description',
                 'video' => 'video',
                 'imagen' => 'picture',
@@ -360,6 +360,10 @@
                 'Atención al cliente GymApp' => 'GymApp Customer Service',
                 'Ver Contacto' => 'See Contact',
                 'Teléfono atención al cliente' => 'Customer Service Phone Number',
-                'Correo' => 'Email'
+                'Correo' => 'Email',
+                'Mostrar Actividad' => 'Show Activity',
+                'DNI Monitor' => 'Coach ID',
+                'Nombre Monitor' => 'Coach Name',
+                'Apellidos Monitor' => 'Coach Last Name'
                 );
 ?>

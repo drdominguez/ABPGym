@@ -28,15 +28,15 @@ require_once(__DIR__."/../../core/ViewManager.php");
             </div>
             <div class="card-body">
                 <b><?= i18n("idActividad") ?>:</b> <p><?php echo $actividad->getIdActividad(); ?></p>
-                <b><?= i18n("nombre") ?>:</b> <p><?php echo $actividad->getNombre(); ?></p>
-                <b><?= i18n("precio") ?>:</b> <p><?php echo $actividad->getPrecio(); ?></p>                
-                <b><?= i18n("instalaciones") ?>:</b><p><?php echo $recurso->getNombreRecurso(); ?></p>
-                <b><?= i18n("plazas") ?>: </b><p> <?php echo $actividad->getPlazas(); ?></p> 
-                <b><?= i18n("dia") ?>:</b> <p><?php echo $actividad->getHorario()->getDia(); ?></p>
-                <b><?= i18n("hora") ?>:</b><p> <?php echo $actividad->getHorario()->getHora(); ?></p>
-                <b><?= i18n("fechaInicio") ?>:</b> <p><?php echo $actividad->getHorario()->getFechaInicio(); ?></p>
-                <b><?= i18n("fechaFin") ?>: </b> <p><?php echo $actividad->getHorario()->getFechaFin(); ?></p>
-                <b><?= i18n("Dni Monitor") ?>: </b> <p><?php echo $monitorAsignado[0]['dni'] ; ?></p>
+                <b><?= i18n("Nombre") ?>:</b> <p><?php echo $actividad->getNombre(); ?></p>
+                <b><?= i18n("Precio") ?>:</b> <p><?php echo $actividad->getPrecio(); ?></p>
+                <b><?= i18n("Instalaciones") ?>:</b><p><?php echo $recurso->getNombreRecurso(); ?></p>
+                <b><?= i18n("Plazas") ?>: </b><p> <?php echo $actividad->getPlazas(); ?></p>
+                <b><?= i18n("Dia") ?>:</b> <p><?php echo $actividad->getHorario()->getDia(); ?></p>
+                <b><?= i18n("Hora") ?>:</b><p> <?php echo $actividad->getHorario()->getHora(); ?></p>
+                <b><?= i18n("FechaInicio") ?>:</b> <p><?php echo $actividad->getHorario()->getFechaInicio(); ?></p>
+                <b><?= i18n("FechaFin") ?>: </b> <p><?php echo $actividad->getHorario()->getFechaFin(); ?></p>
+                <b><?= i18n("DNI Monitor") ?>: </b> <p><?php echo $monitorAsignado[0]['dni'] ; ?></p>
                 <b><?= i18n("Nombre Monitor") ?>: </b> <p><?php echo $monitorAsignado[0]['nombre'] ; ?></p>
                 <b><?= i18n("Apellidos Monitor") ?>: </b> <p><?php echo $monitorAsignado[0]['apellidos'] ; ?></p>
 

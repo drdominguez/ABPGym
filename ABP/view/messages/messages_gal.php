@@ -360,6 +360,10 @@
         'Atención al cliente GymApp' => 'Atención ó cliente GymApp',
         'Ver Contacto' => 'Ver Contacto',
         'Teléfono atención al cliente' => 'Teléfono atención ó cliente',
-        'Correo' => 'Correo'
+        'Correo' => 'Correo',
+        'Mostrar Actividad' => 'Amosar Actividade',
+        'DNI Monitor' => 'DNI Adestrador',
+        'Nombre Monitor' => 'Nome Adestrador',
+        'Apellidos Monitor' => 'Apelido Adestrador'
     );
     ?>
