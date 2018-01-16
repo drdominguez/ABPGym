@@ -1,10 +1,6 @@
 <?php 
     $i18n_messages = array(
     	//STRINGS validaciones.js
-    	'Nombre'=> 'Nombre',
-    	'Asunto' => 'Asunto',
-    	'contenido' => 'contenido',
-    	'nombre' => 'nombre',
     	'El atributo '=>'El atributo ',
     	' no puede ser vacío' => ' no puede ser vacío',
     	'Longitud incorrecta. El atributo ' => 'Longitud incorrecta. El atributo ',
@@ -21,6 +17,37 @@
     	' debe estar compuesto únicamente por digitos.'=>' debe estar compuesto únicamente por digitos.',
         'precio' => 'precio',
         'Debe seleccionar al menos un deportista.' => 'Debe seleccionar al menos un deportista.',
+        'Usuarios' => 'Usuarios',
+        'Monitor' => 'Monitor',
+        'Hora' => 'Hora',
+        'Día' => 'Día',
+        'Plazas' => 'Plazas',
+        'Instalaciones' => 'Instalaciones',
+        'Teléfono' => 'Teléfono',
+        'Email' => 'Email',
+        'Edad' => 'Edad',
+        'Apellidos' => 'Apellidos',
+        'Tarjeta' => 'Tarjeta',
+        'Contraseña' => 'Contraseña',
+        'Dni' => 'Dni',
+        'Precio' => 'Precio',
+        'Nombre' => 'Nombre',
+        'Asunto' => 'Asunto',
+        'Contenido' => 'Contenido',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //STRINGS jquery.dataTables.js
 
@@ -39,8 +66,6 @@
         'Procesando...'=>'Procesando...',
         'Buscar:'=>'Buscar:',
         'No se encontró nada'=>'No se encontró nada',
-        'dni' => 'dni',
-        'contraseña' => 'contraseña'
 
     );
 ?>
