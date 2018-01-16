@@ -96,6 +96,7 @@ if (isset($_POST["grafica"]))
             <div id="graph" style="height: 250px;">
             </div>
         </div>
+        <button type="button" onclick="window.location.href='./index.php?controller=main&action=index'" class="btn btn-primary"><?= i18n("Volver") ?></button>
     </div>
 </div>
 
