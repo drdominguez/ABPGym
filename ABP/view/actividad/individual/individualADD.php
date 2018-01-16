@@ -153,7 +153,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <input type="radio" name="monitor" onchange="habilitarAsignar()" value="<?php echo $monitor->getDni();?>" >Seleccionar<br>
+                                            <input type="radio" name="monitor" value="<?php echo $monitor->getDni();?>" >Seleccionar<br>
                                         </td>
                                     </tr>
 <?php
@@ -166,7 +166,7 @@
                 </div>
                 </form>
                      <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=actividadListar'" class="btn btn-default"><?= i18n("Volver") ?> </button>
-                            <button type='submit' name='action' id="btnAsignar" disabled form="form1" value='ADD' class="btn btn-primary"><?= i18n("Insertar") ?> </button>
+                            <button type='submit' name='action'  form="form1" value='ADD' class="btn btn-primary"><?= i18n("Insertar") ?> </button>
                     </div>
                 </div>
             </div>
