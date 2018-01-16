@@ -25,7 +25,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                 <b><?= i18n("Comunidad Autónoma") ?>:</b> <p><?php echo "Galicia"; ?></p>
                 <b><?= i18n("Pais") ?>:</b><p> <?php echo "España"; ?></p>
 
-                <button type="button" onclick="window.location.href='./index.php?controller=Actividad&amp;action=Actividad2Listar'" class="btn btn-primary">Volver</button> 
+                <button type="button" onclick="window.location.href='./index.php?controller=Localizacion&amp;action=localizacionListar'" class="btn btn-primary">Volver</button> 
             </div>
         </div>
     </div>

@@ -20,7 +20,7 @@
                         </a>
                     </li>
                     <li class="nav-item" data-toggle="tooltip">
-                        <a class="nav-link" href="./view/localizacion/localizacion.php">
+                        <a class="nav-link" href="./index.php?controller=Localizacion&amp;action=localizacionListar">
                             <i class="fa fa-fw fa-table"></i>
                             <span class="nav-link-text"> <?= i18n("Localización");?></span>
                         </a>
