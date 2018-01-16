@@ -59,8 +59,6 @@ class ActividadController extends BaseController{
         {
             throw new Exception("No existe actividad con este id: ".$idActividad);
         }
-        $monitorAsignado = $this->actividadMapper->findMonitorAsignado($idActividad);
-        $this->view->setVariable("monitorAsignado", $monitorAsignado);
         $this->view->setVariable("actividad", $actividad);
         $this->view->setVariable("nombreInstalación", $nomRecurso);
         $this->view->render("actividad2", "actividad2SHOWCURRENT");
