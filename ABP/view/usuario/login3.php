@@ -41,7 +41,10 @@
                     <input class="form-control" id="texto" name="contraseña" type="password" placeholder="Password" onchange="comprobarVacio(this) && comprobarTexto(this,30)">
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="texto" type="submit">ENTRAR</button>
+                
+                <button class="btn btn-lg btn-secondary btn-block btn-signin" id="texto" type="button" onclick="location.href='index.php?controller=Login&amp;action=login&amp;dni=invitado';">VER INFO</button>  
             </form>
-    </div>
+  
+            </div>
     </body>
 </html>

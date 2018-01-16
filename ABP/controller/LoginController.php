@@ -31,6 +31,11 @@ class LoginController{
     */
     public function login(){
     	/*HABRIA QUE DEFERENCIAR ENTRE ENTRAR COMO DEPORTISTA Y ENTRENADOR/ADMINISTRADOR TIENEN MENUS DIFERENTES*/
+        if(isset($_GET['dni'])){
+            $_SESSION['currentuser']=$_GET['dni'];
+            $this->view->redirect("main", "index");
+        }else{
+
         if(isset($_POST["dni"]) && isset($_POST["contraseña"])){
             if($this->UsuarioMapper->login($_POST["dni"],$_POST["contraseña"])){
             /* y se inicia la sesion y se carga la vista por defecto*/
@@ -42,7 +47,7 @@ class LoginController{
                 $errors["username"] = "El nombre de usuario o la contraseña no existen en el sistema";
                 $this->view->setFlash($errors["username"]);
             }
-        }
+        }}
     	require_once("view/usuario/login3.php");
     }
     /*Cierra la sesion */

@@ -32,6 +32,24 @@ class RecursoController extends BaseController{
         $this->view->setVariable("recurso", $recurso);
         $this->view->render("recurso", "recursoSHOWCURRENT");
     }
+
+      public function recurso2View() 
+    {
+        if (!isset($_GET["idRecurso"])) 
+        {
+            throw new Exception("El id es obligatorio");
+        }
+        $idRecurso = $_GET["idRecurso"];
+        $recurso = $this->recursoMapper->findById($idRecurso);
+        if ($recurso == NULL) 
+        {
+            throw new Exception("No existe recurso con este id: ".$idRecurso);
+        }
+        $this->view->setVariable("recurso", $recurso);
+        $this->view->render("recurso2", "recurso2SHOWCURRENT");
+    }
+
+
     public function recursoDELETE() 
     {   
         if(!isset($_POST['borrar']))
@@ -108,6 +126,12 @@ class RecursoController extends BaseController{
         $recursos = $this->recursoMapper->listar();
         $this->view->setVariable("recurso",$recursos);
         $this->view->render("recurso","recursoSHOWALL");
+    }
+
+    public function recurso2Listar() {
+        $recursos = $this->recursoMapper->listar();
+        $this->view->setVariable("recurso",$recursos);
+        $this->view->render("recurso2","recurso2SHOWALL");
     }
     
     public function recursoADD() {

@@ -31,10 +31,17 @@ $currentuser = $view->getVariable("currentusername");
 					include(__DIR__."/menuLateral-ENTRENADOR.php");
 				}elseif ($permisos->esDeportista()) {
 					include(__DIR__."/menuLateral-DEPORTISTA.php");
-				}				
-				include(__DIR__."/notificacionesMenu.php");
-				include(__DIR__."/menuSuperior.php");
-				include(__DIR__."/language_select_element.php");
+				}else{
+					include(__DIR__."/menuLateral-INICIO.php");
+				}
+				if($_SESSION["currentuser"]=="invitado"){				
+					include(__DIR__."/menuSuperior2.php");
+					include(__DIR__."/language_select_element.php");
+				}else{
+					include(__DIR__."/notificacionesMenu.php");
+					include(__DIR__."/menuSuperior.php");
+					include(__DIR__."/language_select_element.php");
+				}
 				?>
 
 			</aside>
@@ -45,8 +52,11 @@ $currentuser = $view->getVariable("currentusername");
 			</main>
 		</section>
 		<?php
-			if(($_GET['action']=='index') && ($_GET['controller']=='main')){
+			if(($_GET['action']=='index') && ($_GET['controller']=='main') && ($_SESSION['currentuser']!="invitado")){
 				include(__DIR__."/default_cards.php");
+			}elseif(($_GET['action']=='index') && ($_GET['controller']=='main') && ($_SESSION['currentuser']=="invitado")){
+
+				include(__DIR__."/default_cards2.php");
 			}
 			?>
 			<?php
