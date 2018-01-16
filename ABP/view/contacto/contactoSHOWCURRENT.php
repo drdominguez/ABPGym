@@ -23,7 +23,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
                         <a href='www.facebook.com'><span id="icon-face" class="icon-face"></span>
                         </a>
                 </td>
-                <b><?= i18n("Fcebook") ?>:</b> <p><?php echo "facebook.com/GymApp"; ?></p>
+                <b><?= i18n("Facebook") ?>:</b> <p><?php echo "facebook.com/GymApp"; ?></p>
                 <td>
                         <a href='www.twitter.com'><span id="icon-face" class="icon-face"></span>
                         </a>

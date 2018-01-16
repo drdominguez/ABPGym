@@ -349,6 +349,17 @@
         'Borrar Recurso' => 'Borrar Recurso',
         'Borrar Pago' => 'Borrar Pagamento',
         '¿Seguro que desea salir?' => 'Seguro que desea sair?',
-        "Seleccione 'Salir' si desea cerrar sesión" => "Seleccione 'Sair' se desexa cerrar sesión"
+        "Seleccione 'Salir' si desea cerrar sesión" => "Seleccione 'Sair' se desexa cerrar sesión",
+        'Localización' => 'Localización',
+        'Ver Localización' => 'Ver Localización',
+        'Calle' => 'Rúa',
+        'Número' => 'Número',
+        'Provincia' => 'Provincia',
+        'Comunidad Autónoma' => 'Comunidade Autónoma',
+        'Pais' => 'País',
+        'Atención al cliente GymApp' => 'Atención ó cliente GymApp',
+        'Ver Contacto' => 'Ver Contacto',
+        'Teléfono atención al cliente' => 'Teléfono atención ó cliente',
+        'Correo' => 'Correo'
     );
     ?>

@@ -349,6 +349,17 @@
                 'Borrar Recurso' => 'Delete Resource',
                 'Borrar Pago' => 'Delete Payment',
                 '¿Seguro que desea salir?' => 'Are you sure you want to exit?',
-                "Seleccione 'Salir' si desea cerrar sesión" => "Select 'Exit' if you want to log out"
+                "Seleccione 'Salir' si desea cerrar sesión" => "Select 'Exit' if you want to log out",
+                'Localización' => 'Location',
+                'Ver Localización' => 'See Location',
+                'Calle' => 'Street',
+                'Número' => 'Number',
+                'Provincia' => 'Province',
+                'Comunidad Autónoma' => 'Autonomous Community',
+                'Pais' => 'Country',
+                'Atención al cliente GymApp' => 'GymApp Customer Service',
+                'Ver Contacto' => 'See Contact',
+                'Teléfono atención al cliente' => 'Customer Service Phone Number',
+                'Correo' => 'Email'
                 );
 ?>
