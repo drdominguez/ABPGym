@@ -45,11 +45,11 @@ CREATE TABLE `actividad` (
 --
 
 INSERT INTO `actividad` (`idActividad`, `precio`, `nombre`, `idInstalaciones`, `plazas`, `contador`) VALUES
-(53, 50, 'Asistencia', 2, 0, 3),
-(54, 25, 'Fútbol', 5, 23, 0),
-(55, 20, 'Karate', 3, 20, 0),
-(56, 30, 'tenis', 1, 5, 0),
-(57, 30, 'Baloncesto', 5, 18, 0);
+(53, 50.20, 'Asistencia', 2, 0, 3),
+(54, 25.00, 'Fútbol', 5, 23, 3),
+(55, 20.45, 'Karate', 3, 20, 2),
+(56, 30.50, 'Tenis', 1, 5, 3),
+(57, 30.99, 'Baloncesto', 4, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,17 @@ CREATE TABLE `actividad_deportista` (
 INSERT INTO `actividad_deportista` (`id`, `idActividad`, `dniDeportista`) VALUES
 (13, 53, '11111111H'),
 (14, 53, '22222222J'),
-(15, 53, '98765432M');
+(15, 53, '98765432M'),
+(16, 54, '11111111H'),
+(17, 54, '22222222J'),
+(18, 54, '98765432M'),
+(19, 55, '11111111H'),
+(20, 55, '22222222J'),
+(21, 56, '98765432M'),
+(22, 56, '11111111H'),
+(23, 56, '22222222J'),
+(24, 57, '98765432M');
+
 
 -- --------------------------------------------------------
 
@@ -151,7 +161,9 @@ CREATE TABLE `cardio` (
 --
 
 INSERT INTO `cardio` (`idEjercicio`) VALUES
-(9);
+(14),
+(15),
+(16);
 
 -- --------------------------------------------------------
 
@@ -172,7 +184,14 @@ CREATE TABLE `cardio_tabla` (
 --
 
 INSERT INTO `cardio_tabla` (`id`, `idCardio`, `idTabla`, `tiempo`, `distancia`) VALUES
-(1, 9, 4, 50, 0);
+(1, 14, 2, 34, 23),
+(2, 15, 1, 23, 23),
+(3, 16, 3, 45, 4),
+(4, 14, 4, 56, 44),
+(5, 14, 1, 43, 21),
+(6, 15, 2, 50, 22),
+(7, 16, 3, 45, 55),
+(8, 15, 4, 23, 56);
 
 -- --------------------------------------------------------
 
@@ -212,9 +231,15 @@ CREATE TABLE `ejercicio` (
 --
 
 INSERT INTO `ejercicio` (`idEjercicio`, `nombre`, `descripcion`, `video`, `imagen`) VALUES
-(8, 'Estiramiento 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget justo tincidunt, finibus ante ac, ultricies ex. Duis sagittis, purus. ', '', ''),
-(9, 'Cardio', 'Es cardio', NULL, 'ElMundoesMio04.jpg'),
-(10, 'Estiramiento', 'Es un estiramiento', NULL, 'ABP/../View/pictures/ejercicios/fotos/10.jpeg');
+(8, 'Estiramiento 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget justo tincidunt, finibus ante ac, ultricies ex. Duis sagittis, purus. ', 'https://www.youtube.com/embed/iQ3g-gqKe_A', 'ABP/../View/pictures/ejercicios/fotos/8.jpg'),
+(9, 'Estiramiento 2', 'Ejercicio estiramiento numero 2', 'https://www.youtube.com/embed/0YRX4pEP6pY', 'ABP/../View/pictures/ejercicios/fotos/9.jpg'),
+(10, 'Estiramiento 3', 'Es un estiramiento sencillo para deportistas que están empezando', 'https://www.youtube.com/embed/0YRX4pEP6pY', 'ABP/../View/pictures/ejercicios/fotos/10.jpg'),
+(11, 'Muscular 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget justo tincidunt, finibus ante ac, ultricies ex. Duis sagittis, purus. ', 'https://www.youtube.com/embed/0YRX4pEP6pY', 'ABP/../View/pictures/ejercicios/fotos/11.jpg'),
+(12, 'Muscular 2', 'Ejercicio muscular numero 2. Fácil', 'https://www.youtube.com/embed/0YRX4pEP6pY', 'ABP/../View/pictures/ejercicios/fotos/12.jpeg'),
+(13, 'Muscular 3', 'Es un ejercicio muscular solo apto para profesionales','https://www.youtube.com/embed/0YRX4pEP6pY', 'ABP/../View/pictures/ejercicios/fotos/13.jpg'),
+(14, 'Cardio 1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget justo tincidunt, finibus ante ac, ultricies ex. Duis sagittis, purus. ', 'https://www.youtube.com/embed/0YRX4pEP6pY', 'ABP/../View/pictures/ejercicios/fotos/14.jpg'),
+(15, 'Cardio 2', 'Es un ejercicio de cardio sencillo y para toda la familia', 'https://www.youtube.com/embed/0YRX4pEP6pY', 'ABP/../View/pictures/ejercicios/fotos/15.jpg'),
+(16, 'Cardio 3', 'Alta dificultad8', 'https://www.youtube.com/embed/0YRX4pEP6pY', 'ABP/../View/pictures/ejercicios/fotos/16.jpg');
 
 -- --------------------------------------------------------
 
@@ -262,6 +287,7 @@ CREATE TABLE `estiramiento` (
 
 INSERT INTO `estiramiento` (`idEjercicio`) VALUES
 (8),
+(9),
 (10);
 
 -- --------------------------------------------------------
@@ -282,8 +308,14 @@ CREATE TABLE `estiramiento_tabla` (
 --
 
 INSERT INTO `estiramiento_tabla` (`id`, `idEstiramiento`, `idTabla`, `tiempo`) VALUES
-(1, 8, 4, 2),
-(2, 10, 4, 2);
+(1, 8, 1, 36),
+(2, 9, 2, 25),
+(3, 10, 3, 12),
+(4, 8, 4, 22),
+(5, 8, 3, 24),
+(6, 9, 3,55),
+(7, 10, 2, 45),
+(8, 9, 1, 45);
 
 -- --------------------------------------------------------
 
@@ -324,32 +356,6 @@ CREATE TABLE `horario` (
 --
 
 INSERT INTO `horario` (`idHorario`, `dia`, `hora`, `fechIni`, `fechFin`) VALUES
-(3, 'Lunes', '5', '2017-12-07', '2017-12-25'),
-(4, 'Lunes', '5', '2017-11-29', '2018-12-12'),
-(5, 'Lunes', '5', '2017-12-06', '2017-12-18'),
-(6, 'Lunes', '5', '2017-12-22', '2017-12-31'),
-(7, 'Lunes', '5', '2017-12-25', '2018-01-23'),
-(8, 'Lunes', '5-6', '2017-12-25', '2018-01-16'),
-(9, 'hoy', '12', '2017-12-19', '2017-12-26'),
-(10, 'as', '5', '2017-12-27', '2017-12-25'),
-(11, 'Martes', '5-6', '2017-12-25', '2017-12-29'),
-(12, 'Martes', '5-6', '2017-12-25', '2017-12-25'),
-(13, 'Martes', '5-6', '2017-12-25', '2017-12-25'),
-(14, 'Martes', '5-6', '2017-12-26', '2018-12-18'),
-(15, 'Todos', '5-6', '2017-12-27', '2018-02-06'),
-(16, 'Todos', '10', '2017-12-25', '2018-02-27'),
-(17, 'Todos', '10', '2017-12-25', '2018-02-27'),
-(18, 'todos', '10', '2017-12-25', '2017-12-31'),
-(19, 'todos', '11', '2017-12-25', '2017-12-25'),
-(20, 'Todos', '10', '2017-12-25', '2018-12-11'),
-(21, 'todos', '5-9', '2017-12-25', '2021-12-14'),
-(22, 'miercoles', '23', '2017-12-25', '2017-12-31'),
-(23, 'todos', '23', '2017-12-25', '2017-12-31'),
-(24, 'todos', '14', '2017-12-25', '2017-12-31'),
-(25, 'todos', '24', '2017-12-18', '2017-12-26'),
-(26, 'hoy', '34', '2017-12-26', '2017-12-31'),
-(27, 'hoy', '3-4', '2017-12-25', '2018-01-01'),
-(28, 'Hoy', '23', '2018-01-16', '2018-01-30'),
 (29, 'Todos', '8:00 - 24:00', '2018-01-01', '2019-01-01'),
 (30, 'Todos', '16:00 - 21:00', '2018-01-01', '2018-02-01'),
 (31, 'Todos', '15:00-17:00', '2018-01-01', '2018-02-01'),
@@ -394,6 +400,16 @@ CREATE TABLE `muscular` (
   `idEjercicio` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `muscular`
+--
+
+INSERT INTO `muscular` (`idEjercicio`) VALUES
+(11),
+(12),
+(13);
+
+
 -- --------------------------------------------------------
 
 --
@@ -407,6 +423,18 @@ CREATE TABLE `muscular_tabla` (
   `carga` int(11) NOT NULL,
   `repeticiones` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `muscular_tabla`
+--
+
+INSERT INTO `muscular_tabla` (`id`, `idMuscular`, `idTabla`, `carga`, `repeticiones`) VALUES
+(1, 11, 1, 50, 23),
+(2, 11, 2, 12, 12),
+(3, 12, 3, 56, 234),
+(4, 12, 4, 67, 56),
+(5, 13, 2, 89, 65);
+
 
 -- --------------------------------------------------------
 
@@ -427,7 +455,10 @@ CREATE TABLE `notificacion` (
 --
 
 INSERT INTO `notificacion` (`idNotificacion`, `dniAdministrador`, `Asunto`, `contenido`, `fecha`) VALUES
-(1, '44490816F', 'Notificación de Prueba', 'Esta es una notificación para probar el funcionamiento correcto del sistema de notificaciones', '2017-12-23 00:06:37');
+(1, '44490816F', 'Notificación de Prueba', 'Esta es una notificación para probar el funcionamiento correcto del sistema de notificaciones', '2017-12-23 00:06:37'),
+(2, '44497121X', 'Cambio Horario Fútbol', 'El horario cambia de los lunes y miércoles a las 5:00pm a las 7:00pm', '2017-12-27 00:06:37'),
+(3, '44497121X', 'Abierto el plazo de inscripción para Baloncesto', 'Ya puede apuntarse a baloncesto. Para más información consulte la actividad desde el apartado de Actividades', '2017-12-28 00:06:37'),
+(4, '44490816F', 'Vacaciones', 'Informamos a nuestros usuarios de que el gimnasio permanecerá cerrado durante todo el mes de julio por vacaciones del personal', '2017-12-29 00:06:37');
 
 -- --------------------------------------------------------
 
@@ -449,7 +480,13 @@ CREATE TABLE `notificacion_deportista` (
 INSERT INTO `notificacion_deportista` (`dniAdministrador`, `dniDeportista`, `idNotificacion`, `visto`) VALUES
 ('44490816F', '11111111H', 1, 0),
 ('44490816F', '22222222J', 1, 0),
-('44490816F', '98765432M', 1, 0);
+('44490816F', '98765432M', 1, 0),
+('44497121X', '22222222J', 2, 0),
+('44497121X', '98765432M', 2, 0),
+('44497121X', '22222222J', 3, 0),
+('44497121X', '98765432M', 3, 0),
+('44490816F', '22222222J', 4, 0),
+('44490816F', '98765432M', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -464,6 +501,21 @@ CREATE TABLE `pago` (
   `importe` double NOT NULL,
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pago`
+--
+
+INSERT INTO `pago` (`idPago`, `dniDeportista`, `idActividad`, `importe`,`fecha`) VALUES
+(2,'11111111H', 53, 50.20,'2017-12-26 00:06:37'),
+(3,'22222222J', 53, 50.20,'2017-12-27 00:06:37'),
+(4,'98765432M', 53, 50.20,'2017-12-27 00:06:37'),
+(5,'22222222J', 54, 25.00,'2017-12-28 00:06:37'),
+(6,'98765432M', 55, 20.45,'2017-12-29 00:06:37'),
+(7,'22222222J', 56, 30.50,'2018-01-02 00:06:37'),
+(8,'98765432M', 56, 30.50,'2018-01-05 00:06:37'),
+(9,'98765432M', 54, 25.00,'2018-01-10 00:06:37'),
+(10,'98765432M', 57, 30.99,'2018-01-14 00:06:37');
 
 -- --------------------------------------------------------
 
@@ -501,11 +553,11 @@ CREATE TABLE `recursos` (
 --
 
 INSERT INTO `recursos` (`idRecurso`, `nombreRecurso`, `observaciones`) VALUES
-(1, 'Pista Tenis', ''),
-(2, 'Gimnasio', ''),
-(3, 'Pabellón', ''),
-(4, 'Campo Exterior', ''),
-(5, 'Campo Interior', '');
+(1, 'Pista Tenis', 'Pista de hierba artificial'),
+(2, 'Gimnasio', 'Gimnasio de 500m2'),
+(3, 'Pabellón', 'Pabellón de 9000m2'),
+(4, 'Campo Exterior', 'Campo de 1000m2'),
+(5, 'Campo Interior', 'Campo de 100m2');
 
 -- --------------------------------------------------------
 
@@ -526,8 +578,19 @@ CREATE TABLE `sesionentrenamiento` (
 --
 
 INSERT INTO `sesionentrenamiento` (`idSesionEntrenamiento`, `comentario`, `duracion`, `fecha`, `dniDeportista`) VALUES
-(1, '', 0.0166667, '2018-01-13', '11111111H'),
-(2, 'otra sesion', 0.0833333, '2018-01-13', '11111111H');
+(1, 'Malas sensaciones', 0.0166667, '2018-01-02', '98765432M'),
+(2, 'Sensaciones inmejorables', 0.0833333, '2018-01-05', '98765432M'),
+(3, '', 0.0833333, '2018-01-07', '98765432M'),
+(4, 'Sensaciones mejorables', 0.0833333, '2018-01-15', '98765432M'),
+(5, 'Me ahogo. AYUDA', 0.0166667, '2018-01-02', '11111111H'),
+(6, 'Sensaciones inmejorables', 0.0833333, '2018-01-05', '11111111H'),
+(7, '', 0.0833333, '2018-01-07', '11111111H'),
+(8, 'Sensaciones mejorables', 0.0833333, '2018-01-15', '11111111H'),
+(9, 'Malas sensaciones', 0.0166667, '2018-01-02', '22222222J'),
+(10, 'Dolor pierna derecha', 0.0833333, '2018-01-05', '22222222J'),
+(11, '', 0.0833333, '2018-01-07', '22222222J'),
+(12, 'Sensaciones mejorables', 0.0833333, '2018-01-15', '22222222J');
+
 
 -- --------------------------------------------------------
 
@@ -545,8 +608,19 @@ CREATE TABLE `sesionentrenamiento_tabla` (
 --
 
 INSERT INTO `sesionentrenamiento_tabla` (`idSesionEntrenamiento`, `idTabla`) VALUES
-(1, 4),
-(2, 4);
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 2),
+(5, 1),
+(6, 1),
+(7, 4),
+(8, 4),
+(9, 3),
+(10, 3),
+(11, 3),
+(12, 3);
+
 
 -- --------------------------------------------------------
 
@@ -589,7 +663,13 @@ CREATE TABLE `superusuario_ejercicio` (
 INSERT INTO `superusuario_ejercicio` (`id`, `dniSuperUsuario`, `idEjercicio`) VALUES
 (8, '53192250N', 8),
 (9, '44490816F', 9),
-(10, '44490816F', 10);
+(10, '44497121X', 10),
+(11, '53192250N', 11),
+(12, '44490816F', 12),
+(13, '44497121X', 13),
+(14, '53192250N', 14),
+(15, '44490816F', 15),
+(16, '44497121X', 16);
 
 -- --------------------------------------------------------
 
@@ -601,6 +681,14 @@ CREATE TABLE `superusuario_individual` (
   `dniSuperUsuario` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
   `idActividad` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `superusuario_tabla_deportista`
+--
+
+INSERT INTO `superusuario_individual` (`dniSuperUsuario`, `idActividad`) VALUES
+('44497121X', 53);
+
 
 -- --------------------------------------------------------
 
@@ -619,7 +707,12 @@ CREATE TABLE `superusuario_tabla_deportista` (
 --
 
 INSERT INTO `superusuario_tabla_deportista` (`dniSuperUsuario`, `dniDeportista`, `idTabla`) VALUES
-('53192250N', '11111111H', 4);
+('53192250N', '11111111H', 4),
+('44497121X', '98765432M', 2),
+('53192250N', '11111111H', 1),
+('44497121X', '98765432M', 1),
+('53192250N', '22222222J', 3),
+('44497121X', '98765432M', 3);
 
 -- --------------------------------------------------------
 
@@ -641,9 +734,9 @@ CREATE TABLE `tabla` (
 
 INSERT INTO `tabla` (`idTabla`, `tipo`, `comentario`, `nombre`, `dniSuperUsuario`) VALUES
 (1, 'estandar', 'Tabla de dificultad media, no apta si el deportista padece asma', 'Tabla1', '53192250N'),
-(2, 'personalizada', 'Tabla de estiramientos y fortalecimiento muscular', 'Tabla2', '44497121X'),
+(2, 'personalizada', 'Tabla de estiramientos y fortalecimiento muscular', 'Tabla 2', '44497121X'),
 (3, 'estandar', 'Tabla de dificultad alta, repertorio amplio de ejercicios variados.', 'Tabla Completa', '53192250N'),
-(4, 'estandar', 'Es souto', 'Souto', '44490816F');
+(4, 'estandar', 'Tabla de alta dificultad. Sólo para los mejores deportistas', 'Tabla Profesional', '44490816F');
 
 -- --------------------------------------------------------
 
@@ -688,13 +781,13 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`dni`, `nombre`, `apellidos`, `edad`, `contrasena`, `email`, `telefono`, `fechaAlta`, `fotoperfil`) VALUES
 ('11111111H', 'Manuel', 'Pérez López', 23, 'e10adc3949ba59abbe56e057f20f883e', 'manuel@gmail.com', '666333222', '2018-01-02', 'ABP/../View/pictures/usuarios/fotoperfil/11111111H.png'),
-('12345678Z', 'Entrenador2', 'entrenador2', 28, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador2@hotmail.com', '123456789', '2017-12-22', 'ABP/../View/pictures/usuarios/fotoperfil/12345678Z.png'),
-('22222222J', 'Antonio', 'De la Iglésia Rodríguez', 35, 'e10adc3949ba59abbe56e057f20f883e', 'antonio@iglesia.es', '666000222', '2018-01-02', 'ABP/../View/pictures/usuarios/fotoperfil/22222222J.png'),
+('12345678Z', 'Entrenador2', 'Entrenador2', 28, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador2@hotmail.com', '123456789', '2017-12-22', 'ABP/../View/pictures/usuarios/fotoperfil/12345678Z.png'),
+('22222222J', 'Antonio', 'De la Iglesia Rodríguez', 35, 'e10adc3949ba59abbe56e057f20f883e', 'antonio@iglesia.es', '666000222', '2018-01-02', 'ABP/../View/pictures/usuarios/fotoperfil/22222222J.png'),
 ('33333333P', 'Entrenador', 'Entrenador Entrenador', 30, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador@gmail.com', '666666666', '2017-11-08', 'ABP/../View/pictures/usuarios/fotoperfil/33333333P.png'),
 ('44490816F', 'Daniel', 'Rodríguez Domínguez', 25, 'e10adc3949ba59abbe56e057f20f883e', 'danieldrd@outlook.es', '123456789', '2017-11-08', 'ABP/../View/pictures/usuarios/fotoperfil/44490816F.png'),
 ('44497121X', 'Adrián', 'Souto Fariñas', 65, 'e10adc3949ba59abbe56e057f20f883e', 'adriansouto2@gmail.com', '6546546546', '2017-11-06', 'ABP/../View/pictures/usuarios/fotoperfil/44497121X.png'),
-('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '666000222', '2018-01-02', NULL),
-('66666666Q', '66666666Q', '66666666Q', 34, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador3@hotmail.com', '123456789', '2017-12-22', 'ABP/../View/pictures/usuarios/fotoperfil/66666666Q.png'),
+('53192250N', 'Alexandre', 'Viana Sixto', 28, 'e10adc3949ba59abbe56e057f20f883e', 'vianasixtoalexandre@gmail.com', '666000222', '2018-01-02', 'ABP/../View/pictures/usuarios/fotoperfil/53192250N.png'),
+('66666666Q', 'Álvaro', 'Iglesias Alvaricoque', 34, 'e10adc3949ba59abbe56e057f20f883e', 'entrenador3@hotmail.com', '123456789', '2017-12-22', 'ABP/../View/pictures/usuarios/fotoperfil/66666666Q.png'),
 ('98765432M', 'Marco', 'Aurelio', 25, 'e10adc3949ba59abbe56e057f20f883e', 'marcoaurelio@gmail.com', '123456789', '2017-11-08', 'ABP/../View/pictures/usuarios/fotoperfil/98765432M.png');
 
 --

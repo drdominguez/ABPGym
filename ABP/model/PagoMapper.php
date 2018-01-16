@@ -36,10 +36,10 @@ Class PagoMapper{
     {
         if($this->permisos->esAdministrador())
         {
-            $stmt = $this->db->query("SELECT * from pago p, actividad a WHERE p.idActividad=a.idActividad");
+            $stmt = $this->db->query("SELECT * from pago p, actividad a WHERE p.idActividad=a.idActividad ORDER BY p.fecha desc");
         }else
         {
-            $stmt = $this->db->prepare("SELECT * from pago p, actividad a WHERE dniDeportista =? AND p.idActividad=a.idActividad");
+            $stmt = $this->db->prepare("SELECT * from pago p, actividad a WHERE dniDeportista =? AND p.idActividad=a.idActividad ORDER BY p.fecha desc");
             $stmt->execute(array($_SESSION['currentuser']));
         }
         $pagos_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
