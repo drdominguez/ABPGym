@@ -13,6 +13,12 @@
                             <span class="nav-link-text"> <?= i18n("Ver Instalaciones");?></span>
                         </a>
                     </li>
+                    <li class="nav-item" data-toggle="tooltip">
+                        <a class="nav-link" href="./index.php?controller=Actividad&amp;action=actividad2Listar">
+                            <i class="fa fa-fw fa-table"></i>
+                            <span class="nav-link-text"> <?= i18n("Ver Actividades");?></span>
+                        </a>
+                    </li>
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Sesiones">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseSesiones" data-parent="#exampleAccordion">
                            <i class="icon-clock3"></i>
