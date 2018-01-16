@@ -26,8 +26,9 @@
                         </a>
                     </li>
                     <li class="nav-item" data-toggle="tooltip">
-                        <a class="nav-link" href="./index.php?controller=Pago&amp;action=PagoListar">
-                            <i class="icon-money"></i> <span class="nav-link-text"><?= i18n("Pagos");?></span>
+                         <a class="nav-link" href="./index.php?controller=contacto&amp;action=contactoListar">
+                         <i class="fa fa-fw fa-table"></i>
+                         <span class="nav-link-text"><?= i18n("Atención al cliente GymApp");?></span>
                         </a>
                     </li>
                 </ul>

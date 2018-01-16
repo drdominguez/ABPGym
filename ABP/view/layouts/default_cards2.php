@@ -66,7 +66,7 @@
               </div>
               <div class="mr-5 mt-3"><?= i18n("Contacta con Nosotros!") ?></div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Estadistica&amp;action=Listar">
+            <a class="card-footer text-white clearfix small z-1" href="./index.php?controller=Contacto&amp;action=contactoListar">
               <span class="float-left"><?= i18n("Mira cómo puedes contactar") ?></span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
