@@ -294,7 +294,6 @@ class ActividadController extends BaseController{
         $this->view->setVariable("listarecursos",$listarrecursos);
         $this->view->setVariable("monitores", $monitores);
         $this->view->render("actividad/grupo","grupoADD");
-
     }
 
     }
